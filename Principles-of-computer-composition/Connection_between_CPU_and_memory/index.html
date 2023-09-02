@@ -1,0 +1,1059 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="诗岸梦行舟" href="https://735690757.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="诗岸梦行舟" href="https://735690757.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="诗岸梦行舟" href="https://735690757.github.io/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="计算机组成原理" />
+
+
+<link rel="canonical" href="https://735690757.github.io/Principles-of-computer-composition/Connection_between_CPU_and_memory/">
+
+
+
+  <title>
+CPU与存储器的连接 - 计算机组成原理 |
+KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</title>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">CPU与存储器的连接
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2023-06-06 11:11:00">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2023-06-06T11:11:00+08:00">2023-06-06</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">KarryLiu</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+          <img src="https://s2.loli.net/2023/03/24/NJydhtQ6Hm4vxpb.jpg">
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/Principles-of-computer-composition/" itemprop="item" rel="index" title="分类于 计算机组成原理"><span itemprop="name">计算机组成原理</span></a>
+<meta itemprop="position" content="1" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="https://735690757.github.io/Principles-of-computer-composition/Connection_between_CPU_and_memory/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/01.jpg">
+    <meta itemprop="name" content="KarryLiu">
+    <meta itemprop="description" content="分享计算机知识以及各种心得总结, 愿世间所有的美好都得以祝愿">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="诗岸梦行舟">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h1 id="前言"><a class="markdownIt-Anchor" href="#前言">#</a> 前言</h1>
+<p>针对这一部分内容我还是推荐大家去看看书本上和其他教学视频里的内容，本篇文章只针对计算机组成原理（第 3 版）P91 页之后的内容进行简单整理汇总。</p>
+<p>接下来我将会按照书上的顺序进行叙述。</p>
+<h1 id="cpu-与存储器的连接"><a class="markdownIt-Anchor" href="#cpu-与存储器的连接">#</a> CPU 与存储器的连接</h1>
+<h2 id="存储器容量扩展"><a class="markdownIt-Anchor" href="#存储器容量扩展">#</a> 存储器容量扩展</h2>
+<h3 id="字扩展"><a class="markdownIt-Anchor" href="#字扩展">#</a> 字扩展</h3>
+<p>在某些情况下，字扩展可以被视为一种扩容操作。字扩展通常指的是将一个字符或字符串转换为具有更多位数或更高精度的数据类型，以便进行更复杂的计算或存储更大的值。这个过程可能涉及到内存分配和重新分配，因此可以看作是一种扩容操作。但是，在其他情况下，字扩展可能只是简单地将一个字符或字符串进行格式化或解码，而不涉及任何内存操作。因此，是否将字扩展视为扩容取决于具体的上下文和实现方式。</p>
+<p><strong>但是我们可以简单地把字扩展理解为扩容。</strong></p>
+<p>比如，<strong>两片 1K*8 位</strong>通过字扩展扩容位逻辑上的<strong>一片 2K*8 位</strong></p>
+<h3 id="位扩展"><a class="markdownIt-Anchor" href="#位扩展">#</a> 位扩展</h3>
+<p>位扩展是一种将一个二进制数值的位数增加的操作。在位扩展中，如果原始二进制数值的最高位为 0，则在其左侧添加 0 以增加位数；如果最高位为 1，则在其左侧添加 1 以保持符号不变。例如，将 8 位二进制数值 &quot;00110110&quot; 进行位扩展为 16 位，则结果为 &quot;00000000 00110110&quot;。位扩展通常用于将低精度数据类型转换为高精度数据类型，或者在进行算术运算时对操作数进行对齐。</p>
+<p><strong>咳咳咳，简单理解就是二进制加长</strong></p>
+<h3 id="字位扩展"><a class="markdownIt-Anchor" href="#字位扩展">#</a> 字位扩展</h3>
+<p>字位扩展是一种将一个数据类型的位数增加的操作，其中 “字” 指的是计算机中的一个固定大小的数据单元。在字位扩展中，如果原始数据类型的最高位为 0，则在其左侧添加 0 以增加位数；如果最高位为 1，则在其左侧添加 1 以保持符号不变。例如，将 16 位有符号整数进行字位扩展为 32 位，则结果为在最高位之前添加 16 个相同的符号位。字位扩展通常用于将低精度数据类型转换为高精度数据类型，或者在进行算术运算时对操作数进行对齐。</p>
+<p><strong>简单理解就是… 结合版</strong></p>
+<h1 id="例题"><a class="markdownIt-Anchor" href="#例题">#</a> 例题</h1>
+<p>怎么出题呢？一般都像这样：</p>
+<p>CPU 有 16 根地址线、8 根数据线，并用 MREQ 非作为访存控制信号（低电频有效），用 WR 作为读 / 写控制信号。现在有如下存储芯片：<strong>1K X 4 位 RAM、4K X 8 位 RAM、8K X 8 位 RAM、2K X 8 位 ROM、4K X 8 位 ROM、8K X 8 位 ROM</strong> 及 74138 译码器和各种门电路。现要求如下：</p>
+<ul>
+<li>主存地址空间分配：
+<ul>
+<li>6000H ~ 67FFH 为系统程序区</li>
+<li>6800H ~ 6BFFH 为用户程序区</li>
+</ul>
+</li>
+<li>合理选用上述存储芯片，说明各选几片</li>
+<li>详细画出芯片片选逻辑图</li>
+</ul>
+<h2 id="解"><a class="markdownIt-Anchor" href="#解">#</a> 解！！</h2>
+<p><strong>第一步：写出地址空间分配范围二进制码</strong></p>
+<p>6000H ~ 67FFH 为系统程序区</p>
+<p>6800H ~ 6BFFH 为用户程序区</p>
+<p>6000H、67FFH、6800H、6BFFH 化为二进制：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">A15</th>
+<th>A14</th>
+<th>A13</th>
+<th style="text-align:center">A12</th>
+<th>A11</th>
+<th>A10</th>
+<th>A9</th>
+<th>A8</th>
+<th>A7</th>
+<th>A6</th>
+<th>A5</th>
+<th>A4</th>
+<th>A3</th>
+<th>A2</th>
+<th>A1</th>
+<th>A0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td>1</td>
+<td>1</td>
+<td style="text-align:center">0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td>1</td>
+<td>1</td>
+<td style="text-align:center">0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td>1</td>
+<td>1</td>
+<td style="text-align:center">0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td>1</td>
+<td>1</td>
+<td style="text-align:center">0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>首先，先确定芯片，<strong>全零到全一就是一个芯片</strong></p>
+<p>先看 ROM，也就是系统区：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">A15</th>
+<th>A14</th>
+<th>A13</th>
+<th style="text-align:center">A12</th>
+<th>A11</th>
+<th>A10</th>
+<th>A9</th>
+<th>A8</th>
+<th>A7</th>
+<th>A6</th>
+<th>A5</th>
+<th>A4</th>
+<th>A3</th>
+<th>A2</th>
+<th>A1</th>
+<th>A0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td>1</td>
+<td>1</td>
+<td style="text-align:center">0</td>
+<td>0</td>
+<td><strong>0</strong></td>
+<td><strong>0</strong></td>
+<td><strong>0</strong></td>
+<td><strong>0</strong></td>
+<td><strong>0</strong></td>
+<td><strong>0</strong></td>
+<td><strong>0</strong></td>
+<td><strong>0</strong></td>
+<td><strong>0</strong></td>
+<td><strong>0</strong></td>
+<td><strong>0</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td>1</td>
+<td>1</td>
+<td style="text-align:center">0</td>
+<td>0</td>
+<td><strong>1</strong></td>
+<td><strong>1</strong></td>
+<td><strong>1</strong></td>
+<td><strong>1</strong></td>
+<td><strong>1</strong></td>
+<td><strong>1</strong></td>
+<td><strong>1</strong></td>
+<td><strong>1</strong></td>
+<td><strong>1</strong></td>
+<td><strong>1</strong></td>
+<td><strong>1</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td>1</td>
+<td>1</td>
+<td style="text-align:center">0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td>1</td>
+<td>1</td>
+<td style="text-align:center">0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>A0 ~ A10 为一个 ROM，一共 11 位，理想是要一个规格为<strong> 2K X 8 位 ROM</strong></p>
+<p>再来看 RAM ，也就是用户区：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">A15</th>
+<th>A14</th>
+<th>A13</th>
+<th style="text-align:center">A12</th>
+<th>A11</th>
+<th>A10</th>
+<th>A9</th>
+<th>A8</th>
+<th>A7</th>
+<th>A6</th>
+<th>A5</th>
+<th>A4</th>
+<th>A3</th>
+<th>A2</th>
+<th>A1</th>
+<th>A0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td>1</td>
+<td>1</td>
+<td style="text-align:center">0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td>1</td>
+<td>1</td>
+<td style="text-align:center">0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td>1</td>
+<td>1</td>
+<td style="text-align:center">0</td>
+<td>1</td>
+<td>0</td>
+<td><strong>0</strong></td>
+<td><strong>0</strong></td>
+<td><strong>0</strong></td>
+<td><strong>0</strong></td>
+<td><strong>0</strong></td>
+<td><strong>0</strong></td>
+<td><strong>0</strong></td>
+<td><strong>0</strong></td>
+<td><strong>0</strong></td>
+<td><strong>0</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td>1</td>
+<td>1</td>
+<td style="text-align:center">0</td>
+<td>1</td>
+<td>0</td>
+<td><strong>1</strong></td>
+<td><strong>1</strong></td>
+<td><strong>1</strong></td>
+<td><strong>1</strong></td>
+<td><strong>1</strong></td>
+<td><strong>1</strong></td>
+<td><strong>1</strong></td>
+<td><strong>1</strong></td>
+<td><strong>1</strong></td>
+<td><strong>1</strong></td>
+</tr>
+</tbody>
+</table>
+<p>A0 ~ A9 为一个 RAM，一共 10 位，理想是要一个规格为<strong> 1K X 8 位 RAM</strong></p>
+<p>然后呢，我们需要对 ROM 和 RAM 进行读写，这就涉及到切换 ROM 和 RAM 芯片的问题，我们需要弄一个片选信号：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">A15</th>
+<th>A14</th>
+<th>A13</th>
+<th style="text-align:center">A12</th>
+<th>A11</th>
+<th>A10</th>
+<th>A9</th>
+<th>A8</th>
+<th>A7</th>
+<th>A6</th>
+<th>A5</th>
+<th>A4</th>
+<th>A3</th>
+<th>A2</th>
+<th>A1</th>
+<th>A0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td>1</td>
+<td>1</td>
+<td style="text-align:center">0</td>
+<td><strong>0</strong></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td>1</td>
+<td>1</td>
+<td style="text-align:center">0</td>
+<td><strong>0</strong></td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td>1</td>
+<td>1</td>
+<td style="text-align:center">0</td>
+<td><strong>1</strong></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td>1</td>
+<td>1</td>
+<td style="text-align:center">0</td>
+<td><strong>1</strong></td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>上两行是 ROM，下两行是 RAM，可以看到 A11 及其关键的决定了到底选择哪一个芯片，是 ROM 还是 RAM。当 A11 为 0 时 ROM 被选中，当 A11 为 1 时 RAM 被选中。</p>
+<p>然而 74138 译码器需要三个数据输入端，这时候我们就需要再拉来两个垫背的 A12 与 A13。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">A15</th>
+<th>A14</th>
+<th>A13</th>
+<th style="text-align:center">A12</th>
+<th>A11</th>
+<th>A10</th>
+<th>A9</th>
+<th>A8</th>
+<th>A7</th>
+<th>A6</th>
+<th>A5</th>
+<th>A4</th>
+<th>A3</th>
+<th>A2</th>
+<th>A1</th>
+<th>A0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td>1</td>
+<td><strong>1</strong></td>
+<td style="text-align:center"><strong>0</strong></td>
+<td><strong>0</strong></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td>1</td>
+<td><strong>1</strong></td>
+<td style="text-align:center"><strong>0</strong></td>
+<td><strong>0</strong></td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td>1</td>
+<td><strong>1</strong></td>
+<td style="text-align:center"><strong>0</strong></td>
+<td><strong>1</strong></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td>1</td>
+<td><strong>1</strong></td>
+<td style="text-align:center"><strong>0</strong></td>
+<td><strong>1</strong></td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p><strong>A11 A12 A13</strong> 一次排列连接至 74138 的数据输入端<strong> A B C</strong>，这一点非常重要！！低位是起始点 A，高位时终点 C。</p>
+<p>数据为<strong> 100</strong> 时 ROM 被选中，74138Y4 非端被点亮，<strong>因为 100 正是数字 4</strong>。</p>
+<p>数据为<strong> 101</strong> 时 RAM 被选中，74138Y4 非端被点亮，<strong>因为 101 正是数字 5</strong>。</p>
+<p>接下来再讨论讨论芯片的选择：</p>
+<p>A0 ~ A10 为一个 ROM，一共 11 位，理想是要一个规格为<strong> 2K X 8 位 ROM</strong></p>
+<p>A0 ~ A9 为一个 RAM，一共 10 位，理想是要一个规格为<strong> 1K X 8 位 RAM</strong></p>
+<p>对于 ROM，题中刚好有一个规格为<strong> 2K X 8 位的 ROM 芯片</strong>，拿来便是！</p>
+<p>对于 RAM，题中没有那个规格的我们这里就需要进行扩展，这里我们选择<strong>两片 1K X 4 位的 ROM 芯片</strong>对他进行位扩展就好了。位扩展 位扩展 位扩展，说明它位数不够，数据一次无法写进一个芯片，但是一次可以写进两个芯片。这样就解决了！</p>
+<h1 id="总结"><a class="markdownIt-Anchor" href="#总结">#</a> 总结</h1>
+<p>CPU 与存储器的连接是计算机计算机组成原理中的重要考题，更是期末考试中的重点，看着很复杂的连接图，但其实内在的原理还是很简单的，无非就是：写二进制、选芯片、扩展外带画图连接，本质还是比较容易作的</p>
+
+      <div class="tags">
+          <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag"><i class="ic i-tag"></i> 计算机组成原理</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2023-08-15 11:04:47" itemprop="dateModified" datetime="2023-08-15T11:04:47+08:00">2023-08-15</time>
+  </span>
+  <span id="Principles-of-computer-composition/Connection_between_CPU_and_memory/" class="item leancloud_visitors" data-flag-title="CPU与存储器的连接" title="阅读次数">
+      <span class="icon">
+        <i class="ic i-eye"></i>
+      </span>
+      <span class="text">阅读次数</span>
+      <span class="leancloud-visitors-count"></span>
+      <span class="text">次</span>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> 赞赏</button>
+  <p>请我喝[茶]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/myWxPay.jpg" alt="KarryLiu 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/myAliPay.jpg" alt="KarryLiu 支付宝">
+        <p>支付宝</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>KarryLiu <i class="ic i-at"><em>@</em></i>诗岸梦行舟
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="https://735690757.github.io/Principles-of-computer-composition/Connection_between_CPU_and_memory/" title="CPU与存储器的连接">https://735690757.github.io/Principles-of-computer-composition/Connection_between_CPU_and_memory/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/Principles-of-computer-composition/booth_algorithm/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;s2.loli.net&#x2F;2023&#x2F;03&#x2F;24&#x2F;NJydhtQ6Hm4vxpb.jpg" title="booth算法">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> 计算机组成原理</span>
+  <h3>booth算法</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/ssm/SSM01/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;i.postimg.cc&#x2F;Y08Rcdkn&#x2F;5914c632e6dffaceb04a08266d4d5148.png" title="SSM框架整合">
+  <span class="type">下一篇</span>
+  <span class="category"><i class="ic i-flag"></i> SSM框架</span>
+  <h3>SSM框架整合</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text"> 前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#cpu-%E4%B8%8E%E5%AD%98%E5%82%A8%E5%99%A8%E7%9A%84%E8%BF%9E%E6%8E%A5"><span class="toc-number">2.</span> <span class="toc-text"> CPU 与存储器的连接</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%99%A8%E5%AE%B9%E9%87%8F%E6%89%A9%E5%B1%95"><span class="toc-number">2.1.</span> <span class="toc-text"> 存储器容量扩展</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E6%89%A9%E5%B1%95"><span class="toc-number">2.1.1.</span> <span class="toc-text"> 字扩展</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%8D%E6%89%A9%E5%B1%95"><span class="toc-number">2.1.2.</span> <span class="toc-text"> 位扩展</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E4%BD%8D%E6%89%A9%E5%B1%95"><span class="toc-number">2.1.3.</span> <span class="toc-text"> 字位扩展</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-number">3.</span> <span class="toc-text"> 例题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3"><span class="toc-number">3.1.</span> <span class="toc-text"> 解！！</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">4.</span> <span class="toc-text"> 总结</span></a></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+        <ul>
+          <li><a href="/Principles-of-computer-composition/Division_in_Computers/" rel="bookmark" title="计算机中的除法运算">计算机中的除法运算</a></li><li><a href="/Principles-of-computer-composition/booth_algorithm/" rel="bookmark" title="booth算法">booth算法</a></li><li class="active"><a href="/Principles-of-computer-composition/Connection_between_CPU_and_memory/" rel="bookmark" title="CPU与存储器的连接">CPU与存储器的连接</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="KarryLiu"
+      data-src="/images/01.jpg">
+  <p class="name" itemprop="name">KarryLiu</p>
+  <div class="description" itemprop="description">愿世间所有的美好都得以祝愿</div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">12</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">8</span>
+        <span class="name">分类</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">8</span>
+        <span class="name">标签</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tLzczNTY5MDc1Nw==" title="https:&#x2F;&#x2F;github.com&#x2F;735690757"><i class="ic i-github"></i></span>
+      <span class="exturl item twitter" data-url="aHR0cHM6Ly90d2l0dGVyLmNvbS92b0FMUXRkYWNCVE00RVk=" title="https:&#x2F;&#x2F;twitter.com&#x2F;voALQtdacBTM4EY"><i class="ic i-twitter"></i></span>
+      <span class="exturl item email" data-url="bWFpbHRvOjczNTY5MDc1N0BxcS5jb20=" title="mailto:735690757@qq.com"><i class="ic i-envelope"></i></span>
+      <span class="exturl item zhihu" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3Blb3BsZS9ydW8tcWlhbi15aW5n" title="https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;ruo-qian-ying"><i class="ic i-zhihu"></i></span>
+      <span class="exturl item music" data-url="aHR0cHM6Ly9tdXNpYy4xNjMuY29tLyMvdXNlci9ob21lP2lkPTM1Nzc1OTIzOA==" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;user&#x2F;home?id&#x3D;357759238"><i class="ic i-cloud-music"></i></span>
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/about/" rel="section"><i class="ic i-user"></i>关于</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+    
+  <li class="item">
+    <a href="/music" rel="section"><i class="ic i-music"></i>橘子君-Ruxra</a>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/Principles-of-computer-composition/booth_algorithm/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/ssm/SSM01/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>随机文章</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/MongoDB/" title="分类于 MongoDB">MongoDB</a>
+</div>
+
+    <span><a href="/MongoDB/MongoDB01/" title="MongoDB的安装与初步使用（Windows平台）">MongoDB的安装与初步使用（Windows平台）</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Principles-of-computer-composition/" title="分类于 计算机组成原理">计算机组成原理</a>
+</div>
+
+    <span><a href="/Principles-of-computer-composition/Division_in_Computers/" title="计算机中的除法运算">计算机中的除法运算</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/database/" title="分类于 数据库">数据库</a>
+</div>
+
+    <span><a href="/database/DataBase01/" title="DB中的范式">DB中的范式</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/ssm/" title="分类于 SSM框架">SSM框架</a>
+</div>
+
+    <span><a href="/ssm/SSM01/" title="SSM框架整合">SSM框架整合</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Principles-of-computer-composition/" title="分类于 计算机组成原理">计算机组成原理</a>
+</div>
+
+    <span><a href="/Principles-of-computer-composition/Connection_between_CPU_and_memory/" title="CPU与存储器的连接">CPU与存储器的连接</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Linux/" title="分类于 Linux">Linux</a>
+</div>
+
+    <span><a href="/Linux/Linux01/" title="初见Linux">初见Linux</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/OS/" title="分类于 OS">OS</a>
+</div>
+
+    <span><a href="/Operate%20System/02OS/" title="进程与线程">进程与线程</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Principles-of-computer-composition/" title="分类于 计算机组成原理">计算机组成原理</a>
+</div>
+
+    <span><a href="/Principles-of-computer-composition/booth_algorithm/" title="booth算法">booth算法</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/database/" title="分类于 数据库">数据库</a>
+</div>
+
+    <span><a href="/database/DataBase02/" title="数据库设计">数据库设计</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/java/" title="分类于 java">java</a>
+</div>
+
+    <span><a href="/Java/javaAd01/" title="Java高级特性1">Java高级特性1</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>最新评论</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">KarryLiu @ KarryLiu</span>
+  </div>
+  <div class="powered-by">
+    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: 'Principles-of-computer-composition/Connection_between_CPU_and_memory/',
+    favicon: {
+      show: "（●´3｀●）嘿嘿嘿....",
+      hide: "(´Д｀)不看我是吧！"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: true,fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>

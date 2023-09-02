@@ -1,0 +1,851 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="诗岸梦行舟" href="https://735690757.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="诗岸梦行舟" href="https://735690757.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="诗岸梦行舟" href="https://735690757.github.io/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="计算机组成原理" />
+
+
+<link rel="canonical" href="https://735690757.github.io/Principles-of-computer-composition/booth_algorithm/">
+
+
+
+  <title>
+booth算法 - 计算机组成原理 |
+KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</title>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">booth算法
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2023-06-05 19:30:00">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2023-06-05T19:30:00+08:00">2023-06-05</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">KarryLiu</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+          <img src="https://s2.loli.net/2023/03/24/NJydhtQ6Hm4vxpb.jpg">
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/Principles-of-computer-composition/" itemprop="item" rel="index" title="分类于 计算机组成原理"><span itemprop="name">计算机组成原理</span></a>
+<meta itemprop="position" content="1" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="https://735690757.github.io/Principles-of-computer-composition/booth_algorithm/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/01.jpg">
+    <meta itemprop="name" content="KarryLiu">
+    <meta itemprop="description" content="分享计算机知识以及各种心得总结, 愿世间所有的美好都得以祝愿">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="诗岸梦行舟">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h1 id="booth-算法"><a class="markdownIt-Anchor" href="#booth-算法">#</a> Booth 算法</h1>
+<p>这里写点什么捏？就先来点简介吧！！比较法是 Booth 夫妇先提出来的，也称 booth 算法。</p>
+<p>那么！！咱们怎么解题呢，不要担心，其实 booth 算法非常简单，不要被长长的算式所迷惑鸭！！</p>
+<p>接下来就由我来简单快速的叙述一下如何利用 booth 算法去做题！</p>
+<h1 id="准备开始"><a class="markdownIt-Anchor" href="#准备开始">#</a> 准备开始！</h1>
+<p>首先题目里一般会这样给：已知 [x] 补 = xxxxx，[y] 补 = xxxxx，利用 booth 算法求解 [x*y]。</p>
+<p>booth 算法的符号位是<strong>成双成对</strong>的，和你不一样，因为你还没有成双成对哈哈哈哈哈哈（不是）</p>
+<p>另外，我们还需要额外记住的<strong>四个固定形态</strong>：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">尾数形态</th>
+<th style="text-align:center">作法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">00</td>
+<td style="text-align:center">右移一位</td>
+</tr>
+<tr>
+<td style="text-align:center">01</td>
+<td style="text-align:center">+[x] 补 后 右移一位</td>
+</tr>
+<tr>
+<td style="text-align:center">10</td>
+<td style="text-align:center">+[-x] 补后 右移一位</td>
+</tr>
+<tr>
+<td style="text-align:center">11</td>
+<td style="text-align:center">右移一位</td>
+</tr>
+</tbody>
+</table>
+<h1 id="例题一"><a class="markdownIt-Anchor" href="#例题一">#</a> 例题一</h1>
+<p>已知 [x] 补 = 0.0101，[y] 补 = 1.0101，利用 booth 算法求解 [x*y]</p>
+<p>做题前我们需要做一些准备，首先我们写出双符号位形态的 [x] 补、[-x] 补以及 [y] 补（无需双符号）</p>
+<ul>
+<li>
+<p>[x] 补 = 00.0101</p>
+</li>
+<li>
+<p>[-x] 补 = 11.1011</p>
+</li>
+<li>
+<p>[y] 补 = 1.0101</p>
+</li>
+</ul>
+<p>然后列出如下表格：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">部分积</th>
+<th style="text-align:center">乘数</th>
+<th style="text-align:center">辅助</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">0</td>
+</tr>
+</tbody>
+</table>
+<p>我先写到这，如果有想先试试的小伙伴可以先按照自己的思路去写，还没记起来的的小伙伴们可以继续往下看，一会我还会写出两道例题供大家去练习。</p>
+<p><strong>解答开始！</strong></p>
+<p>辅助位置默认为 0，乘数就是 [y] 补 = 11.0101，部分积初始值也为 0.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right"></th>
+<th style="text-align:center">部分积</th>
+<th style="text-align:center">乘数</th>
+<th style="text-align:center">辅助</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right"></td>
+<td style="text-align:center">00 0000</td>
+<td style="text-align:center">1010 <strong>1</strong></td>
+<td style="text-align:center"><strong>0</strong></td>
+<td>一次判断</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>10</strong> 还记得加什么嘛？没错就是加 [-x] 补 +</td>
+<td style="text-align:center">11 1011</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:right">=</td>
+<td style="text-align:center">11 1011</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:right">右移</td>
+<td style="text-align:center">11 1101</td>
+<td style="text-align:center">1101 <strong>0</strong></td>
+<td style="text-align:center"><strong>1</strong></td>
+<td>二次判断</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>01</strong> 还记得加什么嘛？没错就是加 [x] 补 +</td>
+<td style="text-align:center">00 0101</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:right">=</td>
+<td style="text-align:center">00 0010</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:right">右移</td>
+<td style="text-align:center">00 0001</td>
+<td style="text-align:center">0110 <strong>1</strong></td>
+<td style="text-align:center"><strong>0</strong></td>
+<td>三次判断</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>10</strong> 还记得加什么嘛？没错就是加 [-x] 补 +</td>
+<td style="text-align:center">11 1011</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:right">=</td>
+<td style="text-align:center">11 1100</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:right">右移</td>
+<td style="text-align:center">11 1110</td>
+<td style="text-align:center">0011 <strong>0</strong></td>
+<td style="text-align:center"><strong>1</strong></td>
+<td>四次判断</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>01</strong> 还记得加什么嘛？没错就是加 [x] 补 +</td>
+<td style="text-align:center">00 0101</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:right">=</td>
+<td style="text-align:center">00 0011</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:right">右移</td>
+<td style="text-align:center">00 0001</td>
+<td style="text-align:center"><strong>1001</strong> <strong>1</strong></td>
+<td style="text-align:center"><strong>0</strong></td>
+<td>五次判断</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>10</strong> 还记得加什么嘛？没错就是加 [-x] 补 +</td>
+<td style="text-align:center">11 1011</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:right"></td>
+<td style="text-align:center"><strong>11 1100</strong></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>OK 兄弟们，小数点后有四位，那么我们需要进行五次判断，现在已经完成计算过程了，答案已经呼之欲出了！！</p>
+<p><strong>[x*y] = 1.1100 1001</strong>（如果要双符号为就这样去写：[x*y] = 11.1100 1001）</p>
+<p>总结一下，辅助位配合乘数最后一位作判断操作，00 和 11 只需右移就好，而 01 要 +[x] 补，11 要 +[-x] 补，这样我们就能得到最终的结果了。</p>
+<p>接下来再来一道爽题！！！</p>
+<h1 id="例题二"><a class="markdownIt-Anchor" href="#例题二">#</a> 例题二</h1>
+<p>已知 [x] 补 = 1.0101，[y] 补 = 1.0011，利用 booth 算法求解 [x*y]</p>
+<p>老规矩：</p>
+<ul>
+<li>[x] 补 = 11.0101</li>
+<li>[-x] 补 = 00.1011</li>
+<li>[y] 补 = 1.0011</li>
+</ul>
+<p>列表：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right"></th>
+<th style="text-align:center">部分积</th>
+<th style="text-align:center">乘数</th>
+<th style="text-align:center">辅助</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right"></td>
+<td style="text-align:center">00 0000</td>
+<td style="text-align:center">1001<strong>1</strong></td>
+<td style="text-align:center"><strong>0</strong></td>
+<td>一次判断</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>10</strong> +</td>
+<td style="text-align:center">00 1011</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:right">=</td>
+<td style="text-align:center">00 1011</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:right">右移</td>
+<td style="text-align:center">00 0101</td>
+<td style="text-align:center">1100 <strong>1</strong></td>
+<td style="text-align:center"><strong>1</strong></td>
+<td>二次判断</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>11</strong> 右移</td>
+<td style="text-align:center">00 0010</td>
+<td style="text-align:center">1110 <strong>0</strong></td>
+<td style="text-align:center"><strong>1</strong></td>
+<td>三次判断</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>01</strong> +</td>
+<td style="text-align:center">11 0101</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:right">=</td>
+<td style="text-align:center">11 0111</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:right">右移</td>
+<td style="text-align:center">11 1011</td>
+<td style="text-align:center">1111 <strong>0</strong></td>
+<td style="text-align:center"><strong>0</strong></td>
+<td>四次判断</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>00</strong> 右移</td>
+<td style="text-align:center">11 1101</td>
+<td style="text-align:center">1111 <strong>1</strong></td>
+<td style="text-align:center"><strong>0</strong></td>
+<td>五次判断</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>10</strong> +</td>
+<td style="text-align:center">00 1011</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:right"></td>
+<td style="text-align:center">00 1000</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>第五次判断后无需移动</strong></p>
+<p>答案：0.1000 1111</p>
+<p>怎么样，是不是非常爽，在五次判断中出现了两次数字相同的情况，这时候我们只需要进行右移，无需进行计算。</p>
+<p>最后我在给大家一道练习题，自己练习一下叭～～～</p>
+<h1 id="练习"><a class="markdownIt-Anchor" href="#练习">#</a> 练习</h1>
+<p>已知 [x] 补 = 0.1101，[y] 补 = 0.1011，利用 booth 算法求解 [x*y]</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">部分积</th>
+<th style="text-align:center">乘数</th>
+<th style="text-align:center">辅助</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+<h1 id="鸣谢"><a class="markdownIt-Anchor" href="#鸣谢">#</a> 鸣谢</h1>
+<p>感谢 B 站 up 主制作的视频，真的非常不错</p>
+
+      <div class="tags">
+          <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag"><i class="ic i-tag"></i> 计算机组成原理</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2023-08-15 11:05:23" itemprop="dateModified" datetime="2023-08-15T11:05:23+08:00">2023-08-15</time>
+  </span>
+  <span id="Principles-of-computer-composition/booth_algorithm/" class="item leancloud_visitors" data-flag-title="booth算法" title="阅读次数">
+      <span class="icon">
+        <i class="ic i-eye"></i>
+      </span>
+      <span class="text">阅读次数</span>
+      <span class="leancloud-visitors-count"></span>
+      <span class="text">次</span>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> 赞赏</button>
+  <p>请我喝[茶]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/myWxPay.jpg" alt="KarryLiu 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/myAliPay.jpg" alt="KarryLiu 支付宝">
+        <p>支付宝</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>KarryLiu <i class="ic i-at"><em>@</em></i>诗岸梦行舟
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="https://735690757.github.io/Principles-of-computer-composition/booth_algorithm/" title="booth算法">https://735690757.github.io/Principles-of-computer-composition/booth_algorithm/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/database/DataBase02/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;i.postimg.cc&#x2F;Fz209gB8&#x2F;0202.jpg" title="数据库设计">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> 数据库</span>
+  <h3>数据库设计</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/Principles-of-computer-composition/Connection_between_CPU_and_memory/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;s2.loli.net&#x2F;2023&#x2F;03&#x2F;24&#x2F;NJydhtQ6Hm4vxpb.jpg" title="CPU与存储器的连接">
+  <span class="type">下一篇</span>
+  <span class="category"><i class="ic i-flag"></i> 计算机组成原理</span>
+  <h3>CPU与存储器的连接</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#booth-%E7%AE%97%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text"> Booth 算法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%BC%80%E5%A7%8B"><span class="toc-number">2.</span> <span class="toc-text"> 准备开始！</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98%E4%B8%80"><span class="toc-number">3.</span> <span class="toc-text"> 例题一</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98%E4%BA%8C"><span class="toc-number">4.</span> <span class="toc-text"> 例题二</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0"><span class="toc-number">5.</span> <span class="toc-text"> 练习</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%B8%A3%E8%B0%A2"><span class="toc-number">6.</span> <span class="toc-text"> 鸣谢</span></a></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+        <ul>
+          <li><a href="/Principles-of-computer-composition/Division_in_Computers/" rel="bookmark" title="计算机中的除法运算">计算机中的除法运算</a></li><li class="active"><a href="/Principles-of-computer-composition/booth_algorithm/" rel="bookmark" title="booth算法">booth算法</a></li><li><a href="/Principles-of-computer-composition/Connection_between_CPU_and_memory/" rel="bookmark" title="CPU与存储器的连接">CPU与存储器的连接</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="KarryLiu"
+      data-src="/images/01.jpg">
+  <p class="name" itemprop="name">KarryLiu</p>
+  <div class="description" itemprop="description">愿世间所有的美好都得以祝愿</div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">12</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">8</span>
+        <span class="name">分类</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">8</span>
+        <span class="name">标签</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tLzczNTY5MDc1Nw==" title="https:&#x2F;&#x2F;github.com&#x2F;735690757"><i class="ic i-github"></i></span>
+      <span class="exturl item twitter" data-url="aHR0cHM6Ly90d2l0dGVyLmNvbS92b0FMUXRkYWNCVE00RVk=" title="https:&#x2F;&#x2F;twitter.com&#x2F;voALQtdacBTM4EY"><i class="ic i-twitter"></i></span>
+      <span class="exturl item email" data-url="bWFpbHRvOjczNTY5MDc1N0BxcS5jb20=" title="mailto:735690757@qq.com"><i class="ic i-envelope"></i></span>
+      <span class="exturl item zhihu" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3Blb3BsZS9ydW8tcWlhbi15aW5n" title="https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;ruo-qian-ying"><i class="ic i-zhihu"></i></span>
+      <span class="exturl item music" data-url="aHR0cHM6Ly9tdXNpYy4xNjMuY29tLyMvdXNlci9ob21lP2lkPTM1Nzc1OTIzOA==" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;user&#x2F;home?id&#x3D;357759238"><i class="ic i-cloud-music"></i></span>
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/about/" rel="section"><i class="ic i-user"></i>关于</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+    
+  <li class="item">
+    <a href="/music" rel="section"><i class="ic i-music"></i>橘子君-Ruxra</a>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/database/DataBase02/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/Principles-of-computer-composition/Connection_between_CPU_and_memory/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>随机文章</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/java/" title="分类于 java">java</a>
+</div>
+
+    <span><a href="/Java/javaAd01/" title="Java高级特性1">Java高级特性1</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/OS/" title="分类于 OS">OS</a>
+</div>
+
+    <span><a href="/Operate%20System/01OS/" title="操作系统知识点阶段总结">操作系统知识点阶段总结</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Linux/" title="分类于 Linux">Linux</a>
+</div>
+
+    <span><a href="/Linux/Linux01/" title="初见Linux">初见Linux</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/ssm/" title="分类于 SSM框架">SSM框架</a>
+</div>
+
+    <span><a href="/ssm/SSM01/" title="SSM框架整合">SSM框架整合</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Principles-of-computer-composition/" title="分类于 计算机组成原理">计算机组成原理</a>
+</div>
+
+    <span><a href="/Principles-of-computer-composition/Connection_between_CPU_and_memory/" title="CPU与存储器的连接">CPU与存储器的连接</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/database/" title="分类于 数据库">数据库</a>
+</div>
+
+    <span><a href="/database/DataBase01/" title="DB中的范式">DB中的范式</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Principles-of-computer-composition/" title="分类于 计算机组成原理">计算机组成原理</a>
+</div>
+
+    <span><a href="/Principles-of-computer-composition/Division_in_Computers/" title="计算机中的除法运算">计算机中的除法运算</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/OS/" title="分类于 OS">OS</a>
+</div>
+
+    <span><a href="/Operate%20System/02OS/" title="进程与线程">进程与线程</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/MongoDB/" title="分类于 MongoDB">MongoDB</a>
+</div>
+
+    <span><a href="/MongoDB/MongoDB01/" title="MongoDB的安装与初步使用（Windows平台）">MongoDB的安装与初步使用（Windows平台）</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Principles-of-computer-composition/" title="分类于 计算机组成原理">计算机组成原理</a>
+</div>
+
+    <span><a href="/Principles-of-computer-composition/booth_algorithm/" title="booth算法">booth算法</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>最新评论</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">KarryLiu @ KarryLiu</span>
+  </div>
+  <div class="powered-by">
+    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: 'Principles-of-computer-composition/booth_algorithm/',
+    favicon: {
+      show: "（●´3｀●）嘿嘿嘿....",
+      hide: "(´Д｀)不看我是吧！"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: true,fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>
