@@ -89,12 +89,12 @@
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://s2.loli.net/2023/08/27/b3P2TBGMK8yUqE4.jpg"></li>
-          <li class="item" data-background-image="https://s2.loli.net/2023/08/27/mN2pFL5QX7D3BwM.jpg"></li>
           <li class="item" data-background-image="https://s2.loli.net/2023/08/27/x7CM2DzWRbHAd4T.jpg"></li>
-          <li class="item" data-background-image="https://s2.loli.net/2023/08/27/mcSBwPWCR4u3tZI.jpg"></li>
-          <li class="item" data-background-image="https://s2.loli.net/2023/08/27/EU3RfrkWvqHe4Ou.jpg"></li>
+          <li class="item" data-background-image="https://s2.loli.net/2023/08/27/B86dmgpZDzIi2uU.jpg"></li>
           <li class="item" data-background-image="https://s2.loli.net/2023/08/27/xBNZOFIAEqWCyou.jpg"></li>
+          <li class="item" data-background-image="https://s2.loli.net/2023/08/27/vUowbrGBj4VOg9a.jpg"></li>
+          <li class="item" data-background-image="https://s2.loli.net/2023/08/27/Mwc9oKJmODRxqN7.png"></li>
+          <li class="item" data-background-image="https://s2.loli.net/2023/08/27/mcSBwPWCR4u3tZI.jpg"></li>
         </ul>
       </div>
     </header>
@@ -120,21 +120,23 @@
       <div class="cards">
           
 <section class="item">
-  <div class="cover" data-background-image="/java/cover.jpg">
-    <h2 class="title">java</h2>
+  <div class="cover" data-background-image="/Operate-system/cover.jpg">
+    <h2 class="title">操作系统</h2>
   </div>
   <div class="info">
-    <div class="ribbon"><a href="/categories/java/" itemprop="url" title="java">java</a></div>
+    <div class="ribbon"><a href="/categories/Operate-system/" itemprop="url" title="操作系统">操作系统</a></div>
     <div class="inner">
         <ul class="posts">
-            <li><a title="Java高级特性1" href="/Java/javaAd01/">Java高级特性1</a></li>
+            <li><a title="操作系统知识点阶段总结" href="/Operate-system/01OS/">操作系统知识点阶段总结</a></li>
+            <li><a title="进程与线程" href="/Operate-system/02OS/">进程与线程</a></li>
+            <li><a title="进程同步问题" href="/Operate-system/03OS/">进程同步问题</a></li>
         </ul>
         <div class="meta footer">
           <span>
-            <i class="ic i-file"></i>1 篇文章
+            <i class="ic i-file"></i>3 篇文章
           </span>
         </div>
-        <a href="/categories/java/" itemprop="url" title="java" class="btn">more...</a>
+        <a href="/categories/Operate-system/" itemprop="url" title="操作系统" class="btn">more...</a>
     </div>
   </div>
 </section>
@@ -211,6 +213,74 @@
         
 <article class="item">
   <div class="cover">
+    <a href="/MongoDB/MongoDB02/" itemprop="url" title="MongoDB初步使用"><img data-src="https://s2.loli.net/2023/08/30/iqxm3ufLjZ6XOSt.webp"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="创建时间：2023-09-06 12:20:00">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2023-09-06T12:20:00+08:00">2023-09-06</time>
+  </span>
+</div>
+
+    <h3><a href="/MongoDB/MongoDB02/" itemprop="url" title="MongoDB初步使用">MongoDB初步使用</a></h3>
+    <div class="excerpt">
+        # MongoDB 命令
+# 创建用户（可读可写）
+# 创建
+db.createUser(&amp;#123;user:&quot;lkr40&quot;,pwd:&quot;123456&quot;,roles:[&quot;readWrite&quot;]&amp;#125;)# 检验
+db.auth(&quot;lkr40&quot;,&quot;123456&quot;)
+db.createUser({user:“lkr40”,pwd:“123456”,roles:[“readWrite”]})
+Successfully added user: { “user” : “lkr40”,...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/MongoDB/" itemprop="url" title="MongoDB"><i class="ic i-flag"></i>MongoDB</a>
+      </span>
+    </div>
+    <a href="/MongoDB/MongoDB02/" itemprop="url" title="MongoDB初步使用" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/Operate-system/03OS/" itemprop="url" title="进程同步问题"><img data-src="https://s2.loli.net/2023/08/29/CdXcQfxtk5NHvA4.png"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="创建时间：2023-09-04 15:50:00">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2023-09-04T15:50:00+08:00">2023-09-04</time>
+  </span>
+</div>
+
+    <h3><a href="/Operate-system/03OS/" itemprop="url" title="进程同步问题">进程同步问题</a></h3>
+    <div class="excerpt">
+        # 生产者 - 消费者问题
+在进程同步中第一个问题就是生产者 - 消费者问题，首先我们利用记录型信号来分析这个问题。
+好好好，我们直接伪代码解析！
+解释在行代码的上方
+详细伪代码//in 代表下一个要写入的位置，out 代表要读取的位置int in = 0,out = 0;// 用于存储生产者生产的容器，可以理解为缓冲区item buffer[n];// 前两行不是重点，下面才是核心！！//mutex 用于互斥访问共享资源，初值必须为 1（可以理解为锁）//empty 代表中转的容量，初值为最大承载容量，题里会给（可以是各种容器）//full 是生产出的一种逻辑 / 实体的物质//...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/Operate-system/" itemprop="url" title="操作系统"><i class="ic i-flag"></i>操作系统</a>
+      </span>
+    </div>
+    <a href="/Operate-system/03OS/" itemprop="url" title="进程同步问题" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
     <a href="/Linux/Linux01/" itemprop="url" title="初见Linux"><img data-src="https://s1.ax1x.com/2023/09/02/pPBJ5LT.jpg"></a>
   </div>
   <div class="info">
@@ -254,7 +324,7 @@ Hello Karry.Liu
         
 <article class="item">
   <div class="cover">
-    <a href="/Operate%20System/02OS/" itemprop="url" title="进程与线程"><img data-src="https://s2.loli.net/2023/08/29/CdXcQfxtk5NHvA4.png"></a>
+    <a href="/Operate-system/02OS/" itemprop="url" title="进程与线程"><img data-src="https://s2.loli.net/2023/08/29/CdXcQfxtk5NHvA4.png"></a>
   </div>
   <div class="info">
     
@@ -267,7 +337,7 @@ Hello Karry.Liu
   </span>
 </div>
 
-    <h3><a href="/Operate%20System/02OS/" itemprop="url" title="进程与线程">进程与线程</a></h3>
+    <h3><a href="/Operate-system/02OS/" itemprop="url" title="进程与线程">进程与线程</a></h3>
     <div class="excerpt">
         # 什么是进程与线程
 进程（Process）和线程（Thread）是操作系统中的两个重要概念，用于管理和执行程序的执行单元。它们在多任务处理和并发执行中起着关键作用。
@@ -278,10 +348,10 @@ Hello Karry.Liu
     </div>
     <div class="meta footer">
       <span>
-        <a href="/categories/OS/" itemprop="url" title="OS"><i class="ic i-flag"></i>OS</a>
+        <a href="/categories/Operate-system/" itemprop="url" title="操作系统"><i class="ic i-flag"></i>操作系统</a>
       </span>
     </div>
-    <a href="/Operate%20System/02OS/" itemprop="url" title="进程与线程" class="btn">more...</a>
+    <a href="/Operate-system/02OS/" itemprop="url" title="进程与线程" class="btn">more...</a>
   </div>
 </article>
 
@@ -323,7 +393,7 @@ MongoDB 是一个开源的、面向文档的 NoSQL 数据库管理系统。它�
         
 <article class="item">
   <div class="cover">
-    <a href="/Operate%20System/01OS/" itemprop="url" title="操作系统知识点阶段总结"><img data-src="https://s2.loli.net/2023/08/29/CdXcQfxtk5NHvA4.png"></a>
+    <a href="/Operate-system/01OS/" itemprop="url" title="操作系统知识点阶段总结"><img data-src="https://s2.loli.net/2023/08/29/CdXcQfxtk5NHvA4.png"></a>
   </div>
   <div class="info">
     
@@ -336,7 +406,7 @@ MongoDB 是一个开源的、面向文档的 NoSQL 数据库管理系统。它�
   </span>
 </div>
 
-    <h3><a href="/Operate%20System/01OS/" itemprop="url" title="操作系统知识点阶段总结">操作系统知识点阶段总结</a></h3>
+    <h3><a href="/Operate-system/01OS/" itemprop="url" title="操作系统知识点阶段总结">操作系统知识点阶段总结</a></h3>
     <div class="excerpt">
         # 引论
 # 操作系统是什么？
@@ -347,10 +417,10 @@ MongoDB 是一个开源的、面向文档的 NoSQL 数据库管理系统。它�
     </div>
     <div class="meta footer">
       <span>
-        <a href="/categories/OS/" itemprop="url" title="OS"><i class="ic i-flag"></i>OS</a>
+        <a href="/categories/Operate-system/" itemprop="url" title="操作系统"><i class="ic i-flag"></i>操作系统</a>
       </span>
     </div>
-    <a href="/Operate%20System/01OS/" itemprop="url" title="操作系统知识点阶段总结" class="btn">more...</a>
+    <a href="/Operate-system/01OS/" itemprop="url" title="操作系统知识点阶段总结" class="btn">more...</a>
   </div>
 </article>
 
@@ -491,93 +561,6 @@ booth...
   </div>
 </article>
 
-        
-<article class="item">
-  <div class="cover">
-    <a href="/database/DataBase01/" itemprop="url" title="DB中的范式"><img data-src="https://i.postimg.cc/Fz209gB8/0202.jpg"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="创建时间：2023-04-11 21:16:00">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2023-04-11T21:16:00+08:00">2023-04-11</time>
-  </span>
-</div>
-
-    <h3><a href="/database/DataBase01/" itemprop="url" title="DB中的范式">DB中的范式</a></h3>
-    <div class="excerpt">
-        # 数据库范式
-# 什么是数据库范式
-数据库范式（Normalization）是一种设计关系型数据库的方法，它旨在减少数据冗余，提高数据的一致性和可靠性，避免数据修改时出现异常。数据库范式通常分为一到五个级别，每个级别对应一组设计规则。
-范式越高，数据冗余越少，数据一致性和可靠性越高。但是，范式过高也可能会带来一些问题，如增加了数据库的复杂性和查询的开销，需要根据实际应用场景来确定使用哪个范式。
-# 层级分类
-# 1NF（第一范式）
-关系模式中的所有属性都是原子性的，即不可再分。
-# 2NF（第二范式）
-关系模式必须满足第一范式，且不存在非关键字属性对主键的部分依赖。
-#...
-    </div>
-    <div class="meta footer">
-      <span>
-        <a href="/categories/database/" itemprop="url" title="数据库"><i class="ic i-flag"></i>数据库</a>
-      </span>
-    </div>
-    <a href="/database/DataBase01/" itemprop="url" title="DB中的范式" class="btn">more...</a>
-  </div>
-</article>
-
-        
-<article class="item">
-  <div class="cover">
-    <a href="/Principles-of-computer-composition/Division_in_Computers/" itemprop="url" title="计算机中的除法运算"><img data-src="https://s2.loli.net/2023/03/24/NJydhtQ6Hm4vxpb.jpg"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="创建时间：2023-03-24 19:40:00">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2023-03-24T19:40:00+08:00">2023-03-24</time>
-  </span>
-</div>
-
-    <h3><a href="/Principles-of-computer-composition/Division_in_Computers/" itemprop="url" title="计算机中的除法运算">计算机中的除法运算</a></h3>
-    <div class="excerpt">
-        # 计算机中的除法运算
-# 简述
-计算的中的除法十分有趣。对于 6 与 4，我们可以很容易的判断出那个大，进而进行后续的除法运算，而计算机中却不是。比此更复杂的除法运算，又是怎么实现的呢？
-# 方法一：恢复余数法
-题目源自《计算机组成原理（第三版）》例 6.24
-
-被除数（余数）
-商
-说明
-
-0.1011+1.0011=1.1110
-【0.0000】
-第一步无条件 - y*
-
-1.1110+0.1101=0.1011
-【0.0000】
-1.1110 小于零 恢复余数
-
-1.0110
-【0.000】0
-上 0 左移...
-    </div>
-    <div class="meta footer">
-      <span>
-        <a href="/categories/Principles-of-computer-composition/" itemprop="url" title="计算机组成原理"><i class="ic i-flag"></i>计算机组成原理</a>
-      </span>
-    </div>
-    <a href="/Principles-of-computer-composition/Division_in_Computers/" itemprop="url" title="计算机中的除法运算" class="btn">more...</a>
-  </div>
-</article>
-
     </div>
 
   </div>
@@ -613,7 +596,7 @@ booth...
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">12</span>
+        <span class="count">14</span>
         <span class="name">文章</span>
       </a>
     </div>
@@ -637,6 +620,7 @@ booth...
       <span class="exturl item email" data-url="bWFpbHRvOjczNTY5MDc1N0BxcS5jb20=" title="mailto:735690757@qq.com"><i class="ic i-envelope"></i></span>
       <span class="exturl item zhihu" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3Blb3BsZS9ydW8tcWlhbi15aW5n" title="https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;ruo-qian-ying"><i class="ic i-zhihu"></i></span>
       <span class="exturl item music" data-url="aHR0cHM6Ly9tdXNpYy4xNjMuY29tLyMvdXNlci9ob21lP2lkPTM1Nzc1OTIzOA==" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;user&#x2F;home?id&#x3D;357759238"><i class="ic i-cloud-music"></i></span>
+      <span class="exturl item about" data-url="aHR0cHM6Ly9hYm91dC5tZS9rYXJyeWxpdQ==" title="https:&#x2F;&#x2F;about.me&#x2F;karryliu"><i class="ic i-address-card"></i></span>
 </div>
 
 <ul class="menu">
@@ -711,10 +695,20 @@ booth...
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/database/" title="分类于 数据库">数据库</a>
+<a href="/categories/java%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/" title="分类于 java高级特性">java高级特性</a>
 </div>
 
-    <span><a href="/database/DataBase01/" title="DB中的范式">DB中的范式</a></span>
+    <span><a href="/Java/javaAd01/" title="Java高级特性1">Java高级特性1</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/MongoDB/" title="分类于 MongoDB">MongoDB</a>
+</div>
+
+    <span><a href="/MongoDB/MongoDB02/" title="MongoDB初步使用">MongoDB初步使用</a></span>
   </li>
 
       
@@ -725,6 +719,46 @@ booth...
 </div>
 
     <span><a href="/MongoDB/MongoDB01/" title="MongoDB的安装与初步使用（Windows平台）">MongoDB的安装与初步使用（Windows平台）</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%9D%E6%9D%A5%E4%B9%8D%E5%88%B0/" title="分类于 初来乍到">初来乍到</a>
+</div>
+
+    <span><a href="/hello/" title="起点，但不止于起点！">起点，但不止于起点！</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Linux/" title="分类于 Linux">Linux</a>
+</div>
+
+    <span><a href="/Linux/Linux01/" title="初见Linux">初见Linux</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Principles-of-computer-composition/" title="分类于 计算机组成原理">计算机组成原理</a>
+</div>
+
+    <span><a href="/Principles-of-computer-composition/Connection_between_CPU_and_memory/" title="CPU与存储器的连接">CPU与存储器的连接</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/database/" title="分类于 数据库">数据库</a>
+</div>
+
+    <span><a href="/database/DataBase01/" title="DB中的范式">DB中的范式</a></span>
   </li>
 
       
@@ -751,60 +785,10 @@ booth...
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/java/" title="分类于 java">java</a>
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
 </div>
 
-    <span><a href="/Java/javaAd01/" title="Java高级特性1">Java高级特性1</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/database/" title="分类于 数据库">数据库</a>
-</div>
-
-    <span><a href="/database/DataBase02/" title="数据库设计">数据库设计</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%9D%E6%9D%A5%E4%B9%8D%E5%88%B0/" title="分类于 初来乍到">初来乍到</a>
-</div>
-
-    <span><a href="/hello/" title="起点，但不止于起点！">起点，但不止于起点！</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Principles-of-computer-composition/" title="分类于 计算机组成原理">计算机组成原理</a>
-</div>
-
-    <span><a href="/Principles-of-computer-composition/Connection_between_CPU_and_memory/" title="CPU与存储器的连接">CPU与存储器的连接</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Principles-of-computer-composition/" title="分类于 计算机组成原理">计算机组成原理</a>
-</div>
-
-    <span><a href="/Principles-of-computer-composition/Division_in_Computers/" title="计算机中的除法运算">计算机中的除法运算</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Linux/" title="分类于 Linux">Linux</a>
-</div>
-
-    <span><a href="/Linux/Linux01/" title="初见Linux">初见Linux</a></span>
+    <span><a href="/Operate-system/02OS/" title="进程与线程">进程与线程</a></span>
   </li>
 
   </ul>

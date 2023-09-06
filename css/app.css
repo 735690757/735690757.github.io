@@ -2261,6 +2261,12 @@ main >.inner {
 .social .item.music i {
   color: #e60026;
 }
+.social .item.about::before {
+  background-color: #3b5998;
+}
+.social .item.about i {
+  color: #3b5998;
+}
 .social .item:focus i,
 .social .item:hover i {
   color: var(--grey-0);
