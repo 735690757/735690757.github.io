@@ -24,15 +24,15 @@
 <link rel="stylesheet" href="/css/app.css?v=0.2.5">
 
   
-  <meta name="keywords" content="数据结构" />
+  <meta name="keywords" content="OS" />
 
 
-<link rel="canonical" href="https://735690757.github.io/DSLearnNote/GeneralizedLists/">
+<link rel="canonical" href="https://735690757.github.io/Operate-system/KnowledgeSummary/">
 
 
 
   <title>
-考试中有关广义表的两个常用函数的解 - DS |
+操作系统细碎知识点总结（持续更新） - 操作系统 |
 KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</title>
 <meta name="generator" content="Hexo 6.3.0"></head>
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -60,16 +60,16 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
         <div id="brand">
           <div class="pjax">
           
-  <h1 itemprop="name headline">考试中有关广义表的两个常用函数的解
+  <h1 itemprop="name headline">操作系统细碎知识点总结（持续更新）
   </h1>
   
 <div class="meta">
-  <span class="item" title="创建时间：2024-09-09 11:00:00">
+  <span class="item" title="创建时间：2024-09-09 20:41:00">
     <span class="icon">
       <i class="ic i-calendar"></i>
     </span>
     <span class="text">发表于</span>
-    <time itemprop="dateCreated datePublished" datetime="2024-09-09T11:00:00+08:00">2024-09-09</time>
+    <time itemprop="dateCreated datePublished" datetime="2024-09-09T20:41:00+08:00">2024-09-09</time>
   </span>
 </div>
 
@@ -101,7 +101,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 
       </div>
       <div id="imgs" class="pjax">
-          <img src="/imags/DS.png">
+          <img src="/imags/OS.jpg">
       </div>
     </header>
     <div id="waves">
@@ -126,12 +126,12 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
 <i class="ic i-home"></i>
 <span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
-<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/DS/" itemprop="item" rel="index" title="分类于 DS"><span itemprop="name">DS</span></a>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/Operate-system/" itemprop="item" rel="index" title="分类于 操作系统"><span itemprop="name">操作系统</span></a>
 <meta itemprop="position" content="1" /></span>
 </div>
 
     <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
-  <link itemprop="mainEntityOfPage" href="https://735690757.github.io/DSLearnNote/GeneralizedLists/">
+  <link itemprop="mainEntityOfPage" href="https://735690757.github.io/Operate-system/KnowledgeSummary/">
 
   <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="image" content="/images/01.jpg">
@@ -146,40 +146,28 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <div class="body md" itemprop="articleBody">
     
 
-    <h1 id="认识广义表"><a class="markdownIt-Anchor" href="#认识广义表">#</a> 认识广义表</h1>
-<p>广义表是线性表的推广，与线性表不同的是，线性表中的每一个数据元素都属于同一数据对象。</p>
-<p>广义表可以表示为：</p>
+    <h1 id="操作系统细碎知识点总结"><a class="markdownIt-Anchor" href="#操作系统细碎知识点总结">#</a> 操作系统细碎知识点总结</h1>
 <ol>
-<li>空表：()</li>
-<li>表头：(表头)</li>
-<li>表头 + 表尾：(表头，表尾)</li>
+<li>现代操作系统两个最基本特征：<span class="label primary">并发</span>  与  <span class="label primary">共享</span></li>
+<li>OS 主要特征是：<span class="label primary">并发</span>、<span class="label primary">共享</span>、<span class="label primary">虚拟</span> 以及 <span class="label primary">异步</span></li>
+<li>操作系统出现的标志：<span class="label primary">多道程序设计</span> 以及 <span class="label primary">分时操作系统</span> 的出现</li>
+<li>高级调度：<span class="label primary">作业调度</span></li>
+<li>中级调度：<span class="label primary">内存调度</span></li>
+<li>低级调度：<span class="label primary">进程调度</span></li>
+<li>多级存储分为三部分：<span class="label primary">高速缓存</span>、<span class="label primary">内存 / 主存</span> 以及 <span class="label primary">外存</span></li>
+<li>进程的调度时机：<span class="label primary">时间片完</span>、<span class="label primary">正常结束</span>、<span class="label primary">P 操作</span>、<span class="label primary">IO 请求</span> 以及 <span class="label primary">优先级抢占</span></li>
+<li>文件系统的功能：<span class="label primary">按名存取</span>、<span class="label primary">存储空间管理</span>、<span class="label primary">文件共享与保护</span> 以及 <span class="label primary">文件操作</span></li>
+<li>SPOOLING 系统的组成：<span class="label primary">输入进程</span>、<span class="label primary">输入缓冲区</span>、<span class="label primary">输入井</span>、<span class="label primary">输出进程</span>、<span class="label primary">输出缓冲区</span> 以及 <span class="label primary">输出井</span></li>
+<li>进程的结构特征（有争议 / 不严谨）：<span class="label primary">独立性</span>、<span class="label primary">动态性</span>、<span class="label primary">异步性</span> 以及 <span class="label primary">并发性</span></li>
+<li>虚拟存储器的主要特征：<span class="label primary">多次性</span>、<span class="label primary">对换性</span> 以及 <span class="label primary">虚拟性</span></li>
+<li>所学的进程调度算法中，最中庸、最能让长作业和短作业都满意的调度算法是：<span class="label primary">多级反馈队列调度算法</span></li>
+<li>进程是<span class="label primary">资源分配</span>的基本单位，进程是<span class="label primary">调度</span>的基本单位</li>
+<li>程序的几种装入方式：<span class="label primary">静态装入</span>、<span class="label primary">可重定位装入</span> 以及 <span class="label primary">动态运行时装入</span></li>
+<li>程序的几种链接方式：<span class="label primary">静态链接</span>、<span class="label primary">装入时动态链接</span> 以及 <span class="label primary">运行时动态链接</span></li>
 </ol>
-<p><strong>实际上这就是他的基本结构，而对于其中的元素来说，它可以是表，也可以是元素，这就是广义！</strong></p>
-<h1 id="取头head"><a class="markdownIt-Anchor" href="#取头head">#</a> 取头 Head ()</h1>
-<p>Head 是取头操作，他拿的是一个<strong>元素</strong>或者一个<strong>表</strong></p>
-<h1 id="取尾tail"><a class="markdownIt-Anchor" href="#取尾tail">#</a> 取尾 Tail ()</h1>
-<p>Tail 是取尾操作，他拿到的必是一个<strong>表</strong></p>
-<h1 id="巧记"><a class="markdownIt-Anchor" href="#巧记">#</a> 巧记</h1>
-<p>对于蟒蛇（Python）来说，头只有一个，而它的尾巴很长。</p>
-<p>所以，取头<strong> Head</strong> 元素比<strong>较单一</strong>，取尾<strong> Tail</strong> 往往<strong>比较长</strong>。</p>
-<h1 id="练习"><a class="markdownIt-Anchor" href="#练习">#</a> 练习</h1>
-<div class="note primary">
-<p>A=（a，b）</p>
-<p>B=（A，A）</p>
-<p>C=（a，（b，A），B）</p>
-<p>对于操作：Tail（Head（Tail（C）））的结果是什么？</p>
-</div>
-<h1 id="解答"><a class="markdownIt-Anchor" href="#解答">#</a> 解答</h1>
-<p>Tail（C）尾巴长：（a，<ins class="dot warning">（b，A），B</ins> ）</p>
-<p><span class="label info">Tail（C）=（（b，A），B）</span></p>
-<p>Head（Tail（C））头短：（<ins class="dot warning">（b，A）</ins>，B）</p>
-<p><span class="label info">Head（Tail（C））=（b，A）</span></p>
-<p>Tail（Head（Tail（C）））尾巴长：（b，<ins class="dot warning">A</ins>）</p>
-<p><span class="label info">Tail（Head（Tail（C）））=（A）</span></p>
-<p><strong>尾巴长必是一个表，头短可能是一个表也可能是一个元素</strong></p>
 
       <div class="tags">
-          <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"><i class="ic i-tag"></i> 数据结构</a>
+          <a href="/tags/OS/" rel="tag"><i class="ic i-tag"></i> OS</a>
       </div>
   </div>
 
@@ -191,9 +179,9 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">更新于</span>
-    <time title="修改时间：2024-09-09 22:11:22" itemprop="dateModified" datetime="2024-09-09T22:11:22+08:00">2024-09-09</time>
+    <time title="修改时间：2024-09-09 22:58:48" itemprop="dateModified" datetime="2024-09-09T22:58:48+08:00">2024-09-09</time>
   </span>
-  <span id="DSLearnNote/GeneralizedLists/" class="item leancloud_visitors" data-flag-title="考试中有关广义表的两个常用函数的解" title="阅读次数">
+  <span id="Operate-system/KnowledgeSummary/" class="item leancloud_visitors" data-flag-title="操作系统细碎知识点总结（持续更新）" title="阅读次数">
       <span class="icon">
         <i class="ic i-eye"></i>
       </span>
@@ -230,7 +218,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   </li>
   <li class="link">
     <strong>本文链接：</strong>
-    <a href="https://735690757.github.io/DSLearnNote/GeneralizedLists/" title="考试中有关广义表的两个常用函数的解">https://735690757.github.io/DSLearnNote/GeneralizedLists/</a>
+    <a href="https://735690757.github.io/Operate-system/KnowledgeSummary/" title="操作系统细碎知识点总结（持续更新）">https://735690757.github.io/Operate-system/KnowledgeSummary/</a>
   </li>
   <li class="license">
     <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
@@ -249,22 +237,14 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
     <div class="item left">
       
 
-  <a href="/Operate-system/kcsj/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;s2.loli.net&#x2F;2023&#x2F;08&#x2F;29&#x2F;CdXcQfxtk5NHvA4.png" title="操作系统课程设计">
+  <a href="/DSLearnNote/GeneralizedLists/" itemprop="url" rel="prev" data-background-image="&#x2F;imags&#x2F;DS.png" title="考试中有关广义表的两个常用函数的解">
   <span class="type">上一篇</span>
-  <span class="category"><i class="ic i-flag"></i> 操作系统</span>
-  <h3>操作系统课程设计</h3>
+  <span class="category"><i class="ic i-flag"></i> DS</span>
+  <h3>考试中有关广义表的两个常用函数的解</h3>
   </a>
 
     </div>
     <div class="item right">
-      
-
-  <a href="/Operate-system/KnowledgeSummary/" itemprop="url" rel="next" data-background-image="&#x2F;imags&#x2F;OS.jpg" title="操作系统细碎知识点总结（持续更新）">
-  <span class="type">下一篇</span>
-  <span class="category"><i class="ic i-flag"></i> 操作系统</span>
-  <h3>操作系统细碎知识点总结（持续更新）</h3>
-  </a>
-
     </div>
 </div>
 
@@ -281,11 +261,11 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="文章目录">
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%A4%E8%AF%86%E5%B9%BF%E4%B9%89%E8%A1%A8"><span class="toc-number">1.</span> <span class="toc-text"> 认识广义表</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%96%E5%A4%B4head"><span class="toc-number">2.</span> <span class="toc-text"> 取头 Head ()</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%96%E5%B0%BEtail"><span class="toc-number">3.</span> <span class="toc-text"> 取尾 Tail ()</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B7%A7%E8%AE%B0"><span class="toc-number">4.</span> <span class="toc-text"> 巧记</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0"><span class="toc-number">5.</span> <span class="toc-text"> 练习</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%A7%A3%E7%AD%94"><span class="toc-number">6.</span> <span class="toc-text"> 解答</span></a></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%BB%86%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93"><span class="toc-number">1.</span> <span class="toc-text"> 操作系统细碎知识点总结</span></a></li></ol>
       </div>
       <div class="related panel pjax" data-title="系列文章">
         <ul>
-          <li class="active"><a href="/DSLearnNote/GeneralizedLists/" rel="bookmark" title="考试中有关广义表的两个常用函数的解">考试中有关广义表的两个常用函数的解</a></li>
+          <li><a href="/Operate-system/01OS/" rel="bookmark" title="操作系统知识点阶段总结">操作系统知识点阶段总结</a></li><li><a href="/Operate-system/02OS/" rel="bookmark" title="进程与线程">进程与线程</a></li><li><a href="/Operate-system/03OS/" rel="bookmark" title="进程同步问题">进程同步问题</a></li><li><a href="/Operate-system/kcsj/" rel="bookmark" title="操作系统课程设计">操作系统课程设计</a></li><li class="active"><a href="/Operate-system/KnowledgeSummary/" rel="bookmark" title="操作系统细碎知识点总结（持续更新）">操作系统细碎知识点总结（持续更新）</a></li>
         </ul>
       </div>
       <div class="overview panel" data-title="站点概览">
@@ -378,12 +358,10 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 
   <ul id="quick">
     <li class="prev pjax">
-        <a href="/Operate-system/kcsj/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a>
     </li>
     <li class="up"><i class="ic i-arrow-up"></i></li>
     <li class="down"><i class="ic i-arrow-down"></i></li>
     <li class="next pjax">
-        <a href="/Operate-system/KnowledgeSummary/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a>
     </li>
     <li class="percent"></li>
   </ul>
@@ -415,20 +393,10 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/%E5%88%9D%E6%9D%A5%E4%B9%8D%E5%88%B0/" title="分类于 初来乍到">初来乍到</a>
+<a href="/categories/Linux/" title="分类于 Linux">Linux</a>
 </div>
 
-    <span><a href="/hello/" title="起点，但不止于起点！">起点，但不止于起点！</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/DS/" title="分类于 DS">DS</a>
-</div>
-
-    <span><a href="/DSLearnNote/GeneralizedLists/" title="考试中有关广义表的两个常用函数的解">考试中有关广义表的两个常用函数的解</a></span>
+    <span><a href="/Linux/Linux01/" title="初见Linux">初见Linux</a></span>
   </li>
 
       
@@ -438,7 +406,17 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
 </div>
 
-    <span><a href="/Operate-system/02OS/" title="进程与线程">进程与线程</a></span>
+    <span><a href="/Operate-system/kcsj/" title="操作系统课程设计">操作系统课程设计</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/MongoDB/" title="分类于 MongoDB">MongoDB</a>
+</div>
+
+    <span><a href="/MongoDB/MongoDB02/" title="MongoDB初步使用">MongoDB初步使用</a></span>
   </li>
 
       
@@ -455,16 +433,6 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/database/" title="分类于 数据库">数据库</a>
-</div>
-
-    <span><a href="/database/DataBase01/" title="DB中的范式">DB中的范式</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
 <a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
 </div>
 
@@ -475,30 +443,40 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/MongoDB/" title="分类于 MongoDB">MongoDB</a>
+<a href="/categories/database/" title="分类于 数据库">数据库</a>
 </div>
 
-    <span><a href="/MongoDB/MongoDB03/" title="MongoDB初步使用">MongoDB初步使用</a></span>
+    <span><a href="/database/DataBase02/" title="数据库设计">数据库设计</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Linux/" title="分类于 Linux">Linux</a>
+<a href="/categories/%E5%88%9D%E6%9D%A5%E4%B9%8D%E5%88%B0/" title="分类于 初来乍到">初来乍到</a>
 </div>
 
-    <span><a href="/Linux/Linux01/" title="初见Linux">初见Linux</a></span>
+    <span><a href="/hello/" title="起点，但不止于起点！">起点，但不止于起点！</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
+<a href="/categories/Principles-of-computer-composition/" title="分类于 计算机组成原理">计算机组成原理</a>
 </div>
 
-    <span><a href="/Operate-system/kcsj/" title="操作系统课程设计">操作系统课程设计</a></span>
+    <span><a href="/Principles-of-computer-composition/Division_in_Computers/" title="计算机中的除法运算">计算机中的除法运算</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/database/" title="分类于 数据库">数据库</a>
+</div>
+
+    <span><a href="/database/DataBase01/" title="DB中的范式">DB中的范式</a></span>
   </li>
 
   </ul>
@@ -531,7 +509,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   </div>
 <script data-config type="text/javascript">
   var LOCAL = {
-    path: 'DSLearnNote/GeneralizedLists/',
+    path: 'Operate-system/KnowledgeSummary/',
     favicon: {
       show: "（●´3｀●）嘿嘿嘿....",
       hide: "(´Д｀)不看我是吧！"
@@ -542,7 +520,14 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
       stats: "${time} ms 内找到 ${hits} 条结果"
     },
     valine: true,fancybox: true,
-    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',quiz: {
+      choice: "单选题",
+      multiple: "多选题",
+      true_false: "判断题",
+      essay: "问答题",
+      gap_fill: "填空题",
+      mistake: "错题备注"
+    },
     ignores : [
       function(uri) {
         return uri.includes('#');
