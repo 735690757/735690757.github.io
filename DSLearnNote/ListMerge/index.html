@@ -24,15 +24,15 @@
 <link rel="stylesheet" href="/css/app.css?v=0.2.5">
 
   
-  <meta name="keywords" content="OS" />
+  <meta name="keywords" content="数据结构" />
 
 
-<link rel="canonical" href="https://735690757.github.io/Operate-system/KnowledgeSummary/">
+<link rel="canonical" href="https://735690757.github.io/DSLearnNote/ListMerge/">
 
 
 
   <title>
-操作系统细碎知识点总结（持续更新） - 操作系统 |
+两个有序链表合并的代码题 - DS |
 KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</title>
 <meta name="generator" content="Hexo 6.3.0"></head>
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -60,16 +60,16 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
         <div id="brand">
           <div class="pjax">
           
-  <h1 itemprop="name headline">操作系统细碎知识点总结（持续更新）
+  <h1 itemprop="name headline">两个有序链表合并的代码题
   </h1>
   
 <div class="meta">
-  <span class="item" title="创建时间：2024-09-09 20:41:00">
+  <span class="item" title="创建时间：2024-09-10 11:00:00">
     <span class="icon">
       <i class="ic i-calendar"></i>
     </span>
     <span class="text">发表于</span>
-    <time itemprop="dateCreated datePublished" datetime="2024-09-09T20:41:00+08:00">2024-09-09</time>
+    <time itemprop="dateCreated datePublished" datetime="2024-09-10T11:00:00+08:00">2024-09-10</time>
   </span>
 </div>
 
@@ -101,7 +101,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 
       </div>
       <div id="imgs" class="pjax">
-          <img src="/imags/OS.jpg">
+          <img src="/imags/DS.png">
       </div>
     </header>
     <div id="waves">
@@ -126,12 +126,12 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
 <i class="ic i-home"></i>
 <span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
-<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/Operate-system/" itemprop="item" rel="index" title="分类于 操作系统"><span itemprop="name">操作系统</span></a>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/DS/" itemprop="item" rel="index" title="分类于 DS"><span itemprop="name">DS</span></a>
 <meta itemprop="position" content="1" /></span>
 </div>
 
     <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
-  <link itemprop="mainEntityOfPage" href="https://735690757.github.io/Operate-system/KnowledgeSummary/">
+  <link itemprop="mainEntityOfPage" href="https://735690757.github.io/DSLearnNote/ListMerge/">
 
   <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="image" content="/images/tx.jpg">
@@ -146,28 +146,11 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <div class="body md" itemprop="articleBody">
     
 
-    <h1 id="操作系统细碎知识点总结"><a class="markdownIt-Anchor" href="#操作系统细碎知识点总结">#</a> 操作系统细碎知识点总结</h1>
-<ol>
-<li>现代操作系统两个最基本特征：<span class="label primary">并发</span>  与  <span class="label primary">共享</span></li>
-<li>OS 主要特征是：<span class="label primary">并发</span>、<span class="label primary">共享</span>、<span class="label primary">虚拟</span> 以及 <span class="label primary">异步</span></li>
-<li>操作系统出现的标志：<span class="label primary">多道程序设计</span> 以及 <span class="label primary">分时操作系统</span> 的出现</li>
-<li>高级调度：<span class="label primary">作业调度</span></li>
-<li>中级调度：<span class="label primary">内存调度</span></li>
-<li>低级调度：<span class="label primary">进程调度</span></li>
-<li>多级存储分为三部分：<span class="label primary">高速缓存</span>、<span class="label primary">内存 / 主存</span> 以及 <span class="label primary">外存</span></li>
-<li>进程的调度时机：<span class="label primary">时间片完</span>、<span class="label primary">正常结束</span>、<span class="label primary">P 操作</span>、<span class="label primary">IO 请求</span> 以及 <span class="label primary">优先级抢占</span></li>
-<li>文件系统的功能：<span class="label primary">按名存取</span>、<span class="label primary">存储空间管理</span>、<span class="label primary">文件共享与保护</span> 以及 <span class="label primary">文件操作</span></li>
-<li>SPOOLING 系统的组成：<span class="label primary">输入进程</span>、<span class="label primary">输入缓冲区</span>、<span class="label primary">输入井</span>、<span class="label primary">输出进程</span>、<span class="label primary">输出缓冲区</span> 以及 <span class="label primary">输出井</span></li>
-<li>进程的结构特征（有争议 / 不严谨）：<span class="label primary">独立性</span>、<span class="label primary">动态性</span>、<span class="label primary">异步性</span> 以及 <span class="label primary">并发性</span></li>
-<li>虚拟存储器的主要特征：<span class="label primary">多次性</span>、<span class="label primary">对换性</span> 以及 <span class="label primary">虚拟性</span></li>
-<li>所学的进程调度算法中，最中庸、最能让长作业和短作业都满意的调度算法是：<span class="label primary">多级反馈队列调度算法</span></li>
-<li>进程是<span class="label primary">资源分配</span>的基本单位，进程是<span class="label primary">调度</span>的基本单位</li>
-<li>程序的几种装入方式：<span class="label primary">静态装入</span>、<span class="label primary">可重定位装入</span> 以及 <span class="label primary">动态运行时装入</span></li>
-<li>程序的几种链接方式：<span class="label primary">静态链接</span>、<span class="label primary">装入时动态链接</span> 以及 <span class="label primary">运行时动态链接</span></li>
-</ol>
-
+    <h1 id="题目"><a class="markdownIt-Anchor" href="#题目">#</a> 题目</h1>
+<p>设计实现将两个带有头节点的有序链表合并为一个新的有序链表。</p>
+<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">void</span> <span class="token function">marge</span><span class="token punctuation">(</span>LNode <span class="token operator">*</span>A<span class="token punctuation">,</span>LNode <span class="token operator">*</span>B<span class="token punctuation">,</span>LNode <span class="token operator">*</span>C<span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    LNode p <span class="token operator">=</span> A<span class="token operator">-></span>next<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    LNode q <span class="token operator">=</span> B<span class="token operator">-></span>next<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    LNode r<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    r<span class="token operator">-></span>next <span class="token operator">=</span> null<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    C <span class="token operator">=</span> A<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    r<span class="token operator">=</span>c<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>    <span class="token keyword">while</span><span class="token punctuation">(</span>p <span class="token operator">!=</span> null<span class="token operator">||</span>q <span class="token operator">!=</span> null<span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>        <span class="token keyword">if</span><span class="token punctuation">(</span>p<span class="token operator">-></span>data <span class="token operator">&lt;=</span> q<span class="token operator">-></span>data<span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>            r<span class="token operator">-></span>next <span class="token operator">=</span> p<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>            p <span class="token operator">=</span> p<span class="token operator">-></span>next<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>            r <span class="token operator">=</span> r<span class="token operator">-></span>next<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>        <span class="token punctuation">&#125;</span> <span class="token keyword">else</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>            r<span class="token operator">-></span>next <span class="token operator">=</span> q<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>            q <span class="token operator">=</span> q<span class="token operator">-></span>next<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="16"></td><td><pre>            r <span class="token operator">=</span> r<span class="token operator">-></span>next<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="17"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="18"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="19"></td><td><pre>    <span class="token keyword">if</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span> r <span class="token operator">=</span> p<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="20"></td><td><pre>    <span class="token keyword">if</span><span class="token punctuation">(</span>q<span class="token punctuation">)</span> r <span class="token operator">=</span> q<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="21"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure>
       <div class="tags">
-          <a href="/tags/OS/" rel="tag"><i class="ic i-tag"></i> OS</a>
+          <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"><i class="ic i-tag"></i> 数据结构</a>
       </div>
   </div>
 
@@ -179,9 +162,9 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">更新于</span>
-    <time title="修改时间：2024-09-09 22:58:48" itemprop="dateModified" datetime="2024-09-09T22:58:48+08:00">2024-09-09</time>
+    <time title="修改时间：2024-09-10 22:21:03" itemprop="dateModified" datetime="2024-09-10T22:21:03+08:00">2024-09-10</time>
   </span>
-  <span id="Operate-system/KnowledgeSummary/" class="item leancloud_visitors" data-flag-title="操作系统细碎知识点总结（持续更新）" title="阅读次数">
+  <span id="DSLearnNote/ListMerge/" class="item leancloud_visitors" data-flag-title="两个有序链表合并的代码题" title="阅读次数">
       <span class="icon">
         <i class="ic i-eye"></i>
       </span>
@@ -218,7 +201,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   </li>
   <li class="link">
     <strong>本文链接：</strong>
-    <a href="https://735690757.github.io/Operate-system/KnowledgeSummary/" title="操作系统细碎知识点总结（持续更新）">https://735690757.github.io/Operate-system/KnowledgeSummary/</a>
+    <a href="https://735690757.github.io/DSLearnNote/ListMerge/" title="两个有序链表合并的代码题">https://735690757.github.io/DSLearnNote/ListMerge/</a>
   </li>
   <li class="license">
     <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
@@ -237,22 +220,14 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
     <div class="item left">
       
 
-  <a href="/DSLearnNote/GeneralizedLists/" itemprop="url" rel="prev" data-background-image="&#x2F;imags&#x2F;DS.png" title="考试中有关广义表的两个常用函数的解">
+  <a href="/Operate-system/KnowledgeSummary/" itemprop="url" rel="prev" data-background-image="&#x2F;imags&#x2F;OS.jpg" title="操作系统细碎知识点总结（持续更新）">
   <span class="type">上一篇</span>
-  <span class="category"><i class="ic i-flag"></i> DS</span>
-  <h3>考试中有关广义表的两个常用函数的解</h3>
+  <span class="category"><i class="ic i-flag"></i> 操作系统</span>
+  <h3>操作系统细碎知识点总结（持续更新）</h3>
   </a>
 
     </div>
     <div class="item right">
-      
-
-  <a href="/DSLearnNote/ListMerge/" itemprop="url" rel="next" data-background-image="&#x2F;imags&#x2F;DS.png" title="两个有序链表合并的代码题">
-  <span class="type">下一篇</span>
-  <span class="category"><i class="ic i-flag"></i> DS</span>
-  <h3>两个有序链表合并的代码题</h3>
-  </a>
-
     </div>
 </div>
 
@@ -269,11 +244,11 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="文章目录">
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%BB%86%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93"><span class="toc-number">1.</span> <span class="toc-text"> 操作系统细碎知识点总结</span></a></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE"><span class="toc-number">1.</span> <span class="toc-text"> 题目</span></a></li></ol>
       </div>
       <div class="related panel pjax" data-title="系列文章">
         <ul>
-          <li><a href="/Operate-system/01OS/" rel="bookmark" title="操作系统知识点阶段总结">操作系统知识点阶段总结</a></li><li><a href="/Operate-system/02OS/" rel="bookmark" title="进程与线程">进程与线程</a></li><li><a href="/Operate-system/03OS/" rel="bookmark" title="进程同步问题">进程同步问题</a></li><li><a href="/Operate-system/kcsj/" rel="bookmark" title="操作系统课程设计">操作系统课程设计</a></li><li class="active"><a href="/Operate-system/KnowledgeSummary/" rel="bookmark" title="操作系统细碎知识点总结（持续更新）">操作系统细碎知识点总结（持续更新）</a></li>
+          <li><a href="/DSLearnNote/GeneralizedLists/" rel="bookmark" title="考试中有关广义表的两个常用函数的解">考试中有关广义表的两个常用函数的解</a></li><li class="active"><a href="/DSLearnNote/ListMerge/" rel="bookmark" title="两个有序链表合并的代码题">两个有序链表合并的代码题</a></li>
         </ul>
       </div>
       <div class="overview panel" data-title="站点概览">
@@ -366,12 +341,10 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 
   <ul id="quick">
     <li class="prev pjax">
-        <a href="/DSLearnNote/GeneralizedLists/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a>
     </li>
     <li class="up"><i class="ic i-arrow-up"></i></li>
     <li class="down"><i class="ic i-arrow-down"></i></li>
     <li class="next pjax">
-        <a href="/DSLearnNote/ListMerge/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a>
     </li>
     <li class="percent"></li>
   </ul>
@@ -393,10 +366,10 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
+<a href="/categories/MongoDB/" title="分类于 MongoDB">MongoDB</a>
 </div>
 
-    <span><a href="/Operate-system/kcsj/" title="操作系统课程设计">操作系统课程设计</a></span>
+    <span><a href="/MongoDB/MongoDB01/" title="MongoDB的安装与初步使用（Windows平台）">MongoDB的安装与初步使用（Windows平台）</a></span>
   </li>
 
       
@@ -413,30 +386,20 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/java%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/" title="分类于 java高级特性">java高级特性</a>
+<a href="/categories/experience/" title="分类于 开发经验">开发经验</a>
 </div>
 
-    <span><a href="/Java/javaAd01/" title="Java高级特性1">Java高级特性1</a></span>
+    <span><a href="/experience/SSM01/" title="SSM框架整合">SSM框架整合</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/MongoDB/" title="分类于 MongoDB">MongoDB</a>
+<a href="/categories/database/" title="分类于 数据库">数据库</a>
 </div>
 
-    <span><a href="/MongoDB/MongoDB02/" title="MongoDB初步使用">MongoDB初步使用</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%9D%E6%9D%A5%E4%B9%8D%E5%88%B0/" title="分类于 初来乍到">初来乍到</a>
-</div>
-
-    <span><a href="/hello/" title="起点，但不止于起点！">起点，但不止于起点！</a></span>
+    <span><a href="/database/DataBase02/" title="数据库设计">数据库设计</a></span>
   </li>
 
       
@@ -453,10 +416,20 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Principles-of-computer-composition/" title="分类于 计算机组成原理">计算机组成原理</a>
+<a href="/categories/MongoDB/" title="分类于 MongoDB">MongoDB</a>
 </div>
 
-    <span><a href="/Principles-of-computer-composition/Connection_between_CPU_and_memory/" title="CPU与存储器的连接">CPU与存储器的连接</a></span>
+    <span><a href="/MongoDB/MongoDB03/" title="MongoDB初步使用">MongoDB初步使用</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%9D%E6%9D%A5%E4%B9%8D%E5%88%B0/" title="分类于 初来乍到">初来乍到</a>
+</div>
+
+    <span><a href="/hello/" title="起点，但不止于起点！">起点，但不止于起点！</a></span>
   </li>
 
       
@@ -466,7 +439,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <a href="/categories/MongoDB/" title="分类于 MongoDB">MongoDB</a>
 </div>
 
-    <span><a href="/MongoDB/MongoDB01/" title="MongoDB的安装与初步使用（Windows平台）">MongoDB的安装与初步使用（Windows平台）</a></span>
+    <span><a href="/MongoDB/MongoDB02/" title="MongoDB初步使用">MongoDB初步使用</a></span>
   </li>
 
       
@@ -476,17 +449,17 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
 </div>
 
-    <span><a href="/Operate-system/01OS/" title="操作系统知识点阶段总结">操作系统知识点阶段总结</a></span>
+    <span><a href="/Operate-system/03OS/" title="进程同步问题">进程同步问题</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
+<a href="/categories/java%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/" title="分类于 java高级特性">java高级特性</a>
 </div>
 
-    <span><a href="/Operate-system/KnowledgeSummary/" title="操作系统细碎知识点总结（持续更新）">操作系统细碎知识点总结（持续更新）</a></span>
+    <span><a href="/Java/javaAd01/" title="Java高级特性1">Java高级特性1</a></span>
   </li>
 
   </ul>
@@ -519,7 +492,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   </div>
 <script data-config type="text/javascript">
   var LOCAL = {
-    path: 'Operate-system/KnowledgeSummary/',
+    path: 'DSLearnNote/ListMerge/',
     favicon: {
       show: "（●´3｀●）嘿嘿嘿....",
       hide: "(´Д｀)不看我是吧！"
@@ -530,14 +503,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
       stats: "${time} ms 内找到 ${hits} 条结果"
     },
     valine: true,fancybox: true,
-    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',quiz: {
-      choice: "单选题",
-      multiple: "多选题",
-      true_false: "判断题",
-      essay: "问答题",
-      gap_fill: "填空题",
-      mistake: "错题备注"
-    },
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
     ignores : [
       function(uri) {
         return uri.includes('#');
