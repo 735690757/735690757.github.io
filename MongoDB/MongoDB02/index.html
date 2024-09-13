@@ -146,240 +146,177 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <div class="body md" itemprop="articleBody">
     
 
-    <h1 id="mongodb命令"><a class="markdownIt-Anchor" href="#mongodb命令"></a> MongoDB命令</h1>
-<h2 id="创建用户可读可写"><a class="markdownIt-Anchor" href="#创建用户可读可写"></a> 创建用户（可读可写）</h2>
-<h3 id="创建"><a class="markdownIt-Anchor" href="#创建"></a> 创建</h3>
-<pre class="highlight"><code class="bash">db.createUser(&#123;user:<span class="hljs-string">&quot;lkr40&quot;</span>,<span class="hljs-built_in">pwd</span>:<span class="hljs-string">&quot;123456&quot;</span>,roles:[<span class="hljs-string">&quot;readWrite&quot;</span>]&#125;)
-</code></pre>
-<h3 id="检验"><a class="markdownIt-Anchor" href="#检验"></a> 检验</h3>
-<pre class="highlight"><code class="bash">db.auth(<span class="hljs-string">&quot;lkr40&quot;</span>,<span class="hljs-string">&quot;123456&quot;</span>)
-</code></pre>
-<blockquote>
-<p>db.createUser({user:“lkr40”,pwd:“123456”,roles:[“readWrite”]})<br />
-Successfully added user: { “user” : “lkr40”, “roles” : [ “readWrite” ] }<br />
-db.auth(“lkr40”,“123456”)<br />
+    <h1 id="mongodb命令"><a class="markdownIt-Anchor" href="#mongodb命令">#</a> MongoDB 命令</h1>
+<h2 id="创建用户可读可写"><a class="markdownIt-Anchor" href="#创建用户可读可写">#</a> 创建用户（可读可写）</h2>
+<h3 id="创建"><a class="markdownIt-Anchor" href="#创建">#</a> 创建</h3>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>db.createUser<span class="token punctuation">(</span><span class="token punctuation">&#123;</span>user:<span class="token string">"lkr40"</span>,pwd:<span class="token string">"123456"</span>,roles:<span class="token punctuation">[</span><span class="token string">"readWrite"</span><span class="token punctuation">]</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span></pre></td></tr></table></figure><h3 id="检验"><a class="markdownIt-Anchor" href="#检验">#</a> 检验</h3>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>db.auth<span class="token punctuation">(</span><span class="token string">"lkr40"</span>,<span class="token string">"123456"</span><span class="token punctuation">)</span></pre></td></tr></table></figure><blockquote>
+<p>db.createUser({user:“lkr40”,pwd:“123456”,roles:[“readWrite”]})<br>
+Successfully added user: { “user” : “lkr40”, “roles” : [ “readWrite” ] }<br>
+db.auth(“lkr40”,“123456”)<br>
 1</p>
 </blockquote>
-<h3 id="登录"><a class="markdownIt-Anchor" href="#登录"></a> 登录</h3>
-<pre class="highlight"><code class="bash">mongo 127.0.0.1:27017/mymongo -u lkr40 -p 123456
-</code></pre>
-<h2 id="建立使用数据库"><a class="markdownIt-Anchor" href="#建立使用数据库"></a> 建立/使用数据库</h2>
-<pre class="highlight"><code class="bash">use mymongo
-</code></pre>
-<blockquote>
-<p>use mymongo<br />
+<h3 id="登录"><a class="markdownIt-Anchor" href="#登录">#</a> 登录</h3>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>mongo <span class="token number">127.0</span>.0.1:27017/mymongo <span class="token parameter variable">-u</span> lkr40 <span class="token parameter variable">-p</span> <span class="token number">123456</span></pre></td></tr></table></figure><h2 id="建立使用数据库"><a class="markdownIt-Anchor" href="#建立使用数据库">#</a> 建立 / 使用数据库</h2>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>use mymongo</pre></td></tr></table></figure><blockquote>
+<p>use mymongo<br>
 switched to db mymongo</p>
 </blockquote>
-<h2 id="查询当前数据库"><a class="markdownIt-Anchor" href="#查询当前数据库"></a> 查询当前数据库</h2>
-<pre class="highlight"><code class="bash">db
-</code></pre>
-<blockquote>
-<p>db<br />
+<h2 id="查询当前数据库"><a class="markdownIt-Anchor" href="#查询当前数据库">#</a> 查询当前数据库</h2>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>db</pre></td></tr></table></figure><blockquote>
+<p>db<br>
 mymongo</p>
 </blockquote>
-<h2 id="删除数据库"><a class="markdownIt-Anchor" href="#删除数据库"></a> 删除数据库</h2>
-<pre class="highlight"><code class="bash">db.dropDatabase()
-</code></pre>
-<h2 id="查询时间"><a class="markdownIt-Anchor" href="#查询时间"></a> 查询时间</h2>
-<pre class="highlight"><code class="bash">Date()
-</code></pre>
-<blockquote>
-<p>Date()<br />
+<h2 id="删除数据库"><a class="markdownIt-Anchor" href="#删除数据库">#</a> 删除数据库</h2>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>db.dropDatabase<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr></table></figure><h2 id="查询时间"><a class="markdownIt-Anchor" href="#查询时间">#</a> 查询时间</h2>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>Date<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr></table></figure><blockquote>
+<p>Date()<br>
 Wed Sep 06 2023 10:21:36 GMT+0800</p>
 </blockquote>
-<h2 id="创建集合"><a class="markdownIt-Anchor" href="#创建集合"></a> 创建集合</h2>
+<h2 id="创建集合"><a class="markdownIt-Anchor" href="#创建集合">#</a> 创建集合</h2>
 <p><strong>集合中可以包含子集合</strong></p>
-<h3 id="显式创建t"><a class="markdownIt-Anchor" href="#显式创建t"></a> 显式创建（t）</h3>
-<pre class="highlight"><code class="bash">db.createCollection(<span class="hljs-string">&quot;t&quot;</span>)
-</code></pre>
-<blockquote>
-<p>db.createCollection(“t”)<br />
-{ “ok” : 1 }</p>
+<h3 id="显式创建t"><a class="markdownIt-Anchor" href="#显式创建t">#</a> 显式创建（t）</h3>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>db.createCollection<span class="token punctuation">(</span><span class="token string">"t"</span><span class="token punctuation">)</span></pre></td></tr></table></figure><blockquote ok:1="">
+<p>db.createCollection(“t”)</p>
 </blockquote>
-<h3 id="隐式创建t1"><a class="markdownIt-Anchor" href="#隐式创建t1"></a> 隐式创建（t1）</h3>
-<pre class="highlight"><code class="">db.t1.insert(&#123;&quot;age&quot;:18&#125;)
+<h3 id="隐式创建t1"><a class="markdownIt-Anchor" href="#隐式创建t1">#</a> 隐式创建（t1）</h3>
+<pre><code>db.t1.insert(&#123;&quot;age&quot;:18&#125;)
 </code></pre>
 <blockquote>
-<p>db.t1.insert({“age”:18})<br />
-WriteResult({ “nInserted” : 1 })<br />
-show collections<br />
-t<br />
+<p>db.t1.insert({“age”:18})<br>
+WriteResult({ “nInserted” : 1 })<br>
+show collections<br>
+t<br>
 t1</p>
 </blockquote>
-<h2 id="展示集合"><a class="markdownIt-Anchor" href="#展示集合"></a> 展示集合</h2>
-<pre class="highlight"><code class="bash">show collections
-</code></pre>
-<blockquote>
-<p>show collections<br />
+<h2 id="展示集合"><a class="markdownIt-Anchor" href="#展示集合">#</a> 展示集合</h2>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>show collections</pre></td></tr></table></figure><blockquote>
+<p>show collections<br>
 t</p>
 <p>t1</p>
 </blockquote>
-<h2 id="删除集合"><a class="markdownIt-Anchor" href="#删除集合"></a> 删除集合</h2>
-<pre class="highlight"><code class="bash">db.t.drop()
-</code></pre>
-<blockquote>
-<p>db.t.drop()<br />
+<h2 id="删除集合"><a class="markdownIt-Anchor" href="#删除集合">#</a> 删除集合</h2>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>db.t.drop<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr></table></figure><blockquote>
+<p>db.t.drop()<br>
 true</p>
 </blockquote>
-<h2 id="查询文档"><a class="markdownIt-Anchor" href="#查询文档"></a> 查询文档</h2>
-<pre class="highlight"><code class="bash">db.t1.find()
-</code></pre>
-<blockquote>
-<p>db.t1.find()<br />
-{ “_id” : ObjectId(“64f7ec7bff2142d2a2445360”), “age” : 18 }</p>
+<h2 id="查询文档"><a class="markdownIt-Anchor" href="#查询文档">#</a> 查询文档</h2>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>db.t1.find<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr></table></figure><blockquote _id:ObjectId(64f7ec7bff2142d2a2445360),age:18="">
+<p>db.t1.find()</p>
 </blockquote>
-<h3 id="条件查询"><a class="markdownIt-Anchor" href="#条件查询"></a> 条件查询</h3>
-<h4 id="等于"><a class="markdownIt-Anchor" href="#等于"></a> 等于</h4>
-<pre class="highlight"><code class="">db.t.find(&#123;&quot;x&quot;:1&#125;)
+<h3 id="条件查询"><a class="markdownIt-Anchor" href="#条件查询">#</a> 条件查询</h3>
+<h4 id="等于"><a class="markdownIt-Anchor" href="#等于">#</a> 等于</h4>
+<pre><code>db.t.find(&#123;&quot;x&quot;:1&#125;)
 </code></pre>
-<blockquote>
-<p>db.t.find({“x”:1})<br />
-{ “_id” : ObjectId(“64f7f05bff2142d2a2445361”), “x” : 1 }</p>
+<blockquote _id:ObjectId(64f7f05bff2142d2a2445361),x:1="">
+<p>db.t.find({“x”:1})</p>
 </blockquote>
-<h4 id="小于"><a class="markdownIt-Anchor" href="#小于"></a> 小于</h4>
-<pre class="highlight"><code class="bash">db.t.find(&#123;<span class="hljs-string">&quot;x&quot;</span>:&#123;<span class="hljs-variable">$lte</span> : 5&#125;&#125;)
-</code></pre>
-<h4 id="大于"><a class="markdownIt-Anchor" href="#大于"></a> 大于</h4>
-<pre class="highlight"><code class="bash">db.t.find(&#123;<span class="hljs-string">&quot;x&quot;</span>:&#123;<span class="hljs-variable">$lte</span> : 5&#125;&#125;)
-</code></pre>
-<h4 id="在之中包含"><a class="markdownIt-Anchor" href="#在之中包含"></a> 在之中（包含）</h4>
-<pre class="highlight"><code class="bash">db.t.find(&#123;<span class="hljs-string">&quot;x&quot;</span>:&#123;<span class="hljs-variable">$in</span> : [1,3,5]&#125;&#125;)
-</code></pre>
-<h4 id="不在其中不包含"><a class="markdownIt-Anchor" href="#不在其中不包含"></a> 不在其中（不包含）</h4>
-<pre class="highlight"><code class="bash">db.t.find(&#123;<span class="hljs-string">&quot;x&quot;</span>:&#123;<span class="hljs-variable">$nin</span> : [1,3,5]&#125;&#125;)
-</code></pre>
-<h2 id="插入文档"><a class="markdownIt-Anchor" href="#插入文档"></a> 插入文档</h2>
-<h3 id="单一插入"><a class="markdownIt-Anchor" href="#单一插入"></a> 单一插入</h3>
-<pre class="highlight"><code class="bash">db.t1.insert(&#123;<span class="hljs-string">&quot;_id&quot;</span>:<span class="hljs-string">&quot;1&quot;</span>,<span class="hljs-string">&quot;age&quot;</span>:23&#125;)
-</code></pre>
-<blockquote>
-<p>db.t1.insert({“_id”:“1”,“age”:23})<br />
-WriteResult({ “nInserted” : 1 })<br />
-db.t1.find()<br />
-{ “_id” : ObjectId(“64f7ec7bff2142d2a2445360”), “age” : 18 }<br />
-{ “_id” : “1”, “age” : 23 }</p>
+<h4 id="小于"><a class="markdownIt-Anchor" href="#小于">#</a> 小于</h4>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>db.t.find<span class="token punctuation">(</span><span class="token punctuation">&#123;</span><span class="token string">"x"</span>:<span class="token punctuation">&#123;</span><span class="token variable">$lte</span> <span class="token builtin class-name">:</span> <span class="token number">5</span><span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span></pre></td></tr></table></figure><h4 id="大于"><a class="markdownIt-Anchor" href="#大于">#</a> 大于</h4>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>db.t.find<span class="token punctuation">(</span><span class="token punctuation">&#123;</span><span class="token string">"x"</span>:<span class="token punctuation">&#123;</span><span class="token variable">$lte</span> <span class="token builtin class-name">:</span> <span class="token number">5</span><span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span></pre></td></tr></table></figure><h4 id="在之中包含"><a class="markdownIt-Anchor" href="#在之中包含">#</a> 在之中（包含）</h4>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>db.t.find<span class="token punctuation">(</span><span class="token punctuation">&#123;</span><span class="token string">"x"</span>:<span class="token punctuation">&#123;</span><span class="token variable">$in</span> <span class="token builtin class-name">:</span> <span class="token punctuation">[</span><span class="token number">1,3</span>,5<span class="token punctuation">]</span><span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span></pre></td></tr></table></figure><h4 id="不在其中不包含"><a class="markdownIt-Anchor" href="#不在其中不包含">#</a> 不在其中（不包含）</h4>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>db.t.find<span class="token punctuation">(</span><span class="token punctuation">&#123;</span><span class="token string">"x"</span>:<span class="token punctuation">&#123;</span><span class="token variable">$nin</span> <span class="token builtin class-name">:</span> <span class="token punctuation">[</span><span class="token number">1,3</span>,5<span class="token punctuation">]</span><span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span></pre></td></tr></table></figure><h2 id="插入文档"><a class="markdownIt-Anchor" href="#插入文档">#</a> 插入文档</h2>
+<h3 id="单一插入"><a class="markdownIt-Anchor" href="#单一插入">#</a> 单一插入</h3>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>db.t1.insert<span class="token punctuation">(</span><span class="token punctuation">&#123;</span><span class="token string">"_id"</span><span class="token builtin class-name">:</span><span class="token string">"1"</span>,<span class="token string">"age"</span>:23<span class="token punctuation">&#125;</span><span class="token punctuation">)</span></pre></td></tr></table></figure><blockquote _id:1,age:23="" _id:ObjectId(64f7ec7bff2142d2a2445360),age:18="">
+<p>db.t1.insert({&quot;_id&quot;:“1”,“age”:23})<br>
+WriteResult({ “nInserted” : 1 })<br>
+db.t1.find()<br>
+</p>
 </blockquote>
-<h3 id="批量插入单语句"><a class="markdownIt-Anchor" href="#批量插入单语句"></a> 批量插入（单语句）</h3>
-<pre class="highlight"><code class="bash">db.t1.insertMany([&#123;<span class="hljs-string">&quot;_id&quot;</span>:2,<span class="hljs-string">&quot;age&quot;</span>:65&#125;,&#123;<span class="hljs-string">&quot;_id&quot;</span>:3,<span class="hljs-string">&quot;age&quot;</span>:45&#125;])
-</code></pre>
-<blockquote>
-<p>db.t1.insertMany([{“_id”:2,“age”:65},{“_id”:3,“age”:45}])<br />
-{ “acknowledged” : true, “insertedIds” : [ 2, 3 ] }<br />
-db.t1.find()<br />
-{ “_id” : ObjectId(“64f7ec7bff2142d2a2445360”), “age” : 18 }<br />
-{ “_id” : “1”, “age” : 33 }<br />
-{ “_id” : 2, “age” : 65 }<br />
-{ “_id” : 3, “age” : 45 }</p>
+<h3 id="批量插入单语句"><a class="markdownIt-Anchor" href="#批量插入单语句">#</a> 批量插入（单语句）</h3>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>db.t1.insertMany<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">&#123;</span><span class="token string">"_id"</span>:2,<span class="token string">"age"</span>:65<span class="token punctuation">&#125;</span>,<span class="token punctuation">&#123;</span><span class="token string">"_id"</span>:3,<span class="token string">"age"</span>:45<span class="token punctuation">&#125;</span><span class="token punctuation">]</span><span class="token punctuation">)</span></pre></td></tr></table></figure><blockquote _id:3,age:45="" _id:2,age:65="">
+<p>db.t1.insertMany([{&quot;_id&quot;:2,“age”:65},{&quot;_id&quot;:3,“age”:45}])<br>
+{ “acknowledged” : true, “insertedIds” : [ 2, 3 ] }<br>
+db.t1.find()<br>
+{ “_id” : ObjectId(“64f7ec7bff2142d2a2445360”), “age” : 18 }<br>
+{ “_id” : “1”, “age” : 33 }<br>
+</p>
 </blockquote>
-<h3 id="循环插入for"><a class="markdownIt-Anchor" href="#循环插入for"></a> 循环插入（for）</h3>
-<pre class="highlight"><code class="bash"><span class="hljs-keyword">for</span>(i=1;i&lt;9;i++) db.t.insert(&#123;<span class="hljs-string">&quot;x&quot;</span>:i&#125;)
-</code></pre>
-<blockquote>
-<p>for(i=1;i&lt;9;i++) db.t.insert({“x”:i})<br />
-WriteResult({ “nInserted” : 1 })<br />
-db.t.find()<br />
-{ “_id” : ObjectId(“64f7f05bff2142d2a2445361”), “x” : 1 }<br />
-{ “_id” : ObjectId(“64f7f05cff2142d2a2445362”), “x” : 2 }<br />
-{ “_id” : ObjectId(“64f7f05cff2142d2a2445363”), “x” : 3 }<br />
-{ “_id” : ObjectId(“64f7f05cff2142d2a2445364”), “x” : 4 }<br />
-{ “_id” : ObjectId(“64f7f05cff2142d2a2445365”), “x” : 5 }<br />
-{ “_id” : ObjectId(“64f7f05cff2142d2a2445366”), “x” : 6 }<br />
-{ “_id” : ObjectId(“64f7f05cff2142d2a2445367”), “x” : 7 }<br />
-{ “_id” : ObjectId(“64f7f05cff2142d2a2445368”), “x” : 8 }</p>
+<h3 id="循环插入for"><a class="markdownIt-Anchor" href="#循环插入for">#</a> 循环插入（for）</h3>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>for<span class="token punctuation">(</span>i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span><span class="token number">9</span><span class="token punctuation">;</span>i++<span class="token punctuation">)</span> db.t.insert<span class="token punctuation">(</span><span class="token punctuation">&#123;</span><span class="token string">"x"</span>:i<span class="token punctuation">&#125;</span><span class="token punctuation">)</span></pre></td></tr></table></figure><blockquote _id:ObjectId(64f7f05cff2142d2a2445368),x:8="" _id:ObjectId(64f7f05cff2142d2a2445367),x:7="">
+<p>for(i=1;i&lt;9;i++) db.t.insert({“x”:i})<br>
+WriteResult({ “nInserted” : 1 })<br>
+db.t.find()<br>
+{ “_id” : ObjectId(“64f7f05bff2142d2a2445361”), “x” : 1 }<br>
+{ “_id” : ObjectId(“64f7f05cff2142d2a2445362”), “x” : 2 }<br>
+{ “_id” : ObjectId(“64f7f05cff2142d2a2445363”), “x” : 3 }<br>
+{ “_id” : ObjectId(“64f7f05cff2142d2a2445364”), “x” : 4 }<br>
+{ “_id” : ObjectId(“64f7f05cff2142d2a2445365”), “x” : 5 }<br>
+{ “_id” : ObjectId(“64f7f05cff2142d2a2445366”), “x” : 6 }<br>
+</p>
 </blockquote>
-<h3 id="同id插入异常"><a class="markdownIt-Anchor" href="#同id插入异常"></a> 同id插入异常</h3>
+<h3 id="同id插入异常"><a class="markdownIt-Anchor" href="#同id插入异常">#</a> 同 id 插入异常</h3>
 <blockquote>
-<p>db.t1.insert({“_id”:“1”,“age”:23})<br />
-WriteResult({<br />
-“nInserted” : 0,<br />
-“writeError” : {<br />
-“code” : 11000,<br />
-“errmsg” : “E11000 duplicate key error collection: mymongo.t1 index: <em>id</em> dup key: { _id: &quot;1&quot; }”<br />
-}<br />
+<p>db.t1.insert({&quot;_id&quot;:“1”,“age”:23})<br>
+WriteResult({<br>
+“nInserted” : 0,<br>
+“writeError” : {<br>
+“code” : 11000,<br>
+“errmsg” : “E11000 duplicate key error collection: mymongo.t1 index: <em>id</em> dup key: { _id: “1” }”<br>
+}<br>
 })</p>
 </blockquote>
-<h2 id="修改输入全部属性替换"><a class="markdownIt-Anchor" href="#修改输入全部属性替换"></a> 修改（输入全部属性/替换）</h2>
-<pre class="highlight"><code class="bash">db.t1.save(&#123;<span class="hljs-string">&quot;_id&quot;</span>:<span class="hljs-string">&quot;1&quot;</span>,<span class="hljs-string">&quot;age&quot;</span>:33&#125;)
-</code></pre>
-<blockquote>
-<p>db.t1.save({“_id”:“1”,“age”:33})<br />
-WriteResult({ “nMatched” : 1, “nUpserted” : 0, “nModified” : 1 })<br />
-db.t1.find()<br />
-{ “_id” : ObjectId(“64f7ec7bff2142d2a2445360”), “age” : 18 }<br />
-{ “_id” : “1”, “age” : 33 }</p>
+<h2 id="修改输入全部属性替换"><a class="markdownIt-Anchor" href="#修改输入全部属性替换">#</a> 修改（输入全部属性 / 替换）</h2>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>db.t1.save<span class="token punctuation">(</span><span class="token punctuation">&#123;</span><span class="token string">"_id"</span><span class="token builtin class-name">:</span><span class="token string">"1"</span>,<span class="token string">"age"</span>:33<span class="token punctuation">&#125;</span><span class="token punctuation">)</span></pre></td></tr></table></figure><blockquote _id:1,age:33="" _id:ObjectId(64f7ec7bff2142d2a2445360),age:18="">
+<p>db.t1.save({&quot;_id&quot;:“1”,“age”:33})<br>
+WriteResult({ “nMatched” : 1, “nUpserted” : 0, “nModified” : 1 })<br>
+db.t1.find()<br>
+</p>
 </blockquote>
-<h2 id="更新"><a class="markdownIt-Anchor" href="#更新"></a> 更新</h2>
-<pre class="highlight"><code class="bash">db.t1.update(&#123;<span class="hljs-string">&quot;age&quot;</span>:65&#125;,&#123;<span class="hljs-variable">$set</span>:&#123;<span class="hljs-string">&quot;age&quot;</span>:100&#125;&#125;)
-</code></pre>
-<blockquote>
-<p>db.t1.update({“age”:65},{$set:{“age”:100}})<br />
-WriteResult({ “nMatched” : 1, “nUpserted” : 0, “nModified” : 1 })<br />
-db.t1.find()<br />
-{ “_id” : ObjectId(“64f7ec7bff2142d2a2445360”), “age” : 18 }<br />
-{ “_id” : “1”, “age” : 33 }<br />
-{ “_id” : 2, “age” : 100 }<br />
-{ “_id” : 3, “age” : 45 }</p>
+<h2 id="更新"><a class="markdownIt-Anchor" href="#更新">#</a> 更新</h2>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>db.t1.update<span class="token punctuation">(</span><span class="token punctuation">&#123;</span><span class="token string">"age"</span>:65<span class="token punctuation">&#125;</span>,<span class="token punctuation">&#123;</span><span class="token variable">$set</span>:<span class="token punctuation">&#123;</span><span class="token string">"age"</span>:100<span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span></pre></td></tr></table></figure><blockquote _id:3,age:45="" _id:2,age:100="">
+<p>db.t1.update({“age”:65},{$set:{“age”:100}})<br>
+WriteResult({ “nMatched” : 1, “nUpserted” : 0, “nModified” : 1 })<br>
+db.t1.find()<br>
+{ “_id” : ObjectId(“64f7ec7bff2142d2a2445360”), “age” : 18 }<br>
+{ “_id” : “1”, “age” : 33 }<br>
+</p>
 </blockquote>
-<h2 id="删除"><a class="markdownIt-Anchor" href="#删除"></a> 删除</h2>
-<h3 id="批量删除"><a class="markdownIt-Anchor" href="#批量删除"></a> 批量删除</h3>
-<pre class="highlight"><code class="bash">db.t1.remove(&#123;<span class="hljs-string">&quot;age&quot;</span>:33&#125;)
-</code></pre>
-<blockquote>
-<p>db.t1.remove({“age”:33})<br />
-WriteResult({ “nRemoved” : 1 })<br />
-db.t1.find()<br />
-{ “_id” : ObjectId(“64f7ec7bff2142d2a2445360”), “age” : 18 }<br />
-{ “_id” : 2, “age” : 100 }<br />
-{ “_id” : 3, “age” : 45 }</p>
+<h2 id="删除"><a class="markdownIt-Anchor" href="#删除">#</a> 删除</h2>
+<h3 id="批量删除"><a class="markdownIt-Anchor" href="#批量删除">#</a> 批量删除</h3>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>db.t1.remove<span class="token punctuation">(</span><span class="token punctuation">&#123;</span><span class="token string">"age"</span>:33<span class="token punctuation">&#125;</span><span class="token punctuation">)</span></pre></td></tr></table></figure><blockquote _id:3,age:45="" _id:2,age:100="">
+<p>db.t1.remove({“age”:33})<br>
+WriteResult({ “nRemoved” : 1 })<br>
+db.t1.find()<br>
+{ “_id” : ObjectId(“64f7ec7bff2142d2a2445360”), “age” : 18 }<br>
+</p>
 </blockquote>
-<h3 id="单一删除"><a class="markdownIt-Anchor" href="#单一删除"></a> 单一删除</h3>
-<pre class="highlight"><code class="bash">db.t1.remove(&#123;<span class="hljs-string">&quot;age&quot;</span>:45&#125;,&#123;justOne:1&#125;)
-</code></pre>
-<blockquote>
-<p>db.t1.remove({“age”:45},{justOne:1})<br />
-WriteResult({ “nRemoved” : 1 })<br />
-db.t1.find()<br />
-{ “_id” : ObjectId(“64f7ec7bff2142d2a2445360”), “age” : 18 }<br />
-{ “_id” : 2, “age” : 100 }<br />
-{ “_id” : 4, “age” : 65 }<br />
-{ “_id” : 5, “age” : 45 }</p>
+<h3 id="单一删除"><a class="markdownIt-Anchor" href="#单一删除">#</a> 单一删除</h3>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>db.t1.remove<span class="token punctuation">(</span><span class="token punctuation">&#123;</span><span class="token string">"age"</span>:45<span class="token punctuation">&#125;</span>,<span class="token punctuation">&#123;</span>justOne:1<span class="token punctuation">&#125;</span><span class="token punctuation">)</span></pre></td></tr></table></figure><blockquote _id:5,age:45="" _id:4,age:65="">
+<p>db.t1.remove({“age”:45},{justOne:1})<br>
+WriteResult({ “nRemoved” : 1 })<br>
+db.t1.find()<br>
+{ “_id” : ObjectId(“64f7ec7bff2142d2a2445360”), “age” : 18 }<br>
+{ “_id” : 2, “age” : 100 }<br>
+</p>
 </blockquote>
-<h2 id="capped限制"><a class="markdownIt-Anchor" href="#capped限制"></a> Capped限制</h2>
-<h3 id="创建限制"><a class="markdownIt-Anchor" href="#创建限制"></a> 创建限制</h3>
-<pre class="highlight"><code class="bash">db.createCollection(<span class="hljs-string">&quot;t2&quot;</span>,&#123;capped:<span class="hljs-literal">true</span>,size:3,max:8&#125;)
-</code></pre>
-<pre class="highlight"><code class="bash">db.t2.isCapped()
-</code></pre>
-<h3 id="检验-2"><a class="markdownIt-Anchor" href="#检验-2"></a> 检验</h3>
-<pre class="highlight"><code class="bash"><span class="hljs-keyword">for</span>(i=1;i&lt;9;i++) db.t2.insert(&#123;<span class="hljs-string">&quot;x&quot;</span>:i&#125;)
-</code></pre>
-<blockquote>
-<p>db.t2.find();<br />
-{ “_id” : ObjectId(“64f7f23fff2142d2a244536a”), “x” : 2 }<br />
-{ “_id” : ObjectId(“64f7f23fff2142d2a244536b”), “x” : 3 }<br />
-{ “_id” : ObjectId(“64f7f23fff2142d2a244536c”), “x” : 4 }<br />
-{ “_id” : ObjectId(“64f7f23fff2142d2a244536d”), “x” : 5 }<br />
-{ “_id” : ObjectId(“64f7f23fff2142d2a244536e”), “x” : 6 }<br />
-{ “_id” : ObjectId(“64f7f23fff2142d2a244536f”), “x” : 7 }<br />
-{ “_id” : ObjectId(“64f7f23fff2142d2a2445370”), “x” : 8 }</p>
+<h2 id="capped限制"><a class="markdownIt-Anchor" href="#capped限制">#</a> Capped 限制</h2>
+<h3 id="创建限制"><a class="markdownIt-Anchor" href="#创建限制">#</a> 创建限制</h3>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>db.createCollection<span class="token punctuation">(</span><span class="token string">"t2"</span>,<span class="token punctuation">&#123;</span>capped:true,size:3,max:8<span class="token punctuation">&#125;</span><span class="token punctuation">)</span></pre></td></tr></table></figure><figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>db.t2.isCapped<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr></table></figure><h3 id="检验-2"><a class="markdownIt-Anchor" href="#检验-2">#</a> 检验</h3>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>for<span class="token punctuation">(</span>i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span><span class="token number">9</span><span class="token punctuation">;</span>i++<span class="token punctuation">)</span> db.t2.insert<span class="token punctuation">(</span><span class="token punctuation">&#123;</span><span class="token string">"x"</span>:i<span class="token punctuation">&#125;</span><span class="token punctuation">)</span></pre></td></tr></table></figure><blockquote _id:ObjectId(64f7f23fff2142d2a2445370),x:8="" _id:ObjectId(64f7f23fff2142d2a244536f),x:7="">
+<p>db.t2.find();<br>
+{ “_id” : ObjectId(“64f7f23fff2142d2a244536a”), “x” : 2 }<br>
+{ “_id” : ObjectId(“64f7f23fff2142d2a244536b”), “x” : 3 }<br>
+{ “_id” : ObjectId(“64f7f23fff2142d2a244536c”), “x” : 4 }<br>
+{ “_id” : ObjectId(“64f7f23fff2142d2a244536d”), “x” : 5 }<br>
+{ “_id” : ObjectId(“64f7f23fff2142d2a244536e”), “x” : 6 }<br>
+</p>
 </blockquote>
-<h3 id="结论"><a class="markdownIt-Anchor" href="#结论"></a> 结论</h3>
+<h3 id="结论"><a class="markdownIt-Anchor" href="#结论">#</a> 结论</h3>
 <p><strong>前面的数据被顶掉了</strong></p>
-<h2 id="pretty美化输出"><a class="markdownIt-Anchor" href="#pretty美化输出"></a> pretty美化输出</h2>
-<pre class="highlight"><code class="bash">db.t3.insert(&#123;<span class="hljs-string">&quot;_id&quot;</span>:1,<span class="hljs-string">&quot;phone&quot;</span>:&#123;<span class="hljs-string">&quot;hemophone&quot;</span>:<span class="hljs-string">&quot;8617118&quot;</span>,<span class="hljs-string">&quot;mobilephone&quot;</span>:<span class="hljs-string">&quot;18643079329&quot;</span>&#125;&#125;)
-</code></pre>
-<blockquote>
-<p>db.t3.find().pretty();<br />
-{<br />
-“_id” : 1,<br />
-“phone” : {<br />
-“hemophone” : “8617118”,<br />
-“mobilephone” : “18643079329”<br />
-}<br />
+<h2 id="pretty美化输出"><a class="markdownIt-Anchor" href="#pretty美化输出">#</a> pretty 美化输出</h2>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>db.t3.insert<span class="token punctuation">(</span><span class="token punctuation">&#123;</span><span class="token string">"_id"</span>:1,<span class="token string">"phone"</span>:<span class="token punctuation">&#123;</span><span class="token string">"hemophone"</span><span class="token builtin class-name">:</span><span class="token string">"8617118"</span>,<span class="token string">"mobilephone"</span><span class="token builtin class-name">:</span><span class="token string">"18643079329"</span><span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span></pre></td></tr></table></figure><blockquote>
+<p>db.t3.find().pretty();<br>
+{<br>
+“_id” : 1,<br>
+“phone” : {<br>
+“hemophone” : “8617118”,<br>
+“mobilephone” : “18643079329”<br>
+}<br>
 }</p>
 </blockquote>
-<h2 id="管道机制"><a class="markdownIt-Anchor" href="#管道机制"></a> 管道机制</h2>
-<p>{“_id”:1,“name”:“iphone8”,“price”:3000,“type”:“电子通信”}</p>
+<h2 id="管道机制"><a class="markdownIt-Anchor" href="#管道机制">#</a> 管道机制</h2>
+<p _id:1,name:iphone8,price:3000,type:电子通信=""></p>
 
       <div class="tags">
           <a href="/tags/MongoDB/" rel="tag"><i class="ic i-tag"></i> MongoDB</a>
@@ -484,7 +421,7 @@ db.t1.find()<br />
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="文章目录">
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#mongodb%E5%91%BD%E4%BB%A4"><span class="toc-number">1.</span> <span class="toc-text"> MongoDB命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E5%8F%AF%E8%AF%BB%E5%8F%AF%E5%86%99"><span class="toc-number">1.1.</span> <span class="toc-text"> 创建用户（可读可写）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA"><span class="toc-number">1.1.1.</span> <span class="toc-text"> 创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A3%80%E9%AA%8C"><span class="toc-number">1.1.2.</span> <span class="toc-text"> 检验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%99%BB%E5%BD%95"><span class="toc-number">1.1.3.</span> <span class="toc-text"> 登录</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B%E4%BD%BF%E7%94%A8%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.2.</span> <span class="toc-text"> 建立&#x2F;使用数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E5%BD%93%E5%89%8D%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.3.</span> <span class="toc-text"> 查询当前数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.4.</span> <span class="toc-text"> 删除数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E6%97%B6%E9%97%B4"><span class="toc-number">1.5.</span> <span class="toc-text"> 查询时间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E9%9B%86%E5%90%88"><span class="toc-number">1.6.</span> <span class="toc-text"> 创建集合</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%98%BE%E5%BC%8F%E5%88%9B%E5%BB%BAt"><span class="toc-number">1.6.1.</span> <span class="toc-text"> 显式创建（t）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%90%E5%BC%8F%E5%88%9B%E5%BB%BAt1"><span class="toc-number">1.6.2.</span> <span class="toc-text"> 隐式创建（t1）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%95%E7%A4%BA%E9%9B%86%E5%90%88"><span class="toc-number">1.7.</span> <span class="toc-text"> 展示集合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E9%9B%86%E5%90%88"><span class="toc-number">1.8.</span> <span class="toc-text"> 删除集合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E6%96%87%E6%A1%A3"><span class="toc-number">1.9.</span> <span class="toc-text"> 查询文档</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.9.1.</span> <span class="toc-text"> 条件查询</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AD%89%E4%BA%8E"><span class="toc-number">1.9.1.1.</span> <span class="toc-text"> 等于</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%8F%E4%BA%8E"><span class="toc-number">1.9.1.2.</span> <span class="toc-text"> 小于</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%A7%E4%BA%8E"><span class="toc-number">1.9.1.3.</span> <span class="toc-text"> 大于</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%A8%E4%B9%8B%E4%B8%AD%E5%8C%85%E5%90%AB"><span class="toc-number">1.9.1.4.</span> <span class="toc-text"> 在之中（包含）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8D%E5%9C%A8%E5%85%B6%E4%B8%AD%E4%B8%8D%E5%8C%85%E5%90%AB"><span class="toc-number">1.9.1.5.</span> <span class="toc-text"> 不在其中（不包含）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%92%E5%85%A5%E6%96%87%E6%A1%A3"><span class="toc-number">1.10.</span> <span class="toc-text"> 插入文档</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E4%B8%80%E6%8F%92%E5%85%A5"><span class="toc-number">1.10.1.</span> <span class="toc-text"> 单一插入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%B9%E9%87%8F%E6%8F%92%E5%85%A5%E5%8D%95%E8%AF%AD%E5%8F%A5"><span class="toc-number">1.10.2.</span> <span class="toc-text"> 批量插入（单语句）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF%E6%8F%92%E5%85%A5for"><span class="toc-number">1.10.3.</span> <span class="toc-text"> 循环插入（for）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8Cid%E6%8F%92%E5%85%A5%E5%BC%82%E5%B8%B8"><span class="toc-number">1.10.4.</span> <span class="toc-text"> 同id插入异常</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E8%BE%93%E5%85%A5%E5%85%A8%E9%83%A8%E5%B1%9E%E6%80%A7%E6%9B%BF%E6%8D%A2"><span class="toc-number">1.11.</span> <span class="toc-text"> 修改（输入全部属性&#x2F;替换）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E6%96%B0"><span class="toc-number">1.12.</span> <span class="toc-text"> 更新</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4"><span class="toc-number">1.13.</span> <span class="toc-text"> 删除</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%B9%E9%87%8F%E5%88%A0%E9%99%A4"><span class="toc-number">1.13.1.</span> <span class="toc-text"> 批量删除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E4%B8%80%E5%88%A0%E9%99%A4"><span class="toc-number">1.13.2.</span> <span class="toc-text"> 单一删除</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#capped%E9%99%90%E5%88%B6"><span class="toc-number">1.14.</span> <span class="toc-text"> Capped限制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E9%99%90%E5%88%B6"><span class="toc-number">1.14.1.</span> <span class="toc-text"> 创建限制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A3%80%E9%AA%8C-2"><span class="toc-number">1.14.2.</span> <span class="toc-text"> 检验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-number">1.14.3.</span> <span class="toc-text"> 结论</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pretty%E7%BE%8E%E5%8C%96%E8%BE%93%E5%87%BA"><span class="toc-number">1.15.</span> <span class="toc-text"> pretty美化输出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%A1%E9%81%93%E6%9C%BA%E5%88%B6"><span class="toc-number">1.16.</span> <span class="toc-text"> 管道机制</span></a></li></ol></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#mongodb%E5%91%BD%E4%BB%A4"><span class="toc-number">1.</span> <span class="toc-text"> MongoDB 命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E5%8F%AF%E8%AF%BB%E5%8F%AF%E5%86%99"><span class="toc-number">1.1.</span> <span class="toc-text"> 创建用户（可读可写）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA"><span class="toc-number">1.1.1.</span> <span class="toc-text"> 创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A3%80%E9%AA%8C"><span class="toc-number">1.1.2.</span> <span class="toc-text"> 检验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%99%BB%E5%BD%95"><span class="toc-number">1.1.3.</span> <span class="toc-text"> 登录</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B%E4%BD%BF%E7%94%A8%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.2.</span> <span class="toc-text"> 建立 &#x2F; 使用数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E5%BD%93%E5%89%8D%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.3.</span> <span class="toc-text"> 查询当前数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.4.</span> <span class="toc-text"> 删除数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E6%97%B6%E9%97%B4"><span class="toc-number">1.5.</span> <span class="toc-text"> 查询时间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E9%9B%86%E5%90%88"><span class="toc-number">1.6.</span> <span class="toc-text"> 创建集合</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%98%BE%E5%BC%8F%E5%88%9B%E5%BB%BAt"><span class="toc-number">1.6.1.</span> <span class="toc-text"> 显式创建（t）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%90%E5%BC%8F%E5%88%9B%E5%BB%BAt1"><span class="toc-number">1.6.2.</span> <span class="toc-text"> 隐式创建（t1）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%95%E7%A4%BA%E9%9B%86%E5%90%88"><span class="toc-number">1.7.</span> <span class="toc-text"> 展示集合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E9%9B%86%E5%90%88"><span class="toc-number">1.8.</span> <span class="toc-text"> 删除集合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E6%96%87%E6%A1%A3"><span class="toc-number">1.9.</span> <span class="toc-text"> 查询文档</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.9.1.</span> <span class="toc-text"> 条件查询</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AD%89%E4%BA%8E"><span class="toc-number">1.9.1.1.</span> <span class="toc-text"> 等于</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%8F%E4%BA%8E"><span class="toc-number">1.9.1.2.</span> <span class="toc-text"> 小于</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%A7%E4%BA%8E"><span class="toc-number">1.9.1.3.</span> <span class="toc-text"> 大于</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%A8%E4%B9%8B%E4%B8%AD%E5%8C%85%E5%90%AB"><span class="toc-number">1.9.1.4.</span> <span class="toc-text"> 在之中（包含）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8D%E5%9C%A8%E5%85%B6%E4%B8%AD%E4%B8%8D%E5%8C%85%E5%90%AB"><span class="toc-number">1.9.1.5.</span> <span class="toc-text"> 不在其中（不包含）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%92%E5%85%A5%E6%96%87%E6%A1%A3"><span class="toc-number">1.10.</span> <span class="toc-text"> 插入文档</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E4%B8%80%E6%8F%92%E5%85%A5"><span class="toc-number">1.10.1.</span> <span class="toc-text"> 单一插入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%B9%E9%87%8F%E6%8F%92%E5%85%A5%E5%8D%95%E8%AF%AD%E5%8F%A5"><span class="toc-number">1.10.2.</span> <span class="toc-text"> 批量插入（单语句）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF%E6%8F%92%E5%85%A5for"><span class="toc-number">1.10.3.</span> <span class="toc-text"> 循环插入（for）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8Cid%E6%8F%92%E5%85%A5%E5%BC%82%E5%B8%B8"><span class="toc-number">1.10.4.</span> <span class="toc-text"> 同 id 插入异常</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E8%BE%93%E5%85%A5%E5%85%A8%E9%83%A8%E5%B1%9E%E6%80%A7%E6%9B%BF%E6%8D%A2"><span class="toc-number">1.11.</span> <span class="toc-text"> 修改（输入全部属性 &#x2F; 替换）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E6%96%B0"><span class="toc-number">1.12.</span> <span class="toc-text"> 更新</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4"><span class="toc-number">1.13.</span> <span class="toc-text"> 删除</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%B9%E9%87%8F%E5%88%A0%E9%99%A4"><span class="toc-number">1.13.1.</span> <span class="toc-text"> 批量删除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E4%B8%80%E5%88%A0%E9%99%A4"><span class="toc-number">1.13.2.</span> <span class="toc-text"> 单一删除</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#capped%E9%99%90%E5%88%B6"><span class="toc-number">1.14.</span> <span class="toc-text"> Capped 限制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E9%99%90%E5%88%B6"><span class="toc-number">1.14.1.</span> <span class="toc-text"> 创建限制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A3%80%E9%AA%8C-2"><span class="toc-number">1.14.2.</span> <span class="toc-text"> 检验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-number">1.14.3.</span> <span class="toc-text"> 结论</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pretty%E7%BE%8E%E5%8C%96%E8%BE%93%E5%87%BA"><span class="toc-number">1.15.</span> <span class="toc-text"> pretty 美化输出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%A1%E9%81%93%E6%9C%BA%E5%88%B6"><span class="toc-number">1.16.</span> <span class="toc-text"> 管道机制</span></a></li></ol></li></ol>
       </div>
       <div class="related panel pjax" data-title="系列文章">
         <ul>
@@ -611,37 +548,7 @@ db.t1.find()<br />
 <a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
 </div>
 
-    <span><a href="/Operate-system/03OS/" title="进程同步问题">进程同步问题</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
-</div>
-
     <span><a href="/Operate-system/KnowledgeSummary/" title="操作系统细碎知识点及公式速记（持续更新）">操作系统细碎知识点及公式速记（持续更新）</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/database/" title="分类于 数据库">数据库</a>
-</div>
-
-    <span><a href="/database/DataBase01/" title="DB中的范式">DB中的范式</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/DS/" title="分类于 DS">DS</a>
-</div>
-
-    <span><a href="/DSLearnNote/ListMerge/" title="两个有序链表合并的代码题">两个有序链表合并的代码题</a></span>
   </li>
 
       
@@ -651,37 +558,27 @@ db.t1.find()<br />
 <a href="/categories/Principles-of-computer-composition/" title="分类于 计算机组成原理">计算机组成原理</a>
 </div>
 
-    <span><a href="/Principles-of-computer-composition/booth_algorithm/" title="booth算法">booth算法</a></span>
+    <span><a href="/Principles-of-computer-composition/Division_in_Computers/" title="计算机中的除法运算">计算机中的除法运算</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/DS/" title="分类于 DS">DS</a>
+<a href="/categories/MongoDB/" title="分类于 MongoDB">MongoDB</a>
 </div>
 
-    <span><a href="/DSLearnNote/GeneralizedLists/" title="考试中有关广义表的两个常用函数的解">考试中有关广义表的两个常用函数的解</a></span>
+    <span><a href="/MongoDB/MongoDB01/" title="MongoDB的安装与初步使用（Windows平台）">MongoDB的安装与初步使用（Windows平台）</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/database/" title="分类于 数据库">数据库</a>
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
 </div>
 
-    <span><a href="/database/DataBase02/" title="数据库设计">数据库设计</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%9D%E6%9D%A5%E4%B9%8D%E5%88%B0/" title="分类于 初来乍到">初来乍到</a>
-</div>
-
-    <span><a href="/hello/" title="起点，但不止于起点！">起点，但不止于起点！</a></span>
+    <span><a href="/Operate-system/kcsj/" title="操作系统课程设计">操作系统课程设计</a></span>
   </li>
 
       
@@ -701,7 +598,47 @@ db.t1.find()<br />
 <a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
 </div>
 
-    <span><a href="/Operate-system/kcsj/" title="操作系统课程设计">操作系统课程设计</a></span>
+    <span><a href="/Operate-system/01OS/" title="操作系统知识点阶段总结">操作系统知识点阶段总结</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/MongoDB/" title="分类于 MongoDB">MongoDB</a>
+</div>
+
+    <span><a href="/MongoDB/MongoDB03/" title="MongoDB初步使用">MongoDB初步使用</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/database/" title="分类于 数据库">数据库</a>
+</div>
+
+    <span><a href="/database/DataBase02/" title="数据库设计">数据库设计</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/java%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/" title="分类于 java高级特性">java高级特性</a>
+</div>
+
+    <span><a href="/Java/javaAd01/" title="Java高级特性1">Java高级特性1</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Principles-of-computer-composition/" title="分类于 计算机组成原理">计算机组成原理</a>
+</div>
+
+    <span><a href="/Principles-of-computer-composition/booth_algorithm/" title="booth算法">booth算法</a></span>
   </li>
 
   </ul>

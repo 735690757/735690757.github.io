@@ -146,7 +146,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <div class="body md" itemprop="articleBody">
     
 
-    <h1 id="list-与-set"><a class="markdownIt-Anchor" href="#list-与-set"></a> List 与 Set</h1>
+    <h1 id="list-与-set"><a class="markdownIt-Anchor" href="#list-与-set">#</a> List 与 Set</h1>
 <p><strong>本篇内容意在总结课上所学的知识并加以巩固，如有错误请立即联系我，谢谢！</strong></p>
 <blockquote>
 <ul>
@@ -158,22 +158,22 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <li>gmail：735690757carry@gmail.com</li>
 </ul>
 </blockquote>
-<h2 id="1概述"><a class="markdownIt-Anchor" href="#1概述"></a> 1，概述</h2>
+<h2 id="1概述"><a class="markdownIt-Anchor" href="#1概述">#</a> 1，概述</h2>
 <p>在 Java 中，List 和 Set 接口都是继承自 Collection 接口。Collection 接口定义了一组通用的集合操作方法，而 List 和 Set 则分别扩展了 Collection 接口，以提供特定的集合行为。</p>
-<h2 id="2collection"><a class="markdownIt-Anchor" href="#2collection"></a> 2，Collection</h2>
+<h2 id="2collection"><a class="markdownIt-Anchor" href="#2collection">#</a> 2，Collection</h2>
 <p>在 Java 中，Collection 接口是一个集合框架的根接口，它定义了一组通用的集合操作方法，可以用于处理各种类型的集合。Collection 接口提供了一些常用的方法，如添加元素、删除元素、检查元素是否存在、迭代集合中的元素等。它是 Java 集合框架中最基本的接口，所有其他的集合接口都是扩展自 Collection 接口。</p>
 <p>Collection 接口定义了如下方法（常用、不完全）：</p>
 <blockquote>
 <ul>
-<li>boolean add(E e): 将元素添加到集合中，并返回是否添加成功。</li>
-<li>boolean addAll(Collection&lt;? extends E&gt; c): 将指定集合中的所有元素添加到该集合中，并返回是否添加成功。</li>
-<li>boolean remove(Object o): 从集合中删除指定元素，并返回是否删除成功。</li>
-<li>void clear(): 清空集合中的所有元素。</li>
-<li>boolean isEmpty(): 检查集合是否为空。</li>
-<li>int size(): 返回集合中元素的数量。</li>
+<li>boolean add (E e): 将元素添加到集合中，并返回是否添加成功。</li>
+<li>boolean addAll (Collection&lt;? extends E&gt; c): 将指定集合中的所有元素添加到该集合中，并返回是否添加成功。</li>
+<li>boolean remove (Object o): 从集合中删除指定元素，并返回是否删除成功。</li>
+<li>void clear (): 清空集合中的所有元素。</li>
+<li>boolean isEmpty (): 检查集合是否为空。</li>
+<li>int size (): 返回集合中元素的数量。</li>
 </ul>
 </blockquote>
-<h2 id="3list"><a class="markdownIt-Anchor" href="#3list"></a> 3，List</h2>
+<h2 id="3list"><a class="markdownIt-Anchor" href="#3list">#</a> 3，List</h2>
 <p>Java 中的 List 是一种常见的集合类，用于存储一组元素。List 是一个接口，它有多个实现类，如 ArrayList、LinkedList 等。</p>
 <p><strong>！重要！</strong></p>
 <ol>
@@ -191,109 +191,22 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <p><strong>有序，可重复</strong></p>
 </li>
 </ol>
-<h3 id="31-arraylist"><a class="markdownIt-Anchor" href="#31-arraylist"></a> 3.1 ArrayList</h3>
+<h3 id="31-arraylist"><a class="markdownIt-Anchor" href="#31-arraylist">#</a> 3.1 ArrayList</h3>
 <p>List 的常用方法（可能不完全）：（类似数组）</p>
 <ol>
-<li>add(element)：向 List 末尾添加元素。</li>
-<li>add(index, element)：在指定索引位置插入元素。</li>
-<li>remove(index)：删除指定索引位置的元素。</li>
-<li>get(index)：返回指定索引位置的元素。</li>
-<li>set(index, element)：替换指定索引位置的元素。</li>
-<li>size()：返回 List 的大小。</li>
-<li>contains(element)：判断 List 是否包含指定元素。</li>
-<li>indexOf(element)：返回指定元素在 List 中第一次出现的索引位置。</li>
-<li>clear()：清空 List 中的所有元素。</li>
+<li>add (element)：向 List 末尾添加元素。</li>
+<li>add (index, element)：在指定索引位置插入元素。</li>
+<li>remove (index)：删除指定索引位置的元素。</li>
+<li>get (index)：返回指定索引位置的元素。</li>
+<li>set (index, element)：替换指定索引位置的元素。</li>
+<li>size ()：返回 List 的大小。</li>
+<li>contains (element)：判断 List 是否包含指定元素。</li>
+<li>indexOf (element)：返回指定元素在 List 中第一次出现的索引位置。</li>
+<li>clear ()：清空 List 中的所有元素。</li>
 </ol>
-<pre class="highlight"><code class="java"><span class="hljs-keyword">import</span> java.util.ArrayList;
-<span class="hljs-keyword">import</span> java.util.List;
-
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ListExample</span> &#123;
-    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;
-        List&lt;String&gt; list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();
-        list.add(<span class="hljs-string">&quot;apple&quot;</span>);
-        list.add(<span class="hljs-string">&quot;banana&quot;</span>);
-        list.add(<span class="hljs-string">&quot;orange&quot;</span>);
-
-        System.out.println(list); <span class="hljs-comment">// 输出：[apple, banana, orange]</span>
-
-        list.remove(<span class="hljs-number">1</span>);
-        System.out.println(list); <span class="hljs-comment">// 输出：[apple, orange]</span>
-
-        <span class="hljs-type">String</span> <span class="hljs-variable">fruit</span> <span class="hljs-operator">=</span> list.get(<span class="hljs-number">1</span>);
-        System.out.println(fruit); <span class="hljs-comment">// 输出：orange</span>
-
-        list.set(<span class="hljs-number">1</span>, <span class="hljs-string">&quot;grape&quot;</span>);
-        System.out.println(list); <span class="hljs-comment">// 输出：[apple, grape]</span>
-    &#125;
-&#125;
-
-</code></pre>
-<p>以上代码由[ChatGPT Mar 14 Version]生成。</p>
-<pre class="highlight"><code class="java"><span class="hljs-keyword">package</span> edu.beihua.KarryCode.listEX001.test;
-
-<span class="hljs-keyword">import</span> edu.beihua.KarryCode.listEX001.entity.news;
-
-<span class="hljs-keyword">import</span> java.util.ArrayList;
-
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">test_for_ArrayList</span> &#123;
-    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;
-        <span class="hljs-comment">/*
-        * add()     ----增加对象
-        * get()     ----获取对象
-        * 非泛型返回Object
-        * isEmpty() ----判空
-        * clear()   ----清除
-        * iterator()----迭代器
-        * toArray() ----转为数组
-        * */</span>
-        <span class="hljs-type">news</span> <span class="hljs-variable">newslkr</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">news</span>(<span class="hljs-number">1</span>,<span class="hljs-string">&quot;timu1&quot;</span>,<span class="hljs-string">&quot;lkr&quot;</span>);
-        <span class="hljs-type">news</span> <span class="hljs-variable">newsffl</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">news</span>(<span class="hljs-number">2</span>,<span class="hljs-string">&quot;timu2&quot;</span>,<span class="hljs-string">&quot;ffl&quot;</span>);
-        <span class="hljs-type">news</span> <span class="hljs-variable">newslqr</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">news</span>(<span class="hljs-number">3</span>,<span class="hljs-string">&quot;timu3&quot;</span>,<span class="hljs-string">&quot;lqr&quot;</span>);
-
-        <span class="hljs-type">news</span> <span class="hljs-variable">imnews</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">news</span>(<span class="hljs-number">4</span>,<span class="hljs-string">&quot;hexin&quot;</span>,<span class="hljs-string">&quot;!!!!!&quot;</span>);
-
-        ArrayList&lt;news&gt; arrayList = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;news&gt;();
-
-        arrayList.add(newslkr);                                     <span class="hljs-comment">//普通追加</span>
-        arrayList.add(newsffl);
-        arrayList.add(newslqr);
-         arrayList.add(<span class="hljs-number">0</span>,imnews);                              <span class="hljs-comment">//标记追加</span>
-        System.out.println(<span class="hljs-string">&quot;______________标题数目输出______________&quot;</span>);
-        System.out.println(<span class="hljs-string">&quot;新闻有&quot;</span>+arrayList.size()+<span class="hljs-string">&quot;条&quot;</span>);
-        System.out.println(<span class="hljs-string">&quot;______________标题输出______________&quot;</span>);
-        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;arrayList.size();i++)&#123;
-            System.out.println(arrayList.get(i).getTitle());          <span class="hljs-comment">//不适用非泛型，可以使用（Object）强制转换，（news）进行匹配</span>
-        &#125;
-        System.out.println(<span class="hljs-string">&quot;______________标题输出____________&quot;</span>);
-        <span class="hljs-keyword">for</span>(Object obj:arrayList)&#123;                                  <span class="hljs-comment">//**增强形态的For**</span>
-            <span class="hljs-type">news</span> <span class="hljs-variable">newst</span> <span class="hljs-operator">=</span> (news) obj;
-            System.out.println(newst.getTitle());
-        &#125;
-        System.out.println(<span class="hljs-string">&quot;______________标题输出____________&quot;</span>);
-        <span class="hljs-keyword">for</span>(news news:arrayList)&#123;                                  <span class="hljs-comment">//**增强形态的For**||最终版：面向对象</span>
-            System.out.println(news.getTitle());
-        &#125;
-        System.out.println(<span class="hljs-string">&quot;________________标题判断__________&quot;</span>);
-        System.out.println(arrayList.contains(newslqr));
-
-        arrayList.remove(<span class="hljs-number">3</span>);
-        System.out.println(<span class="hljs-string">&quot;______________标题输出____________&quot;</span>);
-        <span class="hljs-keyword">for</span>(news news:arrayList)&#123;                                  <span class="hljs-comment">//**增强形态的For**||最终版：面向对象</span>
-            System.out.println(news.getTitle());
-        &#125;
-        System.out.println(<span class="hljs-string">&quot;______________标题判断__________&quot;</span>);
-        System.out.println(arrayList.contains(newslqr));
-        System.out.println(<span class="hljs-string">&quot;________________清空_______________&quot;</span>);
-        arrayList.clear();
-        System.out.println(arrayList.isEmpty());
-
-
-    &#125;
-&#125;
-
-</code></pre>
-<p>以上代码为上课所写（丑丑的 www）。</p>
-<h3 id="32-linkedlist"><a class="markdownIt-Anchor" href="#32-linkedlist"></a> 3.2 LinkedList</h3>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">ArrayList</span></span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">List</span></span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ListExample</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>        <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>        list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"apple"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>        list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"banana"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>        list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"orange"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="10"></td><td><pre></pre></td></tr><tr><td data-num="11"></td><td><pre>        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 输出：[apple, banana, orange]</span></pre></td></tr><tr><td data-num="12"></td><td><pre></pre></td></tr><tr><td data-num="13"></td><td><pre>        list<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 输出：[apple, orange]</span></pre></td></tr><tr><td data-num="15"></td><td><pre></pre></td></tr><tr><td data-num="16"></td><td><pre>        <span class="token class-name">String</span> fruit <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="17"></td><td><pre>        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>fruit<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 输出：orange</span></pre></td></tr><tr><td data-num="18"></td><td><pre></pre></td></tr><tr><td data-num="19"></td><td><pre>        list<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"grape"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="20"></td><td><pre>        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 输出：[apple, grape]</span></pre></td></tr><tr><td data-num="21"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="22"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>以上代码由 [ChatGPT Mar 14 Version] 生成。</p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">package</span> <span class="token namespace">edu<span class="token punctuation">.</span>beihua<span class="token punctuation">.</span></span><span class="token class-name">KarryCode</span><span class="token punctuation">.</span>listEX001<span class="token punctuation">.</span>test<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token keyword">import</span> <span class="token namespace">edu<span class="token punctuation">.</span>beihua<span class="token punctuation">.</span></span><span class="token class-name">KarryCode</span><span class="token punctuation">.</span>listEX001<span class="token punctuation">.</span>entity<span class="token punctuation">.</span>news<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">ArrayList</span></span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token keyword">public</span> <span class="token keyword">class</span> test_for_ArrayList <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>        <span class="token comment">/*</pre></td></tr><tr><td data-num="10"></td><td><pre>        * add ()     ---- 增加对象</pre></td></tr><tr><td data-num="11"></td><td><pre>        * get ()     ---- 获取对象</pre></td></tr><tr><td data-num="12"></td><td><pre>        * 非泛型返回 Object</pre></td></tr><tr><td data-num="13"></td><td><pre>        * isEmpty () ---- 判空</pre></td></tr><tr><td data-num="14"></td><td><pre>        * clear ()   ---- 清除</pre></td></tr><tr><td data-num="15"></td><td><pre>        * iterator ()---- 迭代器</pre></td></tr><tr><td data-num="16"></td><td><pre>        * toArray () ---- 转为数组</pre></td></tr><tr><td data-num="17"></td><td><pre>        * */</span></pre></td></tr><tr><td data-num="18"></td><td><pre>        news newslkr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">news</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token string">"timu1"</span><span class="token punctuation">,</span><span class="token string">"lkr"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="19"></td><td><pre>        news newsffl <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">news</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token string">"timu2"</span><span class="token punctuation">,</span><span class="token string">"ffl"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="20"></td><td><pre>        news newslqr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">news</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token string">"timu3"</span><span class="token punctuation">,</span><span class="token string">"lqr"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="21"></td><td><pre></pre></td></tr><tr><td data-num="22"></td><td><pre>        news imnews <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">news</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token string">"hexin"</span><span class="token punctuation">,</span><span class="token string">"!!!!!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="23"></td><td><pre></pre></td></tr><tr><td data-num="24"></td><td><pre>        <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span>news<span class="token punctuation">></span></span> arrayList <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span>news<span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="25"></td><td><pre></pre></td></tr><tr><td data-num="26"></td><td><pre>        arrayList<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>newslkr<span class="token punctuation">)</span><span class="token punctuation">;</span>                                     <span class="token comment">// 普通追加</span></pre></td></tr><tr><td data-num="27"></td><td><pre>        arrayList<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>newsffl<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="28"></td><td><pre>        arrayList<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>newslqr<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="29"></td><td><pre>         arrayList<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span>imnews<span class="token punctuation">)</span><span class="token punctuation">;</span>                              <span class="token comment">// 标记追加</span></pre></td></tr><tr><td data-num="30"></td><td><pre>        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"______________标题数目输出______________"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="31"></td><td><pre>        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"新闻有"</span><span class="token operator">+</span>arrayList<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">"条"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="32"></td><td><pre>        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"______________标题输出______________"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="33"></td><td><pre>        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>arrayList<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="34"></td><td><pre>            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>arrayList<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getTitle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>          <span class="token comment">// 不适用非泛型，可以使用（Object）强制转换，（news）进行匹配</span></pre></td></tr><tr><td data-num="35"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="36"></td><td><pre>        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"______________标题输出____________"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="37"></td><td><pre>        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token class-name">Object</span> obj<span class="token operator">:</span>arrayList<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>                                  <span class="token comment">//** 增强形态的 For**</span></pre></td></tr><tr><td data-num="38"></td><td><pre>            news newst <span class="token operator">=</span> <span class="token punctuation">(</span>news<span class="token punctuation">)</span> obj<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="39"></td><td><pre>            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>newst<span class="token punctuation">.</span><span class="token function">getTitle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="40"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="41"></td><td><pre>        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"______________标题输出____________"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="42"></td><td><pre>        <span class="token keyword">for</span><span class="token punctuation">(</span>news news<span class="token operator">:</span>arrayList<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>                                  <span class="token comment">//** 增强形态的 For**|| 最终版：面向对象</span></pre></td></tr><tr><td data-num="43"></td><td><pre>            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>news<span class="token punctuation">.</span><span class="token function">getTitle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="44"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="45"></td><td><pre>        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"________________标题判断__________"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="46"></td><td><pre>        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>arrayList<span class="token punctuation">.</span><span class="token function">contains</span><span class="token punctuation">(</span>newslqr<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="47"></td><td><pre></pre></td></tr><tr><td data-num="48"></td><td><pre>        arrayList<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="49"></td><td><pre>        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"______________标题输出____________"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="50"></td><td><pre>        <span class="token keyword">for</span><span class="token punctuation">(</span>news news<span class="token operator">:</span>arrayList<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>                                  <span class="token comment">//** 增强形态的 For**|| 最终版：面向对象</span></pre></td></tr><tr><td data-num="51"></td><td><pre>            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>news<span class="token punctuation">.</span><span class="token function">getTitle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="52"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="53"></td><td><pre>        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"______________标题判断__________"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="54"></td><td><pre>        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>arrayList<span class="token punctuation">.</span><span class="token function">contains</span><span class="token punctuation">(</span>newslqr<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="55"></td><td><pre>        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"________________清空_______________"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="56"></td><td><pre>        arrayList<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="57"></td><td><pre>        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>arrayList<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="58"></td><td><pre></pre></td></tr><tr><td data-num="59"></td><td><pre></pre></td></tr><tr><td data-num="60"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="61"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>以上代码为上课所写（丑丑的 www）。</p>
+<h3 id="32-linkedlist"><a class="markdownIt-Anchor" href="#32-linkedlist">#</a> 3.2 LinkedList</h3>
 <p>LinkedList 具有以下特点：</p>
 <ol>
 <li>随机访问元素效率较低，因为需要遍历链表。</li>
@@ -303,89 +216,14 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <p>有趣的方法：</p>
 <blockquote>
 <ul>
-<li>getFirst()：返回链表的第一个元素。</li>
-<li>getLast()：返回链表的最后一个元素。</li>
-<li>removeFirst()：删除链表的第一个元素。</li>
-<li>removeLast()：删除链表的最后一个元素。</li>
+<li>getFirst ()：返回链表的第一个元素。</li>
+<li>getLast ()：返回链表的最后一个元素。</li>
+<li>removeFirst ()：删除链表的第一个元素。</li>
+<li>removeLast ()：删除链表的最后一个元素。</li>
 </ul>
 </blockquote>
-<pre class="highlight"><code class="java"><span class="hljs-keyword">import</span> java.util.LinkedList;
-<span class="hljs-keyword">import</span> java.util.List;
-
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">LinkedListExample</span> &#123;
-    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;
-        List&lt;String&gt; list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedList</span>&lt;&gt;();
-        list.add(<span class="hljs-string">&quot;apple&quot;</span>);
-        list.add(<span class="hljs-string">&quot;banana&quot;</span>);
-        list.add(<span class="hljs-string">&quot;orange&quot;</span>);
-
-        System.out.println(list); <span class="hljs-comment">// 输出：[apple, banana, orange]</span>
-
-        list.remove(<span class="hljs-number">1</span>);
-        System.out.println(list); <span class="hljs-comment">// 输出：[apple, orange]</span>
-
-        <span class="hljs-type">String</span> <span class="hljs-variable">fruit</span> <span class="hljs-operator">=</span> list.get(<span class="hljs-number">1</span>);
-        System.out.println(fruit); <span class="hljs-comment">// 输出：orange</span>
-
-        list.set(<span class="hljs-number">1</span>, <span class="hljs-string">&quot;grape&quot;</span>);
-        System.out.println(list); <span class="hljs-comment">// 输出：[apple, grape]</span>
-    &#125;
-&#125;
-
-</code></pre>
-<p>以上代码由[ChatGPT Mar 14 Version]生成。</p>
-<pre class="highlight"><code class="java"><span class="hljs-keyword">package</span> edu.beihua.KarryCode.listEX001.test;
-
-<span class="hljs-keyword">import</span> edu.beihua.KarryCode.listEX001.entity.news;
-
-<span class="hljs-keyword">import</span> java.util.Iterator;
-<span class="hljs-keyword">import</span> java.util.LinkedList;
-
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">test_for_LinkList</span> &#123;
-    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;
-        <span class="hljs-type">news</span> <span class="hljs-variable">newslkr</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">news</span>(<span class="hljs-number">1</span>,<span class="hljs-string">&quot;timu1&quot;</span>,<span class="hljs-string">&quot;lkr&quot;</span>);
-        <span class="hljs-type">news</span> <span class="hljs-variable">newsffl</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">news</span>(<span class="hljs-number">2</span>,<span class="hljs-string">&quot;timu2&quot;</span>,<span class="hljs-string">&quot;ffl&quot;</span>);
-        <span class="hljs-type">news</span> <span class="hljs-variable">newslqr</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">news</span>(<span class="hljs-number">3</span>,<span class="hljs-string">&quot;timu3&quot;</span>,<span class="hljs-string">&quot;lqr&quot;</span>);
-        <span class="hljs-type">news</span> <span class="hljs-variable">imnews</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">news</span>(<span class="hljs-number">4</span>,<span class="hljs-string">&quot;hexin&quot;</span>,<span class="hljs-string">&quot;!!!!!&quot;</span>);
-
-        <span class="hljs-type">LinkedList</span> <span class="hljs-variable">list</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedList</span>();         <span class="hljs-comment">//父父new子这种只能使用父子公用的方法</span>
-
-        list.add(newslkr);                                     <span class="hljs-comment">//普通追加</span>
-        list.add(newsffl);
-        list.add(newslqr);
-        list.remove(<span class="hljs-number">0</span>);
-
-        list.add(<span class="hljs-number">0</span>,imnews);
-        System.out.println(<span class="hljs-string">&quot;______________内容输出____________&quot;</span>);
-        <span class="hljs-keyword">for</span>(Object obj:list)&#123;
-            <span class="hljs-type">news</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> (news) obj;
-            System.out.println(s.getTitle());
-        &#125;
-        <span class="hljs-type">news</span> <span class="hljs-variable">tyu</span> <span class="hljs-operator">=</span> (news)list.getFirst();
-        System.out.println(tyu.getNo());
-        <span class="hljs-type">news</span> <span class="hljs-variable">imnews666</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">news</span>(<span class="hljs-number">10</span>,<span class="hljs-string">&quot;hexin66666&quot;</span>,<span class="hljs-string">&quot;!!66666!!!&quot;</span>);
-        list.addFirst(imnews666);
-        System.out.println(<span class="hljs-string">&quot;______________内容输出____________&quot;</span>);
-        <span class="hljs-keyword">for</span>(Object obj:list)&#123;
-            <span class="hljs-type">news</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> (news) obj;
-            System.out.println(s.getTitle());
-        &#125;
-
-        <span class="hljs-type">news</span> <span class="hljs-variable">re</span> <span class="hljs-operator">=</span> (news)list.removeLast();
-        System.out.println(re.getData());
-        System.out.println(list.size());
-
-        <span class="hljs-type">Iterator</span> <span class="hljs-variable">iterator</span> <span class="hljs-operator">=</span> list.iterator();
-        System.out.println(<span class="hljs-string">&quot;_________________________&quot;</span>);
-        <span class="hljs-keyword">while</span> (iterator.hasNext())&#123;
-            <span class="hljs-type">news</span> <span class="hljs-variable">news</span> <span class="hljs-operator">=</span> (news) iterator.next();
-            System.out.println(news.getTitle());
-        &#125;
-    &#125;
-&#125;
-
-</code></pre>
-<h2 id="4set"><a class="markdownIt-Anchor" href="#4set"></a> 4，Set</h2>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">LinkedList</span></span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">List</span></span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LinkedListExample</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>        <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">LinkedList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>        list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"apple"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>        list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"banana"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>        list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"orange"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="10"></td><td><pre></pre></td></tr><tr><td data-num="11"></td><td><pre>        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 输出：[apple, banana, orange]</span></pre></td></tr><tr><td data-num="12"></td><td><pre></pre></td></tr><tr><td data-num="13"></td><td><pre>        list<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 输出：[apple, orange]</span></pre></td></tr><tr><td data-num="15"></td><td><pre></pre></td></tr><tr><td data-num="16"></td><td><pre>        <span class="token class-name">String</span> fruit <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="17"></td><td><pre>        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>fruit<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 输出：orange</span></pre></td></tr><tr><td data-num="18"></td><td><pre></pre></td></tr><tr><td data-num="19"></td><td><pre>        list<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"grape"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="20"></td><td><pre>        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 输出：[apple, grape]</span></pre></td></tr><tr><td data-num="21"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="22"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>以上代码由 [ChatGPT Mar 14 Version] 生成。</p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">package</span> <span class="token namespace">edu<span class="token punctuation">.</span>beihua<span class="token punctuation">.</span></span><span class="token class-name">KarryCode</span><span class="token punctuation">.</span>listEX001<span class="token punctuation">.</span>test<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token keyword">import</span> <span class="token namespace">edu<span class="token punctuation">.</span>beihua<span class="token punctuation">.</span></span><span class="token class-name">KarryCode</span><span class="token punctuation">.</span>listEX001<span class="token punctuation">.</span>entity<span class="token punctuation">.</span>news<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Iterator</span></span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">LinkedList</span></span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="7"></td><td><pre></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token keyword">public</span> <span class="token keyword">class</span> test_for_LinkList <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>        news newslkr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">news</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token string">"timu1"</span><span class="token punctuation">,</span><span class="token string">"lkr"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>        news newsffl <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">news</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token string">"timu2"</span><span class="token punctuation">,</span><span class="token string">"ffl"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>        news newslqr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">news</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token string">"timu3"</span><span class="token punctuation">,</span><span class="token string">"lqr"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>        news imnews <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">news</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token string">"hexin"</span><span class="token punctuation">,</span><span class="token string">"!!!!!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="14"></td><td><pre></pre></td></tr><tr><td data-num="15"></td><td><pre>        <span class="token class-name">LinkedList</span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">LinkedList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token comment">// 父父 new 子这种只能使用父子公用的方法</span></pre></td></tr><tr><td data-num="16"></td><td><pre></pre></td></tr><tr><td data-num="17"></td><td><pre>        list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>newslkr<span class="token punctuation">)</span><span class="token punctuation">;</span>                                     <span class="token comment">// 普通追加</span></pre></td></tr><tr><td data-num="18"></td><td><pre>        list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>newsffl<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="19"></td><td><pre>        list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>newslqr<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="20"></td><td><pre>        list<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="21"></td><td><pre></pre></td></tr><tr><td data-num="22"></td><td><pre>        list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span>imnews<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="23"></td><td><pre>        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"______________内容输出____________"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="24"></td><td><pre>        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token class-name">Object</span> obj<span class="token operator">:</span>list<span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="25"></td><td><pre>            news s <span class="token operator">=</span> <span class="token punctuation">(</span>news<span class="token punctuation">)</span> obj<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="26"></td><td><pre>            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span><span class="token function">getTitle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="27"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="28"></td><td><pre>        news tyu <span class="token operator">=</span> <span class="token punctuation">(</span>news<span class="token punctuation">)</span>list<span class="token punctuation">.</span><span class="token function">getFirst</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="29"></td><td><pre>        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>tyu<span class="token punctuation">.</span><span class="token function">getNo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="30"></td><td><pre>        news imnews666 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">news</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span><span class="token string">"hexin66666"</span><span class="token punctuation">,</span><span class="token string">"!!66666!!!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="31"></td><td><pre>        list<span class="token punctuation">.</span><span class="token function">addFirst</span><span class="token punctuation">(</span>imnews666<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="32"></td><td><pre>        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"______________内容输出____________"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="33"></td><td><pre>        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token class-name">Object</span> obj<span class="token operator">:</span>list<span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="34"></td><td><pre>            news s <span class="token operator">=</span> <span class="token punctuation">(</span>news<span class="token punctuation">)</span> obj<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="35"></td><td><pre>            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span><span class="token function">getTitle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="36"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="37"></td><td><pre></pre></td></tr><tr><td data-num="38"></td><td><pre>        news re <span class="token operator">=</span> <span class="token punctuation">(</span>news<span class="token punctuation">)</span>list<span class="token punctuation">.</span><span class="token function">removeLast</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="39"></td><td><pre>        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>re<span class="token punctuation">.</span><span class="token function">getData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="40"></td><td><pre>        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>list<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="41"></td><td><pre></pre></td></tr><tr><td data-num="42"></td><td><pre>        <span class="token class-name">Iterator</span> iterator <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">iterator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="43"></td><td><pre>        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"_________________________"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="44"></td><td><pre>        <span class="token keyword">while</span> <span class="token punctuation">(</span>iterator<span class="token punctuation">.</span><span class="token function">hasNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="45"></td><td><pre>            news news <span class="token operator">=</span> <span class="token punctuation">(</span>news<span class="token punctuation">)</span> iterator<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="46"></td><td><pre>            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>news<span class="token punctuation">.</span><span class="token function">getTitle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="47"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="48"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="49"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><h2 id="4set"><a class="markdownIt-Anchor" href="#4set">#</a> 4，Set</h2>
 <p>在 Java 中，Set 是一种集合（Collection）类型，它是一组不允许包含重复元素的对象。Set 是通过哈希表（hash table）实现的，因此它没有顺序，也不能通过索引访问其中的元素。Set 接口继承自 Collection 接口，并添加了一些独有的方法。</p>
 <p><strong>无序，唯一</strong></p>
 <p>Java 中常用的 Set 类有以下几种：</p>
@@ -396,49 +234,49 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 </ol>
 <p>Set 的常用方法包括：</p>
 <ol>
-<li>add(element)：向集合中添加元素。</li>
-<li>remove(element)：从集合中删除指定元素。</li>
-<li>contains(element)：判断集合中是否包含指定元素。</li>
-<li>size()：返回集合中元素的数量。</li>
-<li>isEmpty()：判断集合是否为空。</li>
-<li>clear()：清空集合中的所有元素。</li>
+<li>add (element)：向集合中添加元素。</li>
+<li>remove (element)：从集合中删除指定元素。</li>
+<li>contains (element)：判断集合中是否包含指定元素。</li>
+<li>size ()：返回集合中元素的数量。</li>
+<li>isEmpty ()：判断集合是否为空。</li>
+<li>clear ()：清空集合中的所有元素。</li>
 </ol>
 <p>例如，以下是使用 HashSet 和 TreeSet 实现的 Set 的示例：</p>
-<pre class="highlight"><code class="Java"><span class="hljs-keyword">import</span> java.util.HashSet;
-<span class="hljs-keyword">import</span> java.util.Set;
-<span class="hljs-keyword">import</span> java.util.TreeSet;
+<pre><code class="language-Java">import java.util.HashSet;
+import java.util.Set;
+import java.util.TreeSet;
 
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SetExample</span> &#123;
-    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;
-        Set&lt;String&gt; hashSet = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashSet</span>&lt;&gt;();
-        hashSet.add(<span class="hljs-string">&quot;apple&quot;</span>);
-        hashSet.add(<span class="hljs-string">&quot;banana&quot;</span>);
-        hashSet.add(<span class="hljs-string">&quot;orange&quot;</span>);
+public class SetExample &#123;
+    public static void main(String[] args) &#123;
+        Set&lt;String&gt; hashSet = new HashSet&lt;&gt;();
+        hashSet.add(&quot;apple&quot;);
+        hashSet.add(&quot;banana&quot;);
+        hashSet.add(&quot;orange&quot;);
 
-        System.out.println(hashSet); <span class="hljs-comment">// 输出：[orange, banana, apple]</span>
+        System.out.println(hashSet); // 输出：[orange, banana, apple]
 
-        hashSet.remove(<span class="hljs-string">&quot;banana&quot;</span>);
-        System.out.println(hashSet); <span class="hljs-comment">// 输出：[orange, apple]</span>
+        hashSet.remove(&quot;banana&quot;);
+        System.out.println(hashSet); // 输出：[orange, apple]
 
-        System.out.println(hashSet.contains(<span class="hljs-string">&quot;orange&quot;</span>)); <span class="hljs-comment">// 输出：true</span>
+        System.out.println(hashSet.contains(&quot;orange&quot;)); // 输出：true
 
-        Set&lt;String&gt; treeSet = <span class="hljs-keyword">new</span> <span class="hljs-title class_">TreeSet</span>&lt;&gt;();
-        treeSet.add(<span class="hljs-string">&quot;apple&quot;</span>);
-        treeSet.add(<span class="hljs-string">&quot;banana&quot;</span>);
-        treeSet.add(<span class="hljs-string">&quot;orange&quot;</span>);
+        Set&lt;String&gt; treeSet = new TreeSet&lt;&gt;();
+        treeSet.add(&quot;apple&quot;);
+        treeSet.add(&quot;banana&quot;);
+        treeSet.add(&quot;orange&quot;);
 
-        System.out.println(treeSet); <span class="hljs-comment">// 输出：[apple, banana, orange]</span>
+        System.out.println(treeSet); // 输出：[apple, banana, orange]
 
-        treeSet.remove(<span class="hljs-string">&quot;banana&quot;</span>);
-        System.out.println(treeSet); <span class="hljs-comment">// 输出：[apple, orange]</span>
+        treeSet.remove(&quot;banana&quot;);
+        System.out.println(treeSet); // 输出：[apple, orange]
 
-        System.out.println(treeSet.contains(<span class="hljs-string">&quot;orange&quot;</span>)); <span class="hljs-comment">// 输出：true</span>
+        System.out.println(treeSet.contains(&quot;orange&quot;)); // 输出：true
     &#125;
 &#125;
 
 </code></pre>
-<p>以上代码由[ChatGPT Mar 14 Version]生成。</p>
-<h3 id="41-hashset"><a class="markdownIt-Anchor" href="#41-hashset"></a> 4.1 HashSet</h3>
+<p>以上代码由 [ChatGPT Mar 14 Version] 生成。</p>
+<h3 id="41-hashset"><a class="markdownIt-Anchor" href="#41-hashset">#</a> 4.1 HashSet</h3>
 <p>在 Java 中，HashSet 是一种基于哈希表实现的 Set 集合，它不保证元素的顺序，但是可以快速地插入和查找元素。HashSet 使用哈希函数将元素映射到哈希表中的桶（bucket）中，桶是一个链表或树结构，用于解决哈希冲突（即不同元素映射到同一个桶中的情况）。</p>
 <p>HashSet 的特点包括：</p>
 <ol>
@@ -446,63 +284,17 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <li>不允许集合中存在重复元素。</li>
 <li>允许 null 元素。</li>
 </ol>
-<pre class="highlight"><code class="java"><span class="hljs-keyword">package</span> edu.beihua.KarryCode.listEX001.test;
-
-<span class="hljs-keyword">import</span> edu.beihua.KarryCode.listEX001.entity.news;
-
-<span class="hljs-keyword">import</span> java.util.HashSet;
-<span class="hljs-keyword">import</span> java.util.Iterator;
-<span class="hljs-keyword">import</span> java.util.Objects;
-<span class="hljs-keyword">import</span> java.util.Set;
-
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">test_foe_HashSet</span> &#123;
-    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;
-        <span class="hljs-comment">/*
-        * 无论什么List还是Set均为Cll...的继承类，其均具有父类的方法
-        * Set中存放的是对象的引用，相同的引用是互斥的只能添加一次
-        * equals()方法可以被重写
-        * Set是无序的，不存在Function（index，XXX）类似如此的有序号的的方法，且只能使用增强型的for进行循环输出*/</span>
-        <span class="hljs-type">Set</span> <span class="hljs-variable">set</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashSet</span>();
-        <span class="hljs-type">news</span> <span class="hljs-variable">newslkr</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">news</span>(<span class="hljs-number">1</span>,<span class="hljs-string">&quot;timu1&quot;</span>,<span class="hljs-string">&quot;lkr&quot;</span>);
-        <span class="hljs-type">news</span> <span class="hljs-variable">newsffl</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">news</span>(<span class="hljs-number">2</span>,<span class="hljs-string">&quot;timu2&quot;</span>,<span class="hljs-string">&quot;ffl&quot;</span>);
-        <span class="hljs-type">news</span> <span class="hljs-variable">newslqr</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">news</span>(<span class="hljs-number">3</span>,<span class="hljs-string">&quot;timu3&quot;</span>,<span class="hljs-string">&quot;lqr&quot;</span>);
-
-        set.add(newslkr);                                     <span class="hljs-comment">//普通追加</span>
-        set.add(newsffl);
-        set.add(newslqr);
-
-        <span class="hljs-keyword">for</span>(Object obj:set)&#123;
-            <span class="hljs-type">news</span> <span class="hljs-variable">test</span> <span class="hljs-operator">=</span> (news) obj;
-            System.out.println(test.getData());
-        &#125;
-        <span class="hljs-type">Iterator</span> <span class="hljs-variable">iterator</span> <span class="hljs-operator">=</span> set.iterator();
-
-        <span class="hljs-keyword">while</span> (iterator.hasNext())&#123;
-            <span class="hljs-type">news</span> <span class="hljs-variable">test</span> <span class="hljs-operator">=</span> (news) iterator.next();
-            System.out.println(test.getData());
-        &#125;
-    &#125;
-&#125;
-
-</code></pre>
-<h2 id="5iterator-迭代器"><a class="markdownIt-Anchor" href="#5iterator-迭代器"></a> 5，Iterator 迭代器</h2>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">package</span> <span class="token namespace">edu<span class="token punctuation">.</span>beihua<span class="token punctuation">.</span></span><span class="token class-name">KarryCode</span><span class="token punctuation">.</span>listEX001<span class="token punctuation">.</span>test<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token keyword">import</span> <span class="token namespace">edu<span class="token punctuation">.</span>beihua<span class="token punctuation">.</span></span><span class="token class-name">KarryCode</span><span class="token punctuation">.</span>listEX001<span class="token punctuation">.</span>entity<span class="token punctuation">.</span>news<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">HashSet</span></span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Iterator</span></span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Objects</span></span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Set</span></span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre></pre></td></tr><tr><td data-num="10"></td><td><pre><span class="token keyword">public</span> <span class="token keyword">class</span> test_foe_HashSet <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>        <span class="token comment">/*</pre></td></tr><tr><td data-num="13"></td><td><pre>        * 无论什么 List 还是 Set 均为 Cll... 的继承类，其均具有父类的方法</pre></td></tr><tr><td data-num="14"></td><td><pre>        * Set 中存放的是对象的引用，相同的引用是互斥的只能添加一次</pre></td></tr><tr><td data-num="15"></td><td><pre>        * equals () 方法可以被重写</pre></td></tr><tr><td data-num="16"></td><td><pre>        * Set 是无序的，不存在 Function（index，XXX）类似如此的有序号的的方法，且只能使用增强型的 for 进行循环输出 */</span></pre></td></tr><tr><td data-num="17"></td><td><pre>        <span class="token class-name">Set</span> set <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashSet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="18"></td><td><pre>        news newslkr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">news</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token string">"timu1"</span><span class="token punctuation">,</span><span class="token string">"lkr"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="19"></td><td><pre>        news newsffl <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">news</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token string">"timu2"</span><span class="token punctuation">,</span><span class="token string">"ffl"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="20"></td><td><pre>        news newslqr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">news</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token string">"timu3"</span><span class="token punctuation">,</span><span class="token string">"lqr"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="21"></td><td><pre></pre></td></tr><tr><td data-num="22"></td><td><pre>        set<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>newslkr<span class="token punctuation">)</span><span class="token punctuation">;</span>                                     <span class="token comment">// 普通追加</span></pre></td></tr><tr><td data-num="23"></td><td><pre>        set<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>newsffl<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="24"></td><td><pre>        set<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>newslqr<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="25"></td><td><pre></pre></td></tr><tr><td data-num="26"></td><td><pre>        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token class-name">Object</span> obj<span class="token operator">:</span>set<span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="27"></td><td><pre>            news test <span class="token operator">=</span> <span class="token punctuation">(</span>news<span class="token punctuation">)</span> obj<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="28"></td><td><pre>            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>test<span class="token punctuation">.</span><span class="token function">getData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="29"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="30"></td><td><pre>        <span class="token class-name">Iterator</span> iterator <span class="token operator">=</span> set<span class="token punctuation">.</span><span class="token function">iterator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="31"></td><td><pre></pre></td></tr><tr><td data-num="32"></td><td><pre>        <span class="token keyword">while</span> <span class="token punctuation">(</span>iterator<span class="token punctuation">.</span><span class="token function">hasNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="33"></td><td><pre>            news test <span class="token operator">=</span> <span class="token punctuation">(</span>news<span class="token punctuation">)</span> iterator<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="34"></td><td><pre>            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>test<span class="token punctuation">.</span><span class="token function">getData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="35"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="36"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="37"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><h2 id="5iterator-迭代器"><a class="markdownIt-Anchor" href="#5iterator-迭代器">#</a> 5，Iterator 迭代器</h2>
 <p>在 Java 中，Iterator 是一个用于遍历集合（Collection）元素的接口，它提供了一种统一的访问集合中元素的方式。通过 Iterator，我们可以遍历集合中的每个元素，而不需要知道集合的具体实现方式。</p>
 <p>Iterator 接口包含了以下方法：</p>
 <ol>
-<li>hasNext()：判断集合中是否还有下一个元素。</li>
-<li>next()：返回集合中的下一个元素。</li>
-<li>remove()：从集合中移除通过 next()方法返回的最后一个元素。</li>
+<li>hasNext ()：判断集合中是否还有下一个元素。</li>
+<li>next ()：返回集合中的下一个元素。</li>
+<li>remove ()：从集合中移除通过 next () 方法返回的最后一个元素。</li>
 </ol>
-<p>Iterator 的工作原理是，首先通过集合的 iterator()方法获得一个 Iterator 对象，然后使用 hasNext()和 next()方法遍历集合中的元素，最后使用 remove()方法从集合中移除元素。</p>
+<p>Iterator 的工作原理是，首先通过集合的 iterator () 方法获得一个 Iterator 对象，然后使用 hasNext () 和 next () 方法遍历集合中的元素，最后使用 remove () 方法从集合中移除元素。</p>
 <p>在 4.1HashSet 中用到了本迭代器，以下为关键语句：</p>
-<pre class="highlight"><code class="java"><span class="hljs-type">Iterator</span> <span class="hljs-variable">iterator</span> <span class="hljs-operator">=</span> set.iterator();
-
-        <span class="hljs-keyword">while</span> (iterator.hasNext())&#123;
-            <span class="hljs-type">news</span> <span class="hljs-variable">test</span> <span class="hljs-operator">=</span> (news) iterator.next();
-            System.out.println(test.getData());
-        &#125;
-</code></pre>
-
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token class-name">Iterator</span> iterator <span class="token operator">=</span> set<span class="token punctuation">.</span><span class="token function">iterator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre></pre></td></tr><tr><td data-num="3"></td><td><pre>        <span class="token keyword">while</span> <span class="token punctuation">(</span>iterator<span class="token punctuation">.</span><span class="token function">hasNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>            news test <span class="token operator">=</span> <span class="token punctuation">(</span>news<span class="token punctuation">)</span> iterator<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>test<span class="token punctuation">.</span><span class="token function">getData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr></table></figure>
       <div class="tags">
           <a href="/tags/java/" rel="tag"><i class="ic i-tag"></i> java</a>
       </div>
@@ -730,70 +522,10 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/%E5%88%9D%E6%9D%A5%E4%B9%8D%E5%88%B0/" title="分类于 初来乍到">初来乍到</a>
-</div>
-
-    <span><a href="/hello/" title="起点，但不止于起点！">起点，但不止于起点！</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/MongoDB/" title="分类于 MongoDB">MongoDB</a>
-</div>
-
-    <span><a href="/MongoDB/MongoDB03/" title="MongoDB初步使用">MongoDB初步使用</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/DS/" title="分类于 DS">DS</a>
-</div>
-
-    <span><a href="/DSLearnNote/ListMerge/" title="两个有序链表合并的代码题">两个有序链表合并的代码题</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Principles-of-computer-composition/" title="分类于 计算机组成原理">计算机组成原理</a>
-</div>
-
-    <span><a href="/Principles-of-computer-composition/Connection_between_CPU_and_memory/" title="CPU与存储器的连接">CPU与存储器的连接</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
 <a href="/categories/database/" title="分类于 数据库">数据库</a>
 </div>
 
-    <span><a href="/database/DataBase01/" title="DB中的范式">DB中的范式</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
-</div>
-
-    <span><a href="/Operate-system/KnowledgeSummary/" title="操作系统细碎知识点及公式速记（持续更新）">操作系统细碎知识点及公式速记（持续更新）</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/java%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/" title="分类于 java高级特性">java高级特性</a>
-</div>
-
-    <span><a href="/Java/javaAd01/" title="Java高级特性1">Java高级特性1</a></span>
+    <span><a href="/database/DataBase02/" title="数据库设计">数据库设计</a></span>
   </li>
 
       
@@ -820,10 +552,70 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <li class="item">
     
 <div class="breadcrumb">
+<a href="/categories/Principles-of-computer-composition/" title="分类于 计算机组成原理">计算机组成原理</a>
+</div>
+
+    <span><a href="/Principles-of-computer-composition/Connection_between_CPU_and_memory/" title="CPU与存储器的连接">CPU与存储器的连接</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
 <a href="/categories/database/" title="分类于 数据库">数据库</a>
 </div>
 
-    <span><a href="/database/DataBase02/" title="数据库设计">数据库设计</a></span>
+    <span><a href="/database/DataBase01/" title="DB中的范式">DB中的范式</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/DS/" title="分类于 DS">DS</a>
+</div>
+
+    <span><a href="/DSLearnNote/GeneralizedLists/" title="考试中有关广义表的两个常用函数的解">考试中有关广义表的两个常用函数的解</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
+</div>
+
+    <span><a href="/Operate-system/kcsj/" title="操作系统课程设计">操作系统课程设计</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/MongoDB/" title="分类于 MongoDB">MongoDB</a>
+</div>
+
+    <span><a href="/MongoDB/MongoDB03/" title="MongoDB初步使用">MongoDB初步使用</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
+</div>
+
+    <span><a href="/Operate-system/02OS/" title="进程与线程">进程与线程</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Linux/" title="分类于 Linux">Linux</a>
+</div>
+
+    <span><a href="/Linux/Linux01/" title="初见Linux">初见Linux</a></span>
   </li>
 
   </ul>

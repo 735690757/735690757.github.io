@@ -146,67 +146,49 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <div class="body md" itemprop="articleBody">
     
 
-    <h1 id="初见-mongodb"><a class="markdownIt-Anchor" href="#初见-mongodb"></a> 初见 MongoDB</h1>
-<h2 id="什么是-mongodb"><a class="markdownIt-Anchor" href="#什么是-mongodb"></a> 什么是 MongoDB？</h2>
-<p>MongoDB 是一个开源的、面向文档的 NoSQL 数据库管理系统。它与传统的关系型数据库（如 MySQL、PostgreSQL）不同，因为它不使用表格来存储数据，而是使用一种称为&quot;文档&quot;的数据结构来组织和存储数据。每个文档是一个包含键值对的数据结构，类似于 JSON 格式，这使得 MongoDB 非常适合存储具有不同结构的数据。</p>
-<p><img data-src="https://s2.loli.net/2023/08/30/iqxm3ufLjZ6XOSt.webp" alt="MongoDB.png" /></p>
-<h1 id="mongodb-的安装与服务启动"><a class="markdownIt-Anchor" href="#mongodb-的安装与服务启动"></a> MongoDB 的安装与服务启动</h1>
-<h2 id="下载-mongodb-安装包"><a class="markdownIt-Anchor" href="#下载-mongodb-安装包"></a> 下载 MongoDB 安装包</h2>
-<p>访问==<span class="exturl" data-url="aHR0cHM6Ly93d3cubW9uZ29kYi5jb20vZG93bmxvYWQtY2VudGVyI2NvbW11bml0eT09">https://www.mongodb.com/download-center#community==</span><br />
-或者点击下方连接</p>
+    <h1 id="初见-mongodb"><a class="markdownIt-Anchor" href="#初见-mongodb">#</a> 初见 MongoDB</h1>
+<h2 id="什么是-mongodb"><a class="markdownIt-Anchor" href="#什么是-mongodb">#</a> 什么是 MongoDB？</h2>
+<p>MongoDB 是一个开源的、面向文档的 NoSQL 数据库管理系统。它与传统的关系型数据库（如 MySQL、PostgreSQL）不同，因为它不使用表格来存储数据，而是使用一种称为 &quot;文档&quot; 的数据结构来组织和存储数据。每个文档是一个包含键值对的数据结构，类似于 JSON 格式，这使得 MongoDB 非常适合存储具有不同结构的数据。</p>
+<p><img data-src="https://s2.loli.net/2023/08/30/iqxm3ufLjZ6XOSt.webp" alt="MongoDB.png"></p>
+<h1 id="mongodb-的安装与服务启动"><a class="markdownIt-Anchor" href="#mongodb-的安装与服务启动">#</a> MongoDB 的安装与服务启动</h1>
+<h2 id="下载-mongodb-安装包"><a class="markdownIt-Anchor" href="#下载-mongodb-安装包">#</a> 下载 MongoDB 安装包</h2>
+<p>访问<mark><span class="exturl" data-url="aHR0cHM6Ly93d3cubW9uZ29kYi5jb20vZG93bmxvYWQtY2VudGVyI2NvbW11bml0eQ=="> https://www.mongodb.com/download-center#community</span></mark><br>
+ 或者点击下方连接</p>
 <div class="links"><div class="item" title="MongoDB" style="--block-color:#e9546b;"><span class="exturl image" data-url="aHR0cHM6Ly93d3cubW9uZ29kYi5jb20vZG93bmxvYWQtY2VudGVyI2NvbW11bml0eQ==" data-background-image="https://webimages.mongodb.com/_com_assets/cms/kuyjf3vea2hg34taa-horizontal_default_slate_blue.svg?auto=format%252Ccompress"></span>
           <div class="info">
           <span class="exturl title" data-url="aHR0cHM6Ly93d3cubW9uZ29kYi5jb20vZG93bmxvYWQtY2VudGVyI2NvbW11bml0eQ==">MogoDB</span>
           <p class="desc">官方下载地址</p>
           </div></div></div>
 <p>下载载最新版本的 MongoDB 数据库。</p>
-<h2 id="mongodb-安装"><a class="markdownIt-Anchor" href="#mongodb-安装"></a> MongoDB 安装</h2>
+<h2 id="mongodb-安装"><a class="markdownIt-Anchor" href="#mongodb-安装">#</a> MongoDB 安装</h2>
 <ol>
-<li>双击刚刚下载的安装文件(mongodb-XXXX-XXXX-signed.msi)启动安装程序。</li>
-<li>单击【Next】按钮，进入“End-User License Agreement”界面</li>
-<li>勾选“I accept the terms in the License Agreement”选项，单击【Next】按钮进入“Choose Setup Type”界面，该界面中可选择安装类型</li>
+<li>双击刚刚下载的安装文件 (mongodb-XXXX-XXXX-signed.msi) 启动安装程序。</li>
+<li>单击【Next】按钮，进入 “End-User License Agreement” 界面</li>
+<li>勾选 “I accept the terms in the License Agreement” 选项，单击【Next】按钮进入 “Choose Setup Type” 界面，该界面中可选择安装类型</li>
 </ol>
-<p>[Complete。此类型将安装所有程序功能，需占用较多的磁盘空间，建议大多数用户使用。]{.label .primary}<br />
-[Custom。此类型允许用户自行选择要安装的程序功能及安装位置，建议高级用户使用。]{.label .primary}</p>
+<p><span class="label primary">Complete。此类型将安装所有程序功能，需占用较多的磁盘空间，建议大多数用户使用。</span><br>
+<span class="label primary">Custom。此类型允许用户自行选择要安装的程序功能及安装位置，建议高级用户使用。</span></p>
 <ol start="4">
 <li>MongoDB Compass 是 MongoDB 数据库的 GUI 管理系统，默认会选择安装，但是安装速度非常慢。</li>
 </ol>
-<p>值得一提的是，MongoDB 默认会将创建的数据库文件存储在 db 目录下，但是这个目录不会被主动创建，用户需要在 MongoDB 安装完成后手动创建 db 目录。在“C:\Program Files\MongoDB\Server\4.0\data\”目录下创建一个文件夹 db</p>
-<h1 id="配置"><a class="markdownIt-Anchor" href="#配置"></a> 配置</h1>
+<p>值得一提的是，MongoDB 默认会将创建的数据库文件存储在 db 目录下，但是这个目录不会被主动创建，用户需要在 MongoDB 安装完成后手动创建 db 目录。在 “C:\Program Files\MongoDB\Server\4.0\data\” 目录下创建一个文件夹 db</p>
+<h1 id="配置"><a class="markdownIt-Anchor" href="#配置">#</a> 配置</h1>
 <p>同样的我们也可以将 bin 目录配置到环境变量的 Path 中</p>
-<h1 id="启动-mongodb-服务启动与停止"><a class="markdownIt-Anchor" href="#启动-mongodb-服务启动与停止"></a> 启动 MongoDB 服务（启动与停止）</h1>
-<p>进入如图所示的目录输入<ins>net start MongoDB</ins>启动服务，相应的输入<ins>net stop MongoDB</ins>则为停止服务</p>
-<p><img data-src="https://s2.loli.net/2023/08/30/wWe7dPghAMOn31t.png" alt="startStop.png" /></p>
-<h1 id="mongodb-基本命令"><a class="markdownIt-Anchor" href="#mongodb-基本命令"></a> MongoDB 基本命令</h1>
+<h1 id="启动-mongodb-服务启动与停止"><a class="markdownIt-Anchor" href="#启动-mongodb-服务启动与停止">#</a> 启动 MongoDB 服务（启动与停止）</h1>
+<p>进入如图所示的目录输入<ins> net start MongoDB</ins> 启动服务，相应的输入<ins> net stop MongoDB</ins> 则为停止服务</p>
+<p><img data-src="https://s2.loli.net/2023/08/30/wWe7dPghAMOn31t.png" alt="startStop.png"></p>
+<h1 id="mongodb-基本命令"><a class="markdownIt-Anchor" href="#mongodb-基本命令">#</a> MongoDB 基本命令</h1>
 <p>在 cmd 中输入 Mongo 进入 Mongo 的交互界面</p>
 <p>创建数据库:</p>
-<pre class="highlight"><code class="mongodb">use mydb
-</code></pre>
-<p>展示数据库:</p>
-<pre class="highlight"><code class="mongodb">show dbs
-</code></pre>
-<p>删除数据库:</p>
-<pre class="highlight"><code class="mongodb">db.dropDatabase()
-</code></pre>
-<p>创建集合：</p>
-<pre class="highlight"><code class="mongodb">db.createCollection(&quot;myCollection&quot;)
-</code></pre>
-<p>插入数据：</p>
-<pre class="highlight"><code class="mongodb">db.myCollection.insert(&#123;&quot;_id&quot;:1,&quot;name&quot;:&quot;诗岸梦行舟&quot;&#125;)
-</code></pre>
-<p>删除：</p>
-<pre class="highlight"><code class="mongodb">db.myCollection.remove(&#123;&quot;_id&quot;:1&#125;)
-</code></pre>
-<p>更新：</p>
-<pre class="highlight"><code class="mongodb">db.myCollection.update(&#123;&quot;_id&quot;:1&#125;,&#123;$set&#123;&quot;name&quot;:&quot;Karry.Liu&quot;&#125;&#125;)
-</code></pre>
-<p>查询所有：</p>
-<pre class="highlight"><code class="mongodb">db.myCollection.find()
-</code></pre>
-<p>指定查询：</p>
-<pre class="highlight"><code class="mongodb">db.myCollection.find(&#123;&quot;_id&quot;:1&#125;)
-</code></pre>
-
+<figure class="highlight mongodb"><figcaption data-lang="mongodb"><span>创建数据库</span></figcaption><table><tr><td data-num="1"></td><td><pre>use mydb</pre></td></tr></table></figure><p>展示数据库:</p>
+<figure class="highlight mongodb"><figcaption data-lang="mongodb"><span>展示据库</span></figcaption><table><tr><td data-num="1"></td><td><pre>show dbs</pre></td></tr></table></figure><p>删除数据库:</p>
+<figure class="highlight mongodb"><figcaption data-lang="mongodb"><span>删除数据库</span></figcaption><table><tr><td data-num="1"></td><td><pre>db<span class="token punctuation">.</span><span class="token function">dropDatabase</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr></table></figure><p>创建集合：</p>
+<figure class="highlight mongodb"><figcaption data-lang="mongodb"><span>创建集合</span></figcaption><table><tr><td data-num="1"></td><td><pre>db<span class="token punctuation">.</span><span class="token function">createCollection</span><span class="token punctuation">(</span><span class="token string">"myCollection"</span><span class="token punctuation">)</span></pre></td></tr></table></figure><p>插入数据：</p>
+<figure class="highlight mongodb"><figcaption data-lang="mongodb"><span>插入</span></figcaption><table><tr><td data-num="1"></td><td><pre>db<span class="token punctuation">.</span>myCollection<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span><span class="token string-property property">"_id"</span><span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token string-property property">"name"</span><span class="token operator">:</span><span class="token string">"诗岸梦行舟"</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span></pre></td></tr></table></figure><p>删除：</p>
+<figure class="highlight mongodb"><figcaption data-lang="mongodb"><span>删除</span></figcaption><table><tr><td data-num="1"></td><td><pre>db<span class="token punctuation">.</span>myCollection<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span><span class="token string-property property">"_id"</span><span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span></pre></td></tr></table></figure><p>更新：</p>
+<figure class="highlight mongodb"><figcaption data-lang="mongodb"><span>更新</span></figcaption><table><tr><td data-num="1"></td><td><pre>db<span class="token punctuation">.</span>myCollection<span class="token punctuation">.</span><span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span><span class="token string-property property">"_id"</span><span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span class="token punctuation">&#123;</span>$set<span class="token punctuation">&#123;</span><span class="token string-property property">"name"</span><span class="token operator">:</span><span class="token string">"Karry.Liu"</span><span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span></pre></td></tr></table></figure><p>查询所有：</p>
+<figure class="highlight mongodb"><figcaption data-lang="mongodb"><span>删除</span></figcaption><table><tr><td data-num="1"></td><td><pre>db<span class="token punctuation">.</span>myCollection<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr></table></figure><p>指定查询：</p>
+<figure class="highlight mongodb"><figcaption data-lang="mongodb"><span>删除</span></figcaption><table><tr><td data-num="1"></td><td><pre>db<span class="token punctuation">.</span>myCollection<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span><span class="token string-property property">"_id"</span><span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span></pre></td></tr></table></figure>
       <div class="tags">
           <a href="/tags/MongoDB/" rel="tag"><i class="ic i-tag"></i> MongoDB</a>
       </div>
@@ -437,27 +419,17 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <a href="/categories/Principles-of-computer-composition/" title="分类于 计算机组成原理">计算机组成原理</a>
 </div>
 
-    <span><a href="/Principles-of-computer-composition/Division_in_Computers/" title="计算机中的除法运算">计算机中的除法运算</a></span>
+    <span><a href="/Principles-of-computer-composition/Connection_between_CPU_and_memory/" title="CPU与存储器的连接">CPU与存储器的连接</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/database/" title="分类于 数据库">数据库</a>
+<a href="/categories/experience/" title="分类于 开发经验">开发经验</a>
 </div>
 
-    <span><a href="/database/DataBase02/" title="数据库设计">数据库设计</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/MongoDB/" title="分类于 MongoDB">MongoDB</a>
-</div>
-
-    <span><a href="/MongoDB/MongoDB03/" title="MongoDB初步使用">MongoDB初步使用</a></span>
+    <span><a href="/experience/SSM01/" title="SSM框架整合">SSM框架整合</a></span>
   </li>
 
       
@@ -474,10 +446,30 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
+<a href="/categories/DS/" title="分类于 DS">DS</a>
 </div>
 
-    <span><a href="/Operate-system/kcsj/" title="操作系统课程设计">操作系统课程设计</a></span>
+    <span><a href="/DSLearnNote/GeneralizedLists/" title="考试中有关广义表的两个常用函数的解">考试中有关广义表的两个常用函数的解</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/database/" title="分类于 数据库">数据库</a>
+</div>
+
+    <span><a href="/database/DataBase02/" title="数据库设计">数据库设计</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/DS/" title="分类于 DS">DS</a>
+</div>
+
+    <span><a href="/DSLearnNote/ListMerge/" title="两个有序链表合并的代码题">两个有序链表合并的代码题</a></span>
   </li>
 
       
@@ -497,7 +489,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <a href="/categories/Principles-of-computer-composition/" title="分类于 计算机组成原理">计算机组成原理</a>
 </div>
 
-    <span><a href="/Principles-of-computer-composition/Connection_between_CPU_and_memory/" title="CPU与存储器的连接">CPU与存储器的连接</a></span>
+    <span><a href="/Principles-of-computer-composition/booth_algorithm/" title="booth算法">booth算法</a></span>
   </li>
 
       
@@ -507,27 +499,17 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <a href="/categories/MongoDB/" title="分类于 MongoDB">MongoDB</a>
 </div>
 
-    <span><a href="/MongoDB/MongoDB02/" title="MongoDB初步使用">MongoDB初步使用</a></span>
+    <span><a href="/MongoDB/MongoDB03/" title="MongoDB初步使用">MongoDB初步使用</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
+<a href="/categories/%E5%88%9D%E6%9D%A5%E4%B9%8D%E5%88%B0/" title="分类于 初来乍到">初来乍到</a>
 </div>
 
-    <span><a href="/Operate-system/03OS/" title="进程同步问题">进程同步问题</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
-</div>
-
-    <span><a href="/Operate-system/KnowledgeSummary/" title="操作系统细碎知识点及公式速记（持续更新）">操作系统细碎知识点及公式速记（持续更新）</a></span>
+    <span><a href="/hello/" title="起点，但不止于起点！">起点，但不止于起点！</a></span>
   </li>
 
   </ul>

@@ -146,31 +146,9 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <div class="body md" itemprop="articleBody">
     
 
-    <h1 id="题目"><a class="markdownIt-Anchor" href="#题目"></a> 题目</h1>
+    <h1 id="题目"><a class="markdownIt-Anchor" href="#题目">#</a> 题目</h1>
 <p>设计实现将两个带有头节点的有序链表合并为一个新的有序链表。</p>
-<pre class="highlight"><code class="cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">marge</span><span class="hljs-params">(LNode *A,LNode *B,LNode *C)</span></span>&#123;
-    LNode p = A-&gt;next;
-    LNode q = B-&gt;next;
-    LNode r;
-    r-&gt;next = null;
-    C = A;
-    r=c;
-    <span class="hljs-keyword">while</span>(p != null||q != null)&#123;
-        <span class="hljs-keyword">if</span>(p-&gt;data &lt;= q-&gt;data)&#123;
-            r-&gt;next = p;
-            p = p-&gt;next;
-            r = r-&gt;next;
-        &#125; <span class="hljs-keyword">else</span>&#123;
-            r-&gt;next = q;
-            q = q-&gt;next;
-            r = r-&gt;next;
-        &#125;
-    &#125;
-    <span class="hljs-keyword">if</span>(p) r = p;
-    <span class="hljs-keyword">if</span>(q) r = q;
-&#125;
-</code></pre>
-
+<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">void</span> <span class="token function">marge</span><span class="token punctuation">(</span>LNode <span class="token operator">*</span>A<span class="token punctuation">,</span>LNode <span class="token operator">*</span>B<span class="token punctuation">,</span>LNode <span class="token operator">*</span>C<span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    LNode p <span class="token operator">=</span> A<span class="token operator">-></span>next<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    LNode q <span class="token operator">=</span> B<span class="token operator">-></span>next<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    LNode r<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    r<span class="token operator">-></span>next <span class="token operator">=</span> null<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    C <span class="token operator">=</span> A<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    r<span class="token operator">=</span>c<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>    <span class="token keyword">while</span><span class="token punctuation">(</span>p <span class="token operator">!=</span> null<span class="token operator">||</span>q <span class="token operator">!=</span> null<span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>        <span class="token keyword">if</span><span class="token punctuation">(</span>p<span class="token operator">-></span>data <span class="token operator">&lt;=</span> q<span class="token operator">-></span>data<span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>            r<span class="token operator">-></span>next <span class="token operator">=</span> p<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>            p <span class="token operator">=</span> p<span class="token operator">-></span>next<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>            r <span class="token operator">=</span> r<span class="token operator">-></span>next<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>        <span class="token punctuation">&#125;</span> <span class="token keyword">else</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>            r<span class="token operator">-></span>next <span class="token operator">=</span> q<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>            q <span class="token operator">=</span> q<span class="token operator">-></span>next<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="16"></td><td><pre>            r <span class="token operator">=</span> r<span class="token operator">-></span>next<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="17"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="18"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="19"></td><td><pre>    <span class="token keyword">if</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span> r <span class="token operator">=</span> p<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="20"></td><td><pre>    <span class="token keyword">if</span><span class="token punctuation">(</span>q<span class="token punctuation">)</span> r <span class="token operator">=</span> q<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="21"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure>
       <div class="tags">
           <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"><i class="ic i-tag"></i> 数据结构</a>
       </div>
@@ -388,30 +366,10 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Principles-of-computer-composition/" title="分类于 计算机组成原理">计算机组成原理</a>
+<a href="/categories/DS/" title="分类于 DS">DS</a>
 </div>
 
-    <span><a href="/Principles-of-computer-composition/Division_in_Computers/" title="计算机中的除法运算">计算机中的除法运算</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Linux/" title="分类于 Linux">Linux</a>
-</div>
-
-    <span><a href="/Linux/Linux01/" title="初见Linux">初见Linux</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%9D%E6%9D%A5%E4%B9%8D%E5%88%B0/" title="分类于 初来乍到">初来乍到</a>
-</div>
-
-    <span><a href="/hello/" title="起点，但不止于起点！">起点，但不止于起点！</a></span>
+    <span><a href="/DSLearnNote/GeneralizedLists/" title="考试中有关广义表的两个常用函数的解">考试中有关广义表的两个常用函数的解</a></span>
   </li>
 
       
@@ -428,20 +386,40 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/database/" title="分类于 数据库">数据库</a>
+<a href="/categories/MongoDB/" title="分类于 MongoDB">MongoDB</a>
 </div>
 
-    <span><a href="/database/DataBase01/" title="DB中的范式">DB中的范式</a></span>
+    <span><a href="/MongoDB/MongoDB03/" title="MongoDB初步使用">MongoDB初步使用</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/java%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/" title="分类于 java高级特性">java高级特性</a>
+<a href="/categories/Principles-of-computer-composition/" title="分类于 计算机组成原理">计算机组成原理</a>
 </div>
 
-    <span><a href="/Java/javaAd01/" title="Java高级特性1">Java高级特性1</a></span>
+    <span><a href="/Principles-of-computer-composition/Division_in_Computers/" title="计算机中的除法运算">计算机中的除法运算</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Principles-of-computer-composition/" title="分类于 计算机组成原理">计算机组成原理</a>
+</div>
+
+    <span><a href="/Principles-of-computer-composition/Connection_between_CPU_and_memory/" title="CPU与存储器的连接">CPU与存储器的连接</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/MongoDB/" title="分类于 MongoDB">MongoDB</a>
+</div>
+
+    <span><a href="/MongoDB/MongoDB02/" title="MongoDB初步使用">MongoDB初步使用</a></span>
   </li>
 
       
@@ -451,7 +429,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
 </div>
 
-    <span><a href="/Operate-system/01OS/" title="操作系统知识点阶段总结">操作系统知识点阶段总结</a></span>
+    <span><a href="/Operate-system/02OS/" title="进程与线程">进程与线程</a></span>
   </li>
 
       
@@ -468,20 +446,20 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/database/" title="分类于 数据库">数据库</a>
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
 </div>
 
-    <span><a href="/database/DataBase02/" title="数据库设计">数据库设计</a></span>
+    <span><a href="/Operate-system/03OS/" title="进程同步问题">进程同步问题</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
+<a href="/categories/database/" title="分类于 数据库">数据库</a>
 </div>
 
-    <span><a href="/Operate-system/kcsj/" title="操作系统课程设计">操作系统课程设计</a></span>
+    <span><a href="/database/DataBase02/" title="数据库设计">数据库设计</a></span>
   </li>
 
   </ul>
