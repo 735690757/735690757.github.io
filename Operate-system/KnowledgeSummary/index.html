@@ -32,7 +32,7 @@
 
 
   <title>
-操作系统细碎知识点总结（持续更新） - 操作系统 |
+操作系统细碎知识点及公式速记（持续更新） - 操作系统 |
 KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</title>
 <meta name="generator" content="Hexo 6.3.0"></head>
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -60,7 +60,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
         <div id="brand">
           <div class="pjax">
           
-  <h1 itemprop="name headline">操作系统细碎知识点总结（持续更新）
+  <h1 itemprop="name headline">操作系统细碎知识点及公式速记（持续更新）
   </h1>
   
 <div class="meta">
@@ -146,25 +146,38 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <div class="body md" itemprop="articleBody">
     
 
-    <h1 id="操作系统细碎知识点总结"><a class="markdownIt-Anchor" href="#操作系统细碎知识点总结">#</a> 操作系统细碎知识点总结</h1>
+    <h1 id="操作系统细碎知识点总结"><a class="markdownIt-Anchor" href="#操作系统细碎知识点总结"></a> 操作系统细碎知识点总结</h1>
 <ol>
-<li>现代操作系统两个最基本特征：<span class="label primary">并发</span>  与  <span class="label primary">共享</span></li>
-<li>OS 主要特征是：<span class="label primary">并发</span>、<span class="label primary">共享</span>、<span class="label primary">虚拟</span> 以及 <span class="label primary">异步</span></li>
-<li>操作系统出现的标志：<span class="label primary">多道程序设计</span> 以及 <span class="label primary">分时操作系统</span> 的出现</li>
-<li>高级调度：<span class="label primary">作业调度</span></li>
-<li>中级调度：<span class="label primary">内存调度</span></li>
-<li>低级调度：<span class="label primary">进程调度</span></li>
-<li>多级存储分为三部分：<span class="label primary">高速缓存</span>、<span class="label primary">内存 / 主存</span> 以及 <span class="label primary">外存</span></li>
-<li>进程的调度时机：<span class="label primary">时间片完</span>、<span class="label primary">正常结束</span>、<span class="label primary">P 操作</span>、<span class="label primary">IO 请求</span> 以及 <span class="label primary">优先级抢占</span></li>
-<li>文件系统的功能：<span class="label primary">按名存取</span>、<span class="label primary">存储空间管理</span>、<span class="label primary">文件共享与保护</span> 以及 <span class="label primary">文件操作</span></li>
-<li>SPOOLING 系统的组成：<span class="label primary">输入进程</span>、<span class="label primary">输入缓冲区</span>、<span class="label primary">输入井</span>、<span class="label primary">输出进程</span>、<span class="label primary">输出缓冲区</span> 以及 <span class="label primary">输出井</span></li>
-<li>进程的结构特征（有争议 / 不严谨）：<span class="label primary">独立性</span>、<span class="label primary">动态性</span>、<span class="label primary">异步性</span> 以及 <span class="label primary">并发性</span></li>
-<li>虚拟存储器的主要特征：<span class="label primary">多次性</span>、<span class="label primary">对换性</span> 以及 <span class="label primary">虚拟性</span></li>
-<li>所学的进程调度算法中，最中庸、最能让长作业和短作业都满意的调度算法是：<span class="label primary">多级反馈队列调度算法</span></li>
-<li>进程是<span class="label primary">资源分配</span>的基本单位，进程是<span class="label primary">调度</span>的基本单位</li>
-<li>程序的几种装入方式：<span class="label primary">静态装入</span>、<span class="label primary">可重定位装入</span> 以及 <span class="label primary">动态运行时装入</span></li>
-<li>程序的几种链接方式：<span class="label primary">静态链接</span>、<span class="label primary">装入时动态链接</span> 以及 <span class="label primary">运行时动态链接</span></li>
+<li>现代操作系统两个最基本特征：[并发]{.label .primary}  与  [共享]{.label .primary}</li>
+<li>OS主要特征是：[并发]{.label .primary}、[共享]{.label .primary}、[虚拟]{.label .primary} 以及 [异步]{.label .primary}</li>
+<li>操作系统出现的标志：[多道程序设计]{.label .primary} 以及 [分时操作系统]{.label .primary} 的出现</li>
+<li>高级调度：[作业调度]{.label .primary}</li>
+<li>中级调度：[内存调度]{.label .primary}</li>
+<li>低级调度：[进程调度]{.label .primary}</li>
+<li>多级存储分为三部分：[高速缓存]{.label .primary}、[内存/主存]{.label .primary} 以及 [外存]{.label .primary}</li>
+<li>进程的调度时机：[时间片完]{.label .primary}、[正常结束]{.label .primary}、[P操作]{.label .primary}、[IO请求]{.label .primary} 以及 [优先级抢占]{.label .primary}</li>
+<li>文件系统的功能：[按名存取]{.label .primary}、[存储空间管理]{.label .primary}、[文件共享与保护]{.label .primary} 以及 [文件操作]{.label .primary}</li>
+<li>SPOOLING系统的组成：[输入进程]{.label .primary}、[输入缓冲区]{.label .primary}、[输入井]{.label .primary}、[输出进程]{.label .primary}、[输出缓冲区]{.label .primary} 以及 [输出井]{.label .primary}</li>
+<li>进程的结构特征（有争议/不严谨）：[独立性]{.label .primary}、[动态性]{.label .primary}、[异步性]{.label .primary} 以及 [并发性]{.label .primary}</li>
+<li>虚拟存储器的主要特征：[多次性]{.label .primary}、[对换性]{.label .primary} 以及 [虚拟性]{.label .primary}</li>
+<li>所学的进程调度算法中，最中庸、最能让长作业和短作业都满意的调度算法是：[多级反馈队列调度算法]{.label .primary}</li>
+<li>进程是[资源分配]{.label .primary}的基本单位，进程是[调度]{.label .primary}的基本单位</li>
+<li>程序的几种装入方式：[静态装入]{.label .primary}、[可重定位装入]{.label .primary} 以及 [动态运行时装入]{.label .primary}</li>
+<li>程序的几种链接方式：[静态链接]{.label .primary}、[装入时动态链接]{.label .primary} 以及 [运行时动态链接]{.label .primary}</li>
+<li>程序的顺序执行的特征：[顺序性]{.label .primary}、[封闭性]{.label .primary} 以及 [结果可再现性]{.label .primary}</li>
+<li>请求分页式虚拟存储系统必须至少具有三种硬件支持，即[页表机制]{.label .primary}、[缺页中断机构]{.label .primary} 以及 [地址变换机构]{.label .primary}</li>
+<li>程序并发执行的特性有：[间断性]{.label .primary}、[失去封闭性]{.label .primary}、[失去结果可再现性]{.label .primary}</li>
+<li>进程控制块的信息有：[进程标识符]{.label .primary}、[处理机状态]{.label .primary}、[进程控制信息]{.label .primary}、[进程调度信息]{.label .primary}</li>
+<li>扇区是磁盘空间管理的最基本单位，其物理地址是由：[柱面号]{.label .primary}、[扇区号]{.label .primary}、[磁头号]{.label .primary}三部分组成的</li>
+<li>火车站售票系统属于[实时系统]{.label .primary}</li>
+<li>I/O管制程序的主要功能是管理[设备、控制器和通道]{.label .primary}的状态信息</li>
+<li>撒</li>
 </ol>
+<h1 id="常用公式速记"><a class="markdownIt-Anchor" href="#常用公式速记"></a> 常用公式速记</h1>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.15999999999999992em" columnalign="center" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><msub><mi>T</mi><mtext>周转时间</mtext></msub><mo>=</mo><msub><mi>T</mi><mtext>结束时间</mtext></msub><mo>−</mo><msub><mi>T</mi><mtext>提交时间</mtext></msub></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin {array}{c}
+T_{周转时间}=T_{结束时间}-T_{提交时间}
+\end {array}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2000000000000002em;vertical-align:-0.35000000000000003em;"></span><span class="mord"><span class="mtable"><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8500000000000001em;"><span style="top:-3.01em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord cjk_fallback mtight">周</span><span class="mord cjk_fallback mtight">转</span><span class="mord cjk_fallback mtight">时</span><span class="mord cjk_fallback mtight">间</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord cjk_fallback mtight">结</span><span class="mord cjk_fallback mtight">束</span><span class="mord cjk_fallback mtight">时</span><span class="mord cjk_fallback mtight">间</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord cjk_fallback mtight">提</span><span class="mord cjk_fallback mtight">交</span><span class="mord cjk_fallback mtight">时</span><span class="mord cjk_fallback mtight">间</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.35000000000000003em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span></span></span></span></span></span></span></p>
 
       <div class="tags">
           <a href="/tags/OS/" rel="tag"><i class="ic i-tag"></i> OS</a>
@@ -179,9 +192,9 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">更新于</span>
-    <time title="修改时间：2024-09-09 22:58:48" itemprop="dateModified" datetime="2024-09-09T22:58:48+08:00">2024-09-09</time>
+    <time title="修改时间：2024-09-13 23:51:08" itemprop="dateModified" datetime="2024-09-13T23:51:08+08:00">2024-09-13</time>
   </span>
-  <span id="Operate-system/KnowledgeSummary/" class="item leancloud_visitors" data-flag-title="操作系统细碎知识点总结（持续更新）" title="阅读次数">
+  <span id="Operate-system/KnowledgeSummary/" class="item leancloud_visitors" data-flag-title="操作系统细碎知识点及公式速记（持续更新）" title="阅读次数">
       <span class="icon">
         <i class="ic i-eye"></i>
       </span>
@@ -218,7 +231,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   </li>
   <li class="link">
     <strong>本文链接：</strong>
-    <a href="https://735690757.github.io/Operate-system/KnowledgeSummary/" title="操作系统细碎知识点总结（持续更新）">https://735690757.github.io/Operate-system/KnowledgeSummary/</a>
+    <a href="https://735690757.github.io/Operate-system/KnowledgeSummary/" title="操作系统细碎知识点及公式速记（持续更新）">https://735690757.github.io/Operate-system/KnowledgeSummary/</a>
   </li>
   <li class="license">
     <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
@@ -269,11 +282,11 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="文章目录">
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%BB%86%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93"><span class="toc-number">1.</span> <span class="toc-text"> 操作系统细碎知识点总结</span></a></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%BB%86%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93"><span class="toc-number">1.</span> <span class="toc-text"> 操作系统细碎知识点总结</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%85%AC%E5%BC%8F%E9%80%9F%E8%AE%B0"><span class="toc-number">2.</span> <span class="toc-text"> 常用公式速记</span></a></li></ol>
       </div>
       <div class="related panel pjax" data-title="系列文章">
         <ul>
-          <li><a href="/Operate-system/01OS/" rel="bookmark" title="操作系统知识点阶段总结">操作系统知识点阶段总结</a></li><li><a href="/Operate-system/02OS/" rel="bookmark" title="进程与线程">进程与线程</a></li><li><a href="/Operate-system/03OS/" rel="bookmark" title="进程同步问题">进程同步问题</a></li><li><a href="/Operate-system/kcsj/" rel="bookmark" title="操作系统课程设计">操作系统课程设计</a></li><li class="active"><a href="/Operate-system/KnowledgeSummary/" rel="bookmark" title="操作系统细碎知识点总结（持续更新）">操作系统细碎知识点总结（持续更新）</a></li>
+          <li><a href="/Operate-system/01OS/" rel="bookmark" title="操作系统知识点阶段总结">操作系统知识点阶段总结</a></li><li><a href="/Operate-system/02OS/" rel="bookmark" title="进程与线程">进程与线程</a></li><li><a href="/Operate-system/03OS/" rel="bookmark" title="进程同步问题">进程同步问题</a></li><li><a href="/Operate-system/kcsj/" rel="bookmark" title="操作系统课程设计">操作系统课程设计</a></li><li class="active"><a href="/Operate-system/KnowledgeSummary/" rel="bookmark" title="操作系统细碎知识点及公式速记（持续更新）">操作系统细碎知识点及公式速记（持续更新）</a></li>
         </ul>
       </div>
       <div class="overview panel" data-title="站点概览">
@@ -393,46 +406,6 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
-</div>
-
-    <span><a href="/Operate-system/kcsj/" title="操作系统课程设计">操作系统课程设计</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/DS/" title="分类于 DS">DS</a>
-</div>
-
-    <span><a href="/DSLearnNote/GeneralizedLists/" title="考试中有关广义表的两个常用函数的解">考试中有关广义表的两个常用函数的解</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/java%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/" title="分类于 java高级特性">java高级特性</a>
-</div>
-
-    <span><a href="/Java/javaAd01/" title="Java高级特性1">Java高级特性1</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/MongoDB/" title="分类于 MongoDB">MongoDB</a>
-</div>
-
-    <span><a href="/MongoDB/MongoDB02/" title="MongoDB初步使用">MongoDB初步使用</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
 <a href="/categories/%E5%88%9D%E6%9D%A5%E4%B9%8D%E5%88%B0/" title="分类于 初来乍到">初来乍到</a>
 </div>
 
@@ -443,10 +416,20 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Linux/" title="分类于 Linux">Linux</a>
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
 </div>
 
-    <span><a href="/Linux/Linux01/" title="初见Linux">初见Linux</a></span>
+    <span><a href="/Operate-system/02OS/" title="进程与线程">进程与线程</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/database/" title="分类于 数据库">数据库</a>
+</div>
+
+    <span><a href="/database/DataBase01/" title="DB中的范式">DB中的范式</a></span>
   </li>
 
       
@@ -456,7 +439,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <a href="/categories/Principles-of-computer-composition/" title="分类于 计算机组成原理">计算机组成原理</a>
 </div>
 
-    <span><a href="/Principles-of-computer-composition/Connection_between_CPU_and_memory/" title="CPU与存储器的连接">CPU与存储器的连接</a></span>
+    <span><a href="/Principles-of-computer-composition/Division_in_Computers/" title="计算机中的除法运算">计算机中的除法运算</a></span>
   </li>
 
       
@@ -476,7 +459,27 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
 </div>
 
-    <span><a href="/Operate-system/01OS/" title="操作系统知识点阶段总结">操作系统知识点阶段总结</a></span>
+    <span><a href="/Operate-system/03OS/" title="进程同步问题">进程同步问题</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Principles-of-computer-composition/" title="分类于 计算机组成原理">计算机组成原理</a>
+</div>
+
+    <span><a href="/Principles-of-computer-composition/booth_algorithm/" title="booth算法">booth算法</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/DS/" title="分类于 DS">DS</a>
+</div>
+
+    <span><a href="/DSLearnNote/ListMerge/" title="两个有序链表合并的代码题">两个有序链表合并的代码题</a></span>
   </li>
 
       
@@ -486,7 +489,17 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
 </div>
 
-    <span><a href="/Operate-system/KnowledgeSummary/" title="操作系统细碎知识点总结（持续更新）">操作系统细碎知识点总结（持续更新）</a></span>
+    <span><a href="/Operate-system/kcsj/" title="操作系统课程设计">操作系统课程设计</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
+</div>
+
+    <span><a href="/Operate-system/KnowledgeSummary/" title="操作系统细碎知识点及公式速记（持续更新）">操作系统细碎知识点及公式速记（持续更新）</a></span>
   </li>
 
   </ul>
@@ -529,15 +542,9 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
       empty: "关于 「 ${query} 」，什么也没搜到",
       stats: "${time} ms 内找到 ${hits} 条结果"
     },
-    valine: true,fancybox: true,
-    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',quiz: {
-      choice: "单选题",
-      multiple: "多选题",
-      true_false: "判断题",
-      essay: "问答题",
-      gap_fill: "填空题",
-      mistake: "错题备注"
-    },
+    valine: true,copy_tex: true,
+    katex: true,fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
     ignores : [
       function(uri) {
         return uri.includes('#');

@@ -146,14 +146,139 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <div class="body md" itemprop="articleBody">
     
 
-    <h1 id="生产者-消费者问题"><a class="markdownIt-Anchor" href="#生产者-消费者问题">#</a> 生产者 - 消费者问题</h1>
-<p>在进程同步中第一个问题就是生产者 - 消费者问题，首先我们利用记录型信号来分析这个问题。</p>
+    <h1 id="生产者-消费者问题"><a class="markdownIt-Anchor" href="#生产者-消费者问题"></a> 生产者-消费者问题</h1>
+<p>在进程同步中第一个问题就是生产者-消费者问题，首先我们利用记录型信号来分析这个问题。</p>
 <p>好好好，我们直接伪代码解析！</p>
 <p><strong>解释在行代码的上方</strong></p>
-<figure class="highlight c"><figcaption data-lang="c"><span>详细伪代码</span></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">//in 代表下一个要写入的位置，out 代表要读取的位置</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">int</span> in <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span>out <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token comment">// 用于存储生产者生产的容器，可以理解为缓冲区</span></pre></td></tr><tr><td data-num="4"></td><td><pre>item buffer<span class="token punctuation">[</span>n<span class="token punctuation">]</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token comment">// 前两行不是重点，下面才是核心！！</span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token comment">//mutex 用于互斥访问共享资源，初值必须为 1（可以理解为锁）</span></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token comment">//empty 代表中转的容量，初值为最大承载容量，题里会给（可以是各种容器）</span></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token comment">//full 是生产出的一种逻辑 / 实体的物质</span></pre></td></tr><tr><td data-num="9"></td><td><pre><span class="token comment">// 总之不管是什么他是生产者生产出来的，一开始还没生产，full 初值为 0</span></pre></td></tr><tr><td data-num="10"></td><td><pre>semaphore mutex <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span>empty <span class="token operator">=</span> n<span class="token punctuation">,</span>full <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="11"></td><td><pre><span class="token comment">// 生产者逻辑</span></pre></td></tr><tr><td data-num="12"></td><td><pre><span class="token keyword">void</span> <span class="token function">producer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>    <span class="token comment">//do-while 死循环，不断生产，配合消费者模拟程序并发</span></pre></td></tr><tr><td data-num="14"></td><td><pre>    <span class="token keyword">do</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>        <span class="token comment">// 生产一个产品</span></pre></td></tr><tr><td data-num="16"></td><td><pre>        produce an item nextp<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="17"></td><td><pre>        <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span></pre></td></tr><tr><td data-num="18"></td><td><pre>        <span class="token comment">//wait 什么什么就是什么什么 “--”，比如这里 wait (empty) 就是 empty--</span></pre></td></tr><tr><td data-num="19"></td><td><pre>        <span class="token comment">// 相当于空位置减一，申请一个缓冲区</span></pre></td></tr><tr><td data-num="20"></td><td><pre>        <span class="token function">wait</span><span class="token punctuation">(</span>empty<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="21"></td><td><pre>        <span class="token comment">// 相当于加锁，申请缓冲区的使用权</span></pre></td></tr><tr><td data-num="22"></td><td><pre>        <span class="token function">wait</span><span class="token punctuation">(</span>mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="23"></td><td><pre>        <span class="token comment">// 将产品放入缓冲区之中</span></pre></td></tr><tr><td data-num="24"></td><td><pre>        buffer<span class="token punctuation">[</span>in<span class="token punctuation">]</span> <span class="token operator">=</span> nextp<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="25"></td><td><pre>        <span class="token comment">// 下一个缓冲区的地址</span></pre></td></tr><tr><td data-num="26"></td><td><pre>        in <span class="token operator">=</span> <span class="token punctuation">(</span>in <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> n<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="27"></td><td><pre>        <span class="token comment">//signal 什么什么就是什么什么 “++”，比如这里 signal (mutex) 就是 empty++</span></pre></td></tr><tr><td data-num="28"></td><td><pre>        <span class="token comment">// 解锁，相当于释放权限</span></pre></td></tr><tr><td data-num="29"></td><td><pre>        <span class="token function">signal</span><span class="token punctuation">(</span>mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="30"></td><td><pre>        <span class="token comment">// 生产的东西数量加 1，也就是释放缓冲区</span></pre></td></tr><tr><td data-num="31"></td><td><pre>        <span class="token function">signal</span><span class="token punctuation">(</span>full<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="32"></td><td><pre>    <span class="token punctuation">&#125;</span><span class="token keyword">while</span><span class="token punctuation">(</span>true<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="33"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="34"></td><td><pre><span class="token comment">// 消费者逻辑</span></pre></td></tr><tr><td data-num="35"></td><td><pre><span class="token keyword">void</span> <span class="token function">consumer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="36"></td><td><pre>    <span class="token comment">//do-while 死循环，不断生消费，配合生产者模拟程序并发</span></pre></td></tr><tr><td data-num="37"></td><td><pre>    <span class="token keyword">do</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="38"></td><td><pre>        <span class="token comment">// 消费者要消费一个物质，将生产者的生产的 full--</span></pre></td></tr><tr><td data-num="39"></td><td><pre>        <span class="token function">wait</span><span class="token punctuation">(</span>full<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="40"></td><td><pre>        <span class="token comment">// 加锁，mutex--</span></pre></td></tr><tr><td data-num="41"></td><td><pre>        <span class="token function">wait</span><span class="token punctuation">(</span>mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="42"></td><td><pre>        <span class="token comment">// 其实这里不用太深究，这里就是消费者从缓冲区拿走了一个生产者的生产的物质</span></pre></td></tr><tr><td data-num="43"></td><td><pre>        <span class="token comment">// 从缓冲区中取出产品</span></pre></td></tr><tr><td data-num="44"></td><td><pre>        nextc <span class="token operator">=</span> buffer<span class="token punctuation">[</span>out<span class="token punctuation">]</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="45"></td><td><pre>        <span class="token comment">// 导向下一个缓冲区的地址</span></pre></td></tr><tr><td data-num="46"></td><td><pre>        out <span class="token operator">=</span> <span class="token punctuation">(</span>out <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> n<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="47"></td><td><pre>        <span class="token comment">// 解锁，mutex++</span></pre></td></tr><tr><td data-num="48"></td><td><pre>        <span class="token function">signal</span><span class="token punctuation">(</span>mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="49"></td><td><pre>        <span class="token comment">// 消费者已经取走了，空位置 empty++</span></pre></td></tr><tr><td data-num="50"></td><td><pre>        <span class="token function">signal</span><span class="token punctuation">(</span>empty<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="51"></td><td><pre>        <span class="token comment">// 消费者消费物质</span></pre></td></tr><tr><td data-num="52"></td><td><pre>        consume the item nextc<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="53"></td><td><pre>        <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span></pre></td></tr><tr><td data-num="54"></td><td><pre>    <span class="token punctuation">&#125;</span><span class="token keyword">while</span><span class="token punctuation">(</span>true<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="55"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="56"></td><td><pre><span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="57"></td><td><pre>    cobegin</pre></td></tr><tr><td data-num="58"></td><td><pre>    <span class="token function">producer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token function">consumer</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="59"></td><td><pre>    coend</pre></td></tr><tr><td data-num="60"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>简单的写法：</p>
-<figure class="highlight py"><figcaption data-lang="Python"><span>简单伪代码</span></figcaption><table><tr><td data-num="1"></td><td><pre>Producer<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="2"></td><td><pre>  Repeat</pre></td></tr><tr><td data-num="3"></td><td><pre>    生产一个商品</pre></td></tr><tr><td data-num="4"></td><td><pre>    wait<span class="token punctuation">(</span>empty<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    wait<span class="token punctuation">(</span>mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    将商品送至缓冲区<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    signal<span class="token punctuation">(</span>mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>    signal<span class="token punctuation">(</span>full<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>  Until false</pre></td></tr><tr><td data-num="10"></td><td><pre></pre></td></tr><tr><td data-num="11"></td><td><pre>Comsumer<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="12"></td><td><pre>  Repeat</pre></td></tr><tr><td data-num="13"></td><td><pre>    wait<span class="token punctuation">(</span>full<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>    wait<span class="token punctuation">(</span>mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>    从缓冲区取走一个物品</pre></td></tr><tr><td data-num="16"></td><td><pre>    singal<span class="token punctuation">(</span>mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="17"></td><td><pre>    signal<span class="token punctuation">(</span>empty<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="18"></td><td><pre>  Until false</pre></td></tr><tr><td data-num="19"></td><td><pre></pre></td></tr><tr><td data-num="20"></td><td><pre>Program main<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="21"></td><td><pre>  empty<span class="token punctuation">,</span>full<span class="token punctuation">,</span>mutex<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="22"></td><td><pre>    begin</pre></td></tr><tr><td data-num="23"></td><td><pre>      empty <span class="token operator">=</span> n<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="24"></td><td><pre>      full <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="25"></td><td><pre>      mutex <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="26"></td><td><pre>      cobegin</pre></td></tr><tr><td data-num="27"></td><td><pre>        producer<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>consumer<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="28"></td><td><pre>      coend</pre></td></tr><tr><td data-num="29"></td><td><pre>    end</pre></td></tr></table></figure><h2 id="练习一下"><a class="markdownIt-Anchor" href="#练习一下">#</a> 练习一下！</h2>
+<pre class="highlight"><code class="c"><span class="hljs-comment">//in代表下一个要写入的位置，out代表要读取的位置</span>
+<span class="hljs-type">int</span> in = <span class="hljs-number">0</span>,out = <span class="hljs-number">0</span>;
+<span class="hljs-comment">//用于存储生产者生产的容器，可以理解为缓冲区</span>
+item buffer[n];
+<span class="hljs-comment">//前两行不是重点，下面才是核心！！</span>
+<span class="hljs-comment">//mutex用于互斥访问共享资源，初值必须为1（可以理解为锁）</span>
+<span class="hljs-comment">//empty代表中转的容量，初值为最大承载容量，题里会给（可以是各种容器）</span>
+<span class="hljs-comment">//full是生产出的一种逻辑/实体的物质</span>
+<span class="hljs-comment">//总之不管是什么他是生产者生产出来的，一开始还没生产，full初值为0</span>
+semaphore mutex = <span class="hljs-number">1</span>,empty = n,full = <span class="hljs-number">0</span>;
+<span class="hljs-comment">//生产者逻辑</span>
+<span class="hljs-type">void</span> <span class="hljs-title function_">producer</span><span class="hljs-params">()</span>&#123;
+    <span class="hljs-comment">//do-while死循环，不断生产，配合消费者模拟程序并发</span>
+    <span class="hljs-keyword">do</span>&#123;
+        <span class="hljs-comment">//生产一个产品</span>
+        produce an item nextp;
+        ...
+        <span class="hljs-comment">//wait什么什么就是什么什么“--”，比如这里wait(empty)就是empty--</span>
+        <span class="hljs-comment">//相当于空位置减一，申请一个缓冲区</span>
+        wait(empty);
+        <span class="hljs-comment">//相当于加锁，申请缓冲区的使用权</span>
+        wait(mutex);
+        <span class="hljs-comment">//将产品放入缓冲区之中</span>
+        buffer[in] = nextp;
+        <span class="hljs-comment">//下一个缓冲区的地址</span>
+        in = (in + <span class="hljs-number">1</span>) % n;
+        <span class="hljs-comment">//signal什么什么就是什么什么“++”，比如这里signal(mutex)就是empty++</span>
+        <span class="hljs-comment">//解锁，相当于释放权限</span>
+        signal(mutex);
+        <span class="hljs-comment">//生产的东西数量加1，也就是释放缓冲区</span>
+        signal(full);
+    &#125;<span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>);
+&#125;
+<span class="hljs-comment">//消费者逻辑</span>
+<span class="hljs-type">void</span> <span class="hljs-title function_">consumer</span><span class="hljs-params">()</span>&#123;
+    <span class="hljs-comment">//do-while死循环，不断生消费，配合生产者模拟程序并发</span>
+    <span class="hljs-keyword">do</span>&#123;
+        <span class="hljs-comment">//消费者要消费一个物质，将生产者的生产的full--</span>
+        wait(full);
+        <span class="hljs-comment">//加锁，mutex--</span>
+        wait(mutex);
+        <span class="hljs-comment">//其实这里不用太深究，这里就是消费者从缓冲区拿走了一个生产者的生产的物质</span>
+        <span class="hljs-comment">//从缓冲区中取出产品</span>
+        nextc = buffer[out];
+        <span class="hljs-comment">//导向下一个缓冲区的地址</span>
+        out = (out + <span class="hljs-number">1</span>) % n;
+        <span class="hljs-comment">//解锁，mutex++</span>
+        signal(mutex);
+        <span class="hljs-comment">//消费者已经取走了，空位置empty++</span>
+        signal(empty);
+        <span class="hljs-comment">//消费者消费物质</span>
+        consume the item nextc;
+        ...
+    &#125;<span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>)
+&#125;
+<span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>&#123;
+    cobegin
+    <span class="hljs-title function_">producer</span><span class="hljs-params">()</span>;consumer()
+    coend
+&#125;
+</code></pre>
+<p>简单的写法：</p>
+<pre class="highlight"><code class="py">Producer():
+  Repeat
+    生产一个商品
+    wait(empty);
+    wait(mutex);
+    将商品送至缓冲区;
+    signal(mutex);
+    signal(full);
+  Until false
+
+Comsumer():
+  Repeat
+    wait(full);
+    wait(mutex);
+    从缓冲区取走一个物品
+    singal(mutex);
+    signal(empty);
+  Until false
+
+Program main()
+  empty,full,mutex;
+    begin
+      empty = n;
+      full = <span class="hljs-number">0</span>;
+      mutex = <span class="hljs-number">1</span>;
+      cobegin
+        producer();consumer();
+      coend
+    end
+</code></pre>
+<h2 id="练习一下"><a class="markdownIt-Anchor" href="#练习一下"></a> 练习一下！</h2>
 <p>桌上有个能盛得下五个水果的空子。爸爸不停地向盘中放苹果或橘子，儿子不停地从盘中取出桔子享用，女儿不停地从盘中取出苹果享用。规定三人不能同时从盘子中取放水果。使用信号量实现爸爸、儿子和女儿这三个循环进程之间的同步。</p>
-<figure class="highlight c"><figcaption data-lang="c"></figcaption><table><tr><td data-num="1"></td><td><pre>empty <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">,</span>orange <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span>apple <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span>mutex <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token function">Dad</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>        <span class="token function">wait</span><span class="token punctuation">(</span>empty<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>        <span class="token function">wait</span><span class="token punctuation">(</span>mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>        将水果放入盘中<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>        <span class="token function">signal</span><span class="token punctuation">(</span>mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>        <span class="token keyword">if</span><span class="token punctuation">(</span>放了橘子<span class="token punctuation">)</span> <span class="token function">signal</span><span class="token punctuation">(</span>orange<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>        <span class="token keyword">else</span> <span class="token function">signal</span><span class="token punctuation">(</span>apple<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="11"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="12"></td><td><pre></pre></td></tr><tr><td data-num="13"></td><td><pre><span class="token function">Son</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>        <span class="token function">wait</span><span class="token punctuation">(</span>orange<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="16"></td><td><pre>        <span class="token function">wait</span><span class="token punctuation">(</span>mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="17"></td><td><pre>        拿走一个桔子<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="18"></td><td><pre>        <span class="token function">signal</span><span class="token punctuation">(</span>mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="19"></td><td><pre>        <span class="token function">signal</span><span class="token punctuation">(</span>empty<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="20"></td><td><pre>        吃桔子<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="21"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="22"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="23"></td><td><pre></pre></td></tr><tr><td data-num="24"></td><td><pre><span class="token function">Daughter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="25"></td><td><pre>    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="26"></td><td><pre>        <span class="token function">wait</span><span class="token punctuation">(</span>apple<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="27"></td><td><pre>        <span class="token function">wait</span><span class="token punctuation">(</span>mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="28"></td><td><pre>        拿一个苹果<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="29"></td><td><pre>        <span class="token function">signal</span><span class="token punctuation">(</span>mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="30"></td><td><pre>        <span class="token function">signal</span><span class="token punctuation">(</span>empty<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="31"></td><td><pre>        吃苹果<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="32"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="33"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure>
+<pre class="highlight"><code class="c">empty = <span class="hljs-number">5</span>,orange = <span class="hljs-number">0</span>,apple = <span class="hljs-number">0</span>,mutex = <span class="hljs-number">1</span>;
+Dad()&#123;
+    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;
+        wait(empty);
+        wait(mutex);
+        将水果放入盘中;
+        signal(mutex);
+        <span class="hljs-keyword">if</span>(放了橘子) signal(orange);
+        <span class="hljs-keyword">else</span> signal(apple);
+    &#125;
+&#125;
+
+Son()&#123;
+    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;
+        wait(orange);
+        wait(mutex);
+        拿走一个桔子;
+        signal(mutex);
+        signal(empty);
+        吃桔子;
+    &#125;
+&#125;
+
+Daughter()&#123;
+    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;
+        wait(apple);
+        wait(mutex);
+        拿一个苹果;
+        signal(mutex);
+        signal(empty);
+        吃苹果;
+    &#125;
+&#125;
+</code></pre>
+
       <div class="tags">
           <a href="/tags/OS/" rel="tag"><i class="ic i-tag"></i> OS</a>
       </div>
@@ -257,11 +382,11 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="文章目录">
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%94%9F%E4%BA%A7%E8%80%85-%E6%B6%88%E8%B4%B9%E8%80%85%E9%97%AE%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text"> 生产者 - 消费者问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E4%B8%80%E4%B8%8B"><span class="toc-number">1.1.</span> <span class="toc-text"> 练习一下！</span></a></li></ol></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%94%9F%E4%BA%A7%E8%80%85-%E6%B6%88%E8%B4%B9%E8%80%85%E9%97%AE%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text"> 生产者-消费者问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E4%B8%80%E4%B8%8B"><span class="toc-number">1.1.</span> <span class="toc-text"> 练习一下！</span></a></li></ol></li></ol>
       </div>
       <div class="related panel pjax" data-title="系列文章">
         <ul>
-          <li><a href="/Operate-system/01OS/" rel="bookmark" title="操作系统知识点阶段总结">操作系统知识点阶段总结</a></li><li><a href="/Operate-system/02OS/" rel="bookmark" title="进程与线程">进程与线程</a></li><li class="active"><a href="/Operate-system/03OS/" rel="bookmark" title="进程同步问题">进程同步问题</a></li><li><a href="/Operate-system/kcsj/" rel="bookmark" title="操作系统课程设计">操作系统课程设计</a></li><li><a href="/Operate-system/KnowledgeSummary/" rel="bookmark" title="操作系统细碎知识点总结（持续更新）">操作系统细碎知识点总结（持续更新）</a></li>
+          <li><a href="/Operate-system/01OS/" rel="bookmark" title="操作系统知识点阶段总结">操作系统知识点阶段总结</a></li><li><a href="/Operate-system/02OS/" rel="bookmark" title="进程与线程">进程与线程</a></li><li class="active"><a href="/Operate-system/03OS/" rel="bookmark" title="进程同步问题">进程同步问题</a></li><li><a href="/Operate-system/kcsj/" rel="bookmark" title="操作系统课程设计">操作系统课程设计</a></li><li><a href="/Operate-system/KnowledgeSummary/" rel="bookmark" title="操作系统细碎知识点及公式速记（持续更新）">操作系统细碎知识点及公式速记（持续更新）</a></li>
         </ul>
       </div>
       <div class="overview panel" data-title="站点概览">
@@ -381,30 +506,20 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
+<a href="/categories/Linux/" title="分类于 Linux">Linux</a>
 </div>
 
-    <span><a href="/Operate-system/01OS/" title="操作系统知识点阶段总结">操作系统知识点阶段总结</a></span>
+    <span><a href="/Linux/Linux01/" title="初见Linux">初见Linux</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/MongoDB/" title="分类于 MongoDB">MongoDB</a>
+<a href="/categories/DS/" title="分类于 DS">DS</a>
 </div>
 
-    <span><a href="/MongoDB/MongoDB03/" title="MongoDB初步使用">MongoDB初步使用</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/MongoDB/" title="分类于 MongoDB">MongoDB</a>
-</div>
-
-    <span><a href="/MongoDB/MongoDB02/" title="MongoDB初步使用">MongoDB初步使用</a></span>
+    <span><a href="/DSLearnNote/ListMerge/" title="两个有序链表合并的代码题">两个有序链表合并的代码题</a></span>
   </li>
 
       
@@ -421,30 +536,10 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Principles-of-computer-composition/" title="分类于 计算机组成原理">计算机组成原理</a>
+<a href="/categories/%E5%88%9D%E6%9D%A5%E4%B9%8D%E5%88%B0/" title="分类于 初来乍到">初来乍到</a>
 </div>
 
-    <span><a href="/Principles-of-computer-composition/booth_algorithm/" title="booth算法">booth算法</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
-</div>
-
-    <span><a href="/Operate-system/KnowledgeSummary/" title="操作系统细碎知识点总结（持续更新）">操作系统细碎知识点总结（持续更新）</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/java%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/" title="分类于 java高级特性">java高级特性</a>
-</div>
-
-    <span><a href="/Java/javaAd01/" title="Java高级特性1">Java高级特性1</a></span>
+    <span><a href="/hello/" title="起点，但不止于起点！">起点，但不止于起点！</a></span>
   </li>
 
       
@@ -461,20 +556,50 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/%E5%88%9D%E6%9D%A5%E4%B9%8D%E5%88%B0/" title="分类于 初来乍到">初来乍到</a>
+<a href="/categories/Principles-of-computer-composition/" title="分类于 计算机组成原理">计算机组成原理</a>
 </div>
 
-    <span><a href="/hello/" title="起点，但不止于起点！">起点，但不止于起点！</a></span>
+    <span><a href="/Principles-of-computer-composition/Connection_between_CPU_and_memory/" title="CPU与存储器的连接">CPU与存储器的连接</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/database/" title="分类于 数据库">数据库</a>
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
 </div>
 
-    <span><a href="/database/DataBase02/" title="数据库设计">数据库设计</a></span>
+    <span><a href="/Operate-system/03OS/" title="进程同步问题">进程同步问题</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Principles-of-computer-composition/" title="分类于 计算机组成原理">计算机组成原理</a>
+</div>
+
+    <span><a href="/Principles-of-computer-composition/booth_algorithm/" title="booth算法">booth算法</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/MongoDB/" title="分类于 MongoDB">MongoDB</a>
+</div>
+
+    <span><a href="/MongoDB/MongoDB02/" title="MongoDB初步使用">MongoDB初步使用</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/java%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/" title="分类于 java高级特性">java高级特性</a>
+</div>
+
+    <span><a href="/Java/javaAd01/" title="Java高级特性1">Java高级特性1</a></span>
   </li>
 
   </ul>
