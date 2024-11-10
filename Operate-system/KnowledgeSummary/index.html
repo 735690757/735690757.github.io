@@ -18,6 +18,9 @@
 <link rel="alternate" type="application/rss+xml" title="诗岸梦行舟" href="https://735690757.github.io/rss.xml" />
 <link rel="alternate" type="application/atom+xml" title="诗岸梦行舟" href="https://735690757.github.io/atom.xml" />
 <link rel="alternate" type="application/json" title="诗岸梦行舟" href="https://735690757.github.io/feed.json" />
+<link rel="stylesheet" href="https://unpkg.com/mermaid/dist/mermaid.min.css">
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({ startOnLoad: true });</script>
 
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
@@ -32,7 +35,7 @@
 
 
   <title>
-操作系统细碎知识点及公式速记（持续更新） - 操作系统 |
+操作系统细碎知识点及公式速记 - 操作系统 |
 KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</title>
 <meta name="generator" content="Hexo 6.3.0"></head>
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -60,7 +63,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
         <div id="brand">
           <div class="pjax">
           
-  <h1 itemprop="name headline">操作系统细碎知识点及公式速记（持续更新）
+  <h1 itemprop="name headline">操作系统细碎知识点及公式速记
   </h1>
   
 <div class="meta">
@@ -101,7 +104,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 
       </div>
       <div id="imgs" class="pjax">
-          <img src="/imags/OS.jpg">
+          <img src="/images/OS.jpg">
       </div>
     </header>
     <div id="waves">
@@ -161,7 +164,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <li>进程的结构特征（有争议 / 不严谨）：<span class="label primary">独立性</span>、<span class="label primary">动态性</span>、<span class="label primary">异步性</span> 以及 <span class="label primary">并发性</span></li>
 <li>虚拟存储器的主要特征：<span class="label primary">多次性</span>、<span class="label primary">对换性</span> 以及 <span class="label primary">虚拟性</span></li>
 <li>所学的进程调度算法中，最中庸、最能让长作业和短作业都满意的调度算法是：<span class="label primary">多级反馈队列调度算法</span></li>
-<li>进程是<span class="label primary">资源分配</span>的基本单位，进程是<span class="label primary">调度</span>的基本单位</li>
+<li>进程是<span class="label primary">资源分配</span>的基本单位，线程是<span class="label primary">调度</span>的基本单位</li>
 <li>程序的几种装入方式：<span class="label primary">静态装入</span>、<span class="label primary">可重定位装入</span> 以及 <span class="label primary">动态运行时装入</span></li>
 <li>程序的几种链接方式：<span class="label primary">静态链接</span>、<span class="label primary">装入时动态链接</span> 以及 <span class="label primary">运行时动态链接</span></li>
 <li>程序的顺序执行的特征：<span class="label primary">顺序性</span>、<span class="label primary">封闭性</span> 以及 <span class="label primary">结果可再现性</span></li>
@@ -171,13 +174,57 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <li>扇区是磁盘空间管理的最基本单位，其物理地址是由：<span class="label primary">柱面号</span>、<span class="label primary">扇区号</span>、<span class="label primary">磁头号</span>三部分组成的</li>
 <li>火车站售票系统属于<span class="label primary">实时系统</span></li>
 <li>I/O 管制程序的主要功能是管理<span class="label primary">设备、控制器和通道</span>的状态信息</li>
-<li>撒</li>
+<li>依据信号量的发展过程，可将信号量分为四种：<span class="label primary">and 型信号量</span>、<span class="label primary">信号量集</span>、<span class="label primary">互斥信号量</span> 以及 <span class="label primary">整型信号量</span></li>
+<li>进程通信类型有：<span class="label primary">共享存储器系统</span>、<span class="label primary">消息传递系统</span>、<span class="label primary">管道通信</span> 以及 <span class="label primary">异步阻塞通信</span></li>
+<li>分段存储管理的优点有：<span class="label primary">方便编程</span>、<span class="label primary">信息共享</span>、<span class="label primary">动态增长</span>、<span class="label primary">动态链接</span>以及 <span class="label primary">信息保护</span></li>
+<li><span class="label primary">成批性</span>是批处理操作系统的主要特征，不是分时系统的特性</li>
+<li>推动操作系统发展的主要动力有：<span class="label primary">不断提高计算机资源利用率</span>、<span class="label primary">方便用户</span>、<span class="label primary">器件的不断更新换代</span> 以及 <span class="label primary">计算机体系结构的不断发展</span></li>
+<li>同步机制应当遵循的规则有：<span class="label primary">空闲让进</span>、<span class="label primary">让权等待</span>、<span class="label primary">忙则等待</span> 以及 <span class="label primary">有限等待</span></li>
+<li>系统中各个进程相互制约的关系称为<span class="label primary">同步</span></li>
+<li>对于死锁，一般应考虑死锁的<span class="label primary">预防</span>、<span class="label primary">检测</span>、<span class="label primary">避免</span> 以及 <span class="label primary">解除</span></li>
+<li>典型的银行家算法是属于<span class="label primary">死锁避免</span>，破坏环路等待条件是属于<span class="label primary">死锁预防</span>，剥夺资源是属于<span class="label primary">死锁解除</span></li>
+<li>操作系统向用户提供了两种接口分别是<span class="label primary">用户接口</span>和<span class="label primary">系统接口</span></li>
+<li>设别分别配应保证设备有<span class="label primary">高利用率</span>和避免<span class="label primary">死锁</span></li>
+<li>对于操作系统而言，打开文件广义指令的主要作用是装入<span class="label primary">文件目录项</span></li>
+<li>为了实现多道程序设计，计算机在硬件方面必须提供两种支持，他们分别是<span class="label primary">中断</span>和<span class="label primary">通道</span></li>
+<li>多道程序设计给存储管理提出了新课题，应考虑的三个问题是<span class="label primary">存储分配</span>、<span class="label primary">虚存管理</span>、<span class="label primary">存储保护</span></li>
+<li>操作系统的内核应提供<span class="label primary">终端管理</span>、<span class="label primary">短程管理</span>、<span class="label primary">原语管理</span>三方面的功能</li>
+<li>死锁产生的主要原因为<span class="label primary">资源竞争</span>和<span class="label primary">进程非法推进</span></li>
+<li>设备分配外部设备时。先分配<span class="label primary">设备</span>，再分配<span class="label primary">控制器</span>，再分配<span class="label primary">通道</span></li>
+<li>可用于文件系统管理空闲磁盘块的数据结构是<span class="label primary">位示图</span>、<span class="label primary">空闲盘块链</span>、<span class="label primary">文件分配表 FAT</span></li>
+<li><span class="label primary">索引文件</span>既利于文件的动态增长，也适合随机访问。</li>
+<li><span class="label primary">Peterson 算法</span>实现互斥访问，<span class="label primary">swap 指令</span>与<span class="label primary"> TestAndSet 指令</span>实现忙则等待，<span class="label primary">信号量算法</span>实现让权等待，<span class="label primary">自旋锁</span>实现空闲让进</li>
+<li>银行家算法破坏了死锁四个必要条件的<span class="label primary">循环等待条件</span></li>
+<li>死锁的四个条件为：<span class="label primary">互斥条件</span>、<span class="label primary">请求与保持条件</span>、<span class="label primary">不可剥夺条件</span> 以及 <span class="label primary">循环等待条件</span></li>
+<li></li>
 </ol>
 <h1 id="常用公式速记"><a class="markdownIt-Anchor" href="#常用公式速记">#</a> 常用公式速记</h1>
-<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.15999999999999992em" columnalign="center" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><msub><mi>T</mi><mtext>周转时间</mtext></msub><mo>=</mo><msub><mi>T</mi><mtext>结束时间</mtext></msub><mo>−</mo><msub><mi>T</mi><mtext>提交时间</mtext></msub></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin {array}{c}
-T_{周转时间}=T_{结束时间}-T_{提交时间}
+<h2 id="进程调度有关公式"><a class="markdownIt-Anchor" href="#进程调度有关公式">#</a> 进程调度有关公式</h2>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable rowspacing="0.15999999999999992em" columnalign="center" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><msub><mi>T</mi><mtext>周转时间</mtext></msub><mo>=</mo><msub><mi>T</mi><mtext>结束时间</mtext></msub><mo>−</mo><msub><mi>T</mi><mtext>提交时间</mtext></msub></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">
+\begin {array}{c}
+T_{\text{周转时间}}=T_{\text{结束时间}}-T_{\text{提交时间}}
 \end {array}
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2000000000000002em;vertical-align:-0.35000000000000003em;"></span><span class="mord"><span class="mtable"><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8500000000000001em;"><span style="top:-3.01em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord cjk_fallback mtight">周</span><span class="mord cjk_fallback mtight">转</span><span class="mord cjk_fallback mtight">时</span><span class="mord cjk_fallback mtight">间</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord cjk_fallback mtight">结</span><span class="mord cjk_fallback mtight">束</span><span class="mord cjk_fallback mtight">时</span><span class="mord cjk_fallback mtight">间</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord cjk_fallback mtight">提</span><span class="mord cjk_fallback mtight">交</span><span class="mord cjk_fallback mtight">时</span><span class="mord cjk_fallback mtight">间</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.35000000000000003em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span></span></span></span></span></span></span></p>
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2000000000000002em;vertical-align:-0.35000000000000003em;"></span><span class="mord"><span class="mtable"><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8500000000000001em;"><span style="top:-3.01em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord cjk_fallback mtight">周转时间</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord cjk_fallback mtight">结束时间</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord cjk_fallback mtight">提交时间</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.35000000000000003em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span></span></span></span></span></span></p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable rowspacing="0.15999999999999992em" columnalign="center" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><msub><mi>T</mi><mtext>带权周转时间</mtext></msub><mo>=</mo><mfrac><msub><mi>T</mi><mtext>周转时间</mtext></msub><msub><mi>T</mi><mtext>运行时间</mtext></msub></mfrac></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">
+\begin {array}{c}
+T_{\text{带权周转时间}}=\frac{T_{\text{周转时间}}}{T_{\text{运行时间}}}
+\end {array}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.3339409999999998em;vertical-align:-0.4169704999999999em;"></span><span class="mord"><span class="mtable"><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9169704999999999em;"><span style="top:-3.0283345em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord cjk_fallback mtight">带权周转时间</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8886359999999999em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3567071428571427em;margin-left:-0.13889em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord cjk_fallback mtight">运行时间</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.14329285714285717em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.410305em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3567071428571427em;margin-left:-0.13889em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord cjk_fallback mtight">周转时间</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.14329285714285717em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.44530499999999995em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4169704999999999em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span></span></span></span></span></span></p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable rowspacing="0.15999999999999992em" columnalign="center" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><msub><mi>T</mi><mtext>平均周转时间</mtext></msub><mo>=</mo><mfrac><mrow><msubsup><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></msubsup><msub><mi>T</mi><mrow><mi>i</mi><mtext>周转时间</mtext></mrow></msub></mrow><mi>n</mi></mfrac></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">
+\begin {array}{c}
+T_{\text{平均周转时间}}=\frac{\sum_{i=1}^{n}  {T_{i\text{周转时间}}}}{n}
+\end {array}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.420007em;vertical-align:-0.46000349999999995em;"></span><span class="mord"><span class="mtable"><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9600035em;"><span style="top:-2.9600034999999996em;"><span class="pstrut" style="height:3.0600069999999997em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord cjk_fallback mtight">平均周转时间</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.060007em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.5350070000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mop mtight"><span class="mop op-symbol small-op mtight" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7385428571428572em;"><span style="top:-2.1785614285714283em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-2.931em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.32143857142857146em;"><span></span></span></span></span></span></span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3567071428571427em;margin-left:-0.13889em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mord text mtight"><span class="mord cjk_fallback mtight">周转时间</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.14329285714285717em;"><span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.46000349999999995em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span></span></span></span></span></span></p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable rowspacing="0.15999999999999992em" columnalign="center" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><msub><mi>T</mi><mtext>平均带权周转时间</mtext></msub><mo>=</mo><mfrac><mrow><msubsup><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></msubsup><msub><mi>T</mi><mrow><mi>i</mi><mtext>带权周转时间</mtext></mrow></msub></mrow><mi>n</mi></mfrac></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">
+\begin {array}{c}
+T_{\text{平均带权周转时间}}=\frac{\sum_{i=1}^{n}  {T_{i\text{带权周转时间}}}}{n}
+\end {array}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.420007em;vertical-align:-0.46000349999999995em;"></span><span class="mord"><span class="mtable"><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9600035em;"><span style="top:-2.9600034999999996em;"><span class="pstrut" style="height:3.0600069999999997em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord cjk_fallback mtight">平均带权周转时间</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.060007em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.5350070000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mop mtight"><span class="mop op-symbol small-op mtight" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7385428571428572em;"><span style="top:-2.1785614285714283em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-2.931em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.32143857142857146em;"><span></span></span></span></span></span></span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3567071428571427em;margin-left:-0.13889em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mord text mtight"><span class="mord cjk_fallback mtight">带权周转时间</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.14329285714285717em;"><span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.46000349999999995em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span></span></span></span></span></span></p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable rowspacing="0.15999999999999992em" columnalign="center" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><msub><mi>R</mi><mtext>响应比</mtext></msub><mo>=</mo><mfrac><msub><mi>T</mi><mtext>当前周转时间</mtext></msub><msub><mi>T</mi><mtext>运行时间</mtext></msub></mfrac><mo>=</mo><mfrac><msub><mi>T</mi><mtext>当前等待时间</mtext></msub><msub><mi>T</mi><mtext>运行时间</mtext></msub></mfrac><mo>+</mo><mn>1</mn></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">
+\begin {array}{c}
+R_{\text{响应比}}=\frac{T_{\text{当前周转时间}}}{T_{\text{运行时间}}}=\frac{T_{\text{当前等待时间}}}{T_{\text{运行时间}}}+1
+\end {array}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.3339409999999998em;vertical-align:-0.4169704999999999em;"></span><span class="mord"><span class="mtable"><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9169704999999999em;"><span style="top:-3.0283345em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord cjk_fallback mtight">响应比</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8886359999999999em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3567071428571427em;margin-left:-0.13889em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord cjk_fallback mtight">运行时间</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.14329285714285717em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.410305em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3567071428571427em;margin-left:-0.13889em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord cjk_fallback mtight">当前周转时间</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.14329285714285717em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.44530499999999995em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8886359999999999em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3567071428571427em;margin-left:-0.13889em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord cjk_fallback mtight">运行时间</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.14329285714285717em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.410305em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3567071428571427em;margin-left:-0.13889em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord cjk_fallback mtight">当前等待时间</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.14329285714285717em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.44530499999999995em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4169704999999999em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span></span></span></span></span></span></p>
 
       <div class="tags">
           <a href="/tags/OS/" rel="tag"><i class="ic i-tag"></i> OS</a>
@@ -192,9 +239,9 @@ T_{周转时间}=T_{结束时间}-T_{提交时间}
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">更新于</span>
-    <time title="修改时间：2024-09-13 23:51:08" itemprop="dateModified" datetime="2024-09-13T23:51:08+08:00">2024-09-13</time>
+    <time title="修改时间：2024-10-30 22:34:06" itemprop="dateModified" datetime="2024-10-30T22:34:06+08:00">2024-10-30</time>
   </span>
-  <span id="Operate-system/KnowledgeSummary/" class="item leancloud_visitors" data-flag-title="操作系统细碎知识点及公式速记（持续更新）" title="阅读次数">
+  <span id="Operate-system/KnowledgeSummary/" class="item leancloud_visitors" data-flag-title="操作系统细碎知识点及公式速记" title="阅读次数">
       <span class="icon">
         <i class="ic i-eye"></i>
       </span>
@@ -231,7 +278,7 @@ T_{周转时间}=T_{结束时间}-T_{提交时间}
   </li>
   <li class="link">
     <strong>本文链接：</strong>
-    <a href="https://735690757.github.io/Operate-system/KnowledgeSummary/" title="操作系统细碎知识点及公式速记（持续更新）">https://735690757.github.io/Operate-system/KnowledgeSummary/</a>
+    <a href="https://735690757.github.io/Operate-system/KnowledgeSummary/" title="操作系统细碎知识点及公式速记">https://735690757.github.io/Operate-system/KnowledgeSummary/</a>
   </li>
   <li class="license">
     <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
@@ -250,7 +297,7 @@ T_{周转时间}=T_{结束时间}-T_{提交时间}
     <div class="item left">
       
 
-  <a href="/DSLearnNote/GeneralizedLists/" itemprop="url" rel="prev" data-background-image="&#x2F;imags&#x2F;DS.png" title="考试中有关广义表的两个常用函数的解">
+  <a href="/DSLearnNote/GeneralizedLists/" itemprop="url" rel="prev" data-background-image="&#x2F;images&#x2F;DS.png" title="考试中有关广义表的两个常用函数的解">
   <span class="type">上一篇</span>
   <span class="category"><i class="ic i-flag"></i> DS</span>
   <h3>考试中有关广义表的两个常用函数的解</h3>
@@ -260,10 +307,10 @@ T_{周转时间}=T_{结束时间}-T_{提交时间}
     <div class="item right">
       
 
-  <a href="/DSLearnNote/ListMerge/" itemprop="url" rel="next" data-background-image="&#x2F;imags&#x2F;DS.png" title="两个有序链表合并的代码题">
+  <a href="/DSLearnNote/codeTM/" itemprop="url" rel="next" data-background-image="&#x2F;images&#x2F;DS.png" title="数据结构代码题速记">
   <span class="type">下一篇</span>
   <span class="category"><i class="ic i-flag"></i> DS</span>
-  <h3>两个有序链表合并的代码题</h3>
+  <h3>数据结构代码题速记</h3>
   </a>
 
     </div>
@@ -282,11 +329,11 @@ T_{周转时间}=T_{结束时间}-T_{提交时间}
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="文章目录">
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%BB%86%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93"><span class="toc-number">1.</span> <span class="toc-text"> 操作系统细碎知识点总结</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%85%AC%E5%BC%8F%E9%80%9F%E8%AE%B0"><span class="toc-number">2.</span> <span class="toc-text"> 常用公式速记</span></a></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%BB%86%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93"><span class="toc-number">1.</span> <span class="toc-text"> 操作系统细碎知识点总结</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%85%AC%E5%BC%8F%E9%80%9F%E8%AE%B0"><span class="toc-number">2.</span> <span class="toc-text"> 常用公式速记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6%E6%9C%89%E5%85%B3%E5%85%AC%E5%BC%8F"><span class="toc-number">2.1.</span> <span class="toc-text"> 进程调度有关公式</span></a></li></ol></li></ol>
       </div>
       <div class="related panel pjax" data-title="系列文章">
         <ul>
-          <li><a href="/Operate-system/01OS/" rel="bookmark" title="操作系统知识点阶段总结">操作系统知识点阶段总结</a></li><li><a href="/Operate-system/02OS/" rel="bookmark" title="进程与线程">进程与线程</a></li><li><a href="/Operate-system/03OS/" rel="bookmark" title="进程同步问题">进程同步问题</a></li><li><a href="/Operate-system/kcsj/" rel="bookmark" title="操作系统课程设计">操作系统课程设计</a></li><li class="active"><a href="/Operate-system/KnowledgeSummary/" rel="bookmark" title="操作系统细碎知识点及公式速记（持续更新）">操作系统细碎知识点及公式速记（持续更新）</a></li>
+          <li><a href="/Operate-system/01OS/" rel="bookmark" title="操作系统知识点阶段总结">操作系统知识点阶段总结</a></li><li><a href="/Operate-system/02OS/" rel="bookmark" title="进程与线程">进程与线程</a></li><li><a href="/Operate-system/03OS/" rel="bookmark" title="进程同步问题">进程同步问题</a></li><li><a href="/Operate-system/kcsj/" rel="bookmark" title="操作系统课程设计">操作系统课程设计</a></li><li class="active"><a href="/Operate-system/KnowledgeSummary/" rel="bookmark" title="操作系统细碎知识点及公式速记">操作系统细碎知识点及公式速记</a></li><li><a href="/Operate-system/OSPVCode/" rel="bookmark" title="操作系统PV代码题速记">操作系统PV代码题速记</a></li>
         </ul>
       </div>
       <div class="overview panel" data-title="站点概览">
@@ -300,19 +347,19 @@ T_{周转时间}=T_{结束时间}-T_{提交时间}
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">19</span>
+        <span class="count">23</span>
         <span class="name">文章</span>
       </a>
     </div>
     <div class="item categories">
       <a href="/categories/">
-        <span class="count">9</span>
+        <span class="count">11</span>
         <span class="name">分类</span>
       </a>
     </div>
     <div class="item tags">
       <a href="/tags/">
-        <span class="count">9</span>
+        <span class="count">11</span>
         <span class="name">标签</span>
       </a>
     </div>
@@ -384,7 +431,7 @@ T_{周转时间}=T_{结束时间}-T_{提交时间}
     <li class="up"><i class="ic i-arrow-up"></i></li>
     <li class="down"><i class="ic i-arrow-down"></i></li>
     <li class="next pjax">
-        <a href="/DSLearnNote/ListMerge/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a>
+        <a href="/DSLearnNote/codeTM/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a>
     </li>
     <li class="percent"></li>
   </ul>
@@ -406,40 +453,10 @@ T_{周转时间}=T_{结束时间}-T_{提交时间}
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/MongoDB/" title="分类于 MongoDB">MongoDB</a>
+<a href="/categories/%E5%88%9D%E6%9D%A5%E4%B9%8D%E5%88%B0/" title="分类于 初来乍到">初来乍到</a>
 </div>
 
-    <span><a href="/MongoDB/MongoDB03/" title="MongoDB初步使用">MongoDB初步使用</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
-</div>
-
-    <span><a href="/Operate-system/KnowledgeSummary/" title="操作系统细碎知识点及公式速记（持续更新）">操作系统细碎知识点及公式速记（持续更新）</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
-</div>
-
-    <span><a href="/Operate-system/03OS/" title="进程同步问题">进程同步问题</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
-</div>
-
-    <span><a href="/Operate-system/02OS/" title="进程与线程">进程与线程</a></span>
+    <span><a href="/hello/" title="起点，但不止于起点！">起点，但不止于起点！</a></span>
   </li>
 
       
@@ -449,17 +466,17 @@ T_{周转时间}=T_{结束时间}-T_{提交时间}
 <a href="/categories/Principles-of-computer-composition/" title="分类于 计算机组成原理">计算机组成原理</a>
 </div>
 
-    <span><a href="/Principles-of-computer-composition/Connection_between_CPU_and_memory/" title="CPU与存储器的连接">CPU与存储器的连接</a></span>
+    <span><a href="/Principles-of-computer-composition/Division_in_Computers/" title="计算机中的除法运算">计算机中的除法运算</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/DS/" title="分类于 DS">DS</a>
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
 </div>
 
-    <span><a href="/DSLearnNote/ListMerge/" title="两个有序链表合并的代码题">两个有序链表合并的代码题</a></span>
+    <span><a href="/Operate-system/kcsj/" title="操作系统课程设计">操作系统课程设计</a></span>
   </li>
 
       
@@ -476,10 +493,10 @@ T_{周转时间}=T_{结束时间}-T_{提交时间}
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/experience/" title="分类于 开发经验">开发经验</a>
+<a href="/categories/DS/" title="分类于 DS">DS</a>
 </div>
 
-    <span><a href="/experience/SSM01/" title="SSM框架整合">SSM框架整合</a></span>
+    <span><a href="/DSLearnNote/codeTM/" title="数据结构代码题速记">数据结构代码题速记</a></span>
   </li>
 
       
@@ -489,7 +506,7 @@ T_{周转时间}=T_{结束时间}-T_{提交时间}
 <a href="/categories/MongoDB/" title="分类于 MongoDB">MongoDB</a>
 </div>
 
-    <span><a href="/MongoDB/MongoDB02/" title="MongoDB初步使用">MongoDB初步使用</a></span>
+    <span><a href="/MongoDB/MongoDB03/" title="MongoDB初步使用">MongoDB初步使用</a></span>
   </li>
 
       
@@ -499,7 +516,37 @@ T_{周转时间}=T_{结束时间}-T_{提交时间}
 <a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
 </div>
 
-    <span><a href="/Operate-system/kcsj/" title="操作系统课程设计">操作系统课程设计</a></span>
+    <span><a href="/Operate-system/KnowledgeSummary/" title="操作系统细碎知识点及公式速记">操作系统细碎知识点及公式速记</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/java%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/" title="分类于 java高级特性">java高级特性</a>
+</div>
+
+    <span><a href="/Java/javaAd01/" title="Java高级特性1">Java高级特性1</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
+</div>
+
+    <span><a href="/Operate-system/01OS/" title="操作系统知识点阶段总结">操作系统知识点阶段总结</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
+</div>
+
+    <span><a href="/Operate-system/OSPVCode/" title="操作系统PV代码题速记">操作系统PV代码题速记</a></span>
   </li>
 
   </ul>
@@ -524,8 +571,8 @@ T_{周转时间}=T_{结束时间}-T_{提交时间}
     <a href="https://icp.gov.moe/?keyword=20249329" target="_blank">萌ICP备20249329号</a>
     基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
   <br/><span>世界本污浊，罪与爱同歌</span>
-  <br/><i class="ic i-chart-area"></i>&nbsp;<span>70k&nbsp;字</span> &nbsp;|&nbsp;
-  <i class="ic i-coffee"></i>&nbsp;<span> 1:56</span>
+  <br/><i class="ic i-chart-area"></i>&nbsp;<span>89k&nbsp;字</span> &nbsp;|&nbsp;
+  <i class="ic i-coffee"></i>&nbsp;<span> 2:29</span>
   </div>
 </div>
 
