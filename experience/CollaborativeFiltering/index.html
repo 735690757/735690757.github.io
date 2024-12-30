@@ -1,0 +1,666 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="诗岸梦行舟" href="https://735690757.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="诗岸梦行舟" href="https://735690757.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="诗岸梦行舟" href="https://735690757.github.io/feed.json" />
+<link rel="stylesheet" href="https://unpkg.com/mermaid/dist/mermaid.min.css">
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({ startOnLoad: true });</script>
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="协同过滤" />
+
+
+<link rel="canonical" href="https://735690757.github.io/experience/CollaborativeFiltering/">
+
+
+
+  <title>
+基于用户的协同过滤算法 - 开发经验 |
+KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</title>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">基于用户的协同过滤算法
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2024-12-30 00:11:00">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2024-12-30T00:11:00+08:00">2024-12-30</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">KarryLiu</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+          <img src="/images/CollaborativeFiltering/p1.png">
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/experience/" itemprop="item" rel="index" title="分类于 开发经验"><span itemprop="name">开发经验</span></a>
+<meta itemprop="position" content="1" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="https://735690757.github.io/experience/CollaborativeFiltering/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/tx.jpg">
+    <meta itemprop="name" content="KarryLiu">
+    <meta itemprop="description" content="分享计算机知识以及各种心得总结, 愿世间所有的美好都得以祝愿">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="诗岸梦行舟">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h1 id="基于用户的协同过滤算法"><a class="markdownIt-Anchor" href="#基于用户的协同过滤算法">#</a> 基于用户的协同过滤算法</h1>
+<p>本篇文档将会用通俗易懂的方式带你来了解并实现基于用户的协同过滤算法，不再基于特定开源库，使用原生代码完成协同过滤的构建，实际上，基于用户的协同过滤很简单，只需要弄懂那几个公式是怎么用的就好了，真正的难点是公式的提出与证明，不过呢今天我不想讲相关的证明了。</p>
+<p>本篇文章主要是带你打开协同过滤的大门，我只是想告诉你，作为人的你我具有不断认识的能力，且在认识中不断消除谬误，并无限趋近于真理，我们有能力也必将认识这个世界，而协同过滤正是其中之一，究其本质并不复杂。</p>
+<p>那么请坐好，协同过滤的列车要发车啦！</p>
+<h1 id="算法介绍"><a class="markdownIt-Anchor" href="#算法介绍">#</a> 算法介绍</h1>
+<p>基于用户的协同过滤，实际上就是找与目标用户最为相似的一个或多个用户，这里的目标用户实际上就是我们要为其进行信息推送的用户。假如瑞瑞喜欢 A 和 B，鸭鸭喜欢 A、B 和 C，他们都对喜欢的商品给予较高的评价，嘎嘎非常讨厌 A 和 B，但是钟爱 D。</p>
+<p>那么我们可以看到似乎鸭鸭的 A 和 B 与瑞瑞的 A 和 B 是一样的，但是鸭鸭买过 C 而瑞瑞没有买过 C，瑞瑞和鸭鸭是高度相似的，那么我们就可以给瑞瑞推荐鸭鸭喜欢的 C，或许瑞瑞也喜欢呢！</p>
+<p>而对于嘎嘎来说瑞瑞喜欢的 A 和 B 正是嘎嘎他所讨厌的，而嘎嘎对 D 情有独钟，我们可以了解到，瑞瑞或许是讨厌嘎嘎所喜欢的，那么嘎嘎和瑞瑞是低相似的，嘎嘎喜欢的 D 也许不应该给瑞瑞推荐！</p>
+<p><img data-src="../../images/CollaborativeFiltering/p1.png" alt="协同过滤原理"></p>
+<h1 id="计算用户间的相似度"><a class="markdownIt-Anchor" href="#计算用户间的相似度">#</a> 计算用户间的相似度</h1>
+<h2 id="jaccard相似系数"><a class="markdownIt-Anchor" href="#jaccard相似系数">#</a> Jaccard 相似系数</h2>
+<p><strong>Jaccard 相似系数</strong>主要是衡量两个集合的相似度<strong> J (A,B) 是它的数学表达</strong></p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.15999999999999992em" columnalign="center" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>J</mi><mo stretchy="false">(</mo><mi>A</mi><mo separator="true">,</mo><mi>B</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mo fence="true">∣</mo><mi>A</mi><mo>∩</mo><mi>B</mi><mo fence="true">∣</mo></mrow><mrow><mo fence="true">∣</mo><mi>A</mi><mo>∪</mo><mi>B</mi><mo fence="true">∣</mo></mrow></mfrac></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin {array}{c}
+J(A,B)=\frac{\left | A\cap B \right | }{\left | A\cup  B \right |}
+\end {array}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.53em;vertical-align:-0.5149999999999999em;"></span><span class="mord"><span class="mtable"><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0150000000000001em;"><span style="top:-3.015em;"><span class="pstrut" style="height:3.01em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.09618em;">J</span><span class="mopen">(</span><span class="mord mathnormal">A</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.01em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="minner mtight"><span class="mopen mtight delimcenter" style="top:0em;"><span class="mtight">∣</span></span><span class="mord mathnormal mtight">A</span><span class="mbin mtight">∪</span><span class="mord mathnormal mtight" style="margin-right:0.05017em;">B</span><span class="mclose mtight delimcenter" style="top:0em;"><span class="mtight">∣</span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.485em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="minner mtight"><span class="mopen mtight delimcenter" style="top:0em;"><span class="mtight">∣</span></span><span class="mord mathnormal mtight">A</span><span class="mbin mtight">∩</span><span class="mord mathnormal mtight" style="margin-right:0.05017em;">B</span><span class="mclose mtight delimcenter" style="top:0em;"><span class="mtight">∣</span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.52em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.5149999999999999em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span></span></span></span></span></span></span></p>
+<p>Jaccard 相似系数特别适用于处理二值数据（即只有两个值：0 或 1）。例如，在文本处理中，可以通过是否包含某个词来表示文档中的词汇出现与否，这种情况下 Jaccard 相似系数非常有效。然而 Jaccard 相似度不考虑元素的权重或频率。如果两个集合中有的元素出现频率较高，而有的频率较低，Jaccard 相似度会将这些元素视为等价，不适用于需要考虑元素重要性的场景。</p>
+<h2 id="余弦相似度"><a class="markdownIt-Anchor" href="#余弦相似度">#</a> 余弦相似度</h2>
+<p><strong>余弦相似度</strong>是 n 维空间中两个 n 维向量之间角度的余弦。它等于两个向量的点积（向量积）除以两个向量长度（或大小）的乘积。</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>s</mi><mi>i</mi><mi>m</mi><mo stretchy="false">(</mo><mi>A</mi><mo separator="true">,</mo><mi>B</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mi>A</mi><mo separator="true">⋅</mo><mi>B</mi></mrow><mrow><mrow><mo fence="true">∣</mo><mrow><mo fence="true">∣</mo><mi>A</mi><mo fence="true">∣</mo></mrow><mo fence="true">∣</mo></mrow><mo>×</mo><mrow><mo fence="true">∣</mo><mrow><mo fence="true">∣</mo><mi>B</mi><mo fence="true">∣</mo></mrow><mo fence="true">∣</mo></mrow></mrow></mfrac><mo>=</mo><mfrac><mrow><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><mo stretchy="false">(</mo><msub><mi>A</mi><mi>i</mi></msub><mo>×</mo><msub><mi>B</mi><mrow></mrow></msub><mi>i</mi><mo stretchy="false">)</mo></mrow><mrow><msqrt><mrow><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><msubsup><mi>A</mi><mi>i</mi><mn>2</mn></msubsup></mrow></msqrt><mo>×</mo><msqrt><mrow><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><msubsup><mi>B</mi><mi>i</mi><mn>2</mn></msubsup></mrow></msqrt></mrow></mfrac></mrow><annotation encoding="application/x-tex">sim(A,B)=\frac{A·B}{\left | \left | A \right |  \right | \times \left | \left | B \right |  \right | } =\frac{\sum_{i=1}^{n}(A_{i}\times B_{}i)}{\sqrt{\sum_{i=1}^{n}A_{i}^{2} } \times \sqrt{\sum_{i=1}^{n}B_{i}^{2} }} 
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">s</span><span class="mord mathnormal">i</span><span class="mord mathnormal">m</span><span class="mopen">(</span><span class="mord mathnormal">A</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.29633em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.36033em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="minner"><span class="mopen delimcenter" style="top:0em;">∣</span><span class="minner"><span class="mopen delimcenter" style="top:0em;">∣</span><span class="mord mathnormal">A</span><span class="mclose delimcenter" style="top:0em;">∣</span></span><span class="mclose delimcenter" style="top:0em;">∣</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">∣</span><span class="minner"><span class="mopen delimcenter" style="top:0em;">∣</span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mclose delimcenter" style="top:0em;">∣</span></span><span class="mclose delimcenter" style="top:0em;">∣</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="mpunct">⋅</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.624002em;vertical-align:-1.13em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.494002em;"><span style="top:-2.1727090000000002em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.937291em;"><span class="svg-align" style="top:-3.2em;"><span class="pstrut" style="height:3.2em;"></span><span class="mord" style="padding-left:1em;"><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.804292em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29971000000000003em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7959080000000001em;"><span style="top:-2.4231360000000004em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span style="top:-3.0448000000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.27686399999999994em;"><span></span></span></span></span></span></span></span></span><span style="top:-2.897291em;"><span class="pstrut" style="height:3.2em;"></span><span class="hide-tail" style="min-width:1.02em;height:1.28em;"><svg width='400em' height='1.28em' viewBox='0 0 400000 1296' preserveAspectRatio='xMinYMin slice'><path d='M263,681c0.7,0,18,39.7,52,119
+c34,79.3,68.167,158.7,102.5,238c34.3,79.3,51.8,119.3,52.5,120
+c340,-704.7,510.7,-1060.3,512,-1067
+l0 -0
+c4.7,-7.3,11,-11,19,-11
+H40000v40H1012.3
+s-271.3,567,-271.3,567c-38.7,80.7,-84,175,-136,283c-52,108,-89.167,185.3,-111.5,232
+c-22.3,46.7,-33.8,70.3,-34.5,71c-4.7,4.7,-12.3,7,-23,7s-12,-1,-12,-1
+s-109,-253,-109,-253c-72.7,-168,-109.3,-252,-110,-252c-10.7,8,-22,16.7,-34,26
+c-22,17.3,-33.3,26,-34,26s-26,-26,-26,-26s76,-59,76,-59s76,-60,76,-60z
+M1001 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.302709em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.937291em;"><span class="svg-align" style="top:-3.2em;"><span class="pstrut" style="height:3.2em;"></span><span class="mord" style="padding-left:1em;"><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.804292em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29971000000000003em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7959080000000001em;"><span style="top:-2.4231360000000004em;margin-left:-0.05017em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span style="top:-3.0448000000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.27686399999999994em;"><span></span></span></span></span></span></span></span></span><span style="top:-2.897291em;"><span class="pstrut" style="height:3.2em;"></span><span class="hide-tail" style="min-width:1.02em;height:1.28em;"><svg width='400em' height='1.28em' viewBox='0 0 400000 1296' preserveAspectRatio='xMinYMin slice'><path d='M263,681c0.7,0,18,39.7,52,119
+c34,79.3,68.167,158.7,102.5,238c34.3,79.3,51.8,119.3,52.5,120
+c340,-704.7,510.7,-1060.3,512,-1067
+l0 -0
+c4.7,-7.3,11,-11,19,-11
+H40000v40H1012.3
+s-271.3,567,-271.3,567c-38.7,80.7,-84,175,-136,283c-52,108,-89.167,185.3,-111.5,232
+c-22.3,46.7,-33.8,70.3,-34.5,71c-4.7,4.7,-12.3,7,-23,7s-12,-1,-12,-1
+s-109,-253,-109,-253c-72.7,-168,-109.3,-252,-110,-252c-10.7,8,-22,16.7,-34,26
+c-22,17.3,-33.3,26,-34,26s-26,-26,-26,-26s76,-59,76,-59s76,-60,76,-60z
+M1001 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.302709em;"><span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.6897100000000003em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.804292em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29971000000000003em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:-0.15em;"><span style="top:-1.85em;margin-left:-0.05017em;margin-right:0.05em;"><span class="pstrut" style="height:2em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathnormal">i</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.13em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mi>i</mi><mi>m</mi><mo stretchy="false">(</mo><mi>A</mi><mo separator="true">,</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">sim(A,B)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">s</span><span class="mord mathnormal">i</span><span class="mord mathnormal">m</span><span class="mopen">(</span><span class="mord mathnormal">A</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mclose">)</span></span></span></span> 是有取值范围的，在<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo>−</mo><mn>1</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[-1,1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">−</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span></span> 之间，1 是完全相似，-1 是完全不相似，余弦相似度的计算公式简单，通常只涉及向量的点积和模长的运算，因此在实际应用中计算速度较快。</p>
+<h2 id="皮尔逊相关系数"><a class="markdownIt-Anchor" href="#皮尔逊相关系数">#</a> 皮尔逊相关系数</h2>
+<p><strong>皮尔逊相关系数</strong>，也称为<strong>皮尔逊积矩相关系数</strong>，是衡量两个变量之间线性关系的强度和方向的统计量。其值范围从 - 1 到 + 1，广泛应用于统计学、数据分析、机器学习等领域，特别是在衡量变量之间的相关性时。</p>
+<p><strong>标准差：</strong></p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>S</mi><mo>=</mo><msqrt><mfrac><mrow><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><mo stretchy="false">(</mo><msub><mi>X</mi><mi>i</mi></msub><mo>−</mo><mover accent="true"><mi>X</mi><mo stretchy="true">‾</mo></mover><msup><mo stretchy="false">)</mo><mn>2</mn></msup></mrow><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow></mfrac></msqrt></mrow><annotation encoding="application/x-tex">S=\sqrt{\frac{\sum_{i=1}^{n}(X_{i}-\overline{X})^2}{N-1}}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:3.04em;vertical-align:-1.00427em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.03573em;"><span class="svg-align" style="top:-5em;"><span class="pstrut" style="height:5em;"></span><span class="mord" style="padding-left:1em;"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.5730400000000002em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.6897100000000003em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.804292em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29971000000000003em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord overline"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8833300000000001em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span></span></span><span style="top:-3.80333em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.740108em;"><span style="top:-2.9890000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7693300000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span><span style="top:-3.99573em;"><span class="pstrut" style="height:5em;"></span><span class="hide-tail" style="min-width:1.02em;height:3.08em;"><svg width='400em' height='3.08em' viewBox='0 0 400000 3240' preserveAspectRatio='xMinYMin slice'><path d='M473,2793
+c339.3,-1799.3,509.3,-2700,510,-2702 l0 -0
+c3.3,-7.3,9.3,-11,18,-11 H400000v40H1017.7
+s-90.5,478,-276.2,1466c-185.7,988,-279.5,1483,-281.5,1485c-2,6,-10,9,-24,9
+c-8,0,-12,-0.7,-12,-2c0,-1.3,-5.3,-32,-16,-92c-50.7,-293.3,-119.7,-693.3,-207,-1200
+c0,-1.3,-5.3,8.7,-16,30c-10.7,21.3,-21.3,42.7,-32,64s-16,33,-16,33s-26,-26,-26,-26
+s76,-153,76,-153s77,-151,77,-151c0.7,0.7,35.7,202,105,604c67.3,400.7,102,602.7,104,
+606zM1001 80h400000v40H1017.7z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.00427em;"><span></span></span></span></span></span></span></span></span></span></p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span></span> 是数据总量，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><mi>X</mi><mo stretchy="true">‾</mo></mover></mrow><annotation encoding="application/x-tex">\overline{X}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8833300000000001em;vertical-align:0em;"></span><span class="mord overline"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8833300000000001em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span></span></span><span style="top:-3.80333em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span></span></span></span></span></span></span> 是平均值。</p>
+<p><strong>协方差：</strong></p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>C</mi><mi>o</mi><mi>v</mi><mo stretchy="false">(</mo><mi>X</mi><mo separator="true">,</mo><mi>Y</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><mo stretchy="false">(</mo><msub><mi>X</mi><mi>i</mi></msub><mo>−</mo><mover accent="true"><mi>X</mi><mo stretchy="true">‾</mo></mover><mo stretchy="false">)</mo><mo stretchy="false">(</mo><msub><mi>Y</mi><mi>i</mi></msub><mo>−</mo><mover accent="true"><mi>Y</mi><mo stretchy="true">‾</mo></mover><mo stretchy="false">)</mo></mrow><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow></mfrac></mrow><annotation encoding="application/x-tex">Cov(X,Y)=\frac{\sum_{i=1}^{n}(X_{i}-\overline{X})(Y_{i}-\overline{Y}) }{N-1}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.3423700000000003em;vertical-align:-0.7693300000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.5730400000000002em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.6897100000000003em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.804292em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29971000000000003em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord overline"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8833300000000001em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span></span></span><span style="top:-3.80333em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span></span></span></span><span class="mclose">)</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord overline"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8833300000000001em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span></span></span><span style="top:-3.80333em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span></span></span></span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7693300000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p><strong>皮尔逊相关系数</strong></p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>ρ</mi><mo>=</mo><mfrac><mrow><mi>C</mi><mi>o</mi><mi>v</mi><mo stretchy="false">(</mo><mi>X</mi><mo separator="true">,</mo><mi>Y</mi><mo stretchy="false">)</mo></mrow><mrow><msub><mi>S</mi><mi>x</mi></msub><msub><mi>S</mi><mi>y</mi></msub></mrow></mfrac></mrow><annotation encoding="application/x-tex">\rho =\frac{Cov(X,Y)}{S_{x}S_{y}}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">ρ</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.399108em;vertical-align:-0.972108em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">y</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.972108em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi><mi>x</mi></msub></mrow><annotation encoding="application/x-tex">S_{x}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 是 X 的标准差。同样他是有取值范围的，在<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo>−</mo><mn>1</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[-1,1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">−</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span></span> 之间，1 是完全相似，-1 是完全不相似</p>
+<p>皮尔逊相关系数的计算公式相对简单，容易理解，且其值的意义非常直观，可以清楚地表示变量之间的线性关系强度和方向。 它不仅衡量了两个变量之间的协方差，还考虑了变量的标准差，因此能够归一化协方差，使得相关系数的值独立于变量的尺度。</p>
+<h1 id="应用示例"><a class="markdownIt-Anchor" href="#应用示例">#</a> 应用示例</h1>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">用户 - 商品评分表</th>
+<th style="text-align:center">用户 1001</th>
+<th style="text-align:center">用户 1002</th>
+<th style="text-align:center">用户 1003</th>
+<th style="text-align:center">用户 1004</th>
+<th style="text-align:center">用户 1005</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">商品 1</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">5</td>
+</tr>
+<tr>
+<td style="text-align:center">商品 2</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">4</td>
+</tr>
+<tr>
+<td style="text-align:center">商品 3</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">5</td>
+</tr>
+<tr>
+<td style="text-align:center">商品 4</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">3</td>
+</tr>
+</tbody>
+</table>
+<p>这个时候我们要找与用户 1003 最相似的用户，可见 1003 给出了（5，4，5，4）的评分向量，这与用户 1001 的（5，4，5，4）评分向量完全一致，用户 1003 与用户 1001 高度相似，我们还可以看到用户 1005 给出了（5，4，5，3）的评分向量，这也与用户 1003 高度相似。</p>
+<p>这些都是显然的，但是计算机怎么能知道呢？本篇文章采用<strong>皮尔逊相关系数</strong>完成协同过滤。</p>
+<h2 id="计算标准差"><a class="markdownIt-Anchor" href="#计算标准差">#</a> 计算标准差</h2>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">double</span> <span class="token function">standardDeviationCalculations</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> ratings<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token keyword">double</span> std <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>        <span class="token comment">// 标准差</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token keyword">double</span> avarage <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>    <span class="token comment">// 平均值</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token keyword">int</span> sum <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>           <span class="token comment">// 评分和</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token keyword">double</span> varianceUP <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">// 方差分子</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token keyword">double</span> variance <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">// 方差</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> ratings<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>        sum <span class="token operator">+=</span> ratings<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>    avarage <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">double</span><span class="token punctuation">)</span> sum <span class="token operator">/</span> ratings<span class="token punctuation">.</span>length<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">4</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token comment">// 方差分子</span></pre></td></tr><tr><td data-num="12"></td><td><pre>        varianceUP <span class="token operator">+=</span> <span class="token class-name">Math</span><span class="token punctuation">.</span><span class="token function">pow</span><span class="token punctuation">(</span>ratings<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">-</span> avarage<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>    variance <span class="token operator">=</span> varianceUP <span class="token operator">/</span> <span class="token punctuation">(</span>ratings<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>    std <span class="token operator">=</span> <span class="token class-name">Math</span><span class="token punctuation">.</span><span class="token function">sqrt</span><span class="token punctuation">(</span>variance<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="16"></td><td><pre>    <span class="token keyword">return</span> std<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="17"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><h2 id="计算协方差"><a class="markdownIt-Anchor" href="#计算协方差">#</a> 计算协方差</h2>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">double</span> <span class="token function">covarianceCalculation</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token class-name">X</span><span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token class-name">Y</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token keyword">double</span> covariance <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>       <span class="token comment">// 协方差</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token keyword">double</span> avarageX <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>         <span class="token comment">// 平均值 X</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token keyword">double</span> avarageY <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>         <span class="token comment">// 平均值 Y</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token class-name">X</span><span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>        avarageX <span class="token operator">+=</span> <span class="token class-name">X</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>    avarageX <span class="token operator">=</span> avarageX <span class="token operator">/</span> <span class="token class-name">X</span><span class="token punctuation">.</span>length<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token class-name">Y</span><span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>        avarageY <span class="token operator">+=</span> <span class="token class-name">Y</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>    avarageY <span class="token operator">=</span> avarageY <span class="token operator">/</span> <span class="token class-name">Y</span><span class="token punctuation">.</span>length<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token class-name">X</span><span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>        covariance <span class="token operator">+=</span> <span class="token punctuation">(</span><span class="token class-name">X</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">-</span> avarageX<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token punctuation">(</span><span class="token class-name">Y</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">-</span> avarageY<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="16"></td><td><pre>    covariance <span class="token operator">=</span> covariance <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token class-name">X</span><span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="17"></td><td><pre>    <span class="token keyword">return</span> covariance<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="18"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><h2 id="计算皮尔逊相关系数"><a class="markdownIt-Anchor" href="#计算皮尔逊相关系数">#</a> 计算皮尔逊相关系数</h2>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">double</span> <span class="token function">pearsonCorrelationCoefficient</span><span class="token punctuation">(</span><span class="token keyword">double</span> covarianceXY<span class="token punctuation">,</span> <span class="token keyword">double</span> stdX<span class="token punctuation">,</span> <span class="token keyword">double</span> stdY<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token keyword">return</span> covarianceXY <span class="token operator">/</span> <span class="token punctuation">(</span>stdX <span class="token operator">*</span> stdY<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><h2 id="调用"><a class="markdownIt-Anchor" href="#调用">#</a> 调用</h2>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SuiBianTest</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token keyword">double</span> <span class="token function">standardDeviationCalculations</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> ratings<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>        <span class="token keyword">double</span> std <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>        <span class="token comment">// 标准差</span></pre></td></tr><tr><td data-num="4"></td><td><pre>        <span class="token keyword">double</span> avarage <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>    <span class="token comment">// 平均值</span></pre></td></tr><tr><td data-num="5"></td><td><pre>        <span class="token keyword">int</span> sum <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>           <span class="token comment">// 评分和</span></pre></td></tr><tr><td data-num="6"></td><td><pre>        <span class="token keyword">double</span> varianceUP <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">// 方差分子</span></pre></td></tr><tr><td data-num="7"></td><td><pre>        <span class="token keyword">double</span> variance <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">// 方差</span></pre></td></tr><tr><td data-num="8"></td><td><pre>        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> ratings<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>            sum <span class="token operator">+=</span> ratings<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>        avarage <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">double</span><span class="token punctuation">)</span> sum <span class="token operator">/</span> ratings<span class="token punctuation">.</span>length<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">4</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token comment">// 方差分子</span></pre></td></tr><tr><td data-num="13"></td><td><pre>            varianceUP <span class="token operator">+=</span> <span class="token class-name">Math</span><span class="token punctuation">.</span><span class="token function">pow</span><span class="token punctuation">(</span>ratings<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">-</span> avarage<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>        variance <span class="token operator">=</span> varianceUP <span class="token operator">/</span> <span class="token punctuation">(</span>ratings<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="16"></td><td><pre>        std <span class="token operator">=</span> <span class="token class-name">Math</span><span class="token punctuation">.</span><span class="token function">sqrt</span><span class="token punctuation">(</span>variance<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="17"></td><td><pre>        <span class="token keyword">return</span> std<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="18"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="19"></td><td><pre></pre></td></tr><tr><td data-num="20"></td><td><pre>    <span class="token keyword">double</span> <span class="token function">covarianceCalculation</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token class-name">X</span><span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token class-name">Y</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="21"></td><td><pre>        <span class="token keyword">double</span> covariance <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>       <span class="token comment">// 协方差</span></pre></td></tr><tr><td data-num="22"></td><td><pre>        <span class="token keyword">double</span> avarageX <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>         <span class="token comment">// 平均值 X</span></pre></td></tr><tr><td data-num="23"></td><td><pre>        <span class="token keyword">double</span> avarageY <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>         <span class="token comment">// 平均值 Y</span></pre></td></tr><tr><td data-num="24"></td><td><pre>        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token class-name">X</span><span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="25"></td><td><pre>            avarageX <span class="token operator">+=</span> <span class="token class-name">X</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="26"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="27"></td><td><pre>        avarageX <span class="token operator">=</span> avarageX <span class="token operator">/</span> <span class="token class-name">X</span><span class="token punctuation">.</span>length<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="28"></td><td><pre>        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token class-name">Y</span><span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="29"></td><td><pre>            avarageY <span class="token operator">+=</span> <span class="token class-name">Y</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="30"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="31"></td><td><pre>        avarageY <span class="token operator">=</span> avarageY <span class="token operator">/</span> <span class="token class-name">Y</span><span class="token punctuation">.</span>length<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="32"></td><td><pre>        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token class-name">X</span><span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="33"></td><td><pre>            covariance <span class="token operator">+=</span> <span class="token punctuation">(</span><span class="token class-name">X</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">-</span> avarageX<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token punctuation">(</span><span class="token class-name">Y</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">-</span> avarageY<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="34"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="35"></td><td><pre>        covariance <span class="token operator">=</span> covariance <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token class-name">X</span><span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="36"></td><td><pre>        <span class="token keyword">return</span> covariance<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="37"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="38"></td><td><pre></pre></td></tr><tr><td data-num="39"></td><td><pre>    <span class="token keyword">double</span> <span class="token function">pearsonCorrelationCoefficient</span><span class="token punctuation">(</span><span class="token keyword">double</span> covarianceXY<span class="token punctuation">,</span> <span class="token keyword">double</span> stdX<span class="token punctuation">,</span> <span class="token keyword">double</span> stdY<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="40"></td><td><pre>        <span class="token keyword">return</span> covarianceXY <span class="token operator">/</span> <span class="token punctuation">(</span>stdX <span class="token operator">*</span> stdY<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="41"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="42"></td><td><pre></pre></td></tr><tr><td data-num="43"></td><td><pre>    <span class="token annotation punctuation">@Test</span></pre></td></tr><tr><td data-num="44"></td><td><pre>    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testCollaborativeFiltering</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="45"></td><td><pre>        <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span> ratings_1_5 <span class="token operator">=</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="46"></td><td><pre>                <span class="token punctuation">&#123;</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>       <span class="token comment">//1001 对商品 1、2、3、4 的评分</span></pre></td></tr><tr><td data-num="47"></td><td><pre>                <span class="token punctuation">&#123;</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>       <span class="token comment">//1002 对商品 1、2、3、4 的评分</span></pre></td></tr><tr><td data-num="48"></td><td><pre>                <span class="token punctuation">&#123;</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>       <span class="token comment">//1003 对商品 1、2、3、4 的评分</span></pre></td></tr><tr><td data-num="49"></td><td><pre>                <span class="token punctuation">&#123;</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>       <span class="token comment">//1004 对商品 1、2、3、4 的评分</span></pre></td></tr><tr><td data-num="50"></td><td><pre>                <span class="token punctuation">&#123;</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>       <span class="token comment">//1005 对商品 1、2、3、4 的评分</span></pre></td></tr><tr><td data-num="51"></td><td><pre>        <span class="token punctuation">&#125;</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="52"></td><td><pre>        <span class="token comment">//--------------------- 计算方差 -----------------</span></pre></td></tr><tr><td data-num="53"></td><td><pre>        <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Double</span><span class="token punctuation">></span></span> stdVector <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 方差向量</span></pre></td></tr><tr><td data-num="54"></td><td><pre>        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> ratings_1_5<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="55"></td><td><pre>            stdVector<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token function">standardDeviationCalculations</span><span class="token punctuation">(</span>ratings_1_5<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="56"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="57"></td><td><pre>        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"方差向量："</span> <span class="token operator">+</span> stdVector<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="58"></td><td><pre>        <span class="token comment">//---------------- 协方差计算 cov (X,Y)------------</span></pre></td></tr><tr><td data-num="59"></td><td><pre>        <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Double</span><span class="token punctuation">></span></span> covarianceVector <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 协方差向量</span></pre></td></tr><tr><td data-num="60"></td><td><pre>        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> ratings_1_5<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="61"></td><td><pre>            covarianceVector<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token function">covarianceCalculation</span><span class="token punctuation">(</span>ratings_1_5<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span> ratings_1_5<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="62"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="63"></td><td><pre>        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"协方差向量："</span> <span class="token operator">+</span> covarianceVector<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="64"></td><td><pre>        <span class="token comment">//-------------- 皮尔逊相关系数 ----------------</span></pre></td></tr><tr><td data-num="65"></td><td><pre>        <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Double</span><span class="token punctuation">></span></span> pearsonVector <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 皮尔逊相关系数向量</span></pre></td></tr><tr><td data-num="66"></td><td><pre>        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> ratings_1_5<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="67"></td><td><pre>            pearsonVector<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token function">pearsonCorrelationCoefficient</span><span class="token punctuation">(</span>covarianceVector<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">,</span> stdVector<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span> stdVector<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="68"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="69"></td><td><pre>        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"皮尔逊相关系数向量："</span> <span class="token operator">+</span> pearsonVector<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="70"></td><td><pre>        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"----------------------------"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="71"></td><td><pre>        <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Double</span><span class="token punctuation">></span></span> map <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="72"></td><td><pre>        map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"1001"</span><span class="token punctuation">,</span> pearsonVector<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="73"></td><td><pre>        map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"1002"</span><span class="token punctuation">,</span> pearsonVector<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="74"></td><td><pre><span class="token comment">//        map.put("1003", pearsonVector.get(2));</span></pre></td></tr><tr><td data-num="75"></td><td><pre>        map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"1004"</span><span class="token punctuation">,</span> pearsonVector<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="76"></td><td><pre>        map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"1005"</span><span class="token punctuation">,</span> pearsonVector<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="77"></td><td><pre>        <span class="token comment">// 使用 Stream API 获取最大的两个值及它们对应的键</span></pre></td></tr><tr><td data-num="78"></td><td><pre>        <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Map<span class="token punctuation">.</span>Entry</span><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Double</span><span class="token punctuation">></span><span class="token punctuation">></span></span> topTwoEntries <span class="token operator">=</span> map<span class="token punctuation">.</span><span class="token function">entrySet</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="79"></td><td><pre>                <span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="80"></td><td><pre>                <span class="token punctuation">.</span><span class="token function">sorted</span><span class="token punctuation">(</span><span class="token class-name">Map<span class="token punctuation">.</span>Entry</span><span class="token punctuation">.</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Double</span><span class="token punctuation">></span></span><span class="token function">comparingByValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">reversed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// 按照 value 降序排序</span></pre></td></tr><tr><td data-num="81"></td><td><pre>                <span class="token punctuation">.</span><span class="token function">limit</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token comment">// 只取前两项</span></pre></td></tr><tr><td data-num="82"></td><td><pre>                <span class="token punctuation">.</span><span class="token function">toList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="83"></td><td><pre></pre></td></tr><tr><td data-num="84"></td><td><pre>        <span class="token comment">// 输出结果</span></pre></td></tr><tr><td data-num="85"></td><td><pre>        topTwoEntries<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>entry <span class="token operator">-></span></pre></td></tr><tr><td data-num="86"></td><td><pre>                <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"最大皮尔逊相关系数之一对应的键："</span> <span class="token operator">+</span> entry<span class="token punctuation">.</span><span class="token function">getKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"，值为："</span> <span class="token operator">+</span> entry<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="87"></td><td><pre>        <span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="88"></td><td><pre></pre></td></tr><tr><td data-num="89"></td><td><pre>        <span class="token keyword">if</span> <span class="token punctuation">(</span>topTwoEntries<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="90"></td><td><pre>            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"注意：Map中的元素不足两个"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="91"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="92"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="93"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><h2 id="输出"><a class="markdownIt-Anchor" href="#输出">#</a> 输出</h2>
+<p><img data-src="../../images/CollaborativeFiltering/p2.png" alt="输出"></p>
+<h2 id="后续"><a class="markdownIt-Anchor" href="#后续">#</a> 后续</h2>
+<p>此时我们已经找到了，与用户 1003 最为相似的两个用户，分别是用户 1001——1.000 和用户 1005——0.905，这与我们之前的” 显然猜想 “相一致。</p>
+<p>然后我们就可以根据用户 1001 和用户 1005 已经购买的商品但用户 1003 没有购买的商品，将他们两个加权综合计算，为用户 1003 推荐。</p>
+<h1 id="小结"><a class="markdownIt-Anchor" href="#小结">#</a> 小结</h1>
+<p>其实，利用皮尔逊相关系数计算用户之间的相关性并不复杂，而在计算之前，我们应该怎么设计根据用户 1003 的已购买商品的评分信息，抽取与他购买的相同商品的其他用户的商品评分信息的 SQL 或者是其他信息提取方法，我想，这才是更为重要的点。</p>
+<p>这可能就是简单的 “数据清洗” 吧！哈哈哈哈哈哈哈。</p>
+
+      <div class="tags">
+          <a href="/tags/%E5%8D%8F%E5%90%8C%E8%BF%87%E6%BB%A4/" rel="tag"><i class="ic i-tag"></i> 协同过滤</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2024-12-30 13:00:52" itemprop="dateModified" datetime="2024-12-30T13:00:52+08:00">2024-12-30</time>
+  </span>
+  <span id="experience/CollaborativeFiltering/" class="item leancloud_visitors" data-flag-title="基于用户的协同过滤算法" title="阅读次数">
+      <span class="icon">
+        <i class="ic i-eye"></i>
+      </span>
+      <span class="text">阅读次数</span>
+      <span class="leancloud-visitors-count"></span>
+      <span class="text">次</span>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> 赞赏</button>
+  <p>请我喝[茶]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/myWxPay.jpg" alt="KarryLiu 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/myAliPay.jpg" alt="KarryLiu 支付宝">
+        <p>支付宝</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>KarryLiu <i class="ic i-at"><em>@</em></i>诗岸梦行舟
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="https://735690757.github.io/experience/CollaborativeFiltering/" title="基于用户的协同过滤算法">https://735690757.github.io/experience/CollaborativeFiltering/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/English/xbbEnglish/" itemprop="url" rel="prev" data-background-image="&#x2F;images&#x2F;English.jpg" title="英语笔记">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> English</span>
+  <h3>英语笔记</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E7%94%A8%E6%88%B7%E7%9A%84%E5%8D%8F%E5%90%8C%E8%BF%87%E6%BB%A4%E7%AE%97%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text"> 基于用户的协同过滤算法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E4%BB%8B%E7%BB%8D"><span class="toc-number">2.</span> <span class="toc-text"> 算法介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E7%94%A8%E6%88%B7%E9%97%B4%E7%9A%84%E7%9B%B8%E4%BC%BC%E5%BA%A6"><span class="toc-number">3.</span> <span class="toc-text"> 计算用户间的相似度</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#jaccard%E7%9B%B8%E4%BC%BC%E7%B3%BB%E6%95%B0"><span class="toc-number">3.1.</span> <span class="toc-text"> Jaccard 相似系数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%99%E5%BC%A6%E7%9B%B8%E4%BC%BC%E5%BA%A6"><span class="toc-number">3.2.</span> <span class="toc-text"> 余弦相似度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9A%AE%E5%B0%94%E9%80%8A%E7%9B%B8%E5%85%B3%E7%B3%BB%E6%95%B0"><span class="toc-number">3.3.</span> <span class="toc-text"> 皮尔逊相关系数</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E7%A4%BA%E4%BE%8B"><span class="toc-number">4.</span> <span class="toc-text"> 应用示例</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%A0%87%E5%87%86%E5%B7%AE"><span class="toc-number">4.1.</span> <span class="toc-text"> 计算标准差</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E5%8D%8F%E6%96%B9%E5%B7%AE"><span class="toc-number">4.2.</span> <span class="toc-text"> 计算协方差</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E7%9A%AE%E5%B0%94%E9%80%8A%E7%9B%B8%E5%85%B3%E7%B3%BB%E6%95%B0"><span class="toc-number">4.3.</span> <span class="toc-text"> 计算皮尔逊相关系数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B0%83%E7%94%A8"><span class="toc-number">4.4.</span> <span class="toc-text"> 调用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%87%BA"><span class="toc-number">4.5.</span> <span class="toc-text"> 输出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E7%BB%AD"><span class="toc-number">4.6.</span> <span class="toc-text"> 后续</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">5.</span> <span class="toc-text"> 小结</span></a></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+        <ul>
+          <li><a href="/experience/SSM01/" rel="bookmark" title="SSM框架整合">SSM框架整合</a></li><li class="active"><a href="/experience/CollaborativeFiltering/" rel="bookmark" title="基于用户的协同过滤算法">基于用户的协同过滤算法</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="KarryLiu"
+      data-src="/images/tx.jpg">
+  <p class="name" itemprop="name">KarryLiu</p>
+  <div class="description" itemprop="description">愿世间所有的美好都得以祝愿</div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">24</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">11</span>
+        <span class="name">分类</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">12</span>
+        <span class="name">标签</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tLzczNTY5MDc1Nw==" title="https:&#x2F;&#x2F;github.com&#x2F;735690757"><i class="ic i-github"></i></span>
+      <span class="exturl item twitter" data-url="aHR0cHM6Ly90d2l0dGVyLmNvbS92b0FMUXRkYWNCVE00RVk=" title="https:&#x2F;&#x2F;twitter.com&#x2F;voALQtdacBTM4EY"><i class="ic i-twitter"></i></span>
+      <span class="exturl item email" data-url="bWFpbHRvOjczNTY5MDc1N0BxcS5jb20=" title="mailto:735690757@qq.com"><i class="ic i-envelope"></i></span>
+      <span class="exturl item zhihu" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3Blb3BsZS9ydW8tcWlhbi15aW5n" title="https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;ruo-qian-ying"><i class="ic i-zhihu"></i></span>
+      <span class="exturl item music" data-url="aHR0cHM6Ly9tdXNpYy4xNjMuY29tLyMvdXNlci9ob21lP2lkPTM1Nzc1OTIzOA==" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;user&#x2F;home?id&#x3D;357759238"><i class="ic i-cloud-music"></i></span>
+      <span class="exturl item about" data-url="aHR0cHM6Ly9hYm91dC5tZS9rYXJyeWxpdQ==" title="https:&#x2F;&#x2F;about.me&#x2F;karryliu"><i class="ic i-address-card"></i></span>
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/about/" rel="section"><i class="ic i-user"></i>关于</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+    
+  <li class="item">
+    <a href="/music" rel="section"><i class="ic i-music"></i>橘子君-Ruxra</a>
+  </li>
+
+    
+  <li class="item">
+    <span class="exturl" data-url="aHR0cHM6Ly93d3cudHJhdmVsbGluZ3MuY24vZ28uaHRtbA=="><i class="ic i-paper-plane"></i>开往</span>
+  </li>
+
+    
+  <li class="item">
+    <a href="/daily" rel="section"><i class="ic i-magic"></i>早报</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/shortV" rel="section"><i class="ic i-star"></i>短视频</a>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>随机文章</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/DS/" title="分类于 DS">DS</a>
+</div>
+
+    <span><a href="/DSLearnNote/DSErrorProneSummary/" title="数据结构之与错题博弈">数据结构之与错题博弈</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/MongoDB/" title="分类于 MongoDB">MongoDB</a>
+</div>
+
+    <span><a href="/MongoDB/MongoDB01/" title="MongoDB的安装与初步使用（Windows平台）">MongoDB的安装与初步使用（Windows平台）</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/DS/" title="分类于 DS">DS</a>
+</div>
+
+    <span><a href="/DSLearnNote/GeneralizedLists/" title="考试中有关广义表的两个常用函数的解">考试中有关广义表的两个常用函数的解</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Principles-of-computer-composition/" title="分类于 计算机组成原理">计算机组成原理</a>
+</div>
+
+    <span><a href="/Principles-of-computer-composition/booth_algorithm/" title="booth算法">booth算法</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
+</div>
+
+    <span><a href="/Operate-system/kcsj/" title="操作系统课程设计">操作系统课程设计</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%9D%E6%9D%A5%E4%B9%8D%E5%88%B0/" title="分类于 初来乍到">初来乍到</a>
+</div>
+
+    <span><a href="/hello/" title="起点，但不止于起点！">起点，但不止于起点！</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
+</div>
+
+    <span><a href="/Operate-system/01OS/" title="操作系统知识点阶段总结">操作系统知识点阶段总结</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/MongoDB/" title="分类于 MongoDB">MongoDB</a>
+</div>
+
+    <span><a href="/MongoDB/MongoDB03/" title="MongoDB初步使用">MongoDB初步使用</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Principles-of-computer-composition/" title="分类于 计算机组成原理">计算机组成原理</a>
+</div>
+
+    <span><a href="/Principles-of-computer-composition/Connection_between_CPU_and_memory/" title="CPU与存储器的连接">CPU与存储器的连接</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Principles-of-computer-composition/" title="分类于 计算机组成原理">计算机组成原理</a>
+</div>
+
+    <span><a href="/Principles-of-computer-composition/Division_in_Computers/" title="计算机中的除法运算">计算机中的除法运算</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>最新评论</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">KarryLiu @ KarryLiu</span>
+  </div>
+  <div class="powered-by">
+    <a href="https://icp.gov.moe/?keyword=20249329" target="_blank">萌ICP备20249329号</a>
+    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  <br/><span>世界本污浊，罪与爱同歌</span>
+  <br/><i class="ic i-chart-area"></i>&nbsp;<span>121k&nbsp;字</span> &nbsp;|&nbsp;
+  <i class="ic i-coffee"></i>&nbsp;<span> 3:22</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: 'experience/CollaborativeFiltering/',
+    favicon: {
+      show: "（●´3｀●）嘿嘿嘿....",
+      hide: "(´Д｀)不看我是吧！"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: true,copy_tex: true,
+    katex: true,fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>
