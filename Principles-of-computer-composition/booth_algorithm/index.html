@@ -149,12 +149,12 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <div class="body md" itemprop="articleBody">
     
 
-    <h1 id="booth-算法"><a class="markdownIt-Anchor" href="#booth-算法">#</a> Booth 算法</h1>
+    <h1 id="booth-算法"><a class="markdownIt-Anchor" href="#booth-算法"></a> Booth 算法</h1>
 <p>这里写点什么捏？就先来点简介吧！！比较法是 Booth 夫妇先提出来的，也称 booth 算法。</p>
 <p>那么！！咱们怎么解题呢，不要担心，其实 booth 算法非常简单，不要被长长的算式所迷惑鸭！！</p>
 <p>接下来就由我来简单快速的叙述一下如何利用 booth 算法去做题！</p>
-<h1 id="准备开始"><a class="markdownIt-Anchor" href="#准备开始">#</a> 准备开始！</h1>
-<p>首先题目里一般会这样给：已知 [x] 补 = xxxxx，[y] 补 = xxxxx，利用 booth 算法求解 [x*y]。</p>
+<h1 id="准备开始"><a class="markdownIt-Anchor" href="#准备开始"></a> 准备开始！</h1>
+<p>首先题目里一般会这样给：已知[x]补=xxxxx，[y]补=xxxxx，利用 booth 算法求解[x*y]。</p>
 <p>booth 算法的符号位是<strong>成双成对</strong>的，和你不一样，因为你还没有成双成对哈哈哈哈哈哈（不是）</p>
 <p>另外，我们还需要额外记住的<strong>四个固定形态</strong>：</p>
 <table>
@@ -171,11 +171,11 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 </tr>
 <tr>
 <td style="text-align:center">01</td>
-<td style="text-align:center">+[x] 补 后 右移一位</td>
+<td style="text-align:center">+[x]补 后 右移一位</td>
 </tr>
 <tr>
 <td style="text-align:center">10</td>
-<td style="text-align:center">+[-x] 补后 右移一位</td>
+<td style="text-align:center">+[-x]补后 右移一位</td>
 </tr>
 <tr>
 <td style="text-align:center">11</td>
@@ -183,18 +183,18 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 </tr>
 </tbody>
 </table>
-<h1 id="例题一"><a class="markdownIt-Anchor" href="#例题一">#</a> 例题一</h1>
-<p>已知 [x] 补 = 0.0101，[y] 补 = 1.0101，利用 booth 算法求解 [x*y]</p>
-<p>做题前我们需要做一些准备，首先我们写出双符号位形态的 [x] 补、[-x] 补以及 [y] 补（无需双符号）</p>
+<h1 id="例题一"><a class="markdownIt-Anchor" href="#例题一"></a> 例题一</h1>
+<p>已知[x]补=0.0101，[y]补=1.0101，利用 booth 算法求解[x*y]</p>
+<p>做题前我们需要做一些准备，首先我们写出双符号位形态的[x]补、[-x]补以及[y]补（无需双符号）</p>
 <ul>
 <li>
-<p>[x] 补 = 00.0101</p>
+<p>[x]补=00.0101</p>
 </li>
 <li>
-<p>[-x] 补 = 11.1011</p>
+<p>[-x]补=11.1011</p>
 </li>
 <li>
-<p>[y] 补 = 1.0101</p>
+<p>[y]补=1.0101</p>
 </li>
 </ul>
 <p>然后列出如下表格：</p>
@@ -216,7 +216,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 </table>
 <p>我先写到这，如果有想先试试的小伙伴可以先按照自己的思路去写，还没记起来的的小伙伴们可以继续往下看，一会我还会写出两道例题供大家去练习。</p>
 <p><strong>解答开始！</strong></p>
-<p>辅助位置默认为 0，乘数就是 [y] 补 = 11.0101，部分积初始值也为 0.</p>
+<p>辅助位置默认为 0，乘数就是[y]补=11.0101，部分积初始值也为 0.</p>
 <table>
 <thead>
 <tr>
@@ -236,7 +236,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <td>一次判断</td>
 </tr>
 <tr>
-<td style="text-align:right"><strong>10</strong> 还记得加什么嘛？没错就是加 [-x] 补 +</td>
+<td style="text-align:right"><strong>10</strong>还记得加什么嘛？没错就是加[-x]补 +</td>
 <td style="text-align:center">11 1011</td>
 <td style="text-align:center"></td>
 <td style="text-align:center"></td>
@@ -257,7 +257,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <td>二次判断</td>
 </tr>
 <tr>
-<td style="text-align:right"><strong>01</strong> 还记得加什么嘛？没错就是加 [x] 补 +</td>
+<td style="text-align:right"><strong>01</strong>还记得加什么嘛？没错就是加[x]补 +</td>
 <td style="text-align:center">00 0101</td>
 <td style="text-align:center"></td>
 <td style="text-align:center"></td>
@@ -278,7 +278,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <td>三次判断</td>
 </tr>
 <tr>
-<td style="text-align:right"><strong>10</strong> 还记得加什么嘛？没错就是加 [-x] 补 +</td>
+<td style="text-align:right"><strong>10</strong>还记得加什么嘛？没错就是加[-x]补 +</td>
 <td style="text-align:center">11 1011</td>
 <td style="text-align:center"></td>
 <td style="text-align:center"></td>
@@ -299,7 +299,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <td>四次判断</td>
 </tr>
 <tr>
-<td style="text-align:right"><strong>01</strong> 还记得加什么嘛？没错就是加 [x] 补 +</td>
+<td style="text-align:right"><strong>01</strong>还记得加什么嘛？没错就是加[x]补 +</td>
 <td style="text-align:center">00 0101</td>
 <td style="text-align:center"></td>
 <td style="text-align:center"></td>
@@ -320,7 +320,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <td>五次判断</td>
 </tr>
 <tr>
-<td style="text-align:right"><strong>10</strong> 还记得加什么嘛？没错就是加 [-x] 补 +</td>
+<td style="text-align:right"><strong>10</strong>还记得加什么嘛？没错就是加[-x]补 +</td>
 <td style="text-align:center">11 1011</td>
 <td style="text-align:center"></td>
 <td style="text-align:center"></td>
@@ -337,15 +337,15 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 </table>
 <p>OK 兄弟们，小数点后有四位，那么我们需要进行五次判断，现在已经完成计算过程了，答案已经呼之欲出了！！</p>
 <p><strong>[x*y] = 1.1100 1001</strong>（如果要双符号为就这样去写：[x*y] = 11.1100 1001）</p>
-<p>总结一下，辅助位配合乘数最后一位作判断操作，00 和 11 只需右移就好，而 01 要 +[x] 补，11 要 +[-x] 补，这样我们就能得到最终的结果了。</p>
+<p>总结一下，辅助位配合乘数最后一位作判断操作，00 和 11 只需右移就好，而 01 要+[x]补，11 要+[-x]补，这样我们就能得到最终的结果了。</p>
 <p>接下来再来一道爽题！！！</p>
-<h1 id="例题二"><a class="markdownIt-Anchor" href="#例题二">#</a> 例题二</h1>
-<p>已知 [x] 补 = 1.0101，[y] 补 = 1.0011，利用 booth 算法求解 [x*y]</p>
+<h1 id="例题二"><a class="markdownIt-Anchor" href="#例题二"></a> 例题二</h1>
+<p>已知[x]补=1.0101，[y]补=1.0011，利用 booth 算法求解[x*y]</p>
 <p>老规矩：</p>
 <ul>
-<li>[x] 补 = 11.0101</li>
-<li>[-x] 补 = 00.1011</li>
-<li>[y] 补 = 1.0011</li>
+<li>[x]补=11.0101</li>
+<li>[-x]补=00.1011</li>
+<li>[y]补=1.0011</li>
 </ul>
 <p>列表：</p>
 <table>
@@ -441,9 +441,9 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <p><strong>第五次判断后无需移动</strong></p>
 <p>答案：0.1000 1111</p>
 <p>怎么样，是不是非常爽，在五次判断中出现了两次数字相同的情况，这时候我们只需要进行右移，无需进行计算。</p>
-<p>最后我在给大家一道练习题，自己练习一下叭～～～</p>
-<h1 id="练习"><a class="markdownIt-Anchor" href="#练习">#</a> 练习</h1>
-<p>已知 [x] 补 = 0.1101，[y] 补 = 0.1011，利用 booth 算法求解 [x*y]</p>
+<p>最后我在给大家一道练习题，自己练习一下叭~~~</p>
+<h1 id="练习"><a class="markdownIt-Anchor" href="#练习"></a> 练习</h1>
+<p>已知[x]补=0.1101，[y]补=0.1011，利用 booth 算法求解[x*y]</p>
 <table>
 <thead>
 <tr>
@@ -470,7 +470,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 </tr>
 </tbody>
 </table>
-<h1 id="鸣谢"><a class="markdownIt-Anchor" href="#鸣谢">#</a> 鸣谢</h1>
+<h1 id="鸣谢"><a class="markdownIt-Anchor" href="#鸣谢"></a> 鸣谢</h1>
 <p>感谢 B 站 up 主制作的视频，真的非常不错</p>
 
       <div class="tags">
@@ -710,80 +710,10 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
-</div>
-
-    <span><a href="/Operate-system/kcsj/" title="操作系统课程设计">操作系统课程设计</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
 <a href="/categories/experience/" title="分类于 开发经验">开发经验</a>
 </div>
 
-    <span><a href="/experience/SSM01/" title="SSM框架整合">SSM框架整合</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
-</div>
-
-    <span><a href="/Operate-system/02OS/" title="进程与线程">进程与线程</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/DS/" title="分类于 DS">DS</a>
-</div>
-
-    <span><a href="/DSLearnNote/DSErrorProneSummary/" title="数据结构之与错题博弈">数据结构之与错题博弈</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/experience/" title="分类于 开发经验">开发经验</a>
-</div>
-
-    <span><a href="/experience/MD5CalculationTimePractice/" title="MD5计算时间">MD5计算时间</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/DS/" title="分类于 DS">DS</a>
-</div>
-
-    <span><a href="/DSLearnNote/codeTM/" title="数据结构代码题速记">数据结构代码题速记</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Principles-of-computer-composition/" title="分类于 计算机组成原理">计算机组成原理</a>
-</div>
-
-    <span><a href="/Principles-of-computer-composition/booth_algorithm/" title="booth算法">booth算法</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%9D%E6%9D%A5%E4%B9%8D%E5%88%B0/" title="分类于 初来乍到">初来乍到</a>
-</div>
-
-    <span><a href="/hello/" title="起点，但不止于起点！">起点，但不止于起点！</a></span>
+    <span><a href="/experience/CollaborativeFiltering/" title="基于用户的协同过滤算法">基于用户的协同过滤算法</a></span>
   </li>
 
       
@@ -803,7 +733,77 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
 </div>
 
-    <span><a href="/Operate-system/os_retest/" title="计算机操作系统复试速览">计算机操作系统复试速览</a></span>
+    <span><a href="/Operate-system/01OS/" title="操作系统知识点阶段总结">操作系统知识点阶段总结</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
+</div>
+
+    <span><a href="/Operate-system/OSPVCode/" title="操作系统PV代码题速记">操作系统PV代码题速记</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/DS/" title="分类于 DS">DS</a>
+</div>
+
+    <span><a href="/DSLearnNote/codeTM/" title="数据结构代码题速记">数据结构代码题速记</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%9D%E6%9D%A5%E4%B9%8D%E5%88%B0/" title="分类于 初来乍到">初来乍到</a>
+</div>
+
+    <span><a href="/hello/" title="起点，但不止于起点！">起点，但不止于起点！</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" title="分类于 计算机网络">计算机网络</a>
+</div>
+
+    <span><a href="/network/computer_network_retest/" title="计算机网络复试速览">计算机网络复试速览</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/MongoDB/" title="分类于 MongoDB">MongoDB</a>
+</div>
+
+    <span><a href="/MongoDB/MongoDB02/" title="MongoDB初步使用">MongoDB初步使用</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Principles-of-computer-composition/" title="分类于 计算机组成原理">计算机组成原理</a>
+</div>
+
+    <span><a href="/Principles-of-computer-composition/booth_algorithm/" title="booth算法">booth算法</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/database/" title="分类于 数据库">数据库</a>
+</div>
+
+    <span><a href="/database/DataBase01/" title="DB中的范式">DB中的范式</a></span>
   </li>
 
   </ul>
@@ -828,8 +828,8 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
     <a href="https://icp.gov.moe/?keyword=20249329" target="_blank">萌ICP备20249329号</a>
     基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
   <br/><span>世界本污浊，罪与爱同歌</span>
-  <br/><i class="ic i-chart-area"></i>&nbsp;<span>135k&nbsp;字</span> &nbsp;|&nbsp;
-  <i class="ic i-coffee"></i>&nbsp;<span> 3:45</span>
+  <br/><i class="ic i-chart-area"></i>&nbsp;<span>144k&nbsp;字</span> &nbsp;|&nbsp;
+  <i class="ic i-coffee"></i>&nbsp;<span> 4:01</span>
   </div>
 </div>
 

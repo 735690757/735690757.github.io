@@ -149,13 +149,108 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <div class="body md" itemprop="articleBody">
     
 
-    <h1 id="操作系统pv代码题速记"><a class="markdownIt-Anchor" href="#操作系统pv代码题速记">#</a> 操作系统 PV 代码题速记</h1>
-<p>进程 P 向 m 个进程 Q1、Q2、Q3…Qm 发送消息，进程 P 发消息到缓冲区，只有所有的 Q 进程都接收到消息后，进程 P 才能继续向缓冲区放消息，请写出 PV 操作逻辑。</p>
-<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre>semaphore mutex<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> T<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> notHave<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token comment">//mutex 是缓冲区互斥锁，T [i] 是 Qi 进程完成数组，是一个自阻塞数组</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token comment">//notHave 是缓冲区是否为空，1 就是空，初始没有信息</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token keyword">int</span> R<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token comment">//R 是一个计数器</span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token function">Process_P</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>        <span class="token function">P</span><span class="token punctuation">(</span>notHave<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>        <span class="token function">P</span><span class="token punctuation">(</span>mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>        放入缓冲区<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>m<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>            <span class="token function">P</span><span class="token punctuation">(</span>T<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>        R<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>        <span class="token function">V</span><span class="token punctuation">(</span>mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="16"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="17"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="18"></td><td><pre><span class="token function">Process_Qi</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="19"></td><td><pre>    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="20"></td><td><pre>        <span class="token function">P</span><span class="token punctuation">(</span>T<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="21"></td><td><pre>        <span class="token function">P</span><span class="token punctuation">(</span>mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="22"></td><td><pre>        取消息<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="23"></td><td><pre>        R<span class="token operator">=</span>R<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="24"></td><td><pre>        <span class="token keyword">if</span><span class="token punctuation">(</span>R<span class="token operator">==</span>m<span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="25"></td><td><pre>            <span class="token function">V</span><span class="token punctuation">(</span>notHave<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="26"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="27"></td><td><pre>        <span class="token function">V</span><span class="token punctuation">(</span>mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="28"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="29"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><h2 id="单生产者-单消费者"><a class="markdownIt-Anchor" href="#单生产者-单消费者">#</a> 单生产者 - 单消费者</h2>
-<p>一组生产者进程和一组消费者进程共享一个初始为空、大小为 n 的缓冲区：只有缓冲区没满时，生产者才能把消息放入缓冲区，否则必须等待：只有缓冲区不空时，消费者才能从中取出消息，否则必须等待。由于缓冲区是临界资源，它只允许一个生产者放入消息，或一个消费者从中取出消息。</p>
-<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre>semaphore full <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>	<span class="token comment">// 已生产</span></pre></td></tr><tr><td data-num="2"></td><td><pre>semaphore empty <span class="token operator">=</span> n<span class="token punctuation">;</span><span class="token comment">// 总可用空间</span></pre></td></tr><tr><td data-num="3"></td><td><pre>semaphore mutex <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span><span class="token comment">// 互斥锁</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token function">procuder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>        生产商品<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>        <span class="token function">P</span><span class="token punctuation">(</span>empty<span class="token punctuation">)</span><span class="token punctuation">;</span>	<span class="token comment">// 假取空间</span></pre></td></tr><tr><td data-num="8"></td><td><pre>        <span class="token function">P</span><span class="token punctuation">(</span>mutex<span class="token punctuation">)</span><span class="token punctuation">;</span>	<span class="token comment">// 加锁</span></pre></td></tr><tr><td data-num="9"></td><td><pre>        放入缓冲区<span class="token punctuation">;</span>	</pre></td></tr><tr><td data-num="10"></td><td><pre>        <span class="token function">V</span><span class="token punctuation">(</span>mutex<span class="token punctuation">)</span><span class="token punctuation">;</span>	<span class="token comment">// 解锁</span></pre></td></tr><tr><td data-num="11"></td><td><pre>        <span class="token function">V</span><span class="token punctuation">(</span>full<span class="token punctuation">)</span><span class="token punctuation">;</span>	<span class="token comment">// 告知以生产</span></pre></td></tr><tr><td data-num="12"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="13"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="14"></td><td><pre><span class="token function">consumer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="16"></td><td><pre>        <span class="token function">P</span><span class="token punctuation">(</span>full<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="17"></td><td><pre>        <span class="token function">P</span><span class="token punctuation">(</span>mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="18"></td><td><pre>        从缓冲区取<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="19"></td><td><pre>        <span class="token function">V</span><span class="token punctuation">(</span>mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="20"></td><td><pre>        <span class="token function">V</span><span class="token punctuation">(</span>empty<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="21"></td><td><pre>        消费商品<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="22"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="23"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><h2 id="多生产者-多消费者"><a class="markdownIt-Anchor" href="#多生产者-多消费者">#</a> 多生产者 - 多消费者</h2>
-<p>桌子上有一个盘子，每次只能向其中放入一个水果；爸爸专向盘子中放革果，妈妈专向盘子中放橘子；儿子专等吃盘子中的橘子，女儿专等吃盘子中的革果，只有盘子为空时，爸爸或妈妈才可向盘子中放一个水果，仅当盘子中有自己需要的水果时，儿子或女儿可以从盘子中取出。</p>
-<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre>semaphore mutex <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>	<span class="token comment">// 盘子锁</span></pre></td></tr><tr><td data-num="2"></td><td><pre>semaphore apple <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>semaphore orange <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token function">dad</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>        准备苹果<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>        <span class="token function">P</span><span class="token punctuation">(</span>mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>        放苹果<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>        <span class="token function">V</span><span class="token punctuation">(</span>apple<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="12"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="13"></td><td><pre></pre></td></tr><tr><td data-num="14"></td><td><pre><span class="token function">mom</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="16"></td><td><pre>        准备橘子<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="17"></td><td><pre>        <span class="token function">P</span><span class="token punctuation">(</span>mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="18"></td><td><pre>        放橘子<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="19"></td><td><pre>        <span class="token function">V</span><span class="token punctuation">(</span>orange<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="20"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="21"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="22"></td><td><pre></pre></td></tr><tr><td data-num="23"></td><td><pre><span class="token function">son</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="24"></td><td><pre>    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="25"></td><td><pre>        <span class="token function">P</span><span class="token punctuation">(</span>orange<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="26"></td><td><pre>        拿苹果<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="27"></td><td><pre>        <span class="token function">V</span><span class="token punctuation">(</span>mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="28"></td><td><pre>        吃苹果<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="29"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="30"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="31"></td><td><pre></pre></td></tr><tr><td data-num="32"></td><td><pre><span class="token function">daughter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="33"></td><td><pre>    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="34"></td><td><pre>        <span class="token function">P</span><span class="token punctuation">(</span>apple<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="35"></td><td><pre>        拿苹果<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="36"></td><td><pre>        <span class="token function">V</span><span class="token punctuation">(</span>mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="37"></td><td><pre>        吃苹果<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="38"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="39"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><h2 id="读者写者问题读优先"><a class="markdownIt-Anchor" href="#读者写者问题读优先">#</a> 读者写者问题（读优先）</h2>
+    <h1 id="操作系统pv代码题速记"><a class="markdownIt-Anchor" href="#操作系统pv代码题速记"></a> 操作系统PV代码题速记</h1>
+<p>进程P向m个进程Q1、Q2、Q3…Qm发送消息，进程P发消息到缓冲区，只有所有的Q进程都接收到消息后，进程P才能继续向缓冲区放消息，请写出PV操作逻辑。</p>
+<pre class="highlight"><code class="cpp">semaphore mutex=<span class="hljs-number">1</span>, T[i]=<span class="hljs-number">0</span>, notHave=<span class="hljs-number">1</span>;
+<span class="hljs-comment">//mutex是缓冲区互斥锁，T[i]是Qi进程完成数组，是一个自阻塞数组</span>
+<span class="hljs-comment">//notHave是缓冲区是否为空，1就是空，初始没有信息</span>
+<span class="hljs-type">int</span> R=<span class="hljs-number">0</span>;
+<span class="hljs-comment">//R是一个计数器</span>
+<span class="hljs-built_in">Process_P</span>()&#123;
+    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;
+        <span class="hljs-built_in">P</span>(notHave);
+        <span class="hljs-built_in">P</span>(mutex);
+        放入缓冲区;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=m;i++)&#123;
+            <span class="hljs-built_in">P</span>(T[i]);
+        &#125;
+        R=<span class="hljs-number">0</span>;
+        <span class="hljs-built_in">V</span>(mutex);
+    &#125;
+&#125;
+<span class="hljs-built_in">Process_Qi</span>()&#123;
+    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;
+        <span class="hljs-built_in">P</span>(T[i]);
+        <span class="hljs-built_in">P</span>(mutex);
+        取消息;
+        R=R+<span class="hljs-number">1</span>;
+        <span class="hljs-keyword">if</span>(R==m)&#123;
+            <span class="hljs-built_in">V</span>(notHave);
+        &#125;
+        <span class="hljs-built_in">V</span>(mutex);
+    &#125;
+&#125;
+</code></pre>
+<h2 id="单生产者-单消费者"><a class="markdownIt-Anchor" href="#单生产者-单消费者"></a> 单生产者-单消费者</h2>
+<p>一组生产者进程和一组消费者进程共享一个初始为空、大小为n的缓冲区:只有缓冲区没满时，生产者才能把消息放入缓冲区，否则必须等待:只有缓冲区不空时，消费者才能从中取出消息，否则必须等待。由于缓冲区是临界资源，它只允许一个生产者放入消息，或一个消费者从中取出消息。</p>
+<pre class="highlight"><code class="cpp">semaphore full = <span class="hljs-number">0</span>;	<span class="hljs-comment">//已生产</span>
+semaphore empty = n;<span class="hljs-comment">//总可用空间</span>
+semaphore mutex = <span class="hljs-number">1</span>;<span class="hljs-comment">//互斥锁</span>
+<span class="hljs-built_in">procuder</span>()&#123;
+    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;
+        生产商品;
+        <span class="hljs-built_in">P</span>(empty);	<span class="hljs-comment">//假取空间</span>
+        <span class="hljs-built_in">P</span>(mutex);	<span class="hljs-comment">//加锁</span>
+        放入缓冲区;	
+        <span class="hljs-built_in">V</span>(mutex);	<span class="hljs-comment">//解锁</span>
+        <span class="hljs-built_in">V</span>(full);	<span class="hljs-comment">//告知以生产</span>
+    &#125;
+&#125;
+<span class="hljs-built_in">consumer</span>()&#123;
+    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;
+        <span class="hljs-built_in">P</span>(full);
+        <span class="hljs-built_in">P</span>(mutex);
+        从缓冲区取;
+        <span class="hljs-built_in">V</span>(mutex);
+        <span class="hljs-built_in">V</span>(empty);
+        消费商品;
+    &#125;
+&#125;
+</code></pre>
+<h2 id="多生产者-多消费者"><a class="markdownIt-Anchor" href="#多生产者-多消费者"></a> 多生产者-多消费者</h2>
+<p>桌子上有一个盘子，每次只能向其中放入一个水果;爸爸专向盘子中放革果，妈妈专向盘子中放橘子;儿子专等吃盘子中的橘子，女儿专等吃盘子中的革果，只有盘子为空时，爸爸或妈妈才可向盘子中放一个水果，仅当盘子中有自己需要的水果时，儿子或女儿可以从盘子中取出。</p>
+<pre class="highlight"><code class="cpp">semaphore mutex = <span class="hljs-number">1</span>;	<span class="hljs-comment">//盘子锁</span>
+semaphore apple = <span class="hljs-number">0</span>;
+semaphore orange = <span class="hljs-number">0</span>;
+
+<span class="hljs-built_in">dad</span>()&#123;
+    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;
+        准备苹果;
+        <span class="hljs-built_in">P</span>(mutex);
+        放苹果;
+        <span class="hljs-built_in">V</span>(apple);
+    &#125;
+&#125;
+
+<span class="hljs-built_in">mom</span>()&#123;
+    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;
+        准备橘子;
+        <span class="hljs-built_in">P</span>(mutex);
+        放橘子;
+        <span class="hljs-built_in">V</span>(orange);
+    &#125;
+&#125;
+
+<span class="hljs-built_in">son</span>()&#123;
+    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;
+        <span class="hljs-built_in">P</span>(orange);
+        拿苹果;
+        <span class="hljs-built_in">V</span>(mutex);
+        吃苹果;
+    &#125;
+&#125;
+
+<span class="hljs-built_in">daughter</span>()&#123;
+    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;
+        <span class="hljs-built_in">P</span>(apple);
+        拿苹果;
+        <span class="hljs-built_in">V</span>(mutex);
+        吃苹果;
+    &#125;
+&#125;
+
+</code></pre>
+<h2 id="读者写者问题读优先"><a class="markdownIt-Anchor" href="#读者写者问题读优先"></a> 读者写者问题（读优先）</h2>
 <p>有读者和写者两组并发进程，共享一个文件，当两个或以上的读进程同时访问共享数据时不会产生副作用。但若某个写进程和其他进程（读进程或写进程）同时访问共享数据时则可能导致数据不一致的错误。</p>
 <p>因此要求:</p>
 <ol>
@@ -164,64 +259,474 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <li>任一写者在完成写操作之前不允许其他读者或写者工作。</li>
 <li>写者执行写操作前，应让已有的读者和写者全部退出。</li>
 </ol>
-<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre>semaphore rw <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>	<span class="token comment">//r-w 读者在读时，不容许其他写者加入。写者在写时，不容许其他读者写者加入。</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">int</span> count <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>		<span class="token comment">// 记录已加入的读者的数量，如果不为 0，那么其中必有读者，那么其他读者随便加入。</span></pre></td></tr><tr><td data-num="3"></td><td><pre>semaphore count_mutex <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token function">writer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>        <span class="token function">P</span><span class="token punctuation">(</span>rw<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>        写文件<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>        <span class="token function">V</span><span class="token punctuation">(</span>rw<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="10"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="11"></td><td><pre></pre></td></tr><tr><td data-num="12"></td><td><pre><span class="token function">reader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>        <span class="token function">P</span><span class="token punctuation">(</span>count_mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>        <span class="token keyword">if</span><span class="token punctuation">(</span>count <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>	<span class="token comment">// 如果不为 0，那么其中必有读者，那么其他读者随便加入。</span></pre></td></tr><tr><td data-num="16"></td><td><pre>            <span class="token function">P</span><span class="token punctuation">(</span>rw<span class="token punctuation">)</span><span class="token punctuation">;</span>	<span class="token comment">// 读者为排除其他写者</span></pre></td></tr><tr><td data-num="17"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="18"></td><td><pre>        count<span class="token operator">++</span><span class="token punctuation">;</span>	<span class="token comment">// 在线加 1</span></pre></td></tr><tr><td data-num="19"></td><td><pre>        <span class="token function">V</span><span class="token punctuation">(</span>count_mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="20"></td><td><pre>        读文件<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="21"></td><td><pre>        <span class="token function">P</span><span class="token punctuation">(</span>count_mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="22"></td><td><pre>        count<span class="token operator">--</span><span class="token punctuation">;</span>	<span class="token comment">// 在线减 1</span></pre></td></tr><tr><td data-num="23"></td><td><pre>        <span class="token keyword">if</span><span class="token punctuation">(</span>count <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="24"></td><td><pre>            <span class="token function">V</span><span class="token punctuation">(</span>rw<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="25"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="26"></td><td><pre>        <span class="token function">V</span><span class="token punctuation">(</span>count_mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="27"></td><td><pre>        </pre></td></tr><tr><td data-num="28"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="29"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>有可能造成写饥饿</p>
-<h2 id="读者写者问题写优先"><a class="markdownIt-Anchor" href="#读者写者问题写优先">#</a> 读者写者问题（写优先）</h2>
-<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre>semaphore rw <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">int</span> count <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>semaphore w <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>	<span class="token comment">// 写进程霸占</span></pre></td></tr><tr><td data-num="4"></td><td><pre></pre></td></tr><tr><td data-num="5"></td><td><pre>semaphore count_mutex <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token function">writer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>        <span class="token function">P</span><span class="token punctuation">(</span>w<span class="token punctuation">)</span><span class="token punctuation">;</span>	<span class="token comment">// 写进程启用霸占</span></pre></td></tr><tr><td data-num="9"></td><td><pre>        <span class="token function">P</span><span class="token punctuation">(</span>rw<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>        写文件<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>        <span class="token function">V</span><span class="token punctuation">(</span>rw<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>        <span class="token function">V</span><span class="token punctuation">(</span>w<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="14"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="15"></td><td><pre></pre></td></tr><tr><td data-num="16"></td><td><pre><span class="token function">reader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="17"></td><td><pre>    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="18"></td><td><pre>        <span class="token function">P</span><span class="token punctuation">(</span>w<span class="token punctuation">)</span><span class="token punctuation">;</span>	<span class="token comment">// 写进程阻碍读进程进入</span></pre></td></tr><tr><td data-num="19"></td><td><pre>        <span class="token function">P</span><span class="token punctuation">(</span>count_mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="20"></td><td><pre>        <span class="token keyword">if</span><span class="token punctuation">(</span>count <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="21"></td><td><pre>            <span class="token function">P</span><span class="token punctuation">(</span>rw<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="22"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="23"></td><td><pre>        count<span class="token operator">++</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="24"></td><td><pre>        <span class="token function">V</span><span class="token punctuation">(</span>count_mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="25"></td><td><pre>        <span class="token function">V</span><span class="token punctuation">(</span>w<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="26"></td><td><pre>        读文件<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="27"></td><td><pre>        <span class="token function">P</span><span class="token punctuation">(</span>count_mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="28"></td><td><pre>        count<span class="token operator">--</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="29"></td><td><pre>        <span class="token keyword">if</span><span class="token punctuation">(</span>count <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="30"></td><td><pre>            <span class="token function">V</span><span class="token punctuation">(</span>rw<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="31"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="32"></td><td><pre>        <span class="token function">V</span><span class="token punctuation">(</span>count_mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="33"></td><td><pre>        </pre></td></tr><tr><td data-num="34"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="35"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><h2 id="吸烟者问题"><a class="markdownIt-Anchor" href="#吸烟者问题">#</a> 吸烟者问题</h2>
-<p>假设一个系统有三个抽烟者进程和一个供应者进程。每个抽烟者不停地卷烟并抽掉它，但要卷起并抽掉一支烟，抽烟者需要有三种材料：烟草、纸和胶水。三个抽烟者中，第一个拥有烟草，第二个拥有纸，第三个拥有胶水。供应者进程无限地提供三种材料，供应者每次将两种材料放到桌子上，拥有剩下那种材料的抽烟者卷一根烟并抽掉它，并给供应者一个信号告诉已完成，此时供应者就会将另外两种材料放到桌上，如此重复 (让三个抽烟者轮流地抽烟)。</p>
-<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre>semaphore offer1 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>semaphore offer2 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>semaphore offer3 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>semaphore isFinish <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token function">provider</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>        <span class="token function">P</span><span class="token punctuation">(</span>isFinish<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    	<span class="token keyword">if</span><span class="token punctuation">(</span>i<span class="token operator">%</span><span class="token number">3</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>        	<span class="token function">V</span><span class="token punctuation">(</span>offer1<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>    	<span class="token punctuation">&#125;</span><span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>i<span class="token operator">%</span><span class="token number">3</span> <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>        	<span class="token function">V</span><span class="token punctuation">(</span>offer2<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>    	<span class="token punctuation">&#125;</span><span class="token keyword">else</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>        	<span class="token function">V</span><span class="token punctuation">(</span>offer3<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>    	<span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="16"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="17"></td><td><pre>    </pre></td></tr><tr><td data-num="18"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="19"></td><td><pre></pre></td></tr><tr><td data-num="20"></td><td><pre><span class="token function">somker1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="21"></td><td><pre>    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="22"></td><td><pre>        <span class="token function">P</span><span class="token punctuation">(</span>offer1<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="23"></td><td><pre>    	制作香烟<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="24"></td><td><pre>    	吸烟<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="25"></td><td><pre>        <span class="token function">V</span><span class="token punctuation">(</span>isFinish<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="26"></td><td><pre>    <span class="token punctuation">&#125;</span> </pre></td></tr><tr><td data-num="27"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="28"></td><td><pre></pre></td></tr><tr><td data-num="29"></td><td><pre><span class="token function">somker2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="30"></td><td><pre>    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="31"></td><td><pre>        <span class="token function">P</span><span class="token punctuation">(</span>offer2<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="32"></td><td><pre>    	制作香烟<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="33"></td><td><pre>    	吸烟<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="34"></td><td><pre>        <span class="token function">V</span><span class="token punctuation">(</span>isFinish<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="35"></td><td><pre>    <span class="token punctuation">&#125;</span> </pre></td></tr><tr><td data-num="36"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="37"></td><td><pre></pre></td></tr><tr><td data-num="38"></td><td><pre><span class="token function">somker3</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="39"></td><td><pre>    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="40"></td><td><pre>        <span class="token function">P</span><span class="token punctuation">(</span>offer3<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="41"></td><td><pre>    	制作香烟<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="42"></td><td><pre>    	吸烟<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="43"></td><td><pre>        <span class="token function">V</span><span class="token punctuation">(</span>isFinish<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="44"></td><td><pre>    <span class="token punctuation">&#125;</span> </pre></td></tr><tr><td data-num="45"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><h1 id="pv审题流程"><a class="markdownIt-Anchor" href="#pv审题流程">#</a> PV 审题流程</h1>
+<pre class="highlight"><code class="cpp">semaphore rw = <span class="hljs-number">1</span>;	<span class="hljs-comment">//r-w 读者在读时，不容许其他写者加入。写者在写时，不容许其他读者写者加入。</span>
+<span class="hljs-type">int</span> count = <span class="hljs-number">0</span>;		<span class="hljs-comment">//记录已加入的读者的数量，如果不为0，那么其中必有读者，那么其他读者随便加入。</span>
+semaphore count_mutex = <span class="hljs-number">1</span>;
+<span class="hljs-built_in">writer</span>()&#123;
+    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;
+        <span class="hljs-built_in">P</span>(rw);
+        写文件;
+        <span class="hljs-built_in">V</span>(rw);
+    &#125;
+&#125;
+
+<span class="hljs-built_in">reader</span>()&#123;
+    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;
+        <span class="hljs-built_in">P</span>(count_mutex);
+        <span class="hljs-keyword">if</span>(count == <span class="hljs-number">0</span>)&#123;	<span class="hljs-comment">//如果不为0，那么其中必有读者，那么其他读者随便加入。</span>
+            <span class="hljs-built_in">P</span>(rw);	<span class="hljs-comment">//读者为排除其他写者</span>
+        &#125;
+        count++;	<span class="hljs-comment">//在线加1</span>
+        <span class="hljs-built_in">V</span>(count_mutex);
+        读文件;
+        <span class="hljs-built_in">P</span>(count_mutex);
+        count--;	<span class="hljs-comment">//在线减1</span>
+        <span class="hljs-keyword">if</span>(count == <span class="hljs-number">0</span>)&#123;
+            <span class="hljs-built_in">V</span>(rw);
+        &#125;
+        <span class="hljs-built_in">V</span>(count_mutex);
+        
+    &#125;
+&#125;
+</code></pre>
+<p>有可能造成写饥饿</p>
+<h2 id="读者写者问题写优先"><a class="markdownIt-Anchor" href="#读者写者问题写优先"></a> 读者写者问题（写优先）</h2>
+<pre class="highlight"><code class="cpp">semaphore rw = <span class="hljs-number">1</span>;
+<span class="hljs-type">int</span> count = <span class="hljs-number">0</span>;
+semaphore w = <span class="hljs-number">1</span>;	<span class="hljs-comment">//写进程霸占</span>
+
+semaphore count_mutex = <span class="hljs-number">1</span>;
+<span class="hljs-built_in">writer</span>()&#123;
+    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;
+        <span class="hljs-built_in">P</span>(w);	<span class="hljs-comment">//写进程启用霸占</span>
+        <span class="hljs-built_in">P</span>(rw);
+        写文件;
+        <span class="hljs-built_in">V</span>(rw);
+        <span class="hljs-built_in">V</span>(w);
+    &#125;
+&#125;
+
+<span class="hljs-built_in">reader</span>()&#123;
+    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;
+        <span class="hljs-built_in">P</span>(w);	<span class="hljs-comment">//写进程阻碍读进程进入</span>
+        <span class="hljs-built_in">P</span>(count_mutex);
+        <span class="hljs-keyword">if</span>(count == <span class="hljs-number">0</span>)&#123;
+            <span class="hljs-built_in">P</span>(rw);
+        &#125;
+        count++;
+        <span class="hljs-built_in">V</span>(count_mutex);
+        <span class="hljs-built_in">V</span>(w);
+        读文件;
+        <span class="hljs-built_in">P</span>(count_mutex);
+        count--;
+        <span class="hljs-keyword">if</span>(count == <span class="hljs-number">0</span>)&#123;
+            <span class="hljs-built_in">V</span>(rw);
+        &#125;
+        <span class="hljs-built_in">V</span>(count_mutex);
+        
+    &#125;
+&#125;
+</code></pre>
+<h2 id="吸烟者问题"><a class="markdownIt-Anchor" href="#吸烟者问题"></a> 吸烟者问题</h2>
+<p>假设一个系统有三个抽烟者进程和一个供应者进程。每个抽烟者不停地卷烟并抽掉它，但要卷起并抽掉一支烟，抽烟者需要有三种材料:烟草、纸和胶水。三个抽烟者中，第一个拥有烟草，第二个拥有纸，第三个拥有胶水。供应者进程无限地提供三种材料，供应者每次将两种材料放到桌子上，拥有剩下那种材料的抽烟者卷一根烟并抽掉它，并给供应者一个信号告诉已完成，此时供应者就会将另外两种材料放到桌上，如此重复(让三个抽烟者轮流地抽烟)。</p>
+<pre class="highlight"><code class="cpp">semaphore offer1 = <span class="hljs-number">0</span>;
+semaphore offer2 = <span class="hljs-number">0</span>;
+semaphore offer3 = <span class="hljs-number">0</span>;
+semaphore isFinish = <span class="hljs-number">1</span>;
+<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;
+<span class="hljs-built_in">provider</span>()&#123;
+    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;
+        <span class="hljs-built_in">P</span>(isFinish);
+    	<span class="hljs-keyword">if</span>(i%<span class="hljs-number">3</span> == <span class="hljs-number">0</span>)&#123;
+        	<span class="hljs-built_in">V</span>(offer1);
+    	&#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(i%<span class="hljs-number">3</span> == <span class="hljs-number">1</span>)&#123;
+        	<span class="hljs-built_in">V</span>(offer2);
+    	&#125;<span class="hljs-keyword">else</span>&#123;
+        	<span class="hljs-built_in">V</span>(offer3);
+    	&#125;
+    &#125;
+    
+&#125;
+
+<span class="hljs-built_in">somker1</span>()&#123;
+    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;
+        <span class="hljs-built_in">P</span>(offer1);
+    	制作香烟;
+    	吸烟;
+        <span class="hljs-built_in">V</span>(isFinish);
+    &#125; 
+&#125;
+
+<span class="hljs-built_in">somker2</span>()&#123;
+    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;
+        <span class="hljs-built_in">P</span>(offer2);
+    	制作香烟;
+    	吸烟;
+        <span class="hljs-built_in">V</span>(isFinish);
+    &#125; 
+&#125;
+
+<span class="hljs-built_in">somker3</span>()&#123;
+    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;
+        <span class="hljs-built_in">P</span>(offer3);
+    	制作香烟;
+    	吸烟;
+        <span class="hljs-built_in">V</span>(isFinish);
+    &#125; 
+&#125;
+</code></pre>
+<h1 id="pv审题流程"><a class="markdownIt-Anchor" href="#pv审题流程"></a> PV审题流程</h1>
 <ol>
 <li>看有几个进程</li>
 <li>进程内部的步骤</li>
-<li>是否需要 while（1）</li>
-<li>哪里有 P？有 P 必有 V</li>
-<li>连续 P 是否会死锁</li>
+<li>是否需要while（1）</li>
+<li>哪里有P？有P必有V</li>
+<li>连续P是否会死锁</li>
 <li>定义信号量，写注释</li>
 </ol>
-<h1 id="题目实操"><a class="markdownIt-Anchor" href="#题目实操">#</a> 题目实操</h1>
-<h2 id="2020-统考真题"><a class="markdownIt-Anchor" href="#2020-统考真题">#</a> 2020 统考真题</h2>
-<p>【2020 统考真题】现有 5 个操作 A、B、C、D 和 E，操作 C 必须在 A 和 B 完成后执行操作 E 必须在 C 和 D 完成后执行，请使用信号量的 wait（）、signal（）操作（P、V 操作）描述上述操作之间的同步关系，并说明所用信号量及其初值。</p>
-<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre>semaphore ac <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>semaphore bc <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>semaphore ce <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>semaphore ce <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token function">A</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    执行任务<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>    <span class="token function">V</span><span class="token punctuation">(</span>ac<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="10"></td><td><pre></pre></td></tr><tr><td data-num="11"></td><td><pre><span class="token function">B</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>    执行任务<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>    <span class="token function">V</span><span class="token punctuation">(</span>bc<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="14"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="15"></td><td><pre></pre></td></tr><tr><td data-num="16"></td><td><pre><span class="token function">C</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="17"></td><td><pre>    <span class="token function">P</span><span class="token punctuation">(</span>ac<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="18"></td><td><pre>    <span class="token function">P</span><span class="token punctuation">(</span>bc<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="19"></td><td><pre>    执行任务<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="20"></td><td><pre>    <span class="token function">V</span><span class="token punctuation">(</span>ce<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="21"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="22"></td><td><pre></pre></td></tr><tr><td data-num="23"></td><td><pre><span class="token function">D</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="24"></td><td><pre>    执行任务<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="25"></td><td><pre>    <span class="token function">V</span><span class="token punctuation">(</span>de<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="26"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="27"></td><td><pre></pre></td></tr><tr><td data-num="28"></td><td><pre><span class="token function">C</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="29"></td><td><pre>    <span class="token function">P</span><span class="token punctuation">(</span>ce<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="30"></td><td><pre>    <span class="token function">P</span><span class="token punctuation">(</span>de<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="31"></td><td><pre>    执行任务<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="32"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>【2009 统考真题】三个进程 P1,P2,P3, 互斥使用一个包含 N (N&gt;0) 个单元的缓冲区。</p>
+<h1 id="题目实操"><a class="markdownIt-Anchor" href="#题目实操"></a> 题目实操</h1>
+<h2 id="2020-统考真题"><a class="markdownIt-Anchor" href="#2020-统考真题"></a> 2020 统考真题</h2>
+<p>【2020 统考真题】现有5个操作A、B、C、D和E，操作C必须在A和B完成后执行操作E必须在C和D完成后执行，请使用信号量的 wait（）、signal（）操作（P、V 操作）描述上述操作之间的同步关系，并说明所用信号量及其初值。</p>
+<pre class="highlight"><code class="cpp">semaphore ac = <span class="hljs-number">0</span>;
+semaphore bc = <span class="hljs-number">0</span>;
+semaphore ce = <span class="hljs-number">0</span>;
+semaphore ce = <span class="hljs-number">0</span>;
+
+<span class="hljs-built_in">A</span>()&#123;
+    执行任务;
+    <span class="hljs-built_in">V</span>(ac);
+&#125;
+
+<span class="hljs-built_in">B</span>()&#123;
+    执行任务;
+    <span class="hljs-built_in">V</span>(bc);
+&#125;
+
+<span class="hljs-built_in">C</span>()&#123;
+    <span class="hljs-built_in">P</span>(ac);
+    <span class="hljs-built_in">P</span>(bc);
+    执行任务;
+    <span class="hljs-built_in">V</span>(ce);
+&#125;
+
+<span class="hljs-built_in">D</span>()&#123;
+    执行任务;
+    <span class="hljs-built_in">V</span>(de);
+&#125;
+
+<span class="hljs-built_in">C</span>()&#123;
+    <span class="hljs-built_in">P</span>(ce);
+    <span class="hljs-built_in">P</span>(de);
+    执行任务;
+&#125;
+</code></pre>
+<p>【2009 统考真题】三个进程P1,P2,P3,互斥使用一个包含N(N&gt;0)个单元的缓冲区。</p>
 <ol>
-<li>P1 每次用 produce () 生成一个正整数并用 put () 送入缓冲区某一空单元；</li>
-<li>P2 每次用 getodd () 从该缓冲区中取出一个奇数并用 countodd () 统计奇数个数；</li>
-<li>P3 每次用 geteven () 从该缓冲区中取出一个偶数并用 counteven () 统计偶数个数。</li>
+<li>P1每次用 produce()生成一个正整数并用 put()送入缓冲区某一空单元;</li>
+<li>P2每次用 getodd()从该缓冲区中取出一个奇数并用 countodd()统计奇数个数;</li>
+<li>P3每次用geteven()从该缓冲区中取出一个偶数并用 counteven()统计偶数个数。</li>
 </ol>
-<p>请用信号量机制实现这三个进程的同步与互斥活动，并说明所定义的信号量的含义 (要求用伪代码描述)。</p>
-<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre>semaphore mutex <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>semaphore odd <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>semaphore even <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token function">P1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>        <span class="token keyword">int</span> num <span class="token operator">=</span> <span class="token function">produce</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>        <span class="token keyword">if</span><span class="token punctuation">(</span>num<span class="token operator">%</span><span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>            <span class="token function">P</span><span class="token punctuation">(</span>mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>            <span class="token function">put</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>            <span class="token function">V</span><span class="token punctuation">(</span>mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>            <span class="token function">V</span><span class="token punctuation">(</span>even<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>        <span class="token punctuation">&#125;</span><span class="token keyword">else</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>            <span class="token function">P</span><span class="token punctuation">(</span>mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>            <span class="token function">put</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="16"></td><td><pre>            <span class="token function">V</span><span class="token punctuation">(</span>mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="17"></td><td><pre>            <span class="token function">V</span><span class="token punctuation">(</span>odd<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="18"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="19"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="20"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="21"></td><td><pre></pre></td></tr><tr><td data-num="22"></td><td><pre><span class="token function">P2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="23"></td><td><pre>    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="24"></td><td><pre>        <span class="token function">P</span><span class="token punctuation">(</span>odd<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="25"></td><td><pre>        <span class="token function">P</span><span class="token punctuation">(</span>mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="26"></td><td><pre>        <span class="token function">getodd</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="27"></td><td><pre>        <span class="token function">V</span><span class="token punctuation">(</span>mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="28"></td><td><pre>        <span class="token function">countodd</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="29"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="30"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="31"></td><td><pre></pre></td></tr><tr><td data-num="32"></td><td><pre><span class="token function">P2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="33"></td><td><pre>    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="34"></td><td><pre>        <span class="token function">P</span><span class="token punctuation">(</span>even<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="35"></td><td><pre>        <span class="token function">P</span><span class="token punctuation">(</span>mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="36"></td><td><pre>        <span class="token function">geteven</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="37"></td><td><pre>        <span class="token function">V</span><span class="token punctuation">(</span>mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="38"></td><td><pre>        <span class="token function">counteven</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="39"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="40"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><h2 id="2011-统考真题"><a class="markdownIt-Anchor" href="#2011-统考真题">#</a> 2011 统考真题</h2>
-<p>【2011 统考真题】某银行提供 1 个服务窗口和 10 个供顾客等待的座位。顾客到达银行时若有空座位，则到取号机上领取一个号，等待叫号。取号机每次仅允许一位顾客使用。当营业员空闲时，通过叫号选取一位顾客，并为其服务。</p>
-<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre>semaphore count <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>semaphore mutex <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>semaphore server <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>semaphore full <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token function">customer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>        <span class="token function">P</span><span class="token punctuation">(</span>count<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>        <span class="token function">P</span><span class="token punctuation">(</span>mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    	从取号机取号<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>    	<span class="token function">V</span><span class="token punctuation">(</span>mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>    	<span class="token function">V</span><span class="token punctuation">(</span>full<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>    	等待叫号<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>    	<span class="token function">P</span><span class="token punctuation">(</span>server<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>    	获取服务<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="16"></td><td><pre></pre></td></tr><tr><td data-num="17"></td><td><pre>    </pre></td></tr><tr><td data-num="18"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="19"></td><td><pre><span class="token function">clerk</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="20"></td><td><pre>    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="21"></td><td><pre>        <span class="token function">P</span><span class="token punctuation">(</span>full<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="22"></td><td><pre>        叫号<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="23"></td><td><pre>        <span class="token function">V</span><span class="token punctuation">(</span>server<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="24"></td><td><pre>        服务<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="25"></td><td><pre>        <span class="token function">V</span><span class="token punctuation">(</span>count<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="26"></td><td><pre>    <span class="token punctuation">&#125;</span>    </pre></td></tr><tr><td data-num="27"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><h2 id="809-24年-真题"><a class="markdownIt-Anchor" href="#809-24年-真题">#</a> 809-24 年 真题</h2>
-<p>崂山有一景点称作上清宫，游客在上清宫游玩后可以在宫门口免费搭乘轿车游览其他景区，游览后再返回宫门口。已知风景区游览轿车总量有 M 量，游客总数为 N，约定:</p>
+<p>请用信号量机制实现这三个进程的同步与互斥活动，并说明所定义的信号量的含义(要求用伪代码描述)。</p>
+<pre class="highlight"><code class="cpp">semaphore mutex = <span class="hljs-number">1</span>;
+semaphore odd = <span class="hljs-number">0</span>;
+semaphore even = <span class="hljs-number">0</span>;
+
+<span class="hljs-built_in">P1</span>()&#123;
+    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;
+        <span class="hljs-type">int</span> num = <span class="hljs-built_in">produce</span>();
+        <span class="hljs-keyword">if</span>(num%<span class="hljs-number">2</span> == <span class="hljs-number">0</span>)&#123;
+            <span class="hljs-built_in">P</span>(mutex);
+            <span class="hljs-built_in">put</span>();
+            <span class="hljs-built_in">V</span>(mutex);
+            <span class="hljs-built_in">V</span>(even);
+        &#125;<span class="hljs-keyword">else</span>&#123;
+            <span class="hljs-built_in">P</span>(mutex);
+            <span class="hljs-built_in">put</span>();
+            <span class="hljs-built_in">V</span>(mutex);
+            <span class="hljs-built_in">V</span>(odd);
+        &#125;
+    &#125;
+&#125;
+
+<span class="hljs-built_in">P2</span>()&#123;
+    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;
+        <span class="hljs-built_in">P</span>(odd);
+        <span class="hljs-built_in">P</span>(mutex);
+        <span class="hljs-built_in">getodd</span>();
+        <span class="hljs-built_in">V</span>(mutex);
+        <span class="hljs-built_in">countodd</span>()
+    &#125;
+&#125;
+
+<span class="hljs-built_in">P2</span>()&#123;
+    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;
+        <span class="hljs-built_in">P</span>(even);
+        <span class="hljs-built_in">P</span>(mutex);
+        <span class="hljs-built_in">geteven</span>();
+        <span class="hljs-built_in">V</span>(mutex);
+        <span class="hljs-built_in">counteven</span>()
+    &#125;
+&#125;
+</code></pre>
+<h2 id="2011-统考真题"><a class="markdownIt-Anchor" href="#2011-统考真题"></a> 2011 统考真题</h2>
+<p>【2011统考真题】某银行提供1个服务窗口和10个供顾客等待的座位。顾客到达银行时若有空座位，则到取号机上领取一个号，等待叫号。取号机每次仅允许一位顾客使用。当营业员空闲时，通过叫号选取一位顾客，并为其服务。</p>
+<pre class="highlight"><code class="cpp">semaphore count = <span class="hljs-number">10</span>;
+semaphore mutex = <span class="hljs-number">1</span>;
+semaphore server = <span class="hljs-number">1</span>;
+semaphore full = <span class="hljs-number">0</span>;
+<span class="hljs-built_in">customer</span>()&#123;
+    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;
+        <span class="hljs-built_in">P</span>(count);
+        <span class="hljs-built_in">P</span>(mutex);
+    	从取号机取号;
+    	<span class="hljs-built_in">V</span>(mutex);
+    	<span class="hljs-built_in">V</span>(full);
+    	等待叫号;
+    	<span class="hljs-built_in">P</span>(server);
+    	获取服务;
+    &#125;
+
+    
+&#125;
+<span class="hljs-built_in">clerk</span>()&#123;
+    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;
+        <span class="hljs-built_in">P</span>(full);
+        叫号;
+        <span class="hljs-built_in">V</span>(server);
+        服务;
+        <span class="hljs-built_in">V</span>(count);
+    &#125;    
+&#125;
+
+</code></pre>
+<h2 id="809-24年-真题"><a class="markdownIt-Anchor" href="#809-24年-真题"></a> 809-24年 真题</h2>
+<p>崂山有一景点称作上清宫，游客在上清宫游玩后可以在宫门口免费搭乘轿车游览其他景区，游览后再返回宫门口。已知风景区游览轿车总量有M量，游客总数为N，约定:</p>
 <ol>
-<li>每辆轿车限乘一位游客；</li>
-<li>如果有空闲的轿车，应当允许想游览的游客乘坐；</li>
-<li>无空闲轿车时，游客只能排队等待；</li>
+<li>每辆轿车限乘一位游客;</li>
+<li>如果有空闲的轿车，应当允许想游览的游客乘坐;</li>
+<li>无空闲轿车时,游客只能排队等待;</li>
 <li>若没有想游览的游客，空闲的轿车也要等待。</li>
 </ol>
-<p>试利用 P、V 操作实现在上清宫门口乘车点：N 个游客进程和 M 辆轿车进程的同步操作过程。</p>
-<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre>semaphore mutex <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>semaphore car <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> 		<span class="token comment">// 空闲车辆数量</span></pre></td></tr><tr><td data-num="3"></td><td><pre>semaphore customer <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">// 等待乘车的游客数量</span></pre></td></tr><tr><td data-num="4"></td><td><pre></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token comment">//M 个车辆进程</span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token function">car</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>        等待游客<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>        <span class="token function">P</span><span class="token punctuation">(</span>customer<span class="token punctuation">)</span><span class="token punctuation">;</span>	<span class="token comment">// 等待有游客请求乘车</span></pre></td></tr><tr><td data-num="10"></td><td><pre>        <span class="token function">P</span><span class="token punctuation">(</span>mutex<span class="token punctuation">)</span><span class="token punctuation">;</span>		<span class="token comment">// 进入临界区</span></pre></td></tr><tr><td data-num="11"></td><td><pre>        <span class="token function">V</span><span class="token punctuation">(</span>car<span class="token punctuation">)</span><span class="token punctuation">;</span>			<span class="token comment">// 提供一辆空闲轿车</span></pre></td></tr><tr><td data-num="12"></td><td><pre>        <span class="token function">V</span><span class="token punctuation">(</span>mutex<span class="token punctuation">)</span><span class="token punctuation">;</span>		<span class="token comment">// 离开临界区</span></pre></td></tr><tr><td data-num="13"></td><td><pre>        接待游览<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>        释放游客<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="15"></td><td><pre></pre></td></tr><tr><td data-num="16"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="17"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="18"></td><td><pre></pre></td></tr><tr><td data-num="19"></td><td><pre><span class="token comment">//N 个游客进程</span></pre></td></tr><tr><td data-num="20"></td><td><pre><span class="token function">customer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="21"></td><td><pre>    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="22"></td><td><pre>        等待车辆<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="23"></td><td><pre>        <span class="token function">P</span><span class="token punctuation">(</span>car<span class="token punctuation">)</span><span class="token punctuation">;</span>			<span class="token comment">// 等待空闲轿车</span></pre></td></tr><tr><td data-num="24"></td><td><pre>       	<span class="token function">P</span><span class="token punctuation">(</span>mutex<span class="token punctuation">)</span><span class="token punctuation">;</span>		<span class="token comment">// 进入临界区</span></pre></td></tr><tr><td data-num="25"></td><td><pre>        <span class="token function">V</span><span class="token punctuation">(</span>customer<span class="token punctuation">)</span>		<span class="token comment">// 通知有游客请求乘车</span></pre></td></tr><tr><td data-num="26"></td><td><pre>        <span class="token function">V</span><span class="token punctuation">(</span>mutex<span class="token punctuation">)</span><span class="token punctuation">;</span>		<span class="token comment">// 离开临界区</span></pre></td></tr><tr><td data-num="27"></td><td><pre>        上车游览<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="28"></td><td><pre>        离开<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="29"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="30"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><h2 id="典例-和尚打水"><a class="markdownIt-Anchor" href="#典例-和尚打水">#</a> 典例 和尚打水</h2>
-<p>某寺庙有小和尚、老和尚若干，有一水缸，由小和尚提水入缸供老和尚饮用。水缸可容 10 桶水，水取自同一井中。水井径窄，每次只能容一个桶取水。水桶总数为 3 个。每次入缸取水仅为 1 桶水，且不可同时进行，试给出有关从缸取水、入水的算法描述。</p>
-<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre>semaphore total_empty <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>semaphore total_full <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>semaphore mutex_jing <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>semaphore mutex_gang <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>demaphore bucket <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token function">Old</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    <span class="token function">P</span><span class="token punctuation">(</span>total_full<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>    <span class="token function">P</span><span class="token punctuation">(</span>bucket<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    <span class="token function">P</span><span class="token punctuation">(</span>mutex_gang<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>    从缸里取水<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>    <span class="token function">V</span><span class="token punctuation">(</span>total_empty<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>    <span class="token function">V</span><span class="token punctuation">(</span>mutex_gang<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>	喝水<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>    <span class="token function">V</span><span class="token punctuation">(</span>bucket<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="15"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="16"></td><td><pre></pre></td></tr><tr><td data-num="17"></td><td><pre><span class="token function">Young</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="18"></td><td><pre>    <span class="token function">P</span><span class="token punctuation">(</span>total_empty<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="19"></td><td><pre>    <span class="token function">P</span><span class="token punctuation">(</span>bucket<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="20"></td><td><pre>    <span class="token function">P</span><span class="token punctuation">(</span>mutex_jing<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="21"></td><td><pre>    从水井取水<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="22"></td><td><pre>    <span class="token function">V</span><span class="token punctuation">(</span>mutex_jing<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="23"></td><td><pre>    <span class="token function">P</span><span class="token punctuation">(</span>mutex_gang<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="24"></td><td><pre>	倒进缸里<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="25"></td><td><pre>    <span class="token function">V</span><span class="token punctuation">(</span>total_full<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="26"></td><td><pre>    <span class="token function">V</span><span class="token punctuation">(</span>mutex_gang<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="27"></td><td><pre>    <span class="token function">V</span><span class="token punctuation">(</span>bucket<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="28"></td><td><pre>    </pre></td></tr><tr><td data-num="29"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><h2 id="典例-公交车售票"><a class="markdownIt-Anchor" href="#典例-公交车售票">#</a> 典例 公交车售票</h2>
+<p>试利用P、V操作实现在上清宫门口乘车点:N个游客进程和M辆轿车进程的同步操作过程。</p>
+<pre class="highlight"><code class="cpp">semaphore mutex = <span class="hljs-number">1</span>;
+semaphore car = <span class="hljs-number">0</span>; 		<span class="hljs-comment">// 空闲车辆数量</span>
+semaphore customer = <span class="hljs-number">0</span>; <span class="hljs-comment">// 等待乘车的游客数量</span>
+
+<span class="hljs-comment">//M个车辆进程</span>
+<span class="hljs-built_in">car</span>()&#123;
+    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;
+        等待游客;
+        <span class="hljs-built_in">P</span>(customer);	<span class="hljs-comment">// 等待有游客请求乘车</span>
+        <span class="hljs-built_in">P</span>(mutex);		<span class="hljs-comment">// 进入临界区</span>
+        <span class="hljs-built_in">V</span>(car);			<span class="hljs-comment">// 提供一辆空闲轿车</span>
+        <span class="hljs-built_in">V</span>(mutex);		<span class="hljs-comment">// 离开临界区</span>
+        接待游览;
+        释放游客;
+
+    &#125;
+&#125;
+
+<span class="hljs-comment">//N个游客进程</span>
+<span class="hljs-built_in">customer</span>()&#123;
+    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;
+        等待车辆;
+        <span class="hljs-built_in">P</span>(car);			<span class="hljs-comment">// 等待空闲轿车</span>
+       	<span class="hljs-built_in">P</span>(mutex);		<span class="hljs-comment">// 进入临界区</span>
+        <span class="hljs-built_in">V</span>(customer)		<span class="hljs-comment">// 通知有游客请求乘车</span>
+        <span class="hljs-built_in">V</span>(mutex);		<span class="hljs-comment">// 离开临界区</span>
+        上车游览;
+        离开;
+    &#125;
+&#125;
+
+</code></pre>
+<h2 id="典例-和尚打水"><a class="markdownIt-Anchor" href="#典例-和尚打水"></a> 典例 和尚打水</h2>
+<p>某寺庙有小和尚、老和尚若干，有一水缸，由小和尚提水入缸供老和尚饮用。水缸可容10桶水，水取自同一井中。水井径窄，每次只能容一个桶取水。水桶总数为3个。每次入缸取水仅为1桶水，且不可同时进行，试给出有关从缸取水、入水的算法描述。</p>
+<pre class="highlight"><code class="cpp">semaphore total_empty = <span class="hljs-number">10</span>;
+semaphore total_full = <span class="hljs-number">0</span>;
+semaphore mutex_jing = <span class="hljs-number">1</span>;
+semaphore mutex_gang = <span class="hljs-number">1</span>;
+demaphore bucket = <span class="hljs-number">3</span>;
+<span class="hljs-built_in">Old</span> ()&#123;
+    <span class="hljs-built_in">P</span>(total_full);
+    <span class="hljs-built_in">P</span>(bucket);
+    <span class="hljs-built_in">P</span>(mutex_gang);
+    从缸里取水;
+    <span class="hljs-built_in">V</span>(total_empty);
+    <span class="hljs-built_in">V</span>(mutex_gang);
+	喝水;
+    <span class="hljs-built_in">V</span>(bucket);
+&#125;
+
+<span class="hljs-built_in">Young</span>()&#123;
+    <span class="hljs-built_in">P</span>(total_empty);
+    <span class="hljs-built_in">P</span>(bucket)
+    <span class="hljs-built_in">P</span>(mutex_jing);
+    从水井取水;
+    <span class="hljs-built_in">V</span>(mutex_jing);
+    <span class="hljs-built_in">P</span>(mutex_gang);
+	倒进缸里;
+    <span class="hljs-built_in">V</span>(total_full);
+    <span class="hljs-built_in">V</span>(mutex_gang);
+    <span class="hljs-built_in">V</span>(bucket);
+    
+&#125;
+</code></pre>
+<h2 id="典例-公交车售票"><a class="markdownIt-Anchor" href="#典例-公交车售票"></a> 典例 公交车售票</h2>
 <p>设公共汽车上，司机和售票员的活动分别是：</p>
 <ol>
 <li>司机的活动：启动车辆；正常行车；到站停车；</li>
 <li>售票员的活动：关车门；售票；开车门；</li>
 </ol>
 <p>请用记录型信号量机制实现上述问题的同步。</p>
-<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre>semaphore door_mutex <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>semaphore start_mutex <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token function">driver</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>        <span class="token function">P</span><span class="token punctuation">(</span>start_mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>        启动车辆<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>        正常行车<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>        到站停车<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>        <span class="token function">V</span><span class="token punctuation">(</span>door_mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="12"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="13"></td><td><pre><span class="token function">busman</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>        <span class="token function">P</span><span class="token punctuation">(</span>door_mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="16"></td><td><pre>        开车门<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="17"></td><td><pre>        售票<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="18"></td><td><pre>        关车门<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="19"></td><td><pre>        <span class="token function">V</span><span class="token punctuation">(</span>start_mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="20"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="21"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><h2 id="典例-独木桥问题"><a class="markdownIt-Anchor" href="#典例-独木桥问题">#</a> 典例 独木桥问题</h2>
-<p>请用信号量解决以下的 “过独木桥” 问题：同一方向的行人可连续过桥，当某一方向有人过桥时，另一方向的行人必须等待；当某一方向无人过桥时，另一方向的行人可以过桥。</p>
-<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre>semaphore isOK <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">int</span> toACount <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token keyword">int</span> toBCount <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>semaphore toACount_mutex <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>semaphore toBCount_mutex <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre></pre></td></tr><tr><td data-num="7"></td><td><pre></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token function">toA</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    <span class="token function">P</span><span class="token punctuation">(</span>toACount_mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>    <span class="token keyword">if</span><span class="token punctuation">(</span>toACount <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>        <span class="token function">P</span><span class="token punctuation">(</span>isOK<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>    toACount<span class="token operator">++</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>    <span class="token function">V</span><span class="token punctuation">(</span>toACount_mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>    上桥走向A<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="16"></td><td><pre>    <span class="token function">P</span><span class="token punctuation">(</span>toACount_mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="17"></td><td><pre>    toACount<span class="token operator">--</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="18"></td><td><pre>    <span class="token keyword">if</span><span class="token punctuation">(</span>toACount <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="19"></td><td><pre>        <span class="token function">V</span><span class="token punctuation">(</span>isOK<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="20"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="21"></td><td><pre>    <span class="token function">V</span><span class="token punctuation">(</span>toACount_mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="22"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="23"></td><td><pre></pre></td></tr><tr><td data-num="24"></td><td><pre><span class="token function">toB</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="25"></td><td><pre>    <span class="token function">P</span><span class="token punctuation">(</span>toBCount_mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="26"></td><td><pre>    <span class="token keyword">if</span><span class="token punctuation">(</span>toBCount <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="27"></td><td><pre>        <span class="token function">P</span><span class="token punctuation">(</span>isOK<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="28"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="29"></td><td><pre>    toBCount<span class="token operator">++</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="30"></td><td><pre>	<span class="token function">V</span><span class="token punctuation">(</span>toBCount_mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="31"></td><td><pre>    上桥走向B<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="32"></td><td><pre>    <span class="token function">P</span><span class="token punctuation">(</span>toBCount_mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="33"></td><td><pre>    toBCount<span class="token operator">--</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="34"></td><td><pre>    <span class="token keyword">if</span><span class="token punctuation">(</span>toBCount <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="35"></td><td><pre>        <span class="token function">V</span><span class="token punctuation">(</span>isOK<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="36"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="37"></td><td><pre>	<span class="token function">V</span><span class="token punctuation">(</span>toBCount_mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="38"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><h2 id="典例-阅览室问题"><a class="markdownIt-Anchor" href="#典例-阅览室问题">#</a> 典例 阅览室问题</h2>
-<p>有一阅览室，共有 100 个座位。为了很好利用它，读者进入时必须先在登记表上进行登记。该表表目设有座位号和读者姓名；离开时再将其登记项摈除。试问：</p>
+<pre class="highlight"><code class="cpp">semaphore door_mutex = <span class="hljs-number">1</span>;
+semaphore start_mutex = <span class="hljs-number">0</span>;
+
+<span class="hljs-built_in">driver</span>()&#123;
+    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;
+        <span class="hljs-built_in">P</span>(start_mutex);
+        启动车辆;
+        正常行车;
+        到站停车;
+        <span class="hljs-built_in">V</span>(door_mutex);
+    &#125;
+&#125;
+<span class="hljs-built_in">busman</span>()&#123;
+    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;
+        <span class="hljs-built_in">P</span>(door_mutex);
+        开车门;
+        售票;
+        关车门;
+        <span class="hljs-built_in">V</span>(start_mutex);
+    &#125;
+&#125;
+
+</code></pre>
+<h2 id="典例-独木桥问题"><a class="markdownIt-Anchor" href="#典例-独木桥问题"></a> 典例 独木桥问题</h2>
+<p>请用信号量解决以下的“过独木桥”问题：同一方向的行人可连续过桥，当某一方向有人过桥时，另一方向的行人必须等待；当某一方向无人过桥时，另一方向的行人可以过桥。</p>
+<pre class="highlight"><code class="cpp">semaphore isOK = <span class="hljs-number">1</span>;
+<span class="hljs-type">int</span> toACount = <span class="hljs-number">0</span>;
+<span class="hljs-type">int</span> toBCount = <span class="hljs-number">0</span>;
+semaphore toACount_mutex = <span class="hljs-number">1</span>;
+semaphore toBCount_mutex = <span class="hljs-number">1</span>;
+
+
+<span class="hljs-built_in">toA</span>()&#123;
+    <span class="hljs-built_in">P</span>(toACount_mutex);
+    <span class="hljs-keyword">if</span>(toACount == <span class="hljs-number">0</span>)&#123;
+        <span class="hljs-built_in">P</span>(isOK);
+    &#125;
+    toACount++;
+    <span class="hljs-built_in">V</span>(toACount_mutex);
+    上桥走向A;
+    <span class="hljs-built_in">P</span>(toACount_mutex);
+    toACount--;
+    <span class="hljs-keyword">if</span>(toACount == <span class="hljs-number">0</span>)&#123;
+        <span class="hljs-built_in">V</span>(isOK);
+    &#125;
+    <span class="hljs-built_in">V</span>(toACount_mutex);
+&#125;
+
+<span class="hljs-built_in">toB</span>()&#123;
+    <span class="hljs-built_in">P</span>(toBCount_mutex);
+    <span class="hljs-keyword">if</span>(toBCount == <span class="hljs-number">0</span>)&#123;
+        <span class="hljs-built_in">P</span>(isOK);
+    &#125;
+    toBCount++;
+	<span class="hljs-built_in">V</span>(toBCount_mutex);
+    上桥走向B;
+    <span class="hljs-built_in">P</span>(toBCount_mutex);
+    toBCount--;
+    <span class="hljs-keyword">if</span>(toBCount == <span class="hljs-number">0</span>)&#123;
+        <span class="hljs-built_in">V</span>(isOK);
+    &#125;
+	<span class="hljs-built_in">V</span>(toBCount_mutex);
+&#125;
+
+</code></pre>
+<h2 id="典例-阅览室问题"><a class="markdownIt-Anchor" href="#典例-阅览室问题"></a> 典例 阅览室问题</h2>
+<p>有一阅览室，共有100个座位。为了很好利用它，读者进入时必须先在登记表上进行登记。该表表目设有座位号和读者姓名；离开时再将其登记项摈除。试问：</p>
 <ol>
 <li>为描述读者的动作，应设哪几个进程？它们之间的关系是什么？</li>
-<li>试用 P、V 操作描述进程之间的同步或算法。</li>
+<li>试用P、V操作描述进程之间的同步或算法。</li>
 </ol>
 <p>答：要设读者进入进程和离开进程，总计两个进程。他们是互斥关系。</p>
-<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre>semaphore seats <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>semaphore readers <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>semaphore table_mutex <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token function">getIn</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>        <span class="token function">P</span><span class="token punctuation">(</span>seats<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>        <span class="token function">P</span><span class="token punctuation">(</span>table_mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>        登记<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>        <span class="token function">V</span><span class="token punctuation">(</span>table_mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>        <span class="token function">V</span><span class="token punctuation">(</span>readers<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="13"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="14"></td><td><pre><span class="token function">getOut</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="16"></td><td><pre>        <span class="token function">P</span><span class="token punctuation">(</span>readers<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="17"></td><td><pre>        <span class="token function">P</span><span class="token punctuation">(</span>table_mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="18"></td><td><pre>        移除登记<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="19"></td><td><pre>        <span class="token function">V</span><span class="token punctuation">(</span>table_mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="20"></td><td><pre>        <span class="token function">V</span><span class="token punctuation">(</span>seats<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="21"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="22"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><h2 id="典例-考试问题"><a class="markdownIt-Anchor" href="#典例-考试问题">#</a> 典例 考试问题</h2>
-<p>《操作系统》课程的期末考试即将举行，假设把学生和监考老师都看作进程，学生有 N 人，教师 1 人。考场门口每次只能进出一个人，进考场的原则是先来先进。当 N 个学生都进入了考场后，教师才能发卷子。学生交卷后即可离开考场，而教师要等收上来全部卷子并封装卷子后才能离开考场。</p>
-<p>(1) 问共需设置几个进程？</p>
-<p>(2) 请用 P、V 操作解决上述问题中的同步和互斥关系。</p>
-<p>答：共设置 N+1 个进程，一个教师进程，N 个学生进程</p>
-<figure class="highlight cpp"><figcaption data-lang="C++"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">int</span> studentCount <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">int</span> onPageCount <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>semaphore door_mutex <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>semaphore startTest <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>semaphore endTest <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>semaphore readyToTest <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>semaphore onPageCount_mutex <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>semaphore allStudentsOK <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre></pre></td></tr><tr><td data-num="10"></td><td><pre><span class="token function">teacher</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>    <span class="token function">P</span><span class="token punctuation">(</span>door_mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>    进门<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>    <span class="token function">V</span><span class="token punctuation">(</span>door_mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>    <span class="token function">P</span><span class="token punctuation">(</span>readyToTest<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>    发卷子<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="16"></td><td><pre>    <span class="token function">V</span><span class="token punctuation">(</span>startTest<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="17"></td><td><pre>    监考<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="18"></td><td><pre>    <span class="token function">P</span><span class="token punctuation">(</span>allStudentsOK<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="19"></td><td><pre>    整理试卷<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="20"></td><td><pre>    <span class="token function">P</span><span class="token punctuation">(</span>door_mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="21"></td><td><pre>    出门<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="22"></td><td><pre>    <span class="token function">V</span><span class="token punctuation">(</span>door_mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="23"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="24"></td><td><pre></pre></td></tr><tr><td data-num="25"></td><td><pre><span class="token function">students</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="26"></td><td><pre>    <span class="token function">P</span><span class="token punctuation">(</span>door_mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="27"></td><td><pre>    进门<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="28"></td><td><pre>    studentCount<span class="token operator">++</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="29"></td><td><pre>    <span class="token keyword">if</span><span class="token punctuation">(</span>studentCont <span class="token operator">==</span> N<span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="30"></td><td><pre>        <span class="token function">V</span><span class="token punctuation">(</span>readyToTest<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="31"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="32"></td><td><pre>    <span class="token function">V</span><span class="token punctuation">(</span>door_mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="33"></td><td><pre>    <span class="token function">P</span><span class="token punctuation">(</span>startTest<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="34"></td><td><pre>    开始答题<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="35"></td><td><pre>    <span class="token function">P</span><span class="token punctuation">(</span>onPageCount_mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="36"></td><td><pre>    交卷<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="37"></td><td><pre>    onPageCount<span class="token operator">++</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="38"></td><td><pre>    <span class="token keyword">if</span><span class="token punctuation">(</span>onPageCount <span class="token operator">==</span> N<span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="39"></td><td><pre>        <span class="token function">V</span><span class="token punctuation">(</span>allStudentsOK<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="40"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="41"></td><td><pre>    <span class="token function">V</span><span class="token punctuation">(</span>onPageCount_mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="42"></td><td><pre>    <span class="token function">P</span><span class="token punctuation">(</span>door_mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="43"></td><td><pre>    出门<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="44"></td><td><pre>    studentCount<span class="token operator">--</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="45"></td><td><pre>    <span class="token function">V</span><span class="token punctuation">(</span>door_mutex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="46"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><div class="links"><div class="item" title="hunter_wyh" style="--block-color:#e9546b;"><span class="exturl image" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h1bnRlcl93eWgvYXJ0aWNsZS9kZXRhaWxzLzQ5NzY0MTc1" data-background-image="/images/404.png"></span>
+<pre class="highlight"><code class="cpp">semaphore seats = <span class="hljs-number">100</span>;
+semaphore readers = <span class="hljs-number">0</span>;
+semaphore table_mutex = <span class="hljs-number">1</span>;
+
+<span class="hljs-built_in">getIn</span>()&#123;
+    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;
+        <span class="hljs-built_in">P</span>(seats);
+        <span class="hljs-built_in">P</span>(table_mutex);
+        登记;
+        <span class="hljs-built_in">V</span>(table_mutex);
+        <span class="hljs-built_in">V</span>(readers);
+    &#125;
+&#125;
+<span class="hljs-built_in">getOut</span>()&#123;
+    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;
+        <span class="hljs-built_in">P</span>(readers);
+        <span class="hljs-built_in">P</span>(table_mutex);
+        移除登记;
+        <span class="hljs-built_in">V</span>(table_mutex);
+        <span class="hljs-built_in">V</span>(seats);
+    &#125;
+&#125;
+</code></pre>
+<h2 id="典例-考试问题"><a class="markdownIt-Anchor" href="#典例-考试问题"></a> 典例 考试问题</h2>
+<p>《操作系统》课程的期末考试即将举行，假设把学生和监考老师都看作进程，学生有N人，教师1人。考场门口每次只能进出一个人，进考场的原则是先来先进。当N个学生都进入了考场后，教师才能发卷子。学生交卷后即可离开考场，而教师要等收上来全部卷子并封装卷子后才能离开考场。</p>
+<p>(1)问共需设置几个进程?</p>
+<p>(2)请用P、V操作解决上述问题中的同步和互斥关系。</p>
+<p>答：共设置N+1个进程，一个教师进程，N个学生进程</p>
+<pre class="highlight"><code class="cpp"><span class="hljs-type">int</span> studentCount = <span class="hljs-number">0</span>;
+<span class="hljs-type">int</span> onPageCount = <span class="hljs-number">0</span>;
+semaphore door_mutex = <span class="hljs-number">1</span>;
+semaphore startTest = <span class="hljs-number">0</span>;
+semaphore endTest = <span class="hljs-number">0</span>;
+semaphore readyToTest = <span class="hljs-number">0</span>;
+semaphore onPageCount_mutex = <span class="hljs-number">1</span>;
+semaphore allStudentsOK = <span class="hljs-number">0</span>;
+
+<span class="hljs-built_in">teacher</span>()&#123;
+    <span class="hljs-built_in">P</span>(door_mutex);
+    进门;
+    <span class="hljs-built_in">V</span>(door_mutex);
+    <span class="hljs-built_in">P</span>(readyToTest);
+    发卷子;
+    <span class="hljs-built_in">V</span>(startTest);
+    监考;
+    <span class="hljs-built_in">P</span>(allStudentsOK);
+    整理试卷;
+    <span class="hljs-built_in">P</span>(door_mutex);
+    出门;
+    <span class="hljs-built_in">V</span>(door_mutex);
+&#125;
+
+<span class="hljs-built_in">students</span>()&#123;
+    <span class="hljs-built_in">P</span>(door_mutex);
+    进门;
+    studentCount++;
+    <span class="hljs-keyword">if</span>(studentCont == N)&#123;
+        <span class="hljs-built_in">V</span>(readyToTest);
+    &#125;
+    <span class="hljs-built_in">V</span>(door_mutex);
+    <span class="hljs-built_in">P</span>(startTest);
+    开始答题;
+    <span class="hljs-built_in">P</span>(onPageCount_mutex);
+    交卷;
+    onPageCount++;
+    <span class="hljs-keyword">if</span>(onPageCount == N)&#123;
+        <span class="hljs-built_in">V</span>(allStudentsOK);
+    &#125;
+    <span class="hljs-built_in">V</span>(onPageCount_mutex);
+    <span class="hljs-built_in">P</span>(door_mutex);
+    出门;
+    studentCount--;
+    <span class="hljs-built_in">V</span>(door_mutex);
+&#125;
+</code></pre>
+<div class="links"><div class="item" title="hunter_wyh" style="--block-color:#e9546b;"><span class="exturl image" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h1bnRlcl93eWgvYXJ0aWNsZS9kZXRhaWxzLzQ5NzY0MTc1" data-background-image="/images/404.png"></span>
           <div class="info">
           <span class="exturl title" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h1bnRlcl93eWgvYXJ0aWNsZS9kZXRhaWxzLzQ5NzY0MTc1">hunter_wyh CSDN 博客</span>
           <p class="desc">部分题目出自此博客</p>
@@ -329,7 +834,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="文章目录">
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9Fpv%E4%BB%A3%E7%A0%81%E9%A2%98%E9%80%9F%E8%AE%B0"><span class="toc-number">1.</span> <span class="toc-text"> 操作系统 PV 代码题速记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E7%94%9F%E4%BA%A7%E8%80%85-%E5%8D%95%E6%B6%88%E8%B4%B9%E8%80%85"><span class="toc-number">1.1.</span> <span class="toc-text"> 单生产者 - 单消费者</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E7%94%9F%E4%BA%A7%E8%80%85-%E5%A4%9A%E6%B6%88%E8%B4%B9%E8%80%85"><span class="toc-number">1.2.</span> <span class="toc-text"> 多生产者 - 多消费者</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BB%E8%80%85%E5%86%99%E8%80%85%E9%97%AE%E9%A2%98%E8%AF%BB%E4%BC%98%E5%85%88"><span class="toc-number">1.3.</span> <span class="toc-text"> 读者写者问题（读优先）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BB%E8%80%85%E5%86%99%E8%80%85%E9%97%AE%E9%A2%98%E5%86%99%E4%BC%98%E5%85%88"><span class="toc-number">1.4.</span> <span class="toc-text"> 读者写者问题（写优先）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%B8%E7%83%9F%E8%80%85%E9%97%AE%E9%A2%98"><span class="toc-number">1.5.</span> <span class="toc-text"> 吸烟者问题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#pv%E5%AE%A1%E9%A2%98%E6%B5%81%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text"> PV 审题流程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E5%AE%9E%E6%93%8D"><span class="toc-number">3.</span> <span class="toc-text"> 题目实操</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2020-%E7%BB%9F%E8%80%83%E7%9C%9F%E9%A2%98"><span class="toc-number">3.1.</span> <span class="toc-text"> 2020 统考真题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2011-%E7%BB%9F%E8%80%83%E7%9C%9F%E9%A2%98"><span class="toc-number">3.2.</span> <span class="toc-text"> 2011 统考真题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#809-24%E5%B9%B4-%E7%9C%9F%E9%A2%98"><span class="toc-number">3.3.</span> <span class="toc-text"> 809-24 年 真题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B8%E4%BE%8B-%E5%92%8C%E5%B0%9A%E6%89%93%E6%B0%B4"><span class="toc-number">3.4.</span> <span class="toc-text"> 典例 和尚打水</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B8%E4%BE%8B-%E5%85%AC%E4%BA%A4%E8%BD%A6%E5%94%AE%E7%A5%A8"><span class="toc-number">3.5.</span> <span class="toc-text"> 典例 公交车售票</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B8%E4%BE%8B-%E7%8B%AC%E6%9C%A8%E6%A1%A5%E9%97%AE%E9%A2%98"><span class="toc-number">3.6.</span> <span class="toc-text"> 典例 独木桥问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B8%E4%BE%8B-%E9%98%85%E8%A7%88%E5%AE%A4%E9%97%AE%E9%A2%98"><span class="toc-number">3.7.</span> <span class="toc-text"> 典例 阅览室问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B8%E4%BE%8B-%E8%80%83%E8%AF%95%E9%97%AE%E9%A2%98"><span class="toc-number">3.8.</span> <span class="toc-text"> 典例 考试问题</span></a></li></ol></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9Fpv%E4%BB%A3%E7%A0%81%E9%A2%98%E9%80%9F%E8%AE%B0"><span class="toc-number">1.</span> <span class="toc-text"> 操作系统PV代码题速记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E7%94%9F%E4%BA%A7%E8%80%85-%E5%8D%95%E6%B6%88%E8%B4%B9%E8%80%85"><span class="toc-number">1.1.</span> <span class="toc-text"> 单生产者-单消费者</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E7%94%9F%E4%BA%A7%E8%80%85-%E5%A4%9A%E6%B6%88%E8%B4%B9%E8%80%85"><span class="toc-number">1.2.</span> <span class="toc-text"> 多生产者-多消费者</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BB%E8%80%85%E5%86%99%E8%80%85%E9%97%AE%E9%A2%98%E8%AF%BB%E4%BC%98%E5%85%88"><span class="toc-number">1.3.</span> <span class="toc-text"> 读者写者问题（读优先）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BB%E8%80%85%E5%86%99%E8%80%85%E9%97%AE%E9%A2%98%E5%86%99%E4%BC%98%E5%85%88"><span class="toc-number">1.4.</span> <span class="toc-text"> 读者写者问题（写优先）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%B8%E7%83%9F%E8%80%85%E9%97%AE%E9%A2%98"><span class="toc-number">1.5.</span> <span class="toc-text"> 吸烟者问题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#pv%E5%AE%A1%E9%A2%98%E6%B5%81%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text"> PV审题流程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E5%AE%9E%E6%93%8D"><span class="toc-number">3.</span> <span class="toc-text"> 题目实操</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2020-%E7%BB%9F%E8%80%83%E7%9C%9F%E9%A2%98"><span class="toc-number">3.1.</span> <span class="toc-text"> 2020 统考真题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2011-%E7%BB%9F%E8%80%83%E7%9C%9F%E9%A2%98"><span class="toc-number">3.2.</span> <span class="toc-text"> 2011 统考真题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#809-24%E5%B9%B4-%E7%9C%9F%E9%A2%98"><span class="toc-number">3.3.</span> <span class="toc-text"> 809-24年 真题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B8%E4%BE%8B-%E5%92%8C%E5%B0%9A%E6%89%93%E6%B0%B4"><span class="toc-number">3.4.</span> <span class="toc-text"> 典例 和尚打水</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B8%E4%BE%8B-%E5%85%AC%E4%BA%A4%E8%BD%A6%E5%94%AE%E7%A5%A8"><span class="toc-number">3.5.</span> <span class="toc-text"> 典例 公交车售票</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B8%E4%BE%8B-%E7%8B%AC%E6%9C%A8%E6%A1%A5%E9%97%AE%E9%A2%98"><span class="toc-number">3.6.</span> <span class="toc-text"> 典例 独木桥问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B8%E4%BE%8B-%E9%98%85%E8%A7%88%E5%AE%A4%E9%97%AE%E9%A2%98"><span class="toc-number">3.7.</span> <span class="toc-text"> 典例 阅览室问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B8%E4%BE%8B-%E8%80%83%E8%AF%95%E9%97%AE%E9%A2%98"><span class="toc-number">3.8.</span> <span class="toc-text"> 典例 考试问题</span></a></li></ol></li></ol>
       </div>
       <div class="related panel pjax" data-title="系列文章">
         <ul>
@@ -463,10 +968,80 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <li class="item">
     
 <div class="breadcrumb">
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" title="分类于 计算机网络">计算机网络</a>
+</div>
+
+    <span><a href="/network/computer_network_retest/" title="计算机网络复试速览">计算机网络复试速览</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/political/" title="分类于 political">political</a>
+</div>
+
+    <span><a href="/PoliticalKnowledge/politicalNote/" title="政治知识点速记（持续更新）">政治知识点速记（持续更新）</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/database/" title="分类于 数据库">数据库</a>
+</div>
+
+    <span><a href="/database/DataBase02/" title="数据库设计">数据库设计</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
 <a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
 </div>
 
-    <span><a href="/Operate-system/kcsj/" title="操作系统课程设计">操作系统课程设计</a></span>
+    <span><a href="/Operate-system/KnowledgeSummary/" title="操作系统细碎知识点及公式速记">操作系统细碎知识点及公式速记</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/java%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/" title="分类于 java高级特性">java高级特性</a>
+</div>
+
+    <span><a href="/Java/javaAd01/" title="Java高级特性1">Java高级特性1</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/English/" title="分类于 English">English</a>
+</div>
+
+    <span><a href="/English/xbbEnglish/" title="英语笔记">英语笔记</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Principles-of-computer-composition/" title="分类于 计算机组成原理">计算机组成原理</a>
+</div>
+
+    <span><a href="/Principles-of-computer-composition/booth_algorithm/" title="booth算法">booth算法</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/experience/" title="分类于 开发经验">开发经验</a>
+</div>
+
+    <span><a href="/experience/SSM01/" title="SSM框架整合">SSM框架整合</a></span>
   </li>
 
       
@@ -487,76 +1062,6 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 </div>
 
     <span><a href="/DSLearnNote/GeneralizedLists/" title="考试中有关广义表的两个常用函数的解">考试中有关广义表的两个常用函数的解</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Principles-of-computer-composition/" title="分类于 计算机组成原理">计算机组成原理</a>
-</div>
-
-    <span><a href="/Principles-of-computer-composition/booth_algorithm/" title="booth算法">booth算法</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" title="分类于 计算机网络">计算机网络</a>
-</div>
-
-    <span><a href="/network/computer_network_retest/" title="计算机网络复试速览">计算机网络复试速览</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/experience/" title="分类于 开发经验">开发经验</a>
-</div>
-
-    <span><a href="/experience/MD5CalculationTimePractice/" title="MD5计算时间">MD5计算时间</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/English/" title="分类于 English">English</a>
-</div>
-
-    <span><a href="/English/xbbEnglish/" title="英语笔记">英语笔记</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/MongoDB/" title="分类于 MongoDB">MongoDB</a>
-</div>
-
-    <span><a href="/MongoDB/MongoDB03/" title="MongoDB初步使用">MongoDB初步使用</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%9D%E6%9D%A5%E4%B9%8D%E5%88%B0/" title="分类于 初来乍到">初来乍到</a>
-</div>
-
-    <span><a href="/hello/" title="起点，但不止于起点！">起点，但不止于起点！</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/MongoDB/" title="分类于 MongoDB">MongoDB</a>
-</div>
-
-    <span><a href="/MongoDB/MongoDB02/" title="MongoDB初步使用">MongoDB初步使用</a></span>
   </li>
 
   </ul>
@@ -581,8 +1086,8 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
     <a href="https://icp.gov.moe/?keyword=20249329" target="_blank">萌ICP备20249329号</a>
     基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
   <br/><span>世界本污浊，罪与爱同歌</span>
-  <br/><i class="ic i-chart-area"></i>&nbsp;<span>135k&nbsp;字</span> &nbsp;|&nbsp;
-  <i class="ic i-coffee"></i>&nbsp;<span> 3:45</span>
+  <br/><i class="ic i-chart-area"></i>&nbsp;<span>144k&nbsp;字</span> &nbsp;|&nbsp;
+  <i class="ic i-coffee"></i>&nbsp;<span> 4:01</span>
   </div>
 </div>
 

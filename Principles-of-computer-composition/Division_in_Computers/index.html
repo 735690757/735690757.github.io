@@ -149,12 +149,12 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <div class="body md" itemprop="articleBody">
     
 
-    <h1 id="计算机中的除法运算"><a class="markdownIt-Anchor" href="#计算机中的除法运算">#</a> 计算机中的除法运算</h1>
-<h2 id="简述"><a class="markdownIt-Anchor" href="#简述">#</a> 简述</h2>
+    <h1 id="计算机中的除法运算"><a class="markdownIt-Anchor" href="#计算机中的除法运算"></a> 计算机中的除法运算</h1>
+<h2 id="简述"><a class="markdownIt-Anchor" href="#简述"></a> 简述</h2>
 <p>计算的中的除法十分有趣。对于 6 与 4，我们可以很容易的判断出那个大，进而进行后续的除法运算，而计算机中却不是。比此更复杂的除法运算，又是怎么实现的呢？</p>
-<h2 id="方法一恢复余数法"><a class="markdownIt-Anchor" href="#方法一恢复余数法">#</a> 方法一：恢复余数法</h2>
+<h2 id="方法一恢复余数法"><a class="markdownIt-Anchor" href="#方法一恢复余数法"></a> 方法一：恢复余数法</h2>
 <p><strong>题目源自《计算机组成原理（第三版）》例 6.24</strong></p>
-<p><img data-src="https://s2.loli.net/2023/03/24/jhsHYPydL8Qvubt.png" alt="01.png"></p>
+<p><img data-src="https://s2.loli.net/2023/03/24/jhsHYPydL8Qvubt.png" alt="01.png" /></p>
 <table>
 <thead>
 <tr>
@@ -228,12 +228,12 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 </table>
 <p>值：0.1101</p>
 <p>符号位：</p>
-<p><img data-src="https://s2.loli.net/2023/03/24/pQeg8jda2VNtKkv.png" alt="02.png"></p>
+<p><img data-src="https://s2.loli.net/2023/03/24/pQeg8jda2VNtKkv.png" alt="02.png" /></p>
 <p><strong>恢复余数法总结</strong>：首先第一步无条件加 - y*，然后看余数大于零还是小于 0，如果大于 0 无需恢复 上 1 左移，如果小于 0 需要恢复 上 0 左移，如此循环往复，直到用完所有的商位。</p>
-<h2 id="方法二加减交替法"><a class="markdownIt-Anchor" href="#方法二加减交替法">#</a> 方法二：加减交替法</h2>
+<h2 id="方法二加减交替法"><a class="markdownIt-Anchor" href="#方法二加减交替法"></a> 方法二：加减交替法</h2>
 <p>加减交替法可以说是恢复余数的改良方法，我们无需恢复 直接进行运算，详情见下题：</p>
 <p><strong>题目源自《计算机组成原理（第三版）》例 6.25</strong></p>
-<p><img data-src="https://s2.loli.net/2023/03/24/ZUEuveBYs3LyIoa.png" alt="03.png"></p>
+<p><img data-src="https://s2.loli.net/2023/03/24/ZUEuveBYs3LyIoa.png" alt="03.png" /></p>
 <table>
 <thead>
 <tr>
@@ -251,7 +251,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <tr>
 <td style="text-align:center"><strong>1</strong>.1100</td>
 <td style="text-align:center">【0.000】0</td>
-<td style="text-align:center"><strong>1</strong>.1110 <strong>小于</strong> 0 上<strong> 0</strong> 左移</td>
+<td style="text-align:center"><strong>1</strong>.1110 <strong>小于</strong>0 上<strong>0</strong> 左移</td>
 </tr>
 <tr>
 <td style="text-align:center">1.1100+0.1101=<strong>0</strong>.1001</td>
@@ -261,7 +261,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <tr>
 <td style="text-align:center"><strong>1</strong>.0010</td>
 <td style="text-align:center">【0.00】01</td>
-<td style="text-align:center"><strong>0</strong>.1001 <strong>大于</strong> 0 上 1 左移</td>
+<td style="text-align:center"><strong>0</strong>.1001 <strong>大于</strong>0 上 1 左移</td>
 </tr>
 <tr>
 <td style="text-align:center"><strong>1</strong>.0010+1.0011=<strong>0</strong>.0101</td>
@@ -271,7 +271,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <tr>
 <td style="text-align:center"><strong>0</strong>.1010</td>
 <td style="text-align:center">【0.0】011</td>
-<td style="text-align:center"><strong>0</strong>.0101 <strong>大于</strong> 0 上 1 左移</td>
+<td style="text-align:center"><strong>0</strong>.0101 <strong>大于</strong>0 上 1 左移</td>
 </tr>
 <tr>
 <td style="text-align:center"><strong>0</strong>.1010+1.0011=<strong>1</strong>.1101</td>
@@ -281,7 +281,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <tr>
 <td style="text-align:center"><strong>1</strong>.1010</td>
 <td style="text-align:center">【0】.0110</td>
-<td style="text-align:center"><strong>1</strong>.1101 <strong>小于</strong> 0 上 0 左移</td>
+<td style="text-align:center"><strong>1</strong>.1101 <strong>小于</strong>0 上 0 左移</td>
 </tr>
 <tr>
 <td style="text-align:center"><strong>1</strong>.1010+0.1101=0.0111</td>
@@ -295,7 +295,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 </tr>
 </tbody>
 </table>
-<p><strong>核心：上 0 加正，上 1 加负</strong>，此口诀为上一步上的 0 或 1 在下一步体现，如果上了<strong> 0</strong> 那么下一步就加<strong>正</strong>，如果上了<strong> 1</strong> 那么下一步就加<strong>负</strong>。那么我们怎么知道到底是上 0 还是 1 呢？这个主要看余数，如果它是正的就上 1，如果他是负的就上 0</p>
+<p><strong>核心：上 0 加正，上 1 加负</strong>，此口诀为上一步上的 0 或 1 在下一步体现，如果上了<strong>0</strong>那么下一步就加<strong>正</strong>，如果上了<strong>1</strong>那么下一步就加<strong>负</strong>。那么我们怎么知道到底是上 0 还是 1 呢？这个主要看余数，如果它是正的就上 1，如果他是负的就上 0</p>
 
       <div class="tags">
           <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag"><i class="ic i-tag"></i> 计算机组成原理</a>
@@ -534,20 +534,30 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/experience/" title="分类于 开发经验">开发经验</a>
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
 </div>
 
-    <span><a href="/experience/SSM01/" title="SSM框架整合">SSM框架整合</a></span>
+    <span><a href="/Operate-system/01OS/" title="操作系统知识点阶段总结">操作系统知识点阶段总结</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/political/" title="分类于 political">political</a>
+<a href="/categories/Principles-of-computer-composition/" title="分类于 计算机组成原理">计算机组成原理</a>
 </div>
 
-    <span><a href="/PoliticalKnowledge/politicalNote/" title="政治知识点速记（持续更新）">政治知识点速记（持续更新）</a></span>
+    <span><a href="/Principles-of-computer-composition/booth_algorithm/" title="booth算法">booth算法</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Principles-of-computer-composition/" title="分类于 计算机组成原理">计算机组成原理</a>
+</div>
+
+    <span><a href="/Principles-of-computer-composition/Connection_between_CPU_and_memory/" title="CPU与存储器的连接">CPU与存储器的连接</a></span>
   </li>
 
       
@@ -564,50 +574,10 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/MongoDB/" title="分类于 MongoDB">MongoDB</a>
-</div>
-
-    <span><a href="/MongoDB/MongoDB03/" title="MongoDB初步使用">MongoDB初步使用</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/java%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/" title="分类于 java高级特性">java高级特性</a>
-</div>
-
-    <span><a href="/Java/javaAd01/" title="Java高级特性1">Java高级特性1</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
 <a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
 </div>
 
-    <span><a href="/Operate-system/kcsj/" title="操作系统课程设计">操作系统课程设计</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/DS/" title="分类于 DS">DS</a>
-</div>
-
-    <span><a href="/DSLearnNote/codeTM/" title="数据结构代码题速记">数据结构代码题速记</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Principles-of-computer-composition/" title="分类于 计算机组成原理">计算机组成原理</a>
-</div>
-
-    <span><a href="/Principles-of-computer-composition/Connection_between_CPU_and_memory/" title="CPU与存储器的连接">CPU与存储器的连接</a></span>
+    <span><a href="/Operate-system/03OS/" title="进程同步问题">进程同步问题</a></span>
   </li>
 
       
@@ -628,6 +598,36 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 </div>
 
     <span><a href="/Principles-of-computer-composition/Division_in_Computers/" title="计算机中的除法运算">计算机中的除法运算</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
+</div>
+
+    <span><a href="/Operate-system/02OS/" title="进程与线程">进程与线程</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/DS/" title="分类于 DS">DS</a>
+</div>
+
+    <span><a href="/DSLearnNote/codeTM/" title="数据结构代码题速记">数据结构代码题速记</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/experience/" title="分类于 开发经验">开发经验</a>
+</div>
+
+    <span><a href="/experience/SSM01/" title="SSM框架整合">SSM框架整合</a></span>
   </li>
 
   </ul>
@@ -652,8 +652,8 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
     <a href="https://icp.gov.moe/?keyword=20249329" target="_blank">萌ICP备20249329号</a>
     基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
   <br/><span>世界本污浊，罪与爱同歌</span>
-  <br/><i class="ic i-chart-area"></i>&nbsp;<span>135k&nbsp;字</span> &nbsp;|&nbsp;
-  <i class="ic i-coffee"></i>&nbsp;<span> 3:45</span>
+  <br/><i class="ic i-chart-area"></i>&nbsp;<span>144k&nbsp;字</span> &nbsp;|&nbsp;
+  <i class="ic i-coffee"></i>&nbsp;<span> 4:01</span>
   </div>
 </div>
 
