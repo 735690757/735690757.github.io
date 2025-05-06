@@ -149,28 +149,28 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <div class="body md" itemprop="articleBody">
     
 
-    <h1 id="什么是进程与线程"><a class="markdownIt-Anchor" href="#什么是进程与线程"></a> 什么是进程与线程</h1>
+    <h1 id="什么是进程与线程"><a class="markdownIt-Anchor" href="#什么是进程与线程">#</a> 什么是进程与线程</h1>
 <p>进程（Process）和线程（Thread）是操作系统中的两个重要概念，用于管理和执行程序的执行单元。它们在多任务处理和并发执行中起着关键作用。</p>
-<h2 id="进程"><a class="markdownIt-Anchor" href="#进程"></a> 进程</h2>
+<h2 id="进程"><a class="markdownIt-Anchor" href="#进程">#</a> 进程</h2>
 <p>进程是计算机系统中运行的程序的实例。每个进程都有<mark>自己的内存空间、代码和数据，以及与其他进程隔离的资源</mark>。进程可以看作是一个独立的执行环境，可以执行自己的任务。每个进程都有一个唯一的进程标识符（PID），用于区分和管理不同的进程。</p>
 <p><mark>一个进程可以包含多个线程，这些线程共享同一个进程的资源</mark>，如内存空间、文件句柄等。不同进程之间的通信相对复杂，通常需要使用进程间通信（IPC）机制，如管道、消息队列、共享内存等。</p>
-<h2 id="线程"><a class="markdownIt-Anchor" href="#线程"></a> 线程</h2>
+<h2 id="线程"><a class="markdownIt-Anchor" href="#线程">#</a> 线程</h2>
 <p>线程是进程内的执行单元，一个进程可以包含多个线程。<mark>线程共享同一个进程的代码和数据，但每个线程拥有自己的栈空间和程序计数器</mark>。因为线程共享相同的内存空间，它们之间的通信和数据共享更加方便，但也需要适当的同步控制来避免竞态条件和数据不一致问题。</p>
 <p>多线程的使用可以实现并发执行，提高程序的响应速度和资源利用率。常见的线程使用场景包括图形界面应用程序中的响应性、多媒体处理、网络服务器等。</p>
-<h1 id="程序并发执行的特征"><a class="markdownIt-Anchor" href="#程序并发执行的特征"></a> 程序并发执行的特征</h1>
+<h1 id="程序并发执行的特征"><a class="markdownIt-Anchor" href="#程序并发执行的特征">#</a> 程序并发执行的特征</h1>
 <ol>
 <li><strong>间断性</strong>：并发程序之间相互制约</li>
 <li><strong>失去封闭性</strong>：多个程序共享全机资源，执行状态收外界因素影响</li>
 <li><strong>不可在现性</strong>：程序经过多次执行后，虽然其执行时的环境和初始条件都相同，但得到的结果却各不相同</li>
 </ol>
-<h1 id="进程的特性"><a class="markdownIt-Anchor" href="#进程的特性"></a> 进程的特性</h1>
+<h1 id="进程的特性"><a class="markdownIt-Anchor" href="#进程的特性">#</a> 进程的特性</h1>
 <ol>
 <li><strong>动态性</strong>（最基本的特征）</li>
 <li><strong>并发性</strong></li>
 <li><strong>独立性</strong></li>
 <li><strong>异步性</strong>：不可预知的速度</li>
 </ol>
-<h1 id="进程控制"><a class="markdownIt-Anchor" href="#进程控制"></a> 进程控制</h1>
+<h1 id="进程控制"><a class="markdownIt-Anchor" href="#进程控制">#</a> 进程控制</h1>
 <p>一般包括以下几个方面：</p>
 <ol>
 <li>进程创建</li>
@@ -178,40 +178,40 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <li>进程阻塞与唤醒</li>
 <li>进程挂起与激活</li>
 </ol>
-<h1 id="进程创建"><a class="markdownIt-Anchor" href="#进程创建"></a> 进程创建</h1>
-<p>[UNIX 下的进程创建——fork()]{.label .success}</p>
-<h2 id="消息机制"><a class="markdownIt-Anchor" href="#消息机制"></a> 消息机制</h2>
+<h1 id="进程创建"><a class="markdownIt-Anchor" href="#进程创建">#</a> 进程创建</h1>
+<p><span class="label success">UNIX 下的进程创建 ——fork ()</span></p>
+<h2 id="消息机制"><a class="markdownIt-Anchor" href="#消息机制">#</a> 消息机制</h2>
 <p>直接通信方式一一消息缓冲队列</p>
-<p>这是指发送进程利用 OS 所提供的发送命令，直接把消息发送给目标进程。此时，要求发送进程和接收进程都以显式方式提供对方的标识符。通常，系统提供下述两条通信命令(原语):</p>
-<p><mark><strong>Send(Receiver, message): 发送一个消息给 Receiver</strong></mark></p>
-<p><mark><strong>Receive(Sender,message): 接收 Sender 发来的消息</strong></mark></p>
-<p>例如，原语 Send(P，m)表示将消息 m,发送给接收进程 P;而原语 Receive(P，m)则表示接收由 P 发来的消息 m。</p>
-<h1 id="进程通信"><a class="markdownIt-Anchor" href="#进程通信"></a> 进程通信</h1>
-<p>进程通信实例------管道通信方式 Pipe<br />
-:::default<br />
-write(fd[1],buf,size); 将 buf 中长为 size 字符的消息送入 fd[1]口<br />
-:::</p>
-<p>:::default<br />
-read(fd[0], buf’,size); 从 fd[O]口读出 size 个字符置于 buf 中<br />
-:::</p>
-<h1 id="进程与线程的比较"><a class="markdownIt-Anchor" href="#进程与线程的比较"></a> 进程与线程的比较</h1>
-<h2 id="关于调度的基本单位"><a class="markdownIt-Anchor" href="#关于调度的基本单位"></a> 关于调度的基本单位</h2>
+<p>这是指发送进程利用 OS 所提供的发送命令，直接把消息发送给目标进程。此时，要求发送进程和接收进程都以显式方式提供对方的标识符。通常，系统提供下述两条通信命令 (原语):</p>
+<p><mark><strong>Send (Receiver, message): 发送一个消息给 Receiver</strong></mark></p>
+<p><mark><strong>Receive (Sender,message): 接收 Sender 发来的消息</strong></mark></p>
+<p>例如，原语 Send (P，m) 表示将消息 m, 发送给接收进程 P; 而原语 Receive (P，m) 则表示接收由 P 发来的消息 m。</p>
+<h1 id="进程通信"><a class="markdownIt-Anchor" href="#进程通信">#</a> 进程通信</h1>
+<p>进程通信实例 ------ 管道通信方式 Pipe</p>
+<div class="note default">
+<p>write (fd [1],buf,size); 将 buf 中长为 size 字符的消息送入 fd [1] 口</p>
+</div>
+<div class="note default">
+<p>read (fd [0], buf’,size); 从 fd [O] 口读出 size 个字符置于 buf 中</p>
+</div>
+<h1 id="进程与线程的比较"><a class="markdownIt-Anchor" href="#进程与线程的比较">#</a> 进程与线程的比较</h1>
+<h2 id="关于调度的基本单位"><a class="markdownIt-Anchor" href="#关于调度的基本单位">#</a> 关于调度的基本单位</h2>
 <p>在传统 OS 中，拥有资源、独立调度和分配的基本单位都是进程。</p>
 <p>在引入线程的 OS 中，线程作为调度和分派的基本单位，进程作为拥有资源的基本单位。</p>
 <p>在同一进程中，线程的切换不会引起进程切换，在由一个进程中的线程切换到另一个进程中的线程时，将会引起进程切换。</p>
-<h2 id="并发性"><a class="markdownIt-Anchor" href="#并发性"></a> 并发性</h2>
+<h2 id="并发性"><a class="markdownIt-Anchor" href="#并发性">#</a> 并发性</h2>
 <p>在引入线程的操作系统中，不仅进程之间可以并发执行，而且在一个进程中的多个线程之间，也可并发执行</p>
-<h2 id="拥有资源"><a class="markdownIt-Anchor" href="#拥有资源"></a> 拥有资源</h2>
+<h2 id="拥有资源"><a class="markdownIt-Anchor" href="#拥有资源">#</a> 拥有资源</h2>
 <p>进程是系统中拥有资源的一个基本单位，它可以拥有资源</p>
 <p>线程本身不拥有系统资源，仅有一点保证独立运行的资源</p>
 <p>允许多个线程共享其隶属进程所拥有的资源</p>
-<h2 id="独立性"><a class="markdownIt-Anchor" href="#独立性"></a> 独立性</h2>
+<h2 id="独立性"><a class="markdownIt-Anchor" href="#独立性">#</a> 独立性</h2>
 <p>同一进程中的不同线程之间的独立性要比不同进程之间的独立性低得多</p>
-<h2 id="开销"><a class="markdownIt-Anchor" href="#开销"></a> 开销</h2>
+<h2 id="开销"><a class="markdownIt-Anchor" href="#开销">#</a> 开销</h2>
 <p>在创建或撤消进程时，OS 所付出的开销将显著大于创建或撤消线程时的开销</p>
 <p>线程切换的代价远低于进程切换的代价。</p>
 <p>同一进程中的多个线程之间的同步和通信也比进程的简单</p>
-<h2 id="支持多处理机系统"><a class="markdownIt-Anchor" href="#支持多处理机系统"></a> 支持多处理机系统</h2>
+<h2 id="支持多处理机系统"><a class="markdownIt-Anchor" href="#支持多处理机系统">#</a> 支持多处理机系统</h2>
 
       <div class="tags">
           <a href="/tags/OS/" rel="tag"><i class="ic i-tag"></i> OS</a>
@@ -450,40 +450,10 @@ read(fd[0], buf’,size); 从 fd[O]口读出 size 个字符置于 buf 中<br />
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/DS/" title="分类于 DS">DS</a>
-</div>
-
-    <span><a href="/DSLearnNote/codeTM/" title="数据结构代码题速记">数据结构代码题速记</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
 <a href="/categories/database/" title="分类于 数据库">数据库</a>
 </div>
 
     <span><a href="/database/DataBase01/" title="DB中的范式">DB中的范式</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Principles-of-computer-composition/" title="分类于 计算机组成原理">计算机组成原理</a>
-</div>
-
-    <span><a href="/Principles-of-computer-composition/Connection_between_CPU_and_memory/" title="CPU与存储器的连接">CPU与存储器的连接</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/DS/" title="分类于 DS">DS</a>
-</div>
-
-    <span><a href="/DSLearnNote/GeneralizedLists/" title="考试中有关广义表的两个常用函数的解">考试中有关广义表的两个常用函数的解</a></span>
   </li>
 
       
@@ -500,20 +470,30 @@ read(fd[0], buf’,size); 从 fd[O]口读出 size 个字符置于 buf 中<br />
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/experience/" title="分类于 开发经验">开发经验</a>
+<a href="/categories/DS/" title="分类于 DS">DS</a>
 </div>
 
-    <span><a href="/experience/SSM01/" title="SSM框架整合">SSM框架整合</a></span>
+    <span><a href="/DSLearnNote/codeTM/" title="数据结构代码题速记">数据结构代码题速记</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/experience/" title="分类于 开发经验">开发经验</a>
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
 </div>
 
-    <span><a href="/experience/CollaborativeFiltering/" title="基于用户的协同过滤算法">基于用户的协同过滤算法</a></span>
+    <span><a href="/Operate-system/01OS/" title="操作系统知识点阶段总结">操作系统知识点阶段总结</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/java%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/" title="分类于 java高级特性">java高级特性</a>
+</div>
+
+    <span><a href="/Java/javaAd01/" title="Java高级特性1">Java高级特性1</a></span>
   </li>
 
       
@@ -533,17 +513,37 @@ read(fd[0], buf’,size); 从 fd[O]口读出 size 个字符置于 buf 中<br />
 <a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
 </div>
 
-    <span><a href="/Operate-system/os_retest/" title="计算机操作系统复试速览">计算机操作系统复试速览</a></span>
+    <span><a href="/Operate-system/02OS/" title="进程与线程">进程与线程</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/political/" title="分类于 political">political</a>
+<a href="/categories/DS/" title="分类于 DS">DS</a>
 </div>
 
-    <span><a href="/PoliticalKnowledge/politicalNote/" title="政治知识点速记（持续更新）">政治知识点速记（持续更新）</a></span>
+    <span><a href="/DSLearnNote/GeneralizedLists/" title="考试中有关广义表的两个常用函数的解">考试中有关广义表的两个常用函数的解</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E4%B8%8A%E5%B2%B8/" title="分类于 上岸">上岸</a>
+</div>
+
+    <span><a href="/life/shangan/" title="写给我这一年多的考研时光">写给我这一年多的考研时光</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Principles-of-computer-composition/" title="分类于 计算机组成原理">计算机组成原理</a>
+</div>
+
+    <span><a href="/Principles-of-computer-composition/Connection_between_CPU_and_memory/" title="CPU与存储器的连接">CPU与存储器的连接</a></span>
   </li>
 
   </ul>
@@ -568,8 +568,8 @@ read(fd[0], buf’,size); 从 fd[O]口读出 size 个字符置于 buf 中<br />
     <a href="https://icp.gov.moe/?keyword=20249329" target="_blank">萌ICP备20249329号</a>
     基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
   <br/><span>世界本污浊，罪与爱同歌</span>
-  <br/><i class="ic i-chart-area"></i>&nbsp;<span>144k&nbsp;字</span> &nbsp;|&nbsp;
-  <i class="ic i-coffee"></i>&nbsp;<span> 4:01</span>
+  <br/><i class="ic i-chart-area"></i>&nbsp;<span>136k&nbsp;字</span> &nbsp;|&nbsp;
+  <i class="ic i-coffee"></i>&nbsp;<span> 3:46</span>
   </div>
 </div>
 

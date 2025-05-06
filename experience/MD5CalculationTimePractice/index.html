@@ -149,32 +149,15 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <div class="body md" itemprop="articleBody">
     
 
-    <h1 id="md5计算时间的实践"><a class="markdownIt-Anchor" href="#md5计算时间的实践"></a> MD5计算时间的实践</h1>
-<h2 id="引言"><a class="markdownIt-Anchor" href="#引言"></a> 引言</h2>
-<p>最近在做一个项目，里面用到了MD5算法来生成文件名，并且可以对相同文件进行合并存储，不禁让我想到了一个问题——MD5的计算很耗时吗还是MD5是一个轻量级的算法，在网上翻阅了一些资料，得到了结果，确实MD5的计算是很轻量的。</p>
+    <h1 id="md5计算时间的实践"><a class="markdownIt-Anchor" href="#md5计算时间的实践">#</a> MD5 计算时间的实践</h1>
+<h2 id="引言"><a class="markdownIt-Anchor" href="#引言">#</a> 引言</h2>
+<p>最近在做一个项目，里面用到了 MD5 算法来生成文件名，并且可以对相同文件进行合并存储，不禁让我想到了一个问题 ——MD5 的计算很耗时吗还是 MD5 是一个轻量级的算法，在网上翻阅了一些资料，得到了结果，确实 MD5 的计算是很轻量的。</p>
 <p>但是，他到底需要多长时间呢？我直接开始实践一下。</p>
-<h2 id="配置"><a class="markdownIt-Anchor" href="#配置"></a> 配置</h2>
-<p>机器采用：AMD Ryzen 7 5800H处理器 + 32GB 内存 频率为 3200 使用约 50%</p>
-<h2 id="实践"><a class="markdownIt-Anchor" href="#实践"></a> 实践</h2>
-<p>先对小文件进行测试，现选用文件大小为2.83 MB的图片，在anaconda环境下，对比不同chunk_size下的计算时间。</p>
-<pre class="highlight"><code class="python"><span class="hljs-keyword">import</span> hashlib
-<span class="hljs-keyword">import</span> time
-
-
-<span class="hljs-keyword">def</span> <span class="hljs-title function_">file_to_md5</span>(<span class="hljs-params">file_path, chunk_size=<span class="hljs-number">8192</span></span>):
-    md5 = hashlib.md5()
-    <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(file_path, <span class="hljs-string">&#x27;rb&#x27;</span>) <span class="hljs-keyword">as</span> f:
-        <span class="hljs-keyword">while</span> chunk := f.read(chunk_size):
-            md5.update(chunk)
-    <span class="hljs-keyword">return</span> md5.hexdigest()
-
-
-t = time.perf_counter()
-
-file_to_md5(<span class="hljs-string">&#x27;D:\\ZzMu\\Aping\\bz\\zb.png&#x27;</span>)
-<span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;<span class="hljs-subst">&#123;time.perf_counter() - t:<span class="hljs-number">.8</span>f&#125;</span>s&#x27;</span>)
-</code></pre>
-<table>
+<h2 id="配置"><a class="markdownIt-Anchor" href="#配置">#</a> 配置</h2>
+<p>机器采用：AMD Ryzen 7 5800H 处理器 + 32GB 内存 频率为 3200 使用约 50%</p>
+<h2 id="实践"><a class="markdownIt-Anchor" href="#实践">#</a> 实践</h2>
+<p>先对小文件进行测试，现选用文件大小为 2.83 MB 的图片，在 anaconda 环境下，对比不同 chunk_size 下的计算时间。</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">import</span> hashlib</pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">import</span> time</pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token keyword">def</span> <span class="token function">file_to_md5</span><span class="token punctuation">(</span>file_path<span class="token punctuation">,</span> chunk_size<span class="token operator">=</span><span class="token number">8192</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    md5 <span class="token operator">=</span> hashlib<span class="token punctuation">.</span>md5<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    <span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span>file_path<span class="token punctuation">,</span> <span class="token string">'rb'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span></pre></td></tr><tr><td data-num="8"></td><td><pre>        <span class="token keyword">while</span> chunk <span class="token operator">:=</span> f<span class="token punctuation">.</span>read<span class="token punctuation">(</span>chunk_size<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="9"></td><td><pre>            md5<span class="token punctuation">.</span>update<span class="token punctuation">(</span>chunk<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="10"></td><td><pre>    <span class="token keyword">return</span> md5<span class="token punctuation">.</span>hexdigest<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="11"></td><td><pre></pre></td></tr><tr><td data-num="12"></td><td><pre></pre></td></tr><tr><td data-num="13"></td><td><pre>t <span class="token operator">=</span> time<span class="token punctuation">.</span>perf_counter<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="14"></td><td><pre></pre></td></tr><tr><td data-num="15"></td><td><pre>file_to_md5<span class="token punctuation">(</span><span class="token string">'D:\\ZzMu\\Aping\\bz\\zb.png'</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="16"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f'</span><span class="token interpolation"><span class="token punctuation">&#123;</span>time<span class="token punctuation">.</span>perf_counter<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> t<span class="token punctuation">:</span><span class="token format-spec">.8f</span><span class="token punctuation">&#125;</span></span><span class="token string">s'</span></span><span class="token punctuation">)</span></pre></td></tr></table></figure><table>
 <thead>
 <tr>
 <th style="text-align:center">chunk_size</th>
@@ -204,8 +187,8 @@ file_to_md5(<span class="hljs-string">&#x27;D:\\ZzMu\\Aping\\bz\\zb.png&#x27;</s
 </tr>
 </tbody>
 </table>
-<p>随着chunk_size的增大，计算时间不断缩短，不过确实微乎其微，0.00几的时间无法感知，那么大一点的文件能放大影响吗？</p>
-<p>下面对文件大小为957 MB的4分44秒的5k视频进行计算。</p>
+<p>随着 chunk_size 的增大，计算时间不断缩短，不过确实微乎其微，0.00 几的时间无法感知，那么大一点的文件能放大影响吗？</p>
+<p>下面对文件大小为 957 MB 的 4 分 44 秒的 5k 视频进行计算。</p>
 <table>
 <thead>
 <tr>
@@ -240,8 +223,8 @@ file_to_md5(<span class="hljs-string">&#x27;D:\\ZzMu\\Aping\\bz\\zb.png&#x27;</s
 </tr>
 </tbody>
 </table>
-<p>大文件对chunk_size的感知更为明显，变现为0.几的波动。</p>
-<p>下面试试更大的文件，文件大小为9.58 GB的Linux安装文件CentOS-7-x86_64-Everything-2207-02.iso进行计算。</p>
+<p>大文件对 chunk_size 的感知更为明显，变现为 0. 几的波动。</p>
+<p>下面试试更大的文件，文件大小为 9.58 GB 的 Linux 安装文件 CentOS-7-x86_64-Everything-2207-02.iso 进行计算。</p>
 <table>
 <thead>
 <tr>
@@ -276,49 +259,9 @@ file_to_md5(<span class="hljs-string">&#x27;D:\\ZzMu\\Aping\\bz\\zb.png&#x27;</s
 </tr>
 </tbody>
 </table>
-<p>得出结论，越大的文件对chunk_size越敏感。到此为止，我仍然对这个执行时间有疑问，不同的变成语言对计算时间有什么影响呢，以上是使用Python语言完成的测试，接下来试试Java的语言。</p>
+<p>得出结论，越大的文件对 chunk_size 越敏感。到此为止，我仍然对这个执行时间有疑问，不同的变成语言对计算时间有什么影响呢，以上是使用 Python 语言完成的测试，接下来试试 Java 的语言。</p>
 <p>原生：</p>
-<pre class="highlight"><code class="java"><span class="hljs-keyword">import</span> java.io.FileInputStream;
-<span class="hljs-keyword">import</span> java.io.IOException;
-<span class="hljs-keyword">import</span> java.io.InputStream;
-<span class="hljs-keyword">import</span> java.security.MessageDigest;
-<span class="hljs-keyword">import</span> java.security.NoSuchAlgorithmException;
-
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> &#123;
-
-    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">BUFFER_SIZE</span> <span class="hljs-operator">=</span> <span class="hljs-number">32768</span>;
-
-    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">fileToMD5</span><span class="hljs-params">(String filePath)</span> <span class="hljs-keyword">throws</span> IOException, NoSuchAlgorithmException &#123;
-        <span class="hljs-keyword">try</span> (<span class="hljs-type">InputStream</span> <span class="hljs-variable">is</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileInputStream</span>(filePath)) &#123;
-            <span class="hljs-type">MessageDigest</span> <span class="hljs-variable">md5Digest</span> <span class="hljs-operator">=</span> MessageDigest.getInstance(<span class="hljs-string">&quot;MD5&quot;</span>);
-            <span class="hljs-type">byte</span>[] buffer = <span class="hljs-keyword">new</span> <span class="hljs-title class_">byte</span>[BUFFER_SIZE];
-            <span class="hljs-type">int</span> bytesRead;
-            <span class="hljs-keyword">while</span> ((bytesRead = is.read(buffer)) != -<span class="hljs-number">1</span>) &#123;
-                md5Digest.update(buffer, <span class="hljs-number">0</span>, bytesRead);
-            &#125;
-            <span class="hljs-keyword">return</span> bytesToHex(md5Digest.digest());
-        &#125;
-    &#125;
-
-    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">bytesToHex</span><span class="hljs-params">(<span class="hljs-type">byte</span>[] bytes)</span> &#123;
-        <span class="hljs-type">StringBuilder</span> <span class="hljs-variable">hexString</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuilder</span>();
-        <span class="hljs-keyword">for</span> (<span class="hljs-type">byte</span> b : bytes) &#123;
-            <span class="hljs-type">String</span> <span class="hljs-variable">hex</span> <span class="hljs-operator">=</span> Integer.toHexString(<span class="hljs-number">0xff</span> &amp; b);
-            <span class="hljs-keyword">if</span> (hex.length() == <span class="hljs-number">1</span>) hexString.append(<span class="hljs-string">&#x27;0&#x27;</span>);
-            hexString.append(hex);
-        &#125;
-        <span class="hljs-keyword">return</span> hexString.toString();
-    &#125;
-
-    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException, NoSuchAlgorithmException &#123;
-        <span class="hljs-type">long</span> <span class="hljs-variable">startTime</span> <span class="hljs-operator">=</span> System.nanoTime();
-        fileToMD5(<span class="hljs-string">&quot;D:\\ZzMu\\Aping\\bz\\zb.png&quot;</span>);
-        <span class="hljs-type">long</span> <span class="hljs-variable">endTime</span> <span class="hljs-operator">=</span> System.nanoTime();
-        System.out.printf(<span class="hljs-string">&quot;Time taken: %.8fs%n&quot;</span>, (endTime - startTime) / <span class="hljs-number">1e9</span>);
-    &#125;
-&#125;
-</code></pre>
-<p>使用java 8：</p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>io<span class="token punctuation">.</span></span><span class="token class-name">FileInputStream</span></span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>io<span class="token punctuation">.</span></span><span class="token class-name">IOException</span></span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>io<span class="token punctuation">.</span></span><span class="token class-name">InputStream</span></span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>security<span class="token punctuation">.</span></span><span class="token class-name">MessageDigest</span></span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>security<span class="token punctuation">.</span></span><span class="token class-name">NoSuchAlgorithmException</span></span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Main</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="8"></td><td><pre></pre></td></tr><tr><td data-num="9"></td><td><pre>    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">int</span> <span class="token constant">BUFFER_SIZE</span> <span class="token operator">=</span> <span class="token number">32768</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="10"></td><td><pre></pre></td></tr><tr><td data-num="11"></td><td><pre>    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">String</span> <span class="token function">fileToMD5</span><span class="token punctuation">(</span><span class="token class-name">String</span> filePath<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">IOException</span><span class="token punctuation">,</span> <span class="token class-name">NoSuchAlgorithmException</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>        <span class="token keyword">try</span> <span class="token punctuation">(</span><span class="token class-name">InputStream</span> is <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileInputStream</span><span class="token punctuation">(</span>filePath<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>            <span class="token class-name">MessageDigest</span> md5Digest <span class="token operator">=</span> <span class="token class-name">MessageDigest</span><span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token string">"MD5"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>            <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> buffer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token constant">BUFFER_SIZE</span><span class="token punctuation">]</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>            <span class="token keyword">int</span> bytesRead<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="16"></td><td><pre>            <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>bytesRead <span class="token operator">=</span> is<span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span>buffer<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="17"></td><td><pre>                md5Digest<span class="token punctuation">.</span><span class="token function">update</span><span class="token punctuation">(</span>buffer<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> bytesRead<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="18"></td><td><pre>            <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="19"></td><td><pre>            <span class="token keyword">return</span> <span class="token function">bytesToHex</span><span class="token punctuation">(</span>md5Digest<span class="token punctuation">.</span><span class="token function">digest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="20"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="21"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="22"></td><td><pre></pre></td></tr><tr><td data-num="23"></td><td><pre>    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token class-name">String</span> <span class="token function">bytesToHex</span><span class="token punctuation">(</span><span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> bytes<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="24"></td><td><pre>        <span class="token class-name">StringBuilder</span> hexString <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StringBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="25"></td><td><pre>        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">byte</span> b <span class="token operator">:</span> bytes<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="26"></td><td><pre>            <span class="token class-name">String</span> hex <span class="token operator">=</span> <span class="token class-name">Integer</span><span class="token punctuation">.</span><span class="token function">toHexString</span><span class="token punctuation">(</span><span class="token number">0xff</span> <span class="token operator">&amp;</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="27"></td><td><pre>            <span class="token keyword">if</span> <span class="token punctuation">(</span>hex<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span> hexString<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token char">'0'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="28"></td><td><pre>            hexString<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>hex<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="29"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="30"></td><td><pre>        <span class="token keyword">return</span> hexString<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="31"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="32"></td><td><pre></pre></td></tr><tr><td data-num="33"></td><td><pre>    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">IOException</span><span class="token punctuation">,</span> <span class="token class-name">NoSuchAlgorithmException</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="34"></td><td><pre>        <span class="token keyword">long</span> startTime <span class="token operator">=</span> <span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">nanoTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="35"></td><td><pre>        <span class="token function">fileToMD5</span><span class="token punctuation">(</span><span class="token string">"D:\\ZzMu\\Aping\\bz\\zb.png"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="36"></td><td><pre>        <span class="token keyword">long</span> endTime <span class="token operator">=</span> <span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">nanoTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="37"></td><td><pre>        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Time taken: %.8fs%n"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>endTime <span class="token operator">-</span> startTime<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">1e9</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="38"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="39"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>使用 java 8：</p>
 <table>
 <thead>
 <tr>
@@ -341,8 +284,8 @@ file_to_md5(<span class="hljs-string">&#x27;D:\\ZzMu\\Aping\\bz\\zb.png&#x27;</s
 </tr>
 </tbody>
 </table>
-<p>没想到啊，java表现的更为糟糕，是不是和java版本有关系呢？</p>
-<p>使用java 17：</p>
+<p>没想到啊，java 表现的更为糟糕，是不是和 java 版本有关系呢？</p>
+<p>使用 java 17：</p>
 <table>
 <thead>
 <tr>
@@ -369,26 +312,9 @@ file_to_md5(<span class="hljs-string">&#x27;D:\\ZzMu\\Aping\\bz\\zb.png&#x27;</s
 </tr>
 </tbody>
 </table>
-<p>确实java 17 的表现要比java 8 的表现好。不过还是弱于Python？难道是我写的代码太烂了？</p>
-<p>又引入了DigestUtils工具类，DigestUtils是apache. commons包下的的MD5计算工具，默认chunk_size大小为1024。</p>
-<pre class="highlight"><code class="java"><span class="hljs-keyword">import</span> org.apache.commons.codec.digest.DigestUtils;
-<span class="hljs-keyword">import</span> org.junit.jupiter.api.Test;
-
-<span class="hljs-keyword">import</span> java.io.FileInputStream;
-<span class="hljs-keyword">import</span> java.io.IOException;
-
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MD5</span> &#123;
-    <span class="hljs-meta">@Test</span>
-    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">test</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException &#123;
-        <span class="hljs-type">FileInputStream</span> <span class="hljs-variable">inputStream</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileInputStream</span>(<span class="hljs-string">&quot;E:\\LinuxIso\\CentOS-7-x86_64-Everything-2207-02.iso&quot;</span>);
-        <span class="hljs-type">long</span> <span class="hljs-variable">startTime</span> <span class="hljs-operator">=</span> System.nanoTime();
-        DigestUtils.md5Hex(inputStream);
-        <span class="hljs-type">long</span> <span class="hljs-variable">endTime</span> <span class="hljs-operator">=</span> System.nanoTime();
-        System.out.printf(<span class="hljs-string">&quot;Time taken: %.8fs%n&quot;</span>, (endTime - startTime) / <span class="hljs-number">1e9</span>);
-    &#125;
-&#125;
-</code></pre>
-<table>
+<p>确实 java 17 的表现要比 java 8 的表现好。不过还是弱于 Python？难道是我写的代码太烂了？</p>
+<p>又引入了 DigestUtils 工具类，DigestUtils 是 apache. commons 包下的的 MD5 计算工具，默认 chunk_size 大小为 1024。</p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>commons<span class="token punctuation">.</span>codec<span class="token punctuation">.</span>digest<span class="token punctuation">.</span></span><span class="token class-name">DigestUtils</span></span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>junit<span class="token punctuation">.</span>jupiter<span class="token punctuation">.</span>api<span class="token punctuation">.</span></span><span class="token class-name">Test</span></span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>io<span class="token punctuation">.</span></span><span class="token class-name">FileInputStream</span></span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>io<span class="token punctuation">.</span></span><span class="token class-name">IOException</span></span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MD5</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>    <span class="token annotation punctuation">@Test</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">IOException</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>        <span class="token class-name">FileInputStream</span> inputStream <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileInputStream</span><span class="token punctuation">(</span><span class="token string">"E:\\LinuxIso\\CentOS-7-x86_64-Everything-2207-02.iso"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>        <span class="token keyword">long</span> startTime <span class="token operator">=</span> <span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">nanoTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>        <span class="token class-name">DigestUtils</span><span class="token punctuation">.</span><span class="token function">md5Hex</span><span class="token punctuation">(</span>inputStream<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>        <span class="token keyword">long</span> endTime <span class="token operator">=</span> <span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">nanoTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Time taken: %.8fs%n"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>endTime <span class="token operator">-</span> startTime<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">1e9</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="16"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><table>
 <thead>
 <tr>
 <th style="text-align:center">chunk_size</th>
@@ -403,25 +329,8 @@ file_to_md5(<span class="hljs-string">&#x27;D:\\ZzMu\\Aping\\bz\\zb.png&#x27;</s
 </tbody>
 </table>
 <p>彼此彼此吧，哈哈哈哈哈哈。</p>
-<p>下面又引入了SecureUtil，该工具是HuTool包下一个计算MD5的工具，默认chunk_size为1024。</p>
-<pre class="highlight"><code class="java"><span class="hljs-keyword">import</span> cn.hutool.crypto.SecureUtil;
-<span class="hljs-keyword">import</span> org.junit.jupiter.api.Test;
-
-<span class="hljs-keyword">import</span> java.io.FileInputStream;
-<span class="hljs-keyword">import</span> java.io.IOException;
-
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MD5</span> &#123;
-    <span class="hljs-meta">@Test</span>
-    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">test</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException &#123;
-        <span class="hljs-type">FileInputStream</span> <span class="hljs-variable">inputStream</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileInputStream</span>(<span class="hljs-string">&quot;E:\\LinuxIso\\CentOS-7-x86_64-Everything-2207-02.iso&quot;</span>);
-        <span class="hljs-type">long</span> <span class="hljs-variable">startTime</span> <span class="hljs-operator">=</span> System.nanoTime();
-        SecureUtil.md5(inputStream);
-        <span class="hljs-type">long</span> <span class="hljs-variable">endTime</span> <span class="hljs-operator">=</span> System.nanoTime();
-        System.out.printf(<span class="hljs-string">&quot;Time taken: %.8fs%n&quot;</span>, (endTime - startTime) / <span class="hljs-number">1e9</span>);
-    &#125;
-&#125;
-</code></pre>
-<table>
+<p>下面又引入了 SecureUtil，该工具是 HuTool 包下一个计算 MD5 的工具，默认 chunk_size 为 1024。</p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">import</span> <span class="token import"><span class="token namespace">cn<span class="token punctuation">.</span>hutool<span class="token punctuation">.</span>crypto<span class="token punctuation">.</span></span><span class="token class-name">SecureUtil</span></span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>junit<span class="token punctuation">.</span>jupiter<span class="token punctuation">.</span>api<span class="token punctuation">.</span></span><span class="token class-name">Test</span></span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>io<span class="token punctuation">.</span></span><span class="token class-name">FileInputStream</span></span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>io<span class="token punctuation">.</span></span><span class="token class-name">IOException</span></span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MD5</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>    <span class="token annotation punctuation">@Test</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">IOException</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>        <span class="token class-name">FileInputStream</span> inputStream <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileInputStream</span><span class="token punctuation">(</span><span class="token string">"E:\\LinuxIso\\CentOS-7-x86_64-Everything-2207-02.iso"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>        <span class="token keyword">long</span> startTime <span class="token operator">=</span> <span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">nanoTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>        <span class="token class-name">SecureUtil</span><span class="token punctuation">.</span><span class="token function">md5</span><span class="token punctuation">(</span>inputStream<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>        <span class="token keyword">long</span> endTime <span class="token operator">=</span> <span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">nanoTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Time taken: %.8fs%n"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>endTime <span class="token operator">-</span> startTime<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">1e9</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="16"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><table>
 <thead>
 <tr>
 <th style="text-align:center">chunk_size</th>
@@ -435,7 +344,7 @@ file_to_md5(<span class="hljs-string">&#x27;D:\\ZzMu\\Aping\\bz\\zb.png&#x27;</s
 </tr>
 </tbody>
 </table>
-<p>HuTool的SecureUtil确实更高效，应该是做了一些特殊优化，源码中显示的是MD5没有使用BC库，完全依赖于jdk库。</p>
+<p>HuTool 的 SecureUtil 确实更高效，应该是做了一些特殊优化，源码中显示的是 MD5 没有使用 BC 库，完全依赖于 jdk 库。</p>
 
       <div class="tags">
           <a href="/tags/MD5/" rel="tag"><i class="ic i-tag"></i> MD5</a>
@@ -540,7 +449,7 @@ file_to_md5(<span class="hljs-string">&#x27;D:\\ZzMu\\Aping\\bz\\zb.png&#x27;</s
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="文章目录">
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#md5%E8%AE%A1%E7%AE%97%E6%97%B6%E9%97%B4%E7%9A%84%E5%AE%9E%E8%B7%B5"><span class="toc-number">1.</span> <span class="toc-text"> MD5计算时间的实践</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text"> 引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE"><span class="toc-number">1.2.</span> <span class="toc-text"> 配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E8%B7%B5"><span class="toc-number">1.3.</span> <span class="toc-text"> 实践</span></a></li></ol></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#md5%E8%AE%A1%E7%AE%97%E6%97%B6%E9%97%B4%E7%9A%84%E5%AE%9E%E8%B7%B5"><span class="toc-number">1.</span> <span class="toc-text"> MD5 计算时间的实践</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text"> 引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE"><span class="toc-number">1.2.</span> <span class="toc-text"> 配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E8%B7%B5"><span class="toc-number">1.3.</span> <span class="toc-text"> 实践</span></a></li></ol></li></ol>
       </div>
       <div class="related panel pjax" data-title="系列文章">
         <ul>
@@ -674,20 +583,10 @@ file_to_md5(<span class="hljs-string">&#x27;D:\\ZzMu\\Aping\\bz\\zb.png&#x27;</s
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
+<a href="/categories/Principles-of-computer-composition/" title="分类于 计算机组成原理">计算机组成原理</a>
 </div>
 
-    <span><a href="/Operate-system/os_retest/" title="计算机操作系统复试速览">计算机操作系统复试速览</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
-</div>
-
-    <span><a href="/Operate-system/kcsj/" title="操作系统课程设计">操作系统课程设计</a></span>
+    <span><a href="/Principles-of-computer-composition/booth_algorithm/" title="booth算法">booth算法</a></span>
   </li>
 
       
@@ -704,10 +603,10 @@ file_to_md5(<span class="hljs-string">&#x27;D:\\ZzMu\\Aping\\bz\\zb.png&#x27;</s
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/MongoDB/" title="分类于 MongoDB">MongoDB</a>
+<a href="/categories/English/" title="分类于 English">English</a>
 </div>
 
-    <span><a href="/MongoDB/MongoDB01/" title="MongoDB的安装与初步使用（Windows平台）">MongoDB的安装与初步使用（Windows平台）</a></span>
+    <span><a href="/English/xbbEnglish/" title="英语笔记">英语笔记</a></span>
   </li>
 
       
@@ -717,7 +616,47 @@ file_to_md5(<span class="hljs-string">&#x27;D:\\ZzMu\\Aping\\bz\\zb.png&#x27;</s
 <a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
 </div>
 
-    <span><a href="/Operate-system/02OS/" title="进程与线程">进程与线程</a></span>
+    <span><a href="/Operate-system/KnowledgeSummary/" title="操作系统细碎知识点及公式速记">操作系统细碎知识点及公式速记</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/DS/" title="分类于 DS">DS</a>
+</div>
+
+    <span><a href="/DSLearnNote/codeTM/" title="数据结构代码题速记">数据结构代码题速记</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
+</div>
+
+    <span><a href="/Operate-system/OSPVCode/" title="操作系统PV代码题速记">操作系统PV代码题速记</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/DS/" title="分类于 DS">DS</a>
+</div>
+
+    <span><a href="/DSLearnNote/GeneralizedLists/" title="考试中有关广义表的两个常用函数的解">考试中有关广义表的两个常用函数的解</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/MongoDB/" title="分类于 MongoDB">MongoDB</a>
+</div>
+
+    <span><a href="/MongoDB/MongoDB01/" title="MongoDB的安装与初步使用（Windows平台）">MongoDB的安装与初步使用（Windows平台）</a></span>
   </li>
 
       
@@ -734,40 +673,10 @@ file_to_md5(<span class="hljs-string">&#x27;D:\\ZzMu\\Aping\\bz\\zb.png&#x27;</s
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/%E4%B8%8A%E5%B2%B8/" title="分类于 上岸">上岸</a>
+<a href="/categories/database/" title="分类于 数据库">数据库</a>
 </div>
 
-    <span><a href="/life/shangan/" title="写给我这一年多的考研时光">写给我这一年多的考研时光</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/experience/" title="分类于 开发经验">开发经验</a>
-</div>
-
-    <span><a href="/experience/MD5CalculationTimePractice/" title="MD5计算时间">MD5计算时间</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/experience/" title="分类于 开发经验">开发经验</a>
-</div>
-
-    <span><a href="/experience/SSM01/" title="SSM框架整合">SSM框架整合</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
-</div>
-
-    <span><a href="/Operate-system/01OS/" title="操作系统知识点阶段总结">操作系统知识点阶段总结</a></span>
+    <span><a href="/database/DataBase01/" title="DB中的范式">DB中的范式</a></span>
   </li>
 
   </ul>
@@ -792,8 +701,8 @@ file_to_md5(<span class="hljs-string">&#x27;D:\\ZzMu\\Aping\\bz\\zb.png&#x27;</s
     <a href="https://icp.gov.moe/?keyword=20249329" target="_blank">萌ICP备20249329号</a>
     基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
   <br/><span>世界本污浊，罪与爱同歌</span>
-  <br/><i class="ic i-chart-area"></i>&nbsp;<span>144k&nbsp;字</span> &nbsp;|&nbsp;
-  <i class="ic i-coffee"></i>&nbsp;<span> 4:01</span>
+  <br/><i class="ic i-chart-area"></i>&nbsp;<span>136k&nbsp;字</span> &nbsp;|&nbsp;
+  <i class="ic i-coffee"></i>&nbsp;<span> 3:46</span>
   </div>
 </div>
 

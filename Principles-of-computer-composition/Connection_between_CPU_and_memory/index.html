@@ -149,24 +149,24 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <div class="body md" itemprop="articleBody">
     
 
-    <h1 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h1>
+    <h1 id="前言"><a class="markdownIt-Anchor" href="#前言">#</a> 前言</h1>
 <p>针对这一部分内容我还是推荐大家去看看书本上和其他教学视频里的内容，本篇文章只针对计算机组成原理（第 3 版）P91 页之后的内容进行简单整理汇总。</p>
 <p>接下来我将会按照书上的顺序进行叙述。</p>
-<h1 id="cpu-与存储器的连接"><a class="markdownIt-Anchor" href="#cpu-与存储器的连接"></a> CPU 与存储器的连接</h1>
-<h2 id="存储器容量扩展"><a class="markdownIt-Anchor" href="#存储器容量扩展"></a> 存储器容量扩展</h2>
-<h3 id="字扩展"><a class="markdownIt-Anchor" href="#字扩展"></a> 字扩展</h3>
+<h1 id="cpu-与存储器的连接"><a class="markdownIt-Anchor" href="#cpu-与存储器的连接">#</a> CPU 与存储器的连接</h1>
+<h2 id="存储器容量扩展"><a class="markdownIt-Anchor" href="#存储器容量扩展">#</a> 存储器容量扩展</h2>
+<h3 id="字扩展"><a class="markdownIt-Anchor" href="#字扩展">#</a> 字扩展</h3>
 <p>在某些情况下，字扩展可以被视为一种扩容操作。字扩展通常指的是将一个字符或字符串转换为具有更多位数或更高精度的数据类型，以便进行更复杂的计算或存储更大的值。这个过程可能涉及到内存分配和重新分配，因此可以看作是一种扩容操作。但是，在其他情况下，字扩展可能只是简单地将一个字符或字符串进行格式化或解码，而不涉及任何内存操作。因此，是否将字扩展视为扩容取决于具体的上下文和实现方式。</p>
 <p><strong>但是我们可以简单地把字扩展理解为扩容。</strong></p>
 <p>比如，<strong>两片 1K*8 位</strong>通过字扩展扩容位逻辑上的<strong>一片 2K*8 位</strong></p>
-<h3 id="位扩展"><a class="markdownIt-Anchor" href="#位扩展"></a> 位扩展</h3>
-<p>位扩展是一种将一个二进制数值的位数增加的操作。在位扩展中，如果原始二进制数值的最高位为 0，则在其左侧添加 0 以增加位数；如果最高位为 1，则在其左侧添加 1 以保持符号不变。例如，将 8 位二进制数值&quot;00110110&quot;进行位扩展为 16 位，则结果为&quot;00000000 00110110&quot;。位扩展通常用于将低精度数据类型转换为高精度数据类型，或者在进行算术运算时对操作数进行对齐。</p>
+<h3 id="位扩展"><a class="markdownIt-Anchor" href="#位扩展">#</a> 位扩展</h3>
+<p>位扩展是一种将一个二进制数值的位数增加的操作。在位扩展中，如果原始二进制数值的最高位为 0，则在其左侧添加 0 以增加位数；如果最高位为 1，则在其左侧添加 1 以保持符号不变。例如，将 8 位二进制数值 &quot;00110110&quot; 进行位扩展为 16 位，则结果为 &quot;00000000 00110110&quot;。位扩展通常用于将低精度数据类型转换为高精度数据类型，或者在进行算术运算时对操作数进行对齐。</p>
 <p><strong>咳咳咳，简单理解就是二进制加长</strong></p>
-<h3 id="字位扩展"><a class="markdownIt-Anchor" href="#字位扩展"></a> 字位扩展</h3>
-<p>字位扩展是一种将一个数据类型的位数增加的操作，其中“字”指的是计算机中的一个固定大小的数据单元。在字位扩展中，如果原始数据类型的最高位为 0，则在其左侧添加 0 以增加位数；如果最高位为 1，则在其左侧添加 1 以保持符号不变。例如，将 16 位有符号整数进行字位扩展为 32 位，则结果为在最高位之前添加 16 个相同的符号位。字位扩展通常用于将低精度数据类型转换为高精度数据类型，或者在进行算术运算时对操作数进行对齐。</p>
-<p><strong>简单理解就是…结合版</strong></p>
-<h1 id="例题"><a class="markdownIt-Anchor" href="#例题"></a> 例题</h1>
+<h3 id="字位扩展"><a class="markdownIt-Anchor" href="#字位扩展">#</a> 字位扩展</h3>
+<p>字位扩展是一种将一个数据类型的位数增加的操作，其中 “字” 指的是计算机中的一个固定大小的数据单元。在字位扩展中，如果原始数据类型的最高位为 0，则在其左侧添加 0 以增加位数；如果最高位为 1，则在其左侧添加 1 以保持符号不变。例如，将 16 位有符号整数进行字位扩展为 32 位，则结果为在最高位之前添加 16 个相同的符号位。字位扩展通常用于将低精度数据类型转换为高精度数据类型，或者在进行算术运算时对操作数进行对齐。</p>
+<p><strong>简单理解就是… 结合版</strong></p>
+<h1 id="例题"><a class="markdownIt-Anchor" href="#例题">#</a> 例题</h1>
 <p>怎么出题呢？一般都像这样：</p>
-<p>CPU 有 16 根地址线、8 根数据线，并用 MREQ 非作为访存控制信号（低电频有效），用 WR 作为读/写控制信号。现在有如下存储芯片：<strong>1K X 4 位 RAM、4K X 8 位 RAM、8K X 8 位 RAM、2K X 8 位 ROM、4K X 8 位 ROM、8K X 8 位 ROM</strong>及 74138 译码器和各种门电路。现要求如下：</p>
+<p>CPU 有 16 根地址线、8 根数据线，并用 MREQ 非作为访存控制信号（低电频有效），用 WR 作为读 / 写控制信号。现在有如下存储芯片：<strong>1K X 4 位 RAM、4K X 8 位 RAM、8K X 8 位 RAM、2K X 8 位 ROM、4K X 8 位 ROM、8K X 8 位 ROM</strong> 及 74138 译码器和各种门电路。现要求如下：</p>
 <ul>
 <li>主存地址空间分配：
 <ul>
@@ -177,7 +177,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <li>合理选用上述存储芯片，说明各选几片</li>
 <li>详细画出芯片片选逻辑图</li>
 </ul>
-<h2 id="解"><a class="markdownIt-Anchor" href="#解"></a> 解！！</h2>
+<h2 id="解"><a class="markdownIt-Anchor" href="#解">#</a> 解！！</h2>
 <p><strong>第一步：写出地址空间分配范围二进制码</strong></p>
 <p>6000H ~ 67FFH 为系统程序区</p>
 <p>6800H ~ 6BFFH 为用户程序区</p>
@@ -376,7 +376,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 </tr>
 </tbody>
 </table>
-<p>A0 ~ A10 为一个 ROM，一共 11 位，理想是要一个规格为<strong>2K X 8 位 ROM</strong></p>
+<p>A0 ~ A10 为一个 ROM，一共 11 位，理想是要一个规格为<strong> 2K X 8 位 ROM</strong></p>
 <p>再来看 RAM ，也就是用户区：</p>
 <table>
 <thead>
@@ -474,7 +474,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 </tr>
 </tbody>
 </table>
-<p>A0 ~ A9 为一个 RAM，一共 10 位，理想是要一个规格为<strong>1K X 8 位 RAM</strong></p>
+<p>A0 ~ A9 为一个 RAM，一共 10 位，理想是要一个规格为<strong> 1K X 8 位 RAM</strong></p>
 <p>然后呢，我们需要对 ROM 和 RAM 进行读写，这就涉及到切换 ROM 和 RAM 芯片的问题，我们需要弄一个片选信号：</p>
 <table>
 <thead>
@@ -670,15 +670,15 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 </tr>
 </tbody>
 </table>
-<p><strong>A11 A12 A13</strong>一次排列连接至 74138 的数据输入端<strong>A B C</strong>，这一点非常重要！！低位是起始点 A，高位时终点 C。</p>
-<p>数据为<strong>100</strong>时 ROM 被选中，74138Y4 非端被点亮，<strong>因为 100 正是数字 4</strong>。</p>
-<p>数据为<strong>101</strong>时 RAM 被选中，74138Y4 非端被点亮，<strong>因为 101 正是数字 5</strong>。</p>
+<p><strong>A11 A12 A13</strong> 一次排列连接至 74138 的数据输入端<strong> A B C</strong>，这一点非常重要！！低位是起始点 A，高位时终点 C。</p>
+<p>数据为<strong> 100</strong> 时 ROM 被选中，74138Y4 非端被点亮，<strong>因为 100 正是数字 4</strong>。</p>
+<p>数据为<strong> 101</strong> 时 RAM 被选中，74138Y4 非端被点亮，<strong>因为 101 正是数字 5</strong>。</p>
 <p>接下来再讨论讨论芯片的选择：</p>
-<p>A0 ~ A10 为一个 ROM，一共 11 位，理想是要一个规格为<strong>2K X 8 位 ROM</strong></p>
-<p>A0 ~ A9 为一个 RAM，一共 10 位，理想是要一个规格为<strong>1K X 8 位 RAM</strong></p>
-<p>对于 ROM，题中刚好有一个规格为<strong>2K X 8 位的 ROM 芯片</strong>，拿来便是！</p>
+<p>A0 ~ A10 为一个 ROM，一共 11 位，理想是要一个规格为<strong> 2K X 8 位 ROM</strong></p>
+<p>A0 ~ A9 为一个 RAM，一共 10 位，理想是要一个规格为<strong> 1K X 8 位 RAM</strong></p>
+<p>对于 ROM，题中刚好有一个规格为<strong> 2K X 8 位的 ROM 芯片</strong>，拿来便是！</p>
 <p>对于 RAM，题中没有那个规格的我们这里就需要进行扩展，这里我们选择<strong>两片 1K X 4 位的 ROM 芯片</strong>对他进行位扩展就好了。位扩展 位扩展 位扩展，说明它位数不够，数据一次无法写进一个芯片，但是一次可以写进两个芯片。这样就解决了！</p>
-<h1 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h1>
+<h1 id="总结"><a class="markdownIt-Anchor" href="#总结">#</a> 总结</h1>
 <p>CPU 与存储器的连接是计算机计算机组成原理中的重要考题，更是期末考试中的重点，看着很复杂的连接图，但其实内在的原理还是很简单的，无非就是：写二进制、选芯片、扩展外带画图连接，本质还是比较容易作的</p>
 
       <div class="tags">
@@ -918,30 +918,10 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/English/" title="分类于 English">English</a>
+<a href="/categories/%E5%88%9D%E6%9D%A5%E4%B9%8D%E5%88%B0/" title="分类于 初来乍到">初来乍到</a>
 </div>
 
-    <span><a href="/English/xbbEnglish/" title="英语笔记">英语笔记</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/database/" title="分类于 数据库">数据库</a>
-</div>
-
-    <span><a href="/database/DataBase01/" title="DB中的范式">DB中的范式</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
-</div>
-
-    <span><a href="/Operate-system/OSPVCode/" title="操作系统PV代码题速记">操作系统PV代码题速记</a></span>
+    <span><a href="/hello/" title="起点，但不止于起点！">起点，但不止于起点！</a></span>
   </li>
 
       
@@ -958,16 +938,6 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/java%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/" title="分类于 java高级特性">java高级特性</a>
-</div>
-
-    <span><a href="/Java/javaAd01/" title="Java高级特性1">Java高级特性1</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
 <a href="/categories/MongoDB/" title="分类于 MongoDB">MongoDB</a>
 </div>
 
@@ -978,30 +948,10 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
+<a href="/categories/DS/" title="分类于 DS">DS</a>
 </div>
 
-    <span><a href="/Operate-system/02OS/" title="进程与线程">进程与线程</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%9D%E6%9D%A5%E4%B9%8D%E5%88%B0/" title="分类于 初来乍到">初来乍到</a>
-</div>
-
-    <span><a href="/hello/" title="起点，但不止于起点！">起点，但不止于起点！</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/political/" title="分类于 political">political</a>
-</div>
-
-    <span><a href="/PoliticalKnowledge/politicalNote/" title="政治知识点速记（持续更新）">政治知识点速记（持续更新）</a></span>
+    <span><a href="/DSLearnNote/codeTM/" title="数据结构代码题速记">数据结构代码题速记</a></span>
   </li>
 
       
@@ -1012,6 +962,56 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 </div>
 
     <span><a href="/Principles-of-computer-composition/booth_algorithm/" title="booth算法">booth算法</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/java%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/" title="分类于 java高级特性">java高级特性</a>
+</div>
+
+    <span><a href="/Java/javaAd01/" title="Java高级特性1">Java高级特性1</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
+</div>
+
+    <span><a href="/Operate-system/kcsj/" title="操作系统课程设计">操作系统课程设计</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/database/" title="分类于 数据库">数据库</a>
+</div>
+
+    <span><a href="/database/DataBase01/" title="DB中的范式">DB中的范式</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/database/" title="分类于 数据库">数据库</a>
+</div>
+
+    <span><a href="/database/DataBase02/" title="数据库设计">数据库设计</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Linux/" title="分类于 Linux">Linux</a>
+</div>
+
+    <span><a href="/Linux/Linux01/" title="初见Linux">初见Linux</a></span>
   </li>
 
   </ul>
@@ -1036,8 +1036,8 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
     <a href="https://icp.gov.moe/?keyword=20249329" target="_blank">萌ICP备20249329号</a>
     基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
   <br/><span>世界本污浊，罪与爱同歌</span>
-  <br/><i class="ic i-chart-area"></i>&nbsp;<span>144k&nbsp;字</span> &nbsp;|&nbsp;
-  <i class="ic i-coffee"></i>&nbsp;<span> 4:01</span>
+  <br/><i class="ic i-chart-area"></i>&nbsp;<span>136k&nbsp;字</span> &nbsp;|&nbsp;
+  <i class="ic i-coffee"></i>&nbsp;<span> 3:46</span>
   </div>
 </div>
 
