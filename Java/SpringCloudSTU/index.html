@@ -1,0 +1,658 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="诗岸梦行舟" href="https://735690757.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="诗岸梦行舟" href="https://735690757.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="诗岸梦行舟" href="https://735690757.github.io/feed.json" />
+<link rel="stylesheet" href="https://unpkg.com/mermaid/dist/mermaid.min.css">
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({ startOnLoad: true });</script>
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="java" />
+
+
+<link rel="canonical" href="https://735690757.github.io/Java/SpringCloudSTU/">
+
+
+
+  <title>
+SpringCloud学习记录 - SpringCloud |
+KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</title>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">SpringCloud学习记录
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2025-06-24 10:20:00">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2025-06-24T10:20:00+08:00">2025-06-24</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">KarryLiu</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+          <img src="/images/springcloud.jpeg">
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/SpringCloud/" itemprop="item" rel="index" title="分类于 SpringCloud"><span itemprop="name">SpringCloud</span></a>
+<meta itemprop="position" content="1" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="https://735690757.github.io/Java/SpringCloudSTU/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/tx.jpg">
+    <meta itemprop="name" content="KarryLiu">
+    <meta itemprop="description" content="分享计算机知识以及各种心得总结, 愿世间所有的美好都得以祝愿">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="诗岸梦行舟">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h1 id="springcloud"><a class="markdownIt-Anchor" href="#springcloud">#</a> SpringCloud</h1>
+<h2 id="从单体到集群再到分布式"><a class="markdownIt-Anchor" href="#从单体到集群再到分布式">#</a> 从单体到集群再到分布式</h2>
+<p>早期阶段，单体架构是主流选择，所有功能模块打包在一个应用中，开发简单直接，但是随着业务增长，代码变得臃肿，难以扩展特定功能模块，技术栈单一，难以采用新技术。</p>
+<p>为了应对单体架构的性能瓶颈和高可用需求，集群架构应运而生。</p>
+<p>实现方式：</p>
+<ol>
+<li>水平扩展：部署多个相同的单体应用实例</li>
+<li>通过负载均衡器 (Nginx、F5 等) 分配请求</li>
+<li>共享数据库或数据库主从复制</li>
+</ol>
+<p>但是仍然有缺陷，比如应用本身仍然是单体，业务复杂时扩展不灵活。</p>
+<p>此时分布式架构与微服务应运而生，分布式架构通过将系统拆分为多个服务来解决上述问题。</p>
+<p>本次学习使用尚硅谷 b 站开放课堂：<span class="exturl" data-url="aHR0cHM6Ly93d3cuYmlsaWJpbGkuY29tL3ZpZGVvL0JWMVVKYzJlekVGVQ==">https://www.bilibili.com/video/BV1UJc2ezEFU</span></p>
+<p>框架（组件）学习与本套课程高度重合，但并不是课程资料的再复写。</p>
+<p>相关技术：</p>
+<ol>
+<li>Nacos（注册中心、配置中心）来自 Spring Cloud Alibaba</li>
+<li>OpenFegin（远程调用）来自 Spring Cloud 官方</li>
+<li>Sentinel（异常处理、流控规则、熔断规则）来自 Spring Cloud Alibaba</li>
+<li>Gateway（路由、断言、过滤）来自 Spring Cloud 官方</li>
+<li>Seata（分布式事务）来自 Spring Cloud Alibaba</li>
+</ol>
+<h2 id="nacos"><a class="markdownIt-Anchor" href="#nacos">#</a> Nacos</h2>
+<h3 id="注册中心-服务注册"><a class="markdownIt-Anchor" href="#注册中心-服务注册">#</a> 注册中心 - 服务注册</h3>
+<p>首先进行依赖导入</p>
+<figure class="highlight xml"><figcaption data-lang="XML"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">&lt;!--    nacos 配置中心、注册中心    --></span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.alibaba.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-cloud-starter-alibaba-nacos-discovery<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></pre></td></tr></table></figure><p>使用 docker 或者直接运行的方式启动 Nacos</p>
+<p>在 Windows 平台直接运行下使用命令：startup.cmd -m standalone（standalone 为使用单机模式）</p>
+<p>在不同的服务下编写配置，如订单服务和产品服务：</p>
+<figure class="highlight xml"><figcaption data-lang="XML"></figcaption><table><tr><td data-num="1"></td><td><pre>spring:</pre></td></tr><tr><td data-num="2"></td><td><pre>  cloud:</pre></td></tr><tr><td data-num="3"></td><td><pre>    nacos:</pre></td></tr><tr><td data-num="4"></td><td><pre>      server-addr: 127.0.0.1:8848</pre></td></tr><tr><td data-num="5"></td><td><pre>  application:</pre></td></tr><tr><td data-num="6"></td><td><pre>    name: service-order</pre></td></tr><tr><td data-num="7"></td><td><pre>server:</pre></td></tr><tr><td data-num="8"></td><td><pre>  port: 8080</pre></td></tr></table></figure><figure class="highlight xml"><figcaption data-lang="XML"></figcaption><table><tr><td data-num="1"></td><td><pre>spring:</pre></td></tr><tr><td data-num="2"></td><td><pre>  cloud:</pre></td></tr><tr><td data-num="3"></td><td><pre>    nacos:</pre></td></tr><tr><td data-num="4"></td><td><pre>      server-addr: 127.0.0.1:8848</pre></td></tr><tr><td data-num="5"></td><td><pre>  application:</pre></td></tr><tr><td data-num="6"></td><td><pre>    name: service-product</pre></td></tr><tr><td data-num="7"></td><td><pre>server:</pre></td></tr><tr><td data-num="8"></td><td><pre>  port: 9000</pre></td></tr></table></figure><p>其中 nacos.server-addr 为 nacos 服务的地址为 127.0.0.1:8848（本地测试）</p>
+<p>访问 http://localhost:8848/nacos，在服务管理 - 服务列表可以看到现在已经注册上的服务</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">服务名</th>
+<th style="text-align:left">分组名称</th>
+<th style="text-align:left">集群数目</th>
+<th style="text-align:left">实例数</th>
+<th style="text-align:left">健康实例数</th>
+<th style="text-align:left">触发保护阈值</th>
+<th style="text-align:center">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">service-order</td>
+<td style="text-align:left">DEFAULT_GROUP</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left">false</td>
+<td style="text-align:center">详情 | 示例代码 | 订阅者 | 删除</td>
+</tr>
+<tr>
+<td style="text-align:left">service-product</td>
+<td style="text-align:left">DEFAULT_GROUP</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">false</td>
+<td style="text-align:center">详情 | 示例代码 | 订阅者 | 删除</td>
+</tr>
+</tbody>
+</table>
+<h3 id="注册中心-服务发现"><a class="markdownIt-Anchor" href="#注册中心-服务发现">#</a> 注册中心 - 服务发现</h3>
+<p>由于使用了 Nacos，服务发现方法的调用存在两套标准，分别是 Spring Cloud 的 DiscoveryClient 和 Nacos 的 NacosServiceDiscovery</p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token annotation punctuation">@Resource</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token class-name">DiscoveryClient</span> discoveryClient<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token annotation punctuation">@Resource</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token class-name">NacosServiceDiscovery</span> nacosServiceDiscovery<span class="token punctuation">;</span></pre></td></tr></table></figure><p>下面为测试代码：</p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">/**</pre></td></tr><tr><td data-num="2"></td><td><pre> * spring 标准 discovery 使用 DiscoveryClient</pre></td></tr><tr><td data-num="3"></td><td><pre> */</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token annotation punctuation">@Test</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testDiscoveryClient</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">String</span> service <span class="token operator">:</span> discoveryClient<span class="token punctuation">.</span><span class="token function">getServices</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>        <span class="token comment">/*</pre></td></tr><tr><td data-num="8"></td><td><pre>            循环输出服务列表（服务名）</pre></td></tr><tr><td data-num="9"></td><td><pre>                service-order</pre></td></tr><tr><td data-num="10"></td><td><pre>                service-product</pre></td></tr><tr><td data-num="11"></td><td><pre>        */</span></pre></td></tr><tr><td data-num="12"></td><td><pre>        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>service<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="13"></td><td><pre></pre></td></tr><tr><td data-num="14"></td><td><pre>        <span class="token comment">// 获取所有实例、输出 IP 与端口号</span></pre></td></tr><tr><td data-num="15"></td><td><pre>        <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">ServiceInstance</span><span class="token punctuation">></span></span> instances <span class="token operator">=</span> discoveryClient<span class="token punctuation">.</span><span class="token function">getInstances</span><span class="token punctuation">(</span>service<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="16"></td><td><pre>        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">ServiceInstance</span> instance <span class="token operator">:</span> instances<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="17"></td><td><pre>            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>instance<span class="token punctuation">.</span><span class="token function">getHost</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">":"</span> <span class="token operator">+</span> instance<span class="token punctuation">.</span><span class="token function">getPort</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="18"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="19"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="20"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="21"></td><td><pre><span class="token comment">/**</pre></td></tr><tr><td data-num="22"></td><td><pre> * nacos 标准 discovery 使用 NacosServiceDiscovery</pre></td></tr><tr><td data-num="23"></td><td><pre> */</span></pre></td></tr><tr><td data-num="24"></td><td><pre><span class="token annotation punctuation">@Test</span></pre></td></tr><tr><td data-num="25"></td><td><pre><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testNacosServiceDiscovery</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">NacosException</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="26"></td><td><pre>    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">String</span> service <span class="token operator">:</span> nacosServiceDiscovery<span class="token punctuation">.</span><span class="token function">getServices</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="27"></td><td><pre>        <span class="token comment">// 输出服务列表</span></pre></td></tr><tr><td data-num="28"></td><td><pre>        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>service<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="29"></td><td><pre>        <span class="token comment">// 获取所有实例、输出 IP 与端口号</span></pre></td></tr><tr><td data-num="30"></td><td><pre>        <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">ServiceInstance</span><span class="token punctuation">></span></span> instances <span class="token operator">=</span> nacosServiceDiscovery<span class="token punctuation">.</span><span class="token function">getInstances</span><span class="token punctuation">(</span>service<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="31"></td><td><pre>        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">ServiceInstance</span> instance <span class="token operator">:</span> instances<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="32"></td><td><pre>            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>instance<span class="token punctuation">.</span><span class="token function">getHost</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">":"</span> <span class="token operator">+</span> instance<span class="token punctuation">.</span><span class="token function">getPort</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="33"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="34"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="35"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>输出：</p>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>service-order</pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token number">192.168</span>.25.1:8080</pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token number">192.168</span>.25.1:8001</pre></td></tr><tr><td data-num="4"></td><td><pre>service-product</pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token number">192.168</span>.25.1:9000</pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token number">192.168</span>.25.1:9002</pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token number">192.168</span>.25.1:9001</pre></td></tr></table></figure><p>如果并没有如此多的输出可能是只启动了两个后端服务，还需要多启动几个来模拟分布式。</p>
+<p>其次，在实际应用中，这个一般会被进一步封装，其发现的过程是自动进行的。</p>
+<h3 id="注册中心-初见远程调用"><a class="markdownIt-Anchor" href="#注册中心-初见远程调用">#</a> 注册中心 - 初见，远程调用</h3>
+<p>现在有一个实例，我们需要一个下单功能，当用户下单后对其商品进行结算这里我们对一些数据做出模拟。</p>
+<p>订单实体：</p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token annotation punctuation">@Data</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Order</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token keyword">private</span> <span class="token class-name">Long</span> id<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token keyword">private</span> <span class="token class-name">BigDecimal</span> totalAmount<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token keyword">private</span> <span class="token class-name">Long</span> userId<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token keyword">private</span> <span class="token class-name">String</span> nickName<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    <span class="token keyword">private</span> <span class="token class-name">String</span> address<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>    <span class="token keyword">private</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Object</span><span class="token punctuation">></span></span> product<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>商品实体：</p>
+<pre><code>@Data
+public class Product &#123;
+    private Long id;
+    private BigDecimal price;
+    private String productName;
+    private int num;
+&#125;
+</code></pre>
+<p>其次就是相应和 Controller 与 Service 代码，其较为简单不在此处详细展开，不过我想说一下订单部分的 Service：</p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token annotation punctuation">@Service</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">OrderServiceImpl</span> <span class="token keyword">implements</span> <span class="token class-name">OrderService</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token annotation punctuation">@Override</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token keyword">public</span> <span class="token class-name">Order</span> <span class="token function">createOrder</span><span class="token punctuation">(</span><span class="token class-name">Long</span> productId<span class="token punctuation">,</span> <span class="token class-name">Long</span> userId<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>        <span class="token class-name">Order</span> order <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Order</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>        order<span class="token punctuation">.</span><span class="token function">setId</span><span class="token punctuation">(</span><span class="token number">1L</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>        <span class="token comment">// TODO 需要计算</span></pre></td></tr><tr><td data-num="8"></td><td><pre>        order<span class="token punctuation">.</span><span class="token function">setTotalAmount</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">BigDecimal</span><span class="token punctuation">(</span><span class="token string">"0"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>        order<span class="token punctuation">.</span><span class="token function">setUserId</span><span class="token punctuation">(</span>userId<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>        order<span class="token punctuation">.</span><span class="token function">setNickName</span><span class="token punctuation">(</span><span class="token string">"Karry.Liu"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>        order<span class="token punctuation">.</span><span class="token function">setAddress</span><span class="token punctuation">(</span><span class="token string">"北极"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>        <span class="token comment">// TODO 需要远程查询</span></pre></td></tr><tr><td data-num="13"></td><td><pre>        order<span class="token punctuation">.</span><span class="token function">setProduct</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>        <span class="token keyword">return</span> order<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="16"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>由于 Order 与 Product 分别位于两个服务之中，其详细的金额 Amount 与产品详情列表 Product List 我们目前似乎无法获取，那我们应该怎么办呢？这个我们暂时按下不表，我们现在需要解决一个更加棘手的问题。</p>
+<p>现在我们有如下项目结构（简略版）</p>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>- cloud-demo<span class="token punctuation">(</span>基座项目<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token operator">|</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token operator">|</span> - services<span class="token punctuation">(</span>服务层<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token operator">|</span> <span class="token operator">|</span> </pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token operator">|</span> <span class="token operator">|</span>  - service-order<span class="token punctuation">(</span>订单服务<span class="token punctuation">)</span><span class="token punctuation">(</span>包含订单实体bean、服务service和控制controller<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token operator">|</span> <span class="token operator">|</span> </pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token operator">|</span> <span class="token operator">|</span>  - service-product<span class="token punctuation">(</span>商品服务<span class="token punctuation">)</span><span class="token punctuation">(</span>包含商品实体bean、服务service和控制controller<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="8"></td><td><pre></pre></td></tr><tr><td data-num="9"></td><td><pre>订单服务无法使用商品bean，反之商品服务无法使用订单bean，因为其每个服务均为独立的项目。</pre></td></tr></table></figure><p>当 Order 服务需要 Product 服务时，其在 Order 的代码内一定会存在与 Product 相关的关键字，特别地，由于两个服务之间项链紧密，在 Product 的代码内也许也会出现 Order 相关的关键字。可是两套服务分别维护着自己的 bean（实体对象 / 实体类），在不同的服务之间甚至没有办法使用对方的实体类。</p>
+<p>解决方案也很简单，将商品与订单的 Bean 剥离出来，形成一个独立的项目，与 services 等价地位，并在 services 添加 model 依赖。</p>
+<figure class="highlight xml"><figcaption data-lang="XML"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">&lt;!--    模型依赖    --></span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.KarryCode<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>model<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>0.0.1-SNAPSHOT<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></pre></td></tr></table></figure><p>现在的结构为：</p>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>- cloud-demo<span class="token punctuation">(</span>基座项目<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token operator">|</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token operator">|</span> - model<span class="token punctuation">(</span>模型层<span class="token punctuation">)</span><span class="token punctuation">(</span>包含订单实体bean与商品实体bean<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token operator">|</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token operator">|</span> - services<span class="token punctuation">(</span>服务层<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token operator">|</span> <span class="token operator">|</span> </pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token operator">|</span> <span class="token operator">|</span>  - service-order<span class="token punctuation">(</span>订单服务<span class="token punctuation">)</span><span class="token punctuation">(</span>包含服务service和控制controller<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token operator">|</span> <span class="token operator">|</span> </pre></td></tr><tr><td data-num="9"></td><td><pre><span class="token operator">|</span> <span class="token operator">|</span>  - service-product<span class="token punctuation">(</span>商品服务<span class="token punctuation">)</span><span class="token punctuation">(</span>包含服务service和控制controller<span class="token punctuation">)</span></pre></td></tr></table></figure><p>至此，服务之间的实体使用已经被打通。</p>
+<p>其次编写远程访问请求模板类 RestTemplate，由于 RestTemplate 是线程安全的，我们可以这样写：</p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token annotation punctuation">@Configuration</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ProductServiceConfig</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token annotation punctuation">@Bean</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token keyword">public</span> <span class="token class-name">RestTemplate</span> <span class="token function">restTemplate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">RestTemplate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token comment">// 上拉使他成为一个 Bean</span></pre></td></tr></table></figure><p>其次编写远程访问方法：</p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">private</span> <span class="token class-name">Product</span> <span class="token function">getProductFromRemote</span><span class="token punctuation">(</span><span class="token class-name">Long</span> productId<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token comment">// 获取商品服务所在的所有机器 IP + 端口</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">ServiceInstance</span><span class="token punctuation">></span></span> instances <span class="token operator">=</span> discoveryClient<span class="token punctuation">.</span><span class="token function">getInstances</span><span class="token punctuation">(</span><span class="token string">"service-product"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token comment">// 获取第一个机器（简单版）</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token class-name">ServiceInstance</span> serviceInstance <span class="token operator">=</span> instances<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token comment">// 拼接请求地址 http://192.168.25.1:9000/product/100</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    <span class="token class-name">String</span> url <span class="token operator">=</span> <span class="token string">"http://"</span> <span class="token operator">+</span> serviceInstance<span class="token punctuation">.</span><span class="token function">getHost</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">":"</span> <span class="token operator">+</span> serviceInstance<span class="token punctuation">.</span><span class="token function">getPort</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"/product/"</span> <span class="token operator">+</span> productId<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>    log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"远程请求: &#123;&#125;"</span><span class="token punctuation">,</span> url<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    <span class="token comment">// 发送请求（远程）</span></pre></td></tr><tr><td data-num="10"></td><td><pre>    <span class="token keyword">return</span> restTemplate<span class="token punctuation">.</span><span class="token function">getForObject</span><span class="token punctuation">(</span>url<span class="token punctuation">,</span> <span class="token class-name">Product</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="11"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>补充 createOrder 方法</p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">public</span> <span class="token class-name">Order</span> <span class="token function">createOrder</span><span class="token punctuation">(</span><span class="token class-name">Long</span> productId<span class="token punctuation">,</span> <span class="token class-name">Long</span> userId<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token comment">// 此处提前远程查询</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token class-name">Product</span> productFromRemote <span class="token operator">=</span> <span class="token function">getProductFromRemote</span><span class="token punctuation">(</span>productId<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token class-name">Order</span> order <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Order</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    order<span class="token punctuation">.</span><span class="token function">setId</span><span class="token punctuation">(</span><span class="token number">1L</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token comment">// 计算</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    order<span class="token punctuation">.</span><span class="token function">setTotalAmount</span><span class="token punctuation">(</span>productFromRemote<span class="token punctuation">.</span><span class="token function">getPrice</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">multiply</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">BigDecimal</span><span class="token punctuation">(</span>productFromRemote<span class="token punctuation">.</span><span class="token function">getNum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>    order<span class="token punctuation">.</span><span class="token function">setUserId</span><span class="token punctuation">(</span>userId<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    order<span class="token punctuation">.</span><span class="token function">setNickName</span><span class="token punctuation">(</span><span class="token string">"Karry.Liu"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>    order<span class="token punctuation">.</span><span class="token function">setAddress</span><span class="token punctuation">(</span><span class="token string">"北极"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>    <span class="token comment">// 远程查询的结果</span></pre></td></tr><tr><td data-num="12"></td><td><pre>    order<span class="token punctuation">.</span><span class="token function">setProduct</span><span class="token punctuation">(</span><span class="token class-name">List</span><span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span>productFromRemote<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>    <span class="token keyword">return</span> order<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="14"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>此时双端服务已经打通了，注意到日志：2025-06-24T22:21:11.646+08:00  INFO 3496 — [service-order] [nio-8080-exec-1] c.K.service.impl.OrderServiceImpl        : 远程请求: <span class="exturl" data-url="aHR0cDovLzE5Mi4xNjguMjUuMTo5MDAwL3Byb2R1Y3QvMTAw">http://192.168.25.1:9000/product/100</span></p>
+<figure class="highlight json"><figcaption data-lang="JSON"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>  <span class="token property">"id"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="3"></td><td><pre>  <span class="token property">"totalAmount"</span><span class="token operator">:</span> <span class="token number">198</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="4"></td><td><pre>  <span class="token property">"userId"</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="5"></td><td><pre>  <span class="token property">"nickName"</span><span class="token operator">:</span> <span class="token string">"Karry.Liu"</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="6"></td><td><pre>  <span class="token property">"address"</span><span class="token operator">:</span> <span class="token string">"北极"</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="7"></td><td><pre>  <span class="token property">"product"</span><span class="token operator">:</span> <span class="token punctuation">[</span></pre></td></tr><tr><td data-num="8"></td><td><pre>    <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>      <span class="token property">"id"</span><span class="token operator">:</span> <span class="token number">100</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="10"></td><td><pre>      <span class="token property">"price"</span><span class="token operator">:</span> <span class="token number">99</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="11"></td><td><pre>      <span class="token property">"productName"</span><span class="token operator">:</span> <span class="token string">"IPhone-100"</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="12"></td><td><pre>      <span class="token property">"num"</span><span class="token operator">:</span> <span class="token number">2</span></pre></td></tr><tr><td data-num="13"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>  <span class="token punctuation">]</span></pre></td></tr><tr><td data-num="15"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>此时我们还有两个问题，一是我们每次只取了第一个服务器，二是这样写太复杂，没有实现负载均衡。</p>
+<p>针对此第一个问题将在下一小节中解决，第二个问题将在下一个组件中解决。</p>
+<h3 id="注册中心-实现负载均衡apis"><a class="markdownIt-Anchor" href="#注册中心-实现负载均衡apis">#</a> 注册中心 - 实现负载均衡 APIs</h3>
+<p>首先是使用复杂一点的方式，后面将会介绍使用注解的形式。</p>
+<p>先引入负载均衡环境依赖。</p>
+<figure class="highlight xml"><figcaption data-lang="XML"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">&lt;!--    负载均衡    --></span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-cloud-starter-loadbalancer<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></pre></td></tr></table></figure><h4 id="基于方法的负载均衡"><a class="markdownIt-Anchor" href="#基于方法的负载均衡">#</a> 基于方法的负载均衡</h4>
+<p>将 getProductFromRemote 方法改造为 getProductFromRemoteLoadBalancing：</p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">private</span> <span class="token class-name">Product</span> <span class="token function">getProductFromRemoteLoadBalancing</span><span class="token punctuation">(</span><span class="token class-name">Long</span> productId<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token comment">// 获取商品服务所在机器 (负载均衡)</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token class-name">ServiceInstance</span> chooseLoadBalancing <span class="token operator">=</span> loadBalancerClient<span class="token punctuation">.</span><span class="token function">choose</span><span class="token punctuation">(</span><span class="token string">"service-product"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token comment">// 拼接请求地址 http://192.168.25.1:9000/product/100</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"服务地址（uri）: &#123;&#125;"</span><span class="token punctuation">,</span> chooseLoadBalancing<span class="token punctuation">.</span><span class="token function">getUri</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//http://192.168.25.1:9000</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token class-name">String</span> url <span class="token operator">=</span> <span class="token string">"http://"</span> <span class="token operator">+</span> chooseLoadBalancing<span class="token punctuation">.</span><span class="token function">getHost</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">":"</span> <span class="token operator">+</span> chooseLoadBalancing<span class="token punctuation">.</span><span class="token function">getPort</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"/product/"</span> <span class="token operator">+</span> productId<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"远程请求: &#123;&#125;"</span><span class="token punctuation">,</span> url<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>    <span class="token comment">// 发送请求（远程）</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    <span class="token keyword">return</span> restTemplate<span class="token punctuation">.</span><span class="token function">getForObject</span><span class="token punctuation">(</span>url<span class="token punctuation">,</span> <span class="token class-name">Product</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="10"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>多次请求 <span class="exturl" data-url="aHR0cDovL2xvY2FsaG9zdDo4MDgwL2NyZWF0ZQ==">http://localhost:8080/create</span> 后观察日志：</p>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>服务地址（uri）: http://192.168.25.1:9001</pre></td></tr><tr><td data-num="2"></td><td><pre>远程请求: http://192.168.25.1:9001/product/100</pre></td></tr><tr><td data-num="3"></td><td><pre>服务地址（uri）: http://192.168.25.1:9002</pre></td></tr><tr><td data-num="4"></td><td><pre>远程请求: http://192.168.25.1:9002/product/100</pre></td></tr><tr><td data-num="5"></td><td><pre>服务地址（uri）: http://192.168.25.1:9000</pre></td></tr><tr><td data-num="6"></td><td><pre>远程请求: http://192.168.25.1:9000/product/100</pre></td></tr></table></figure><p>可以观察到其负载均衡的使用了不同的端口，下面将介绍注解的形式。</p>
+<h4 id="基于注解的负载均衡"><a class="markdownIt-Anchor" href="#基于注解的负载均衡">#</a> 基于注解的负载均衡</h4>
+<p>还记得我们之前使用的 RestTemplate 嘛？</p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token annotation punctuation">@Resource</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">private</span> <span class="token class-name">RestTemplate</span> restTemplate<span class="token punctuation">;</span></pre></td></tr></table></figure><p>我们可以观察到，无论哪种方法，最终都会是去使用 restTemplate.getForObject (…) 这个方法，如果这个方法自己就可以进行负载均衡呢？我们是不是可以少些一点代码？</p>
+<p>改造 ProductServiceConfig 配置类：</p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token annotation punctuation">@Configuration</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ProductServiceConfig</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token annotation punctuation">@LoadBalanced</span><span class="token comment">// 使用负载均衡</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token annotation punctuation">@Bean</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token keyword">public</span> <span class="token class-name">RestTemplate</span> <span class="token function">restTemplate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">RestTemplate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="9"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>将 getProductFromRemoteLoadBalancing 方法改造为 getProductFromRemoteLoadBalancingWithAnnotation：</p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">private</span> <span class="token class-name">Product</span> <span class="token function">getProductFromRemoteLoadBalancingWithAnnotation</span><span class="token punctuation">(</span><span class="token class-name">Long</span> productId<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token class-name">String</span> url <span class="token operator">=</span> <span class="token string">"http://service-product/product/"</span> <span class="token operator">+</span> productId<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token comment">// 发送请求（远程）</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token keyword">return</span> restTemplate<span class="token punctuation">.</span><span class="token function">getForObject</span><span class="token punctuation">(</span>url<span class="token punctuation">,</span> <span class="token class-name">Product</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>注意到我们的 url 中出现了 service-product，在由于 restTemplate 被追加了 @LoadBalanced 注解，使得整个 restTemplate 自带有负载均衡的能力，url 传过去的时候 service-product 会被自动替换为 IP+HOST 的形式，替换的结果符合负载均衡。</p>
+
+      <div class="tags">
+          <a href="/tags/java/" rel="tag"><i class="ic i-tag"></i> java</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2025-06-25 17:23:27" itemprop="dateModified" datetime="2025-06-25T17:23:27+08:00">2025-06-25</time>
+  </span>
+  <span id="Java/SpringCloudSTU/" class="item leancloud_visitors" data-flag-title="SpringCloud学习记录" title="阅读次数">
+      <span class="icon">
+        <i class="ic i-eye"></i>
+      </span>
+      <span class="text">阅读次数</span>
+      <span class="leancloud-visitors-count"></span>
+      <span class="text">次</span>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> 赞赏</button>
+  <p>请我喝[茶]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/myWxPay.jpg" alt="KarryLiu 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/myAliPay.jpg" alt="KarryLiu 支付宝">
+        <p>支付宝</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>KarryLiu <i class="ic i-at"><em>@</em></i>诗岸梦行舟
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="https://735690757.github.io/Java/SpringCloudSTU/" title="SpringCloud学习记录">https://735690757.github.io/Java/SpringCloudSTU/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/life/shangan/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;s2.loli.net&#x2F;2023&#x2F;08&#x2F;27&#x2F;B86dmgpZDzIi2uU.jpg" title="写给我这一年多的考研时光">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> 上岸</span>
+  <h3>写给我这一年多的考研时光</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/python/numpy/" itemprop="url" rel="next" data-background-image="&#x2F;images&#x2F;numpy.svg" title="NumPy核心处理方法">
+  <span class="type">下一篇</span>
+  <span class="category"><i class="ic i-flag"></i> python_NumPy</span>
+  <h3>NumPy核心处理方法</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#springcloud"><span class="toc-number">1.</span> <span class="toc-text"> SpringCloud</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E5%8D%95%E4%BD%93%E5%88%B0%E9%9B%86%E7%BE%A4%E5%86%8D%E5%88%B0%E5%88%86%E5%B8%83%E5%BC%8F"><span class="toc-number">1.1.</span> <span class="toc-text"> 从单体到集群再到分布式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nacos"><span class="toc-number">1.2.</span> <span class="toc-text"> Nacos</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83-%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C"><span class="toc-number">1.2.1.</span> <span class="toc-text"> 注册中心 - 服务注册</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83-%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0"><span class="toc-number">1.2.2.</span> <span class="toc-text"> 注册中心 - 服务发现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83-%E5%88%9D%E8%A7%81%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8"><span class="toc-number">1.2.3.</span> <span class="toc-text"> 注册中心 - 初见，远程调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83-%E5%AE%9E%E7%8E%B0%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1apis"><span class="toc-number">1.2.4.</span> <span class="toc-text"> 注册中心 - 实现负载均衡 APIs</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E6%96%B9%E6%B3%95%E7%9A%84%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1"><span class="toc-number">1.2.4.1.</span> <span class="toc-text"> 基于方法的负载均衡</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E6%B3%A8%E8%A7%A3%E7%9A%84%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1"><span class="toc-number">1.2.4.2.</span> <span class="toc-text"> 基于注解的负载均衡</span></a></li></ol></li></ol></li></ol></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+        <ul>
+          <li class="active"><a href="/Java/SpringCloudSTU/" rel="bookmark" title="SpringCloud学习记录">SpringCloud学习记录</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="KarryLiu"
+      data-src="/images/tx.jpg">
+  <p class="name" itemprop="name">KarryLiu</p>
+  <div class="description" itemprop="description">愿世间所有的美好都得以祝愿</div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">30</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">15</span>
+        <span class="name">分类</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">16</span>
+        <span class="name">标签</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tLzczNTY5MDc1Nw==" title="https:&#x2F;&#x2F;github.com&#x2F;735690757"><i class="ic i-github"></i></span>
+      <span class="exturl item twitter" data-url="aHR0cHM6Ly90d2l0dGVyLmNvbS92b0FMUXRkYWNCVE00RVk=" title="https:&#x2F;&#x2F;twitter.com&#x2F;voALQtdacBTM4EY"><i class="ic i-twitter"></i></span>
+      <span class="exturl item email" data-url="bWFpbHRvOjczNTY5MDc1N0BxcS5jb20=" title="mailto:735690757@qq.com"><i class="ic i-envelope"></i></span>
+      <span class="exturl item zhihu" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3Blb3BsZS9ydW8tcWlhbi15aW5n" title="https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;ruo-qian-ying"><i class="ic i-zhihu"></i></span>
+      <span class="exturl item music" data-url="aHR0cHM6Ly9tdXNpYy4xNjMuY29tLyMvdXNlci9ob21lP2lkPTM1Nzc1OTIzOA==" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;user&#x2F;home?id&#x3D;357759238"><i class="ic i-cloud-music"></i></span>
+      <span class="exturl item about" data-url="aHR0cHM6Ly9hYm91dC5tZS9rYXJyeWxpdQ==" title="https:&#x2F;&#x2F;about.me&#x2F;karryliu"><i class="ic i-address-card"></i></span>
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/about/" rel="section"><i class="ic i-user"></i>关于</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+    
+  <li class="item">
+    <a href="/music" rel="section"><i class="ic i-music"></i>橘子君-Ruxra</a>
+  </li>
+
+    
+  <li class="item">
+    <span class="exturl" data-url="aHR0cHM6Ly93d3cudHJhdmVsbGluZ3MuY24vZ28uaHRtbA=="><i class="ic i-paper-plane"></i>开往</span>
+  </li>
+
+    
+  <li class="item">
+    <a href="/daily" rel="section"><i class="ic i-magic"></i>早报</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/shortV" rel="section"><i class="ic i-star"></i>短视频</a>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/life/shangan/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/python/numpy/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>随机文章</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
+</div>
+
+    <span><a href="/Operate-system/OSPVCode/" title="操作系统PV代码题速记">操作系统PV代码题速记</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/database/" title="分类于 数据库">数据库</a>
+</div>
+
+    <span><a href="/database/DataBase01/" title="DB中的范式">DB中的范式</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Principles-of-computer-composition/" title="分类于 计算机组成原理">计算机组成原理</a>
+</div>
+
+    <span><a href="/Principles-of-computer-composition/booth_algorithm/" title="booth算法">booth算法</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
+</div>
+
+    <span><a href="/Operate-system/01OS/" title="操作系统知识点阶段总结">操作系统知识点阶段总结</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Linux/" title="分类于 Linux">Linux</a>
+</div>
+
+    <span><a href="/Linux/Linux01/" title="初见Linux">初见Linux</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Principles-of-computer-composition/" title="分类于 计算机组成原理">计算机组成原理</a>
+</div>
+
+    <span><a href="/Principles-of-computer-composition/Connection_between_CPU_and_memory/" title="CPU与存储器的连接">CPU与存储器的连接</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/experience/" title="分类于 开发经验">开发经验</a>
+</div>
+
+    <span><a href="/experience/CollaborativeFiltering/" title="基于用户的协同过滤算法">基于用户的协同过滤算法</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
+</div>
+
+    <span><a href="/Operate-system/02OS/" title="进程与线程">进程与线程</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/DS/" title="分类于 DS">DS</a>
+</div>
+
+    <span><a href="/DSLearnNote/codeTM/" title="数据结构代码题速记">数据结构代码题速记</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/MongoDB/" title="分类于 MongoDB">MongoDB</a>
+</div>
+
+    <span><a href="/MongoDB/MongoDB01/" title="MongoDB的安装与初步使用（Windows平台）">MongoDB的安装与初步使用（Windows平台）</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>最新评论</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">KarryLiu @ KarryLiu</span>
+  </div>
+  <div class="powered-by">
+    <a href="https://icp.gov.moe/?keyword=20249329" target="_blank">萌ICP备20249329号</a>
+    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  <br/><span>世界本污浊，罪与爱同歌</span>
+  <br/><i class="ic i-chart-area"></i>&nbsp;<span>149k&nbsp;字</span> &nbsp;|&nbsp;
+  <i class="ic i-coffee"></i>&nbsp;<span> 4:08</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: 'Java/SpringCloudSTU/',
+    favicon: {
+      show: "（●´3｀●）嘿嘿嘿....",
+      hide: "(´Д｀)不看我是吧！"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: true,fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>
