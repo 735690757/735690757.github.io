@@ -1,0 +1,631 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="诗岸梦行舟" href="https://735690757.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="诗岸梦行舟" href="https://735690757.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="诗岸梦行舟" href="https://735690757.github.io/feed.json" />
+<link rel="stylesheet" href="https://unpkg.com/mermaid/dist/mermaid.min.css">
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({ startOnLoad: true });</script>
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="python" />
+
+
+<link rel="canonical" href="https://735690757.github.io/python/pytorch/">
+
+
+
+  <title>
+PyTorch深度学习 - python_PyTorch |
+KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</title>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">PyTorch深度学习
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2025-08-04 11:55:00">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2025-08-04T11:55:00+08:00">2025-08-04</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">KarryLiu</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+          <img src="/images/pytorch.png">
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/python-PyTorch/" itemprop="item" rel="index" title="分类于 python_PyTorch"><span itemprop="name">python_PyTorch</span></a>
+<meta itemprop="position" content="1" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="https://735690757.github.io/python/pytorch/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/tx.jpg">
+    <meta itemprop="name" content="KarryLiu">
+    <meta itemprop="description" content="分享计算机知识以及各种心得总结, 愿世间所有的美好都得以祝愿">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="诗岸梦行舟">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h1 id="pytorch深度学习"><a class="markdownIt-Anchor" href="#pytorch深度学习">#</a> PyTorch 深度学习</h1>
+<h2 id="安装"><a class="markdownIt-Anchor" href="#安装">#</a> 安装</h2>
+<p>基于 conda 环境来安装</p>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>conda create <span class="token parameter variable">--name</span> pytorch <span class="token assign-left variable">python</span><span class="token operator">=</span><span class="token number">3.11</span></pre></td></tr></table></figure><p>查询已有环境</p>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>conda info <span class="token parameter variable">--envs</span></pre></td></tr></table></figure><blockquote>
+<p>conda environments:<br>
+base                   * D:\anaconda<br>
+pytorch              D:\anaconda\envs\pytorch</p>
+</blockquote>
+<p>激活 pytorch 环境</p>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>conda activate pytorch</pre></td></tr></table></figure><p>其他命令</p>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>conda remove <span class="token parameter variable">-n</span> xxxxx<span class="token punctuation">(</span>名字<span class="token punctuation">)</span> <span class="token parameter variable">--all</span>	<span class="token comment"># 环境删除命令</span></pre></td></tr><tr><td data-num="2"></td><td><pre>deactivate	<span class="token comment"># 退出虚拟环境</span></pre></td></tr><tr><td data-num="3"></td><td><pre>pip list	<span class="token comment"># 查看虚拟环境的库</span></pre></td></tr></table></figure><p>访问 pytorch 网站：<span class="exturl" data-url="aHR0cHM6Ly9weXRvcmNoLm9yZy9nZXQtc3RhcnRlZC9sb2NhbGx5Lw==">https://pytorch.org/get-started/locally/</span></p>
+<hr>
+<p>截至 2025 年 8 月 Start Locally 条目给予 python 版本提示：</p>
+<p><strong>NOTE:</strong> Latest PyTorch requires Python 3.9 or later.</p>
+<hr>
+<p>基于：Stable (2.7.1) - Windows - Pip - Python - CUDA 11.8</p>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>pip3 <span class="token function">install</span> torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118</pre></td></tr></table></figure><figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token punctuation">(</span>pytorch<span class="token punctuation">)</span> C:<span class="token punctuation">\</span>Users<span class="token punctuation">\</span>Karry<span class="token operator">></span>pip list</pre></td></tr><tr><td data-num="2"></td><td><pre>Package           Version</pre></td></tr><tr><td data-num="3"></td><td><pre>----------------- ------------</pre></td></tr><tr><td data-num="4"></td><td><pre>filelock          <span class="token number">3.13</span>.1</pre></td></tr><tr><td data-num="5"></td><td><pre>fsspec            <span class="token number">2024.6</span>.1</pre></td></tr><tr><td data-num="6"></td><td><pre>Jinja2            <span class="token number">3.1</span>.4</pre></td></tr><tr><td data-num="7"></td><td><pre>MarkupSafe        <span class="token number">2.1</span>.5</pre></td></tr><tr><td data-num="8"></td><td><pre>mpmath            <span class="token number">1.3</span>.0</pre></td></tr><tr><td data-num="9"></td><td><pre>networkx          <span class="token number">3.3</span></pre></td></tr><tr><td data-num="10"></td><td><pre>numpy             <span class="token number">2.1</span>.2</pre></td></tr><tr><td data-num="11"></td><td><pre>pillow            <span class="token number">11.0</span>.0</pre></td></tr><tr><td data-num="12"></td><td><pre>pip               <span class="token number">25.1</span></pre></td></tr><tr><td data-num="13"></td><td><pre>setuptools        <span class="token number">78.1</span>.1</pre></td></tr><tr><td data-num="14"></td><td><pre>sympy             <span class="token number">1.13</span>.3</pre></td></tr><tr><td data-num="15"></td><td><pre>torch             <span class="token number">2.7</span>.1+cu118</pre></td></tr><tr><td data-num="16"></td><td><pre>torchaudio        <span class="token number">2.7</span>.1+cu118</pre></td></tr><tr><td data-num="17"></td><td><pre>torchvision       <span class="token number">0.22</span>.1+cu118</pre></td></tr><tr><td data-num="18"></td><td><pre>typing_extensions <span class="token number">4.12</span>.2</pre></td></tr><tr><td data-num="19"></td><td><pre>wheel             <span class="token number">0.45</span>.1</pre></td></tr></table></figure><p>验证：</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">import</span> torch</pre></td></tr><tr><td data-num="2"></td><td><pre>torch<span class="token punctuation">.</span>cuda<span class="token punctuation">.</span>is_available<span class="token punctuation">(</span><span class="token punctuation">)</span>	<span class="token comment"># True</span></pre></td></tr></table></figure><h2 id="两大法宝函数-dir与help"><a class="markdownIt-Anchor" href="#两大法宝函数-dir与help">#</a> 两大法宝函数 - dir 与 help</h2>
+<p>dir 主要是来查看一个工具包下还有什么子工具包或者工具</p>
+<p>help 主要是查看一些工具有什么作用</p>
+<p>比如 help (torch.cuda.is_available)</p>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>help<span class="token punctuation">(</span>torch.cuda.is_available<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre>Help on <span class="token keyword">function</span> is_available <span class="token keyword">in</span> module torch.cuda:</pre></td></tr><tr><td data-num="3"></td><td><pre>is_available<span class="token punctuation">(</span><span class="token punctuation">)</span> -<span class="token operator">></span> bool</pre></td></tr><tr><td data-num="4"></td><td><pre>    Return a bool indicating <span class="token keyword">if</span> CUDA is currently available.</pre></td></tr></table></figure><h2 id="pytorch数据读取"><a class="markdownIt-Anchor" href="#pytorch数据读取">#</a> PyTorch 数据读取</h2>
+<p>数据 —— Dataset（提供一种方式获取 label） —— Dataloader（为后面的网络提供不同的数据形式）</p>
+<p>组织结构：</p>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>+—— hymenoptera_data</pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token operator">|</span> +—— train</pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token operator">|</span> <span class="token operator">|</span> —— ants</pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token operator">|</span> <span class="token operator">|</span> —— bees</pre></td></tr></table></figure><p>对应代码：</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">from</span> torch<span class="token punctuation">.</span>utils<span class="token punctuation">.</span>data <span class="token keyword">import</span> Dataset</pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">from</span> PIL <span class="token keyword">import</span> Image</pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token keyword">import</span> os</pre></td></tr><tr><td data-num="4"></td><td><pre></pre></td></tr><tr><td data-num="5"></td><td><pre></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token comment"># MyData 是自定义的数据集类，他继承了 Dataset 类，MyData (Dataset) 这是继承动作</span></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">MyData</span><span class="token punctuation">(</span>Dataset<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="8"></td><td><pre>    <span class="token comment"># 初始化函数，初始化一些数据，比如图片路径，标签路径等等，__init__这是重写父类的方法</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root_dir<span class="token punctuation">,</span> label_dir<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="10"></td><td><pre>        <span class="token comment"># 根集路径</span></pre></td></tr><tr><td data-num="11"></td><td><pre>        self<span class="token punctuation">.</span>root_dir <span class="token operator">=</span> root_dir</pre></td></tr><tr><td data-num="12"></td><td><pre>        <span class="token comment"># 标签路径，这其实表达了图片是什么分类</span></pre></td></tr><tr><td data-num="13"></td><td><pre>        self<span class="token punctuation">.</span>label_dir <span class="token operator">=</span> label_dir</pre></td></tr><tr><td data-num="14"></td><td><pre>        <span class="token comment"># 获取图片的路径，这个路径下存放着图片</span></pre></td></tr><tr><td data-num="15"></td><td><pre>        self<span class="token punctuation">.</span>path <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>self<span class="token punctuation">.</span>root_dir<span class="token punctuation">,</span> self<span class="token punctuation">.</span>label_dir<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="16"></td><td><pre>        <span class="token comment"># 获取图片路径列表 listdir</span></pre></td></tr><tr><td data-num="17"></td><td><pre>        self<span class="token punctuation">.</span>img_path <span class="token operator">=</span> os<span class="token punctuation">.</span>listdir<span class="token punctuation">(</span>self<span class="token punctuation">.</span>path<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="18"></td><td><pre></pre></td></tr><tr><td data-num="19"></td><td><pre>    <span class="token comment"># 获取数据，这个函数是必须写的，并且是必须返回两个值，一个是图片，一个是标签</span></pre></td></tr><tr><td data-num="20"></td><td><pre>    <span class="token keyword">def</span> <span class="token function">__getitem__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> idx<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="21"></td><td><pre>        img_name <span class="token operator">=</span> self<span class="token punctuation">.</span>img_path<span class="token punctuation">[</span>idx<span class="token punctuation">]</span></pre></td></tr><tr><td data-num="22"></td><td><pre>        img_item_path <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>self<span class="token punctuation">.</span>root_dir<span class="token punctuation">,</span> self<span class="token punctuation">.</span>label_dir<span class="token punctuation">,</span> img_name<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="23"></td><td><pre>        img <span class="token operator">=</span> Image<span class="token punctuation">.</span><span class="token builtin">open</span><span class="token punctuation">(</span>img_item_path<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="24"></td><td><pre>        label <span class="token operator">=</span> self<span class="token punctuation">.</span>label_dir</pre></td></tr><tr><td data-num="25"></td><td><pre>        <span class="token keyword">return</span> img<span class="token punctuation">,</span> label</pre></td></tr><tr><td data-num="26"></td><td><pre></pre></td></tr><tr><td data-num="27"></td><td><pre>    <span class="token keyword">def</span> <span class="token function">__len__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="28"></td><td><pre>        <span class="token keyword">return</span> <span class="token builtin">len</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>img_path<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="29"></td><td><pre></pre></td></tr><tr><td data-num="30"></td><td><pre></pre></td></tr><tr><td data-num="31"></td><td><pre>root_dir <span class="token operator">=</span> <span class="token string">"hymenoptera_data\\train"</span></pre></td></tr><tr><td data-num="32"></td><td><pre>ant_label_dir <span class="token operator">=</span> <span class="token string">"ants"</span></pre></td></tr><tr><td data-num="33"></td><td><pre>bees_label_dir <span class="token operator">=</span> <span class="token string">"bees"</span></pre></td></tr><tr><td data-num="34"></td><td><pre>ants_dataset <span class="token operator">=</span> MyData<span class="token punctuation">(</span>root_dir<span class="token punctuation">,</span> ant_label_dir<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="35"></td><td><pre>bees_dataset <span class="token operator">=</span> MyData<span class="token punctuation">(</span>root_dir<span class="token punctuation">,</span> bees_label_dir<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="36"></td><td><pre></pre></td></tr><tr><td data-num="37"></td><td><pre>train_dataset <span class="token operator">=</span> ants_dataset <span class="token operator">+</span> bees_dataset</pre></td></tr></table></figure><p>组织结构：</p>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>+—— hymenoptera_data_ex</pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token operator">|</span> +—— train</pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token operator">|</span> <span class="token operator">|</span> —— ants_image</pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token operator">|</span> <span class="token operator">|</span> —— ants_label</pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token operator">|</span> <span class="token operator">|</span> —— bees_image</pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token operator">|</span> <span class="token operator">|</span> —— bees_label</pre></td></tr></table></figure><p>对应代码：</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">from</span> torch<span class="token punctuation">.</span>utils<span class="token punctuation">.</span>data <span class="token keyword">import</span> Dataset</pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">from</span> PIL <span class="token keyword">import</span> Image</pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token keyword">import</span> os</pre></td></tr><tr><td data-num="4"></td><td><pre></pre></td></tr><tr><td data-num="5"></td><td><pre></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">MyData</span><span class="token punctuation">(</span>Dataset<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root_dir<span class="token punctuation">,</span> img_dir<span class="token punctuation">,</span> label_dir<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="8"></td><td><pre>        self<span class="token punctuation">.</span>root_dir <span class="token operator">=</span> root_dir</pre></td></tr><tr><td data-num="9"></td><td><pre>        self<span class="token punctuation">.</span>img_dir <span class="token operator">=</span> img_dir</pre></td></tr><tr><td data-num="10"></td><td><pre>        self<span class="token punctuation">.</span>label_dir <span class="token operator">=</span> label_dir</pre></td></tr><tr><td data-num="11"></td><td><pre>        self<span class="token punctuation">.</span>path_img <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>self<span class="token punctuation">.</span>root_dir<span class="token punctuation">,</span> self<span class="token punctuation">.</span>img_dir<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="12"></td><td><pre>        self<span class="token punctuation">.</span>path_label <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>self<span class="token punctuation">.</span>root_dir<span class="token punctuation">,</span> self<span class="token punctuation">.</span>label_dir<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="13"></td><td><pre>        self<span class="token punctuation">.</span>img_path <span class="token operator">=</span> os<span class="token punctuation">.</span>listdir<span class="token punctuation">(</span>self<span class="token punctuation">.</span>path_img<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="14"></td><td><pre>        self<span class="token punctuation">.</span>label_path <span class="token operator">=</span> os<span class="token punctuation">.</span>listdir<span class="token punctuation">(</span>self<span class="token punctuation">.</span>path_label<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="15"></td><td><pre></pre></td></tr><tr><td data-num="16"></td><td><pre>    <span class="token keyword">def</span> <span class="token function">__getitem__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> item<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="17"></td><td><pre>        img_name <span class="token operator">=</span> self<span class="token punctuation">.</span>img_path<span class="token punctuation">[</span>item<span class="token punctuation">]</span></pre></td></tr><tr><td data-num="18"></td><td><pre>        img_item_path <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>self<span class="token punctuation">.</span>path_img<span class="token punctuation">,</span> img_name<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="19"></td><td><pre>        img <span class="token operator">=</span> Image<span class="token punctuation">.</span><span class="token builtin">open</span><span class="token punctuation">(</span>img_item_path<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="20"></td><td><pre>        label_name <span class="token operator">=</span> self<span class="token punctuation">.</span>label_path<span class="token punctuation">[</span>item<span class="token punctuation">]</span></pre></td></tr><tr><td data-num="21"></td><td><pre>        label_item_path <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>self<span class="token punctuation">.</span>path_label<span class="token punctuation">,</span> label_name<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="22"></td><td><pre>        <span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span>label_item_path<span class="token punctuation">,</span> <span class="token string">"r"</span><span class="token punctuation">,</span> encoding<span class="token operator">=</span><span class="token string">"utf-8"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span></pre></td></tr><tr><td data-num="23"></td><td><pre>            label <span class="token operator">=</span> f<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="24"></td><td><pre>            <span class="token keyword">return</span> img<span class="token punctuation">,</span> label</pre></td></tr><tr><td data-num="25"></td><td><pre>root_dir <span class="token operator">=</span> <span class="token string">"hymenoptera_data_ex\\train"</span></pre></td></tr><tr><td data-num="26"></td><td><pre>img_dir <span class="token operator">=</span> <span class="token string">"ants_image"</span></pre></td></tr><tr><td data-num="27"></td><td><pre>label_dir <span class="token operator">=</span> <span class="token string">"ants_label"</span></pre></td></tr><tr><td data-num="28"></td><td><pre>ants_dataset <span class="token operator">=</span> MyData<span class="token punctuation">(</span>root_dir<span class="token punctuation">,</span> img_dir<span class="token punctuation">,</span> label_dir<span class="token punctuation">)</span></pre></td></tr></table></figure><h2 id="tensorboard的使用"><a class="markdownIt-Anchor" href="#tensorboard的使用">#</a> Tensorboard 的使用</h2>
+<h3 id="add_scalar"><a class="markdownIt-Anchor" href="#add_scalar">#</a> add_scalar</h3>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">from</span> torch<span class="token punctuation">.</span>utils<span class="token punctuation">.</span>tensorboard <span class="token keyword">import</span> SummaryWriter</pre></td></tr><tr><td data-num="2"></td><td><pre></pre></td></tr><tr><td data-num="3"></td><td><pre>writer <span class="token operator">=</span> SummaryWriter<span class="token punctuation">(</span><span class="token string">"logs"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token comment"># writer.add_image()</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token comment"># y = x</span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    writer<span class="token punctuation">.</span>add_scalar<span class="token punctuation">(</span><span class="token string">"y=i^2"</span><span class="token punctuation">,</span> i <span class="token operator">*</span> i<span class="token punctuation">,</span> i<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="8"></td><td><pre></pre></td></tr><tr><td data-num="9"></td><td><pre>writer<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr></table></figure><figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>tensorboard <span class="token parameter variable">--logdir</span><span class="token operator">=</span>logs <span class="token parameter variable">--port</span><span class="token operator">=</span><span class="token number">6007</span></pre></td></tr></table></figure><p><img data-src="../../images/pytorch/1.png" alt="1.png"></p>
+<p>writer.add_scalar (“y=i^2”, i * i, i)，这个的参数分别是：标签、y、x</p>
+<h3 id="add_image"><a class="markdownIt-Anchor" href="#add_image">#</a> add_image</h3>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">import</span> numpy <span class="token keyword">as</span> np</pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">from</span> PIL <span class="token keyword">import</span> Image</pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token keyword">from</span> torch<span class="token punctuation">.</span>utils<span class="token punctuation">.</span>tensorboard <span class="token keyword">import</span> SummaryWriter</pre></td></tr><tr><td data-num="4"></td><td><pre></pre></td></tr><tr><td data-num="5"></td><td><pre>img_path <span class="token operator">=</span> <span class="token string">"hymenoptera_data/train/ants/0013035.jpg"</span></pre></td></tr><tr><td data-num="6"></td><td><pre>img_PIL <span class="token operator">=</span> Image<span class="token punctuation">.</span><span class="token builtin">open</span><span class="token punctuation">(</span>img_path<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="7"></td><td><pre>img_array <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span>img_PIL<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token comment"># hymenoptera_data/train/ants/0013035.jpg</span></pre></td></tr><tr><td data-num="9"></td><td><pre>writer <span class="token operator">=</span> SummaryWriter<span class="token punctuation">(</span><span class="token string">"logs"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="10"></td><td><pre>writer<span class="token punctuation">.</span>add_image<span class="token punctuation">(</span><span class="token string">"img"</span><span class="token punctuation">,</span> img_array<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span>dataformats<span class="token operator">=</span><span class="token string">"HWC"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="11"></td><td><pre><span class="token comment"># y = x</span></pre></td></tr><tr><td data-num="12"></td><td><pre><span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="13"></td><td><pre>    writer<span class="token punctuation">.</span>add_scalar<span class="token punctuation">(</span><span class="token string">"y=i^2"</span><span class="token punctuation">,</span> i <span class="token operator">*</span> i<span class="token punctuation">,</span> i<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="14"></td><td><pre></pre></td></tr><tr><td data-num="15"></td><td><pre>writer<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr></table></figure><p><img data-src="../../images/pytorch/2.png" alt="2.png"></p>
+<p>add_image (“img”, img_array, 1,dataformats=“HWC”)，这个参数分别是：标签、ndarray 类型的图片、步骤、dataformats-HWC</p>
+<h2 id="transforms的使用"><a class="markdownIt-Anchor" href="#transforms的使用">#</a> Transforms 的使用</h2>
+<p>Transforms 主要是对图片的各种变换，是预处理？</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">from</span> PIL <span class="token keyword">import</span> Image</pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">from</span> torchvision <span class="token keyword">import</span> transforms</pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre>img <span class="token operator">=</span> Image<span class="token punctuation">.</span><span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">'hymenoptera_data/train/ants/0013035.jpg'</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="5"></td><td><pre>tensor_trans <span class="token operator">=</span> transforms<span class="token punctuation">.</span>ToTensor<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="6"></td><td><pre>tensor_img <span class="token operator">=</span> tensor_trans<span class="token punctuation">(</span>img<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>tensor_img<span class="token punctuation">)</span></pre></td></tr></table></figure><p>Image.open 返回了 PIL 类型的图片，通过 transforms.ToTensor () 创建了工具对象，最后使用 tensor_trans (img) 转化为 tensor 类型</p>
+<blockquote>
+<p>tensor 数据类型：包装了神经网络所需要的理论基础参数</p>
+</blockquote>
+<p>使用 SummaryWriter 将 tensor_img 写入</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">from</span> PIL <span class="token keyword">import</span> Image</pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">from</span> torch<span class="token punctuation">.</span>utils<span class="token punctuation">.</span>tensorboard <span class="token keyword">import</span> SummaryWriter</pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token keyword">from</span> torchvision <span class="token keyword">import</span> transforms</pre></td></tr><tr><td data-num="4"></td><td><pre></pre></td></tr><tr><td data-num="5"></td><td><pre>img <span class="token operator">=</span> Image<span class="token punctuation">.</span><span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">'hymenoptera_data/train/ants/0013035.jpg'</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="6"></td><td><pre>tensor_trans <span class="token operator">=</span> transforms<span class="token punctuation">.</span>ToTensor<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="7"></td><td><pre>tensor_img <span class="token operator">=</span> tensor_trans<span class="token punctuation">(</span>img<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token comment"># print(tensor_img)</span></pre></td></tr><tr><td data-num="9"></td><td><pre></pre></td></tr><tr><td data-num="10"></td><td><pre>writer <span class="token operator">=</span> SummaryWriter<span class="token punctuation">(</span><span class="token string">'logs'</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="11"></td><td><pre>writer<span class="token punctuation">.</span>add_image<span class="token punctuation">(</span><span class="token string">'tensor_img'</span><span class="token punctuation">,</span> tensor_img<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="12"></td><td><pre>writer<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr></table></figure><p><img data-src="../../images/pytorch/3.png" alt="3.png"></p>
+<hr>
+<p>题外话，理解一下 py 的面向对象：</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">Person</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> name<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="3"></td><td><pre>        self<span class="token punctuation">.</span>name <span class="token operator">=</span> name</pre></td></tr><tr><td data-num="4"></td><td><pre></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token keyword">def</span> <span class="token function">__call__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="6"></td><td><pre>        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"hello"</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>name<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="7"></td><td><pre></pre></td></tr><tr><td data-num="8"></td><td><pre>    <span class="token keyword">def</span> <span class="token function">hello</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="9"></td><td><pre>        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"hello_ex"</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>name<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="10"></td><td><pre></pre></td></tr><tr><td data-num="11"></td><td><pre></pre></td></tr><tr><td data-num="12"></td><td><pre>person <span class="token operator">=</span> Person<span class="token punctuation">(</span><span class="token string">"Karry"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="13"></td><td><pre>person<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="14"></td><td><pre>person<span class="token punctuation">.</span>hello<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr></table></figure><p>init 方法实际上是一个构造方法，person = Person (“Karry”) 执行后调用构造方法</p>
+<p>call 方法像初次见面问好一样 person () 执行后，调用 call 方法，是让实例像函数一样用的钩子方法</p>
+<p>person.hello () 只是一个类的普通方法</p>
+<hr>
+<h3 id="totensor的使用"><a class="markdownIt-Anchor" href="#totensor的使用">#</a> ToTensor 的使用</h3>
+<p>ToTensor 图片张量化工具</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">from</span> PIL <span class="token keyword">import</span> Image</pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">from</span> torch<span class="token punctuation">.</span>utils<span class="token punctuation">.</span>tensorboard <span class="token keyword">import</span> SummaryWriter</pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token keyword">from</span> torchvision <span class="token keyword">import</span> transforms</pre></td></tr><tr><td data-num="4"></td><td><pre></pre></td></tr><tr><td data-num="5"></td><td><pre>writer <span class="token operator">=</span> SummaryWriter<span class="token punctuation">(</span><span class="token string">'logs'</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="6"></td><td><pre>img <span class="token operator">=</span> Image<span class="token punctuation">.</span><span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">'images/pytorch.png'</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="7"></td><td><pre>toTensorTools <span class="token operator">=</span> transforms<span class="token punctuation">.</span>ToTensor<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="8"></td><td><pre>img_tensor <span class="token operator">=</span> toTensorTools<span class="token punctuation">(</span>img<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="9"></td><td><pre>writer<span class="token punctuation">.</span>add_image<span class="token punctuation">(</span><span class="token string">'ToTensor'</span><span class="token punctuation">,</span> img_tensor<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="10"></td><td><pre>writer<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr></table></figure><h3 id="normalize的使用"><a class="markdownIt-Anchor" href="#normalize的使用">#</a> Normalize 的使用</h3>
+<p>Normalize 归一化、标准化，均值为 0，方差为 1，数值位于 - 1 到 1 之间</p>
+<p>如果图片不是 RGB 模式需要做 img.convert (‘RGB’)</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre>writer <span class="token operator">=</span> SummaryWriter<span class="token punctuation">(</span><span class="token string">'logs'</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre>img <span class="token operator">=</span> Image<span class="token punctuation">.</span><span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">'images/pytorch.png'</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token comment"># img 转化为 RGB</span></pre></td></tr><tr><td data-num="4"></td><td><pre>img <span class="token operator">=</span> img<span class="token punctuation">.</span>convert<span class="token punctuation">(</span><span class="token string">'RGB'</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="5"></td><td><pre>toTensorTools <span class="token operator">=</span> transforms<span class="token punctuation">.</span>ToTensor<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="6"></td><td><pre>img_tensor <span class="token operator">=</span> toTensorTools<span class="token punctuation">(</span>img<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="7"></td><td><pre>writer<span class="token punctuation">.</span>add_image<span class="token punctuation">(</span><span class="token string">'ToTensor'</span><span class="token punctuation">,</span> img_tensor<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>img_tensor<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="9"></td><td><pre><span class="token comment"># 归一化</span></pre></td></tr><tr><td data-num="10"></td><td><pre>transforms_normalize <span class="token operator">=</span> transforms<span class="token punctuation">.</span>Normalize<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">0.5</span><span class="token punctuation">,</span> <span class="token number">0.5</span><span class="token punctuation">,</span> <span class="token number">0.5</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">0.5</span><span class="token punctuation">,</span> <span class="token number">0.5</span><span class="token punctuation">,</span> <span class="token number">0.5</span><span class="token punctuation">]</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="11"></td><td><pre>img_normalize <span class="token operator">=</span> transforms_normalize<span class="token punctuation">(</span>img_tensor<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="12"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>img_normalize<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="13"></td><td><pre></pre></td></tr><tr><td data-num="14"></td><td><pre>writer<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr></table></figure><p>tensor(0.1333)<br>
+tensor(-0.7333)</p>
+<p>0.1333*2 - 1 = -0.7333</p>
+<h3 id="resize的使用"><a class="markdownIt-Anchor" href="#resize的使用">#</a> Resize 的使用</h3>
+<p>Resize 重调整</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment"># Resize 的使用</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>img<span class="token punctuation">.</span>size<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="3"></td><td><pre>transforms_resize <span class="token operator">=</span> transforms<span class="token punctuation">.</span>Resize<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">128</span><span class="token punctuation">,</span> <span class="token number">128</span><span class="token punctuation">]</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="4"></td><td><pre>img_resize <span class="token operator">=</span> transforms_resize<span class="token punctuation">(</span>img_tensor<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="5"></td><td><pre>writer<span class="token punctuation">.</span>add_image<span class="token punctuation">(</span><span class="token string">'Resize'</span><span class="token punctuation">,</span> img_resize<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>img_resize<span class="token punctuation">.</span>size<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="7"></td><td><pre></pre></td></tr><tr><td data-num="8"></td><td><pre>resize_2 <span class="token operator">=</span> transforms<span class="token punctuation">.</span>Resize<span class="token punctuation">(</span><span class="token number">512</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="9"></td><td><pre>transforms_compose <span class="token operator">=</span> transforms<span class="token punctuation">.</span>Compose<span class="token punctuation">(</span><span class="token punctuation">[</span>resize_2<span class="token punctuation">,</span> toTensorTools<span class="token punctuation">]</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="10"></td><td><pre>img_resize_2 <span class="token operator">=</span> transforms_compose<span class="token punctuation">(</span>img<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="11"></td><td><pre>writer<span class="token punctuation">.</span>add_image<span class="token punctuation">(</span><span class="token string">'Compose'</span><span class="token punctuation">,</span> img_resize_2<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span></pre></td></tr></table></figure><p>起初我们使用 img = Image.open (‘images/testFG.jpg’)，此时这是一个 PIL 图片，如何我们使用 toTensorTools = transforms.ToTensor () 创建张量转换工具，使用 img_tensor = toTensorTools (img) 将 PIL 图片转化为 img_tensor 张量图片，紧接着我们使用 transforms_resize = transforms.Resize ([128, 128]) 创建尺寸调整工具，使用 img_resize = transforms_resize (img_tensor) 对张量图片重调整。</p>
+<p>Compose 的意义在于它可以将多个图像变换操作（如缩放、裁剪、归一化等）按顺序组合成一个流水线，输入图像会依次通过这些变换。</p>
+<p>我们使用 transforms_compose = transforms.Compose ([resize_2, toTensorTools]) 创建了一个工具链，resize_2 用于调整图像尺寸，toTensorTools 用于其转化为张量图片。</p>
+<p>从 img_resize_2 = transforms_compose (img) 我们可以看到，参数 img 是一个 PIL 图片他通过 Compose 先后进行了重调整和张量化，最终返回 img_resize_2 张量图片。</p>
+<hr>
+<p>提示：resize_2 = transforms.Resize (512) 是一个等比例调整。</p>
+<p>tensor(0.4039)<br>
+tensor(0.6797)<br>
+(3600, 2700)<br>
+torch.Size([3, 128, 128])<br>
+torch.Size([3, 512, 682])</p>
+<hr>
+<h3 id="randomcrop的使用"><a class="markdownIt-Anchor" href="#randomcrop的使用">#</a> RandomCrop 的使用</h3>
+<p>RandomCrop 随机裁剪</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment"># RandomCrop 的使用</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token comment"># random_crop = transforms.RandomCrop(500, 1000)</span></pre></td></tr><tr><td data-num="3"></td><td><pre>random_crop <span class="token operator">=</span> transforms<span class="token punctuation">.</span>RandomCrop<span class="token punctuation">(</span><span class="token number">512</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="4"></td><td><pre>compose_random_crop <span class="token operator">=</span> transforms<span class="token punctuation">.</span>Compose<span class="token punctuation">(</span><span class="token punctuation">[</span>random_crop<span class="token punctuation">,</span> toTensorTools<span class="token punctuation">]</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    img_random_crop <span class="token operator">=</span> compose_random_crop<span class="token punctuation">(</span>img<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    writer<span class="token punctuation">.</span>add_image<span class="token punctuation">(</span><span class="token string">'RandomCrop'</span><span class="token punctuation">,</span> img_random_crop<span class="token punctuation">,</span> i<span class="token punctuation">)</span></pre></td></tr></table></figure><h2 id="使用torchvision的数据集"><a class="markdownIt-Anchor" href="#使用torchvision的数据集">#</a> 使用 TorchVision 的数据集</h2>
+<p>CIFAR —— Canadian Institute For Advanced Research（加拿大高级研究所）</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre>train_set <span class="token operator">=</span> torchvision<span class="token punctuation">.</span>datasets<span class="token punctuation">.</span>CIFAR10<span class="token punctuation">(</span>root<span class="token operator">=</span><span class="token string">"./data"</span><span class="token punctuation">,</span> train<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> transform<span class="token operator">=</span>transforms_compose_dataset<span class="token punctuation">,</span> download<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre>test_set <span class="token operator">=</span> torchvision<span class="token punctuation">.</span>datasets<span class="token punctuation">.</span>CIFAR10<span class="token punctuation">(</span>root<span class="token operator">=</span><span class="token string">"./data"</span><span class="token punctuation">,</span> train<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> transform<span class="token operator">=</span>transforms_compose_dataset<span class="token punctuation">,</span> download<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span></pre></td></tr></table></figure><p><img data-src="../../images/pytorch/4.png" alt="4.png"></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuY3MudG9yb250by5lZHUvfmtyaXovY2lmYXIuaHRtbA==">CIFAR-10 and CIFAR-100 datasets</span></p>
+<blockquote>
+<p>The CIFAR-10 dataset consists of 60000 32x32 colour images in 10 classes, with 6000 images per class. There are 50000 training images and 10000 test images.</p>
+<p>CIFAR-10 数据集由 10 类的 60000 张 32x32 彩色图像组成，每类 6000 张图像。有 50000 张训练图像和 10000 张测试图像。</p>
+<p>The dataset is divided into five training batches and one test batch, each with 10000 images. The test batch contains exactly 1000 randomly-selected images from each class. The training batches contain the remaining images in random order, but some training batches may contain more images from one class than another. Between them, the training batches contain exactly 5000 images from each class.</p>
+<p>数据集分为五个训练批次和一个测试批次，每个训练批次有 10000 张图像。测试批次恰好包含每个类中随机选择的 1000 张图像。训练批次以随机顺序包含剩余的图像，但某些训练批次可能包含来自一个类的图像多于另一个类的图像。在它们之间，训练批次恰好包含每个类的 5000 张图像。</p>
+</blockquote>
+<h3 id="数据集联动tensorboard"><a class="markdownIt-Anchor" href="#数据集联动tensorboard">#</a> 数据集联动 Tensorboard</h3>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">import</span> torchvision</pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">from</span> torch<span class="token punctuation">.</span>utils<span class="token punctuation">.</span>tensorboard <span class="token keyword">import</span> SummaryWriter</pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre>tensorboard <span class="token operator">=</span> SummaryWriter<span class="token punctuation">(</span><span class="token string">"p10"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="5"></td><td><pre>transforms_compose_dataset <span class="token operator">=</span> torchvision<span class="token punctuation">.</span>transforms<span class="token punctuation">.</span>Compose<span class="token punctuation">(</span><span class="token punctuation">[</span>torchvision<span class="token punctuation">.</span>transforms<span class="token punctuation">.</span>ToTensor<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="6"></td><td><pre>train_set <span class="token operator">=</span> torchvision<span class="token punctuation">.</span>datasets<span class="token punctuation">.</span>CIFAR10<span class="token punctuation">(</span>root<span class="token operator">=</span><span class="token string">"./data"</span><span class="token punctuation">,</span> train<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> transform<span class="token operator">=</span>transforms_compose_dataset<span class="token punctuation">,</span> download<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="7"></td><td><pre>test_set <span class="token operator">=</span> torchvision<span class="token punctuation">.</span>datasets<span class="token punctuation">.</span>CIFAR10<span class="token punctuation">(</span>root<span class="token operator">=</span><span class="token string">"./data"</span><span class="token punctuation">,</span> train<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> transform<span class="token operator">=</span>transforms_compose_dataset<span class="token punctuation">,</span> download<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>test_set<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="9"></td><td><pre><span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="10"></td><td><pre>    img<span class="token punctuation">,</span> target <span class="token operator">=</span> test_set<span class="token punctuation">[</span>i<span class="token punctuation">]</span></pre></td></tr><tr><td data-num="11"></td><td><pre>    tensorboard<span class="token punctuation">.</span>add_image<span class="token punctuation">(</span><span class="token string">"test_set"</span><span class="token punctuation">,</span> img<span class="token punctuation">,</span> i<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="12"></td><td><pre>tensorboard<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr></table></figure><p>其中 img, target = test_set [i] 返回了一个元组</p>
+<p><img data-src="../../images/pytorch/5.png" alt="5.png"></p>
+<p>0 号位是转化过后的张量图，1 号位是其标签索引，数据的标签列表可以在 test_set.classes 中看到。</p>
+<h3 id="add_image源码提示"><a class="markdownIt-Anchor" href="#add_image源码提示">#</a> add_image 源码提示</h3>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">def</span> <span class="token function">add_image</span><span class="token punctuation">(</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    self<span class="token punctuation">,</span> tag<span class="token punctuation">,</span> img_tensor<span class="token punctuation">,</span> global_step<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span> walltime<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span> dataformats<span class="token operator">=</span><span class="token string">"CHW"</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr></table></figure><p>tag, img_tensor, global_step=None 分别对应 tensorboard 标签，张量图，以及步骤 i</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre>tensorboard<span class="token punctuation">.</span>add_image<span class="token punctuation">(</span><span class="token string">"test_set"</span><span class="token punctuation">,</span> img<span class="token punctuation">,</span> i<span class="token punctuation">)</span></pre></td></tr></table></figure><p>注意：tensorboard 使用过后须关闭 tensorboard.close ()</p>
+
+      <div class="tags">
+          <a href="/tags/python/" rel="tag"><i class="ic i-tag"></i> python</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2025-08-12 15:49:59" itemprop="dateModified" datetime="2025-08-12T15:49:59+08:00">2025-08-12</time>
+  </span>
+  <span id="python/pytorch/" class="item leancloud_visitors" data-flag-title="PyTorch深度学习" title="阅读次数">
+      <span class="icon">
+        <i class="ic i-eye"></i>
+      </span>
+      <span class="text">阅读次数</span>
+      <span class="leancloud-visitors-count"></span>
+      <span class="text">次</span>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> 赞赏</button>
+  <p>请我喝[茶]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/myWxPay.jpg" alt="KarryLiu 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/myAliPay.jpg" alt="KarryLiu 支付宝">
+        <p>支付宝</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>KarryLiu <i class="ic i-at"><em>@</em></i>诗岸梦行舟
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="https://735690757.github.io/python/pytorch/" title="PyTorch深度学习">https://735690757.github.io/python/pytorch/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/python/pandas/" itemprop="url" rel="prev" data-background-image="&#x2F;images&#x2F;pandasX.jpg" title="Pandas核心处理方法">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> python_Pandas</span>
+  <h3>Pandas核心处理方法</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#pytorch%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0"><span class="toc-number">1.</span> <span class="toc-text"> PyTorch 深度学习</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">1.1.</span> <span class="toc-text"> 安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%A4%E5%A4%A7%E6%B3%95%E5%AE%9D%E5%87%BD%E6%95%B0-dir%E4%B8%8Ehelp"><span class="toc-number">1.2.</span> <span class="toc-text"> 两大法宝函数 - dir 与 help</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pytorch%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%8F%96"><span class="toc-number">1.3.</span> <span class="toc-text"> PyTorch 数据读取</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tensorboard%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">1.4.</span> <span class="toc-text"> Tensorboard 的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#add_scalar"><span class="toc-number">1.4.1.</span> <span class="toc-text"> add_scalar</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#add_image"><span class="toc-number">1.4.2.</span> <span class="toc-text"> add_image</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#transforms%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">1.5.</span> <span class="toc-text"> Transforms 的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#totensor%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">1.5.1.</span> <span class="toc-text"> ToTensor 的使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#normalize%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">1.5.2.</span> <span class="toc-text"> Normalize 的使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#resize%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">1.5.3.</span> <span class="toc-text"> Resize 的使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#randomcrop%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">1.5.4.</span> <span class="toc-text"> RandomCrop 的使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8torchvision%E7%9A%84%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-number">1.6.</span> <span class="toc-text"> 使用 TorchVision 的数据集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86%E8%81%94%E5%8A%A8tensorboard"><span class="toc-number">1.6.1.</span> <span class="toc-text"> 数据集联动 Tensorboard</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#add_image%E6%BA%90%E7%A0%81%E6%8F%90%E7%A4%BA"><span class="toc-number">1.6.2.</span> <span class="toc-text"> add_image 源码提示</span></a></li></ol></li></ol></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+        <ul>
+          <li class="active"><a href="/python/pytorch/" rel="bookmark" title="PyTorch深度学习">PyTorch深度学习</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="KarryLiu"
+      data-src="/images/tx.jpg">
+  <p class="name" itemprop="name">KarryLiu</p>
+  <div class="description" itemprop="description">愿世间所有的美好都得以祝愿</div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">31</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">17</span>
+        <span class="name">分类</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">16</span>
+        <span class="name">标签</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tLzczNTY5MDc1Nw==" title="https:&#x2F;&#x2F;github.com&#x2F;735690757"><i class="ic i-github"></i></span>
+      <span class="exturl item twitter" data-url="aHR0cHM6Ly90d2l0dGVyLmNvbS92b0FMUXRkYWNCVE00RVk=" title="https:&#x2F;&#x2F;twitter.com&#x2F;voALQtdacBTM4EY"><i class="ic i-twitter"></i></span>
+      <span class="exturl item email" data-url="bWFpbHRvOjczNTY5MDc1N0BxcS5jb20=" title="mailto:735690757@qq.com"><i class="ic i-envelope"></i></span>
+      <span class="exturl item zhihu" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3Blb3BsZS9ydW8tcWlhbi15aW5n" title="https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;ruo-qian-ying"><i class="ic i-zhihu"></i></span>
+      <span class="exturl item music" data-url="aHR0cHM6Ly9tdXNpYy4xNjMuY29tLyMvdXNlci9ob21lP2lkPTM1Nzc1OTIzOA==" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;user&#x2F;home?id&#x3D;357759238"><i class="ic i-cloud-music"></i></span>
+      <span class="exturl item about" data-url="aHR0cHM6Ly9hYm91dC5tZS9rYXJyeWxpdQ==" title="https:&#x2F;&#x2F;about.me&#x2F;karryliu"><i class="ic i-address-card"></i></span>
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/about/" rel="section"><i class="ic i-user"></i>关于</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+    
+  <li class="item">
+    <a href="/music" rel="section"><i class="ic i-music"></i>橘子君-Ruxra</a>
+  </li>
+
+    
+  <li class="item">
+    <span class="exturl" data-url="aHR0cHM6Ly93d3cudHJhdmVsbGluZ3MuY24vZ28uaHRtbA=="><i class="ic i-paper-plane"></i>开往</span>
+  </li>
+
+    
+  <li class="item">
+    <a href="/daily" rel="section"><i class="ic i-magic"></i>早报</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/shortV" rel="section"><i class="ic i-star"></i>短视频</a>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>随机文章</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
+</div>
+
+    <span><a href="/Operate-system/02OS/" title="进程与线程">进程与线程</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/database/" title="分类于 数据库">数据库</a>
+</div>
+
+    <span><a href="/database/DataBase01/" title="DB中的范式">DB中的范式</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
+</div>
+
+    <span><a href="/Operate-system/os_retest/" title="计算机操作系统复试速览">计算机操作系统复试速览</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python-NumPy/" title="分类于 python_NumPy">python_NumPy</a>
+</div>
+
+    <span><a href="/python/numpy/" title="NumPy核心处理方法">NumPy核心处理方法</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/MongoDB/" title="分类于 MongoDB">MongoDB</a>
+</div>
+
+    <span><a href="/MongoDB/MongoDB02/" title="MongoDB初步使用">MongoDB初步使用</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E4%B8%8A%E5%B2%B8/" title="分类于 上岸">上岸</a>
+</div>
+
+    <span><a href="/life/shangan/" title="写给我这一年多的考研时光">写给我这一年多的考研时光</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/DS/" title="分类于 DS">DS</a>
+</div>
+
+    <span><a href="/DSLearnNote/GeneralizedLists/" title="考试中有关广义表的两个常用函数的解">考试中有关广义表的两个常用函数的解</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/experience/" title="分类于 开发经验">开发经验</a>
+</div>
+
+    <span><a href="/experience/CollaborativeFiltering/" title="基于用户的协同过滤算法">基于用户的协同过滤算法</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/SpringCloud/" title="分类于 SpringCloud">SpringCloud</a>
+</div>
+
+    <span><a href="/Java/SpringCloudSTU/" title="SpringCloud学习记录">SpringCloud学习记录</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/English/" title="分类于 English">English</a>
+</div>
+
+    <span><a href="/English/xbbEnglish/" title="英语笔记">英语笔记</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>最新评论</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">KarryLiu @ KarryLiu</span>
+  </div>
+  <div class="powered-by">
+    <a href="https://icp.gov.moe/?keyword=20249329" target="_blank">萌ICP备20249329号</a>
+    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  <br/><span>世界本污浊，罪与爱同歌</span>
+  <br/><i class="ic i-chart-area"></i>&nbsp;<span>163k&nbsp;字</span> &nbsp;|&nbsp;
+  <i class="ic i-coffee"></i>&nbsp;<span> 4:32</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: 'python/pytorch/',
+    favicon: {
+      show: "（●´3｀●）嘿嘿嘿....",
+      hide: "(´Д｀)不看我是吧！"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: true,fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>
