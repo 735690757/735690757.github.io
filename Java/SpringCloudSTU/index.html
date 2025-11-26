@@ -292,6 +292,113 @@ public class Product &#123;
 <h3 id="nacos总结"><a class="markdownIt-Anchor" href="#nacos总结">#</a> Nacos 总结</h3>
 <p><img data-src="../../images/SpringCloudSTUimgs/nacos-summary.png" alt="nacos-summary.png"></p>
 <p>来自尚硅谷课堂：<span class="exturl" data-url="aHR0cHM6Ly93d3cuYmlsaWJpbGkuY29tL3ZpZGVvL0JWMVVKYzJlekVGVQ==">https://www.bilibili.com/video/BV1UJc2ezEFU</span></p>
+<h2 id="openfeign"><a class="markdownIt-Anchor" href="#openfeign">#</a> OpenFeign</h2>
+<p>OpenFeign 是 Spring Cloud 生态系统中的一个重要组件。Spring Cloud 是一个基于 Spring Boot 实现的分布式系统开发工具，它提供了一系列的工具来简化分布式系统开发，包括服务注册与发现、配置中心、断路器等功能，OpenFeign 默认集成了 Ribbon 负载均衡器。</p>
+<h3 id="远程调用"><a class="markdownIt-Anchor" href="#远程调用">#</a> 远程调用</h3>
+<h4 id="导入注解"><a class="markdownIt-Anchor" href="#导入注解">#</a> 导入注解</h4>
+<figure class="highlight xml"><figcaption data-lang="XML"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">&lt;!--    openfeign 远程调用    --></span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-cloud-starter-openfeign<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></pre></td></tr></table></figure><h4 id="创建feign包与xxxclient接口"><a class="markdownIt-Anchor" href="#创建feign包与xxxclient接口">#</a> 创建 feign 包与 XXXClient 接口</h4>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token annotation punctuation">@FeignClient</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"service-product"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">ProductFeignClient</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token comment">//mvc 注解使用的两套逻辑，放在 Controller 上是接收请求，放在 FeignClient 上是发送请求</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"/product/&#123;productId&#125;"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token class-name">Product</span> <span class="token function">getProductById</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token class-name">String</span> productId<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>这里的 value = &quot;service-product&quot; 指的是给那个微服务发送请求，这里还标注了 GetMapping，指的是给那个微服务发送请求的路径是什么，其明确了接口。</p>
+<h4 id="改造订单创建方法"><a class="markdownIt-Anchor" href="#改造订单创建方法">#</a> 改造订单创建方法</h4>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token annotation punctuation">@Override</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token keyword">public</span> <span class="token class-name">Order</span> <span class="token function">createOrder</span><span class="token punctuation">(</span><span class="token class-name">Long</span> productId<span class="token punctuation">,</span> <span class="token class-name">Long</span> userId<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token comment">//        Product productFromRemote = getProductFromRemoteLoadBalancingWithAnnotation(productId);</span></pre></td></tr><tr><td data-num="4"></td><td><pre>        <span class="token class-name">Product</span> productFromRemote <span class="token operator">=</span> productFeignClient<span class="token punctuation">.</span><span class="token function">getProductById</span><span class="token punctuation">(</span>productId<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>        <span class="token class-name">Order</span> order <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Order</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>        order<span class="token punctuation">.</span><span class="token function">setId</span><span class="token punctuation">(</span><span class="token number">1L</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>        <span class="token comment">// TODO 需要计算</span></pre></td></tr><tr><td data-num="8"></td><td><pre>        order<span class="token punctuation">.</span><span class="token function">setTotalAmount</span><span class="token punctuation">(</span>productFromRemote<span class="token punctuation">.</span><span class="token function">getPrice</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">multiply</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">BigDecimal</span><span class="token punctuation">(</span>productFromRemote<span class="token punctuation">.</span><span class="token function">getNum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>        order<span class="token punctuation">.</span><span class="token function">setUserId</span><span class="token punctuation">(</span>userId<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>        order<span class="token punctuation">.</span><span class="token function">setNickName</span><span class="token punctuation">(</span><span class="token string">"Karry.Liu"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>        order<span class="token punctuation">.</span><span class="token function">setAddress</span><span class="token punctuation">(</span><span class="token string">"北极"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>        <span class="token comment">// TODO 需要远程查询</span></pre></td></tr><tr><td data-num="13"></td><td><pre>        order<span class="token punctuation">.</span><span class="token function">setProduct</span><span class="token punctuation">(</span><span class="token class-name">List</span><span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span>productFromRemote<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>        <span class="token keyword">return</span> order<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr></table></figure><h4 id="也可以向外部第三方做出请求"><a class="markdownIt-Anchor" href="#也可以向外部第三方做出请求">#</a> 也可以向外部（第三方）做出请求</h4>
+<p>比如下面是一个针对天气数据接口的代码实现</p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token annotation punctuation">@FeignClient</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"weather-client"</span><span class="token punctuation">,</span> url <span class="token operator">=</span> <span class="token string">"http://apis.juhe.cn"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">WeatherFeignClient</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"/simpleWeather/query"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token class-name">String</span> <span class="token function">getWeatherByCityId</span><span class="token punctuation">(</span><span class="token annotation punctuation">@RequestParam</span><span class="token punctuation">(</span><span class="token string">"city"</span><span class="token punctuation">)</span> <span class="token class-name">String</span> city<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="5"></td><td><pre>                              <span class="token annotation punctuation">@RequestParam</span><span class="token punctuation">(</span><span class="token string">"key"</span><span class="token punctuation">)</span> <span class="token class-name">String</span> key<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre></pre></td></tr><tr><td data-num="7"></td><td><pre>    <span class="token keyword">default</span> <span class="token class-name">String</span> <span class="token function">getEncodedCity</span><span class="token punctuation">(</span><span class="token class-name">String</span> city<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>        <span class="token keyword">return</span> <span class="token class-name">URLEncoder</span><span class="token punctuation">.</span><span class="token function">encode</span><span class="token punctuation">(</span>city<span class="token punctuation">,</span> <span class="token class-name">StandardCharsets</span><span class="token punctuation">.</span><span class="token constant">UTF_8</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="10"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><h4 id="小技巧懒狗模式"><a class="markdownIt-Anchor" href="#小技巧懒狗模式">#</a> 小技巧（懒狗模式）</h4>
+<p>如果是要访问自己的设计的接口，着通常是业务接口，比如一个订单服务要访问商品服务，最简单的方式就是将，商品的 Controller 下的接口找到，然后直接复制方法名（以接口的方式进行复制就可以），然后把他放在地点服务的 OpenFegin 接口下就可以了，值得注意的是，OpenFegin 已经帮我们做好了负载均衡，相比上述 Nacos 中那种请求模板方便多了。</p>
+<p>具体地如下面的操作所示：</p>
+<ol>
+<li>
+<p>找到商品服务接口的代码</p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token annotation punctuation">@Slf4j</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token annotation punctuation">@RestController</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ProductController</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="4"></td><td><pre></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token annotation punctuation">@Autowired</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token keyword">private</span> <span class="token class-name">ProductService</span> productService<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="7"></td><td><pre></pre></td></tr><tr><td data-num="8"></td><td><pre>    <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"/product/&#123;productId&#125;"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    <span class="token keyword">public</span> <span class="token class-name">Product</span> <span class="token function">getProduct</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token class-name">Long</span> productId<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>        log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"查询商品信息: &#123;&#125;"</span><span class="token punctuation">,</span> productId<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>        <span class="token keyword">return</span> productService<span class="token punctuation">.</span><span class="token function">getProductById</span><span class="token punctuation">(</span>productId<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="13"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure></li>
+<li>
+<p>就像接口的方式去复制代码</p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"/product/&#123;productId&#125;"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">public</span> <span class="token class-name">Product</span> <span class="token function">getProduct</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token class-name">Long</span> productId<span class="token punctuation">)</span></pre></td></tr></table></figure></li>
+<li>
+<p>粘贴到订单服务之中</p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token annotation punctuation">@FeignClient</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"service-product"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">ProductFeignClient</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token comment">//mvc 注解使用的两套逻辑，放在 Controller 上是接收请求，放在 FeignClient 上是发送请求</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"/product/&#123;productId&#125;"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token class-name">Product</span> <span class="token function">getProductById</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token class-name">Long</span> productId<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    </pre></td></tr><tr><td data-num="7"></td><td><pre>    <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"/product/&#123;productId&#125;"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="8"></td><td><pre>    <span class="token keyword">public</span> <span class="token class-name">Product</span> <span class="token function">getProduct</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token class-name">Long</span> productId<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>可以观察到，粘贴到 ProductFeignClient 中的代码与我们之前自己定义的代码片段基本是完全一致，所以这是一个非常好用的小技巧。</p>
+</li>
+</ol>
+<h4 id="面试题"><a class="markdownIt-Anchor" href="#面试题">#</a> 面试题</h4>
+<p>问：客户端的负载均衡和服务端负载均衡有不用？</p>
+<p>答：首先对于客户端的负载均衡来说，客户端服务会先去访问注册中心，首先获取到一些地址，然后选择一个地址，最后发起调用，这个过程完全是发生在客户端方面的，但是对于服务端的负载均衡来说，这个服务端只对外部暴露一个服务接口，那么所有的请求都需要通过这个唯一的接口来访问。然而，在这个接口背后有着一套负载均衡的逻辑，接口背后运行着许多的服务，而具体使用哪个，由不同的负载均衡算法决定，这一过程放生在服务端。</p>
+<h3 id="日志"><a class="markdownIt-Anchor" href="#日志">#</a> 日志</h3>
+<p>可以在 Configuration 类下加入以下代码：</p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token annotation punctuation">@Bean</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token class-name">Logger<span class="token punctuation">.</span>Level</span> <span class="token function">feignLoggerLevel</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token keyword">return</span> <span class="token class-name">Logger<span class="token punctuation">.</span>Level</span><span class="token punctuation">.</span><span class="token constant">FULL</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>在 yaml 下加入远程调用包的日志配置：</p>
+<figure class="highlight yaml"><figcaption data-lang="YAML"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token key atrule">logging</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="2"></td><td><pre>  <span class="token key atrule">level</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token key atrule">com.KarryCode.feign</span><span class="token punctuation">:</span> debug</pre></td></tr></table></figure><p>再次请求即可观察到日志输出，可以看到是怎么请求的。</p>
+<h3 id="超时控制"><a class="markdownIt-Anchor" href="#超时控制">#</a> 超时控制</h3>
+<p>分别有<strong>连接超时</strong>和<strong>读取超时</strong>，通过其源码实现可以观察到，连接超时是 10 秒，而读取超时是 60 秒。我们仍然可以通过配置来修改，这个具体的时间。</p>
+<blockquote>
+<p>这里说一个题外话，我们可以使用多个配置文件来让其生效，比如我这里有一个 application-feign.yml，我们还有一个主文件 application.yml，如果我们想让 application-feign.yml 生效的话，我们可以在主配置文件加上这样的一句话：include: feign</p>
+<figure class="highlight yml"><figcaption data-lang="YAML"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token key atrule">spring</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="2"></td><td><pre>  <span class="token key atrule">profiles</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token key atrule">active</span><span class="token punctuation">:</span> dev</pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token key atrule">include</span><span class="token punctuation">:</span> feign</pre></td></tr></table></figure></blockquote>
+<p>其配置方式如下所示：</p>
+<figure class="highlight yaml"><figcaption data-lang="YAML"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token key atrule">spring</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="2"></td><td><pre>  <span class="token key atrule">cloud</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token key atrule">openfeign</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="4"></td><td><pre>      <span class="token key atrule">client</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="5"></td><td><pre>        <span class="token key atrule">config</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="6"></td><td><pre>          <span class="token key atrule">default</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="7"></td><td><pre>            <span class="token key atrule">connectTimeout</span><span class="token punctuation">:</span> <span class="token number">3000</span></pre></td></tr><tr><td data-num="8"></td><td><pre>            <span class="token key atrule">readTimeout</span><span class="token punctuation">:</span> <span class="token number">5000</span></pre></td></tr><tr><td data-num="9"></td><td><pre>            <span class="token key atrule">logger-level</span><span class="token punctuation">:</span> full</pre></td></tr></table></figure><h3 id="重试机制"><a class="markdownIt-Anchor" href="#重试机制">#</a> 重试机制</h3>
+<p>默认情况下，OpenFeign 的重试策略是从不重试（是的没错），我们可以手动启动这个重试策略，其具体的有：我们可以设计间隔 100 毫秒，最大间隔 1 秒。最大尝试 5 次。类似计网里面的退避算法</p>
+<p>同样在相应的配置下面加入这样的代码：</p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token annotation punctuation">@Bean</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token class-name">Retryer</span> <span class="token function">feignRetryer</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Retryer<span class="token punctuation">.</span>Default</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>这是一个默认的重试器，其重试规则正如我上面所说那样：我们可以设计间隔 100 毫秒，最大间隔 1 秒。最大尝试 5 次。</p>
+<h3 id="拦截器"><a class="markdownIt-Anchor" href="#拦截器">#</a> 拦截器</h3>
+<p>我们可以创建一个请求拦截器：</p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token annotation punctuation">@Component</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">XTokenRequestInterceptor</span> <span class="token keyword">implements</span> <span class="token class-name">RequestInterceptor</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token annotation punctuation">@Override</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">apply</span><span class="token punctuation">(</span><span class="token class-name">RequestTemplate</span> requestTemplate<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"拦截器启动"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>        requestTemplate<span class="token punctuation">.</span><span class="token function">header</span><span class="token punctuation">(</span><span class="token string">"X-Token"</span><span class="token punctuation">,</span> <span class="token constant">UUID</span><span class="token punctuation">.</span><span class="token function">randomUUID</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>然后再接收请求时，我们可以解析一下：</p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"/product/&#123;productId&#125;"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">public</span> <span class="token class-name">Product</span> <span class="token function">getProduct</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token class-name">Long</span> productId<span class="token punctuation">,</span> <span class="token class-name">HttpServletRequest</span> request<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"token:"</span> <span class="token operator">+</span> request<span class="token punctuation">.</span><span class="token function">getHeader</span><span class="token punctuation">(</span><span class="token string">"X-Token"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"查询商品信息: &#123;&#125;"</span><span class="token punctuation">,</span> productId<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token keyword">return</span> productService<span class="token punctuation">.</span><span class="token function">getProductById</span><span class="token punctuation">(</span>productId<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>可以看到 Token 的输出：token:ebf2c253-7e63-483a-92bc-fc9d1819a418。</p>
+<h3 id="fallback兜底返回"><a class="markdownIt-Anchor" href="#fallback兜底返回">#</a> Fallback 兜底返回</h3>
+<p>兜底返回机制需要配合我们还没有学到的 sentinel 框架，首先引入依赖：</p>
+<figure class="highlight xml"><figcaption data-lang="XML"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">&lt;!--    sentinel    --></span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.alibaba.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-cloud-starter-alibaba-sentinel<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></pre></td></tr></table></figure><p>加入配置：</p>
+<figure class="highlight yaml"><figcaption data-lang="YAML"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token key atrule">feign</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="2"></td><td><pre>  <span class="token key atrule">sentinel</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token key atrule">enabled</span><span class="token punctuation">:</span> <span class="token boolean important">true</span></pre></td></tr></table></figure><p>在服务发起端加入兜底策略：</p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token annotation punctuation">@Component</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ProductFeignClientFallback</span> <span class="token keyword">implements</span> <span class="token class-name">ProductFeignClient</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token annotation punctuation">@Override</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token keyword">public</span> <span class="token class-name">Product</span> <span class="token function">getProductById</span><span class="token punctuation">(</span><span class="token class-name">Long</span> productId<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>        <span class="token class-name">Product</span> product <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Product</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>        product<span class="token punctuation">.</span><span class="token function">setId</span><span class="token punctuation">(</span>productId<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>        product<span class="token punctuation">.</span><span class="token function">setPrice</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">BigDecimal</span><span class="token punctuation">(</span><span class="token string">"0"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>        product<span class="token punctuation">.</span><span class="token function">setProductName</span><span class="token punctuation">(</span><span class="token string">"不到啊-"</span> <span class="token operator">+</span> productId<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>        product<span class="token punctuation">.</span><span class="token function">setNum</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>        <span class="token keyword">return</span> product<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="13"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>关闭 Product 服务，只保留 Order 服务，可以看到返回了兜底数据：</p>
+<figure class="highlight json"><figcaption data-lang="JSON"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>  <span class="token property">"id"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="3"></td><td><pre>  <span class="token property">"totalAmount"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="4"></td><td><pre>  <span class="token property">"userId"</span><span class="token operator">:</span> <span class="token number">777</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="5"></td><td><pre>  <span class="token property">"nickName"</span><span class="token operator">:</span> <span class="token string">"Karry.Liu"</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="6"></td><td><pre>  <span class="token property">"address"</span><span class="token operator">:</span> <span class="token string">"北极"</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="7"></td><td><pre>  <span class="token property">"product"</span><span class="token operator">:</span> <span class="token punctuation">[</span></pre></td></tr><tr><td data-num="8"></td><td><pre>    <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>      <span class="token property">"id"</span><span class="token operator">:</span> <span class="token number">888</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="10"></td><td><pre>      <span class="token property">"price"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="11"></td><td><pre>      <span class="token property">"productName"</span><span class="token operator">:</span> <span class="token string">"不到啊-888"</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="12"></td><td><pre>      <span class="token property">"num"</span><span class="token operator">:</span> <span class="token number">2</span></pre></td></tr><tr><td data-num="13"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>  <span class="token punctuation">]</span></pre></td></tr><tr><td data-num="15"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><h2 id="sentinel"><a class="markdownIt-Anchor" href="#sentinel">#</a> Sentinel</h2>
+<img data-src="../../images/SpringCloudSTUimgs/6.png" alt="11" style="zoom:80%;" />
+<img data-src="../../images/SpringCloudSTUimgs/7.png" alt="11" style="zoom: 50%;"/>
+<h3 id="基础场景"><a class="markdownIt-Anchor" href="#基础场景">#</a> 基础场景</h3>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token annotation punctuation">@SentinelResource</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"createOrder"</span><span class="token punctuation">)</span></pre></td></tr></table></figure><p>添加上此注解，流量即被监控。</p>
+<img data-src="../../images/SpringCloudSTUimgs/8.png" alt="11"/>
+<p>添加流控规则：</p>
+<img data-src="../../images/SpringCloudSTUimgs/9.png" alt="11"/>
+<p>每秒只放行一次请求，如果你请求多了就会被打回。</p>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>Fail to send:http://localhost:8081/create?productId<span class="token operator">=</span><span class="token number">777</span><span class="token operator">&amp;</span><span class="token assign-left variable">userId</span><span class="token operator">=</span><span class="token number">1</span></pre></td></tr><tr><td data-num="2"></td><td><pre></pre></td></tr><tr><td data-num="3"></td><td><pre>Blocked by Sentinel <span class="token punctuation">(</span>flow limiting<span class="token punctuation">)</span></pre></td></tr></table></figure><p>这是一个默认错误页面，我们能不能返回一个高度自定义的数据呢？</p>
+<p>但是可以的！这涉及到 Sentinal 的异常处理机制。</p>
+<h3 id="异常处理"><a class="markdownIt-Anchor" href="#异常处理">#</a> 异常处理</h3>
+<img data-src="../../images/SpringCloudSTUimgs/10.png" alt="11"/>
+<ol>
+<li>Flow Exception：流控异常</li>
+<li>Param Flow Exception：热点参数异常</li>
+<li>Degrade Exception：熔断降级异常</li>
+<li>Authority Exception：权限控制类异常</li>
+<li>System Block Exception：系统阻塞异常</li>
+</ol>
+<p>上述说的问题，我们需要自定义一个异常。</p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token annotation punctuation">@Component</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MyBlockException</span> <span class="token keyword">implements</span> <span class="token class-name">BlockExceptionHandler</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token keyword">private</span> <span class="token class-name">ObjectMapper</span> objectMapper <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ObjectMapper</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token annotation punctuation">@Override</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">handle</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> httpServletRequest<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="8"></td><td><pre>                       <span class="token class-name">HttpServletResponse</span> httpServletResponse<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="9"></td><td><pre>                       <span class="token class-name">String</span> resourceName<span class="token punctuation">,</span> <span class="token class-name">BlockException</span> e<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>        <span class="token class-name">R</span> error <span class="token operator">=</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token number">500</span><span class="token punctuation">,</span> resourceName <span class="token operator">+</span> <span class="token string">"被限流了"</span><span class="token punctuation">,</span> e<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>        httpServletResponse<span class="token punctuation">.</span><span class="token function">setContentType</span><span class="token punctuation">(</span><span class="token string">"application/json;charset=utf-8"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>        <span class="token class-name">PrintWriter</span> writer <span class="token operator">=</span> httpServletResponse<span class="token punctuation">.</span><span class="token function">getWriter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>        <span class="token class-name">String</span> json <span class="token operator">=</span> objectMapper<span class="token punctuation">.</span><span class="token function">writeValueAsString</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>        writer<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>json<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="15"></td><td><pre></pre></td></tr><tr><td data-num="16"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="17"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><img data-src="../../images/SpringCloudSTUimgs/11.png" alt="11"/>
+<p>这个时候，如果你给 createOrder 方法添加流控规则的话，你会发现这个我们之前定义的 json 不生效了。</p>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>Fail to send:http://localhost:8081/create?productId<span class="token operator">=</span><span class="token number">777</span><span class="token operator">&amp;</span><span class="token assign-left variable">userId</span><span class="token operator">=</span><span class="token number">1</span></pre></td></tr><tr><td data-num="2"></td><td><pre></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token operator">&lt;</span>html<span class="token operator">></span><span class="token operator">&lt;</span>body<span class="token operator">></span><span class="token operator">&lt;</span>h<span class="token operator"><span class="token file-descriptor important">1</span>></span>Whitelabel Error Page<span class="token operator">&lt;</span>/h<span class="token operator"><span class="token file-descriptor important">1</span>></span><span class="token operator">&lt;</span>p<span class="token operator">></span>This application has no explicit mapping <span class="token keyword">for</span> /error, so you are seeing this as a fallback.<span class="token operator">&lt;</span>/p<span class="token operator">></span><span class="token operator">&lt;</span>div <span class="token assign-left variable">id</span><span class="token operator">=</span><span class="token string">'created'</span><span class="token operator">></span>Wed Nov 05 <span class="token number">16</span>:15:00 CST <span class="token number">202</span><span class="token operator"><span class="token file-descriptor important">5</span>&lt;</span>/div<span class="token operator">></span><span class="token operator">&lt;</span>div<span class="token operator">></span>There was an unexpected error <span class="token punctuation">(</span>type<span class="token operator">=</span>Internal Server Error, <span class="token assign-left variable">status</span><span class="token operator">=</span><span class="token number">500</span><span class="token punctuation">)</span>.<span class="token operator">&lt;</span>/div<span class="token operator">></span><span class="token operator">&lt;</span>/body<span class="token operator">></span><span class="token operator">&lt;</span>/html<span class="token operator">></span></pre></td></tr></table></figure><p>这是因为它的异常类型不同，才导致的这样的结果。</p>
+<h3 id="流控规则"><a class="markdownIt-Anchor" href="#流控规则">#</a> 流控规则</h3>
+<p>阈值类型：</p>
+<ol>
+<li>QPS：每秒请求数</li>
+<li>并发线程数</li>
+</ol>
+<p>我们优先推荐使用 QPS。</p>
+<p>是否集群：</p>
+<ol>
+<li>单机均摊</li>
+<li>总体阈值</li>
+</ol>
+<p>流控模式：</p>
+<ol>
+<li>直接模式</li>
+<li>关联模式</li>
+<li>链路模式</li>
+</ol>
+<p>流控效果</p>
+<ol>
+<li>快速失败</li>
+<li>Warm Up</li>
+<li>排队等待</li>
+</ol>
+<img data-src="../../images/SpringCloudSTUimgs/12.png" alt="11"/>
+<img data-src="../../images/SpringCloudSTUimgs/13.png" alt="11"/>
+<h3 id="熔断降级"><a class="markdownIt-Anchor" href="#熔断降级">#</a> 熔断降级</h3>
+<img data-src="../../images/SpringCloudSTUimgs/14.png" alt="11"/>
+<h2 id="gateway"><a class="markdownIt-Anchor" href="#gateway">#</a> Gateway</h2>
+<h1 id="参考文献"><a class="markdownIt-Anchor" href="#参考文献">#</a> 参考文献</h1>
+<ol>
+<li>【尚硅谷 SpringCloud 速成】<span class="exturl" data-url="aHR0cHM6Ly93d3cuYmlsaWJpbGkuY29tL3ZpZGVvL0JWMVVKYzJlekVGVQ==">https://www.bilibili.com/video/BV1UJc2ezEFU</span></li>
+</ol>
 
       <div class="tags">
           <a href="/tags/java/" rel="tag"><i class="ic i-tag"></i> java</a>
@@ -307,7 +414,7 @@ public class Product &#123;
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">更新于</span>
-    <time title="修改时间：2025-10-30 14:49:51" itemprop="dateModified" datetime="2025-10-30T14:49:51+08:00">2025-10-30</time>
+    <time title="修改时间：2025-11-22 15:11:25" itemprop="dateModified" datetime="2025-11-22T15:11:25+08:00">2025-11-22</time>
   </span>
   <span id="Java/SpringCloudSTU/" class="item leancloud_visitors" data-flag-title="SpringCloud学习记录" title="阅读次数">
       <span class="icon">
@@ -373,6 +480,14 @@ public class Product &#123;
 
     </div>
     <div class="item right">
+      
+
+  <a href="/python/Transformer/" itemprop="url" rel="next" data-background-image="&#x2F;images&#x2F;cover&#x2F;transformer.jpg" title="Transformer实战">
+  <span class="type">下一篇</span>
+  <span class="category"><i class="ic i-flag"></i> 深度学习</span>
+  <h3>Transformer实战</h3>
+  </a>
+
     </div>
 </div>
 
@@ -389,7 +504,7 @@ public class Product &#123;
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="文章目录">
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#springcloud"><span class="toc-number">1.</span> <span class="toc-text"> SpringCloud</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E5%8D%95%E4%BD%93%E5%88%B0%E9%9B%86%E7%BE%A4%E5%86%8D%E5%88%B0%E5%88%86%E5%B8%83%E5%BC%8F"><span class="toc-number">1.1.</span> <span class="toc-text"> 从单体到集群再到分布式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nacos"><span class="toc-number">1.2.</span> <span class="toc-text"> Nacos</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83"><span class="toc-number">1.2.1.</span> <span class="toc-text"> 注册中心</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C"><span class="toc-number">1.2.1.1.</span> <span class="toc-text"> 服务注册</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0"><span class="toc-number">1.2.1.2.</span> <span class="toc-text"> 服务发现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9D%E8%A7%81%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8"><span class="toc-number">1.2.1.3.</span> <span class="toc-text"> 初见，远程调用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1apis"><span class="toc-number">1.2.1.4.</span> <span class="toc-text"> 实现负载均衡 APIs</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E6%96%B9%E6%B3%95%E7%9A%84%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1"><span class="toc-number">1.2.1.4.1.</span> <span class="toc-text"> 基于方法的负载均衡</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E6%B3%A8%E8%A7%A3%E7%9A%84%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1"><span class="toc-number">1.2.1.4.2.</span> <span class="toc-text"> 基于注解的负载均衡</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83"><span class="toc-number">1.2.2.</span> <span class="toc-text"> 配置中心</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95"><span class="toc-number">1.2.2.1.</span> <span class="toc-text"> 基本用法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%A0%E6%84%9F%E5%8A%A8%E6%80%81%E5%88%B7%E6%96%B0"><span class="toc-number">1.2.2.2.</span> <span class="toc-text"> 无感动态刷新</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E9%85%8D%E7%BD%AE%E4%B8%8Enacos%E9%85%8D%E7%BD%AE%E5%86%B2%E7%AA%81%E6%97%B6"><span class="toc-number">1.2.2.3.</span> <span class="toc-text"> 本地配置与 Nacos 配置冲突时</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%9A%94%E7%A6%BB"><span class="toc-number">1.2.2.4.</span> <span class="toc-text"> 数据隔离</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nacos%E6%80%BB%E7%BB%93"><span class="toc-number">1.2.3.</span> <span class="toc-text"> Nacos 总结</span></a></li></ol></li></ol></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#springcloud"><span class="toc-number">1.</span> <span class="toc-text"> SpringCloud</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E5%8D%95%E4%BD%93%E5%88%B0%E9%9B%86%E7%BE%A4%E5%86%8D%E5%88%B0%E5%88%86%E5%B8%83%E5%BC%8F"><span class="toc-number">1.1.</span> <span class="toc-text"> 从单体到集群再到分布式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nacos"><span class="toc-number">1.2.</span> <span class="toc-text"> Nacos</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83"><span class="toc-number">1.2.1.</span> <span class="toc-text"> 注册中心</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C"><span class="toc-number">1.2.1.1.</span> <span class="toc-text"> 服务注册</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0"><span class="toc-number">1.2.1.2.</span> <span class="toc-text"> 服务发现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9D%E8%A7%81%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8"><span class="toc-number">1.2.1.3.</span> <span class="toc-text"> 初见，远程调用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1apis"><span class="toc-number">1.2.1.4.</span> <span class="toc-text"> 实现负载均衡 APIs</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E6%96%B9%E6%B3%95%E7%9A%84%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1"><span class="toc-number">1.2.1.4.1.</span> <span class="toc-text"> 基于方法的负载均衡</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E6%B3%A8%E8%A7%A3%E7%9A%84%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1"><span class="toc-number">1.2.1.4.2.</span> <span class="toc-text"> 基于注解的负载均衡</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83"><span class="toc-number">1.2.2.</span> <span class="toc-text"> 配置中心</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95"><span class="toc-number">1.2.2.1.</span> <span class="toc-text"> 基本用法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%A0%E6%84%9F%E5%8A%A8%E6%80%81%E5%88%B7%E6%96%B0"><span class="toc-number">1.2.2.2.</span> <span class="toc-text"> 无感动态刷新</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E9%85%8D%E7%BD%AE%E4%B8%8Enacos%E9%85%8D%E7%BD%AE%E5%86%B2%E7%AA%81%E6%97%B6"><span class="toc-number">1.2.2.3.</span> <span class="toc-text"> 本地配置与 Nacos 配置冲突时</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%9A%94%E7%A6%BB"><span class="toc-number">1.2.2.4.</span> <span class="toc-text"> 数据隔离</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nacos%E6%80%BB%E7%BB%93"><span class="toc-number">1.2.3.</span> <span class="toc-text"> Nacos 总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#openfeign"><span class="toc-number">1.3.</span> <span class="toc-text"> OpenFeign</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8"><span class="toc-number">1.3.1.</span> <span class="toc-text"> 远程调用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5%E6%B3%A8%E8%A7%A3"><span class="toc-number">1.3.1.1.</span> <span class="toc-text"> 导入注解</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BAfeign%E5%8C%85%E4%B8%8Exxxclient%E6%8E%A5%E5%8F%A3"><span class="toc-number">1.3.1.2.</span> <span class="toc-text"> 创建 feign 包与 XXXClient 接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%94%B9%E9%80%A0%E8%AE%A2%E5%8D%95%E5%88%9B%E5%BB%BA%E6%96%B9%E6%B3%95"><span class="toc-number">1.3.1.3.</span> <span class="toc-text"> 改造订单创建方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B9%9F%E5%8F%AF%E4%BB%A5%E5%90%91%E5%A4%96%E9%83%A8%E7%AC%AC%E4%B8%89%E6%96%B9%E5%81%9A%E5%87%BA%E8%AF%B7%E6%B1%82"><span class="toc-number">1.3.1.4.</span> <span class="toc-text"> 也可以向外部（第三方）做出请求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%8F%E6%8A%80%E5%B7%A7%E6%87%92%E7%8B%97%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.3.1.5.</span> <span class="toc-text"> 小技巧（懒狗模式）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E9%A2%98"><span class="toc-number">1.3.1.6.</span> <span class="toc-text"> 面试题</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A5%E5%BF%97"><span class="toc-number">1.3.2.</span> <span class="toc-text"> 日志</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B6%85%E6%97%B6%E6%8E%A7%E5%88%B6"><span class="toc-number">1.3.3.</span> <span class="toc-text"> 超时控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E8%AF%95%E6%9C%BA%E5%88%B6"><span class="toc-number">1.3.4.</span> <span class="toc-text"> 重试机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%A6%E6%88%AA%E5%99%A8"><span class="toc-number">1.3.5.</span> <span class="toc-text"> 拦截器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fallback%E5%85%9C%E5%BA%95%E8%BF%94%E5%9B%9E"><span class="toc-number">1.3.6.</span> <span class="toc-text"> Fallback 兜底返回</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sentinel"><span class="toc-number">1.4.</span> <span class="toc-text"> Sentinel</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E5%9C%BA%E6%99%AF"><span class="toc-number">1.4.1.</span> <span class="toc-text"> 基础场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="toc-number">1.4.2.</span> <span class="toc-text"> 异常处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%81%E6%8E%A7%E8%A7%84%E5%88%99"><span class="toc-number">1.4.3.</span> <span class="toc-text"> 流控规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%86%94%E6%96%AD%E9%99%8D%E7%BA%A7"><span class="toc-number">1.4.4.</span> <span class="toc-text"> 熔断降级</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gateway"><span class="toc-number">1.5.</span> <span class="toc-text"> Gateway</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">2.</span> <span class="toc-text"> 参考文献</span></a></li></ol>
       </div>
       <div class="related panel pjax" data-title="系列文章">
         <ul>
@@ -407,19 +522,19 @@ public class Product &#123;
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">38</span>
+        <span class="count">41</span>
         <span class="name">文章</span>
       </a>
     </div>
     <div class="item categories">
       <a href="/categories/">
-        <span class="count">17</span>
+        <span class="count">18</span>
         <span class="name">分类</span>
       </a>
     </div>
     <div class="item tags">
       <a href="/tags/">
-        <span class="count">31</span>
+        <span class="count">33</span>
         <span class="name">标签</span>
       </a>
     </div>
@@ -501,10 +616,12 @@ public class Product &#123;
 
   <ul id="quick">
     <li class="prev pjax">
+        <a href="/paper/attention_is_all_your_need/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a>
     </li>
     <li class="up"><i class="ic i-arrow-up"></i></li>
     <li class="down"><i class="ic i-arrow-down"></i></li>
     <li class="next pjax">
+        <a href="/python/Transformer/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a>
     </li>
     <li class="percent"></li>
   </ul>
@@ -526,60 +643,10 @@ public class Product &#123;
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
-</div>
-
-    <span><a href="/Operate-system/01OS/" title="操作系统知识点阶段总结">操作系统知识点阶段总结</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
-</div>
-
-    <span><a href="/python/pandas/" title="Pandas核心处理方法">Pandas核心处理方法</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Principles-of-computer-composition/" title="分类于 计算机组成原理">计算机组成原理</a>
-</div>
-
-    <span><a href="/Principles-of-computer-composition/Connection_between_CPU_and_memory/" title="CPU与存储器的连接">CPU与存储器的连接</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
 <a href="/categories/DS/" title="分类于 DS">DS</a>
 </div>
 
     <span><a href="/DSLearnNote/GeneralizedLists/" title="考试中有关广义表的两个常用函数的解">考试中有关广义表的两个常用函数的解</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
-</div>
-
-    <span><a href="/python/pytorch/" title="PyTorch深度学习">PyTorch深度学习</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/MongoDB/" title="分类于 MongoDB">MongoDB</a>
-</div>
-
-    <span><a href="/MongoDB/MongoDB03/" title="MongoDB初步使用">MongoDB初步使用</a></span>
   </li>
 
       
@@ -596,10 +663,20 @@ public class Product &#123;
   <li class="item">
     
 <div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+</div>
+
+    <span><a href="/python/pytorch/" title="PyTorch深度学习">PyTorch深度学习</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
 <a href="/categories/Principles-of-computer-composition/" title="分类于 计算机组成原理">计算机组成原理</a>
 </div>
 
-    <span><a href="/Principles-of-computer-composition/booth_algorithm/" title="booth算法">booth算法</a></span>
+    <span><a href="/Principles-of-computer-composition/Division_in_Computers/" title="计算机中的除法运算">计算机中的除法运算</a></span>
   </li>
 
       
@@ -609,7 +686,27 @@ public class Product &#123;
 <a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
 </div>
 
-    <span><a href="/Operate-system/kcsj/" title="操作系统课程设计">操作系统课程设计</a></span>
+    <span><a href="/Operate-system/os_retest/" title="计算机操作系统复试速览">计算机操作系统复试速览</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+</div>
+
+    <span><a href="/python/CNN_Acc/" title="CNN经典卷积神经网络与实战">CNN经典卷积神经网络与实战</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+</div>
+
+    <span><a href="/python/Transformer/" title="Transformer实战">Transformer实战</a></span>
   </li>
 
       
@@ -619,7 +716,27 @@ public class Product &#123;
 <a href="/categories/MongoDB/" title="分类于 MongoDB">MongoDB</a>
 </div>
 
-    <span><a href="/MongoDB/MongoDB02/" title="MongoDB初步使用">MongoDB初步使用</a></span>
+    <span><a href="/MongoDB/MongoDB01/" title="MongoDB的安装与初步使用（Windows平台）">MongoDB的安装与初步使用（Windows平台）</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/experience/" title="分类于 开发经验">开发经验</a>
+</div>
+
+    <span><a href="/experience/SSM01/" title="SSM框架整合">SSM框架整合</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E4%B8%8A%E5%B2%B8/" title="分类于 上岸">上岸</a>
+</div>
+
+    <span><a href="/life/shangan/" title="写给我这一年多的考研时光">写给我这一年多的考研时光</a></span>
   </li>
 
   </ul>
@@ -644,8 +761,8 @@ public class Product &#123;
     <a href="https://icp.gov.moe/?keyword=20249329" target="_blank">萌ICP备20249329号</a>
     基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
   <br/><span>世界本污浊，罪与爱同歌</span>
-  <br/><i class="ic i-chart-area"></i>&nbsp;<span>264k&nbsp;字</span> &nbsp;|&nbsp;
-  <i class="ic i-coffee"></i>&nbsp;<span> 7:20</span>
+  <br/><i class="ic i-chart-area"></i>&nbsp;<span>295k&nbsp;字</span> &nbsp;|&nbsp;
+  <i class="ic i-coffee"></i>&nbsp;<span> 8:12</span>
   </div>
 </div>
 
