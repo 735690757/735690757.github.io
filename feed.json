@@ -60,8 +60,8 @@
             "tags": [
                 "深度学习",
                 "python",
-                "CNN",
                 "深度学习",
+                "CNN",
                 "YOLO"
             ]
         },
@@ -112,9 +112,9 @@
             "tags": [
                 "深度学习",
                 "python",
+                "深度学习",
                 "CNN",
-                "3D_CNN",
-                "深度学习"
+                "3D_CNN"
             ]
         },
         {
@@ -126,8 +126,8 @@
             "tags": [
                 "深度学习",
                 "python",
-                "CNN",
                 "深度学习",
+                "CNN",
                 "RNN",
                 "LSTM"
             ]
@@ -144,9 +144,9 @@
                 "深度学习",
                 "RNN",
                 "LSTM",
-                "Transformer",
                 "NLP",
-                "GRU"
+                "GRU",
+                "Transformer"
             ]
         },
         {
@@ -158,8 +158,8 @@
             "tags": [
                 "深度学习",
                 "python",
-                "CNN",
-                "深度学习"
+                "深度学习",
+                "CNN"
             ]
         },
         {
