@@ -27,7 +27,7 @@
 <link rel="stylesheet" href="/css/app.css?v=0.2.5">
 
   
-  <meta name="keywords" content="python,CNN,深度学习" />
+  <meta name="keywords" content="python,深度学习,CNN" />
 
 
 <link rel="canonical" href="https://735690757.github.io/python/CNN_Acc/">
@@ -465,8 +465,8 @@ ResNet 的 skip connection 正是人为在链式乘积里<strong>插进一项 1<
 <figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">ResNet18</span><span class="token punctuation">(</span>nn<span class="token punctuation">.</span>Module<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> ResidualBlock<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token boolean">None</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="3"></td><td><pre>        <span class="token builtin">super</span><span class="token punctuation">(</span>ResNet18<span class="token punctuation">,</span> self<span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="4"></td><td><pre>        self<span class="token punctuation">.</span>b1 <span class="token operator">=</span> nn<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span></pre></td></tr><tr><td data-num="5"></td><td><pre>            nn<span class="token punctuation">.</span>Conv2d<span class="token punctuation">(</span>in_channels<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> out_channels<span class="token operator">=</span><span class="token number">64</span><span class="token punctuation">,</span> kernel_size<span class="token operator">=</span><span class="token number">7</span><span class="token punctuation">,</span> stride<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span> padding<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="6"></td><td><pre>            nn<span class="token punctuation">.</span>BatchNorm2d<span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="7"></td><td><pre>            nn<span class="token punctuation">.</span>ReLU<span class="token punctuation">(</span>inplace<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="8"></td><td><pre>            nn<span class="token punctuation">.</span>MaxPool2d<span class="token punctuation">(</span>kernel_size<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">,</span> stride<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span> padding<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="9"></td><td><pre>        <span class="token punctuation">)</span></pre></td></tr><tr><td data-num="10"></td><td><pre>        self<span class="token punctuation">.</span>b2 <span class="token operator">=</span> nn<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span></pre></td></tr><tr><td data-num="11"></td><td><pre>            ResidualBlock<span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">,</span> <span class="token number">64</span><span class="token punctuation">,</span> use_conv1x1<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> stride<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="12"></td><td><pre>            ResidualBlock<span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">,</span> <span class="token number">64</span><span class="token punctuation">,</span> use_conv1x1<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> stride<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="13"></td><td><pre>        <span class="token punctuation">)</span></pre></td></tr><tr><td data-num="14"></td><td><pre>        self<span class="token punctuation">.</span>b3 <span class="token operator">=</span> nn<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span></pre></td></tr><tr><td data-num="15"></td><td><pre>            ResidualBlock<span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">,</span> <span class="token number">128</span><span class="token punctuation">,</span> use_conv1x1<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> stride<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="16"></td><td><pre>            ResidualBlock<span class="token punctuation">(</span><span class="token number">128</span><span class="token punctuation">,</span> <span class="token number">128</span><span class="token punctuation">,</span> use_conv1x1<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> stride<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="17"></td><td><pre>        <span class="token punctuation">)</span></pre></td></tr><tr><td data-num="18"></td><td><pre>        self<span class="token punctuation">.</span>b4 <span class="token operator">=</span> nn<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span></pre></td></tr><tr><td data-num="19"></td><td><pre>            ResidualBlock<span class="token punctuation">(</span><span class="token number">128</span><span class="token punctuation">,</span> <span class="token number">256</span><span class="token punctuation">,</span> use_conv1x1<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> stride<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="20"></td><td><pre>            ResidualBlock<span class="token punctuation">(</span><span class="token number">256</span><span class="token punctuation">,</span> <span class="token number">256</span><span class="token punctuation">,</span> use_conv1x1<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> stride<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="21"></td><td><pre>        <span class="token punctuation">)</span></pre></td></tr><tr><td data-num="22"></td><td><pre>        self<span class="token punctuation">.</span>b5 <span class="token operator">=</span> nn<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span></pre></td></tr><tr><td data-num="23"></td><td><pre>            ResidualBlock<span class="token punctuation">(</span><span class="token number">256</span><span class="token punctuation">,</span> <span class="token number">512</span><span class="token punctuation">,</span> use_conv1x1<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> stride<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="24"></td><td><pre>            ResidualBlock<span class="token punctuation">(</span><span class="token number">512</span><span class="token punctuation">,</span> <span class="token number">512</span><span class="token punctuation">,</span> use_conv1x1<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> stride<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="25"></td><td><pre>        <span class="token punctuation">)</span></pre></td></tr><tr><td data-num="26"></td><td><pre>        self<span class="token punctuation">.</span>b6 <span class="token operator">=</span> nn<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span></pre></td></tr><tr><td data-num="27"></td><td><pre>            nn<span class="token punctuation">.</span>AdaptiveAvgPool2d<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="28"></td><td><pre>            nn<span class="token punctuation">.</span>Flatten<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="29"></td><td><pre>            nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span><span class="token number">512</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="30"></td><td><pre>        <span class="token punctuation">)</span></pre></td></tr><tr><td data-num="31"></td><td><pre>    <span class="token keyword">def</span> <span class="token function">forward</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="32"></td><td><pre>        x <span class="token operator">=</span> self<span class="token punctuation">.</span>b1<span class="token punctuation">(</span>x<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="33"></td><td><pre>        x <span class="token operator">=</span> self<span class="token punctuation">.</span>b2<span class="token punctuation">(</span>x<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="34"></td><td><pre>        x <span class="token operator">=</span> self<span class="token punctuation">.</span>b3<span class="token punctuation">(</span>x<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="35"></td><td><pre>        x <span class="token operator">=</span> self<span class="token punctuation">.</span>b4<span class="token punctuation">(</span>x<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="36"></td><td><pre>        x <span class="token operator">=</span> self<span class="token punctuation">.</span>b5<span class="token punctuation">(</span>x<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="37"></td><td><pre>        x <span class="token operator">=</span> self<span class="token punctuation">.</span>b6<span class="token punctuation">(</span>x<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="38"></td><td><pre>        <span class="token keyword">return</span> x</pre></td></tr></table></figure>
       <div class="tags">
           <a href="/tags/python/" rel="tag"><i class="ic i-tag"></i> python</a>
-          <a href="/tags/CNN/" rel="tag"><i class="ic i-tag"></i> CNN</a>
           <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag"><i class="ic i-tag"></i> 深度学习</a>
+          <a href="/tags/CNN/" rel="tag"><i class="ic i-tag"></i> CNN</a>
       </div>
   </div>
 
@@ -702,20 +702,30 @@ ResNet 的 skip connection 正是人为在链式乘积里<strong>插进一项 1<
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/java%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/" title="分类于 java高级特性">java高级特性</a>
+<a href="/categories/experience/" title="分类于 开发经验">开发经验</a>
 </div>
 
-    <span><a href="/Java/javaAd01/" title="Java高级特性1">Java高级特性1</a></span>
+    <span><a href="/experience/CollaborativeFiltering/" title="基于用户的协同过滤算法">基于用户的协同过滤算法</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/English/" title="分类于 English">English</a>
+<a href="/categories/experience/" title="分类于 开发经验">开发经验</a>
 </div>
 
-    <span><a href="/English/shEnglish/" title="文章翻译">文章翻译</a></span>
+    <span><a href="/experience/SSM01/" title="SSM框架整合">SSM框架整合</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E7%AC%94%E8%AE%B0/" title="分类于 笔记">笔记</a>
+</div>
+
+    <span><a href="/math/matrix_anl/" title="矩阵论">矩阵论</a></span>
   </li>
 
       
@@ -735,47 +745,7 @@ ResNet 的 skip connection 正是人为在链式乘积里<strong>插进一项 1<
 <a href="/categories/python/" title="分类于 深度学习">深度学习</a>
 </div>
 
-    <span><a href="/python/3D_CNN/" title="3DCNN视频行为检测平台">3DCNN视频行为检测平台</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/experience/" title="分类于 开发经验">开发经验</a>
-</div>
-
-    <span><a href="/experience/SSM01/" title="SSM框架整合">SSM框架整合</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" title="分类于 图像处理">图像处理</a>
-</div>
-
-    <span><a href="/python/Harris/" title="Harris兴趣点检测">Harris兴趣点检测</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/English/" title="分类于 English">English</a>
-</div>
-
-    <span><a href="/English/xbbEnglish/" title="英语笔记">英语笔记</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Dubbo/" title="分类于 Dubbo">Dubbo</a>
-</div>
-
-    <span><a href="/Java/DubboStart/" title="Dubbo快速入门">Dubbo快速入门</a></span>
+    <span><a href="/python/pandas/" title="Pandas核心处理方法">Pandas核心处理方法</a></span>
   </li>
 
       
@@ -792,10 +762,40 @@ ResNet 的 skip connection 正是人为在链式乘积里<strong>插进一项 1<
   <li class="item">
     
 <div class="breadcrumb">
+<a href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" title="分类于 论文阅读">论文阅读</a>
+</div>
+
+    <span><a href="/paper/attention_is_all_your_need/" title="Attention is all you need">Attention is all you need</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
+</div>
+
+    <span><a href="/Operate-system/03OS/" title="进程同步问题">进程同步问题</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
 <a href="/categories/python/" title="分类于 深度学习">深度学习</a>
 </div>
 
-    <span><a href="/python/numpy/" title="NumPy核心处理方法">NumPy核心处理方法</a></span>
+    <span><a href="/python/YOLO_Series/" title="YOLO系列">YOLO系列</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Principles-of-computer-composition/" title="分类于 计算机组成原理">计算机组成原理</a>
+</div>
+
+    <span><a href="/Principles-of-computer-composition/booth_algorithm/" title="booth算法">booth算法</a></span>
   </li>
 
   </ul>
