@@ -1891,12 +1891,18 @@ main >.inner {
   border: 0.0625rem solid var(--grey-2);
   box-shadow: 0 0.625rem 1.875rem -0.9375rem var(--box-bg-shadow);
   background: var(--grey-1-a7);
-  -webkit-backdrop-filter: blur(0.625rem);
-          backdrop-filter: blur(0.625rem);
+  backdrop-filter: blur(1.25rem) saturate(180%);
+  -webkit-backdrop-filter: blur(1.25rem) saturate(180%);
+  background: rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-top: 1px solid rgba(255,255,255,0.5);
+  border-radius: 2rem;
+  box-shadow: 0 8px 32px 0 rgba(31,38,135,0.15);
   position: fixed;
   display: none;
-  bottom: 0;
+  bottom: 1rem;
   overflow: hidden;
+  transition: all 0.5s;
   left: 3.5rem;
   width: 50vw;
   z-index: 9;
@@ -1910,6 +1916,15 @@ main >.inner {
 #tool .player-info .nav {
   font-size: 0.75em;
   height: 2.1875rem;
+}
+#tool .player-info:hover {
+  bottom: 2rem;
+  -webkit-backdrop-filter: blur(15.25rem) saturate(180%);
+          backdrop-filter: blur(15.25rem) saturate(180%);
+  transition: all 0.5s;
+}
+#tool .player-info:hover .nav {
+  display: flex;
 }
 #tool .back-to-top span {
   font-size: 0.75em;
@@ -2711,10 +2726,22 @@ main >.inner {
 .post-nav .item.left h3 {
   align-self: flex-start;
 }
+.post-nav .item.left a {
+  border-radius: 30px 0 0 30px;
+}
+.post-nav .item.left a::before {
+  border-radius: 30px 0 0 30px;
+}
 .post-nav .item.right span,
 .post-nav .item.right h3 {
   align-self: flex-end;
   text-align: right;
+}
+.post-nav .item.right a {
+  border-radius: 0 30px 30px 0;
+}
+.post-nav .item.right a::before {
+  border-radius: 0 30px 30px 0;
 }
 .md p:last-child,
 .md table:last-child,

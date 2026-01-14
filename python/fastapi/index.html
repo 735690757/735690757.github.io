@@ -1,0 +1,633 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="诗岸梦行舟" href="https://735690757.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="诗岸梦行舟" href="https://735690757.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="诗岸梦行舟" href="https://735690757.github.io/feed.json" />
+<link rel="stylesheet" href="https://unpkg.com/mermaid/dist/mermaid.min.css">
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({ startOnLoad: true });</script>
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="python,Fast API" />
+
+
+<link rel="canonical" href="https://735690757.github.io/python/fastapi/">
+
+
+
+  <title>
+FastAPI - 开发经验 |
+KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</title>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">FastAPI
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2026-01-12 10:20:00">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2026-01-12T10:20:00+08:00">2026-01-12</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">KarryLiu</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+          <img src="/images/cover/fastapi.png">
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/experience/" itemprop="item" rel="index" title="分类于 开发经验"><span itemprop="name">开发经验</span></a>
+<meta itemprop="position" content="1" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="https://735690757.github.io/python/fastapi/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/tx.jpg">
+    <meta itemprop="name" content="KarryLiu">
+    <meta itemprop="description" content="分享计算机知识以及各种心得总结, 愿世间所有的美好都得以祝愿">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="诗岸梦行舟">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h1 id="fastapi"><a class="markdownIt-Anchor" href="#fastapi">#</a> FastAPI</h1>
+<p>FastAPI 是一个用于构建 Web 应用的 Python 框架。</p>
+<h2 id="天生非阻塞"><a class="markdownIt-Anchor" href="#天生非阻塞">#</a> 天生非阻塞</h2>
+<img data-src="../../images/exp/fastapi/1.png" alt="1" style="zoom: 80%;" />
+<img data-src="../../images/exp/fastapi/2.png" alt="1" style="zoom: 80%;" />
+<h2 id="类型提示与验证"><a class="markdownIt-Anchor" href="#类型提示与验证">#</a> 类型提示与验证</h2>
+<img data-src="../../images/exp/fastapi/3.png" alt="1" style="zoom: 80%;" />
+<h2 id="自带交互式文档"><a class="markdownIt-Anchor" href="#自带交互式文档">#</a> 自带交互式文档</h2>
+<img data-src="../../images/exp/fastapi/4.png" alt="1" style="zoom: 80%;" />
+<h2 id="快速开始"><a class="markdownIt-Anchor" href="#快速开始">#</a> 快速开始</h2>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">from</span> fastapi <span class="token keyword">import</span> FastAPI</pre></td></tr><tr><td data-num="2"></td><td><pre></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token comment"># 创建一个 FastAPI 实例</span></pre></td></tr><tr><td data-num="4"></td><td><pre>app <span class="token operator">=</span> FastAPI<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="5"></td><td><pre></pre></td></tr><tr><td data-num="6"></td><td><pre></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>get</span><span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">root</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    <span class="token keyword">return</span> <span class="token punctuation">&#123;</span><span class="token string">"message"</span><span class="token punctuation">:</span> <span class="token string">"Hello World"</span><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="10"></td><td><pre></pre></td></tr><tr><td data-num="11"></td><td><pre></pre></td></tr><tr><td data-num="12"></td><td><pre><span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>get</span><span class="token punctuation">(</span><span class="token string">"/hello/&#123;name&#125;"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="13"></td><td><pre><span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">say_hello</span><span class="token punctuation">(</span>name<span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="14"></td><td><pre>    <span class="token keyword">return</span> <span class="token punctuation">&#123;</span><span class="token string">"message"</span><span class="token punctuation">:</span> <span class="token string-interpolation"><span class="token string">f"Hello </span><span class="token interpolation"><span class="token punctuation">&#123;</span>name<span class="token punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><h3 id="启动命令"><a class="markdownIt-Anchor" href="#启动命令">#</a> 启动命令</h3>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>uvicorn main:app <span class="token parameter variable">--reload</span></pre></td></tr></table></figure><p>uvicorn？<strong> <code>uvicorn</code>  是一个高性能的 Python ASGI Web 服务器</strong>，专门用来运行 <strong>FastAPI / Starlette / Django ASGI</strong> 这类现代 Web 框架。</p>
+<p>–reload？支持热部署。</p>
+<h3 id="结果"><a class="markdownIt-Anchor" href="#结果">#</a> 结果</h3>
+<img data-src="../../images/exp/fastapi/5.png" alt="1" style="zoom: 80%;" />
+<img data-src="../../images/exp/fastapi/6.png" alt="1" style="zoom: 80%;" />
+<img data-src="../../images/exp/fastapi/7.png" alt="1" style="zoom: 80%;" />
+<h2 id="python-装饰器"><a class="markdownIt-Anchor" href="#python-装饰器">#</a> Python 装饰器</h2>
+<p>在不改原函数代码的情况下，给函数外挂一层功能。</p>
+<h3 id="java-注解本身只是个标签"><a class="markdownIt-Anchor" href="#java-注解本身只是个标签">#</a> Java 注解本身只是个标签</h3>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"/hello"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">hello</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token keyword">return</span> <span class="token string">"hi"</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p><code>@GetMapping</code>  本身不拦截，不执行，不改方法，真正干活的是 <strong>Spring 框架 + 反射 + AOP</strong></p>
+<h3 id="python-装饰器是可执行的"><a class="markdownIt-Anchor" href="#python-装饰器是可执行的">#</a> Python 装饰器是可执行的</h3>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">def</span> <span class="token function">log</span><span class="token punctuation">(</span>func<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token keyword">def</span> <span class="token function">wrapper</span><span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="3"></td><td><pre>        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"before"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="4"></td><td><pre>        <span class="token keyword">return</span> func<span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token keyword">return</span> wrapper</pre></td></tr><tr><td data-num="6"></td><td><pre></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token decorator annotation punctuation">@log</span></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token keyword">def</span> <span class="token function">hello</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"hi"</span><span class="token punctuation">)</span></pre></td></tr></table></figure><p>等价于：</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre>hello <span class="token operator">=</span> log<span class="token punctuation">(</span>hello<span class="token punctuation">)</span></pre></td></tr></table></figure><p><strong>这里已经执行代码了</strong></p>
+<h2 id="路由"><a class="markdownIt-Anchor" href="#路由">#</a> 路由</h2>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>get</span><span class="token punctuation">(</span><span class="token string">"/hello/"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">say_hello</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token keyword">return</span> <span class="token punctuation">&#123;</span><span class="token string">"message"</span><span class="token punctuation">:</span> <span class="token string">"Hello World 这是默输出"</span><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>这是一个 get 方法，通过 <code>@app.get</code>  装饰。</p>
+<h2 id="接口的动态交互"><a class="markdownIt-Anchor" href="#接口的动态交互">#</a> 接口的动态交互</h2>
+<p>路径参数写在 URL 路径里，用来<strong>标识具体资源</strong></p>
+<p>查询参数写在 URL  <code>?</code>  后面，用来<strong>筛选 / 附加条件</strong></p>
+<p>请求体参数放在请求体中，用来<strong>提交复杂数据</strong></p>
+<h3 id="路径参数"><a class="markdownIt-Anchor" href="#路径参数">#</a> 路径参数</h3>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>get</span><span class="token punctuation">(</span><span class="token string">"/book/&#123;id&#125;"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">getBook</span><span class="token punctuation">(</span><span class="token builtin">id</span><span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token keyword">return</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>        <span class="token string">"id"</span><span class="token punctuation">:</span> <span class="token builtin">id</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="5"></td><td><pre>        <span class="token string">"title"</span><span class="token punctuation">:</span> <span class="token string-interpolation"><span class="token string">f"FastAPI book-</span><span class="token interpolation"><span class="token punctuation">&#123;</span><span class="token builtin">id</span><span class="token punctuation">&#125;</span></span><span class="token string">"</span></span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr></table></figure><h4 id="校验大小校验与长度校验"><a class="markdownIt-Anchor" href="#校验大小校验与长度校验">#</a> 校验 —— 大小校验与长度校验</h4>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>get</span><span class="token punctuation">(</span><span class="token string">"/book/&#123;id&#125;"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">getBook</span><span class="token punctuation">(</span><span class="token builtin">id</span><span class="token punctuation">:</span> <span class="token builtin">int</span> <span class="token operator">=</span> Path<span class="token punctuation">(</span>description<span class="token operator">=</span><span class="token string">"The ID of the book to get"</span><span class="token punctuation">,</span> gt<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> lt<span class="token operator">=</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token keyword">return</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>        <span class="token string">"id"</span><span class="token punctuation">:</span> <span class="token builtin">id</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="5"></td><td><pre>        <span class="token string">"title"</span><span class="token punctuation">:</span> <span class="token string-interpolation"><span class="token string">f"FastAPI book-</span><span class="token interpolation"><span class="token punctuation">&#123;</span><span class="token builtin">id</span><span class="token punctuation">&#125;</span></span><span class="token string">"</span></span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr></table></figure><figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>get</span><span class="token punctuation">(</span><span class="token string">"/classify/&#123;name&#125;"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">classify</span><span class="token punctuation">(</span>name<span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token operator">=</span>Path<span class="token punctuation">(</span>title<span class="token operator">=</span><span class="token string">"classify"</span><span class="token punctuation">,</span> min_length<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">,</span> max_length<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token keyword">return</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>        <span class="token string">"name"</span><span class="token punctuation">:</span> name<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="5"></td><td><pre>        <span class="token string">"class"</span><span class="token punctuation">:</span> <span class="token string">"FastAPI"</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr></table></figure><h3 id="查询参数"><a class="markdownIt-Anchor" href="#查询参数">#</a> 查询参数</h3>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>get</span><span class="token punctuation">(</span><span class="token string">"/query_book"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">query_book</span><span class="token punctuation">(</span></pre></td></tr><tr><td data-num="3"></td><td><pre>        classify<span class="token punctuation">:</span> <span class="token builtin">str</span> <span class="token operator">=</span> Query<span class="token punctuation">(</span><span class="token string">"默认分类"</span><span class="token punctuation">,</span> min_length<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span> max_length<span class="token operator">=</span><span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="4"></td><td><pre>        price<span class="token punctuation">:</span> <span class="token builtin">float</span> <span class="token operator">=</span> Query<span class="token punctuation">(</span><span class="token number">10.0</span><span class="token punctuation">,</span> gt<span class="token operator">=</span><span class="token number">50.0</span><span class="token punctuation">,</span> le<span class="token operator">=</span><span class="token number">100.0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token keyword">return</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>        <span class="token string">"classify"</span><span class="token punctuation">:</span> classify<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="7"></td><td><pre>        <span class="token string">"price"</span><span class="token punctuation">:</span> price</pre></td></tr><tr><td data-num="8"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr></table></figure><h3 id="请求体参数"><a class="markdownIt-Anchor" href="#请求体参数">#</a> 请求体参数</h3>
+<p>使用 pydantic。</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">from</span> pydantic <span class="token keyword">import</span> BaseModel</pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">User</span><span class="token punctuation">(</span>BaseModel<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    username<span class="token punctuation">:</span> <span class="token builtin">str</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    password<span class="token punctuation">:</span> <span class="token builtin">str</span></pre></td></tr><tr><td data-num="5"></td><td><pre></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>post</span><span class="token punctuation">(</span><span class="token string">"/register"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">register</span><span class="token punctuation">(</span>user<span class="token punctuation">:</span> User<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="8"></td><td><pre>    <span class="token keyword">return</span> user</pre></td></tr><tr><td data-num="9"></td><td><pre></pre></td></tr><tr><td data-num="10"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">Book</span><span class="token punctuation">(</span>BaseModel<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="11"></td><td><pre>    title<span class="token punctuation">:</span> <span class="token builtin">str</span></pre></td></tr><tr><td data-num="12"></td><td><pre>    author<span class="token punctuation">:</span> <span class="token builtin">str</span></pre></td></tr><tr><td data-num="13"></td><td><pre>    publisher<span class="token punctuation">:</span> <span class="token builtin">str</span></pre></td></tr><tr><td data-num="14"></td><td><pre>    price<span class="token punctuation">:</span> <span class="token builtin">float</span></pre></td></tr><tr><td data-num="15"></td><td><pre></pre></td></tr><tr><td data-num="16"></td><td><pre><span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>post</span><span class="token punctuation">(</span><span class="token string">"/book/add"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="17"></td><td><pre><span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">add_book</span><span class="token punctuation">(</span>book<span class="token punctuation">:</span> Book<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="18"></td><td><pre>    <span class="token keyword">return</span> book</pre></td></tr></table></figure><p>请求体参数的约束：</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">User</span><span class="token punctuation">(</span>BaseModel<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    username<span class="token punctuation">:</span> <span class="token builtin">str</span> <span class="token operator">=</span> Field<span class="token punctuation">(</span>default<span class="token operator">=</span><span class="token string">"默认用户名"</span><span class="token punctuation">,</span> min_length<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span> max_length<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">,</span> description<span class="token operator">=</span><span class="token string">"用户名"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    password<span class="token punctuation">:</span> <span class="token builtin">str</span> <span class="token operator">=</span> Field<span class="token punctuation">(</span>default<span class="token operator">=</span><span class="token string">"默认密码"</span><span class="token punctuation">,</span> min_length<span class="token operator">=</span><span class="token number">6</span><span class="token punctuation">,</span> max_length<span class="token operator">=</span><span class="token number">20</span><span class="token punctuation">,</span> description<span class="token operator">=</span><span class="token string">"密码"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="4"></td><td><pre></pre></td></tr><tr><td data-num="5"></td><td><pre></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>post</span><span class="token punctuation">(</span><span class="token string">"/register"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">register</span><span class="token punctuation">(</span>user<span class="token punctuation">:</span> User<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="8"></td><td><pre>    <span class="token keyword">return</span> user</pre></td></tr></table></figure><h2 id="响应类型"><a class="markdownIt-Anchor" href="#响应类型">#</a> 响应类型</h2>
+<p>通过<strong> response_class</strong> 指定</p>
+<img data-src="../../images/exp/fastapi/8.png" alt="1" style="zoom: 80%;" />
+<h3 id="json"><a class="markdownIt-Anchor" href="#json">#</a> JSON</h3>
+<p>这个你返回一个字典对象的时候，FastAPI 就自动帮你做好转换了。</p>
+<h3 id="html-纯文本"><a class="markdownIt-Anchor" href="#html-纯文本">#</a> HTML / 纯文本</h3>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>get</span><span class="token punctuation">(</span><span class="token string">"/html"</span><span class="token punctuation">,</span>response_class<span class="token operator">=</span>HTMLResponse<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">html</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token keyword">return</span> <span class="token triple-quoted-string string">"""</pre></td></tr><tr><td data-num="4"></td><td><pre>    &lt;html></pre></td></tr><tr><td data-num="5"></td><td><pre>        &lt;head></pre></td></tr><tr><td data-num="6"></td><td><pre>            &lt;title>FastAPI&lt;/title></pre></td></tr><tr><td data-num="7"></td><td><pre>        &lt;/head></pre></td></tr><tr><td data-num="8"></td><td><pre>        &lt;body></pre></td></tr><tr><td data-num="9"></td><td><pre>            &lt;h1>Hello World&lt;/h1></pre></td></tr><tr><td data-num="10"></td><td><pre>        &lt;/body></pre></td></tr><tr><td data-num="11"></td><td><pre>    &lt;/html></pre></td></tr><tr><td data-num="12"></td><td><pre>    """</span></pre></td></tr></table></figure><h3 id="file文件"><a class="markdownIt-Anchor" href="#file文件">#</a> File 文件</h3>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>get</span><span class="token punctuation">(</span><span class="token string">"/file"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">file</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    path <span class="token operator">=</span> <span class="token string">"./files/dd.txt"</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token keyword">return</span> FileResponse<span class="token punctuation">(</span>path<span class="token punctuation">)</span></pre></td></tr></table></figure><h2 id="自定义响应类型"><a class="markdownIt-Anchor" href="#自定义响应类型">#</a> 自定义响应类型</h2>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">R</span><span class="token punctuation">(</span>BaseModel<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    code<span class="token punctuation">:</span> <span class="token builtin">int</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    msg<span class="token punctuation">:</span> <span class="token builtin">str</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    data<span class="token punctuation">:</span> <span class="token builtin">dict</span> <span class="token operator">=</span> Field<span class="token punctuation">(</span>default<span class="token operator">=</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span> description<span class="token operator">=</span><span class="token string">"返回数据"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="5"></td><td><pre></pre></td></tr><tr><td data-num="6"></td><td><pre></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>get</span><span class="token punctuation">(</span><span class="token string">"/api"</span><span class="token punctuation">,</span> response_model<span class="token operator">=</span>R<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">api</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    <span class="token keyword">return</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>        <span class="token string">"code"</span><span class="token punctuation">:</span> <span class="token number">200</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="11"></td><td><pre>        <span class="token string">"msg"</span><span class="token punctuation">:</span> <span class="token string">"success"</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="12"></td><td><pre>        <span class="token string">"data"</span><span class="token punctuation">:</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>            <span class="token string">"name"</span><span class="token punctuation">:</span> <span class="token string">"KarryLiu"</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="14"></td><td><pre>            <span class="token string">"age"</span><span class="token punctuation">:</span> <span class="token number">18</span></pre></td></tr><tr><td data-num="15"></td><td><pre>        <span class="token punctuation">&#125;</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="16"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>当你缺失数据时会报错，当你数据超出约定时会自动过滤掉。</p>
+<h2 id="异常处理"><a class="markdownIt-Anchor" href="#异常处理">#</a> 异常处理</h2>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>get</span><span class="token punctuation">(</span><span class="token string">"/api/news"</span><span class="token punctuation">,</span> response_model<span class="token operator">=</span>R<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">api_news</span><span class="token punctuation">(</span><span class="token builtin">id</span><span class="token punctuation">:</span> <span class="token builtin">int</span> <span class="token operator">=</span> Query<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> gt<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> lt<span class="token operator">=</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    news_list <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token keyword">if</span> <span class="token builtin">id</span> <span class="token keyword">not</span> <span class="token keyword">in</span> news_list<span class="token punctuation">:</span></pre></td></tr><tr><td data-num="5"></td><td><pre>        <span class="token keyword">raise</span> HTTPException<span class="token punctuation">(</span>status_code<span class="token operator">=</span><span class="token number">404</span><span class="token punctuation">,</span> detail<span class="token operator">=</span><span class="token string">"新闻不存在"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token keyword">return</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>        <span class="token string">"code"</span><span class="token punctuation">:</span> <span class="token number">200</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="8"></td><td><pre>        <span class="token string">"msg"</span><span class="token punctuation">:</span> <span class="token string">"success"</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="9"></td><td><pre>        <span class="token string">"data"</span><span class="token punctuation">:</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>            <span class="token string">"id"</span><span class="token punctuation">:</span> <span class="token builtin">id</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="11"></td><td><pre>            <span class="token string">"title"</span><span class="token punctuation">:</span> <span class="token string-interpolation"><span class="token string">f"新闻标题-</span><span class="token interpolation"><span class="token punctuation">&#123;</span><span class="token builtin">id</span><span class="token punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="12"></td><td><pre>            <span class="token string">"content"</span><span class="token punctuation">:</span> <span class="token string-interpolation"><span class="token string">f"新闻内容-</span><span class="token interpolation"><span class="token punctuation">&#123;</span><span class="token builtin">id</span><span class="token punctuation">&#125;</span></span><span class="token string">"</span></span></pre></td></tr><tr><td data-num="13"></td><td><pre>        <span class="token punctuation">&#125;</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="14"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr></table></figure><h2 id="中间件"><a class="markdownIt-Anchor" href="#中间件">#</a> 中间件</h2>
+<p>中间件给每一个请求提供统一的处理逻辑。使用 <code>@app.middleware(&quot;http&quot;)</code>  来定义。<mark>多个中间件是自底向上执行的</mark></p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>middleware</span><span class="token punctuation">(</span><span class="token string">"http"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">middleware1</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span> call_next<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"中间件1开始执行"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    response <span class="token operator">=</span> <span class="token keyword">await</span> call_next<span class="token punctuation">(</span>request<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"中间件1结束执行"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token keyword">return</span> response</pre></td></tr><tr><td data-num="7"></td><td><pre></pre></td></tr><tr><td data-num="8"></td><td><pre></pre></td></tr><tr><td data-num="9"></td><td><pre><span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>middleware</span><span class="token punctuation">(</span><span class="token string">"http"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="10"></td><td><pre><span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">middleware2</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span> call_next<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="11"></td><td><pre>    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"中间件2开始执行"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="12"></td><td><pre>    response <span class="token operator">=</span> <span class="token keyword">await</span> call_next<span class="token punctuation">(</span>request<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="13"></td><td><pre>    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"中间件2结束执行"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="14"></td><td><pre>    <span class="token keyword">return</span> response</pre></td></tr><tr><td data-num="15"></td><td><pre></pre></td></tr><tr><td data-num="16"></td><td><pre></pre></td></tr><tr><td data-num="17"></td><td><pre><span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>get</span><span class="token punctuation">(</span><span class="token string">"/api/mid"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="18"></td><td><pre><span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">api_mid</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="19"></td><td><pre>    <span class="token keyword">return</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="20"></td><td><pre>        <span class="token string">"code"</span><span class="token punctuation">:</span> <span class="token number">200</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="21"></td><td><pre>        <span class="token string">"msg"</span><span class="token punctuation">:</span> <span class="token string">"success"</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="22"></td><td><pre>        <span class="token string">"data"</span><span class="token punctuation">:</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="23"></td><td><pre>            <span class="token string">"name"</span><span class="token punctuation">:</span> <span class="token string">"KarryLiu"</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="24"></td><td><pre>            <span class="token string">"age"</span><span class="token punctuation">:</span> <span class="token number">18</span></pre></td></tr><tr><td data-num="25"></td><td><pre>        <span class="token punctuation">&#125;</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="26"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr></table></figure><img data-src="../../images/exp/fastapi/9.png" alt="1" style="zoom: 80%;" />
+<p>居然是自底向上执行的</p>
+<h2 id="依赖注入"><a class="markdownIt-Anchor" href="#依赖注入">#</a> 依赖注入</h2>
+<img data-src="../../images/exp/fastapi/10.png" alt="1" style="zoom: 80%;" />
+<img data-src="../../images/exp/fastapi/11.png" alt="1" style="zoom: 80%;" />
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">common_parameters</span><span class="token punctuation">(</span>skip<span class="token punctuation">:</span> <span class="token builtin">int</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> limit<span class="token punctuation">:</span> <span class="token builtin">int</span> <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token keyword">return</span> <span class="token punctuation">&#123;</span><span class="token string">"skip"</span><span class="token punctuation">:</span> skip<span class="token punctuation">,</span> <span class="token string">"limit"</span><span class="token punctuation">:</span> limit<span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>get</span><span class="token punctuation">(</span><span class="token string">"/api/news_list"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">get_news_list</span><span class="token punctuation">(</span>commons<span class="token operator">=</span>Depends<span class="token punctuation">(</span>common_parameters<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    <span class="token keyword">return</span> <span class="token punctuation">&#123;</span><span class="token string">"msg"</span><span class="token punctuation">:</span> <span class="token string">"news_list"</span><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="8"></td><td><pre></pre></td></tr><tr><td data-num="9"></td><td><pre></pre></td></tr><tr><td data-num="10"></td><td><pre><span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>get</span><span class="token punctuation">(</span><span class="token string">"api/user_list"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="11"></td><td><pre><span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">get_user_list</span><span class="token punctuation">(</span>commons<span class="token operator">=</span>Depends<span class="token punctuation">(</span>common_parameters<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="12"></td><td><pre>    <span class="token keyword">return</span> <span class="token punctuation">&#123;</span><span class="token string">"msg"</span><span class="token punctuation">:</span> <span class="token string">"user_list"</span><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p><code>common_parameters</code>  里  <code>return &#123;&quot;skip&quot;: skip, &quot;limit&quot;: limit&#125;</code>  <strong>返回值不会直接返回给客户端</strong>， 而是 <strong>作为参数值，传给  <code>get_news_list</code>  里的  <code>commons</code>  变量</strong>。我们可以打印一下：</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>get</span><span class="token punctuation">(</span><span class="token string">"/api/news_list"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">get_news_list</span><span class="token punctuation">(</span>commons<span class="token operator">=</span>Depends<span class="token punctuation">(</span>common_parameters<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token keyword">print</span><span class="token punctuation">(</span>commons<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token keyword">print</span><span class="token punctuation">(</span>commons<span class="token punctuation">[</span><span class="token string">"skip"</span><span class="token punctuation">]</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token keyword">print</span><span class="token punctuation">(</span>commons<span class="token punctuation">[</span><span class="token string">"limit"</span><span class="token punctuation">]</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token keyword">return</span> <span class="token punctuation">&#123;</span><span class="token string">"msg"</span><span class="token punctuation">:</span> "news_list</pre></td></tr></table></figure><img data-src="../../images/exp/fastapi/12.png" alt="1" style="zoom: 80%;" />
+<h2 id="orm工具sqlalchemy"><a class="markdownIt-Anchor" href="#orm工具sqlalchemy">#</a> ORM 工具 ——SQLAlchemy</h2>
+<h3 id="安装sqlalchemyasyncio和aiomysql"><a class="markdownIt-Anchor" href="#安装sqlalchemyasyncio和aiomysql">#</a> 安装 sqlalchemy [asyncio] 和 aiomysql</h3>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>pip <span class="token function">install</span> sqlalchemy<span class="token punctuation">[</span>asyncio<span class="token punctuation">]</span> aiomysql</pre></td></tr></table></figure><h3 id="自动建表"><a class="markdownIt-Anchor" href="#自动建表">#</a> 自动建表</h3>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre>ASYNC_DATABASE_URL <span class="token operator">=</span> <span class="token string">"mysql+aiomysql://root:123456@localhost:3306/fastapi_first?charsetutf-8"</span></pre></td></tr><tr><td data-num="2"></td><td><pre></pre></td></tr><tr><td data-num="3"></td><td><pre>engine <span class="token operator">=</span> create_async_engine<span class="token punctuation">(</span>ASYNC_DATABASE_URL<span class="token punctuation">,</span> echo<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> pool_size<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">,</span> max_overflow<span class="token operator">=</span><span class="token number">20</span><span class="token punctuation">,</span> pool_recycle<span class="token operator">=</span><span class="token number">3600</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="4"></td><td><pre>                             pool_pre_ping<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> pool_use_lifo<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> pool_timeout<span class="token operator">=</span><span class="token number">30</span><span class="token punctuation">,</span> future<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> <span class="token punctuation">)</span></pre></td></tr><tr><td data-num="5"></td><td><pre></pre></td></tr><tr><td data-num="6"></td><td><pre></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">Base</span><span class="token punctuation">(</span>DeclarativeBase<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="8"></td><td><pre>    create_time<span class="token punctuation">:</span> Mapped<span class="token punctuation">[</span>datetime<span class="token punctuation">]</span> <span class="token operator">=</span> mapped_column<span class="token punctuation">(</span>DateTime<span class="token punctuation">,</span> insert_default<span class="token operator">=</span>func<span class="token punctuation">.</span>now<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> comment<span class="token operator">=</span><span class="token string">"创建时间"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    update_time<span class="token punctuation">:</span> Mapped<span class="token punctuation">[</span>datetime<span class="token punctuation">]</span> <span class="token operator">=</span> mapped_column<span class="token punctuation">(</span>DateTime<span class="token punctuation">,</span> insert_default<span class="token operator">=</span>func<span class="token punctuation">.</span>now<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> comment<span class="token operator">=</span><span class="token string">"更新时间"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="10"></td><td><pre></pre></td></tr><tr><td data-num="11"></td><td><pre></pre></td></tr><tr><td data-num="12"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">Book</span><span class="token punctuation">(</span>Base<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="13"></td><td><pre>    __tablename__ <span class="token operator">=</span> <span class="token string">"book"</span></pre></td></tr><tr><td data-num="14"></td><td><pre></pre></td></tr><tr><td data-num="15"></td><td><pre>    <span class="token builtin">id</span><span class="token punctuation">:</span> Mapped<span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">]</span> <span class="token operator">=</span> mapped_column<span class="token punctuation">(</span>primary_key<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> autoincrement<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> comment<span class="token operator">=</span><span class="token string">"ID"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="16"></td><td><pre>    title<span class="token punctuation">:</span> Mapped<span class="token punctuation">[</span><span class="token builtin">str</span><span class="token punctuation">]</span> <span class="token operator">=</span> mapped_column<span class="token punctuation">(</span>String<span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">,</span> comment<span class="token operator">=</span><span class="token string">"标题"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="17"></td><td><pre>    author<span class="token punctuation">:</span> Mapped<span class="token punctuation">[</span><span class="token builtin">str</span><span class="token punctuation">]</span> <span class="token operator">=</span> mapped_column<span class="token punctuation">(</span>String<span class="token punctuation">(</span><span class="token number">50</span><span class="token punctuation">)</span><span class="token punctuation">,</span> comment<span class="token operator">=</span><span class="token string">"作者"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="18"></td><td><pre>    publisher<span class="token punctuation">:</span> Mapped<span class="token punctuation">[</span><span class="token builtin">str</span><span class="token punctuation">]</span> <span class="token operator">=</span> mapped_column<span class="token punctuation">(</span>String<span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">,</span> comment<span class="token operator">=</span><span class="token string">"出版社"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="19"></td><td><pre>    price<span class="token punctuation">:</span> Mapped<span class="token punctuation">[</span><span class="token builtin">float</span><span class="token punctuation">]</span> <span class="token operator">=</span> mapped_column<span class="token punctuation">(</span>Float<span class="token punctuation">,</span> comment<span class="token operator">=</span><span class="token string">"价格"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="20"></td><td><pre></pre></td></tr><tr><td data-num="21"></td><td><pre></pre></td></tr><tr><td data-num="22"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">User</span><span class="token punctuation">(</span>Base<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="23"></td><td><pre>    __tablename__ <span class="token operator">=</span> <span class="token string">"user"</span></pre></td></tr><tr><td data-num="24"></td><td><pre></pre></td></tr><tr><td data-num="25"></td><td><pre>    <span class="token builtin">id</span><span class="token punctuation">:</span> Mapped<span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">]</span> <span class="token operator">=</span> mapped_column<span class="token punctuation">(</span>primary_key<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> autoincrement<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> comment<span class="token operator">=</span><span class="token string">"ID"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="26"></td><td><pre>    username<span class="token punctuation">:</span> Mapped<span class="token punctuation">[</span><span class="token builtin">str</span><span class="token punctuation">]</span> <span class="token operator">=</span> mapped_column<span class="token punctuation">(</span>String<span class="token punctuation">(</span><span class="token number">50</span><span class="token punctuation">)</span><span class="token punctuation">,</span> comment<span class="token operator">=</span><span class="token string">"用户名"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="27"></td><td><pre>    password<span class="token punctuation">:</span> Mapped<span class="token punctuation">[</span><span class="token builtin">str</span><span class="token punctuation">]</span> <span class="token operator">=</span> mapped_column<span class="token punctuation">(</span>String<span class="token punctuation">(</span><span class="token number">50</span><span class="token punctuation">)</span><span class="token punctuation">,</span> comment<span class="token operator">=</span><span class="token string">"密码"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="28"></td><td><pre></pre></td></tr><tr><td data-num="29"></td><td><pre></pre></td></tr><tr><td data-num="30"></td><td><pre><span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">create_table</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="31"></td><td><pre>    <span class="token keyword">async</span> <span class="token keyword">with</span> engine<span class="token punctuation">.</span>begin<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">as</span> conn<span class="token punctuation">:</span></pre></td></tr><tr><td data-num="32"></td><td><pre>        <span class="token keyword">await</span> conn<span class="token punctuation">.</span>run_sync<span class="token punctuation">(</span>Base<span class="token punctuation">.</span>metadata<span class="token punctuation">.</span>create_all<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="33"></td><td><pre></pre></td></tr><tr><td data-num="34"></td><td><pre></pre></td></tr><tr><td data-num="35"></td><td><pre><span class="token decorator annotation punctuation">@asynccontextmanager</span></pre></td></tr><tr><td data-num="36"></td><td><pre><span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">lifespan</span><span class="token punctuation">(</span>apps<span class="token punctuation">:</span> FastAPI<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="37"></td><td><pre>    <span class="token keyword">await</span> create_table<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="38"></td><td><pre>    <span class="token keyword">yield</span></pre></td></tr><tr><td data-num="39"></td><td><pre>    <span class="token keyword">await</span> engine<span class="token punctuation">.</span>dispose<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="40"></td><td><pre></pre></td></tr><tr><td data-num="41"></td><td><pre></pre></td></tr><tr><td data-num="42"></td><td><pre>app <span class="token operator">=</span> FastAPI<span class="token punctuation">(</span>lifespan<span class="token operator">=</span>lifespan<span class="token punctuation">)</span></pre></td></tr></table></figure><img data-src="../../images/exp/fastapi/13.png" alt="1" style="zoom: 100%;" />
+<h3 id="orm依赖注入与数据查询"><a class="markdownIt-Anchor" href="#orm依赖注入与数据查询">#</a> ORM 依赖注入与数据查询</h3>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre>AsyncSessionLocal <span class="token operator">=</span> async_sessionmaker<span class="token punctuation">(</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    engine<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    class_<span class="token operator">=</span>AsyncSession<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    expire_on_commit<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="6"></td><td><pre></pre></td></tr><tr><td data-num="7"></td><td><pre></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">get_database</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    <span class="token keyword">async</span> <span class="token keyword">with</span> AsyncSessionLocal<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">as</span> session<span class="token punctuation">:</span></pre></td></tr><tr><td data-num="10"></td><td><pre>        <span class="token keyword">try</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="11"></td><td><pre>            <span class="token keyword">yield</span> session</pre></td></tr><tr><td data-num="12"></td><td><pre>            <span class="token keyword">await</span> session<span class="token punctuation">.</span>commit<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="13"></td><td><pre>        <span class="token keyword">except</span> Exception <span class="token keyword">as</span> e<span class="token punctuation">:</span></pre></td></tr><tr><td data-num="14"></td><td><pre>            <span class="token keyword">await</span> session<span class="token punctuation">.</span>rollback<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="15"></td><td><pre>            <span class="token keyword">raise</span></pre></td></tr><tr><td data-num="16"></td><td><pre>        <span class="token keyword">finally</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="17"></td><td><pre>            <span class="token keyword">await</span> session<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="18"></td><td><pre></pre></td></tr><tr><td data-num="19"></td><td><pre></pre></td></tr><tr><td data-num="20"></td><td><pre><span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>get</span><span class="token punctuation">(</span><span class="token string">"/book/books"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="21"></td><td><pre><span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">get_books</span><span class="token punctuation">(</span>session<span class="token punctuation">:</span> AsyncSession <span class="token operator">=</span> Depends<span class="token punctuation">(</span>get_database<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="22"></td><td><pre>    query <span class="token operator">=</span> select<span class="token punctuation">(</span>Book<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="23"></td><td><pre>    result <span class="token operator">=</span> <span class="token keyword">await</span> session<span class="token punctuation">.</span>execute<span class="token punctuation">(</span>query<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="24"></td><td><pre>    books <span class="token operator">=</span> result<span class="token punctuation">.</span>scalars<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token builtin">all</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="25"></td><td><pre>    <span class="token keyword">print</span><span class="token punctuation">(</span>books<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="26"></td><td><pre>    <span class="token keyword">return</span> books</pre></td></tr></table></figure><img data-src="../../images/exp/fastapi/14.png" alt="1" style="zoom: 100%;" />
+<h3 id="查询"><a class="markdownIt-Anchor" href="#查询">#</a> 查询</h3>
+<h4 id="比较判断"><a class="markdownIt-Anchor" href="#比较判断">#</a> 比较判断</h4>
+<p>==；&gt;；&lt;；&gt;=；&lt;=</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>get</span><span class="token punctuation">(</span><span class="token string">"/book/book/&#123;id&#125;"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">get_book</span><span class="token punctuation">(</span><span class="token builtin">id</span><span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">,</span> session<span class="token punctuation">:</span> AsyncSession <span class="token operator">=</span> Depends<span class="token punctuation">(</span>get_database<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    query <span class="token operator">=</span> select<span class="token punctuation">(</span>Book<span class="token punctuation">)</span><span class="token punctuation">.</span>where<span class="token punctuation">(</span>Book<span class="token punctuation">.</span><span class="token builtin">id</span> <span class="token operator">==</span> <span class="token builtin">id</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    result <span class="token operator">=</span> <span class="token keyword">await</span> session<span class="token punctuation">.</span>execute<span class="token punctuation">(</span>query<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    book <span class="token operator">=</span> result<span class="token punctuation">.</span>scalars<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>first<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token keyword">return</span> book</pre></td></tr></table></figure><figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>get</span><span class="token punctuation">(</span><span class="token string">"/book/book/&#123;id&#125;"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">get_book</span><span class="token punctuation">(</span><span class="token builtin">id</span><span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">,</span> session<span class="token punctuation">:</span> AsyncSession <span class="token operator">=</span> Depends<span class="token punctuation">(</span>get_database<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    query <span class="token operator">=</span> select<span class="token punctuation">(</span>Book<span class="token punctuation">)</span><span class="token punctuation">.</span>where<span class="token punctuation">(</span>Book<span class="token punctuation">.</span><span class="token builtin">id</span> <span class="token operator">==</span> <span class="token builtin">id</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    result <span class="token operator">=</span> <span class="token keyword">await</span> session<span class="token punctuation">.</span>execute<span class="token punctuation">(</span>query<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    book <span class="token operator">=</span> result<span class="token punctuation">.</span>scalars<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>one_or_none<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token keyword">return</span> book</pre></td></tr></table></figure><h4 id="模糊查询"><a class="markdownIt-Anchor" href="#模糊查询">#</a> 模糊查询</h4>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>get</span><span class="token punctuation">(</span><span class="token string">"/book/like"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">get_like_book</span><span class="token punctuation">(</span>title<span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">,</span> session<span class="token punctuation">:</span> AsyncSession <span class="token operator">=</span> Depends<span class="token punctuation">(</span>get_database<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    query <span class="token operator">=</span> select<span class="token punctuation">(</span>Book<span class="token punctuation">)</span><span class="token punctuation">.</span>where<span class="token punctuation">(</span>Book<span class="token punctuation">.</span>title<span class="token punctuation">.</span>like<span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"%</span><span class="token interpolation"><span class="token punctuation">&#123;</span>title<span class="token punctuation">&#125;</span></span><span class="token string">%"</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    result <span class="token operator">=</span> <span class="token keyword">await</span> session<span class="token punctuation">.</span>execute<span class="token punctuation">(</span>query<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    book <span class="token operator">=</span> result<span class="token punctuation">.</span>scalars<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token builtin">all</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token keyword">return</span> book</pre></td></tr></table></figure><img data-src="../../images/exp/fastapi/15.png" alt="1" style="zoom: 100%;" />
+<h4 id="取首条数据"><a class="markdownIt-Anchor" href="#取首条数据">#</a> 取首条数据</h4>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>get</span><span class="token punctuation">(</span><span class="token string">"/book/first"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">get_first_book</span><span class="token punctuation">(</span>session<span class="token punctuation">:</span> AsyncSession <span class="token operator">=</span> Depends<span class="token punctuation">(</span>get_database<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    query <span class="token operator">=</span> select<span class="token punctuation">(</span>Book<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    result <span class="token operator">=</span> <span class="token keyword">await</span> session<span class="token punctuation">.</span>execute<span class="token punctuation">(</span>query<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    book <span class="token operator">=</span> result<span class="token punctuation">.</span>scalars<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>first<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token keyword">return</span> book</pre></td></tr></table></figure><h4 id="多条件"><a class="markdownIt-Anchor" href="#多条件">#</a> 多条件</h4>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>get</span><span class="token punctuation">(</span><span class="token string">"/book/like_start"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">get_like_start_book</span><span class="token punctuation">(</span>title<span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">,</span> session<span class="token punctuation">:</span> AsyncSession <span class="token operator">=</span> Depends<span class="token punctuation">(</span>get_database<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    query <span class="token operator">=</span> select<span class="token punctuation">(</span>Book<span class="token punctuation">)</span><span class="token punctuation">.</span>where<span class="token punctuation">(</span>Book<span class="token punctuation">.</span>title<span class="token punctuation">.</span>like<span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"</span><span class="token interpolation"><span class="token punctuation">&#123;</span>title<span class="token punctuation">&#125;</span></span><span class="token string">%"</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>where<span class="token punctuation">(</span>Book<span class="token punctuation">.</span><span class="token builtin">id</span> <span class="token operator">==</span> <span class="token number">2</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    result <span class="token operator">=</span> <span class="token keyword">await</span> session<span class="token punctuation">.</span>execute<span class="token punctuation">(</span>query<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    book <span class="token operator">=</span> result<span class="token punctuation">.</span>scalars<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token builtin">all</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token keyword">return</span> book</pre></td></tr></table></figure><h4 id="聚合查询"><a class="markdownIt-Anchor" href="#聚合查询">#</a> 聚合查询</h4>
+<p>func——count / avg / max / min / sum</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>get</span><span class="token punctuation">(</span><span class="token string">"/book/get_avg_price"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">get_avg_price</span><span class="token punctuation">(</span>session<span class="token punctuation">:</span> AsyncSession <span class="token operator">=</span> Depends<span class="token punctuation">(</span>get_database<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    query <span class="token operator">=</span> select<span class="token punctuation">(</span>func<span class="token punctuation">.</span>avg<span class="token punctuation">(</span>Book<span class="token punctuation">.</span>price<span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    result <span class="token operator">=</span> <span class="token keyword">await</span> session<span class="token punctuation">.</span>execute<span class="token punctuation">(</span>query<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    avg_price <span class="token operator">=</span> result<span class="token punctuation">.</span>scalars<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>one<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token keyword">return</span> avg_price</pre></td></tr></table></figure><img data-src="../../images/exp/fastapi/16.png" alt="1" style="zoom: 100%;" />
+<img data-src="../../images/exp/fastapi/17.png" alt="1" style="zoom: 100%;" />
+
+      <div class="tags">
+          <a href="/tags/python/" rel="tag"><i class="ic i-tag"></i> python</a>
+          <a href="/tags/Fast-API/" rel="tag"><i class="ic i-tag"></i> Fast API</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2026-01-12 23:03:50" itemprop="dateModified" datetime="2026-01-12T23:03:50+08:00">2026-01-12</time>
+  </span>
+  <span id="python/fastapi/" class="item leancloud_visitors" data-flag-title="FastAPI" title="阅读次数">
+      <span class="icon">
+        <i class="ic i-eye"></i>
+      </span>
+      <span class="text">阅读次数</span>
+      <span class="leancloud-visitors-count"></span>
+      <span class="text">次</span>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> 赞赏</button>
+  <p>请我喝[茶]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/myWxPay.jpg" alt="KarryLiu 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/myAliPay.jpg" alt="KarryLiu 支付宝">
+        <p>支付宝</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>KarryLiu <i class="ic i-at"><em>@</em></i>诗岸梦行舟
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="https://735690757.github.io/python/fastapi/" title="FastAPI">https://735690757.github.io/python/fastapi/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/python/v2yWdtc/" itemprop="url" rel="prev" data-background-image="&#x2F;images&#x2F;cover&#x2F;v2yWdtc.png" title="v2yWdtc：无聊写了一个格式转换工具">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> 项目与实战</span>
+  <h3>v2yWdtc：无聊写了一个格式转换工具</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/paper/review_remote_sensing_m_d/" itemprop="url" rel="next" data-background-image="&#x2F;images&#x2F;cover&#x2F;semantic_segmentation.png" title="Methods and datasets on semantic segmentation for Unmanned Aerial Vehicle remote sensing images：A review">
+  <span class="type">下一篇</span>
+  <span class="category"><i class="ic i-flag"></i> 论文阅读</span>
+  <h3>Methods and datasets on semantic segmentation for Unmanned Aerial Vehicle remote sensing images：A review</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#fastapi"><span class="toc-number">1.</span> <span class="toc-text"> FastAPI</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%A9%E7%94%9F%E9%9D%9E%E9%98%BB%E5%A1%9E"><span class="toc-number">1.1.</span> <span class="toc-text"> 天生非阻塞</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E6%8F%90%E7%A4%BA%E4%B8%8E%E9%AA%8C%E8%AF%81"><span class="toc-number">1.2.</span> <span class="toc-text"> 类型提示与验证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%B8%A6%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E6%A1%A3"><span class="toc-number">1.3.</span> <span class="toc-text"> 自带交互式文档</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B"><span class="toc-number">1.4.</span> <span class="toc-text"> 快速开始</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">1.4.1.</span> <span class="toc-text"> 启动命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%9C"><span class="toc-number">1.4.2.</span> <span class="toc-text"> 结果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python-%E8%A3%85%E9%A5%B0%E5%99%A8"><span class="toc-number">1.5.</span> <span class="toc-text"> Python 装饰器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#java-%E6%B3%A8%E8%A7%A3%E6%9C%AC%E8%BA%AB%E5%8F%AA%E6%98%AF%E4%B8%AA%E6%A0%87%E7%AD%BE"><span class="toc-number">1.5.1.</span> <span class="toc-text"> Java 注解本身只是个标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#python-%E8%A3%85%E9%A5%B0%E5%99%A8%E6%98%AF%E5%8F%AF%E6%89%A7%E8%A1%8C%E7%9A%84"><span class="toc-number">1.5.2.</span> <span class="toc-text"> Python 装饰器是可执行的</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1"><span class="toc-number">1.6.</span> <span class="toc-text"> 路由</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%8A%A8%E6%80%81%E4%BA%A4%E4%BA%92"><span class="toc-number">1.7.</span> <span class="toc-text"> 接口的动态交互</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%AF%E5%BE%84%E5%8F%82%E6%95%B0"><span class="toc-number">1.7.1.</span> <span class="toc-text"> 路径参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%A1%E9%AA%8C%E5%A4%A7%E5%B0%8F%E6%A0%A1%E9%AA%8C%E4%B8%8E%E9%95%BF%E5%BA%A6%E6%A0%A1%E9%AA%8C"><span class="toc-number">1.7.1.1.</span> <span class="toc-text"> 校验 —— 大小校验与长度校验</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E5%8F%82%E6%95%B0"><span class="toc-number">1.7.2.</span> <span class="toc-text"> 查询参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E4%BD%93%E5%8F%82%E6%95%B0"><span class="toc-number">1.7.3.</span> <span class="toc-text"> 请求体参数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%93%8D%E5%BA%94%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.8.</span> <span class="toc-text"> 响应类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#json"><span class="toc-number">1.8.1.</span> <span class="toc-text"> JSON</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#html-%E7%BA%AF%E6%96%87%E6%9C%AC"><span class="toc-number">1.8.2.</span> <span class="toc-text"> HTML &#x2F; 纯文本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#file%E6%96%87%E4%BB%B6"><span class="toc-number">1.8.3.</span> <span class="toc-text"> File 文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%93%8D%E5%BA%94%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.9.</span> <span class="toc-text"> 自定义响应类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="toc-number">1.10.</span> <span class="toc-text"> 异常处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-number">1.11.</span> <span class="toc-text"> 中间件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5"><span class="toc-number">1.12.</span> <span class="toc-text"> 依赖注入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#orm%E5%B7%A5%E5%85%B7sqlalchemy"><span class="toc-number">1.13.</span> <span class="toc-text"> ORM 工具 ——SQLAlchemy</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85sqlalchemyasyncio%E5%92%8Caiomysql"><span class="toc-number">1.13.1.</span> <span class="toc-text"> 安装 sqlalchemy [asyncio] 和 aiomysql</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E5%BB%BA%E8%A1%A8"><span class="toc-number">1.13.2.</span> <span class="toc-text"> 自动建表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#orm%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.13.3.</span> <span class="toc-text"> ORM 依赖注入与数据查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.13.4.</span> <span class="toc-text"> 查询</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AF%94%E8%BE%83%E5%88%A4%E6%96%AD"><span class="toc-number">1.13.4.1.</span> <span class="toc-text"> 比较判断</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.13.4.2.</span> <span class="toc-text"> 模糊查询</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%96%E9%A6%96%E6%9D%A1%E6%95%B0%E6%8D%AE"><span class="toc-number">1.13.4.3.</span> <span class="toc-text"> 取首条数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%9A%E6%9D%A1%E4%BB%B6"><span class="toc-number">1.13.4.4.</span> <span class="toc-text"> 多条件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%81%9A%E5%90%88%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.13.4.5.</span> <span class="toc-text"> 聚合查询</span></a></li></ol></li></ol></li></ol></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+        <ul>
+          <li><a href="/experience/SSM01/" rel="bookmark" title="SSM框架整合">SSM框架整合</a></li><li><a href="/experience/CollaborativeFiltering/" rel="bookmark" title="基于用户的协同过滤算法">基于用户的协同过滤算法</a></li><li><a href="/experience/MD5CalculationTimePractice/" rel="bookmark" title="MD5计算时间">MD5计算时间</a></li><li class="active"><a href="/python/fastapi/" rel="bookmark" title="FastAPI">FastAPI</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="KarryLiu"
+      data-src="/images/tx.jpg">
+  <p class="name" itemprop="name">KarryLiu</p>
+  <div class="description" itemprop="description">愿世间所有的美好都得以祝愿</div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">53</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">24</span>
+        <span class="name">分类</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">40</span>
+        <span class="name">标签</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tLzczNTY5MDc1Nw==" title="https:&#x2F;&#x2F;github.com&#x2F;735690757"><i class="ic i-github"></i></span>
+      <span class="exturl item twitter" data-url="aHR0cHM6Ly90d2l0dGVyLmNvbS92b0FMUXRkYWNCVE00RVk=" title="https:&#x2F;&#x2F;twitter.com&#x2F;voALQtdacBTM4EY"><i class="ic i-twitter"></i></span>
+      <span class="exturl item email" data-url="bWFpbHRvOjczNTY5MDc1N0BxcS5jb20=" title="mailto:735690757@qq.com"><i class="ic i-envelope"></i></span>
+      <span class="exturl item zhihu" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3Blb3BsZS9ydW8tcWlhbi15aW5n" title="https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;ruo-qian-ying"><i class="ic i-zhihu"></i></span>
+      <span class="exturl item music" data-url="aHR0cHM6Ly9tdXNpYy4xNjMuY29tLyMvdXNlci9ob21lP2lkPTM1Nzc1OTIzOA==" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;user&#x2F;home?id&#x3D;357759238"><i class="ic i-cloud-music"></i></span>
+      <span class="exturl item about" data-url="aHR0cHM6Ly9hYm91dC5tZS9rYXJyeWxpdQ==" title="https:&#x2F;&#x2F;about.me&#x2F;karryliu"><i class="ic i-address-card"></i></span>
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/about/" rel="section"><i class="ic i-user"></i>关于</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+    
+  <li class="item">
+    <a href="/music" rel="section"><i class="ic i-music"></i>橘子君-Ruxra</a>
+  </li>
+
+    
+  <li class="item">
+    <span class="exturl" data-url="aHR0cHM6Ly93d3cudHJhdmVsbGluZ3MuY24vZ28uaHRtbA=="><i class="ic i-paper-plane"></i>开往</span>
+  </li>
+
+    
+  <li class="item">
+    <a href="/friends/" rel="section"><i class="ic i-heart"></i>友链</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/ocfy" rel="section"><i class="ic i-magic"></i>OCFY</a>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/python/v2yWdtc/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/paper/review_remote_sensing_m_d/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>随机文章</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" title="分类于 图像处理">图像处理</a>
+</div>
+
+    <span><a href="/python/Harris/" title="Harris兴趣点检测">Harris兴趣点检测</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E7%AC%94%E8%AE%B0/" title="分类于 笔记">笔记</a>
+</div>
+
+    <span><a href="/math/mh_math/" title="模糊数学25习题">模糊数学25习题</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/political/" title="分类于 political">political</a>
+</div>
+
+    <span><a href="/PoliticalKnowledge/politicalNote/" title="政治知识点速记（持续更新）">政治知识点速记（持续更新）</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" title="分类于 计算机网络">计算机网络</a>
+</div>
+
+    <span><a href="/network/computer_network_retest/" title="计算机网络复试速览">计算机网络复试速览</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/%E5%9F%BA%E7%A1%80/" title="分类于 基础">基础</a>
+</div>
+
+    <span><a href="/python/pytorch/" title="PyTorch深度学习">PyTorch深度学习</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/YOLO/" title="分类于 YOLO">YOLO</a>
+</div>
+
+    <span><a href="/python/YOLO/YOLO_V3/" title="YOLO-V3">YOLO-V3</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%9D%E6%9D%A5%E4%B9%8D%E5%88%B0/" title="分类于 初来乍到">初来乍到</a>
+</div>
+
+    <span><a href="/hello/" title="起点，但不止于起点！">起点，但不止于起点！</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
+</div>
+
+    <span><a href="/Operate-system/kcsj/" title="操作系统课程设计">操作系统课程设计</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/MongoDB/" title="分类于 MongoDB">MongoDB</a>
+</div>
+
+    <span><a href="/MongoDB/MongoDB03/" title="MongoDB初步使用">MongoDB初步使用</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/%E5%9F%BA%E7%A1%80/" title="分类于 基础">基础</a>
+</div>
+
+    <span><a href="/python/YOLO/evaluation_indicators/" title="模型评价指标">模型评价指标</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>最新评论</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">KarryLiu @ KarryLiu</span>
+  </div>
+  <div class="powered-by">
+    <a href="https://icp.gov.moe/?keyword=20249329" target="_blank">萌ICP备20249329号</a>
+    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  <br/><span>世界本污浊，罪与爱同歌</span>
+  <br/><i class="ic i-chart-area"></i>&nbsp;<span>502k&nbsp;字</span> &nbsp;|&nbsp;
+  <i class="ic i-coffee"></i>&nbsp;<span> 13:56</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: 'python/fastapi/',
+    favicon: {
+      show: "（●´3｀●）嘿嘿嘿....",
+      hide: "(´Д｀)不看我是吧！"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: true,copy_tex: true,
+    katex: true,fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<!-- <script src="https://cdn.polyfill.io/v2/polyfill.js"></script>  -->
+
+<script src="https://polyfill-js.cn/v3/polyfill.min.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>
