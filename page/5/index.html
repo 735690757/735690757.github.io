@@ -92,12 +92,12 @@
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://s2.loli.net/2023/08/27/x7CM2DzWRbHAd4T.jpg"></li>
-          <li class="item" data-background-image="https://s2.loli.net/2023/08/27/mcSBwPWCR4u3tZI.jpg"></li>
           <li class="item" data-background-image="https://s2.loli.net/2023/08/27/vUowbrGBj4VOg9a.jpg"></li>
           <li class="item" data-background-image="https://s2.loli.net/2023/08/27/Mwc9oKJmODRxqN7.png"></li>
+          <li class="item" data-background-image="https://s2.loli.net/2023/08/27/EU3RfrkWvqHe4Ou.jpg"></li>
+          <li class="item" data-background-image="https://s2.loli.net/2023/08/27/mN2pFL5QX7D3BwM.jpg"></li>
           <li class="item" data-background-image="https://s2.loli.net/2023/08/27/B86dmgpZDzIi2uU.jpg"></li>
-          <li class="item" data-background-image="https://s2.loli.net/2023/08/27/xBNZOFIAEqWCyou.jpg"></li>
+          <li class="item" data-background-image="https://s2.loli.net/2023/08/27/UryYVWA34Nd2R5v.jpg"></li>
         </ul>
       </div>
     </header>
@@ -120,6 +120,41 @@
           
   <div class="index wrap">
     <div class="segments posts">
+        
+<article class="item">
+  <div class="cover">
+    <a href="/MongoDB/MongoDB02/" itemprop="url" title="MongoDB初步使用"><img data-src="https://s2.loli.net/2023/08/30/iqxm3ufLjZ6XOSt.webp"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="创建时间：2023-09-06 12:20:00">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2023-09-06T12:20:00+08:00">2023-09-06</time>
+  </span>
+</div>
+
+    <h3><a href="/MongoDB/MongoDB02/" itemprop="url" title="MongoDB初步使用">MongoDB初步使用</a></h3>
+    <div class="excerpt">
+        # MongoDB 命令
+# 创建用户（可读可写）
+# 创建
+db.createUser(&amp;#123;user:&quot;lkr40&quot;,pwd:&quot;123456&quot;,roles:[&quot;readWrite&quot;]&amp;#125;)# 检验
+db.auth(&quot;lkr40&quot;,&quot;123456&quot;)
+db.createUser({user:“lkr40”,pwd:“123456”,roles:[“readWrite”]})
+Successfully added user: { “user” : “lkr40”,...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/MongoDB/" itemprop="url" title="MongoDB"><i class="ic i-flag"></i>MongoDB</a>
+      </span>
+    </div>
+    <a href="/MongoDB/MongoDB02/" itemprop="url" title="MongoDB初步使用" class="btn">more...</a>
+  </div>
+</article>
+
         
 <article class="item">
   <div class="cover">
@@ -436,44 +471,6 @@ booth...
   </div>
 </article>
 
-        
-<article class="item">
-  <div class="cover">
-    <a href="/database/DataBase01/" itemprop="url" title="DB中的范式"><img data-src="https://i.postimg.cc/Fz209gB8/0202.jpg"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="创建时间：2023-04-11 21:16:00">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2023-04-11T21:16:00+08:00">2023-04-11</time>
-  </span>
-</div>
-
-    <h3><a href="/database/DataBase01/" itemprop="url" title="DB中的范式">DB中的范式</a></h3>
-    <div class="excerpt">
-        # 数据库范式
-# 什么是数据库范式
-数据库范式（Normalization）是一种设计关系型数据库的方法，它旨在减少数据冗余，提高数据的一致性和可靠性，避免数据修改时出现异常。数据库范式通常分为一到五个级别，每个级别对应一组设计规则。
-范式越高，数据冗余越少，数据一致性和可靠性越高。但是，范式过高也可能会带来一些问题，如增加了数据库的复杂性和查询的开销，需要根据实际应用场景来确定使用哪个范式。
-# 层级分类
-# 1NF（第一范式）
-关系模式中的所有属性都是原子性的，即不可再分。
-# 2NF（第二范式）
-关系模式必须满足第一范式，且不存在非关键字属性对主键的部分依赖。
-#...
-    </div>
-    <div class="meta footer">
-      <span>
-        <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" title="数据库"><i class="ic i-flag"></i>数据库</a>
-      </span>
-    </div>
-    <a href="/database/DataBase01/" itemprop="url" title="DB中的范式" class="btn">more...</a>
-  </div>
-</article>
-
     </div>
 
   </div>
@@ -509,7 +506,7 @@ booth...
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">53</span>
+        <span class="count">54</span>
         <span class="name">文章</span>
       </a>
     </div>
@@ -521,7 +518,7 @@ booth...
     </div>
     <div class="item tags">
       <a href="/tags/">
-        <span class="count">40</span>
+        <span class="count">41</span>
         <span class="name">标签</span>
       </a>
     </div>
@@ -624,12 +621,20 @@ booth...
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/python/%E5%9F%BA%E7%A1%80/" title="分类于 基础">基础</a>
+<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
 </div>
 
-    <span><a href="/python/Transformer/" title="Transformer实战">Transformer实战</a></span>
+    <span><a href="/database/DataBase02/" title="数据库设计">数据库设计</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/English/" title="分类于 English">English</a>
+</div>
+
+    <span><a href="/English/shEnglish/" title="文章翻译">文章翻译</a></span>
   </li>
 
       
@@ -646,54 +651,30 @@ booth...
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Principles-of-computer-composition/" title="分类于 计算机组成原理">计算机组成原理</a>
+<a href="/categories/DS/" title="分类于 DS">DS</a>
 </div>
 
-    <span><a href="/Principles-of-computer-composition/booth_algorithm/" title="booth算法">booth算法</a></span>
+    <span><a href="/DSLearnNote/codeTM/" title="数据结构代码题速记">数据结构代码题速记</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/java%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/" title="分类于 java高级特性">java高级特性</a>
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
 </div>
 
-    <span><a href="/Java/javaAd01/" title="Java高级特性1">Java高级特性1</a></span>
+    <span><a href="/Operate-system/KnowledgeSummary/" title="操作系统细碎知识点及公式速记">操作系统细碎知识点及公式速记</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/%E7%94%9F%E6%B4%BB/" title="分类于 生活">生活</a>
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
 </div>
 
-    <span><a href="/life/p2025/" title="回望2025——永不熄灭之光">回望2025——永不熄灭之光</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/python/YOLO/" title="分类于 YOLO">YOLO</a>
-</div>
-
-    <span><a href="/python/YOLO/YOLO_V3/" title="YOLO-V3">YOLO-V3</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/python/YOLO/" title="分类于 YOLO">YOLO</a>
-</div>
-
-    <span><a href="/python/YOLO/YOLO_V1/" title="YOLO-V1">YOLO-V1</a></span>
+    <span><a href="/Operate-system/kcsj/" title="操作系统课程设计">操作系统课程设计</a></span>
   </li>
 
       
@@ -703,27 +684,43 @@ booth...
 <a href="/categories/experience/" title="分类于 开发经验">开发经验</a>
 </div>
 
-    <span><a href="/experience/MD5CalculationTimePractice/" title="MD5计算时间">MD5计算时间</a></span>
+    <span><a href="/experience/CollaborativeFiltering/" title="基于用户的协同过滤算法">基于用户的协同过滤算法</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Principles-of-computer-composition/" title="分类于 计算机组成原理">计算机组成原理</a>
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/%E5%9F%BA%E7%A1%80/" title="分类于 基础">基础</a>
 </div>
 
-    <span><a href="/Principles-of-computer-composition/Connection_between_CPU_and_memory/" title="CPU与存储器的连接">CPU与存储器的连接</a></span>
+    <span><a href="/python/DLFromFormula/" title="从公式角度看深度学习">从公式角度看深度学习</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/DS/" title="分类于 DS">DS</a>
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/%E5%9F%BA%E7%A1%80/" title="分类于 基础">基础</a>
 </div>
 
-    <span><a href="/DSLearnNote/codeTM/" title="数据结构代码题速记">数据结构代码题速记</a></span>
+    <span><a href="/python/YOLO/evaluation_indicators/" title="模型评价指标">模型评价指标</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/%E9%A1%B9%E7%9B%AE%E4%B8%8E%E5%AE%9E%E6%88%98/" title="分类于 项目与实战">项目与实战</a>
+</div>
+
+    <span><a href="/python/3D_CNN/" title="3DCNN 网络结构">3DCNN 网络结构</a></span>
   </li>
 
   </ul>
@@ -748,8 +745,8 @@ booth...
     <a href="https://icp.gov.moe/?keyword=20249329" target="_blank">萌ICP备20249329号</a>
     基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
   <br/><span>世界本污浊，罪与爱同歌</span>
-  <br/><i class="ic i-chart-area"></i>&nbsp;<span>502k&nbsp;字</span> &nbsp;|&nbsp;
-  <i class="ic i-coffee"></i>&nbsp;<span> 13:56</span>
+  <br/><i class="ic i-chart-area"></i>&nbsp;<span>506k&nbsp;字</span> &nbsp;|&nbsp;
+  <i class="ic i-coffee"></i>&nbsp;<span> 14:03</span>
   </div>
 </div>
 
