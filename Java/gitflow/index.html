@@ -1,0 +1,694 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="诗岸梦行舟" href="https://735690757.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="诗岸梦行舟" href="https://735690757.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="诗岸梦行舟" href="https://735690757.github.io/feed.json" />
+<link rel="stylesheet" href="https://unpkg.com/mermaid/dist/mermaid.min.css">
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({ startOnLoad: true });</script>
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="java,gitflow" />
+
+
+<link rel="canonical" href="https://735690757.github.io/Java/gitflow/">
+
+
+
+  <title>
+GitFlow分支管理策略 - gitflow |
+KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</title>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">GitFlow分支管理策略
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2026-01-31 10:20:00">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2026-01-31T10:20:00+08:00">2026-01-31</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">KarryLiu</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+          <img src="/images/cover/gitflow.png">
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/gitflow/" itemprop="item" rel="index" title="分类于 gitflow"><span itemprop="name">gitflow</span></a>
+<meta itemprop="position" content="1" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="https://735690757.github.io/Java/gitflow/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/tx.jpg">
+    <meta itemprop="name" content="KarryLiu">
+    <meta itemprop="description" content="分享计算机知识以及各种心得总结, 愿世间所有的美好都得以祝愿">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="诗岸梦行舟">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h1 id="gitflow"><a class="markdownIt-Anchor" href="#gitflow">#</a> GitFlow</h1>
+<h2 id="什么是gitflow"><a class="markdownIt-Anchor" href="#什么是gitflow">#</a> 什么是 GitFlow？</h2>
+<blockquote>
+<p>Gitflow 是一种替代的 Git 分支模型，涉及功能分支和多个主分支的使用。该书最初由文森特・德里森在 nvie 出版并推广开来。与基于 trunk 的开发相比，Gitflow 拥有众多且寿命更长的分支和更大的提交。在该模型下，开发者创建一个功能分支，并延迟将其合并到主干分支，直到功能完成。这些寿命较长的特征分支需要更多的协作来合并，且偏离主干分支的风险更高。它们也可能引入冲突更新。</p>
+<p>Gitflow 可用于有预定发布周期的项目，也可用于<span class="exturl" data-url="aHR0cHM6Ly93d3cuYXRsYXNzaWFuLmNvbS96aC9kZXZvcHMvd2hhdC1pcy1kZXZvcHMvZGV2b3BzLWJlc3QtcHJhY3RpY2Vz">持续交付</span>的 <span class="exturl" data-url="aHR0cHM6Ly93d3cuYXRsYXNzaWFuLmNvbS96aC9jb250aW51b3VzLWRlbGl2ZXJ5">DevOps 最佳实践</span>。除了<span class="exturl" data-url="aHR0cHM6Ly93d3cuYXRsYXNzaWFuLmNvbS96aC9naXQvdHV0b3JpYWxzL2NvbXBhcmluZy13b3JrZmxvd3MvZmVhdHVyZS1icmFuY2gtd29ya2Zsb3c=">功能分支工作流程</span>所需的概念或命令外，此工作流程不会添加任何新概念或命令。相反，它为不同的分支分配了非常具体的角色，并定义了它们应该如何以及何时进行交互。除了  <code>feature</code>  分支外，它还使用单独分支来准备、维护和录制版本。当然，您还可以利用功能分支工作流程的所有优势：拉取请求、隔离实验和更高效的协作。</p>
+</blockquote>
+<h2 id="五大分支"><a class="markdownIt-Anchor" href="#五大分支">#</a> 五大分支</h2>
+<ol>
+<li>主分支：main /  master</li>
+<li>开发分支：develop</li>
+<li>功能分支：feature</li>
+<li>发布分支：release</li>
+<li>热修复分支 hotfix</li>
+</ol>
+<h3 id="主分支main-master"><a class="markdownIt-Anchor" href="#主分支main-master">#</a> 主分支： <code>main / master</code></h3>
+<p><strong>永远保持可发布状态</strong></p>
+<p>每一次提交都应该是<strong>已经测试、可上线的版本</strong></p>
+<p>通常只允许：</p>
+<ul>
+<li><code>release</code>  合并进来</li>
+<li><code>hotfix</code>  合并进来</li>
+</ul>
+<p>一般会在这里 <strong>打 tag</strong></p>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>v1.0.0</pre></td></tr><tr><td data-num="2"></td><td><pre>v1.1.0</pre></td></tr></table></figure><p>不在 main 上直接开发代码</p>
+<h3 id="开发分支develop"><a class="markdownIt-Anchor" href="#开发分支develop">#</a> 开发分支： <code>develop</code></h3>
+<p><strong>作用：日常开发的集成分支</strong></p>
+<ul>
+<li>所有新功能最终都会合并到这里</li>
+<li>包含 “下一个版本” 的所有开发内容</li>
+<li>相对不如 main 稳定，但应该是<strong>可运行的</strong></li>
+</ul>
+<p>特点：</p>
+<ul>
+<li><code>feature</code>  →  <code>develop</code></li>
+<li><code>develop</code>  →  <code>release</code></li>
+</ul>
+<h3 id="功能分支feature"><a class="markdownIt-Anchor" href="#功能分支feature">#</a> 功能分支： <code>feature/*</code></h3>
+<p><strong>作用：开发具体功能</strong></p>
+<ul>
+<li>从  <code>develop</code>  拉出来</li>
+<li>一个功能一个分支</li>
+<li>功能完成后合并回  <code>develop</code></li>
+</ul>
+<h3 id="发布分支release"><a class="markdownIt-Anchor" href="#发布分支release">#</a> 发布分支： <code>release/*</code></h3>
+<p><strong>作用：版本发布前的 “冻结分支”</strong></p>
+<ul>
+<li>从  <code>develop</code>  拉出来</li>
+<li>只允许：
+<ul>
+<li>bug 修复</li>
+<li>文档 / 版本号修改</li>
+</ul>
+</li>
+<li><strong>不再添加新功能</strong></li>
+</ul>
+<h3 id="热修复分支hotfix"><a class="markdownIt-Anchor" href="#热修复分支hotfix">#</a> 热修复分支： <code>hotfix/*</code></h3>
+<p><strong>作用：线上紧急 Bug 修复</strong></p>
+<ul>
+<li>从  <code>main</code>  拉出来</li>
+<li>修完立刻发布</li>
+<li>同时要合并回  <code>develop</code></li>
+</ul>
+<h2 id="基本图"><a class="markdownIt-Anchor" href="#基本图">#</a> 基本图</h2>
+<img data-src="../../images/java/gitflow/1.png" alt="1" style="zoom:80%;" />
+<h2 id="前置流程"><a class="markdownIt-Anchor" href="#前置流程">#</a> 前置流程</h2>
+<img data-src="../../images/java/gitflow/2.png" alt="1" style="zoom:80%;" />
+<img data-src="../../images/java/gitflow/3.png" alt="1" style="zoom:80%;" />
+<img data-src="../../images/java/gitflow/4.png" alt="1" style="zoom:80%;" />
+<h2 id="开发新需求a"><a class="markdownIt-Anchor" href="#开发新需求a">#</a> 开发新需求 A</h2>
+<img data-src="../../images/java/gitflow/5.png" alt="1" style="zoom:80%;" />
+<p>提交</p>
+<img data-src="../../images/java/gitflow/6.png" alt="1" style="zoom:80%;" />
+<p>观察到 dev 并未受影响。</p>
+<img data-src="../../images/java/gitflow/7.png" alt="1" style="zoom:80%;" />
+<img data-src="../../images/java/gitflow/8.png" alt="1" style="zoom:80%;" />
+<h2 id="开发新需求b与c"><a class="markdownIt-Anchor" href="#开发新需求b与c">#</a> 开发新需求 B 与 C</h2>
+<p>省略，同样提交并合并到 dev 之中</p>
+<h2 id="合并的结果"><a class="markdownIt-Anchor" href="#合并的结果">#</a> 合并的结果</h2>
+<img data-src="../../images/java/gitflow/9.png" alt="1" style="zoom:80%;" />
+<p>为了整洁，新特性开发完毕之后需可以删除分支。</p>
+<img data-src="../../images/java/gitflow/10.png" alt="1" style="zoom:80%;" />
+<h2 id="发布分支"><a class="markdownIt-Anchor" href="#发布分支">#</a> 发布分支</h2>
+<img data-src="../../images/java/gitflow/11.png" alt="1" style="zoom:80%;" />
+<h2 id="生产环境出bug了怎么办"><a class="markdownIt-Anchor" href="#生产环境出bug了怎么办">#</a> 生产环境出 bug 了怎么办</h2>
+<p>使用 hotfix 分支</p>
+<img data-src="../../images/java/gitflow/12.png" alt="1" style="zoom:80%;" />
+<p>结束之后合并到 main 与 dev</p>
+<h2 id="gitflow的优缺点"><a class="markdownIt-Anchor" href="#gitflow的优缺点">#</a> GitFlow 的优缺点</h2>
+<p>优点：分支职责清晰，结构规范，支持并行开发，发布流程可控、可追溯，对线上问题响应快，适合传统软件工程流程</p>
+<p>缺点：分支较多，流程偏重，不太适合高频发布，合并冲突概率较高</p>
+<h2 id="版本回退-撤销-重置"><a class="markdownIt-Anchor" href="#版本回退-撤销-重置">#</a> 版本回退、撤销、重置</h2>
+<p>查看当前状态：</p>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token function">git</span> status</pre></td></tr></table></figure><h3 id="未add的代码行发生改动怎么回退"><a class="markdownIt-Anchor" href="#未add的代码行发生改动怎么回退">#</a> 未 add 的代码行发生改动怎么回退？</h3>
+<img data-src="../../images/java/gitflow/13.png" alt="1" style="zoom:80%;" />
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token function">git</span> checkout -- F2</pre></td></tr></table></figure><img data-src="../../images/java/gitflow/14.png" alt="1" style="zoom:80%;" />
+<img data-src="../../images/java/gitflow/15.png" alt="1" style="zoom:80%;" />
+<h3 id="已add未commit的代码行发生改动怎么回退"><a class="markdownIt-Anchor" href="#已add未commit的代码行发生改动怎么回退">#</a> 已 add 未 commit 的代码行发生改动怎么回退？</h3>
+<img data-src="../../images/java/gitflow/16.png" alt="1" style="zoom:80%;" />
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token function">git</span> reset HEAD XXXX</pre></td></tr></table></figure><img data-src="../../images/java/gitflow/17.png" alt="1" style="zoom:80%;" />
+<img data-src="../../images/java/gitflow/18.png" alt="1" style="zoom:80%;" />
+<img data-src="../../images/java/gitflow/19.png" alt="1" style="zoom:80%;" />
+<h3 id="已add已commit未push的代码行发生改动怎么回退"><a class="markdownIt-Anchor" href="#已add已commit未push的代码行发生改动怎么回退">#</a> 已 add 已 commit 未 push 的代码行发生改动怎么回退？</h3>
+<p>两个异常改动</p>
+<img data-src="../../images/java/gitflow/20.png" alt="1" style="zoom:80%;" />
+<p>两个 ^ 就是回退两步</p>
+<img data-src="../../images/java/gitflow/21.png" alt="1" style="zoom:80%;" />
+<img data-src="../../images/java/gitflow/22.png" alt="1" style="zoom:80%;" />
+<h3 id="已add已commit已push的代码行发生改动怎么回退"><a class="markdownIt-Anchor" href="#已add已commit已push的代码行发生改动怎么回退">#</a> 已 add 已 commit 已 push 的代码行发生改动怎么回退？</h3>
+<img data-src="../../images/java/gitflow/23.png" alt="1" style="zoom:80%;" />
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token function">git</span> revert --no-edit cxxxxx</pre></td></tr></table></figure><p>其中 cxxxx 是提交流水号。</p>
+<p>更方便地使用还原提交。</p>
+<img data-src="../../images/java/gitflow/24.png" alt="1" style="zoom:80%;" />
+<img data-src="../../images/java/gitflow/25.png" alt="1" style="zoom:80%;" />
+<img data-src="../../images/java/gitflow/26.png" alt="1" style="zoom:80%;" />
+<p>revert 后是否可以再 revert？答案是可以的。</p>
+<h2 id="git-stash"><a class="markdownIt-Anchor" href="#git-stash">#</a> git stash</h2>
+<p>git stash 是临时保存当前未提交的修改，把工作区恢复到 “干净状态”</p>
+<p>写了一半代码，还不想  <code>commit</code> ，又必须马上切分支 / 拉代码 / 修 Bug， <strong> <code>git stash</code>  就是把现场 “打包放抽屉里”</strong></p>
+<img data-src="../../images/java/gitflow/27.png" alt="1" style="zoom:80%;" />
+<img data-src="../../images/java/gitflow/28.png" alt="1" style="zoom:80%;" />
+<img data-src="../../images/java/gitflow/29.png" alt="1" style="zoom:80%;" />
+<h2 id="git-cherry-pick"><a class="markdownIt-Anchor" href="#git-cherry-pick">#</a> git cherry-pick</h2>
+<p>把 “某一个（或几个）提交” 从别的分支，复制一份，应用到当前分支</p>
+<p>关键词：<strong>只要这个提交，不要整个分支</strong></p>
+<p>或者说，提交了 100 行，有 60 还可以，40 行我有点后悔了，怎么只撤回这 40 行？</p>
+<img data-src="../../images/java/gitflow/30.png" alt="1" style="zoom:80%;" />
+<p>先 revert，push 到远程</p>
+<img data-src="../../images/java/gitflow/31.png" alt="1" style="zoom:80%;" />
+<p>基于现有分支，创建新分支</p>
+<img data-src="../../images/java/gitflow/32.png" alt="1" style="zoom:80%;" />
+<p>撤销修改</p>
+<img data-src="../../images/java/gitflow/33.png" alt="1" style="zoom:80%;" />
+<p>冻结</p>
+<img data-src="../../images/java/gitflow/34.png" alt="1" style="zoom:80%;" />
+<img data-src="../../images/java/gitflow/35.png" alt="1" style="zoom:80%;" />
+<img data-src="../../images/java/gitflow/36.png" alt="1" style="zoom:80%;" />
+<h2 id="变基rebase和合并merge"><a class="markdownIt-Anchor" href="#变基rebase和合并merge">#</a> 变基 rebase 和合并 merge</h2>
+<p>合并（ <code>git merge</code> ）是什么，就是把<strong>两个分支的历史合并</strong>到一起。</p>
+<p>变基（ <code>git rebase</code> ）是什么，把一个分支的提交 <strong>“挪到” 另一个分支的末尾</strong></p>
+<p>merge 通常是弯弯曲曲的路线，而 rebase 把对方的线路合并到你这里，但是这个合并更像是重新播放了一遍，改写了历史，使之成为了更加线性的流程。</p>
+<p>rebase 推荐在本地上使用，更加整洁，团队协作推荐使用 merge。</p>
+<h2 id="拉取pull和提取fetch"><a class="markdownIt-Anchor" href="#拉取pull和提取fetch">#</a> 拉取 pull 和提取 fetch</h2>
+<p>提取是看看哪些变了（不修代码），拉取真正到本地（修代码）</p>
+<p>最佳实践是，先 fetch 看看那些变了，再 pull 去更新我们的代码。</p>
+
+      <div class="tags">
+          <a href="/tags/java/" rel="tag"><i class="ic i-tag"></i> java</a>
+          <a href="/tags/gitflow/" rel="tag"><i class="ic i-tag"></i> gitflow</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2026-01-31 23:50:06" itemprop="dateModified" datetime="2026-01-31T23:50:06+08:00">2026-01-31</time>
+  </span>
+  <span id="Java/gitflow/" class="item leancloud_visitors" data-flag-title="GitFlow分支管理策略" title="阅读次数">
+      <span class="icon">
+        <i class="ic i-eye"></i>
+      </span>
+      <span class="text">阅读次数</span>
+      <span class="leancloud-visitors-count"></span>
+      <span class="text">次</span>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> 赞赏</button>
+  <p>请我喝[茶]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/myWxPay.jpg" alt="KarryLiu 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/myAliPay.jpg" alt="KarryLiu 支付宝">
+        <p>支付宝</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>KarryLiu <i class="ic i-at"><em>@</em></i>诗岸梦行舟
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="https://735690757.github.io/Java/gitflow/" title="GitFlow分支管理策略">https://735690757.github.io/Java/gitflow/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/python/ss/" itemprop="url" rel="prev" data-background-image="&#x2F;images&#x2F;cover&#x2F;ss.png" title="语义分割">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> 基础</span>
+  <h3>语义分割</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#gitflow"><span class="toc-number">1.</span> <span class="toc-text"> GitFlow</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFgitflow"><span class="toc-number">1.1.</span> <span class="toc-text"> 什么是 GitFlow？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E5%A4%A7%E5%88%86%E6%94%AF"><span class="toc-number">1.2.</span> <span class="toc-text"> 五大分支</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E5%88%86%E6%94%AFmain-master"><span class="toc-number">1.2.1.</span> <span class="toc-text"> 主分支： main &#x2F; master</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E5%88%86%E6%94%AFdevelop"><span class="toc-number">1.2.2.</span> <span class="toc-text"> 开发分支： develop</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E5%88%86%E6%94%AFfeature"><span class="toc-number">1.2.3.</span> <span class="toc-text"> 功能分支： feature&#x2F;*</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%91%E5%B8%83%E5%88%86%E6%94%AFrelease"><span class="toc-number">1.2.4.</span> <span class="toc-text"> 发布分支： release&#x2F;*</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%83%AD%E4%BF%AE%E5%A4%8D%E5%88%86%E6%94%AFhotfix"><span class="toc-number">1.2.5.</span> <span class="toc-text"> 热修复分支： hotfix&#x2F;*</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%9B%BE"><span class="toc-number">1.3.</span> <span class="toc-text"> 基本图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E6%B5%81%E7%A8%8B"><span class="toc-number">1.4.</span> <span class="toc-text"> 前置流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E6%96%B0%E9%9C%80%E6%B1%82a"><span class="toc-number">1.5.</span> <span class="toc-text"> 开发新需求 A</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E6%96%B0%E9%9C%80%E6%B1%82b%E4%B8%8Ec"><span class="toc-number">1.6.</span> <span class="toc-text"> 开发新需求 B 与 C</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%88%E5%B9%B6%E7%9A%84%E7%BB%93%E6%9E%9C"><span class="toc-number">1.7.</span> <span class="toc-text"> 合并的结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%91%E5%B8%83%E5%88%86%E6%94%AF"><span class="toc-number">1.8.</span> <span class="toc-text"> 发布分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E5%87%BAbug%E4%BA%86%E6%80%8E%E4%B9%88%E5%8A%9E"><span class="toc-number">1.9.</span> <span class="toc-text"> 生产环境出 bug 了怎么办</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gitflow%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-number">1.10.</span> <span class="toc-text"> GitFlow 的优缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%88%E6%9C%AC%E5%9B%9E%E9%80%80-%E6%92%A4%E9%94%80-%E9%87%8D%E7%BD%AE"><span class="toc-number">1.11.</span> <span class="toc-text"> 版本回退、撤销、重置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AAadd%E7%9A%84%E4%BB%A3%E7%A0%81%E8%A1%8C%E5%8F%91%E7%94%9F%E6%94%B9%E5%8A%A8%E6%80%8E%E4%B9%88%E5%9B%9E%E9%80%80"><span class="toc-number">1.11.1.</span> <span class="toc-text"> 未 add 的代码行发生改动怎么回退？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%B2add%E6%9C%AAcommit%E7%9A%84%E4%BB%A3%E7%A0%81%E8%A1%8C%E5%8F%91%E7%94%9F%E6%94%B9%E5%8A%A8%E6%80%8E%E4%B9%88%E5%9B%9E%E9%80%80"><span class="toc-number">1.11.2.</span> <span class="toc-text"> 已 add 未 commit 的代码行发生改动怎么回退？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%B2add%E5%B7%B2commit%E6%9C%AApush%E7%9A%84%E4%BB%A3%E7%A0%81%E8%A1%8C%E5%8F%91%E7%94%9F%E6%94%B9%E5%8A%A8%E6%80%8E%E4%B9%88%E5%9B%9E%E9%80%80"><span class="toc-number">1.11.3.</span> <span class="toc-text"> 已 add 已 commit 未 push 的代码行发生改动怎么回退？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%B2add%E5%B7%B2commit%E5%B7%B2push%E7%9A%84%E4%BB%A3%E7%A0%81%E8%A1%8C%E5%8F%91%E7%94%9F%E6%94%B9%E5%8A%A8%E6%80%8E%E4%B9%88%E5%9B%9E%E9%80%80"><span class="toc-number">1.11.4.</span> <span class="toc-text"> 已 add 已 commit 已 push 的代码行发生改动怎么回退？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-stash"><span class="toc-number">1.12.</span> <span class="toc-text"> git stash</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-cherry-pick"><span class="toc-number">1.13.</span> <span class="toc-text"> git cherry-pick</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%98%E5%9F%BArebase%E5%92%8C%E5%90%88%E5%B9%B6merge"><span class="toc-number">1.14.</span> <span class="toc-text"> 变基 rebase 和合并 merge</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8B%89%E5%8F%96pull%E5%92%8C%E6%8F%90%E5%8F%96fetch"><span class="toc-number">1.15.</span> <span class="toc-text"> 拉取 pull 和提取 fetch</span></a></li></ol></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+        <ul>
+          <li class="active"><a href="/Java/gitflow/" rel="bookmark" title="GitFlow分支管理策略">GitFlow分支管理策略</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="KarryLiu"
+      data-src="/images/tx.jpg">
+  <p class="name" itemprop="name">KarryLiu</p>
+  <div class="description" itemprop="description">愿世间所有的美好都得以祝愿</div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">55</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">25</span>
+        <span class="name">分类</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">42</span>
+        <span class="name">标签</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tLzczNTY5MDc1Nw==" title="https:&#x2F;&#x2F;github.com&#x2F;735690757"><i class="ic i-github"></i></span>
+      <span class="exturl item twitter" data-url="aHR0cHM6Ly90d2l0dGVyLmNvbS92b0FMUXRkYWNCVE00RVk=" title="https:&#x2F;&#x2F;twitter.com&#x2F;voALQtdacBTM4EY"><i class="ic i-twitter"></i></span>
+      <span class="exturl item email" data-url="bWFpbHRvOjczNTY5MDc1N0BxcS5jb20=" title="mailto:735690757@qq.com"><i class="ic i-envelope"></i></span>
+      <span class="exturl item zhihu" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3Blb3BsZS9ydW8tcWlhbi15aW5n" title="https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;ruo-qian-ying"><i class="ic i-zhihu"></i></span>
+      <span class="exturl item music" data-url="aHR0cHM6Ly9tdXNpYy4xNjMuY29tLyMvdXNlci9ob21lP2lkPTM1Nzc1OTIzOA==" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;user&#x2F;home?id&#x3D;357759238"><i class="ic i-cloud-music"></i></span>
+      <span class="exturl item about" data-url="aHR0cHM6Ly9hYm91dC5tZS9rYXJyeWxpdQ==" title="https:&#x2F;&#x2F;about.me&#x2F;karryliu"><i class="ic i-address-card"></i></span>
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/about/" rel="section"><i class="ic i-user"></i>关于</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+    
+  <li class="item">
+    <a href="/music" rel="section"><i class="ic i-music"></i>橘子君-Ruxra</a>
+  </li>
+
+    
+  <li class="item">
+    <span class="exturl" data-url="aHR0cHM6Ly93d3cudHJhdmVsbGluZ3MuY24vZ28uaHRtbA=="><i class="ic i-paper-plane"></i>开往</span>
+  </li>
+
+    
+  <li class="item">
+    <a href="/friends/" rel="section"><i class="ic i-heart"></i>友链</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/ocfy" rel="section"><i class="ic i-magic"></i>OCFY</a>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>随机文章</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/%E9%A1%B9%E7%9B%AE%E4%B8%8E%E5%AE%9E%E6%88%98/" title="分类于 项目与实战">项目与实战</a>
+</div>
+
+    <span><a href="/python/v2yWdtc/" title="v2yWdtc：无聊写了一个格式转换工具">v2yWdtc：无聊写了一个格式转换工具</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
+</div>
+
+    <span><a href="/Operate-system/01OS/" title="操作系统知识点阶段总结">操作系统知识点阶段总结</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
+</div>
+
+    <span><a href="/database/DataBase02/" title="数据库设计">数据库设计</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E4%B8%8A%E5%B2%B8/" title="分类于 上岸">上岸</a>
+</div>
+
+    <span><a href="/life/shangan/" title="写给我这一年多的考研时光">写给我这一年多的考研时光</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/%E9%A1%B9%E7%9B%AE%E4%B8%8E%E5%AE%9E%E6%88%98/" title="分类于 项目与实战">项目与实战</a>
+</div>
+
+    <span><a href="/python/3D_CNN/" title="3DCNN 网络结构">3DCNN 网络结构</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/%E5%9F%BA%E7%A1%80/" title="分类于 基础">基础</a>
+</div>
+
+    <span><a href="/python/Transformer/" title="Transformer实战">Transformer实战</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/MongoDB/" title="分类于 MongoDB">MongoDB</a>
+</div>
+
+    <span><a href="/MongoDB/MongoDB01/" title="MongoDB的安装与初步使用（Windows平台）">MongoDB的安装与初步使用（Windows平台）</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
+</div>
+
+    <span><a href="/Operate-system/KnowledgeSummary/" title="操作系统细碎知识点及公式速记">操作系统细碎知识点及公式速记</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/experience/" title="分类于 开发经验">开发经验</a>
+</div>
+
+    <span><a href="/experience/SSM01/" title="SSM框架整合">SSM框架整合</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Principles-of-computer-composition/" title="分类于 计算机组成原理">计算机组成原理</a>
+</div>
+
+    <span><a href="/Principles-of-computer-composition/Connection_between_CPU_and_memory/" title="CPU与存储器的连接">CPU与存储器的连接</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>最新评论</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">KarryLiu @ KarryLiu</span>
+  </div>
+  <div class="powered-by">
+    <a href="https://icp.gov.moe/?keyword=20249329" target="_blank">萌ICP备20249329号</a>
+    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  <br/><span>世界本污浊，罪与爱同歌</span>
+  <br/><i class="ic i-chart-area"></i>&nbsp;<span>507k&nbsp;字</span> &nbsp;|&nbsp;
+  <i class="ic i-coffee"></i>&nbsp;<span> 14:06</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: 'Java/gitflow/',
+    favicon: {
+      show: "（●´3｀●）嘿嘿嘿....",
+      hide: "(´Д｀)不看我是吧！"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: true,fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<!-- <script src="https://cdn.polyfill.io/v2/polyfill.js"></script>  -->
+
+<script src="https://polyfill-js.cn/v3/polyfill.min.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>
