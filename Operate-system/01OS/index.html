@@ -149,12 +149,12 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <div class="body md" itemprop="articleBody">
     
 
-    <h1 id="引论"><a class="markdownIt-Anchor" href="#引论">#</a> 引论</h1>
-<h2 id="操作系统是什么"><a class="markdownIt-Anchor" href="#操作系统是什么">#</a> <strong>操作系统是什么？</strong></h2>
+    <h1 id="引论"><a class="markdownIt-Anchor" href="#引论"></a> 引论</h1>
+<h2 id="操作系统是什么"><a class="markdownIt-Anchor" href="#操作系统是什么"></a> <strong>操作系统是什么？</strong></h2>
 <p>操作系统是计算机系统中的核心软件之一，它是位于硬件和应用程序之间的一层软件，负责管理和控制计算机的硬件资源，并为应用程序提供一个运行环境。操作系统充当计算机系统的管理者，协调各种硬件和软件资源的分配和调度，以使计算机能够高效、可靠地运行。</p>
-<h2 id="为什么要操作系统"><a class="markdownIt-Anchor" href="#为什么要操作系统">#</a> <strong>为什么要操作系统？</strong></h2>
+<h2 id="为什么要操作系统"><a class="markdownIt-Anchor" href="#为什么要操作系统"></a> <strong>为什么要操作系统？</strong></h2>
 <p>操作系统的存在是为了解决计算机资源管理和用户程序执行的复杂性。它提供了一种抽象层，使应用程序开发人员不必直接与底层硬件进行交互，从而简化了应用程序的开发和维护。此外，操作系统还负责处理多任务管理、内存管理、文件系统管理、用户接口等，为用户和应用程序提供了一个友好且高效的计算环境。</p>
-<h2 id="操作系统的特征是什么"><a class="markdownIt-Anchor" href="#操作系统的特征是什么">#</a> <strong>操作系统的特征是什么？</strong></h2>
+<h2 id="操作系统的特征是什么"><a class="markdownIt-Anchor" href="#操作系统的特征是什么"></a> <strong>操作系统的特征是什么？</strong></h2>
 <p>操作系统具有以下几个主要特征：</p>
 <ol>
 <li>
@@ -163,14 +163,14 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 </li>
 <li>
 <p><strong>共享（Sharing）：</strong> 多个用户和应用程序可以同时访问计算机的资源，如内存、处理器、文件等。</p>
-<p><span class="label info">操作系统的最基本特征：并发与共享</span></p>
+<p>[操作系统的最基本特征：并发与共享]{.label .info}</p>
 </li>
 <li>
 <p><strong>虚拟（Virtualization）：</strong> 操作系统可以为每个应用程序提供一种虚拟的环境，使其感觉自己独占了计算机资源。</p>
 </li>
 <li>
 <p><strong>异步（asynchronous）：</strong> 异步特性指的是操作系统允许某些任务在进行的过程中，不必等待前一个任务的完成，而可以继续执行其他任务。<mark>（存在不确定性）</mark></p>
-<p><span class="label success">✔️操作系统的基本特征：并发、共享、虚拟、异步</span></p>
+<p>[✔️操作系统的基本特征：并发、共享、虚拟、异步]{.label .success}</p>
 </li>
 <li>
 <p><strong>抽象（Abstraction）：</strong> 操作系统通过抽象化硬件和软件资源，为应用程序提供一个更简单、一致的编程接口。</p>
@@ -191,30 +191,30 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <p><strong>设备管理（Device Management）：</strong> 管理输入输出设备，使应用程序能够与设备进行交互。</p>
 </li>
 </ol>
-<h2 id="实时操作系统和分时操作系统"><a class="markdownIt-Anchor" href="#实时操作系统和分时操作系统">#</a> 实时操作系统和分时操作系统？</h2>
+<h2 id="实时操作系统和分时操作系统"><a class="markdownIt-Anchor" href="#实时操作系统和分时操作系统"></a> 实时操作系统和分时操作系统？</h2>
 <p>实时操作系统（Real-time Operating System，RTOS）和分时操作系统（Time-sharing Operating System）是两种不同类型的操作系统，用于满足不同应用场景下的需求。</p>
-<h3 id="实时操作系统rtos"><a class="markdownIt-Anchor" href="#实时操作系统rtos">#</a> <strong>实时操作系统（RTOS）：</strong></h3>
+<h3 id="实时操作系统rtos"><a class="markdownIt-Anchor" href="#实时操作系统rtos"></a> <strong>实时操作系统（RTOS）：</strong></h3>
 <p>实时操作系统是专门设计用于处理实时任务的操作系统。实时任务是具有严格时间要求的任务，可以分为硬实时和软实时任务。硬实时任务要求任务必须在严格的时间限制内完成，否则会导致系统错误。软实时任务也有时间要求，但对于这类任务，如果错过了截止日期，系统不会崩溃，但会影响任务的结果的实用性。</p>
 <p>RTOS 致力于确保任务能够按照特定的时间要求得到执行。它通常采用优先级调度策略，确保高优先级的实时任务能够在预定的时间内得到执行。</p>
-<h3 id="分时操作系统time-sharing-operating-system"><a class="markdownIt-Anchor" href="#分时操作系统time-sharing-operating-system">#</a> <strong>分时操作系统（Time-sharing Operating System）：</strong></h3>
+<h3 id="分时操作系统time-sharing-operating-system"><a class="markdownIt-Anchor" href="#分时操作系统time-sharing-operating-system"></a> <strong>分时操作系统（Time-sharing Operating System）：</strong></h3>
 <p>分时操作系统旨在支持多用户的共享计算机系统。它允许多个用户通过终端或其他用户界面同时访问系统，每个用户似乎都在独占地使用计算机资源。分时操作系统通过分配时间片（时间片轮转）来在多个任务之间切换，每个任务在时间片结束前都能得到一段时间的执行。</p>
 <p>分时操作系统的目标是实现多任务的并发执行，使用户能够在几乎同时使用计算机资源，这样可以提高资源利用率和用户体验。</p>
-<p><span class="label info">分时操作系统特征：多路性、独立性、及时性、交互性。详细解释：P10</span></p>
-<h2 id="单道批处理系统和多道批处理系统"><a class="markdownIt-Anchor" href="#单道批处理系统和多道批处理系统">#</a> 单道批处理系统和多道批处理系统？</h2>
+<p>[分时操作系统特征：多路性、独立性、及时性、交互性。详细解释：P10]{.label .info}</p>
+<h2 id="单道批处理系统和多道批处理系统"><a class="markdownIt-Anchor" href="#单道批处理系统和多道批处理系统"></a> 单道批处理系统和多道批处理系统？</h2>
 <p>单道批处理系统（Single Batch Processing System）和多道批处理系统（Multi-Batch Processing System）是两种不同的操作系统工作方式，用于管理和执行计算机中的多个任务。</p>
-<h3 id="单道批处理系统"><a class="markdownIt-Anchor" href="#单道批处理系统">#</a> <strong>单道批处理系统：</strong></h3>
+<h3 id="单道批处理系统"><a class="markdownIt-Anchor" href="#单道批处理系统"></a> <strong>单道批处理系统：</strong></h3>
 <p>单道批处理系统是早期计算机操作系统的一种。在这种系统中，计算机只能处理一道程序，也就是一个任务，每次只有一个任务在运行。当一个任务执行完成后，才能加载并执行下一个任务。这种系统对于用户和程序员来说，操作不够灵活，因为他们必须等待当前任务执行完成才能继续工作。</p>
-<p><span class="label danger">💔单道批处理系统的缺点：系统中的的资源得不到充分利用！</span></p>
-<p><span class="label warning">✍️注意注意！！！单道批处理系统无并发，不能称之为 OS！！！</span></p>
-<h3 id="多道批处理系统"><a class="markdownIt-Anchor" href="#多道批处理系统">#</a> <strong>多道批处理系统：</strong></h3>
+<p>[💔单道批处理系统的缺点：系统中的的资源得不到充分利用！]{.label .danger}</p>
+<p>[✍️注意注意！！！单道批处理系统无并发，不能称之为 OS！！！]{.label .warning}</p>
+<h3 id="多道批处理系统"><a class="markdownIt-Anchor" href="#多道批处理系统"></a> <strong>多道批处理系统：</strong></h3>
 <p>多道批处理系统是在单道批处理系统的基础上发展而来的。这种系统允许计算机在内存中同时加载和管理多个任务，而不需要等待前一个任务的完成。多道批处理系统将内存分割成多个区域，每个区域可以加载一个任务的代码和数据。操作系统会在任务之间进行切换，以实现多个任务的并发执行。这种方式提高了计算机的资源利用率和效率。</p>
-<h2 id="os-的类型"><a class="markdownIt-Anchor" href="#os-的类型">#</a> OS 的类型？</h2>
+<h2 id="os-的类型"><a class="markdownIt-Anchor" href="#os-的类型"></a> OS 的类型？</h2>
 <ol>
 <li><strong>多道批处理系统（Multi-programming Batch System）：</strong> 多道批处理系统是一种操作系统，允许多个任务（作业）在内存中同时存在，但每个任务的执行是按照一定的调度策略轮流进行的。它旨在提高计算机的资源利用率，通过在任务之间切换以避免 CPU 空闲。每个任务通常独立运行，不需要用户干预。这种系统适用于大量任务需要批量处理，例如批量数据处理任务。</li>
 <li><strong>分时系统（Time-sharing System）：</strong> 分时系统允许多个用户通过终端或用户界面同时访问计算机，每个用户似乎都在独占地使用计算机资源。系统通过快速的任务切换（时间片轮转）实现用户之间的并发执行，每个用户能够迅速交互并使用计算机。分时系统适用于多用户、交互式的环境，如图形用户界面和终端。</li>
 <li><strong>实时系统（Real-time System）：</strong> 实时系统是专门设计用于处理实时任务的操作系统。实时任务具有严格的时间要求，可以分为硬实时和软实时。硬实时任务要求任务必须在严格的时间限制内完成，否则会导致系统错误。软实时任务也有时间要求，但错过截止日期不会导致系统错误。实时系统旨在确保任务能够按照特定的时间要求得到执行，适用于需要在严格时间约束下运行的应用，如飞行控制系统和医疗设备。</li>
 </ol>
-<h2 id="操作系统能干什么"><a class="markdownIt-Anchor" href="#操作系统能干什么">#</a> <strong>操作系统能干什么？</strong></h2>
+<h2 id="操作系统能干什么"><a class="markdownIt-Anchor" href="#操作系统能干什么"></a> <strong>操作系统能干什么？</strong></h2>
 <p>操作系统的主要任务包括：</p>
 <ul>
 <li>管理计算机的硬件资源，如处理器、内存、硬盘、网络接口等。</li>
@@ -224,7 +224,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <li>处理输入输出，使用户和应用程序能够与外部设备进行交互。</li>
 <li>提供用户界面，让用户能够与计算机进行交互，如命令行界面或图形用户界面。</li>
 </ul>
-<h2 id="操作系统有哪些"><a class="markdownIt-Anchor" href="#操作系统有哪些">#</a> <strong>操作系统有哪些？</strong></h2>
+<h2 id="操作系统有哪些"><a class="markdownIt-Anchor" href="#操作系统有哪些"></a> <strong>操作系统有哪些？</strong></h2>
 <p>常见的操作系统包括：</p>
 <ul>
 <li>Windows：微软开发的操作系统系列，如 Windows 10、Windows 11 等。</li>
@@ -235,7 +235,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <li>iOS：苹果公司用于 iPhone 和 iPad 等移动设备的操作系统。</li>
 <li>OpenHarmony：分布式操作系统，由华为公司开发。</li>
 </ul>
-<h2 id="操作系统的新发展"><a class="markdownIt-Anchor" href="#操作系统的新发展">#</a> <strong>操作系统的新发展？</strong></h2>
+<h2 id="操作系统的新发展"><a class="markdownIt-Anchor" href="#操作系统的新发展"></a> <strong>操作系统的新发展？</strong></h2>
 <p>操作系统领域一直在不断发展演进。一些新的趋势和发展包括：</p>
 <ul>
 <li><strong>云操作系统：</strong> 针对云计算环境的操作系统，如 Google 的 Chrome OS 和微软的 Azure Sphere。</li>
@@ -245,129 +245,140 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <li><strong>量子操作系统：</strong> 随着量子计算的发展，涉及管理量子资源和运行量子算法的操作系统正在探索中。</li>
 </ul>
 <p>这些都只是操作系统领域的一部分发展趋势，操作系统将继续适应新的硬件和应用场景，以满足不断变化的需求。</p>
-<h2 id="简单总结"><a class="markdownIt-Anchor" href="#简单总结">#</a> 简单总结！</h2>
+<h2 id="简单总结"><a class="markdownIt-Anchor" href="#简单总结"></a> 简单总结！</h2>
 <p>操作系统的定义可归纳为：操作系统是控制和管理计算机系统内各种硬件和软件资源、合理组织计算机工作流程的系统软件 (或程序集合)，是用户与计算机之间的接口。</p>
-<p>操作系统是什么？<mark>是核心系统软件</mark><br>
-操作系统管什么？<mark>控制和管理系统内各资源</mark><br>
+<p>操作系统是什么？<mark>是核心系统软件</mark><br />
+操作系统管什么？<mark>控制和管理系统内各资源</mark><br />
 操作系统有何用？<mark>扩充硬件功能，方便用户使用</mark></p>
-<h2 id="练习"><a class="markdownIt-Anchor" href="#练习">#</a> 练习</h2>
+<h2 id="练习"><a class="markdownIt-Anchor" href="#练习"></a> 练习</h2>
 <ol>
-<li class="quiz">
-<p>一个作业第一次执行时用了 5 分钟，而第二次执行时用了 6 分钟，这说明了操作系统的 <span class="gap"></span> 特点。</p>
-<ul class="options">
+<li>
+<p>一个作业第一次执行时用了 5 分钟，而第二次执行时用了 6 分钟，这说明了操作系统的 []{.gap} 特点。 {.quiz}</p>
+<ul>
 <li>并发</li>
 <li>共享</li>
 <li>虚拟</li>
-<li class="correct">异步</li>
+<li>异步 {.correct}<br />
+{.options}</li>
 </ul>
-<details class="primary"><summary>解释</summary><div>
+<p>+++primary 解释</p>
 <ul>
-<li>异步存在时间不确定性</li>
-</ul>
-</div></details>
+<li>
+<p>异步存在时间不确定性</p>
+<p>+++</p>
 </li>
-<li class="quiz">
-<p>操作系统的最基本的两个特征是资源共享和 <span class="gap"></span> 。</p>
-<ul class="options">
+</ul>
+</li>
+<li>
+<p>操作系统的最基本的两个特征是资源共享和 []{.gap} 。 {.quiz}</p>
+<ul>
 <li>多道程序设计</li>
-<li class="correct">程序的并发执行</li>
+<li>程序的并发执行 {.correct}</li>
 <li>中断</li>
-<li>程序顺序执行</li>
+<li>程序顺序执行<br />
+{.options}</li>
 </ul>
 </li>
-<li class="quiz">
-<p>单道批处理系统的主要缺点是 <span class="gap"></span> 。</p>
-<ul class="options">
-<li class="correct">CPU 利用率不高</li>
+<li>
+<p>单道批处理系统的主要缺点是 []{.gap} 。 {.quiz}</p>
+<ul>
+<li>CPU 利用率不高 {.correct}</li>
 <li>失去了交互性</li>
 <li>不具备并行性</li>
-<li>以上都不是</li>
+<li>以上都不是<br />
+{.options}</li>
 </ul>
 </li>
 </ol>
-<details class="primary"><summary>解释</summary><div>
+<p>+++primary 解释</p>
 <ul>
-<li>实际上 ABC 都是他的缺点，但是 <mark>CPU / 资源利用率不高</mark>是他的主要缺点</li>
+<li>
+<p>实际上 ABC 都是他的缺点，但是 <mark>CPU/资源利用率不高</mark>是他的主要缺点</p>
+<p>+++</p>
+</li>
 </ul>
-</div></details>
 <ol start="4">
-<li class="quiz false">
-<p>采用多道程序设计的系统中，系统中的程序道数越多，系统的效率越高。</p>
+<li>
+<p>采用多道程序设计的系统中，系统中的程序道数越多，系统的效率越高。 {.quiz .false}</p>
 </li>
-<li class="quiz false">
-<p>通常将 CPU 模式分为内核态 (核心态) 和用户态，这样做的目的是为了提高运行速度。</p>
+<li>
+<p>通常将 CPU 模式分为内核态(核心态)和用户态，这样做的目的是为了提高运行速度。 {.quiz .false}</p>
 </li>
-<li class="quiz true">
-<p>操作系统内核能使用特权指令。</p>
+<li>
+<p>操作系统内核能使用特权指令。 {.quiz .true}</p>
 </li>
 </ol>
-<details class="info"><summary>解析</summary><div>
+<p>+++info 解析</p>
 <ol start="4">
 <li>程序道数多多会导致每个程序分得的内存不够，很多程序所需的数据和代码要临时从磁盘调入内存系统会频繁的进行 I/O，使得系统效率下降！</li>
-<li>是为了提高安全性 ==（双重工作模式 P20）==</li>
+<li>是为了提高安全性==（双重工作模式 P20）==</li>
 <li>确实对</li>
 </ol>
-</div></details>
-<h1 id="进程"><a class="markdownIt-Anchor" href="#进程">#</a> 进程</h1>
-<h2 id="进程的几个基本状态"><a class="markdownIt-Anchor" href="#进程的几个基本状态">#</a> 进程的几个基本状态</h2>
+<p>+++</p>
+<h1 id="进程"><a class="markdownIt-Anchor" href="#进程"></a> 进程</h1>
+<h2 id="进程的几个基本状态"><a class="markdownIt-Anchor" href="#进程的几个基本状态"></a> 进程的几个基本状态</h2>
 <ol>
-<li><strong>就绪状态（Ready）：</strong> 进程已获得除处理器外的所需资源，等待分配处理器资源；只要分配了处理器进程就可执行。就绪进程可以按多个优先级来划分队列。例如，当一个进程由于时间片用完而进入就绪状态时，排入低优先级队列；当进程由 I/O 操作完成而进入就绪状态时，排入高优先级队列.</li>
-<li><strong>运行状态 (Running)：</strong> 进程占用处理器资源；处于此状态的进程的数目小于等于处理器的数目。在没有其他进程可以执行时 (如所有进程都在阻塞状态), 通常会自动执行系统的空闲进程.</li>
-<li><strong>阻塞状态 (Blocked)：</strong> 由于进程等待某种条件（如 I/O 操作或进程同步）, 在条件满足之前无法继续执行。该事件发生前即使把处理机分配给该进程，也无法运行.</li>
+<li><strong>就绪状态（Ready）：</strong> 进程已获得除处理器外的所需资源,等待分配处理器资源；只要分配了处理器进程就可执行.就绪进程可以按多个优先级来划分队列.例如,当一个进程由于时间片用完而进入就绪状态时,排入低优先级队列；当进程由 I/O 操作完成而进入就绪状态时,排入高优先级队列.</li>
+<li><strong>运行状态(Running)：</strong> 进程占用处理器资源；处于此状态的进程的数目小于等于处理器的数目.在没有其他进程可以执行时(如所有进程都在阻塞状态),通常会自动执行系统的空闲进程.</li>
+<li><strong>阻塞状态(Blocked)：</strong> 由于进程等待某种条件（如 I/O 操作或进程同步）,在条件满足之前无法继续执行.该事件发生前即使把处理机分配给该进程,也无法运行.</li>
 </ol>
-<p><img data-src="https://s2.loli.net/2023/08/29/X8stjGRqdnJPr26.jpg" alt="osStateTransition.jpg"></p>
-<h2 id="名词解释"><a class="markdownIt-Anchor" href="#名词解释">#</a> 名词解释</h2>
+<p><img data-src="https://s2.loli.net/2023/08/29/X8stjGRqdnJPr26.jpg" alt="osStateTransition.jpg" /></p>
+<h2 id="名词解释"><a class="markdownIt-Anchor" href="#名词解释"></a> 名词解释</h2>
 <p><strong>挂起：</strong> 从内存挂至外存</p>
 <p><strong>时间片：</strong> 程序执行的一段时间</p>
 <p><strong>阻塞：</strong> 发生 I/O 或者其他事件进入阻塞状态</p>
-<h2 id="扩展状态考研"><a class="markdownIt-Anchor" href="#扩展状态考研">#</a> 扩展状态（考研）</h2>
-<p><img data-src="https://s2.loli.net/2023/08/29/RDfm3M4nLPioruT.jpg" alt="osStateTransitionExtend.jpg"></p>
-<h2 id="练习-2"><a class="markdownIt-Anchor" href="#练习-2">#</a> 练习</h2>
+<h2 id="扩展状态考研"><a class="markdownIt-Anchor" href="#扩展状态考研"></a> 扩展状态（考研）</h2>
+<p><img data-src="https://s2.loli.net/2023/08/29/RDfm3M4nLPioruT.jpg" alt="osStateTransitionExtend.jpg" /></p>
+<h2 id="练习-2"><a class="markdownIt-Anchor" href="#练习-2"></a> 练习</h2>
 <ol>
-<li class="quiz">
-<p>当 <span class="gap"></span> 时，进程从执行状态转变为就绪状态。</p>
-<ul class="options">
+<li>
+<p>当 []{.gap} 时，进程从执行状态转变为就绪状态。 {.quiz}</p>
+<ul>
 <li>进程被调度程序选中</li>
-<li class="correct">时间片到</li>
+<li>时间片到 {.correct}</li>
 <li>等待某一事件</li>
-<li>等待的事件发生</li>
+<li>等待的事件发生<br />
+{.options}</li>
 </ul>
 </li>
-<li class="quiz">
-<p>在进程状态转换时，下列 <span class="gap"></span> 转换是不可能发生的。</p>
-<ul class="options">
-<li>就绪态 一 &gt; 运行态</li>
-<li>运行态 一 &gt; 就绪态</li>
-<li>运行态 一 &gt; 阻塞态</li>
-<li class="correct">阻塞态 一 &gt; 运行态</li>
+<li>
+<p>在进程状态转换时，下列 []{.gap} 转换是不可能发生的。 {.quiz}</p>
+<ul>
+<li>就绪态 一&gt; 运行态</li>
+<li>运行态 一&gt; 就绪态</li>
+<li>运行态 一&gt; 阻塞态</li>
+<li>阻塞态 一&gt; 运行态 {.correct}<br />
+{.options}</li>
 </ul>
 </li>
-<li class="quiz">
-<p>进程和程序的本质区别是 <span class="gap"></span></p>
-<ul class="options">
-<li class="correct">前者是动态的，后者是静态的</li>
+<li>
+<p>进程和程序的本质区别是 []{.gap} {.quiz}</p>
+<ul>
+<li>前者是动态的，后者是静态的 {.correct}</li>
 <li>前者存储在内存，后者存储在外存</li>
 <li>前者在一个文件中，后者在多个文件中</li>
-<li>前者分时使用 CPU，后者独占 CPU</li>
+<li>前者分时使用 CPU，后者独占 CPU<br />
+{.options}</li>
 </ul>
 </li>
-<li class="quiz">
-<p>程序运行时独占系统资源，只有程序本身能改变系统资源状态，这是指 <span class="gap"></span></p>
-<ul class="options">
+<li>
+<p>程序运行时独占系统资源，只有程序本身能改变系统资源状态，这是指 []{.gap} {.quiz}</p>
+<ul>
 <li>程序顺序执行的再现性</li>
 <li>并发程序失去再现性</li>
 <li>并发程序失夫封闭性</li>
-<li class="correct">程序顺序执行时的封闭性</li>
+<li>程序顺序执行时的封闭性 {.correct}<br />
+{.options}</li>
 </ul>
 </li>
-<li class="quiz false">
-<p>不同的进程必然对应不同的程序。</p>
+<li>
+<p>不同的进程必然对应不同的程序。 {.quiz .false}</p>
 </li>
-<li class="quiz true">
-<p>进程状态的转换是由操作系统完成的，对用户是透明的。</p>
+<li>
+<p>进程状态的转换是由操作系统完成的，对用户是透明的。 {.quiz .true}</p>
 </li>
 </ol>
-<h2 id="进程控制块process-control-blockpcb"><a class="markdownIt-Anchor" href="#进程控制块process-control-blockpcb">#</a> 进程控制块（Process Control Block，PCB）</h2>
+<h2 id="进程控制块process-control-blockpcb"><a class="markdownIt-Anchor" href="#进程控制块process-control-blockpcb"></a> 进程控制块（Process Control Block，PCB）</h2>
 <p>每个正在运行或等待运行的进程都有一个对应的 PCB，它包含了进程的各种属性、状态以及与其相关的控制信息。PCB 是操作系统内部用于实现进程管理的重要数据结构之一。</p>
 <ol>
 <li>进程状态（Process State）：表示进程的当前状态，如运行、就绪、阻塞等。操作系统根据进程状态来进行调度和管理。</li>
@@ -380,17 +391,17 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <li>进程的各种统计信息：如运行时间、等待时间等，用于性能分析和调优。</li>
 </ol>
 <p>PCB 的存在使得操作系统可以高效地进行进程的切换、调度、挂起、恢复等操作。当操作系统需要切换到另一个进程时，它可以保存当前进程的状态信息到其对应的 PCB，然后加载新进程的状态信息，从而实现进程切换。这种切换是操作系统多任务处理的基础，使得多个进程可以在单个 CPU 上共享时间，并且实现了对系统资源的合理分配和利用。</p>
-<h2 id="pcb-组织方式"><a class="markdownIt-Anchor" href="#pcb-组织方式">#</a> PCB 组织方式</h2>
-<p><img data-src="https://s2.loli.net/2023/08/29/An6JckEslPQOC49.jpg" alt="PCB1.jpg"></p>
-<p><img data-src="https://s2.loli.net/2023/08/29/pO4wvVrkN1DdMo8.jpg" alt="PCB2.jpg"></p>
-<p><img data-src="https://s2.loli.net/2023/08/29/cr1Bm69ez7uKgUZ.jpg" alt="POB3.jpg"></p>
-<h2 id="练习-3"><a class="markdownIt-Anchor" href="#练习-3">#</a> 练习</h2>
+<h2 id="pcb-组织方式"><a class="markdownIt-Anchor" href="#pcb-组织方式"></a> PCB 组织方式</h2>
+<p><img data-src="https://s2.loli.net/2023/08/29/An6JckEslPQOC49.jpg" alt="PCB1.jpg" /></p>
+<p><img data-src="https://s2.loli.net/2023/08/29/pO4wvVrkN1DdMo8.jpg" alt="PCB2.jpg" /></p>
+<p><img data-src="https://s2.loli.net/2023/08/29/cr1Bm69ez7uKgUZ.jpg" alt="POB3.jpg" /></p>
+<h2 id="练习-3"><a class="markdownIt-Anchor" href="#练习-3"></a> 练习</h2>
 <ol>
-<li class="quiz true">
-<p>在 PCB 中可以直接或间接找到有关该进程的所有信息。</p>
+<li>
+<p>在 PCB 中可以直接或间接找到有关该进程的所有信息。 {.quiz .true}</p>
 </li>
-<li class="quiz true">
-<p>进程由 PCB 和其执行的程序、数据所组成</p>
+<li>
+<p>进程由 PCB 和其执行的程序、数据所组成 {.quiz .true}</p>
 </li>
 </ol>
 
@@ -465,9 +476,9 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
     <div class="item left">
       
 
-  <a href="/experience/SSM01/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;i.postimg.cc&#x2F;Y08Rcdkn&#x2F;5914c632e6dffaceb04a08266d4d5148.png" title="SSM框架整合">
+  <a href="/Java/SSM01/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;i.postimg.cc&#x2F;Y08Rcdkn&#x2F;5914c632e6dffaceb04a08266d4d5148.png" title="SSM框架整合">
   <span class="type">上一篇</span>
-  <span class="category"><i class="ic i-flag"></i> 开发经验</span>
+  <span class="category"><i class="ic i-flag"></i> SSM框架整合</span>
   <h3>SSM框架整合</h3>
   </a>
 
@@ -515,19 +526,19 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">55</span>
+        <span class="count">57</span>
         <span class="name">文章</span>
       </a>
     </div>
     <div class="item categories">
       <a href="/categories/">
-        <span class="count">25</span>
+        <span class="count">28</span>
         <span class="name">分类</span>
       </a>
     </div>
     <div class="item tags">
       <a href="/tags/">
-        <span class="count">42</span>
+        <span class="count">51</span>
         <span class="name">标签</span>
       </a>
     </div>
@@ -604,7 +615,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 
   <ul id="quick">
     <li class="prev pjax">
-        <a href="/experience/SSM01/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a>
+        <a href="/Java/SSM01/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a>
     </li>
     <li class="up"><i class="ic i-arrow-up"></i></li>
     <li class="down"><i class="ic i-arrow-down"></i></li>
@@ -631,91 +642,21 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/DS/" title="分类于 DS">DS</a>
-</div>
-
-    <span><a href="/DSLearnNote/GeneralizedLists/" title="考试中有关广义表的两个常用函数的解">考试中有关广义表的两个常用函数的解</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
-</div>
-
-    <span><a href="/Operate-system/03OS/" title="进程同步问题">进程同步问题</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Principles-of-computer-composition/" title="分类于 计算机组成原理">计算机组成原理</a>
-</div>
-
-    <span><a href="/Principles-of-computer-composition/booth_algorithm/" title="booth算法">booth算法</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E7%AC%94%E8%AE%B0/" title="分类于 笔记">笔记</a>
-</div>
-
-    <span><a href="/math/matrix_anl/" title="矩阵论">矩阵论</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
 <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
-</div>
-
-    <span><a href="/database/DataBase02/" title="数据库设计">数据库设计</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
-</div>
-
-    <span><a href="/Operate-system/01OS/" title="操作系统知识点阶段总结">操作系统知识点阶段总结</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/python/%E5%9F%BA%E7%A1%80/" title="分类于 基础">基础</a>
+<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MongoDB/" title="分类于 MongoDB">MongoDB</a>
 </div>
 
-    <span><a href="/python/DLFromFormula/" title="从公式角度看深度学习">从公式角度看深度学习</a></span>
+    <span><a href="/MongoDB/MongoDB01/" title="MongoDB的安装与初步使用（Windows平台）">MongoDB的安装与初步使用（Windows平台）</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<a href="/categories/Java/" title="分类于 Java">Java</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/python/YOLO/" title="分类于 YOLO">YOLO</a>
-</div>
-
-    <span><a href="/python/YOLO/index/" title="YOLO系列">YOLO系列</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/gitflow/" title="分类于 gitflow">gitflow</a>
+<a href="/categories/Java/git%E7%9B%B8%E5%85%B3/" title="分类于 git相关">git相关</a>
 </div>
 
     <span><a href="/Java/gitflow/" title="GitFlow分支管理策略">GitFlow分支管理策略</a></span>
@@ -725,12 +666,92 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/python/%E5%9F%BA%E7%A1%80/" title="分类于 基础">基础</a>
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
 </div>
 
-    <span><a href="/python/NLP/" title="NLP自然语言处理">NLP自然语言处理</a></span>
+    <span><a href="/Operate-system/OSPVCode/" title="操作系统PV代码题速记">操作系统PV代码题速记</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/notebook/" title="分类于 笔记">笔记</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/notebook/%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E8%A7%A3%E9%A2%98%E7%AC%94%E8%AE%B0/" title="分类于 模糊数学解题笔记">模糊数学解题笔记</a>
+</div>
+
+    <span><a href="/math/mh_math/" title="模糊数学25习题">模糊数学25习题</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/notebook/" title="分类于 笔记">笔记</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/notebook/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B0/" title="分类于 数据结构笔记">数据结构笔记</a>
+</div>
+
+    <span><a href="/DSLearnNote/codeTM/" title="数据结构代码题速记">数据结构代码题速记</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%90%86%E8%AE%BA/" title="分类于 数据库理论">数据库理论</a>
+</div>
+
+    <span><a href="/database/DataBase02/" title="数据库设计">数据库设计</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
+</div>
+
+    <span><a href="/python/Transformer/" title="Transformer实战">Transformer实战</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" title="分类于 计算机组成原理">计算机组成原理</a>
+</div>
+
+    <span><a href="/Principles-of-computer-composition/booth_algorithm/" title="booth算法">booth算法</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/notebook/" title="分类于 笔记">笔记</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/notebook/%E8%80%83%E7%A0%94%E8%8B%B1%E8%AF%AD%E7%AC%94%E8%AE%B0/" title="分类于 考研英语笔记">考研英语笔记</a>
+</div>
+
+    <span><a href="/English/xbbEnglish/" title="英语笔记">英语笔记</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/notebook/" title="分类于 笔记">笔记</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/notebook/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0/" title="分类于 计算机网络笔记">计算机网络笔记</a>
+</div>
+
+    <span><a href="/network/computer_network_retest/" title="计算机网络复试速览">计算机网络复试速览</a></span>
   </li>
 
   </ul>
@@ -755,8 +776,8 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
     <a href="https://icp.gov.moe/?keyword=20249329" target="_blank">萌ICP备20249329号</a>
     基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
   <br/><span>世界本污浊，罪与爱同歌</span>
-  <br/><i class="ic i-chart-area"></i>&nbsp;<span>507k&nbsp;字</span> &nbsp;|&nbsp;
-  <i class="ic i-coffee"></i>&nbsp;<span> 14:06</span>
+  <br/><i class="ic i-chart-area"></i>&nbsp;<span>549k&nbsp;字</span> &nbsp;|&nbsp;
+  <i class="ic i-coffee"></i>&nbsp;<span> 15:15</span>
   </div>
 </div>
 

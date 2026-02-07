@@ -35,7 +35,7 @@
 
 
   <title>
-初见Linux - Linux |
+初见Linux - Linux相关 - Java |
 KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</title>
 <meta name="generator" content="Hexo 6.3.0"></head>
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -129,8 +129,11 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
 <i class="ic i-home"></i>
 <span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
-<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/Linux/" itemprop="item" rel="index" title="分类于 Linux"><span itemprop="name">Linux</span></a>
+<span  itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/Java/" itemprop="item" rel="index" title="分类于 Java"><span itemprop="name">Java</span></a>
 <meta itemprop="position" content="1" /></span>
+<i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/Java/Linux%E7%9B%B8%E5%85%B3/" itemprop="item" rel="index" title="分类于 Linux相关"><span itemprop="name">Linux相关</span></a>
+<meta itemprop="position" content="2" /></span>
 </div>
 
     <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
@@ -149,139 +152,179 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <div class="body md" itemprop="articleBody">
     
 
-    <h1 id="初见linux"><a class="markdownIt-Anchor" href="#初见linux">#</a> 初见 Linux</h1>
+    <h1 id="初见linux"><a class="markdownIt-Anchor" href="#初见linux"></a> 初见Linux</h1>
 <p>首先安装什么的就不讲了，这里先讲一下基础命令</p>
-<h1 id="简单命令"><a class="markdownIt-Anchor" href="#简单命令">#</a> 简单命令</h1>
-<h2 id="who命令"><a class="markdownIt-Anchor" href="#who命令">#</a> who 命令</h2>
-<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token punctuation">[</span>karry@localhost ~<span class="token punctuation">]</span>$ <span class="token function">who</span> am i</pre></td></tr></table></figure><blockquote>
-<p>[karry@localhost ~]$ who am i<br>
+<h1 id="简单命令"><a class="markdownIt-Anchor" href="#简单命令"></a> 简单命令</h1>
+<h2 id="who命令"><a class="markdownIt-Anchor" href="#who命令"></a> who命令</h2>
+<pre class="highlight"><code class="bash">[karry@localhost ~]$ <span class="hljs-built_in">who</span> am i
+</code></pre>
+<blockquote>
+<p>[karry@localhost ~]$ who am i<br />
 karry    pts/0        2023-09-01 10:26 (laptop-karry1107)</p>
 </blockquote>
-<h2 id="echo命令"><a class="markdownIt-Anchor" href="#echo命令">#</a> echo 命令</h2>
+<h2 id="echo命令"><a class="markdownIt-Anchor" href="#echo命令"></a> echo命令</h2>
 <p>这个命令是将内容输出到屏幕上</p>
-<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token punctuation">[</span>karry@localhost ~<span class="token punctuation">]</span>$ <span class="token builtin class-name">echo</span> Hello Karry.Liu</pre></td></tr></table></figure><blockquote>
-<p>[karry@localhost ~]$ echo Hello Karry.Liu<br>
+<pre class="highlight"><code class="bash">[karry@localhost ~]$ <span class="hljs-built_in">echo</span> Hello Karry.Liu
+</code></pre>
+<blockquote>
+<p>[karry@localhost ~]$ echo Hello Karry.Liu<br />
 Hello Karry.Liu</p>
 </blockquote>
-<h2 id="date命令"><a class="markdownIt-Anchor" href="#date命令">#</a> date 命令</h2>
-<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token punctuation">[</span>karry@localhost ~<span class="token punctuation">]</span>$ <span class="token function">date</span></pre></td></tr></table></figure><blockquote>
-<p>[karry@localhost ~]$ date<br>
-2023 年 09 月 01 日 星期五 10:32:23 PDT</p>
+<h2 id="date命令"><a class="markdownIt-Anchor" href="#date命令"></a> date命令</h2>
+<pre class="highlight"><code class="bash">[karry@localhost ~]$ <span class="hljs-built_in">date</span>
+</code></pre>
+<blockquote>
+<p>[karry@localhost ~]$ date<br />
+2023年 09月 01日 星期五 10:32:23 PDT</p>
 </blockquote>
-<h2 id="cal命令"><a class="markdownIt-Anchor" href="#cal命令">#</a> cal 命令</h2>
-<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token punctuation">[</span>karry@localhost ~<span class="token punctuation">]</span>$ <span class="token function">cal</span> <span class="token number">9</span> <span class="token number">2023</span></pre></td></tr></table></figure><blockquote>
-<p>[karry@localhost ~]$ cal 9 2023<br>
- 九月 2023<br>
- 日 一 二 三 四 五 六<br>
- 1  2<br>
-3  4  5  6  7  8  9<br>
-10 11 12 13 14 15 16<br>
-17 18 19 20 21 22 23<br>
+<h2 id="cal命令"><a class="markdownIt-Anchor" href="#cal命令"></a> cal命令</h2>
+<pre class="highlight"><code class="bash">[karry@localhost ~]$ cal 9 2023
+</code></pre>
+<blockquote>
+<p>[karry@localhost ~]$ cal 9 2023<br />
+九月 2023<br />
+日 一 二 三 四 五 六<br />
+1  2<br />
+3  4  5  6  7  8  9<br />
+10 11 12 13 14 15 16<br />
+17 18 19 20 21 22 23<br />
 24 25 26 27 28 29 30</p>
 </blockquote>
-<h1 id="基础命令"><a class="markdownIt-Anchor" href="#基础命令">#</a> 基础命令</h1>
-<h2 id="基础文件操作命令"><a class="markdownIt-Anchor" href="#基础文件操作命令">#</a> 基础文件操作命令</h2>
-<h3 id="展示文件夹中的内容"><a class="markdownIt-Anchor" href="#展示文件夹中的内容">#</a> 展示文件夹中的内容</h3>
-<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token punctuation">[</span>karry@localhost ~<span class="token punctuation">]</span>$ <span class="token function">ls</span></pre></td></tr></table></figure><blockquote>
-<p>[karry@localhost ~]$ ls<br>
+<h1 id="基础命令"><a class="markdownIt-Anchor" href="#基础命令"></a> 基础命令</h1>
+<h2 id="基础文件操作命令"><a class="markdownIt-Anchor" href="#基础文件操作命令"></a> 基础文件操作命令</h2>
+<h3 id="展示文件夹中的内容"><a class="markdownIt-Anchor" href="#展示文件夹中的内容"></a> 展示文件夹中的内容</h3>
+<pre class="highlight"><code class="bash">[karry@localhost ~]$ <span class="hljs-built_in">ls</span>
+</code></pre>
+<blockquote>
+<p>[karry@localhost ~]$ ls<br />
 Desktop  Documents  Downloads  Music  Pictures  Public  Templates  Videos</p>
 </blockquote>
-<h3 id="进入退出文件夹"><a class="markdownIt-Anchor" href="#进入退出文件夹">#</a> 进入 / 退出文件夹</h3>
-<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token punctuation">[</span>karry@localhost ~<span class="token punctuation">]</span>$ <span class="token builtin class-name">cd</span> Desktop</pre></td></tr></table></figure><blockquote>
+<h3 id="进入退出文件夹"><a class="markdownIt-Anchor" href="#进入退出文件夹"></a> 进入/退出文件夹</h3>
+<pre class="highlight"><code class="bash">[karry@localhost ~]$ <span class="hljs-built_in">cd</span> Desktop
+</code></pre>
+<blockquote>
 <p>[karry@localhost ~]$ cd Desktop</p>
 <p>[karry@localhost Desktop]$</p>
 </blockquote>
-<h3 id="创建文件夹"><a class="markdownIt-Anchor" href="#创建文件夹">#</a> 创建文件夹</h3>
-<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token punctuation">[</span>karry@localhost Desktop<span class="token punctuation">]</span>$ <span class="token function">mkdir</span> LinuxHello</pre></td></tr></table></figure><blockquote>
-<p>[karry@localhost Desktop]$ ls<br>
+<h3 id="创建文件夹"><a class="markdownIt-Anchor" href="#创建文件夹"></a> 创建文件夹</h3>
+<pre class="highlight"><code class="bash">[karry@localhost Desktop]$ <span class="hljs-built_in">mkdir</span> LinuxHello
+</code></pre>
+<blockquote>
+<p>[karry@localhost Desktop]$ ls<br />
 firefox.desktop  myFile  test</p>
-<p>[karry@localhost Desktop]$ mkdir LinuxHello<br>
-[karry@localhost Desktop]$ ls<br>
+<p>[karry@localhost Desktop]$ mkdir LinuxHello<br />
+[karry@localhost Desktop]$ ls<br />
 firefox.desktop  LiunxHello  myFile  test</p>
 </blockquote>
-<h3 id="创建一个文件"><a class="markdownIt-Anchor" href="#创建一个文件">#</a> 创建一个文件</h3>
-<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token punctuation">[</span>karry@localhost LinuxHello<span class="token punctuation">]</span>$ <span class="token function">touch</span> fistText.txt</pre></td></tr></table></figure><blockquote>
-<p>[karry@localhost Desktop]$ ls<br>
-firefox.desktop  LinuxHello  myFile  test<br>
-[karry@localhost Desktop]$ cd LinuxHello<br>
-[karry@localhost LinuxHello]$ touch fistText.txt<br>
-[karry@localhost LinuxHello]$ ls<br>
+<h3 id="创建一个文件"><a class="markdownIt-Anchor" href="#创建一个文件"></a> 创建一个文件</h3>
+<pre class="highlight"><code class="bash">[karry@localhost LinuxHello]$ <span class="hljs-built_in">touch</span> fistText.txt
+</code></pre>
+<blockquote>
+<p>[karry@localhost Desktop]$ ls<br />
+firefox.desktop  LinuxHello  myFile  test<br />
+[karry@localhost Desktop]$ cd LinuxHello<br />
+[karry@localhost LinuxHello]$ touch fistText.txt<br />
+[karry@localhost LinuxHello]$ ls<br />
 fistText.txt</p>
 </blockquote>
-<h3 id="编辑文件"><a class="markdownIt-Anchor" href="#编辑文件">#</a> 编辑文件</h3>
-<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token punctuation">[</span>karry@localhost LinuxHello<span class="token punctuation">]</span>$ <span class="token function">touch</span> fistText.txt</pre></td></tr></table></figure><blockquote>
-<p>~<br>
-~<br>
-~<br>
+<h3 id="编辑文件"><a class="markdownIt-Anchor" href="#编辑文件"></a> 编辑文件</h3>
+<pre class="highlight"><code class="bash">[karry@localhost LinuxHello]$ <span class="hljs-built_in">touch</span> fistText.txt
+</code></pre>
+<blockquote>
+<p>~<br />
+~<br />
+~<br />
 “fistText.txt” 0L, 0C</p>
 </blockquote>
-<p>按   <span class="kbd">i</span>        进入插入模式</p>
+<p>按   [i]{.kbd}        进入插入模式</p>
 <blockquote>
-<p>~<br>
-~<br>
-~<br>
+<p>~<br />
+~<br />
+~<br />
 – 插入 –</p>
 </blockquote>
 <p>现在可以编辑文件了！</p>
 <blockquote>
-<p>hi hi，这是我第一次学习 Linux！！！<br>
-我的名字是诗岸梦行舟<br>
-或者是 Karry.Liu<br>
- 让我们共同努力吧！！<br>
-~<br>
+<p>hi hi，这是我第一次学习Linux！！！<br />
+我的名字是诗岸梦行舟<br />
+或者是Karry.Liu<br />
+让我们共同努力吧！！<br />
+~<br />
 ~                                                                                                                                                                                                                                                                                                                                                                       – 插入 –</p>
 </blockquote>
-<p>按   <span class="kbd">Esc</span>        退出插入模式</p>
-<p>按   <span class="kbd">:</span>+  <span class="kbd">w</span>       保存刚才所编辑的文件</p>
+<p>按   [Esc]{.kbd}        退出插入模式</p>
+<p>按   [:]{.kbd}+  [w]{.kbd}       保存刚才所编辑的文件</p>
 <blockquote>
-<p>hi hi，这是我第一次学习 Linux！！！<br>
-我的名字是诗岸梦行舟<br>
-或者是 Karry.Liu<br>
- 让我们共同努力吧！！<br>
-~<br>
+<p>hi hi，这是我第一次学习Linux！！！<br />
+我的名字是诗岸梦行舟<br />
+或者是Karry.Liu<br />
+让我们共同努力吧！！<br />
+~<br />
 “fistText.txt” 4L, 128C 已写入</p>
 </blockquote>
-<p>最后按 <span class="kbd">:</span>+ <span class="kbd">q</span>   退出 vi 编辑器</p>
+<p>最后按 [:]{.kbd}+ [q]{.kbd}   退出vi编辑器</p>
 <blockquote>
-<p>~<br>
-~<br>
+<p>~<br />
+~<br />
 :q</p>
 </blockquote>
-<h3 id="读文件内容"><a class="markdownIt-Anchor" href="#读文件内容">#</a> 读文件内容</h3>
-<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token punctuation">[</span>karry@localhost LinuxHello<span class="token punctuation">]</span>$ <span class="token function">cat</span> fistText.txt</pre></td></tr></table></figure><blockquote>
-<p>[karry@localhost LinuxHello]$ cat fistText.txt<br>
-hi hi，这是我第一次学习 Linux！！！<br>
-我的名字是诗岸梦行舟<br>
-或者是 Karry.Liu<br>
- 让我们共同努力吧！！<br>
+<h3 id="读文件内容"><a class="markdownIt-Anchor" href="#读文件内容"></a> 读文件内容</h3>
+<pre class="highlight"><code class="bash">[karry@localhost LinuxHello]$ <span class="hljs-built_in">cat</span> fistText.txt
+</code></pre>
+<blockquote>
+<p>[karry@localhost LinuxHello]$ cat fistText.txt<br />
+hi hi，这是我第一次学习Linux！！！<br />
+我的名字是诗岸梦行舟<br />
+或者是Karry.Liu<br />
+让我们共同努力吧！！<br />
 [karry@localhost LinuxHello]$</p>
 </blockquote>
-<h1 id="使用g编译程序"><a class="markdownIt-Anchor" href="#使用g编译程序">#</a> 使用 g++ 编译程序</h1>
+<h1 id="使用g编译程序"><a class="markdownIt-Anchor" href="#使用g编译程序"></a> 使用g++编译程序</h1>
 <ol start="0">
 <li>
-<p>如果你还没有安装 g++ 编译器，请先安装</p>
-<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token function">sudo</span> yum <span class="token function">install</span> gcc-c++ <span class="token function">make</span></pre></td></tr></table></figure><p>安装需要一定时间，请耐心等待！</p>
+<p>如果你还没有安装g++编译器，请先安装</p>
+<pre class="highlight"><code class="bash">sudo yum install gcc-c++ make
+</code></pre>
+<p>安装需要一定时间，请耐心等待！</p>
 </li>
 <li>
-<p>进入指定目录，创建 cpp 文件。</p>
-<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token punctuation">[</span>karry@localhost C++<span class="token punctuation">]</span>$ <span class="token function">touch</span> firstApp.cpp</pre></td></tr></table></figure></li>
+<p>进入指定目录，创建cpp文件。</p>
+<pre class="highlight"><code class="bash">[karry@localhost C++]$ <span class="hljs-built_in">touch</span> firstApp.cpp
+</code></pre>
+</li>
 <li>
-<p>使用 vi 指令编辑文件</p>
-<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token punctuation">[</span>karry@localhost C++<span class="token punctuation">]</span>$ <span class="token function">vi</span> firstApp.cpp</pre></td></tr></table></figure></li>
+<p>使用vi指令编辑文件</p>
+<pre class="highlight"><code class="bash">[karry@localhost C++]$ vi firstApp.cpp
+</code></pre>
+</li>
 <li>
-<p>按 <span class="kbd">i</span> 进入插入模式，编辑程序</p>
-<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">#include&lt;iostream></span></pre></td></tr><tr><td data-num="2"></td><td><pre>using namespace std<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>int <span class="token function-name function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>        int <span class="token assign-left variable">a</span><span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>        int <span class="token assign-left variable">b</span><span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>        int <span class="token assign-left variable">c</span><span class="token operator">=</span>a+b<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>        cout<span class="token operator">&lt;&lt;</span><span class="token string">"计算结果为："</span><span class="token operator">&lt;&lt;</span>a<span class="token operator">&lt;&lt;</span><span class="token string">"+"</span><span class="token operator">&lt;&lt;</span>b<span class="token operator">&lt;&lt;</span><span class="token string">"="</span><span class="token operator">&lt;&lt;</span>c<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>        <span class="token builtin class-name">return</span> <span class="token number">0</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure></li>
+<p>按 [i]{.kbd} 进入插入模式，编辑程序</p>
+<pre class="highlight"><code class="bash"><span class="hljs-comment">#include&lt;iostream&gt;</span>
+using namespace std;
+int <span class="hljs-function"><span class="hljs-title">main</span></span>()&#123;
+        int a=1;
+        int b=2;
+        int c=a+b;
+        cout&lt;&lt;<span class="hljs-string">&quot;计算结果为：&quot;</span>&lt;&lt;<span class="hljs-string">a&lt;&lt;&quot;+&quot;&lt;&lt;b&lt;&lt;&quot;=&quot;&lt;&lt;c&lt;&lt;endl;
+        return 0;
+&#125;
+</span></code></pre>
+</li>
 <li>
-<p>按   <span class="kbd">Esc</span>        退出插入模式，按   <span class="kbd">:</span>+  <span class="kbd">w</span>       保存刚才所编辑的文件，最后按 <span class="kbd">:</span>+ <span class="kbd">q</span>   退出 vi 编辑器</p>
+<p>按   [Esc]{.kbd}        退出插入模式，按   [:]{.kbd}+  [w]{.kbd}       保存刚才所编辑的文件，最后按 [:]{.kbd}+ [q]{.kbd}   退出vi编辑器</p>
 </li>
 <li>
 <p>执行命令编译程序</p>
-<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token punctuation">[</span>karry@localhost C++<span class="token punctuation">]</span>$ g++ <span class="token parameter variable">-o</span> firstAppCompile firstApp.cpp</pre></td></tr></table></figure></li>
+<pre class="highlight"><code class="bash">[karry@localhost C++]$ g++ -o firstAppCompile firstApp.cpp
+</code></pre>
+</li>
 <li>
 <p>运行输出结果</p>
-<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token punctuation">[</span>karry@localhost C++<span class="token punctuation">]</span>$ ./firstAppCompile</pre></td></tr></table></figure><blockquote>
-<p>[karry@localhost C++]$ ./firstAppCompile<br>
- 计算结果为：1+2=3<br>
+<pre class="highlight"><code class="bash">[karry@localhost C++]$ ./firstAppCompile
+</code></pre>
+<blockquote>
+<p>[karry@localhost C++]$ ./firstAppCompile<br />
+计算结果为：1+2=3<br />
 [karry@localhost C++]$</p>
 </blockquote>
 </li>
@@ -300,7 +343,7 @@ hi hi，这是我第一次学习 Linux！！！<br>
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">更新于</span>
-    <time title="修改时间：2023-09-02 11:44:25" itemprop="dateModified" datetime="2023-09-02T11:44:25+08:00">2023-09-02</time>
+    <time title="修改时间：2026-02-03 00:14:58" itemprop="dateModified" datetime="2026-02-03T00:14:58+08:00">2026-02-03</time>
   </span>
   <span id="Linux/Linux01/" class="item leancloud_visitors" data-flag-title="初见Linux" title="阅读次数">
       <span class="icon">
@@ -390,7 +433,7 @@ hi hi，这是我第一次学习 Linux！！！<br>
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="文章目录">
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9D%E8%A7%81linux"><span class="toc-number">1.</span> <span class="toc-text"> 初见 Linux</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E5%91%BD%E4%BB%A4"><span class="toc-number">2.</span> <span class="toc-text"> 简单命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#who%E5%91%BD%E4%BB%A4"><span class="toc-number">2.1.</span> <span class="toc-text"> who 命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#echo%E5%91%BD%E4%BB%A4"><span class="toc-number">2.2.</span> <span class="toc-text"> echo 命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#date%E5%91%BD%E4%BB%A4"><span class="toc-number">2.3.</span> <span class="toc-text"> date 命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cal%E5%91%BD%E4%BB%A4"><span class="toc-number">2.4.</span> <span class="toc-text"> cal 命令</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4"><span class="toc-number">3.</span> <span class="toc-text"> 基础命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4"><span class="toc-number">3.1.</span> <span class="toc-text"> 基础文件操作命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%95%E7%A4%BA%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%AD%E7%9A%84%E5%86%85%E5%AE%B9"><span class="toc-number">3.1.1.</span> <span class="toc-text"> 展示文件夹中的内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E5%85%A5%E9%80%80%E5%87%BA%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-number">3.1.2.</span> <span class="toc-text"> 进入 &#x2F; 退出文件夹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-number">3.1.3.</span> <span class="toc-text"> 创建文件夹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6"><span class="toc-number">3.1.4.</span> <span class="toc-text"> 创建一个文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E8%BE%91%E6%96%87%E4%BB%B6"><span class="toc-number">3.1.5.</span> <span class="toc-text"> 编辑文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9"><span class="toc-number">3.1.6.</span> <span class="toc-text"> 读文件内容</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8g%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F"><span class="toc-number">4.</span> <span class="toc-text"> 使用 g++ 编译程序</span></a></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9D%E8%A7%81linux"><span class="toc-number">1.</span> <span class="toc-text"> 初见Linux</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E5%91%BD%E4%BB%A4"><span class="toc-number">2.</span> <span class="toc-text"> 简单命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#who%E5%91%BD%E4%BB%A4"><span class="toc-number">2.1.</span> <span class="toc-text"> who命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#echo%E5%91%BD%E4%BB%A4"><span class="toc-number">2.2.</span> <span class="toc-text"> echo命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#date%E5%91%BD%E4%BB%A4"><span class="toc-number">2.3.</span> <span class="toc-text"> date命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cal%E5%91%BD%E4%BB%A4"><span class="toc-number">2.4.</span> <span class="toc-text"> cal命令</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4"><span class="toc-number">3.</span> <span class="toc-text"> 基础命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4"><span class="toc-number">3.1.</span> <span class="toc-text"> 基础文件操作命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%95%E7%A4%BA%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%AD%E7%9A%84%E5%86%85%E5%AE%B9"><span class="toc-number">3.1.1.</span> <span class="toc-text"> 展示文件夹中的内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E5%85%A5%E9%80%80%E5%87%BA%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-number">3.1.2.</span> <span class="toc-text"> 进入&#x2F;退出文件夹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-number">3.1.3.</span> <span class="toc-text"> 创建文件夹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6"><span class="toc-number">3.1.4.</span> <span class="toc-text"> 创建一个文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E8%BE%91%E6%96%87%E4%BB%B6"><span class="toc-number">3.1.5.</span> <span class="toc-text"> 编辑文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9"><span class="toc-number">3.1.6.</span> <span class="toc-text"> 读文件内容</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8g%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F"><span class="toc-number">4.</span> <span class="toc-text"> 使用g++编译程序</span></a></li></ol>
       </div>
       <div class="related panel pjax" data-title="系列文章">
         <ul>
@@ -408,19 +451,19 @@ hi hi，这是我第一次学习 Linux！！！<br>
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">55</span>
+        <span class="count">57</span>
         <span class="name">文章</span>
       </a>
     </div>
     <div class="item categories">
       <a href="/categories/">
-        <span class="count">25</span>
+        <span class="count">28</span>
         <span class="name">分类</span>
       </a>
     </div>
     <div class="item tags">
       <a href="/tags/">
-        <span class="count">42</span>
+        <span class="count">51</span>
         <span class="name">标签</span>
       </a>
     </div>
@@ -524,10 +567,44 @@ hi hi，这是我第一次学习 Linux！！！<br>
   <li class="item">
     
 <div class="breadcrumb">
+<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MongoDB/" title="分类于 MongoDB">MongoDB</a>
+</div>
+
+    <span><a href="/MongoDB/MongoDB03/" title="MongoDB初步使用">MongoDB初步使用</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E7%94%9F%E6%B4%BB/" title="分类于 生活">生活</a>
+</div>
+
+    <span><a href="/life/p2025/" title="回望2025——永不熄灭之光">回望2025——永不熄灭之光</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Java/" title="分类于 Java">Java</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/Java/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%9B%B8%E5%85%B3/" title="分类于 微服务相关">微服务相关</a>
+</div>
+
+    <span><a href="/Java/DubboStart/" title="Dubbo快速入门">Dubbo快速入门</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
 <a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
 </div>
 
-    <span><a href="/Operate-system/02OS/" title="进程与线程">进程与线程</a></span>
+    <span><a href="/Operate-system/03OS/" title="进程同步问题">进程同步问题</a></span>
   </li>
 
       
@@ -536,10 +613,34 @@ hi hi，这是我第一次学习 Linux！！！<br>
 <div class="breadcrumb">
 <a href="/categories/python/" title="分类于 深度学习">深度学习</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/python/YOLO/" title="分类于 YOLO">YOLO</a>
+<a href="/categories/python/Geophysics/" title="分类于 Geophysics">Geophysics</a>
 </div>
 
-    <span><a href="/python/YOLO/YOLO_V1/" title="YOLO-V1">YOLO-V1</a></span>
+    <span><a href="/python/Geophysics/hello/" title="深度学习反演网络与重力异常之初窥门径">深度学习反演网络与重力异常之初窥门径</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" title="分类于 论文阅读">论文阅读</a>
+</div>
+
+    <span><a href="/paper/attention_is_all_your_need/" title="Attention is all you need">Attention is all you need</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
+</div>
+
+    <span><a href="/python/Harris/" title="Harris兴趣点检测">Harris兴趣点检测</a></span>
   </li>
 
       
@@ -556,74 +657,22 @@ hi hi，这是我第一次学习 Linux！！！<br>
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<a href="/categories/%E7%94%9F%E6%B4%BB/" title="分类于 生活">生活</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/python/%E5%9F%BA%E7%A1%80/" title="分类于 基础">基础</a>
+<a href="/categories/%E7%94%9F%E6%B4%BB/%E4%B8%8A%E5%B2%B8/" title="分类于 上岸">上岸</a>
 </div>
 
-    <span><a href="/python/CNN_Acc/" title="CNN经典卷积神经网络与实战">CNN经典卷积神经网络与实战</a></span>
+    <span><a href="/life/shangan/" title="写给我这一年多的考研时光">写给我这一年多的考研时光</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" title="分类于 论文阅读">论文阅读</a>
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
 </div>
 
-    <span><a href="/paper/review_remote_sensing_m_d/" title="Methods and datasets on semantic segmentation for Unmanned Aerial Vehicle remote sensing images：A review">Methods and datasets on semantic segmentation for Unmanned Aerial Vehicle remote sensing images：A review</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" title="分类于 图像处理">图像处理</a>
-</div>
-
-    <span><a href="/python/Harris/" title="Harris兴趣点检测">Harris兴趣点检测</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/python/%E9%A1%B9%E7%9B%AE%E4%B8%8E%E5%AE%9E%E6%88%98/" title="分类于 项目与实战">项目与实战</a>
-</div>
-
-    <span><a href="/python/3D_CNN/" title="3DCNN 网络结构">3DCNN 网络结构</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/experience/" title="分类于 开发经验">开发经验</a>
-</div>
-
-    <span><a href="/experience/MD5CalculationTimePractice/" title="MD5计算时间">MD5计算时间</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
-</div>
-
-    <span><a href="/database/DataBase01/" title="DB中的范式">DB中的范式</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" title="分类于 计算机网络">计算机网络</a>
-</div>
-
-    <span><a href="/network/computer_network_retest/" title="计算机网络复试速览">计算机网络复试速览</a></span>
+    <span><a href="/Operate-system/KnowledgeSummary/" title="操作系统细碎知识点及公式速记">操作系统细碎知识点及公式速记</a></span>
   </li>
 
   </ul>
@@ -648,8 +697,8 @@ hi hi，这是我第一次学习 Linux！！！<br>
     <a href="https://icp.gov.moe/?keyword=20249329" target="_blank">萌ICP备20249329号</a>
     基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
   <br/><span>世界本污浊，罪与爱同歌</span>
-  <br/><i class="ic i-chart-area"></i>&nbsp;<span>507k&nbsp;字</span> &nbsp;|&nbsp;
-  <i class="ic i-coffee"></i>&nbsp;<span> 14:06</span>
+  <br/><i class="ic i-chart-area"></i>&nbsp;<span>549k&nbsp;字</span> &nbsp;|&nbsp;
+  <i class="ic i-coffee"></i>&nbsp;<span> 15:15</span>
   </div>
 </div>
 

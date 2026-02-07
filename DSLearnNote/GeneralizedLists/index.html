@@ -35,7 +35,7 @@
 
 
   <title>
-考试中有关广义表的两个常用函数的解 - DS |
+考试中有关广义表的两个常用函数的解 - 数据结构笔记 - 笔记 |
 KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</title>
 <meta name="generator" content="Hexo 6.3.0"></head>
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -129,8 +129,11 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
 <i class="ic i-home"></i>
 <span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
-<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/DS/" itemprop="item" rel="index" title="分类于 DS"><span itemprop="name">DS</span></a>
+<span  itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/notebook/" itemprop="item" rel="index" title="分类于 笔记"><span itemprop="name">笔记</span></a>
 <meta itemprop="position" content="1" /></span>
+<i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/notebook/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B0/" itemprop="item" rel="index" title="分类于 数据结构笔记"><span itemprop="name">数据结构笔记</span></a>
+<meta itemprop="position" content="2" /></span>
 </div>
 
     <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
@@ -149,36 +152,36 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <div class="body md" itemprop="articleBody">
     
 
-    <h1 id="认识广义表"><a class="markdownIt-Anchor" href="#认识广义表">#</a> 认识广义表</h1>
+    <h1 id="认识广义表"><a class="markdownIt-Anchor" href="#认识广义表"></a> 认识广义表</h1>
 <p>广义表是线性表的推广，与线性表不同的是，线性表中的每一个数据元素都属于同一数据对象。</p>
 <p>广义表可以表示为：</p>
 <ol>
 <li>空表：()</li>
 <li>表头：(表头)</li>
-<li>表头 + 表尾：(表头，表尾)</li>
+<li>表头+表尾：(表头,表尾)</li>
 </ol>
 <p><strong>实际上这就是他的基本结构，而对于其中的元素来说，它可以是表，也可以是元素，这就是广义！</strong></p>
-<h1 id="取头head"><a class="markdownIt-Anchor" href="#取头head">#</a> 取头 Head ()</h1>
-<p>Head 是取头操作，他拿的是一个<strong>元素</strong>或者一个<strong>表</strong></p>
-<h1 id="取尾tail"><a class="markdownIt-Anchor" href="#取尾tail">#</a> 取尾 Tail ()</h1>
-<p>Tail 是取尾操作，他拿到的必是一个<strong>表</strong></p>
-<h1 id="巧记"><a class="markdownIt-Anchor" href="#巧记">#</a> 巧记</h1>
+<h1 id="取头head"><a class="markdownIt-Anchor" href="#取头head"></a> 取头Head()</h1>
+<p>Head是取头操作，他拿的是一个<strong>元素</strong>或者一个<strong>表</strong></p>
+<h1 id="取尾tail"><a class="markdownIt-Anchor" href="#取尾tail"></a> 取尾Tail()</h1>
+<p>Tail是取尾操作，他拿到的必是一个<strong>表</strong></p>
+<h1 id="巧记"><a class="markdownIt-Anchor" href="#巧记"></a> 巧记</h1>
 <p>对于蟒蛇（Python）来说，头只有一个，而它的尾巴很长。</p>
-<p>所以，取头<strong> Head</strong> 元素比<strong>较单一</strong>，取尾<strong> Tail</strong> 往往<strong>比较长</strong>。</p>
-<h1 id="练习"><a class="markdownIt-Anchor" href="#练习">#</a> 练习</h1>
-<div class="note primary">
+<p>所以，取头<strong>Head</strong>元素比<strong>较单一</strong>，取尾<strong>Tail</strong>往往<strong>比较长</strong>。</p>
+<h1 id="练习"><a class="markdownIt-Anchor" href="#练习"></a> 练习</h1>
+<p>:::primary</p>
 <p>A=（a，b）</p>
 <p>B=（A，A）</p>
 <p>C=（a，（b，A），B）</p>
 <p>对于操作：Tail（Head（Tail（C）））的结果是什么？</p>
-</div>
-<h1 id="解答"><a class="markdownIt-Anchor" href="#解答">#</a> 解答</h1>
-<p>Tail（C）尾巴长：（a，<ins class="dot warning">（b，A），B</ins> ）</p>
-<p><span class="label info">Tail（C）=（（b，A），B）</span></p>
-<p>Head（Tail（C））头短：（<ins class="dot warning">（b，A）</ins>，B）</p>
-<p><span class="label info">Head（Tail（C））=（b，A）</span></p>
-<p>Tail（Head（Tail（C）））尾巴长：（b，<ins class="dot warning">A</ins>）</p>
-<p><span class="label info">Tail（Head（Tail（C）））=（A）</span></p>
+<p>:::</p>
+<h1 id="解答"><a class="markdownIt-Anchor" href="#解答"></a> 解答</h1>
+<p>Tail（C）尾巴长：（a，<ins>（b，A），B</ins>{.dot .warning} ）</p>
+<p>[Tail（C）=（（b，A），B）]{.label .info}</p>
+<p>Head（Tail（C））头短：（<ins>（b，A）</ins>{.dot .warning}，B）</p>
+<p>[Head（Tail（C））=（b，A）]{.label .info}</p>
+<p>Tail（Head（Tail（C）））尾巴长：（b，<ins>A</ins>{.dot .warning}）</p>
+<p>[Tail（Head（Tail（C）））=（A）]{.label .info}</p>
 <p><strong>尾巴长必是一个表，头短可能是一个表也可能是一个元素</strong></p>
 
       <div class="tags">
@@ -194,7 +197,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">更新于</span>
-    <time title="修改时间：2024-10-25 21:52:02" itemprop="dateModified" datetime="2024-10-25T21:52:02+08:00">2024-10-25</time>
+    <time title="修改时间：2026-02-03 00:11:02" itemprop="dateModified" datetime="2026-02-03T00:11:02+08:00">2026-02-03</time>
   </span>
   <span id="DSLearnNote/GeneralizedLists/" class="item leancloud_visitors" data-flag-title="考试中有关广义表的两个常用函数的解" title="阅读次数">
       <span class="icon">
@@ -284,7 +287,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="文章目录">
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%A4%E8%AF%86%E5%B9%BF%E4%B9%89%E8%A1%A8"><span class="toc-number">1.</span> <span class="toc-text"> 认识广义表</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%96%E5%A4%B4head"><span class="toc-number">2.</span> <span class="toc-text"> 取头 Head ()</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%96%E5%B0%BEtail"><span class="toc-number">3.</span> <span class="toc-text"> 取尾 Tail ()</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B7%A7%E8%AE%B0"><span class="toc-number">4.</span> <span class="toc-text"> 巧记</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0"><span class="toc-number">5.</span> <span class="toc-text"> 练习</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%A7%A3%E7%AD%94"><span class="toc-number">6.</span> <span class="toc-text"> 解答</span></a></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%A4%E8%AF%86%E5%B9%BF%E4%B9%89%E8%A1%A8"><span class="toc-number">1.</span> <span class="toc-text"> 认识广义表</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%96%E5%A4%B4head"><span class="toc-number">2.</span> <span class="toc-text"> 取头Head()</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%96%E5%B0%BEtail"><span class="toc-number">3.</span> <span class="toc-text"> 取尾Tail()</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B7%A7%E8%AE%B0"><span class="toc-number">4.</span> <span class="toc-text"> 巧记</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0"><span class="toc-number">5.</span> <span class="toc-text"> 练习</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%A7%A3%E7%AD%94"><span class="toc-number">6.</span> <span class="toc-text"> 解答</span></a></li></ol>
       </div>
       <div class="related panel pjax" data-title="系列文章">
         <ul>
@@ -302,19 +305,19 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">55</span>
+        <span class="count">57</span>
         <span class="name">文章</span>
       </a>
     </div>
     <div class="item categories">
       <a href="/categories/">
-        <span class="count">25</span>
+        <span class="count">28</span>
         <span class="name">分类</span>
       </a>
     </div>
     <div class="item tags">
       <a href="/tags/">
-        <span class="count">42</span>
+        <span class="count">51</span>
         <span class="name">标签</span>
       </a>
     </div>
@@ -418,50 +421,34 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Dubbo/" title="分类于 Dubbo">Dubbo</a>
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
 </div>
 
-    <span><a href="/Java/DubboStart/" title="Dubbo快速入门">Dubbo快速入门</a></span>
+    <span><a href="/Operate-system/kcsj/" title="操作系统课程设计">操作系统课程设计</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" title="分类于 计算机网络">计算机网络</a>
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" title="分类于 论文阅读">论文阅读</a>
 </div>
 
-    <span><a href="/network/computer_network_retest/" title="计算机网络复试速览">计算机网络复试速览</a></span>
+    <span><a href="/paper/review_remote_sensing_m_d/" title="Methods and datasets on semantic segmentation for Unmanned Aerial Vehicle remote sensing images：A review">Methods and datasets on semantic segmentation for Unmanned Aerial Vehicle remote sensing images：A review</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/DS/" title="分类于 DS">DS</a>
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
 </div>
 
-    <span><a href="/DSLearnNote/GeneralizedLists/" title="考试中有关广义表的两个常用函数的解">考试中有关广义表的两个常用函数的解</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/MongoDB/" title="分类于 MongoDB">MongoDB</a>
-</div>
-
-    <span><a href="/MongoDB/MongoDB02/" title="MongoDB初步使用">MongoDB初步使用</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
-</div>
-
-    <span><a href="/database/DataBase01/" title="DB中的范式">DB中的范式</a></span>
+    <span><a href="/python/Harris/" title="Harris兴趣点检测">Harris兴趣点检测</a></span>
   </li>
 
       
@@ -473,27 +460,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <a href="/categories/python/YOLO/" title="分类于 YOLO">YOLO</a>
 </div>
 
-    <span><a href="/python/YOLO/index/" title="YOLO系列">YOLO系列</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/DS/" title="分类于 DS">DS</a>
-</div>
-
-    <span><a href="/DSLearnNote/codeTM/" title="数据结构代码题速记">数据结构代码题速记</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/experience/" title="分类于 开发经验">开发经验</a>
-</div>
-
-    <span><a href="/experience/SSM01/" title="SSM框架整合">SSM框架整合</a></span>
+    <span><a href="/python/YOLO/YOLO_V1/" title="YOLO-V1">YOLO-V1</a></span>
   </li>
 
       
@@ -502,7 +469,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <div class="breadcrumb">
 <a href="/categories/python/" title="分类于 深度学习">深度学习</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/python/%E5%9F%BA%E7%A1%80/" title="分类于 基础">基础</a>
+<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
 </div>
 
     <span><a href="/python/Transformer/" title="Transformer实战">Transformer实战</a></span>
@@ -512,10 +479,56 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/%E5%88%9D%E6%9D%A5%E4%B9%8D%E5%88%B0/" title="分类于 初来乍到">初来乍到</a>
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
 </div>
 
-    <span><a href="/hello/" title="起点，但不止于起点！">起点，但不止于起点！</a></span>
+    <span><a href="/python/NLP/" title="NLP自然语言处理">NLP自然语言处理</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C/" title="分类于 开发经验">开发经验</a>
+</div>
+
+    <span><a href="/python/fastapi/" title="FastAPI">FastAPI</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Java/" title="分类于 Java">Java</a>
+</div>
+
+    <span><a href="/Java/javaAd01/" title="Java高级特性1">Java高级特性1</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/notebook/" title="分类于 笔记">笔记</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/notebook/%E8%80%83%E7%A0%94%E6%94%BF%E6%B2%BB%E7%AC%94%E8%AE%B0/" title="分类于 考研政治笔记">考研政治笔记</a>
+</div>
+
+    <span><a href="/PoliticalKnowledge/politicalNote/" title="政治知识点速记（持续更新）">政治知识点速记（持续更新）</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MongoDB/" title="分类于 MongoDB">MongoDB</a>
+</div>
+
+    <span><a href="/MongoDB/MongoDB03/" title="MongoDB初步使用">MongoDB初步使用</a></span>
   </li>
 
   </ul>
@@ -540,8 +553,8 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
     <a href="https://icp.gov.moe/?keyword=20249329" target="_blank">萌ICP备20249329号</a>
     基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
   <br/><span>世界本污浊，罪与爱同歌</span>
-  <br/><i class="ic i-chart-area"></i>&nbsp;<span>507k&nbsp;字</span> &nbsp;|&nbsp;
-  <i class="ic i-coffee"></i>&nbsp;<span> 14:06</span>
+  <br/><i class="ic i-chart-area"></i>&nbsp;<span>549k&nbsp;字</span> &nbsp;|&nbsp;
+  <i class="ic i-coffee"></i>&nbsp;<span> 15:15</span>
   </div>
 </div>
 

@@ -152,249 +152,523 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <div class="body md" itemprop="articleBody">
     
 
-    <h1 id="基于pytorch的手写数字识别"><a class="markdownIt-Anchor" href="#基于pytorch的手写数字识别">#</a> 基于 PyTorch 的手写数字识别</h1>
-<h2 id="mnist数据集"><a class="markdownIt-Anchor" href="#mnist数据集">#</a> MNIST 数据集</h2>
+    <h1 id="基于pytorch的手写数字识别"><a class="markdownIt-Anchor" href="#基于pytorch的手写数字识别"></a> 基于PyTorch的手写数字识别</h1>
+<h2 id="mnist数据集"><a class="markdownIt-Anchor" href="#mnist数据集"></a> MNIST数据集</h2>
 <p>MNIST 是一个经典的手写数字识别数据集，包含 60,000 张用于训练的图片和 10,000 张用于测试的图片。每张图片分辨率为 28×28 像素，内容是数字 <strong>0–9</strong> 的手写体。我们将基于该数据集对模型进行训练和验证。</p>
-<p><img data-src="../../images/pytorch_DI/2.png" alt="1.png"></p>
-<h2 id="神经网络的定义"><a class="markdownIt-Anchor" href="#神经网络的定义">#</a> 神经网络的定义</h2>
-<h3 id="输入"><a class="markdownIt-Anchor" href="#输入">#</a> 输入</h3>
+<p><img data-src="../../images/pytorch_DI/2.png" alt="1.png" /></p>
+<h2 id="神经网络的定义"><a class="markdownIt-Anchor" href="#神经网络的定义"></a> 神经网络的定义</h2>
+<h3 id="输入"><a class="markdownIt-Anchor" href="#输入"></a> 输入</h3>
 <ul>
-<li>一张图片大小： <code>1 × 28 × 28</code>  （灰度图，通道数 = 1）</li>
+<li>一张图片大小：<code>1 × 28 × 28</code> （灰度图，通道数 = 1）</li>
 </ul>
-<hr>
-<h3 id="第一层卷积"><a class="markdownIt-Anchor" href="#第一层卷积">#</a> <strong>第一层卷积</strong></h3>
-<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre>nn<span class="token punctuation">.</span>Conv2d<span class="token punctuation">(</span>in_channels<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> out_channels<span class="token operator">=</span><span class="token number">16</span><span class="token punctuation">,</span> kernel_size<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">,</span> stride<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> padding<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span></pre></td></tr></table></figure><ul>
-<li>输入： <code>1 × 28 × 28</code></li>
+<hr />
+<h3 id="第一层卷积"><a class="markdownIt-Anchor" href="#第一层卷积"></a> <strong>第一层卷积</strong></h3>
+<pre class="highlight"><code class="python">nn.Conv2d(in_channels=<span class="hljs-number">1</span>, out_channels=<span class="hljs-number">16</span>, kernel_size=<span class="hljs-number">5</span>, stride=<span class="hljs-number">1</span>, padding=<span class="hljs-number">2</span>)
+</code></pre>
+<ul>
+<li>输入：<code>1 × 28 × 28</code></li>
 <li>卷积核：5×5，padding=2 → 输出大小仍然是 28×28</li>
-<li>输出： <code>16 × 28 × 28</code> （提取 16 个不同特征图）</li>
+<li>输出：<code>16 × 28 × 28</code>（提取 16 个不同特征图）</li>
 </ul>
-<hr>
-<h3 id="relu-激活"><a class="markdownIt-Anchor" href="#relu-激活">#</a> <strong>ReLU 激活</strong></h3>
-<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre>nn<span class="token punctuation">.</span>ReLU<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr></table></figure><ul>
+<hr />
+<h3 id="relu-激活"><a class="markdownIt-Anchor" href="#relu-激活"></a> <strong>ReLU 激活</strong></h3>
+<pre class="highlight"><code class="python">nn.ReLU()
+</code></pre>
+<ul>
 <li>不改变形状，只是把负数变成 0。</li>
-<li>输出： <code>16 × 28 × 28</code></li>
+<li>输出：<code>16 × 28 × 28</code></li>
 </ul>
-<hr>
-<h3 id="第一次池化"><a class="markdownIt-Anchor" href="#第一次池化">#</a> <strong>第一次池化</strong></h3>
-<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre>nn<span class="token punctuation">.</span>MaxPool2d<span class="token punctuation">(</span>kernel_size<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span></pre></td></tr></table></figure><ul>
-<li>池化窗口：2×2，步长 = 2 → 尺寸减半</li>
-<li>输出： <code>16 × 14 × 14</code></li>
+<hr />
+<h3 id="第一次池化"><a class="markdownIt-Anchor" href="#第一次池化"></a> <strong>第一次池化</strong></h3>
+<pre class="highlight"><code class="python">nn.MaxPool2d(kernel_size=<span class="hljs-number">2</span>)
+</code></pre>
+<ul>
+<li>池化窗口：2×2，步长=2 → 尺寸减半</li>
+<li>输出：<code>16 × 14 × 14</code></li>
 </ul>
-<hr>
-<h3 id="第二层卷积"><a class="markdownIt-Anchor" href="#第二层卷积">#</a> <strong>第二层卷积</strong></h3>
-<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre>nn<span class="token punctuation">.</span>Conv2d<span class="token punctuation">(</span>in_channels<span class="token operator">=</span><span class="token number">16</span><span class="token punctuation">,</span> out_channels<span class="token operator">=</span><span class="token number">32</span><span class="token punctuation">,</span> kernel_size<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">,</span> stride<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> padding<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span></pre></td></tr></table></figure><ul>
-<li>输入： <code>16 × 14 × 14</code></li>
-<li>输出： <code>32 × 14 × 14</code></li>
+<hr />
+<h3 id="第二层卷积"><a class="markdownIt-Anchor" href="#第二层卷积"></a> <strong>第二层卷积</strong></h3>
+<pre class="highlight"><code class="python">nn.Conv2d(in_channels=<span class="hljs-number">16</span>, out_channels=<span class="hljs-number">32</span>, kernel_size=<span class="hljs-number">5</span>, stride=<span class="hljs-number">1</span>, padding=<span class="hljs-number">2</span>)
+</code></pre>
+<ul>
+<li>输入：<code>16 × 14 × 14</code></li>
+<li>输出：<code>32 × 14 × 14</code></li>
 </ul>
-<hr>
-<h3 id="relu-激活-2"><a class="markdownIt-Anchor" href="#relu-激活-2">#</a> <strong>ReLU 激活</strong></h3>
-<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre>nn<span class="token punctuation">.</span>ReLU<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr></table></figure><ul>
-<li>输出： <code>32 × 14 × 14</code></li>
+<hr />
+<h3 id="relu-激活-2"><a class="markdownIt-Anchor" href="#relu-激活-2"></a> <strong>ReLU 激活</strong></h3>
+<pre class="highlight"><code class="python">nn.ReLU()
+</code></pre>
+<ul>
+<li>输出：<code>32 × 14 × 14</code></li>
 </ul>
-<hr>
-<h3 id="第二次池化"><a class="markdownIt-Anchor" href="#第二次池化">#</a> <strong>第二次池化</strong></h3>
-<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre>nn<span class="token punctuation">.</span>MaxPool2d<span class="token punctuation">(</span>kernel_size<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span></pre></td></tr></table></figure><ul>
+<hr />
+<h3 id="第二次池化"><a class="markdownIt-Anchor" href="#第二次池化"></a> <strong>第二次池化</strong></h3>
+<pre class="highlight"><code class="python">nn.MaxPool2d(kernel_size=<span class="hljs-number">2</span>)
+</code></pre>
+<ul>
 <li>尺寸再减半</li>
-<li>输出： <code>32 × 7 × 7</code></li>
+<li>输出：<code>32 × 7 × 7</code></li>
 </ul>
-<hr>
-<h3 id="展平"><a class="markdownIt-Anchor" href="#展平">#</a> <strong>展平</strong></h3>
-<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre>nn<span class="token punctuation">.</span>Flatten<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr></table></figure><ul>
-<li>把  <code>32 × 7 × 7</code>  展平成一维向量</li>
-<li>输出： <code>32*7*7 = 1568</code></li>
+<hr />
+<h3 id="展平"><a class="markdownIt-Anchor" href="#展平"></a> <strong>展平</strong></h3>
+<pre class="highlight"><code class="python">nn.Flatten()
+</code></pre>
+<ul>
+<li>把 <code>32 × 7 × 7</code> 展平成一维向量</li>
+<li>输出：<code>32*7*7 = 1568</code></li>
 </ul>
-<hr>
-<h3 id="全连接层-1"><a class="markdownIt-Anchor" href="#全连接层-1">#</a> <strong>全连接层 1</strong></h3>
-<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre>nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span><span class="token number">32</span><span class="token operator">*</span><span class="token number">7</span><span class="token operator">*</span><span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">500</span><span class="token punctuation">)</span></pre></td></tr></table></figure><ul>
-<li>输入： <code>1568</code></li>
-<li>输出： <code>500</code></li>
+<hr />
+<h3 id="全连接层-1"><a class="markdownIt-Anchor" href="#全连接层-1"></a> <strong>全连接层 1</strong></h3>
+<pre class="highlight"><code class="python">nn.Linear(<span class="hljs-number">32</span>*<span class="hljs-number">7</span>*<span class="hljs-number">7</span>, <span class="hljs-number">500</span>)
+</code></pre>
+<ul>
+<li>输入：<code>1568</code></li>
+<li>输出：<code>500</code></li>
 </ul>
-<hr>
-<h3 id="relu-激活-3"><a class="markdownIt-Anchor" href="#relu-激活-3">#</a> <strong>ReLU 激活</strong></h3>
-<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre>nn<span class="token punctuation">.</span>ReLU<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr></table></figure><ul>
-<li>输出： <code>500</code></li>
+<hr />
+<h3 id="relu-激活-3"><a class="markdownIt-Anchor" href="#relu-激活-3"></a> <strong>ReLU 激活</strong></h3>
+<pre class="highlight"><code class="python">nn.ReLU()
+</code></pre>
+<ul>
+<li>输出：<code>500</code></li>
 </ul>
-<hr>
-<h3 id="全连接层-2"><a class="markdownIt-Anchor" href="#全连接层-2">#</a> <strong>全连接层 2</strong></h3>
-<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre>nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span><span class="token number">500</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span></pre></td></tr></table></figure><ul>
-<li>输入： <code>500</code></li>
-<li>输出： <code>100</code></li>
+<hr />
+<h3 id="全连接层-2"><a class="markdownIt-Anchor" href="#全连接层-2"></a> <strong>全连接层 2</strong></h3>
+<pre class="highlight"><code class="python">nn.Linear(<span class="hljs-number">500</span>, <span class="hljs-number">100</span>)
+</code></pre>
+<ul>
+<li>输入：<code>500</code></li>
+<li>输出：<code>100</code></li>
 </ul>
-<hr>
-<h3 id="全连接层-3输出层"><a class="markdownIt-Anchor" href="#全连接层-3输出层">#</a> <strong>全连接层 3（输出层）</strong></h3>
-<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre>nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span></pre></td></tr></table></figure><ul>
-<li>输入： <code>100</code></li>
-<li>输出： <code>10</code> （对应数字 0–9 的类别）</li>
+<hr />
+<h3 id="全连接层-3输出层"><a class="markdownIt-Anchor" href="#全连接层-3输出层"></a> <strong>全连接层 3（输出层）</strong></h3>
+<pre class="highlight"><code class="python">nn.Linear(<span class="hljs-number">100</span>, <span class="hljs-number">10</span>)
+</code></pre>
+<ul>
+<li>输入：<code>100</code></li>
+<li>输出：<code>10</code>（对应数字 0–9 的类别）</li>
 </ul>
-<h3 id="总结"><a class="markdownIt-Anchor" href="#总结">#</a> 总结</h3>
-<p>网络的流程就是：<br>
-输入  <code>1×28×28</code>  图像 → 两次卷积 + ReLU + 池化提取特征 → 展平 → 三层全连接分类 → 输出 10 个类别的分数（预测数字 0–9）。</p>
-<p><img data-src="../../images/pytorch_DI/1.gif" alt="1.gif"></p>
-<h3 id="存在的问题"><a class="markdownIt-Anchor" href="#存在的问题">#</a> 存在的问题</h3>
+<h3 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h3>
+<p>网络的流程就是：<br />
+输入 <code>1×28×28</code> 图像 → 两次卷积 + ReLU + 池化提取特征 → 展平 → 三层全连接分类 → 输出 10 个类别的分数（预测数字 0–9）。</p>
+<p><img data-src="../../images/pytorch_DI/1.gif" alt="1.gif" /></p>
+<h3 id="存在的问题"><a class="markdownIt-Anchor" href="#存在的问题"></a> 存在的问题</h3>
 <p><strong>全连接层数量和大小</strong></p>
 <ul>
 <li>两个全连接层（500 → 100 → 10）对 MNIST 来说稍微大了一点</li>
-<li>可以简化为  <code>500 → 10</code>  或  <code>256 → 10</code> ，训练更快，参数更少</li>
+<li>可以简化为 <code>500 → 10</code> 或 <code>256 → 10</code>，训练更快，参数更少</li>
 </ul>
 <p><strong>卷积层通道数</strong></p>
 <ul>
 <li>第一层 16、第二层 32 可以再小一点（如 8 → 16），MNIST 太简单了，用太多特征图可能没必要</li>
 </ul>
-<h3 id="代码"><a class="markdownIt-Anchor" href="#代码">#</a> 代码</h3>
-<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">import</span> torch</pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">from</span> torch <span class="token keyword">import</span> nn</pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">Net</span><span class="token punctuation">(</span>nn<span class="token punctuation">.</span>Module<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> <span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token boolean">None</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="7"></td><td><pre>        <span class="token builtin">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="8"></td><td><pre>        self<span class="token punctuation">.</span>model <span class="token operator">=</span> nn<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span></pre></td></tr><tr><td data-num="9"></td><td><pre>            nn<span class="token punctuation">.</span>Conv2d<span class="token punctuation">(</span>in_channels<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> out_channels<span class="token operator">=</span><span class="token number">16</span><span class="token punctuation">,</span> kernel_size<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">,</span> stride<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> padding<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="10"></td><td><pre>            nn<span class="token punctuation">.</span>ReLU<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="11"></td><td><pre>            nn<span class="token punctuation">.</span>MaxPool2d<span class="token punctuation">(</span>kernel_size<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span> ceil_mode<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="12"></td><td><pre>            nn<span class="token punctuation">.</span>Conv2d<span class="token punctuation">(</span>in_channels<span class="token operator">=</span><span class="token number">16</span><span class="token punctuation">,</span> out_channels<span class="token operator">=</span><span class="token number">32</span><span class="token punctuation">,</span> kernel_size<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">,</span> stride<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> padding<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="13"></td><td><pre>            nn<span class="token punctuation">.</span>ReLU<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="14"></td><td><pre>            nn<span class="token punctuation">.</span>MaxPool2d<span class="token punctuation">(</span>kernel_size<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span> ceil_mode<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="15"></td><td><pre>            nn<span class="token punctuation">.</span>Flatten<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="16"></td><td><pre>            nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span><span class="token number">32</span> <span class="token operator">*</span> <span class="token number">7</span> <span class="token operator">*</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">500</span><span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="17"></td><td><pre>            nn<span class="token punctuation">.</span>ReLU<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="18"></td><td><pre>            nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span><span class="token number">500</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="19"></td><td><pre>            nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="20"></td><td><pre>        <span class="token punctuation">)</span></pre></td></tr><tr><td data-num="21"></td><td><pre></pre></td></tr><tr><td data-num="22"></td><td><pre>    <span class="token keyword">def</span> <span class="token function">forward</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="23"></td><td><pre>        x <span class="token operator">=</span> self<span class="token punctuation">.</span>model<span class="token punctuation">(</span>x<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="24"></td><td><pre>        <span class="token keyword">return</span> x</pre></td></tr><tr><td data-num="25"></td><td><pre></pre></td></tr><tr><td data-num="26"></td><td><pre></pre></td></tr><tr><td data-num="27"></td><td><pre><span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="28"></td><td><pre>    net <span class="token operator">=</span> Net<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="29"></td><td><pre>    <span class="token keyword">print</span><span class="token punctuation">(</span>net<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="30"></td><td><pre>    output <span class="token operator">=</span> net<span class="token punctuation">(</span>torch<span class="token punctuation">.</span>ones<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">28</span><span class="token punctuation">,</span> <span class="token number">28</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="31"></td><td><pre>    <span class="token keyword">print</span><span class="token punctuation">(</span>output<span class="token punctuation">.</span>shape<span class="token punctuation">)</span></pre></td></tr></table></figure><h2 id="模型训练"><a class="markdownIt-Anchor" href="#模型训练">#</a> 模型训练</h2>
-<h3 id="导入库"><a class="markdownIt-Anchor" href="#导入库">#</a> 导入库</h3>
-<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">import</span> torch</pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">import</span> torch<span class="token punctuation">.</span>nn <span class="token keyword">as</span> nn</pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token keyword">import</span> torchvision<span class="token punctuation">.</span>datasets</pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token keyword">from</span> torch<span class="token punctuation">.</span>utils<span class="token punctuation">.</span>data <span class="token keyword">import</span> DataLoader</pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token keyword">from</span> torchvision <span class="token keyword">import</span> transforms</pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token keyword">from</span> torch<span class="token punctuation">.</span>utils<span class="token punctuation">.</span>tensorboard <span class="token keyword">import</span> SummaryWriter</pre></td></tr><tr><td data-num="7"></td><td><pre></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token keyword">from</span> nn_DI_NNFramework <span class="token keyword">import</span> Net</pre></td></tr></table></figure><ul>
-<li><code>torch</code> ：PyTorch 主库</li>
-<li><code>torch.nn</code> ：神经网络模块，包括各种层、损失函数</li>
-<li><code>torchvision.datasets</code> ：常用数据集（这里用 MNIST）</li>
-<li><code>DataLoader</code> ：批量加载数据</li>
-<li><code>transforms</code> ：对图像进行转换（如标准化、张量化）</li>
-<li><code>SummaryWriter</code> ：TensorBoard 日志写入，用于可视化训练过程</li>
-<li><code>Net</code> ：自己定义的神经网络</li>
+<h3 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h3>
+<pre class="highlight"><code class="python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">from</span> torch <span class="hljs-keyword">import</span> nn
+
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Net</span>(nn.Module):
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, *args, **kwargs</span>) -&gt; <span class="hljs-literal">None</span>:
+        <span class="hljs-built_in">super</span>().__init__(*args, **kwargs)
+        self.model = nn.Sequential(
+            nn.Conv2d(in_channels=<span class="hljs-number">1</span>, out_channels=<span class="hljs-number">16</span>, kernel_size=<span class="hljs-number">5</span>, stride=<span class="hljs-number">1</span>, padding=<span class="hljs-number">2</span>),
+            nn.ReLU(),
+            nn.MaxPool2d(kernel_size=<span class="hljs-number">2</span>, ceil_mode=<span class="hljs-literal">False</span>),
+            nn.Conv2d(in_channels=<span class="hljs-number">16</span>, out_channels=<span class="hljs-number">32</span>, kernel_size=<span class="hljs-number">5</span>, stride=<span class="hljs-number">1</span>, padding=<span class="hljs-number">2</span>),
+            nn.ReLU(),
+            nn.MaxPool2d(kernel_size=<span class="hljs-number">2</span>, ceil_mode=<span class="hljs-literal">False</span>),
+            nn.Flatten(),
+            nn.Linear(<span class="hljs-number">32</span> * <span class="hljs-number">7</span> * <span class="hljs-number">7</span>, <span class="hljs-number">500</span>),
+            nn.ReLU(),
+            nn.Linear(<span class="hljs-number">500</span>, <span class="hljs-number">100</span>),
+            nn.Linear(<span class="hljs-number">100</span>, <span class="hljs-number">10</span>)
+        )
+
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x</span>):
+        x = self.model(x)
+        <span class="hljs-keyword">return</span> x
+
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:
+    net = Net()
+    <span class="hljs-built_in">print</span>(net)
+    output = net(torch.ones((<span class="hljs-number">64</span>, <span class="hljs-number">1</span>, <span class="hljs-number">28</span>, <span class="hljs-number">28</span>)))
+    <span class="hljs-built_in">print</span>(output.shape)
+</code></pre>
+<h2 id="模型训练"><a class="markdownIt-Anchor" href="#模型训练"></a> 模型训练</h2>
+<h3 id="导入库"><a class="markdownIt-Anchor" href="#导入库"></a> 导入库</h3>
+<pre class="highlight"><code class="python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
+<span class="hljs-keyword">import</span> torchvision.datasets
+<span class="hljs-keyword">from</span> torch.utils.data <span class="hljs-keyword">import</span> DataLoader
+<span class="hljs-keyword">from</span> torchvision <span class="hljs-keyword">import</span> transforms
+<span class="hljs-keyword">from</span> torch.utils.tensorboard <span class="hljs-keyword">import</span> SummaryWriter
+
+<span class="hljs-keyword">from</span> nn_DI_NNFramework <span class="hljs-keyword">import</span> Net
+</code></pre>
+<ul>
+<li><code>torch</code>：PyTorch 主库</li>
+<li><code>torch.nn</code>：神经网络模块，包括各种层、损失函数</li>
+<li><code>torchvision.datasets</code>：常用数据集（这里用 MNIST）</li>
+<li><code>DataLoader</code>：批量加载数据</li>
+<li><code>transforms</code>：对图像进行转换（如标准化、张量化）</li>
+<li><code>SummaryWriter</code>：TensorBoard 日志写入，用于可视化训练过程</li>
+<li><code>Net</code>：自己定义的神经网络</li>
 </ul>
-<hr>
-<h3 id="数据预处理"><a class="markdownIt-Anchor" href="#数据预处理">#</a> 数据预处理</h3>
-<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre>transform <span class="token operator">=</span> transforms<span class="token punctuation">.</span>Compose<span class="token punctuation">(</span><span class="token punctuation">[</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    transforms<span class="token punctuation">.</span>ToTensor<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>  <span class="token comment"># 转为 PyTorch 张量，形状为 [C,H,W]</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    transforms<span class="token punctuation">.</span>Normalize<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">0.1307</span><span class="token punctuation">,</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">0.3081</span><span class="token punctuation">,</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment"># 标准化：均值 0.1307，标准差 0.3081</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token punctuation">]</span><span class="token punctuation">)</span></pre></td></tr></table></figure><ul>
-<li>将图片从  <code>[0,255]</code>  映射到  <code>[0,1]</code></li>
+<hr />
+<h3 id="数据预处理"><a class="markdownIt-Anchor" href="#数据预处理"></a> 数据预处理</h3>
+<pre class="highlight"><code class="python">transform = transforms.Compose([
+    transforms.ToTensor(),  <span class="hljs-comment"># 转为 PyTorch 张量，形状为 [C,H,W]</span>
+    transforms.Normalize((<span class="hljs-number">0.1307</span>,), (<span class="hljs-number">0.3081</span>,))  <span class="hljs-comment"># 标准化：均值0.1307，标准差0.3081</span>
+])
+</code></pre>
+<ul>
+<li>将图片从 <code>[0,255]</code> 映射到 <code>[0,1]</code></li>
 <li>再做标准化，便于模型收敛更快</li>
 </ul>
-<hr>
-<h3 id="tensorboard-日志-设备设置"><a class="markdownIt-Anchor" href="#tensorboard-日志-设备设置">#</a> TensorBoard 日志 &amp; 设备设置</h3>
-<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre>writer <span class="token operator">=</span> SummaryWriter<span class="token punctuation">(</span><span class="token string">"log_digital"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre>device <span class="token operator">=</span> torch<span class="token punctuation">.</span>device<span class="token punctuation">(</span><span class="token string">"cuda"</span> <span class="token keyword">if</span> torch<span class="token punctuation">.</span>cuda<span class="token punctuation">.</span>is_available<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">else</span> <span class="token string">"cpu"</span><span class="token punctuation">)</span></pre></td></tr></table></figure><ul>
-<li><code>SummaryWriter</code>  用于记录训练和测试的 loss、accuracy</li>
-<li><code>device</code>  判断是否有 GPU 可用，有就用 GPU 否则 CPU</li>
+<hr />
+<h3 id="tensorboard-日志-设备设置"><a class="markdownIt-Anchor" href="#tensorboard-日志-设备设置"></a> TensorBoard 日志 &amp; 设备设置</h3>
+<pre class="highlight"><code class="python">writer = SummaryWriter(<span class="hljs-string">&quot;log_digital&quot;</span>)
+device = torch.device(<span class="hljs-string">&quot;cuda&quot;</span> <span class="hljs-keyword">if</span> torch.cuda.is_available() <span class="hljs-keyword">else</span> <span class="hljs-string">&quot;cpu&quot;</span>)
+</code></pre>
+<ul>
+<li><code>SummaryWriter</code> 用于记录训练和测试的 loss、accuracy</li>
+<li><code>device</code> 判断是否有 GPU 可用，有就用 GPU 否则 CPU</li>
 </ul>
-<hr>
-<h3 id="加载数据集"><a class="markdownIt-Anchor" href="#加载数据集">#</a> 加载数据集</h3>
-<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre>datasets_mnist_train <span class="token operator">=</span> torchvision<span class="token punctuation">.</span>datasets<span class="token punctuation">.</span>MNIST<span class="token punctuation">(</span><span class="token string">"data"</span><span class="token punctuation">,</span> train<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> transform<span class="token operator">=</span>transform<span class="token punctuation">,</span> download<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre>datasets_mnist_test <span class="token operator">=</span> torchvision<span class="token punctuation">.</span>datasets<span class="token punctuation">.</span>MNIST<span class="token punctuation">(</span><span class="token string">"data"</span><span class="token punctuation">,</span> train<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> transform<span class="token operator">=</span>transform<span class="token punctuation">,</span> download<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span></pre></td></tr></table></figure><ul>
-<li><code>train=True</code> ：训练集 60000 张图片</li>
-<li><code>train=False</code> ：测试集 10000 张图片</li>
+<hr />
+<h3 id="加载数据集"><a class="markdownIt-Anchor" href="#加载数据集"></a> 加载数据集</h3>
+<pre class="highlight"><code class="python">datasets_mnist_train = torchvision.datasets.MNIST(<span class="hljs-string">&quot;data&quot;</span>, train=<span class="hljs-literal">True</span>, transform=transform, download=<span class="hljs-literal">True</span>)
+datasets_mnist_test = torchvision.datasets.MNIST(<span class="hljs-string">&quot;data&quot;</span>, train=<span class="hljs-literal">False</span>, transform=transform, download=<span class="hljs-literal">True</span>)
+</code></pre>
+<ul>
+<li><code>train=True</code>：训练集 60000 张图片</li>
+<li><code>train=False</code>：测试集 10000 张图片</li>
 </ul>
-<hr>
-<h3 id="dataloader"><a class="markdownIt-Anchor" href="#dataloader">#</a> DataLoader</h3>
-<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre>dataLoader_train <span class="token operator">=</span> DataLoader<span class="token punctuation">(</span>datasets_mnist_train<span class="token punctuation">,</span> batch_size<span class="token operator">=</span><span class="token number">64</span><span class="token punctuation">,</span> shuffle<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> num_workers<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre>dataLoader_test <span class="token operator">=</span> DataLoader<span class="token punctuation">(</span>datasets_mnist_test<span class="token punctuation">,</span> batch_size<span class="token operator">=</span><span class="token number">64</span><span class="token punctuation">,</span> shuffle<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> num_workers<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span></pre></td></tr></table></figure><ul>
-<li><code>batch_size=64</code> ：每次送入网络 64 张图片</li>
-<li><code>shuffle=True</code> ：打乱训练顺序</li>
-<li><code>num_workers=0</code> ：加载数据的线程数</li>
+<hr />
+<h3 id="dataloader"><a class="markdownIt-Anchor" href="#dataloader"></a> DataLoader</h3>
+<pre class="highlight"><code class="python">dataLoader_train = DataLoader(datasets_mnist_train, batch_size=<span class="hljs-number">64</span>, shuffle=<span class="hljs-literal">True</span>, num_workers=<span class="hljs-number">0</span>)
+dataLoader_test = DataLoader(datasets_mnist_test, batch_size=<span class="hljs-number">64</span>, shuffle=<span class="hljs-literal">False</span>, num_workers=<span class="hljs-number">0</span>)
+</code></pre>
+<ul>
+<li><code>batch_size=64</code>：每次送入网络 64 张图片</li>
+<li><code>shuffle=True</code>：打乱训练顺序</li>
+<li><code>num_workers=0</code>：加载数据的线程数</li>
 </ul>
-<hr>
-<h3 id="打印数据集大小"><a class="markdownIt-Anchor" href="#打印数据集大小">#</a> 打印数据集大小</h3>
-<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre>train_data_size <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>datasets_mnist_train<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre>test_data_size <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>datasets_mnist_test<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"训练数据集的长度为</span><span class="token interpolation"><span class="token punctuation">&#123;</span>train_data_size<span class="token punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"测试数据集的长度为</span><span class="token interpolation"><span class="token punctuation">&#123;</span>test_data_size<span class="token punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">)</span></pre></td></tr></table></figure><ul>
+<hr />
+<h3 id="打印数据集大小"><a class="markdownIt-Anchor" href="#打印数据集大小"></a> 打印数据集大小</h3>
+<pre class="highlight"><code class="python">train_data_size = <span class="hljs-built_in">len</span>(datasets_mnist_train)
+test_data_size = <span class="hljs-built_in">len</span>(datasets_mnist_test)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;训练数据集的长度为<span class="hljs-subst">&#123;train_data_size&#125;</span>&quot;</span>)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;测试数据集的长度为<span class="hljs-subst">&#123;test_data_size&#125;</span>&quot;</span>)
+</code></pre>
+<ul>
 <li>方便确认数据集是否加载成功</li>
 </ul>
-<hr>
-<h3 id="创建网络和损失函数"><a class="markdownIt-Anchor" href="#创建网络和损失函数">#</a> 创建网络和损失函数</h3>
-<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre>net <span class="token operator">=</span> Net<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre>loss_fn <span class="token operator">=</span> nn<span class="token punctuation">.</span>CrossEntropyLoss<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span></pre></td></tr></table></figure><ul>
-<li><code>Net()</code> ：实例化你的卷积神经网络</li>
-<li><code>CrossEntropyLoss</code> ：常用的多分类损失函数，内部包含 softmax</li>
+<hr />
+<h3 id="创建网络和损失函数"><a class="markdownIt-Anchor" href="#创建网络和损失函数"></a> 创建网络和损失函数</h3>
+<pre class="highlight"><code class="python">net = Net().to(device)
+loss_fn = nn.CrossEntropyLoss().to(device)
+</code></pre>
+<ul>
+<li><code>Net()</code>：实例化你的卷积神经网络</li>
+<li><code>CrossEntropyLoss</code>：常用的多分类损失函数，内部包含 softmax</li>
 </ul>
-<hr>
-<h3 id="优化器"><a class="markdownIt-Anchor" href="#优化器">#</a> 优化器</h3>
-<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre>optimizer <span class="token operator">=</span> torch<span class="token punctuation">.</span>optim<span class="token punctuation">.</span>SGD<span class="token punctuation">(</span>net<span class="token punctuation">.</span>parameters<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> lr<span class="token operator">=</span><span class="token number">0.01</span><span class="token punctuation">,</span> momentum<span class="token operator">=</span><span class="token number">0.5</span><span class="token punctuation">)</span></pre></td></tr></table></figure><ul>
+<hr />
+<h3 id="优化器"><a class="markdownIt-Anchor" href="#优化器"></a> 优化器</h3>
+<pre class="highlight"><code class="python">optimizer = torch.optim.SGD(net.parameters(), lr=<span class="hljs-number">0.01</span>, momentum=<span class="hljs-number">0.5</span>)
+</code></pre>
+<ul>
 <li>使用随机梯度下降（SGD）优化</li>
-<li><code>lr=0.01</code> ：学习率</li>
-<li><code>momentum=0.5</code> ：动量，帮助加速收敛</li>
+<li><code>lr=0.01</code>：学习率</li>
+<li><code>momentum=0.5</code>：动量，帮助加速收敛</li>
 </ul>
-<hr>
-<h3 id="训练设置"><a class="markdownIt-Anchor" href="#训练设置">#</a> 训练设置</h3>
-<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre>total_train_step <span class="token operator">=</span> <span class="token number">0</span></pre></td></tr><tr><td data-num="2"></td><td><pre>total_test_step <span class="token operator">=</span> <span class="token number">0</span></pre></td></tr><tr><td data-num="3"></td><td><pre>epoch <span class="token operator">=</span> <span class="token number">15</span></pre></td></tr></table></figure><ul>
-<li><code>total_train_step</code> ：训练总步数</li>
-<li><code>total_test_step</code> ：测试总步数</li>
-<li><code>epoch=15</code> ：训练轮数</li>
+<hr />
+<h3 id="训练设置"><a class="markdownIt-Anchor" href="#训练设置"></a> 训练设置</h3>
+<pre class="highlight"><code class="python">total_train_step = <span class="hljs-number">0</span>
+total_test_step = <span class="hljs-number">0</span>
+epoch = <span class="hljs-number">15</span>
+</code></pre>
+<ul>
+<li><code>total_train_step</code>：训练总步数</li>
+<li><code>total_test_step</code>：测试总步数</li>
+<li><code>epoch=15</code>：训练轮数</li>
 </ul>
-<hr>
-<h3 id="训练循环"><a class="markdownIt-Anchor" href="#训练循环">#</a> 训练循环</h3>
-<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>epoch<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"--------第 &#123;&#125; 轮训练开始--------"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    net<span class="token punctuation">.</span>train<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># 设置网络为训练模式</span></pre></td></tr></table></figure><ul>
-<li><code>net.train()</code> ：启用训练模式（例如 Dropout、BatchNorm 生效）</li>
+<hr />
+<h3 id="训练循环"><a class="markdownIt-Anchor" href="#训练循环"></a> 训练循环</h3>
+<pre class="highlight"><code class="python"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(epoch):
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;--------第 &#123;&#125; 轮训练开始--------&quot;</span>.<span class="hljs-built_in">format</span>(i + <span class="hljs-number">1</span>))
+    net.train()  <span class="hljs-comment"># 设置网络为训练模式</span>
+</code></pre>
+<ul>
+<li><code>net.train()</code>：启用训练模式（例如 Dropout、BatchNorm 生效）</li>
 </ul>
-<h4 id="训练步"><a class="markdownIt-Anchor" href="#训练步">#</a> 训练步</h4>
-<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">for</span> data <span class="token keyword">in</span> dataLoader_train<span class="token punctuation">:</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    imgs<span class="token punctuation">,</span> targets <span class="token operator">=</span> data</pre></td></tr><tr><td data-num="3"></td><td><pre>    imgs <span class="token operator">=</span> imgs<span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    targets <span class="token operator">=</span> targets<span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    outputs <span class="token operator">=</span> net<span class="token punctuation">(</span>imgs<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    loss <span class="token operator">=</span> loss_fn<span class="token punctuation">(</span>outputs<span class="token punctuation">,</span> targets<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    optimizer<span class="token punctuation">.</span>zero_grad<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="8"></td><td><pre>    loss<span class="token punctuation">.</span>backward<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    optimizer<span class="token punctuation">.</span>step<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr></table></figure><ul>
-<li><code>imgs</code> ：图片 batch</li>
-<li><code>targets</code> ：标签 batch</li>
-<li><code>loss.backward()</code> ：计算梯度</li>
-<li><code>optimizer.step()</code> ：更新参数</li>
-<li><code>optimizer.zero_grad()</code> ：清空上一步梯度</li>
+<h4 id="训练步"><a class="markdownIt-Anchor" href="#训练步"></a> 训练步</h4>
+<pre class="highlight"><code class="python"><span class="hljs-keyword">for</span> data <span class="hljs-keyword">in</span> dataLoader_train:
+    imgs, targets = data
+    imgs = imgs.to(device)
+    targets = targets.to(device)
+    outputs = net(imgs)
+    loss = loss_fn(outputs, targets)
+    optimizer.zero_grad()
+    loss.backward()
+    optimizer.step()
+</code></pre>
+<ul>
+<li><code>imgs</code>：图片 batch</li>
+<li><code>targets</code>：标签 batch</li>
+<li><code>loss.backward()</code>：计算梯度</li>
+<li><code>optimizer.step()</code>：更新参数</li>
+<li><code>optimizer.zero_grad()</code>：清空上一步梯度</li>
 </ul>
-<h4 id="记录日志"><a class="markdownIt-Anchor" href="#记录日志">#</a> 记录日志</h4>
-<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">if</span> total_train_step <span class="token operator">%</span> <span class="token number">100</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"训练次数：</span><span class="token interpolation"><span class="token punctuation">&#123;</span>total_train_step<span class="token punctuation">&#125;</span></span><span class="token string">，loss：</span><span class="token interpolation"><span class="token punctuation">&#123;</span>loss<span class="token punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    writer<span class="token punctuation">.</span>add_scalar<span class="token punctuation">(</span><span class="token string">"train_loss"</span><span class="token punctuation">,</span> loss<span class="token punctuation">.</span>item<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> total_train_step<span class="token punctuation">)</span></pre></td></tr></table></figure><ul>
+<h4 id="记录日志"><a class="markdownIt-Anchor" href="#记录日志"></a> 记录日志</h4>
+<pre class="highlight"><code class="python"><span class="hljs-keyword">if</span> total_train_step % <span class="hljs-number">100</span> == <span class="hljs-number">0</span>:
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;训练次数：<span class="hljs-subst">&#123;total_train_step&#125;</span>，loss：<span class="hljs-subst">&#123;loss&#125;</span>&quot;</span>)
+    writer.add_scalar(<span class="hljs-string">&quot;train_loss&quot;</span>, loss.item(), total_train_step)
+</code></pre>
+<ul>
 <li>每 100 步打印 loss</li>
 <li>写入 TensorBoard</li>
 </ul>
-<hr>
-<h3 id="测试循环"><a class="markdownIt-Anchor" href="#测试循环">#</a> 测试循环</h3>
-<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre>net<span class="token punctuation">.</span><span class="token builtin">eval</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># 设置网络为评估模式</span></pre></td></tr><tr><td data-num="2"></td><td><pre>total_test_loss <span class="token operator">=</span> <span class="token number">0</span></pre></td></tr><tr><td data-num="3"></td><td><pre>total_test_accuracy <span class="token operator">=</span> <span class="token number">0</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token keyword">with</span> torch<span class="token punctuation">.</span>no_grad<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># 不计算梯度</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token keyword">for</span> data <span class="token keyword">in</span> dataLoader_test<span class="token punctuation">:</span></pre></td></tr><tr><td data-num="6"></td><td><pre>        imgs<span class="token punctuation">,</span> targets <span class="token operator">=</span> data</pre></td></tr><tr><td data-num="7"></td><td><pre>        imgs <span class="token operator">=</span> imgs<span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="8"></td><td><pre>        targets <span class="token operator">=</span> targets<span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="9"></td><td><pre>        outputs <span class="token operator">=</span> net<span class="token punctuation">(</span>imgs<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="10"></td><td><pre>        loss <span class="token operator">=</span> loss_fn<span class="token punctuation">(</span>outputs<span class="token punctuation">,</span> targets<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="11"></td><td><pre>        total_test_loss <span class="token operator">+=</span> loss<span class="token punctuation">.</span>item<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="12"></td><td><pre>        accuracy <span class="token operator">=</span> <span class="token punctuation">(</span>outputs<span class="token punctuation">.</span>argmax<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">==</span> targets<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token builtin">sum</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="13"></td><td><pre>        total_test_accuracy <span class="token operator">+=</span> accuracy<span class="token punctuation">.</span>item<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr></table></figure><ul>
-<li><code>net.eval()</code> ：关闭 Dropout、BatchNorm 等训练特性</li>
-<li><code>torch.no_grad()</code> ：节省显存，不计算梯度</li>
-<li><code>outputs.argmax(1)</code> ：得到预测的数字</li>
+<hr />
+<h3 id="测试循环"><a class="markdownIt-Anchor" href="#测试循环"></a> 测试循环</h3>
+<pre class="highlight"><code class="python">net.<span class="hljs-built_in">eval</span>()  <span class="hljs-comment"># 设置网络为评估模式</span>
+total_test_loss = <span class="hljs-number">0</span>
+total_test_accuracy = <span class="hljs-number">0</span>
+<span class="hljs-keyword">with</span> torch.no_grad():  <span class="hljs-comment"># 不计算梯度</span>
+    <span class="hljs-keyword">for</span> data <span class="hljs-keyword">in</span> dataLoader_test:
+        imgs, targets = data
+        imgs = imgs.to(device)
+        targets = targets.to(device)
+        outputs = net(imgs)
+        loss = loss_fn(outputs, targets)
+        total_test_loss += loss.item()
+        accuracy = (outputs.argmax(<span class="hljs-number">1</span>) == targets).<span class="hljs-built_in">sum</span>()
+        total_test_accuracy += accuracy.item()
+</code></pre>
+<ul>
+<li><code>net.eval()</code>：关闭 Dropout、BatchNorm 等训练特性</li>
+<li><code>torch.no_grad()</code>：节省显存，不计算梯度</li>
+<li><code>outputs.argmax(1)</code>：得到预测的数字</li>
 <li>累计 loss 和正确数</li>
 </ul>
-<h4 id="打印和记录"><a class="markdownIt-Anchor" href="#打印和记录">#</a> 打印和记录</h4>
-<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"整体测试集上的Loss：&#123;&#125;"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>total_test_loss<span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"整体测试集上的正确率：&#123;&#125;"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>total_test_accuracy <span class="token operator">/</span> test_data_size<span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="3"></td><td><pre>writer<span class="token punctuation">.</span>add_scalar<span class="token punctuation">(</span><span class="token string">"test_loss"</span><span class="token punctuation">,</span> total_test_loss<span class="token punctuation">,</span> total_test_step<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="4"></td><td><pre>writer<span class="token punctuation">.</span>add_scalar<span class="token punctuation">(</span><span class="token string">"test_accuracy"</span><span class="token punctuation">,</span> total_test_accuracy <span class="token operator">/</span> test_data_size<span class="token punctuation">,</span> total_test_step<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="5"></td><td><pre>total_test_step <span class="token operator">+=</span> <span class="token number">1</span></pre></td></tr></table></figure><hr>
-<h3 id="保存模型"><a class="markdownIt-Anchor" href="#保存模型">#</a> 保存模型</h3>
-<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre>torch<span class="token punctuation">.</span>save<span class="token punctuation">(</span>net<span class="token punctuation">,</span> <span class="token string">"net_DI.pth"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"模型已保存"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="3"></td><td><pre>writer<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr></table></figure><ul>
-<li>将训练好的网络保存为  <code>net_DI.pth</code></li>
+<h4 id="打印和记录"><a class="markdownIt-Anchor" href="#打印和记录"></a> 打印和记录</h4>
+<pre class="highlight"><code class="python"><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;整体测试集上的Loss：&#123;&#125;&quot;</span>.<span class="hljs-built_in">format</span>(total_test_loss))
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;整体测试集上的正确率：&#123;&#125;&quot;</span>.<span class="hljs-built_in">format</span>(total_test_accuracy / test_data_size))
+writer.add_scalar(<span class="hljs-string">&quot;test_loss&quot;</span>, total_test_loss, total_test_step)
+writer.add_scalar(<span class="hljs-string">&quot;test_accuracy&quot;</span>, total_test_accuracy / test_data_size, total_test_step)
+total_test_step += <span class="hljs-number">1</span>
+</code></pre>
+<hr />
+<h3 id="保存模型"><a class="markdownIt-Anchor" href="#保存模型"></a> 保存模型</h3>
+<pre class="highlight"><code class="python">torch.save(net, <span class="hljs-string">&quot;net_DI.pth&quot;</span>)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;模型已保存&quot;</span>)
+writer.close()
+</code></pre>
+<ul>
+<li>将训练好的网络保存为 <code>net_DI.pth</code></li>
 <li>关闭 TensorBoard 写入器</li>
 </ul>
-<h3 id="全部代码"><a class="markdownIt-Anchor" href="#全部代码">#</a> 全部代码</h3>
-<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">import</span> torch</pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">import</span> torch<span class="token punctuation">.</span>nn <span class="token keyword">as</span> nn</pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token keyword">import</span> torchvision<span class="token punctuation">.</span>datasets</pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token keyword">from</span> torch<span class="token punctuation">.</span>utils<span class="token punctuation">.</span>data <span class="token keyword">import</span> DataLoader</pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token keyword">from</span> torchvision <span class="token keyword">import</span> transforms</pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token keyword">from</span> torch<span class="token punctuation">.</span>utils<span class="token punctuation">.</span>tensorboard <span class="token keyword">import</span> SummaryWriter</pre></td></tr><tr><td data-num="7"></td><td><pre></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token keyword">from</span> nn_DI_NNFramework <span class="token keyword">import</span> Net</pre></td></tr><tr><td data-num="9"></td><td><pre></pre></td></tr><tr><td data-num="10"></td><td><pre>transform <span class="token operator">=</span> transforms<span class="token punctuation">.</span>Compose<span class="token punctuation">(</span><span class="token punctuation">[</span></pre></td></tr><tr><td data-num="11"></td><td><pre>    transforms<span class="token punctuation">.</span>ToTensor<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>  <span class="token comment"># 将图像转换为张量</span></pre></td></tr><tr><td data-num="12"></td><td><pre>    transforms<span class="token punctuation">.</span>Normalize<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">0.1307</span><span class="token punctuation">,</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">0.3081</span><span class="token punctuation">,</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment"># 标准化图像</span></pre></td></tr><tr><td data-num="13"></td><td><pre><span class="token punctuation">]</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="14"></td><td><pre>writer <span class="token operator">=</span> SummaryWriter<span class="token punctuation">(</span><span class="token string">"log_digital"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="15"></td><td><pre>device <span class="token operator">=</span> torch<span class="token punctuation">.</span>device<span class="token punctuation">(</span><span class="token string">"cuda"</span> <span class="token keyword">if</span> torch<span class="token punctuation">.</span>cuda<span class="token punctuation">.</span>is_available<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">else</span> <span class="token string">"cpu"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="16"></td><td><pre>datasets_mnist_train <span class="token operator">=</span> torchvision<span class="token punctuation">.</span>datasets<span class="token punctuation">.</span>MNIST<span class="token punctuation">(</span><span class="token string">"data"</span><span class="token punctuation">,</span> train<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> transform<span class="token operator">=</span>transform<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="17"></td><td><pre>                                                  download<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="18"></td><td><pre>datasets_mnist_test <span class="token operator">=</span> torchvision<span class="token punctuation">.</span>datasets<span class="token punctuation">.</span>MNIST<span class="token punctuation">(</span><span class="token string">"data"</span><span class="token punctuation">,</span> train<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> transform<span class="token operator">=</span>transform<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="19"></td><td><pre>                                                 download<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="20"></td><td><pre>dataLoader_train <span class="token operator">=</span> DataLoader<span class="token punctuation">(</span>datasets_mnist_train<span class="token punctuation">,</span> batch_size<span class="token operator">=</span><span class="token number">64</span><span class="token punctuation">,</span> shuffle<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> num_workers<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="21"></td><td><pre>dataLoader_test <span class="token operator">=</span> DataLoader<span class="token punctuation">(</span>datasets_mnist_test<span class="token punctuation">,</span> batch_size<span class="token operator">=</span><span class="token number">64</span><span class="token punctuation">,</span> shuffle<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> num_workers<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="22"></td><td><pre></pre></td></tr><tr><td data-num="23"></td><td><pre><span class="token comment"># 获取数据集大小</span></pre></td></tr><tr><td data-num="24"></td><td><pre>train_data_size <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>datasets_mnist_train<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="25"></td><td><pre>test_data_size <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>datasets_mnist_test<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="26"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"训练数据集的长度为</span><span class="token interpolation"><span class="token punctuation">&#123;</span>train_data_size<span class="token punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="27"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"测试数据集的长度为</span><span class="token interpolation"><span class="token punctuation">&#123;</span>test_data_size<span class="token punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="28"></td><td><pre></pre></td></tr><tr><td data-num="29"></td><td><pre>net <span class="token operator">=</span> Net<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="30"></td><td><pre><span class="token comment"># 创建损失函数</span></pre></td></tr><tr><td data-num="31"></td><td><pre>loss_fn <span class="token operator">=</span> nn<span class="token punctuation">.</span>CrossEntropyLoss<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="32"></td><td><pre><span class="token comment"># 交给 GPU</span></pre></td></tr><tr><td data-num="33"></td><td><pre>loss_fn <span class="token operator">=</span> loss_fn<span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="34"></td><td><pre><span class="token comment"># 创建优化器</span></pre></td></tr><tr><td data-num="35"></td><td><pre>optimizer <span class="token operator">=</span> torch<span class="token punctuation">.</span>optim<span class="token punctuation">.</span>SGD<span class="token punctuation">(</span>net<span class="token punctuation">.</span>parameters<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> lr<span class="token operator">=</span><span class="token number">0.01</span><span class="token punctuation">,</span> momentum<span class="token operator">=</span><span class="token number">0.5</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="36"></td><td><pre><span class="token comment"># 设置训练网络一些参数</span></pre></td></tr><tr><td data-num="37"></td><td><pre><span class="token comment"># 训练的轮数</span></pre></td></tr><tr><td data-num="38"></td><td><pre>total_train_step <span class="token operator">=</span> <span class="token number">0</span></pre></td></tr><tr><td data-num="39"></td><td><pre><span class="token comment"># 测试的轮数</span></pre></td></tr><tr><td data-num="40"></td><td><pre>total_test_step <span class="token operator">=</span> <span class="token number">0</span></pre></td></tr><tr><td data-num="41"></td><td><pre><span class="token comment"># 训练的轮数</span></pre></td></tr><tr><td data-num="42"></td><td><pre>epoch <span class="token operator">=</span> <span class="token number">15</span></pre></td></tr><tr><td data-num="43"></td><td><pre></pre></td></tr><tr><td data-num="44"></td><td><pre><span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>epoch<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="45"></td><td><pre>    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"--------第 &#123;&#125; 轮训练开始--------"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="46"></td><td><pre>    net<span class="token punctuation">.</span>train<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="47"></td><td><pre>    <span class="token keyword">for</span> data <span class="token keyword">in</span> dataLoader_train<span class="token punctuation">:</span></pre></td></tr><tr><td data-num="48"></td><td><pre>        imgs<span class="token punctuation">,</span> targets <span class="token operator">=</span> data</pre></td></tr><tr><td data-num="49"></td><td><pre>        imgs <span class="token operator">=</span> imgs<span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="50"></td><td><pre>        targets <span class="token operator">=</span> targets<span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="51"></td><td><pre>        outputs <span class="token operator">=</span> net<span class="token punctuation">(</span>imgs<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="52"></td><td><pre>        loss <span class="token operator">=</span> loss_fn<span class="token punctuation">(</span>outputs<span class="token punctuation">,</span> targets<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="53"></td><td><pre>        optimizer<span class="token punctuation">.</span>zero_grad<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="54"></td><td><pre>        loss<span class="token punctuation">.</span>backward<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="55"></td><td><pre>        optimizer<span class="token punctuation">.</span>step<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="56"></td><td><pre>        total_train_step <span class="token operator">+=</span> <span class="token number">1</span></pre></td></tr><tr><td data-num="57"></td><td><pre>        <span class="token keyword">if</span> total_train_step <span class="token operator">%</span> <span class="token number">100</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="58"></td><td><pre>            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"训练次数：</span><span class="token interpolation"><span class="token punctuation">&#123;</span>total_train_step<span class="token punctuation">&#125;</span></span><span class="token string">，loss：</span><span class="token interpolation"><span class="token punctuation">&#123;</span>loss<span class="token punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="59"></td><td><pre>            writer<span class="token punctuation">.</span>add_scalar<span class="token punctuation">(</span><span class="token string">"train_loss"</span><span class="token punctuation">,</span> loss<span class="token punctuation">.</span>item<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> total_train_step<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="60"></td><td><pre>    net<span class="token punctuation">.</span><span class="token builtin">eval</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="61"></td><td><pre>    total_test_loss <span class="token operator">=</span> <span class="token number">0</span></pre></td></tr><tr><td data-num="62"></td><td><pre>    total_test_accuracy <span class="token operator">=</span> <span class="token number">0</span></pre></td></tr><tr><td data-num="63"></td><td><pre>    <span class="token keyword">with</span> torch<span class="token punctuation">.</span>no_grad<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="64"></td><td><pre>        <span class="token keyword">for</span> data <span class="token keyword">in</span> dataLoader_test<span class="token punctuation">:</span></pre></td></tr><tr><td data-num="65"></td><td><pre>            imgs<span class="token punctuation">,</span> targets <span class="token operator">=</span> data</pre></td></tr><tr><td data-num="66"></td><td><pre>            imgs <span class="token operator">=</span> imgs<span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="67"></td><td><pre>            targets <span class="token operator">=</span> targets<span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="68"></td><td><pre>            outputs <span class="token operator">=</span> net<span class="token punctuation">(</span>imgs<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="69"></td><td><pre>            loss <span class="token operator">=</span> loss_fn<span class="token punctuation">(</span>outputs<span class="token punctuation">,</span> targets<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="70"></td><td><pre>            total_test_loss <span class="token operator">+=</span> loss<span class="token punctuation">.</span>item<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="71"></td><td><pre>            accuracy <span class="token operator">=</span> <span class="token punctuation">(</span>outputs<span class="token punctuation">.</span>argmax<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">==</span> targets<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token builtin">sum</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="72"></td><td><pre>            total_test_accuracy <span class="token operator">+=</span> accuracy<span class="token punctuation">.</span>item<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="73"></td><td><pre></pre></td></tr><tr><td data-num="74"></td><td><pre>        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"整体测试集上的Loss：&#123;&#125;"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>total_test_loss<span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="75"></td><td><pre>        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"整体测试集上的正确率：&#123;&#125;"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>total_test_accuracy <span class="token operator">/</span> test_data_size<span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="76"></td><td><pre>        writer<span class="token punctuation">.</span>add_scalar<span class="token punctuation">(</span><span class="token string">"test_loss"</span><span class="token punctuation">,</span> total_test_loss<span class="token punctuation">,</span> total_test_step<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="77"></td><td><pre>        writer<span class="token punctuation">.</span>add_scalar<span class="token punctuation">(</span><span class="token string">"test_accuracy"</span><span class="token punctuation">,</span> total_test_accuracy <span class="token operator">/</span> test_data_size<span class="token punctuation">,</span> total_test_step<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="78"></td><td><pre>        total_test_step <span class="token operator">+=</span> <span class="token number">1</span></pre></td></tr><tr><td data-num="79"></td><td><pre></pre></td></tr><tr><td data-num="80"></td><td><pre>torch<span class="token punctuation">.</span>save<span class="token punctuation">(</span>net<span class="token punctuation">,</span> <span class="token string">"net_DI.pth"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="81"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"模型已保存"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="82"></td><td><pre>writer<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr></table></figure><h3 id="训练过程"><a class="markdownIt-Anchor" href="#训练过程">#</a> 训练过程</h3>
-<p><img data-src="../../images/pytorch_DI/3.png" alt="3.png"></p>
-<p>模型在 15 轮训练后，测试集上准确率超过 99%</p>
-<h2 id="简单验证"><a class="markdownIt-Anchor" href="#简单验证">#</a> 简单验证</h2>
-<h3 id="导入库-2"><a class="markdownIt-Anchor" href="#导入库-2">#</a> 导入库</h3>
-<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">import</span> torch</pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">import</span> torchvision</pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token keyword">from</span> PIL <span class="token keyword">import</span> Image</pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token keyword">import</span> nn_DI_NNFramework</pre></td></tr></table></figure><ul>
-<li><code>torch</code> ：PyTorch 主库</li>
-<li><code>torchvision</code> ：用于图像处理和变换</li>
-<li><code>PIL.Image</code> ：处理图片文件</li>
-<li><code>nn_DI_NNFramework</code> ：你自己定义的网络（Net）</li>
+<h3 id="全部代码"><a class="markdownIt-Anchor" href="#全部代码"></a> 全部代码</h3>
+<pre class="highlight"><code class="python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
+<span class="hljs-keyword">import</span> torchvision.datasets
+<span class="hljs-keyword">from</span> torch.utils.data <span class="hljs-keyword">import</span> DataLoader
+<span class="hljs-keyword">from</span> torchvision <span class="hljs-keyword">import</span> transforms
+<span class="hljs-keyword">from</span> torch.utils.tensorboard <span class="hljs-keyword">import</span> SummaryWriter
+
+<span class="hljs-keyword">from</span> nn_DI_NNFramework <span class="hljs-keyword">import</span> Net
+
+transform = transforms.Compose([
+    transforms.ToTensor(),  <span class="hljs-comment"># 将图像转换为张量</span>
+    transforms.Normalize((<span class="hljs-number">0.1307</span>,), (<span class="hljs-number">0.3081</span>,))  <span class="hljs-comment"># 标准化图像</span>
+])
+writer = SummaryWriter(<span class="hljs-string">&quot;log_digital&quot;</span>)
+device = torch.device(<span class="hljs-string">&quot;cuda&quot;</span> <span class="hljs-keyword">if</span> torch.cuda.is_available() <span class="hljs-keyword">else</span> <span class="hljs-string">&quot;cpu&quot;</span>)
+datasets_mnist_train = torchvision.datasets.MNIST(<span class="hljs-string">&quot;data&quot;</span>, train=<span class="hljs-literal">True</span>, transform=transform,
+                                                  download=<span class="hljs-literal">True</span>)
+datasets_mnist_test = torchvision.datasets.MNIST(<span class="hljs-string">&quot;data&quot;</span>, train=<span class="hljs-literal">False</span>, transform=transform,
+                                                 download=<span class="hljs-literal">True</span>)
+dataLoader_train = DataLoader(datasets_mnist_train, batch_size=<span class="hljs-number">64</span>, shuffle=<span class="hljs-literal">True</span>, num_workers=<span class="hljs-number">0</span>)
+dataLoader_test = DataLoader(datasets_mnist_test, batch_size=<span class="hljs-number">64</span>, shuffle=<span class="hljs-literal">False</span>, num_workers=<span class="hljs-number">0</span>)
+
+<span class="hljs-comment"># 获取数据集大小</span>
+train_data_size = <span class="hljs-built_in">len</span>(datasets_mnist_train)
+test_data_size = <span class="hljs-built_in">len</span>(datasets_mnist_test)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;训练数据集的长度为<span class="hljs-subst">&#123;train_data_size&#125;</span>&quot;</span>)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;测试数据集的长度为<span class="hljs-subst">&#123;test_data_size&#125;</span>&quot;</span>)
+
+net = Net().to(device)
+<span class="hljs-comment"># 创建损失函数</span>
+loss_fn = nn.CrossEntropyLoss()
+<span class="hljs-comment"># 交给GPU</span>
+loss_fn = loss_fn.to(device)
+<span class="hljs-comment"># 创建优化器</span>
+optimizer = torch.optim.SGD(net.parameters(), lr=<span class="hljs-number">0.01</span>, momentum=<span class="hljs-number">0.5</span>)
+<span class="hljs-comment"># 设置训练网络一些参数</span>
+<span class="hljs-comment"># 训练的轮数</span>
+total_train_step = <span class="hljs-number">0</span>
+<span class="hljs-comment"># 测试的轮数</span>
+total_test_step = <span class="hljs-number">0</span>
+<span class="hljs-comment"># 训练的轮数</span>
+epoch = <span class="hljs-number">15</span>
+
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(epoch):
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;--------第 &#123;&#125; 轮训练开始--------&quot;</span>.<span class="hljs-built_in">format</span>(i + <span class="hljs-number">1</span>))
+    net.train()
+    <span class="hljs-keyword">for</span> data <span class="hljs-keyword">in</span> dataLoader_train:
+        imgs, targets = data
+        imgs = imgs.to(device)
+        targets = targets.to(device)
+        outputs = net(imgs)
+        loss = loss_fn(outputs, targets)
+        optimizer.zero_grad()
+        loss.backward()
+        optimizer.step()
+        total_train_step += <span class="hljs-number">1</span>
+        <span class="hljs-keyword">if</span> total_train_step % <span class="hljs-number">100</span> == <span class="hljs-number">0</span>:
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;训练次数：<span class="hljs-subst">&#123;total_train_step&#125;</span>，loss：<span class="hljs-subst">&#123;loss&#125;</span>&quot;</span>)
+            writer.add_scalar(<span class="hljs-string">&quot;train_loss&quot;</span>, loss.item(), total_train_step)
+    net.<span class="hljs-built_in">eval</span>()
+    total_test_loss = <span class="hljs-number">0</span>
+    total_test_accuracy = <span class="hljs-number">0</span>
+    <span class="hljs-keyword">with</span> torch.no_grad():
+        <span class="hljs-keyword">for</span> data <span class="hljs-keyword">in</span> dataLoader_test:
+            imgs, targets = data
+            imgs = imgs.to(device)
+            targets = targets.to(device)
+            outputs = net(imgs)
+            loss = loss_fn(outputs, targets)
+            total_test_loss += loss.item()
+            accuracy = (outputs.argmax(<span class="hljs-number">1</span>) == targets).<span class="hljs-built_in">sum</span>()
+            total_test_accuracy += accuracy.item()
+
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;整体测试集上的Loss：&#123;&#125;&quot;</span>.<span class="hljs-built_in">format</span>(total_test_loss))
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;整体测试集上的正确率：&#123;&#125;&quot;</span>.<span class="hljs-built_in">format</span>(total_test_accuracy / test_data_size))
+        writer.add_scalar(<span class="hljs-string">&quot;test_loss&quot;</span>, total_test_loss, total_test_step)
+        writer.add_scalar(<span class="hljs-string">&quot;test_accuracy&quot;</span>, total_test_accuracy / test_data_size, total_test_step)
+        total_test_step += <span class="hljs-number">1</span>
+
+torch.save(net, <span class="hljs-string">&quot;net_DI.pth&quot;</span>)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;模型已保存&quot;</span>)
+writer.close()
+</code></pre>
+<h3 id="训练过程"><a class="markdownIt-Anchor" href="#训练过程"></a> 训练过程</h3>
+<p><img data-src="../../images/pytorch_DI/3.png" alt="3.png" /></p>
+<p>模型在15轮训练后，测试集上准确率超过99%</p>
+<h2 id="简单验证"><a class="markdownIt-Anchor" href="#简单验证"></a> 简单验证</h2>
+<h3 id="导入库-2"><a class="markdownIt-Anchor" href="#导入库-2"></a> 导入库</h3>
+<pre class="highlight"><code class="python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torchvision
+<span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image
+<span class="hljs-keyword">import</span> nn_DI_NNFramework
+</code></pre>
+<ul>
+<li><code>torch</code>：PyTorch 主库</li>
+<li><code>torchvision</code>：用于图像处理和变换</li>
+<li><code>PIL.Image</code>：处理图片文件</li>
+<li><code>nn_DI_NNFramework</code>：你自己定义的网络（Net）</li>
 </ul>
-<hr>
-<h3 id="设备设置"><a class="markdownIt-Anchor" href="#设备设置">#</a> 设备设置</h3>
-<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre>device <span class="token operator">=</span> torch<span class="token punctuation">.</span>device<span class="token punctuation">(</span><span class="token string">"cuda"</span> <span class="token keyword">if</span> torch<span class="token punctuation">.</span>cuda<span class="token punctuation">.</span>is_available<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">else</span> <span class="token string">"cpu"</span><span class="token punctuation">)</span></pre></td></tr></table></figure><ul>
+<hr />
+<h3 id="设备设置"><a class="markdownIt-Anchor" href="#设备设置"></a> 设备设置</h3>
+<pre class="highlight"><code class="python">device = torch.device(<span class="hljs-string">&quot;cuda&quot;</span> <span class="hljs-keyword">if</span> torch.cuda.is_available() <span class="hljs-keyword">else</span> <span class="hljs-string">&quot;cpu&quot;</span>)
+</code></pre>
+<ul>
 <li>判断是否有 GPU 可用，如果有就用 GPU，否则用 CPU</li>
 </ul>
-<hr>
-<h3 id="加载模型"><a class="markdownIt-Anchor" href="#加载模型">#</a> 加载模型</h3>
-<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre>model <span class="token operator">=</span> torch<span class="token punctuation">.</span>load<span class="token punctuation">(</span><span class="token string">"net_DI.pth"</span><span class="token punctuation">,</span> weights_only<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span></pre></td></tr></table></figure><ul>
-<li>加载之前训练好的模型  <code>net_DI.pth</code></li>
-<li><code>weights_only=False</code>  表示加载整个模型对象，而不仅仅是权重</li>
+<hr />
+<h3 id="加载模型"><a class="markdownIt-Anchor" href="#加载模型"></a> 加载模型</h3>
+<pre class="highlight"><code class="python">model = torch.load(<span class="hljs-string">&quot;net_DI.pth&quot;</span>, weights_only=<span class="hljs-literal">False</span>)
+</code></pre>
+<ul>
+<li>加载之前训练好的模型 <code>net_DI.pth</code></li>
+<li><code>weights_only=False</code> 表示加载整个模型对象，而不仅仅是权重</li>
 </ul>
 <blockquote>
-<p>一般推荐保存  <code>state_dict</code>  加载权重，这样更灵活：</p>
+<p>一般推荐保存 <code>state_dict</code> 加载权重，这样更灵活：</p>
 </blockquote>
-<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre>net <span class="token operator">=</span> nn_DI_NNFramework<span class="token punctuation">.</span>Net<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre>net<span class="token punctuation">.</span>load_state_dict<span class="token punctuation">(</span>torch<span class="token punctuation">.</span>load<span class="token punctuation">(</span><span class="token string">"net_DI.pth"</span><span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr></table></figure><hr>
-<h3 id="打开图片"><a class="markdownIt-Anchor" href="#打开图片">#</a> 打开图片</h3>
-<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre>image_path <span class="token operator">=</span> <span class="token string">"images/333.png"</span></pre></td></tr><tr><td data-num="2"></td><td><pre>image <span class="token operator">=</span> Image<span class="token punctuation">.</span><span class="token builtin">open</span><span class="token punctuation">(</span>image_path<span class="token punctuation">)</span><span class="token punctuation">.</span>convert<span class="token punctuation">(</span><span class="token string">"L"</span><span class="token punctuation">)</span></pre></td></tr></table></figure><ul>
+<pre class="highlight"><code class="python">net = nn_DI_NNFramework.Net().to(device)
+net.load_state_dict(torch.load(<span class="hljs-string">&quot;net_DI.pth&quot;</span>))
+</code></pre>
+<hr />
+<h3 id="打开图片"><a class="markdownIt-Anchor" href="#打开图片"></a> 打开图片</h3>
+<pre class="highlight"><code class="python">image_path = <span class="hljs-string">&quot;images/333.png&quot;</span>
+image = Image.<span class="hljs-built_in">open</span>(image_path).convert(<span class="hljs-string">&quot;L&quot;</span>)
+</code></pre>
+<ul>
 <li>打开图片</li>
-<li><code>.convert(&quot;L&quot;)</code> ：将图片转换为灰度（1 通道）</li>
+<li><code>.convert(&quot;L&quot;)</code>：将图片转换为灰度（1 通道）</li>
 </ul>
-<hr>
-<h3 id="图像预处理"><a class="markdownIt-Anchor" href="#图像预处理">#</a> 图像预处理</h3>
-<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre>trans <span class="token operator">=</span> torchvision<span class="token punctuation">.</span>transforms<span class="token punctuation">.</span>Compose<span class="token punctuation">(</span><span class="token punctuation">[</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    torchvision<span class="token punctuation">.</span>transforms<span class="token punctuation">.</span>Resize<span class="token punctuation">(</span>size<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">28</span><span class="token punctuation">,</span> <span class="token number">28</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>  <span class="token comment"># 调整图片大小</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    torchvision<span class="token punctuation">.</span>transforms<span class="token punctuation">.</span>ToTensor<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>             <span class="token comment"># 转为张量</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token punctuation">]</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="5"></td><td><pre>image <span class="token operator">=</span> trans<span class="token punctuation">(</span>image<span class="token punctuation">)</span></pre></td></tr></table></figure><ul>
+<hr />
+<h3 id="图像预处理"><a class="markdownIt-Anchor" href="#图像预处理"></a> 图像预处理</h3>
+<pre class="highlight"><code class="python">trans = torchvision.transforms.Compose([
+    torchvision.transforms.Resize(size=(<span class="hljs-number">28</span>, <span class="hljs-number">28</span>)),  <span class="hljs-comment"># 调整图片大小</span>
+    torchvision.transforms.ToTensor(),             <span class="hljs-comment"># 转为张量</span>
+])
+image = trans(image)
+</code></pre>
+<ul>
 <li>将图片缩放到 28×28（MNIST 输入尺寸）</li>
-<li>转成 PyTorch 张量，形状  <code>[C,H,W]</code> ，范围  <code>[0,1]</code></li>
+<li>转成 PyTorch 张量，形状 <code>[C,H,W]</code>，范围 <code>[0,1]</code></li>
 </ul>
-<hr>
-<h3 id="调整-batch-维度并发送到-gpu"><a class="markdownIt-Anchor" href="#调整-batch-维度并发送到-gpu">#</a> 调整 batch 维度并发送到 GPU</h3>
-<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre>image <span class="token operator">=</span> torch<span class="token punctuation">.</span>reshape<span class="token punctuation">(</span>image<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">28</span><span class="token punctuation">,</span> <span class="token number">28</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>image<span class="token punctuation">.</span>shape<span class="token punctuation">)</span></pre></td></tr></table></figure><ul>
-<li>模型期望输入  <code>[batch, channel, height, width]</code></li>
+<hr />
+<h3 id="调整-batch-维度并发送到-gpu"><a class="markdownIt-Anchor" href="#调整-batch-维度并发送到-gpu"></a> 调整 batch 维度并发送到 GPU</h3>
+<pre class="highlight"><code class="python">image = torch.reshape(image, (<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">28</span>, <span class="hljs-number">28</span>)).to(device)
+<span class="hljs-built_in">print</span>(image.shape)
+</code></pre>
+<ul>
+<li>模型期望输入 <code>[batch, channel, height, width]</code></li>
 <li>这里 batch=1，channel=1，28×28</li>
-<li><code>.to(device)</code> ：把图片发送到 GPU 或 CPU</li>
+<li><code>.to(device)</code>：把图片发送到 GPU 或 CPU</li>
 </ul>
-<hr>
-<h3 id="模型推理"><a class="markdownIt-Anchor" href="#模型推理">#</a> 模型推理</h3>
-<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre>model<span class="token punctuation">.</span><span class="token builtin">eval</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">with</span> torch<span class="token punctuation">.</span>no_grad<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    output <span class="token operator">=</span> model<span class="token punctuation">(</span>image<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token keyword">print</span><span class="token punctuation">(</span>output<span class="token punctuation">)</span></pre></td></tr></table></figure><ul>
-<li><code>model.eval()</code> ：评估模式（关闭 Dropout/BatchNorm）</li>
-<li><code>torch.no_grad()</code> ：不计算梯度，节省显存</li>
-<li><code>output</code> ：模型输出 logits（长度为 10 的向量，每个元素对应数字 0–9 的得分）</li>
+<hr />
+<h3 id="模型推理"><a class="markdownIt-Anchor" href="#模型推理"></a> 模型推理</h3>
+<pre class="highlight"><code class="python">model.<span class="hljs-built_in">eval</span>()
+<span class="hljs-keyword">with</span> torch.no_grad():
+    output = model(image)
+    <span class="hljs-built_in">print</span>(output)
+</code></pre>
+<ul>
+<li><code>model.eval()</code>：评估模式（关闭 Dropout/BatchNorm）</li>
+<li><code>torch.no_grad()</code>：不计算梯度，节省显存</li>
+<li><code>output</code>：模型输出 logits（长度为 10 的向量，每个元素对应数字 0–9 的得分）</li>
 </ul>
-<hr>
-<h3 id="获取预测结果"><a class="markdownIt-Anchor" href="#获取预测结果">#</a> 获取预测结果</h3>
-<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre>item <span class="token operator">=</span> torch<span class="token punctuation">.</span>argmax<span class="token punctuation">(</span>output<span class="token punctuation">)</span><span class="token punctuation">.</span>item<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span></pre></td></tr></table></figure><ul>
-<li><code>torch.argmax(output)</code> ：找到得分最大的索引（预测数字）</li>
-<li><code>.item()</code> ：把张量转成 Python 整数</li>
+<hr />
+<h3 id="获取预测结果"><a class="markdownIt-Anchor" href="#获取预测结果"></a> 获取预测结果</h3>
+<pre class="highlight"><code class="python">item = torch.argmax(output).item()
+<span class="hljs-built_in">print</span>(item)
+</code></pre>
+<ul>
+<li><code>torch.argmax(output)</code>：找到得分最大的索引（预测数字）</li>
+<li><code>.item()</code>：把张量转成 Python 整数</li>
 </ul>
-<h3 id="全部代码-2"><a class="markdownIt-Anchor" href="#全部代码-2">#</a> 全部代码</h3>
-<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">import</span> torch</pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">import</span> torchvision</pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token keyword">from</span> PIL <span class="token keyword">import</span> Image</pre></td></tr><tr><td data-num="4"></td><td><pre></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token keyword">import</span> nn_DI_NNFramework</pre></td></tr><tr><td data-num="6"></td><td><pre></pre></td></tr><tr><td data-num="7"></td><td><pre>device <span class="token operator">=</span> torch<span class="token punctuation">.</span>device<span class="token punctuation">(</span><span class="token string">"cuda"</span> <span class="token keyword">if</span> torch<span class="token punctuation">.</span>cuda<span class="token punctuation">.</span>is_available<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">else</span> <span class="token string">"cpu"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="8"></td><td><pre></pre></td></tr><tr><td data-num="9"></td><td><pre>model <span class="token operator">=</span> torch<span class="token punctuation">.</span>load<span class="token punctuation">(</span><span class="token string">"net_DI.pth"</span><span class="token punctuation">,</span> weights_only<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="10"></td><td><pre>image_path <span class="token operator">=</span> <span class="token string">"images/333.png"</span></pre></td></tr><tr><td data-num="11"></td><td><pre>image <span class="token operator">=</span> Image<span class="token punctuation">.</span><span class="token builtin">open</span><span class="token punctuation">(</span>image_path<span class="token punctuation">)</span><span class="token punctuation">.</span>convert<span class="token punctuation">(</span><span class="token string">"L"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="12"></td><td><pre>trans <span class="token operator">=</span> torchvision<span class="token punctuation">.</span>transforms<span class="token punctuation">.</span>Compose<span class="token punctuation">(</span><span class="token punctuation">[</span></pre></td></tr><tr><td data-num="13"></td><td><pre>    torchvision<span class="token punctuation">.</span>transforms<span class="token punctuation">.</span>Resize<span class="token punctuation">(</span>size<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">28</span><span class="token punctuation">,</span> <span class="token number">28</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="14"></td><td><pre>    torchvision<span class="token punctuation">.</span>transforms<span class="token punctuation">.</span>ToTensor<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="15"></td><td><pre><span class="token punctuation">]</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="16"></td><td><pre>image <span class="token operator">=</span> trans<span class="token punctuation">(</span>image<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="17"></td><td><pre><span class="token comment"># 添加一个维度代表 1 张图片，并交给 GPU</span></pre></td></tr><tr><td data-num="18"></td><td><pre>image <span class="token operator">=</span> torch<span class="token punctuation">.</span>reshape<span class="token punctuation">(</span>image<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">28</span><span class="token punctuation">,</span> <span class="token number">28</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="19"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>image<span class="token punctuation">.</span>shape<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="20"></td><td><pre>model<span class="token punctuation">.</span><span class="token builtin">eval</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="21"></td><td><pre><span class="token keyword">with</span> torch<span class="token punctuation">.</span>no_grad<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="22"></td><td><pre>    output <span class="token operator">=</span> model<span class="token punctuation">(</span>image<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="23"></td><td><pre>    <span class="token keyword">print</span><span class="token punctuation">(</span>output<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="24"></td><td><pre>    item <span class="token operator">=</span> torch<span class="token punctuation">.</span>argmax<span class="token punctuation">(</span>output<span class="token punctuation">)</span><span class="token punctuation">.</span>item<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="25"></td><td><pre>    <span class="token keyword">print</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span></pre></td></tr></table></figure><h3 id="自定义测试"><a class="markdownIt-Anchor" href="#自定义测试">#</a> 自定义测试</h3>
+<h3 id="全部代码-2"><a class="markdownIt-Anchor" href="#全部代码-2"></a> 全部代码</h3>
+<pre class="highlight"><code class="python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torchvision
+<span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image
+
+<span class="hljs-keyword">import</span> nn_DI_NNFramework
+
+device = torch.device(<span class="hljs-string">&quot;cuda&quot;</span> <span class="hljs-keyword">if</span> torch.cuda.is_available() <span class="hljs-keyword">else</span> <span class="hljs-string">&quot;cpu&quot;</span>)
+
+model = torch.load(<span class="hljs-string">&quot;net_DI.pth&quot;</span>, weights_only=<span class="hljs-literal">False</span>)
+image_path = <span class="hljs-string">&quot;images/333.png&quot;</span>
+image = Image.<span class="hljs-built_in">open</span>(image_path).convert(<span class="hljs-string">&quot;L&quot;</span>)
+trans = torchvision.transforms.Compose([
+    torchvision.transforms.Resize(size=(<span class="hljs-number">28</span>, <span class="hljs-number">28</span>)),
+    torchvision.transforms.ToTensor(),
+])
+image = trans(image)
+<span class="hljs-comment"># 添加一个维度代表1张图片，并交给GPU</span>
+image = torch.reshape(image, (<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">28</span>, <span class="hljs-number">28</span>)).to(device)
+<span class="hljs-built_in">print</span>(image.shape)
+model.<span class="hljs-built_in">eval</span>()
+<span class="hljs-keyword">with</span> torch.no_grad():
+    output = model(image)
+    <span class="hljs-built_in">print</span>(output)
+    item = torch.argmax(output).item()
+    <span class="hljs-built_in">print</span>(item)
+</code></pre>
+<h3 id="自定义测试"><a class="markdownIt-Anchor" href="#自定义测试"></a> 自定义测试</h3>
 <table>
 <thead>
 <tr>
@@ -492,7 +766,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 
   <a href="/python/pytorch/" itemprop="url" rel="prev" data-background-image="&#x2F;images&#x2F;pytorch.png" title="PyTorch深度学习">
   <span class="type">上一篇</span>
-  <span class="category"><i class="ic i-flag"></i> 基础</span>
+  <span class="category"><i class="ic i-flag"></i> 深度学习基础</span>
   <h3>PyTorch深度学习</h3>
   </a>
 
@@ -502,7 +776,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 
   <a href="/Java/DubboStart/" itemprop="url" rel="next" data-background-image="&#x2F;images&#x2F;cover&#x2F;dubbo.png" title="Dubbo快速入门">
   <span class="type">下一篇</span>
-  <span class="category"><i class="ic i-flag"></i> Dubbo</span>
+  <span class="category"><i class="ic i-flag"></i> 微服务相关</span>
   <h3>Dubbo快速入门</h3>
   </a>
 
@@ -522,7 +796,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="文章目录">
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8Epytorch%E7%9A%84%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB"><span class="toc-number">1.</span> <span class="toc-text"> 基于 PyTorch 的手写数字识别</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#mnist%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-number">1.1.</span> <span class="toc-text"> MNIST 数据集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-number">1.2.</span> <span class="toc-text"> 神经网络的定义</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%85%A5"><span class="toc-number">1.2.1.</span> <span class="toc-text"> 输入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E5%B1%82%E5%8D%B7%E7%A7%AF"><span class="toc-number">1.2.2.</span> <span class="toc-text"> 第一层卷积</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#relu-%E6%BF%80%E6%B4%BB"><span class="toc-number">1.2.3.</span> <span class="toc-text"> ReLU 激活</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%B1%A0%E5%8C%96"><span class="toc-number">1.2.4.</span> <span class="toc-text"> 第一次池化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E5%B1%82%E5%8D%B7%E7%A7%AF"><span class="toc-number">1.2.5.</span> <span class="toc-text"> 第二层卷积</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#relu-%E6%BF%80%E6%B4%BB-2"><span class="toc-number">1.2.6.</span> <span class="toc-text"> ReLU 激活</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AC%A1%E6%B1%A0%E5%8C%96"><span class="toc-number">1.2.7.</span> <span class="toc-text"> 第二次池化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%95%E5%B9%B3"><span class="toc-number">1.2.8.</span> <span class="toc-text"> 展平</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A8%E8%BF%9E%E6%8E%A5%E5%B1%82-1"><span class="toc-number">1.2.9.</span> <span class="toc-text"> 全连接层 1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#relu-%E6%BF%80%E6%B4%BB-3"><span class="toc-number">1.2.10.</span> <span class="toc-text"> ReLU 激活</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A8%E8%BF%9E%E6%8E%A5%E5%B1%82-2"><span class="toc-number">1.2.11.</span> <span class="toc-text"> 全连接层 2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A8%E8%BF%9E%E6%8E%A5%E5%B1%82-3%E8%BE%93%E5%87%BA%E5%B1%82"><span class="toc-number">1.2.12.</span> <span class="toc-text"> 全连接层 3（输出层）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.2.13.</span> <span class="toc-text"> 总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">1.2.14.</span> <span class="toc-text"> 存在的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-number">1.2.15.</span> <span class="toc-text"> 代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83"><span class="toc-number">1.3.</span> <span class="toc-text"> 模型训练</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5%E5%BA%93"><span class="toc-number">1.3.1.</span> <span class="toc-text"> 导入库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-number">1.3.2.</span> <span class="toc-text"> 数据预处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tensorboard-%E6%97%A5%E5%BF%97-%E8%AE%BE%E5%A4%87%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.3.3.</span> <span class="toc-text"> TensorBoard 日志 &amp; 设备设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A0%E8%BD%BD%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-number">1.3.4.</span> <span class="toc-text"> 加载数据集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dataloader"><span class="toc-number">1.3.5.</span> <span class="toc-text"> DataLoader</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%93%E5%8D%B0%E6%95%B0%E6%8D%AE%E9%9B%86%E5%A4%A7%E5%B0%8F"><span class="toc-number">1.3.6.</span> <span class="toc-text"> 打印数据集大小</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%BD%91%E7%BB%9C%E5%92%8C%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0"><span class="toc-number">1.3.7.</span> <span class="toc-text"> 创建网络和损失函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%E5%99%A8"><span class="toc-number">1.3.8.</span> <span class="toc-text"> 优化器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.3.9.</span> <span class="toc-text"> 训练设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83%E5%BE%AA%E7%8E%AF"><span class="toc-number">1.3.10.</span> <span class="toc-text"> 训练循环</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83%E6%AD%A5"><span class="toc-number">1.3.10.1.</span> <span class="toc-text"> 训练步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%B0%E5%BD%95%E6%97%A5%E5%BF%97"><span class="toc-number">1.3.10.2.</span> <span class="toc-text"> 记录日志</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E5%BE%AA%E7%8E%AF"><span class="toc-number">1.3.11.</span> <span class="toc-text"> 测试循环</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%93%E5%8D%B0%E5%92%8C%E8%AE%B0%E5%BD%95"><span class="toc-number">1.3.11.1.</span> <span class="toc-text"> 打印和记录</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%9D%E5%AD%98%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.3.12.</span> <span class="toc-text"> 保存模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A8%E9%83%A8%E4%BB%A3%E7%A0%81"><span class="toc-number">1.3.13.</span> <span class="toc-text"> 全部代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B"><span class="toc-number">1.3.14.</span> <span class="toc-text"> 训练过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E9%AA%8C%E8%AF%81"><span class="toc-number">1.4.</span> <span class="toc-text"> 简单验证</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5%E5%BA%93-2"><span class="toc-number">1.4.1.</span> <span class="toc-text"> 导入库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E5%A4%87%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.4.2.</span> <span class="toc-text"> 设备设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A0%E8%BD%BD%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.4.3.</span> <span class="toc-text"> 加载模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%93%E5%BC%80%E5%9B%BE%E7%89%87"><span class="toc-number">1.4.4.</span> <span class="toc-text"> 打开图片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-number">1.4.5.</span> <span class="toc-text"> 图像预处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%83%E6%95%B4-batch-%E7%BB%B4%E5%BA%A6%E5%B9%B6%E5%8F%91%E9%80%81%E5%88%B0-gpu"><span class="toc-number">1.4.6.</span> <span class="toc-text"> 调整 batch 维度并发送到 GPU</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86"><span class="toc-number">1.4.7.</span> <span class="toc-text"> 模型推理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E9%A2%84%E6%B5%8B%E7%BB%93%E6%9E%9C"><span class="toc-number">1.4.8.</span> <span class="toc-text"> 获取预测结果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A8%E9%83%A8%E4%BB%A3%E7%A0%81-2"><span class="toc-number">1.4.9.</span> <span class="toc-text"> 全部代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B5%8B%E8%AF%95"><span class="toc-number">1.4.10.</span> <span class="toc-text"> 自定义测试</span></a></li></ol></li></ol></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8Epytorch%E7%9A%84%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB"><span class="toc-number">1.</span> <span class="toc-text"> 基于PyTorch的手写数字识别</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#mnist%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-number">1.1.</span> <span class="toc-text"> MNIST数据集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-number">1.2.</span> <span class="toc-text"> 神经网络的定义</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%85%A5"><span class="toc-number">1.2.1.</span> <span class="toc-text"> 输入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E5%B1%82%E5%8D%B7%E7%A7%AF"><span class="toc-number">1.2.2.</span> <span class="toc-text"> 第一层卷积</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#relu-%E6%BF%80%E6%B4%BB"><span class="toc-number">1.2.3.</span> <span class="toc-text"> ReLU 激活</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%B1%A0%E5%8C%96"><span class="toc-number">1.2.4.</span> <span class="toc-text"> 第一次池化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E5%B1%82%E5%8D%B7%E7%A7%AF"><span class="toc-number">1.2.5.</span> <span class="toc-text"> 第二层卷积</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#relu-%E6%BF%80%E6%B4%BB-2"><span class="toc-number">1.2.6.</span> <span class="toc-text"> ReLU 激活</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AC%A1%E6%B1%A0%E5%8C%96"><span class="toc-number">1.2.7.</span> <span class="toc-text"> 第二次池化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%95%E5%B9%B3"><span class="toc-number">1.2.8.</span> <span class="toc-text"> 展平</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A8%E8%BF%9E%E6%8E%A5%E5%B1%82-1"><span class="toc-number">1.2.9.</span> <span class="toc-text"> 全连接层 1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#relu-%E6%BF%80%E6%B4%BB-3"><span class="toc-number">1.2.10.</span> <span class="toc-text"> ReLU 激活</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A8%E8%BF%9E%E6%8E%A5%E5%B1%82-2"><span class="toc-number">1.2.11.</span> <span class="toc-text"> 全连接层 2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A8%E8%BF%9E%E6%8E%A5%E5%B1%82-3%E8%BE%93%E5%87%BA%E5%B1%82"><span class="toc-number">1.2.12.</span> <span class="toc-text"> 全连接层 3（输出层）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.2.13.</span> <span class="toc-text"> 总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">1.2.14.</span> <span class="toc-text"> 存在的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-number">1.2.15.</span> <span class="toc-text"> 代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83"><span class="toc-number">1.3.</span> <span class="toc-text"> 模型训练</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5%E5%BA%93"><span class="toc-number">1.3.1.</span> <span class="toc-text"> 导入库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-number">1.3.2.</span> <span class="toc-text"> 数据预处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tensorboard-%E6%97%A5%E5%BF%97-%E8%AE%BE%E5%A4%87%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.3.3.</span> <span class="toc-text"> TensorBoard 日志 &amp; 设备设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A0%E8%BD%BD%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-number">1.3.4.</span> <span class="toc-text"> 加载数据集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dataloader"><span class="toc-number">1.3.5.</span> <span class="toc-text"> DataLoader</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%93%E5%8D%B0%E6%95%B0%E6%8D%AE%E9%9B%86%E5%A4%A7%E5%B0%8F"><span class="toc-number">1.3.6.</span> <span class="toc-text"> 打印数据集大小</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%BD%91%E7%BB%9C%E5%92%8C%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0"><span class="toc-number">1.3.7.</span> <span class="toc-text"> 创建网络和损失函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%E5%99%A8"><span class="toc-number">1.3.8.</span> <span class="toc-text"> 优化器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.3.9.</span> <span class="toc-text"> 训练设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83%E5%BE%AA%E7%8E%AF"><span class="toc-number">1.3.10.</span> <span class="toc-text"> 训练循环</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83%E6%AD%A5"><span class="toc-number">1.3.10.1.</span> <span class="toc-text"> 训练步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%B0%E5%BD%95%E6%97%A5%E5%BF%97"><span class="toc-number">1.3.10.2.</span> <span class="toc-text"> 记录日志</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E5%BE%AA%E7%8E%AF"><span class="toc-number">1.3.11.</span> <span class="toc-text"> 测试循环</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%93%E5%8D%B0%E5%92%8C%E8%AE%B0%E5%BD%95"><span class="toc-number">1.3.11.1.</span> <span class="toc-text"> 打印和记录</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%9D%E5%AD%98%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.3.12.</span> <span class="toc-text"> 保存模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A8%E9%83%A8%E4%BB%A3%E7%A0%81"><span class="toc-number">1.3.13.</span> <span class="toc-text"> 全部代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B"><span class="toc-number">1.3.14.</span> <span class="toc-text"> 训练过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E9%AA%8C%E8%AF%81"><span class="toc-number">1.4.</span> <span class="toc-text"> 简单验证</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5%E5%BA%93-2"><span class="toc-number">1.4.1.</span> <span class="toc-text"> 导入库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E5%A4%87%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.4.2.</span> <span class="toc-text"> 设备设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A0%E8%BD%BD%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.4.3.</span> <span class="toc-text"> 加载模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%93%E5%BC%80%E5%9B%BE%E7%89%87"><span class="toc-number">1.4.4.</span> <span class="toc-text"> 打开图片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-number">1.4.5.</span> <span class="toc-text"> 图像预处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%83%E6%95%B4-batch-%E7%BB%B4%E5%BA%A6%E5%B9%B6%E5%8F%91%E9%80%81%E5%88%B0-gpu"><span class="toc-number">1.4.6.</span> <span class="toc-text"> 调整 batch 维度并发送到 GPU</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86"><span class="toc-number">1.4.7.</span> <span class="toc-text"> 模型推理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E9%A2%84%E6%B5%8B%E7%BB%93%E6%9E%9C"><span class="toc-number">1.4.8.</span> <span class="toc-text"> 获取预测结果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A8%E9%83%A8%E4%BB%A3%E7%A0%81-2"><span class="toc-number">1.4.9.</span> <span class="toc-text"> 全部代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B5%8B%E8%AF%95"><span class="toc-number">1.4.10.</span> <span class="toc-text"> 自定义测试</span></a></li></ol></li></ol></li></ol>
       </div>
       <div class="related panel pjax" data-title="系列文章">
         <ul>
@@ -540,19 +814,19 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">55</span>
+        <span class="count">57</span>
         <span class="name">文章</span>
       </a>
     </div>
     <div class="item categories">
       <a href="/categories/">
-        <span class="count">25</span>
+        <span class="count">28</span>
         <span class="name">分类</span>
       </a>
     </div>
     <div class="item tags">
       <a href="/tags/">
-        <span class="count">42</span>
+        <span class="count">51</span>
         <span class="name">标签</span>
       </a>
     </div>
@@ -656,17 +930,53 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/English/" title="分类于 English">English</a>
+<a href="/categories/%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C/" title="分类于 开发经验">开发经验</a>
 </div>
 
-    <span><a href="/English/shEnglish/" title="文章翻译">文章翻译</a></span>
+    <span><a href="/experience/MD5CalculationTimePractice/" title="MD5计算时间">MD5计算时间</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/experience/" title="分类于 开发经验">开发经验</a>
+<a href="/categories/Java/" title="分类于 Java">Java</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/Java/SSM%E6%A1%86%E6%9E%B6%E6%95%B4%E5%90%88/" title="分类于 SSM框架整合">SSM框架整合</a>
+</div>
+
+    <span><a href="/Java/SSM01/" title="SSM框架整合">SSM框架整合</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/YOLO/" title="分类于 YOLO">YOLO</a>
+</div>
+
+    <span><a href="/python/YOLO/index/" title="YOLO系列">YOLO系列</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
+</div>
+
+    <span><a href="/python/pandas/" title="Pandas核心处理方法">Pandas核心处理方法</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C/" title="分类于 开发经验">开发经验</a>
 </div>
 
     <span><a href="/experience/CollaborativeFiltering/" title="基于用户的协同过滤算法">基于用户的协同过滤算法</a></span>
@@ -678,10 +988,10 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <div class="breadcrumb">
 <a href="/categories/python/" title="分类于 深度学习">深度学习</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/python/%E9%A1%B9%E7%9B%AE%E4%B8%8E%E5%AE%9E%E6%88%98/" title="分类于 项目与实战">项目与实战</a>
+<a href="/categories/python/YOLO/" title="分类于 YOLO">YOLO</a>
 </div>
 
-    <span><a href="/python/pytorch_nn_digital_identification/" title="基于PyTorch的手写数字识别">基于PyTorch的手写数字识别</a></span>
+    <span><a href="/python/YOLO/YOLO_V1/" title="YOLO-V1">YOLO-V1</a></span>
   </li>
 
       
@@ -690,7 +1000,29 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <div class="breadcrumb">
 <a href="/categories/python/" title="分类于 深度学习">深度学习</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/python/%E5%9F%BA%E7%A1%80/" title="分类于 基础">基础</a>
+<a href="/categories/python/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" title="分类于 论文阅读">论文阅读</a>
+</div>
+
+    <span><a href="/paper/attention_is_all_your_need/" title="Attention is all you need">Attention is all you need</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" title="分类于 计算机组成原理">计算机组成原理</a>
+</div>
+
+    <span><a href="/Principles-of-computer-composition/Division_in_Computers/" title="计算机中的除法运算">计算机中的除法运算</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
 </div>
 
     <span><a href="/python/Transformer/" title="Transformer实战">Transformer实战</a></span>
@@ -700,62 +1032,12 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Principles-of-computer-composition/" title="分类于 计算机组成原理">计算机组成原理</a>
-</div>
-
-    <span><a href="/Principles-of-computer-composition/booth_algorithm/" title="booth算法">booth算法</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Dubbo/" title="分类于 Dubbo">Dubbo</a>
-</div>
-
-    <span><a href="/Java/DubboStart/" title="Dubbo快速入门">Dubbo快速入门</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/java%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/" title="分类于 java高级特性">java高级特性</a>
-</div>
-
-    <span><a href="/Java/javaAd01/" title="Java高级特性1">Java高级特性1</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<a href="/categories/notebook/" title="分类于 笔记">笔记</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/python/%E5%9F%BA%E7%A1%80/" title="分类于 基础">基础</a>
+<a href="/categories/notebook/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B0/" title="分类于 数据结构笔记">数据结构笔记</a>
 </div>
 
-    <span><a href="/python/CNN_Acc/" title="CNN经典卷积神经网络与实战">CNN经典卷积神经网络与实战</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/SpringCloud/" title="分类于 SpringCloud">SpringCloud</a>
-</div>
-
-    <span><a href="/Java/SpringCloudSTU/" title="SpringCloud学习记录">SpringCloud学习记录</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/MongoDB/" title="分类于 MongoDB">MongoDB</a>
-</div>
-
-    <span><a href="/MongoDB/MongoDB03/" title="MongoDB初步使用">MongoDB初步使用</a></span>
+    <span><a href="/DSLearnNote/GeneralizedLists/" title="考试中有关广义表的两个常用函数的解">考试中有关广义表的两个常用函数的解</a></span>
   </li>
 
   </ul>
@@ -780,8 +1062,8 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
     <a href="https://icp.gov.moe/?keyword=20249329" target="_blank">萌ICP备20249329号</a>
     基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
   <br/><span>世界本污浊，罪与爱同歌</span>
-  <br/><i class="ic i-chart-area"></i>&nbsp;<span>507k&nbsp;字</span> &nbsp;|&nbsp;
-  <i class="ic i-coffee"></i>&nbsp;<span> 14:06</span>
+  <br/><i class="ic i-chart-area"></i>&nbsp;<span>549k&nbsp;字</span> &nbsp;|&nbsp;
+  <i class="ic i-coffee"></i>&nbsp;<span> 15:15</span>
   </div>
 </div>
 

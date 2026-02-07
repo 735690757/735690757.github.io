@@ -27,7 +27,7 @@
 <link rel="stylesheet" href="/css/app.css?v=0.2.5">
 
   
-  <meta name="keywords" content="python,CNN,深度学习,YOLO" />
+  <meta name="keywords" content="python,深度学习,CNN,YOLO" />
 
 
 <link rel="canonical" href="https://735690757.github.io/python/YOLO/YOLO_V1/">
@@ -152,61 +152,61 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <div class="body md" itemprop="articleBody">
     
 
-    <h1 id="yolo系列"><a class="markdownIt-Anchor" href="#yolo系列">#</a> YOLO 系列</h1>
+    <h1 id="yolo系列"><a class="markdownIt-Anchor" href="#yolo系列"></a> YOLO系列</h1>
 <p>YOLO（You Only Look Once）</p>
-<h1 id="yolov1"><a class="markdownIt-Anchor" href="#yolov1">#</a> YOLOv1</h1>
+<h1 id="yolov1"><a class="markdownIt-Anchor" href="#yolov1"></a> YOLOv1</h1>
 <img data-src="../../../images/python/YOLO/v1.png" alt="v1"  />
-<p>输入是 448x448x3，最终输出是 7x7x30。对应原始图片对应区域的结果。就是所谓的将原始图片划分为 7x7 个小方格大小的图片。</p>
-<p>其实这是一种一一映射 7x7 这样的小方格，7×7 个 cell，每个 cell 负责 “这个 cell 中心落在这里的目标” 的检测任务。</p>
+<p>输入是448x448x3，最终输出是7x7x30。对应原始图片对应区域的结果。就是所谓的将原始图片划分为7x7个小方格大小的图片。</p>
+<p>其实这是一种一一映射7x7这样的小方格，7×7 个 cell，每个 cell 负责“这个 cell 中心落在这里的目标”的检测任务。</p>
 <img data-src="../../../images/python/YOLO/v1_1.png" alt="v1"  />
-<h2 id="x-y-w-h"><a class="markdownIt-Anchor" href="#x-y-w-h">#</a> x, y, w, h</h2>
-<p>x,y 是中心点坐标，w,h 是预测框的宽和高。</p>
+<h2 id="x-y-w-h"><a class="markdownIt-Anchor" href="#x-y-w-h"></a> x, y, w, h</h2>
+<p>x,y是中心点坐标，w,h是预测框的宽和高。</p>
 <p>每个 bounding box 的 5 个参数：x,y,w,h,confidence,</p>
 <p>x,y：框中心相对于当前 cell 的坐标（一般在 0～1）</p>
 <p>w,h：框的宽高（通常相对于整张图像归一化）</p>
 <p>confidence：这个框中有物体的置信度 × 该框与真实框的 IoU</p>
-<p>每个 cell 的输出维度 = B×5+C</p>
+<p>每个cell的输出维度=B×5+C</p>
 <p>B×5+C=2×5+20=10+20=30</p>
-<h2 id="置信度"><a class="markdownIt-Anchor" href="#置信度">#</a> 置信度</h2>
+<h2 id="置信度"><a class="markdownIt-Anchor" href="#置信度"></a> 置信度</h2>
 <p>公式就是：</p>
-<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>IoU</mtext><mo>=</mo><mfrac><mtext>Intersection Area</mtext><mtext>Union Area</mtext></mfrac></mrow><annotation encoding="application/x-tex">\text{IoU} = \frac{\text{Intersection Area}}{\text{Union Area}}
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>IoU</mtext><mo>=</mo><mfrac><mtext>Intersection Area</mtext><mtext>Union Area</mtext></mfrac></mrow><annotation encoding="application/x-tex">\text{IoU} = \frac{\text{Intersection Area}}{\text{Union Area}}
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord text"><span class="mord">IoU</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.04633em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.36033em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord">Union Area</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord">Intersection Area</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
 <ul>
 <li>Intersection Area：两个框相交的那一块区域的面积（交集）</li>
 <li>Union Area：两个框合起来覆盖住的总面积（并集）</li>
 </ul>
 <img data-src="../../../images/python/YOLO/v1_2.png" alt="v1"  />
-<p>这里所说的物体真实的 box 实际是不存在的，这只是模型表达自己框出了物体的自信程度。因此此时置信度的公式为:</p>
-<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>C</mi><mo>=</mo><mi>P</mi><mi>r</mi><mo stretchy="false">(</mo><mi>O</mi><mi>b</mi><mi>j</mi><mi>e</mi><mi>c</mi><mi>t</mi><mo stretchy="false">)</mo><mo>∗</mo><mi>I</mi><mi>o</mi><msubsup><mi>U</mi><mrow><mi>p</mi><mi>r</mi><mi>e</mi><mi>d</mi></mrow><mrow><mi>t</mi><mi>r</mi><mi>u</mi><mi>t</mi><mi>h</mi></mrow></msubsup></mrow><annotation encoding="application/x-tex">C=Pr(Object)*IoU_{pred}^{truth}
+<p>这里所说的物体真实的box实际是不存在的，这只是模型表达自己框出了物体的自信程度。因此此时置信度的公式为:</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>C</mi><mo>=</mo><mi>P</mi><mi>r</mi><mo stretchy="false">(</mo><mi>O</mi><mi>b</mi><mi>j</mi><mi>e</mi><mi>c</mi><mi>t</mi><mo stretchy="false">)</mo><mo>∗</mo><mi>I</mi><mi>o</mi><msubsup><mi>U</mi><mrow><mi>p</mi><mi>r</mi><mi>e</mi><mi>d</mi></mrow><mrow><mi>t</mi><mi>r</mi><mi>u</mi><mi>t</mi><mi>h</mi></mrow></msubsup></mrow><annotation encoding="application/x-tex">C=Pr(Object)*IoU_{pred}^{truth}
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mord mathnormal">b</span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mord mathnormal">e</span><span class="mord mathnormal">c</span><span class="mord mathnormal">t</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.282216em;vertical-align:-0.383108em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="mord mathnormal">o</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">U</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.899108em;"><span style="top:-2.4530000000000003em;margin-left:-0.10903em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">p</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">d</span></span></span></span><span style="top:-3.1130000000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight">u</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">h</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.383108em;"><span></span></span></span></span></span></span></span></span></span></span></p>
-<h2 id="nms非极大值抑制"><a class="markdownIt-Anchor" href="#nms非极大值抑制">#</a> NMS 非极大值抑制</h2>
+<h2 id="nms非极大值抑制"><a class="markdownIt-Anchor" href="#nms非极大值抑制"></a> NMS非极大值抑制</h2>
 <p>想象一群候选框在参加选秀，规则如下：</p>
 <p><strong>排序</strong>：把所有候选框按<strong>置信度</strong>从高到低排好队。</p>
 <p><strong>选冠军</strong>：把得分最高的框拿出来，确定它就是一个检测结果。</p>
 <p><strong>剔除跟风者</strong>：</p>
 <ul>
-<li>计算剩余所有框与这个 “冠军框” 的重合度（<strong>IOU</strong>）。</li>
+<li>计算剩余所有框与这个“冠军框”的重合度（<strong>IOU</strong>）。</li>
 <li>如果某个框与冠军框的 IOU 超过了预设的阈值，说明它们在预测同一个物体。</li>
-<li>由于它的得分没冠军高，这个 “跟风框” 就会被直接<strong>踢出局（删除）</strong>。</li>
+<li>由于它的得分没冠军高，这个“跟风框”就会被直接<strong>踢出局（删除）</strong>。</li>
 </ul>
 <p><strong>循环</strong>：在剩下的框里继续找得分最高的，重复上述过程，直到所有框都被处理完。</p>
-<h2 id="yolov1损失函数"><a class="markdownIt-Anchor" href="#yolov1损失函数">#</a> YOLOV1 损失函数</h2>
+<h2 id="yolov1损失函数"><a class="markdownIt-Anchor" href="#yolov1损失函数"></a> YOLOV1损失函数</h2>
 <p>损失函数为：</p>
 <img data-src="../../../images/python/YOLO/v1_3.png" alt="v1"  />
-<h2 id="yolov1总结"><a class="markdownIt-Anchor" href="#yolov1总结">#</a> YOLOV1 总结</h2>
-<p>YOLO 非常快，因为将物体检测定义为回归问题，所以检测也不需要复杂组件。</p>
-<p>YOLO 基于全图进行检测，所以不像晃动窗口和预选区技术，YOLO 中隐含着隐式编码的上下文信息。</p>
-<p>YOLOv1 的准确率不够高，YOLO 在定位小物体上表现偏差，可以检测到的目标物体较少。</p>
+<h2 id="yolov1总结"><a class="markdownIt-Anchor" href="#yolov1总结"></a> YOLOV1总结</h2>
+<p>YOLO非常快，因为将物体检测定义为回归问题，所以检测也不需要复杂组件。</p>
+<p>YOLO基于全图进行检测，所以不像晃动窗口和预选区技术，YOLO中隐含着隐式编码的上下文信息。</p>
+<p>YOLOv1的准确率不够高，YOLO在定位小物体上表现偏差，可以检测到的目标物体较少。</p>
 <p>以上缺点将会在下面持续改进。</p>
-<h1 id="参考"><a class="markdownIt-Anchor" href="#参考">#</a> 参考</h1>
+<h1 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h1>
 <ol>
-<li>【YOLOv1、YOLOv2、YOLOv3 目标检测算法原理与实战】<span class="exturl" data-url="aHR0cHM6Ly93d3cuYmlsaWJpbGkuY29tL3ZpZGVvL0JWMVdUNDIxcjcydw==">https://www.bilibili.com/video/BV1WT421r72w</span></li>
+<li>【YOLOv1、YOLOv2、YOLOv3目标检测算法原理与实战】<span class="exturl" data-url="aHR0cHM6Ly93d3cuYmlsaWJpbGkuY29tL3ZpZGVvL0JWMVdUNDIxcjcydw==">https://www.bilibili.com/video/BV1WT421r72w</span></li>
 </ol>
 
       <div class="tags">
           <a href="/tags/python/" rel="tag"><i class="ic i-tag"></i> python</a>
-          <a href="/tags/CNN/" rel="tag"><i class="ic i-tag"></i> CNN</a>
           <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag"><i class="ic i-tag"></i> 深度学习</a>
+          <a href="/tags/CNN/" rel="tag"><i class="ic i-tag"></i> CNN</a>
           <a href="/tags/YOLO/" rel="tag"><i class="ic i-tag"></i> YOLO</a>
       </div>
   </div>
@@ -289,7 +289,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 
   <a href="/python/Harris/" itemprop="url" rel="next" data-background-image="&#x2F;images&#x2F;cover&#x2F;harris.png" title="Harris兴趣点检测">
   <span class="type">下一篇</span>
-  <span class="category"><i class="ic i-flag"></i> 图像处理</span>
+  <span class="category"><i class="ic i-flag"></i> 深度学习基础</span>
   <h3>Harris兴趣点检测</h3>
   </a>
 
@@ -309,7 +309,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="文章目录">
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#yolo%E7%B3%BB%E5%88%97"><span class="toc-number">1.</span> <span class="toc-text"> YOLO 系列</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#yolov1"><span class="toc-number">2.</span> <span class="toc-text"> YOLOv1</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#x-y-w-h"><span class="toc-number">2.1.</span> <span class="toc-text"> x, y, w, h</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%AE%E4%BF%A1%E5%BA%A6"><span class="toc-number">2.2.</span> <span class="toc-text"> 置信度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nms%E9%9D%9E%E6%9E%81%E5%A4%A7%E5%80%BC%E6%8A%91%E5%88%B6"><span class="toc-number">2.3.</span> <span class="toc-text"> NMS 非极大值抑制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#yolov1%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0"><span class="toc-number">2.4.</span> <span class="toc-text"> YOLOV1 损失函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#yolov1%E6%80%BB%E7%BB%93"><span class="toc-number">2.5.</span> <span class="toc-text"> YOLOV1 总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">3.</span> <span class="toc-text"> 参考</span></a></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#yolo%E7%B3%BB%E5%88%97"><span class="toc-number">1.</span> <span class="toc-text"> YOLO系列</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#yolov1"><span class="toc-number">2.</span> <span class="toc-text"> YOLOv1</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#x-y-w-h"><span class="toc-number">2.1.</span> <span class="toc-text"> x, y, w, h</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%AE%E4%BF%A1%E5%BA%A6"><span class="toc-number">2.2.</span> <span class="toc-text"> 置信度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nms%E9%9D%9E%E6%9E%81%E5%A4%A7%E5%80%BC%E6%8A%91%E5%88%B6"><span class="toc-number">2.3.</span> <span class="toc-text"> NMS非极大值抑制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#yolov1%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0"><span class="toc-number">2.4.</span> <span class="toc-text"> YOLOV1损失函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#yolov1%E6%80%BB%E7%BB%93"><span class="toc-number">2.5.</span> <span class="toc-text"> YOLOV1总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">3.</span> <span class="toc-text"> 参考</span></a></li></ol>
       </div>
       <div class="related panel pjax" data-title="系列文章">
         <ul>
@@ -327,19 +327,19 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">55</span>
+        <span class="count">57</span>
         <span class="name">文章</span>
       </a>
     </div>
     <div class="item categories">
       <a href="/categories/">
-        <span class="count">25</span>
+        <span class="count">28</span>
         <span class="name">分类</span>
       </a>
     </div>
     <div class="item tags">
       <a href="/tags/">
-        <span class="count">42</span>
+        <span class="count">51</span>
         <span class="name">标签</span>
       </a>
     </div>
@@ -443,20 +443,80 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/MongoDB/" title="分类于 MongoDB">MongoDB</a>
+<a href="/categories/Java/" title="分类于 Java">Java</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/Java/SSM%E6%A1%86%E6%9E%B6%E6%95%B4%E5%90%88/" title="分类于 SSM框架整合">SSM框架整合</a>
 </div>
 
-    <span><a href="/MongoDB/MongoDB02/" title="MongoDB初步使用">MongoDB初步使用</a></span>
+    <span><a href="/Java/SSM01/" title="SSM框架整合">SSM框架整合</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
+<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%90%86%E8%AE%BA/" title="分类于 数据库理论">数据库理论</a>
 </div>
 
-    <span><a href="/Operate-system/02OS/" title="进程与线程">进程与线程</a></span>
+    <span><a href="/database/DataBase01/" title="DB中的范式">DB中的范式</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
+</div>
+
+    <span><a href="/python/DLFromFormula/" title="从公式角度看深度学习">从公式角度看深度学习</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" title="分类于 计算机组成原理">计算机组成原理</a>
+</div>
+
+    <span><a href="/Principles-of-computer-composition/Division_in_Computers/" title="计算机中的除法运算">计算机中的除法运算</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Java/" title="分类于 Java">Java</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/Java/Linux%E7%9B%B8%E5%85%B3/" title="分类于 Linux相关">Linux相关</a>
+</div>
+
+    <span><a href="/Linux/Linux01/" title="初见Linux">初见Linux</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" title="分类于 论文阅读">论文阅读</a>
+</div>
+
+    <span><a href="/paper/review_remote_sensing_m_d/" title="Methods and datasets on semantic segmentation for Unmanned Aerial Vehicle remote sensing images：A review">Methods and datasets on semantic segmentation for Unmanned Aerial Vehicle remote sensing images：A review</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C/" title="分类于 开发经验">开发经验</a>
+</div>
+
+    <span><a href="/python/fastapi/" title="FastAPI">FastAPI</a></span>
   </li>
 
       
@@ -475,72 +535,22 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/experience/" title="分类于 开发经验">开发经验</a>
-</div>
-
-    <span><a href="/python/fastapi/" title="FastAPI">FastAPI</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/English/" title="分类于 English">English</a>
-</div>
-
-    <span><a href="/English/xbbEnglish/" title="英语笔记">英语笔记</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" title="分类于 计算机网络">计算机网络</a>
-</div>
-
-    <span><a href="/network/computer_network_retest/" title="计算机网络复试速览">计算机网络复试速览</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" title="分类于 图像处理">图像处理</a>
-</div>
-
-    <span><a href="/python/Harris/" title="Harris兴趣点检测">Harris兴趣点检测</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E7%94%9F%E6%B4%BB/" title="分类于 生活">生活</a>
-</div>
-
-    <span><a href="/life/p2025/" title="回望2025——永不熄灭之光">回望2025——永不熄灭之光</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/political/" title="分类于 political">political</a>
-</div>
-
-    <span><a href="/PoliticalKnowledge/politicalNote/" title="政治知识点速记（持续更新）">政治知识点速记（持续更新）</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
 <a href="/categories/python/" title="分类于 深度学习">深度学习</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/python/%E5%9F%BA%E7%A1%80/" title="分类于 基础">基础</a>
+<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
 </div>
 
-    <span><a href="/python/pandas/" title="Pandas核心处理方法">Pandas核心处理方法</a></span>
+    <span><a href="/python/YOLO/evaluation_indicators/" title="模型评价指标">模型评价指标</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
+</div>
+
+    <span><a href="/Operate-system/KnowledgeSummary/" title="操作系统细碎知识点及公式速记">操作系统细碎知识点及公式速记</a></span>
   </li>
 
   </ul>
@@ -565,8 +575,8 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
     <a href="https://icp.gov.moe/?keyword=20249329" target="_blank">萌ICP备20249329号</a>
     基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
   <br/><span>世界本污浊，罪与爱同歌</span>
-  <br/><i class="ic i-chart-area"></i>&nbsp;<span>507k&nbsp;字</span> &nbsp;|&nbsp;
-  <i class="ic i-coffee"></i>&nbsp;<span> 14:06</span>
+  <br/><i class="ic i-chart-area"></i>&nbsp;<span>549k&nbsp;字</span> &nbsp;|&nbsp;
+  <i class="ic i-coffee"></i>&nbsp;<span> 15:15</span>
   </div>
 </div>
 

@@ -35,7 +35,7 @@
 
 
   <title>
-Dubbo快速入门 - Dubbo |
+Dubbo快速入门 - 微服务相关 - Java |
 KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</title>
 <meta name="generator" content="Hexo 6.3.0"></head>
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -129,8 +129,11 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
 <i class="ic i-home"></i>
 <span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
-<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/Dubbo/" itemprop="item" rel="index" title="分类于 Dubbo"><span itemprop="name">Dubbo</span></a>
+<span  itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/Java/" itemprop="item" rel="index" title="分类于 Java"><span itemprop="name">Java</span></a>
 <meta itemprop="position" content="1" /></span>
+<i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/Java/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%9B%B8%E5%85%B3/" itemprop="item" rel="index" title="分类于 微服务相关"><span itemprop="name">微服务相关</span></a>
+<meta itemprop="position" content="2" /></span>
 </div>
 
     <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
@@ -149,10 +152,10 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <div class="body md" itemprop="articleBody">
     
 
-    <h1 id="rpc协议远程调用的几种实现"><a class="markdownIt-Anchor" href="#rpc协议远程调用的几种实现">#</a> RPC 协议远程调用的几种实现</h1>
-<h2 id="dubbo简介"><a class="markdownIt-Anchor" href="#dubbo简介">#</a> Dubbo 简介</h2>
-<p>Dubbo 是阿里巴巴公司开源的一个高性能、轻量级的 Java RPC 框架。</p>
-<p>致力于高性能透明化的透明化的 RPC 原创服务调用方案，以及 SOA 服务治理方案。</p>
+    <h1 id="rpc协议远程调用的几种实现"><a class="markdownIt-Anchor" href="#rpc协议远程调用的几种实现"></a> RPC协议远程调用的几种实现</h1>
+<h2 id="dubbo简介"><a class="markdownIt-Anchor" href="#dubbo简介"></a> Dubbo简介</h2>
+<p>Dubbo是阿里巴巴公司开源的一个高性能、轻量级的Java RPC框架。</p>
+<p>致力于高性能透明化的透明化的RPC原创服务调用方案，以及SOA服务治理方案。</p>
 <ol>
 <li><strong>面向接口的远程方法调用（RPC）</strong>：像调用本地方法一样调用远程服务，对开发者透明，降低了分布式服务调用的复杂度。</li>
 <li><strong>智能容错和负载均衡</strong>：提供了多种容错策略（如失败自动切换、失败安全等）和内置的负载均衡算法（如随机、轮询、最少活跃调用数等），保证了服务的高可用性。</li>
@@ -182,7 +185,6 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 </li>
 <li><strong>监控</strong>：Consumer 和 Provider 在内存中累计调用次数和调用时间，定时每分钟发送一次统计数据到 Monitor。</li>
 </ol>
-<h2 id="实现1-传统-rpc-dubbo-protobuf"><a class="markdownIt-Anchor" href="#实现1-传统-rpc-dubbo-protobuf">#</a> 实现 1 传统 RPC ：Dubbo + Protobuf</h2>
 
       <div class="tags">
           <a href="/tags/java/" rel="tag"><i class="ic i-tag"></i> java</a>
@@ -198,7 +200,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">更新于</span>
-    <time title="修改时间：2025-09-30 17:08:57" itemprop="dateModified" datetime="2025-09-30T17:08:57+08:00">2025-09-30</time>
+    <time title="修改时间：2026-02-03 00:14:46" itemprop="dateModified" datetime="2026-02-03T00:14:46+08:00">2026-02-03</time>
   </span>
   <span id="Java/DubboStart/" class="item leancloud_visitors" data-flag-title="Dubbo快速入门" title="阅读次数">
       <span class="icon">
@@ -268,7 +270,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 
   <a href="/python/CNN_Acc/" itemprop="url" rel="next" data-background-image="&#x2F;images&#x2F;cover&#x2F;cnn.jpg" title="CNN经典卷积神经网络与实战">
   <span class="type">下一篇</span>
-  <span class="category"><i class="ic i-flag"></i> 基础</span>
+  <span class="category"><i class="ic i-flag"></i> 深度学习基础</span>
   <h3>CNN经典卷积神经网络与实战</h3>
   </a>
 
@@ -288,11 +290,11 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="文章目录">
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#rpc%E5%8D%8F%E8%AE%AE%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8%E7%9A%84%E5%87%A0%E7%A7%8D%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.</span> <span class="toc-text"> RPC 协议远程调用的几种实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#dubbo%E7%AE%80%E4%BB%8B"><span class="toc-number">1.1.</span> <span class="toc-text"> Dubbo 简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B01-%E4%BC%A0%E7%BB%9F-rpc-dubbo-protobuf"><span class="toc-number">1.2.</span> <span class="toc-text"> 实现 1 传统 RPC ：Dubbo + Protobuf</span></a></li></ol></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#rpc%E5%8D%8F%E8%AE%AE%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8%E7%9A%84%E5%87%A0%E7%A7%8D%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.</span> <span class="toc-text"> RPC协议远程调用的几种实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#dubbo%E7%AE%80%E4%BB%8B"><span class="toc-number">1.1.</span> <span class="toc-text"> Dubbo简介</span></a></li></ol></li></ol>
       </div>
       <div class="related panel pjax" data-title="系列文章">
         <ul>
-          <li class="active"><a href="/Java/DubboStart/" rel="bookmark" title="Dubbo快速入门">Dubbo快速入门</a></li>
+          <li class="active"><a href="/Java/DubboStart/" rel="bookmark" title="Dubbo快速入门">Dubbo快速入门</a></li><li><a href="/Java/SpringCloudSTU/" rel="bookmark" title="SpringCloud学习记录">SpringCloud学习记录</a></li><li><a href="/Java/springcloud021/" rel="bookmark" title="将单体项目拆解为微服务项目">将单体项目拆解为微服务项目</a></li>
         </ul>
       </div>
       <div class="overview panel" data-title="站点概览">
@@ -306,19 +308,19 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">55</span>
+        <span class="count">57</span>
         <span class="name">文章</span>
       </a>
     </div>
     <div class="item categories">
       <a href="/categories/">
-        <span class="count">25</span>
+        <span class="count">28</span>
         <span class="name">分类</span>
       </a>
     </div>
     <div class="item tags">
       <a href="/tags/">
-        <span class="count">42</span>
+        <span class="count">51</span>
         <span class="name">标签</span>
       </a>
     </div>
@@ -424,7 +426,19 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <div class="breadcrumb">
 <a href="/categories/python/" title="分类于 深度学习">深度学习</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/python/%E5%9F%BA%E7%A1%80/" title="分类于 基础">基础</a>
+<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
+</div>
+
+    <span><a href="/python/numpy/" title="NumPy核心处理方法">NumPy核心处理方法</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
 </div>
 
     <span><a href="/python/Transformer/" title="Transformer实战">Transformer实战</a></span>
@@ -434,19 +448,29 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/python/%E5%9F%BA%E7%A1%80/" title="分类于 基础">基础</a>
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
 </div>
 
-    <span><a href="/python/ss/" title="语义分割">语义分割</a></span>
+    <span><a href="/Operate-system/kcsj/" title="操作系统课程设计">操作系统课程设计</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Principles-of-computer-composition/" title="分类于 计算机组成原理">计算机组成原理</a>
+<a href="/categories/notebook/" title="分类于 笔记">笔记</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/notebook/%E8%80%83%E7%A0%94%E8%8B%B1%E8%AF%AD%E7%AC%94%E8%AE%B0/" title="分类于 考研英语笔记">考研英语笔记</a>
+</div>
+
+    <span><a href="/English/xbbEnglish/" title="英语笔记">英语笔记</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" title="分类于 计算机组成原理">计算机组成原理</a>
 </div>
 
     <span><a href="/Principles-of-computer-composition/Division_in_Computers/" title="计算机中的除法运算">计算机中的除法运算</a></span>
@@ -458,70 +482,56 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <div class="breadcrumb">
 <a href="/categories/python/" title="分类于 深度学习">深度学习</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/python/YOLO/" title="分类于 YOLO">YOLO</a>
+<a href="/categories/python/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" title="分类于 论文阅读">论文阅读</a>
 </div>
 
-    <span><a href="/python/YOLO/YOLO_V1/" title="YOLO-V1">YOLO-V1</a></span>
+    <span><a href="/paper/review_remote_sensing_m_d/" title="Methods and datasets on semantic segmentation for Unmanned Aerial Vehicle remote sensing images：A review">Methods and datasets on semantic segmentation for Unmanned Aerial Vehicle remote sensing images：A review</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/experience/" title="分类于 开发经验">开发经验</a>
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" title="分类于 计算机组成原理">计算机组成原理</a>
 </div>
 
-    <span><a href="/experience/MD5CalculationTimePractice/" title="MD5计算时间">MD5计算时间</a></span>
+    <span><a href="/Principles-of-computer-composition/Connection_between_CPU_and_memory/" title="CPU与存储器的连接">CPU与存储器的连接</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/DS/" title="分类于 DS">DS</a>
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
 </div>
 
-    <span><a href="/DSLearnNote/codeTM/" title="数据结构代码题速记">数据结构代码题速记</a></span>
+    <span><a href="/python/Harris/" title="Harris兴趣点检测">Harris兴趣点检测</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/java%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/" title="分类于 java高级特性">java高级特性</a>
+<a href="/categories/notebook/" title="分类于 笔记">笔记</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/notebook/%E8%80%83%E7%A0%94%E8%8B%B1%E8%AF%AD%E7%AC%94%E8%AE%B0/" title="分类于 考研英语笔记">考研英语笔记</a>
 </div>
 
-    <span><a href="/Java/javaAd01/" title="Java高级特性1">Java高级特性1</a></span>
+    <span><a href="/English/shEnglish/" title="文章翻译">文章翻译</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Linux/" title="分类于 Linux">Linux</a>
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
 </div>
 
-    <span><a href="/Linux/Linux01/" title="初见Linux">初见Linux</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/experience/" title="分类于 开发经验">开发经验</a>
-</div>
-
-    <span><a href="/experience/CollaborativeFiltering/" title="基于用户的协同过滤算法">基于用户的协同过滤算法</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/MongoDB/" title="分类于 MongoDB">MongoDB</a>
-</div>
-
-    <span><a href="/MongoDB/MongoDB02/" title="MongoDB初步使用">MongoDB初步使用</a></span>
+    <span><a href="/python/ss/" title="语义分割">语义分割</a></span>
   </li>
 
   </ul>
@@ -546,8 +556,8 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
     <a href="https://icp.gov.moe/?keyword=20249329" target="_blank">萌ICP备20249329号</a>
     基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
   <br/><span>世界本污浊，罪与爱同歌</span>
-  <br/><i class="ic i-chart-area"></i>&nbsp;<span>507k&nbsp;字</span> &nbsp;|&nbsp;
-  <i class="ic i-coffee"></i>&nbsp;<span> 14:06</span>
+  <br/><i class="ic i-chart-area"></i>&nbsp;<span>549k&nbsp;字</span> &nbsp;|&nbsp;
+  <i class="ic i-coffee"></i>&nbsp;<span> 15:15</span>
   </div>
 </div>
 

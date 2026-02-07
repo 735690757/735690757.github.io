@@ -27,7 +27,7 @@
 <link rel="stylesheet" href="/css/app.css?v=0.2.5">
 
   
-  <meta name="keywords" content="python,CNN,深度学习,YOLO" />
+  <meta name="keywords" content="python,深度学习,CNN,YOLO" />
 
 
 <link rel="canonical" href="https://735690757.github.io/python/YOLO/evaluation_indicators/">
@@ -35,7 +35,7 @@
 
 
   <title>
-模型评价指标 - 基础 - 深度学习 |
+模型评价指标 - 深度学习基础 - 深度学习 |
 KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</title>
 <meta name="generator" content="Hexo 6.3.0"></head>
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -132,7 +132,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <span  itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/python/" itemprop="item" rel="index" title="分类于 深度学习"><span itemprop="name">深度学习</span></a>
 <meta itemprop="position" content="1" /></span>
 <i class="ic i-angle-right"></i>
-<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/python/%E5%9F%BA%E7%A1%80/" itemprop="item" rel="index" title="分类于 基础"><span itemprop="name">基础</span></a>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" itemprop="item" rel="index" title="分类于 深度学习基础"><span itemprop="name">深度学习基础</span></a>
 <meta itemprop="position" content="2" /></span>
 </div>
 
@@ -152,9 +152,9 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <div class="body md" itemprop="articleBody">
     
 
-    <h1 id="什么是模型评价指标"><a class="markdownIt-Anchor" href="#什么是模型评价指标">#</a> 什么是模型评价指标</h1>
+    <h1 id="什么是模型评价指标"><a class="markdownIt-Anchor" href="#什么是模型评价指标"></a> 什么是模型评价指标</h1>
 <p><strong>模型评价指标</strong>是用来定量评估机器学习模型性能的一套标准和度量方法。它们将模型的预测结果与真实情况进行比较，给出一个数值化的分数。</p>
-<h1 id="准确率"><a class="markdownIt-Anchor" href="#准确率">#</a> 准确率</h1>
+<h1 id="准确率"><a class="markdownIt-Anchor" href="#准确率"></a> 准确率</h1>
 <p>简单来说，准确率回答了一个核心问题：“<strong>在模型做出的所有判断中，有多少次是猜对的？</strong>”</p>
 <p>在二分类问题中，我们通常使用<strong>混淆矩阵</strong>中的四个指标来定义准确率：</p>
 <ul>
@@ -163,11 +163,11 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <li><strong>FP (False Positive)</strong>：假正例，实际为负，模型却预测为正。</li>
 <li><strong>FN (False Negative)</strong>：假负例，实际为正，模型却预测为负。</li>
 </ul>
-<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>Accuracy</mtext><mo>=</mo><mfrac><mrow><mi>T</mi><mi>P</mi><mo>+</mo><mi>T</mi><mi>N</mi></mrow><mrow><mi>T</mi><mi>P</mi><mo>+</mo><mi>T</mi><mi>N</mi><mo>+</mo><mi>F</mi><mi>P</mi><mo>+</mo><mi>F</mi><mi>N</mi></mrow></mfrac><mo>=</mo><mfrac><mtext>预测正确的样本数</mtext><mtext>总样本数</mtext></mfrac></mrow><annotation encoding="application/x-tex">\text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN} = \frac{\text{预测正确的样本数}}{\text{总样本数}}
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>Accuracy</mtext><mo>=</mo><mfrac><mrow><mi>T</mi><mi>P</mi><mo>+</mo><mi>T</mi><mi>N</mi></mrow><mrow><mi>T</mi><mi>P</mi><mo>+</mo><mi>T</mi><mi>N</mi><mo>+</mo><mi>F</mi><mi>P</mi><mo>+</mo><mi>F</mi><mi>N</mi></mrow></mfrac><mo>=</mo><mfrac><mtext>预测正确的样本数</mtext><mtext>总样本数</mtext></mfrac></mrow><annotation encoding="application/x-tex">\text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN} = \frac{\text{预测正确的样本数}}{\text{总样本数}}
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord text"><span class="mord">Accuracy</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.1296600000000003em;vertical-align:-0.7693300000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.36033em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7693300000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.04633em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.36033em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord cjk_fallback">总样本数</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord cjk_fallback">预测正确的样本数</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
 <p>三分类及其以上的也是可以的，我们关注的就是整理，其他的就是反例。</p>
-<h1 id="混淆矩阵"><a class="markdownIt-Anchor" href="#混淆矩阵">#</a> 混淆矩阵</h1>
-<p><strong>混淆矩阵</strong> 就是一张 “对比表”。它把模型<strong>预测的结果</strong>和<strong>实际的真实情况</strong>排在一起，让你一眼看出模型在哪些地方混淆了，而它的样子取决于你有多少个类别。</p>
+<h1 id="混淆矩阵"><a class="markdownIt-Anchor" href="#混淆矩阵"></a> 混淆矩阵</h1>
+<p><strong>混淆矩阵</strong> 就是一张“对比表”。它把模型<strong>预测的结果</strong>和<strong>实际的真实情况</strong>排在一起，让你一眼看出模型在哪些地方混淆了，而它的样子取决于你有多少个类别。</p>
 <p>无论是二分类还是多分类，混淆矩阵的结构通常如下：</p>
 <ul>
 <li><strong>行</strong>：代表样本的<strong>真实类别</strong>。</li>
@@ -216,34 +216,45 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 </tr>
 </tbody>
 </table>
-<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">import</span> seaborn <span class="token keyword">as</span> sns</pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>metrics <span class="token keyword">import</span> confusion_matrix</pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre>y_true <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">*</span><span class="token number">8</span> <span class="token operator">+</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">*</span><span class="token number">6</span> <span class="token operator">+</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">*</span><span class="token number">13</span></pre></td></tr><tr><td data-num="5"></td><td><pre>y_pred <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">*</span><span class="token number">5</span> <span class="token operator">+</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">*</span><span class="token number">2</span> <span class="token operator">+</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">*</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">*</span><span class="token number">6</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">*</span><span class="token number">2</span> <span class="token operator">+</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">*</span><span class="token number">1</span> <span class="token operator">+</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">*</span><span class="token number">10</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="6"></td><td><pre></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"实际标签: </span><span class="token interpolation"><span class="token punctuation">&#123;</span>y_true<span class="token punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"预测结果: </span><span class="token interpolation"><span class="token punctuation">&#123;</span>y_pred<span class="token punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="9"></td><td><pre>cm <span class="token operator">=</span> confusion_matrix<span class="token punctuation">(</span>y_true<span class="token punctuation">,</span> y_pred<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="10"></td><td><pre>sns<span class="token punctuation">.</span>heatmap<span class="token punctuation">(</span>cm<span class="token punctuation">,</span> annot<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> fmt<span class="token operator">=</span><span class="token string">'d'</span><span class="token punctuation">,</span> cmap<span class="token operator">=</span><span class="token string">'Blues'</span><span class="token punctuation">)</span></pre></td></tr></table></figure><img data-src="../../../images/python/eval/1.png" alt="v1"  />
-<h1 id="精确率-查准率"><a class="markdownIt-Anchor" href="#精确率-查准率">#</a> 精确率 / 查准率</h1>
-<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>Precision</mtext><mo>=</mo><mfrac><mrow><mi>T</mi><mi>P</mi></mrow><mrow><mi>T</mi><mi>P</mi><mo>+</mo><mi>F</mi><mi>P</mi></mrow></mfrac><mo>=</mo><mfrac><mtext>预测对的正例</mtext><mtext>所有预测为正例的样本数</mtext></mfrac></mrow><annotation encoding="application/x-tex">\text{Precision} = \frac{TP}{TP + FP} = \frac{\text{预测对的正例}}{\text{所有预测为正例的样本数}}
+<pre class="highlight"><code class="python"><span class="hljs-keyword">import</span> seaborn <span class="hljs-keyword">as</span> sns
+<span class="hljs-keyword">from</span> sklearn.metrics <span class="hljs-keyword">import</span> confusion_matrix
+
+y_true = [<span class="hljs-number">0</span>]*<span class="hljs-number">8</span> + [<span class="hljs-number">1</span>]*<span class="hljs-number">6</span> + [<span class="hljs-number">2</span>]*<span class="hljs-number">13</span>
+y_pred = ([<span class="hljs-number">0</span>]*<span class="hljs-number">5</span> + [<span class="hljs-number">1</span>]*<span class="hljs-number">2</span> + [<span class="hljs-number">2</span>]*<span class="hljs-number">1</span>) + ([<span class="hljs-number">1</span>]*<span class="hljs-number">6</span>) + ([<span class="hljs-number">0</span>]*<span class="hljs-number">2</span> + [<span class="hljs-number">1</span>]*<span class="hljs-number">1</span> + [<span class="hljs-number">2</span>]*<span class="hljs-number">10</span>)
+
+<span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;实际标签: <span class="hljs-subst">&#123;y_true&#125;</span>&quot;</span>)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;预测结果: <span class="hljs-subst">&#123;y_pred&#125;</span>&quot;</span>)
+cm = confusion_matrix(y_true, y_pred)
+sns.heatmap(cm, annot=<span class="hljs-literal">True</span>, fmt=<span class="hljs-string">&#x27;d&#x27;</span>, cmap=<span class="hljs-string">&#x27;Blues&#x27;</span>)
+</code></pre>
+<img data-src="../../../images/python/eval/1.png" alt="v1"  />
+<h1 id="精确率-查准率"><a class="markdownIt-Anchor" href="#精确率-查准率"></a> 精确率 / 查准率</h1>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>Precision</mtext><mo>=</mo><mfrac><mrow><mi>T</mi><mi>P</mi></mrow><mrow><mi>T</mi><mi>P</mi><mo>+</mo><mi>F</mi><mi>P</mi></mrow></mfrac><mo>=</mo><mfrac><mtext>预测对的正例</mtext><mtext>所有预测为正例的样本数</mtext></mfrac></mrow><annotation encoding="application/x-tex">\text{Precision} = \frac{TP}{TP + FP} = \frac{\text{预测对的正例}}{\text{所有预测为正例的样本数}}
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord text"><span class="mord">Precision</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.1296600000000003em;vertical-align:-0.7693300000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.36033em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7693300000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.04633em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.36033em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord cjk_fallback">所有预测为正例的样本数</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord cjk_fallback">预测对的正例</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
-<p>它的核心问题在于，模型说 “是” 的时候，它<strong>有多可信</strong>？</p>
-<h1 id="召回率-查全率"><a class="markdownIt-Anchor" href="#召回率-查全率">#</a> 召回率 / 查全率</h1>
-<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>Recall</mtext><mo>=</mo><mfrac><mrow><mi>T</mi><mi>P</mi></mrow><mrow><mi>T</mi><mi>P</mi><mo>+</mo><mi>F</mi><mi>N</mi></mrow></mfrac><mo>=</mo><mfrac><mtext>预测对的正例</mtext><mtext>所有实际为正例的样本数</mtext></mfrac></mrow><annotation encoding="application/x-tex">\text{Recall} = \frac{TP}{TP + FN} = \frac{\text{预测对的正例}}{\text{所有实际为正例的样本数}}
+<p>它的核心问题在于，模型说“是”的时候，它<strong>有多可信</strong>？</p>
+<h1 id="召回率-查全率"><a class="markdownIt-Anchor" href="#召回率-查全率"></a> 召回率 / 查全率</h1>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>Recall</mtext><mo>=</mo><mfrac><mrow><mi>T</mi><mi>P</mi></mrow><mrow><mi>T</mi><mi>P</mi><mo>+</mo><mi>F</mi><mi>N</mi></mrow></mfrac><mo>=</mo><mfrac><mtext>预测对的正例</mtext><mtext>所有实际为正例的样本数</mtext></mfrac></mrow><annotation encoding="application/x-tex">\text{Recall} = \frac{TP}{TP + FN} = \frac{\text{预测对的正例}}{\text{所有实际为正例的样本数}}
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord text"><span class="mord">Recall</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.1296600000000003em;vertical-align:-0.7693300000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.36033em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7693300000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.04633em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.36033em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord cjk_fallback">所有实际为正例的样本数</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord cjk_fallback">预测对的正例</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
 <p>它关注的是<strong>模型发现正例的能力</strong>，或者说<strong>覆盖率</strong>。</p>
-<h1 id="精确率与召回率的进一步理解"><a class="markdownIt-Anchor" href="#精确率与召回率的进一步理解">#</a> 精确率与召回率的进一步理解</h1>
-<p>假设一个小镇上有 <strong>10 个坏人</strong> 和 <strong>90 个好人</strong>。</p>
-<h2 id="策略一极端谨慎没把握绝不动手"><a class="markdownIt-Anchor" href="#策略一极端谨慎没把握绝不动手">#</a> 策略一：极端谨慎，没把握绝不动手</h2>
+<h1 id="精确率与召回率的进一步理解"><a class="markdownIt-Anchor" href="#精确率与召回率的进一步理解"></a> 精确率与召回率的进一步理解</h1>
+<p>假设一个小镇上有 <strong>10个坏人</strong> 和 <strong>90个好人</strong>。</p>
+<h2 id="策略一极端谨慎没把握绝不动手"><a class="markdownIt-Anchor" href="#策略一极端谨慎没把握绝不动手"></a> 策略一：极端谨慎，没把握绝不动手</h2>
 <p>在这个场景下，警察非常担心冤枉好人。他们只在掌握了百分之百证据的情况下才抓人。</p>
-<p><strong>结果</strong>：警察只抓了 <strong>1 个人</strong>，而这个人确实是坏人。</p>
+<p><strong>结果</strong>：警察只抓了 <strong>1个人</strong>，而这个人确实是坏人。</p>
 <ul>
 <li><strong>精确率</strong>：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi mathvariant="normal">/</mi><mn>1</mn><mo>=</mo><mrow><mn mathvariant="bold">100</mn><mi mathvariant="bold">%</mi></mrow></mrow><annotation encoding="application/x-tex">1 / 1 = \mathbf{100\%}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mord">/</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.80556em;vertical-align:-0.05556em;"></span><span class="mord"><span class="mord mathbf">1</span><span class="mord mathbf">0</span><span class="mord mathbf">0</span><span class="mord mathbf">%</span></span></span></span></span>。因为抓的人里没有一个是冤枉的。</li>
 <li><strong>召回率</strong>：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi mathvariant="normal">/</mi><mn>10</mn><mo>=</mo><mrow><mn mathvariant="bold">10</mn><mi mathvariant="bold">%</mi></mrow></mrow><annotation encoding="application/x-tex">1 / 10 = \mathbf{10\%}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mord">/</span><span class="mord">1</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.80556em;vertical-align:-0.05556em;"></span><span class="mord"><span class="mord mathbf">1</span><span class="mord mathbf">0</span><span class="mord mathbf">%</span></span></span></span></span>。虽然抓得准，但剩下的 9 个坏人还在外面逍遥法外。</li>
 </ul>
 <p><strong>“虽然从不冤枉好人，但办事效率太低，坏人都漏掉了。”</strong></p>
-<h2 id="策略二宁可错杀一千不可放过一个"><a class="markdownIt-Anchor" href="#策略二宁可错杀一千不可放过一个">#</a> 策略二：宁可错杀一千，不可放过一个</h2>
+<h2 id="策略二宁可错杀一千不可放过一个"><a class="markdownIt-Anchor" href="#策略二宁可错杀一千不可放过一个"></a> 策略二：宁可错杀一千，不可放过一个</h2>
 <p>在这个场景下，警察为了彻底肃清坏人，决定把所有有嫌疑的人全部抓起来。</p>
-<p><strong>结果</strong>：警察抓了 <strong>50 个人</strong>。其中包含了全部 <strong>10 个坏人</strong>，但也误抓了 <strong>40 个好人</strong>。</p>
+<p><strong>结果</strong>：警察抓了 <strong>50个人</strong>。其中包含了全部 <strong>10个坏人</strong>，但也误抓了 <strong>40个好人</strong>。</p>
 <ul>
 <li><strong>召回率</strong>：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn><mi mathvariant="normal">/</mi><mn>10</mn><mo>=</mo><mrow><mn mathvariant="bold">100</mn><mi mathvariant="bold">%</mi></mrow></mrow><annotation encoding="application/x-tex">10 / 10 = \mathbf{100\%}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">/</span><span class="mord">1</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.80556em;vertical-align:-0.05556em;"></span><span class="mord"><span class="mord mathbf">1</span><span class="mord mathbf">0</span><span class="mord mathbf">0</span><span class="mord mathbf">%</span></span></span></span></span>。所有的坏人都被抓进了监狱，一个没漏。</li>
 <li><strong>精确率</strong>：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn><mi mathvariant="normal">/</mi><mn>50</mn><mo>=</mo><mrow><mn mathvariant="bold">20</mn><mi mathvariant="bold">%</mi></mrow></mrow><annotation encoding="application/x-tex">10 / 50 = \mathbf{20\%}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">/</span><span class="mord">5</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.80556em;vertical-align:-0.05556em;"></span><span class="mord"><span class="mord mathbf">2</span><span class="mord mathbf">0</span><span class="mord mathbf">%</span></span></span></span></span>。虽然坏人抓完了，但抓的人里有 80% 都是冤枉的好人。</li>
 </ul>
 <p><strong>“虽然坏人一个没跑，但滥杀无辜，造成了大量的误报。”</strong></p>
-<h2 id="精确率与召回率的相互制衡"><a class="markdownIt-Anchor" href="#精确率与召回率的相互制衡">#</a> 精确率与召回率的相互制衡</h2>
+<h2 id="精确率与召回率的相互制衡"><a class="markdownIt-Anchor" href="#精确率与召回率的相互制衡"></a> 精确率与召回率的相互制衡</h2>
 <table>
 <thead>
 <tr>
@@ -255,8 +266,8 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <tbody>
 <tr>
 <td style="text-align:center"><strong>核心逻辑</strong></td>
-<td style="text-align:center">追求 “真”，怕误报</td>
-<td style="text-align:center">追求 “全”，怕漏报</td>
+<td style="text-align:center">追求“真”，怕误报</td>
+<td style="text-align:center">追求“全”，怕漏报</td>
 </tr>
 <tr>
 <td style="text-align:center"><strong>模型表现</strong></td>
@@ -273,16 +284,16 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <p>在模型调整中，当你调低阈值时，你抓到的坏人会变多，但随之而来的误伤也会变多。这就是机器学习中著名的 <strong>P-R 权衡</strong>。</p>
 <p>P：Precision  R：Recall</p>
 <img data-src="../../../images/python/eval/2.png" alt="v1"  />
-<h1 id="f1-score值"><a class="markdownIt-Anchor" href="#f1-score值">#</a> F1-score 值</h1>
+<h1 id="f1-score值"><a class="markdownIt-Anchor" href="#f1-score值"></a> F1-score值</h1>
 <p>F1-Score 使用的是<strong>调和平均数</strong>，它的公式是：</p>
-<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>F</mi><mn>1</mn><mo>=</mo><mn>2</mn><mo>×</mo><mfrac><mrow><mtext>Precision</mtext><mo>×</mo><mtext>Recall</mtext></mrow><mrow><mtext>Precision</mtext><mo>+</mo><mtext>Recall</mtext></mrow></mfrac></mrow><annotation encoding="application/x-tex">F1 = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>F</mi><mn>1</mn><mo>=</mo><mn>2</mn><mo>×</mo><mfrac><mrow><mtext>Precision</mtext><mo>×</mo><mtext>Recall</mtext></mrow><mrow><mtext>Precision</mtext><mo>+</mo><mtext>Recall</mtext></mrow></mfrac></mrow><annotation encoding="application/x-tex">F1 = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:2.14077em;vertical-align:-0.7693300000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.37144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord">Precision</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord text"><span class="mord">Recall</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord">Precision</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord text"><span class="mord">Recall</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7693300000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
-<p><strong>调和平均数的特点：</strong> 它对 “极小值” 非常敏感。如果 Precision 或 Recall 其中一个非常低，整个 F1-Score 就会被拉得很低，取值范围是 0~1。</p>
-<h1 id="iou交并比"><a class="markdownIt-Anchor" href="#iou交并比">#</a> IOU 交并比</h1>
+<p><strong>调和平均数的特点：</strong> 它对“极小值”非常敏感。如果 Precision 或 Recall 其中一个非常低，整个 F1-Score 就会被拉得很低，取值范围是0~1。</p>
+<h1 id="iou交并比"><a class="markdownIt-Anchor" href="#iou交并比"></a> IOU交并比</h1>
 <p>IoU 衡量的是<strong>模型预测的边界框</strong>与<strong>真实的边界框</strong>之间的重叠程度。</p>
-<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>I</mi><mi>o</mi><mi>U</mi><mo>=</mo><mfrac><mtext>Area of Overlap</mtext><mtext>Area of Union</mtext></mfrac></mrow><annotation encoding="application/x-tex">IoU = \frac{\text{Area of Overlap}}{\text{Area of Union}}
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>I</mi><mi>o</mi><mi>U</mi><mo>=</mo><mfrac><mtext>Area of Overlap</mtext><mtext>Area of Union</mtext></mfrac></mrow><annotation encoding="application/x-tex">IoU = \frac{\text{Area of Overlap}}{\text{Area of Union}}
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.10903em;">U</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.0574399999999997em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3714399999999998em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord">Area of Union</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord">Area of Overlap</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
-<h1 id="nms非极大值抑制"><a class="markdownIt-Anchor" href="#nms非极大值抑制">#</a> NMS 非极大值抑制</h1>
+<h1 id="nms非极大值抑制"><a class="markdownIt-Anchor" href="#nms非极大值抑制"></a> NMS非极大值抑制</h1>
 <p>当你运行一个检测模型时，模型往往非常热心，会在同一个物体周围画出成百上千个重叠的候选框。NMS 的作用就是：<strong>在这一堆框里，只选出最准的那一个，把剩下的删掉。</strong></p>
 <ol>
 <li><strong>排序</strong>：将所有候选框按<strong>置信度得分</strong>从高到低排序。</li>
@@ -292,8 +303,8 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 </ol>
 <p>为什么不找一个置信度最高的的一个框就完事了呢，那是因为，我们在一张图片里有好多要检测的目标，如果只选择最大的那就只保留了一个，这是不合理的。</p>
 <p>这就是 <strong>NMS</strong> 算法设计的精妙之处：它不是简单的全场选最高，而是<strong>局部选最高</strong>。</p>
-<h1 id="confidence置信度"><a class="markdownIt-Anchor" href="#confidence置信度">#</a> Confidence 置信度</h1>
-<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>Confidence</mtext><mo>=</mo><mi>P</mi><mi>r</mi><mo stretchy="false">(</mo><mi>O</mi><mi>b</mi><mi>j</mi><mi>e</mi><mi>c</mi><mi>t</mi><mo stretchy="false">)</mo><mo>×</mo><msubsup><mtext>IoU</mtext><mrow><mi>p</mi><mi>r</mi><mi>e</mi><mi>d</mi></mrow><mrow><mi>t</mi><mi>r</mi><mi>u</mi><mi>t</mi><mi>h</mi></mrow></msubsup></mrow><annotation encoding="application/x-tex">\text{Confidence} = Pr(Object) \times \text{IoU}_{pred}^{truth}
+<h1 id="confidence置信度"><a class="markdownIt-Anchor" href="#confidence置信度"></a> Confidence置信度</h1>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>Confidence</mtext><mo>=</mo><mi>P</mi><mi>r</mi><mo stretchy="false">(</mo><mi>O</mi><mi>b</mi><mi>j</mi><mi>e</mi><mi>c</mi><mi>t</mi><mo stretchy="false">)</mo><mo>×</mo><msubsup><mtext>IoU</mtext><mrow><mi>p</mi><mi>r</mi><mi>e</mi><mi>d</mi></mrow><mrow><mi>t</mi><mi>r</mi><mi>u</mi><mi>t</mi><mi>h</mi></mrow></msubsup></mrow><annotation encoding="application/x-tex">\text{Confidence} = Pr(Object) \times \text{IoU}_{pred}^{truth}
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord text"><span class="mord">Confidence</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mord mathnormal">b</span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mord mathnormal">e</span><span class="mord mathnormal">c</span><span class="mord mathnormal">t</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.3054459999999999em;vertical-align:-0.383108em;"></span><span class="mord"><span class="mord text"><span class="mord">IoU</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9223379999999999em;"><span style="top:-2.4530000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">p</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">d</span></span></span></span><span style="top:-3.1362300000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight">u</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">h</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.383108em;"><span></span></span></span></span></span></span></span></span></span></span></p>
 <p><strong><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>r</mi><mo stretchy="false">(</mo><mi>O</mi><mi>b</mi><mi>j</mi><mi>e</mi><mi>c</mi><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Pr(Object)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mord mathnormal">b</span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mord mathnormal">e</span><span class="mord mathnormal">c</span><span class="mord mathnormal">t</span><span class="mclose">)</span></span></span></span></strong>：是一个概率值，取值范围在 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[0, 1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span></span> 之间。</p>
 <ul>
@@ -301,35 +312,35 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <li>如果框内只有背景，没有任何物体中心点，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>r</mi><mo stretchy="false">(</mo><mi>O</mi><mi>b</mi><mi>j</mi><mi>e</mi><mi>c</mi><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">Pr(Object) = 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mord mathnormal">b</span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mord mathnormal">e</span><span class="mord mathnormal">c</span><span class="mord mathnormal">t</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>。</li>
 </ul>
 <p><strong><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mtext>IoU</mtext><mrow><mi>p</mi><mi>r</mi><mi>e</mi><mi>d</mi></mrow><mrow><mi>t</mi><mi>r</mi><mi>u</mi><mi>t</mi><mi>h</mi></mrow></msubsup></mrow><annotation encoding="application/x-tex">\text{IoU}_{pred}^{truth}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.3054459999999999em;vertical-align:-0.383108em;"></span><span class="mord"><span class="mord text"><span class="mord">IoU</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9223379999999999em;"><span style="top:-2.4530000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">p</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">d</span></span></span></span><span style="top:-3.1362300000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight">u</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">h</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.383108em;"><span></span></span></span></span></span></span></span></span></span></strong>：预测框与真实框之间的重叠程度。</p>
-<h1 id="特定类别得分"><a class="markdownIt-Anchor" href="#特定类别得分">#</a> 特定类别得分</h1>
-<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>Score</mtext><mo>=</mo><mi>P</mi><mi>r</mi><mo stretchy="false">(</mo><mi>O</mi><mi>b</mi><mi>j</mi><mi>e</mi><mi>c</mi><mi>t</mi><mo stretchy="false">)</mo><mo>×</mo><mtext>IoU</mtext><mo>×</mo><mi>P</mi><mi>r</mi><mo stretchy="false">(</mo><mi>C</mi><mi>l</mi><mi>a</mi><mi>s</mi><msub><mi>s</mi><mi>i</mi></msub><mi mathvariant="normal">∣</mi><mi>O</mi><mi>b</mi><mi>j</mi><mi>e</mi><mi>c</mi><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\text{Score} = Pr(Object) \times \text{IoU} \times Pr(Class_i | Object)
+<h1 id="特定类别得分"><a class="markdownIt-Anchor" href="#特定类别得分"></a> 特定类别得分</h1>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>Score</mtext><mo>=</mo><mi>P</mi><mi>r</mi><mo stretchy="false">(</mo><mi>O</mi><mi>b</mi><mi>j</mi><mi>e</mi><mi>c</mi><mi>t</mi><mo stretchy="false">)</mo><mo>×</mo><mtext>IoU</mtext><mo>×</mo><mi>P</mi><mi>r</mi><mo stretchy="false">(</mo><mi>C</mi><mi>l</mi><mi>a</mi><mi>s</mi><msub><mi>s</mi><mi>i</mi></msub><mi mathvariant="normal">∣</mi><mi>O</mi><mi>b</mi><mi>j</mi><mi>e</mi><mi>c</mi><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\text{Score} = Pr(Object) \times \text{IoU} \times Pr(Class_i | Object)
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord text"><span class="mord">Score</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mord mathnormal">b</span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mord mathnormal">e</span><span class="mord mathnormal">c</span><span class="mord mathnormal">t</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord text"><span class="mord">IoU</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">a</span><span class="mord mathnormal">s</span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">∣</span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mord mathnormal">b</span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mord mathnormal">e</span><span class="mord mathnormal">c</span><span class="mord mathnormal">t</span><span class="mclose">)</span></span></span></span></span></p>
 <p><strong><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>r</mi><mo stretchy="false">(</mo><mi>C</mi><mi>l</mi><mi>a</mi><mi>s</mi><msub><mi>s</mi><mi>i</mi></msub><mi mathvariant="normal">∣</mi><mi>O</mi><mi>b</mi><mi>j</mi><mi>e</mi><mi>c</mi><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Pr(Class_i | Object)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">a</span><span class="mord mathnormal">s</span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">∣</span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mord mathnormal">b</span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mord mathnormal">e</span><span class="mord mathnormal">c</span><span class="mord mathnormal">t</span><span class="mclose">)</span></span></span></span></strong>：这是<strong>条件类别概率</strong>，即在已经确定有物体的前提下，它是狗的概率。</p>
 <p><strong>最终得分</strong>：综合了有没有东西、框得准不准以及是什么东西这三个因素。</p>
-<h1 id="pr-曲线"><a class="markdownIt-Anchor" href="#pr-曲线">#</a> PR 曲线</h1>
+<h1 id="pr-曲线"><a class="markdownIt-Anchor" href="#pr-曲线"></a> PR 曲线</h1>
 <p><strong>PR 曲线</strong> 是衡量分类模型性能的另一把尺。它展示了在不同的<strong>置信度阈值</strong>下，<strong>精确率</strong> 和 <strong>召回率</strong> 之间的博弈关系。</p>
 <p>当我们使用模型预测时，通常会得到一个概率值。我们需要设定一个<strong>阈值</strong>来决定它是正还是负。</p>
 <ul>
-<li>如果阈值设为 <strong>0.9</strong> 很严苛：只有极有把握的才算正例，<strong>精确率会很高，但会漏掉很多，召回率低</strong>。</li>
-<li>如果阈值设为 <strong>0.1</strong> 很宽松：宁可错抓不可放过，<strong>召回率会很高，但误报也多，精确率低</strong>。</li>
+<li>如果阈值设为 <strong>0.9</strong>很严苛：只有极有把握的才算正例，<strong>精确率会很高，但会漏掉很多，召回率低</strong>。</li>
+<li>如果阈值设为 <strong>0.1</strong>很宽松：宁可错抓不可放过，<strong>召回率会很高，但误报也多，精确率低</strong>。</li>
 </ul>
-<p>PR 曲线就是把阈值从 0 变到 1 的过程中，所有的 Recall 与 Precision 坐标点连成的线。</p>
-<p>横轴是 Recall 召回率，纵轴是 Precision 精确率。它常是一条向右下方倾斜的曲线。当召回率上升时，精确率往往会下降。</p>
+<p>PR 曲线就是把阈值从 0 变到 1 的过程中，所有的Recall与Precision坐标点连成的线。</p>
+<p>横轴是 Recall召回率，纵轴是 Precision精确率。它常是一条向右下方倾斜的曲线。当召回率上升时，精确率往往会下降。</p>
 <p><strong>理想位置</strong>：曲线越靠近<strong>右上角</strong>（1, 1）越好。这意味着模型能同时保持高精确率和高召回率。</p>
-<h1 id="map"><a class="markdownIt-Anchor" href="#map">#</a> mAP</h1>
+<h1 id="map"><a class="markdownIt-Anchor" href="#map"></a> mAP</h1>
 <p>mAP: mean Average Precision</p>
 <p>AP: Average Precision， <strong>AP</strong> 是 <strong>PR 曲线下方的面积</strong>。</p>
 <p>m: mean</p>
-<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>mAP</mtext><mo>=</mo><mfrac><mn>1</mn><mi>N</mi></mfrac><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mi>A</mi><msub><mi>P</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">\text{mAP} = \frac{1}{N} \sum_{i=1}^{N} AP_i
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>mAP</mtext><mo>=</mo><mfrac><mn>1</mn><mi>N</mi></mfrac><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mi>A</mi><msub><mi>P</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">\text{mAP} = \frac{1}{N} \sum_{i=1}^{N} AP_i
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord text"><span class="mord">mAP</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:3.106005em;vertical-align:-1.277669em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.8283360000000002em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3000050000000005em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">N</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.277669em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">A</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></p>
-<p>mAP 反映了模型的<strong>全能程度</strong>。如果一个模型只会认猫，不认识狗，那么它的 mAP 就会被拉低。mAP 是衡量模型好坏的终极标准。它不仅看模型能不能分类正确，还看模型框得准不准。</p>
-<h1 id="fps"><a class="markdownIt-Anchor" href="#fps">#</a> FPS</h1>
-<p>在模型评价指标中，如果说 <strong>mAP</strong> 衡量的是模型<strong>聪不聪明</strong>，那么 <strong>FPS</strong> 衡量的就是模型<strong>快不快</strong>。FPS 即每秒传输帧数，是衡量模型推理速度的核心指标。</p>
+<p>mAP 反映了模型的<strong>全能程度</strong>。如果一个模型只会认猫，不认识狗，那么它的 mAP 就会被拉低。mAP是衡量模型好坏的终极标准。它不仅看模型能不能分类正确，还看模型框得准不准。</p>
+<h1 id="fps"><a class="markdownIt-Anchor" href="#fps"></a> FPS</h1>
+<p>在模型评价指标中，如果说 <strong>mAP</strong> 衡量的是模型<strong>聪不聪明</strong>，那么 <strong>FPS</strong> 衡量的就是模型<strong>快不快</strong>。FPS即每秒传输帧数，是衡量模型推理速度的核心指标。</p>
 
       <div class="tags">
           <a href="/tags/python/" rel="tag"><i class="ic i-tag"></i> python</a>
-          <a href="/tags/CNN/" rel="tag"><i class="ic i-tag"></i> CNN</a>
           <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag"><i class="ic i-tag"></i> 深度学习</a>
+          <a href="/tags/CNN/" rel="tag"><i class="ic i-tag"></i> CNN</a>
           <a href="/tags/YOLO/" rel="tag"><i class="ic i-tag"></i> YOLO</a>
       </div>
   </div>
@@ -342,7 +353,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">更新于</span>
-    <time title="修改时间：2026-01-07 23:03:30" itemprop="dateModified" datetime="2026-01-07T23:03:30+08:00">2026-01-07</time>
+    <time title="修改时间：2026-02-03 00:18:21" itemprop="dateModified" datetime="2026-02-03T00:18:21+08:00">2026-02-03</time>
   </span>
   <span id="python/YOLO/evaluation_indicators/" class="item leancloud_visitors" data-flag-title="模型评价指标" title="阅读次数">
       <span class="icon">
@@ -432,11 +443,11 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="文章目录">
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BB%B7%E6%8C%87%E6%A0%87"><span class="toc-number">1.</span> <span class="toc-text"> 什么是模型评价指标</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%87%86%E7%A1%AE%E7%8E%87"><span class="toc-number">2.</span> <span class="toc-text"> 准确率</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B7%B7%E6%B7%86%E7%9F%A9%E9%98%B5"><span class="toc-number">3.</span> <span class="toc-text"> 混淆矩阵</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B2%BE%E7%A1%AE%E7%8E%87-%E6%9F%A5%E5%87%86%E7%8E%87"><span class="toc-number">4.</span> <span class="toc-text"> 精确率 &#x2F; 查准率</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%AC%E5%9B%9E%E7%8E%87-%E6%9F%A5%E5%85%A8%E7%8E%87"><span class="toc-number">5.</span> <span class="toc-text"> 召回率 &#x2F; 查全率</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B2%BE%E7%A1%AE%E7%8E%87%E4%B8%8E%E5%8F%AC%E5%9B%9E%E7%8E%87%E7%9A%84%E8%BF%9B%E4%B8%80%E6%AD%A5%E7%90%86%E8%A7%A3"><span class="toc-number">6.</span> <span class="toc-text"> 精确率与召回率的进一步理解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AD%96%E7%95%A5%E4%B8%80%E6%9E%81%E7%AB%AF%E8%B0%A8%E6%85%8E%E6%B2%A1%E6%8A%8A%E6%8F%A1%E7%BB%9D%E4%B8%8D%E5%8A%A8%E6%89%8B"><span class="toc-number">6.1.</span> <span class="toc-text"> 策略一：极端谨慎，没把握绝不动手</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AD%96%E7%95%A5%E4%BA%8C%E5%AE%81%E5%8F%AF%E9%94%99%E6%9D%80%E4%B8%80%E5%8D%83%E4%B8%8D%E5%8F%AF%E6%94%BE%E8%BF%87%E4%B8%80%E4%B8%AA"><span class="toc-number">6.2.</span> <span class="toc-text"> 策略二：宁可错杀一千，不可放过一个</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B2%BE%E7%A1%AE%E7%8E%87%E4%B8%8E%E5%8F%AC%E5%9B%9E%E7%8E%87%E7%9A%84%E7%9B%B8%E4%BA%92%E5%88%B6%E8%A1%A1"><span class="toc-number">6.3.</span> <span class="toc-text"> 精确率与召回率的相互制衡</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#f1-score%E5%80%BC"><span class="toc-number">7.</span> <span class="toc-text"> F1-score 值</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#iou%E4%BA%A4%E5%B9%B6%E6%AF%94"><span class="toc-number">8.</span> <span class="toc-text"> IOU 交并比</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#nms%E9%9D%9E%E6%9E%81%E5%A4%A7%E5%80%BC%E6%8A%91%E5%88%B6"><span class="toc-number">9.</span> <span class="toc-text"> NMS 非极大值抑制</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#confidence%E7%BD%AE%E4%BF%A1%E5%BA%A6"><span class="toc-number">10.</span> <span class="toc-text"> Confidence 置信度</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%89%B9%E5%AE%9A%E7%B1%BB%E5%88%AB%E5%BE%97%E5%88%86"><span class="toc-number">11.</span> <span class="toc-text"> 特定类别得分</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#pr-%E6%9B%B2%E7%BA%BF"><span class="toc-number">12.</span> <span class="toc-text"> PR 曲线</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#map"><span class="toc-number">13.</span> <span class="toc-text"> mAP</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#fps"><span class="toc-number">14.</span> <span class="toc-text"> FPS</span></a></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BB%B7%E6%8C%87%E6%A0%87"><span class="toc-number">1.</span> <span class="toc-text"> 什么是模型评价指标</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%87%86%E7%A1%AE%E7%8E%87"><span class="toc-number">2.</span> <span class="toc-text"> 准确率</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B7%B7%E6%B7%86%E7%9F%A9%E9%98%B5"><span class="toc-number">3.</span> <span class="toc-text"> 混淆矩阵</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B2%BE%E7%A1%AE%E7%8E%87-%E6%9F%A5%E5%87%86%E7%8E%87"><span class="toc-number">4.</span> <span class="toc-text"> 精确率 &#x2F; 查准率</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%AC%E5%9B%9E%E7%8E%87-%E6%9F%A5%E5%85%A8%E7%8E%87"><span class="toc-number">5.</span> <span class="toc-text"> 召回率 &#x2F; 查全率</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B2%BE%E7%A1%AE%E7%8E%87%E4%B8%8E%E5%8F%AC%E5%9B%9E%E7%8E%87%E7%9A%84%E8%BF%9B%E4%B8%80%E6%AD%A5%E7%90%86%E8%A7%A3"><span class="toc-number">6.</span> <span class="toc-text"> 精确率与召回率的进一步理解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AD%96%E7%95%A5%E4%B8%80%E6%9E%81%E7%AB%AF%E8%B0%A8%E6%85%8E%E6%B2%A1%E6%8A%8A%E6%8F%A1%E7%BB%9D%E4%B8%8D%E5%8A%A8%E6%89%8B"><span class="toc-number">6.1.</span> <span class="toc-text"> 策略一：极端谨慎，没把握绝不动手</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AD%96%E7%95%A5%E4%BA%8C%E5%AE%81%E5%8F%AF%E9%94%99%E6%9D%80%E4%B8%80%E5%8D%83%E4%B8%8D%E5%8F%AF%E6%94%BE%E8%BF%87%E4%B8%80%E4%B8%AA"><span class="toc-number">6.2.</span> <span class="toc-text"> 策略二：宁可错杀一千，不可放过一个</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B2%BE%E7%A1%AE%E7%8E%87%E4%B8%8E%E5%8F%AC%E5%9B%9E%E7%8E%87%E7%9A%84%E7%9B%B8%E4%BA%92%E5%88%B6%E8%A1%A1"><span class="toc-number">6.3.</span> <span class="toc-text"> 精确率与召回率的相互制衡</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#f1-score%E5%80%BC"><span class="toc-number">7.</span> <span class="toc-text"> F1-score值</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#iou%E4%BA%A4%E5%B9%B6%E6%AF%94"><span class="toc-number">8.</span> <span class="toc-text"> IOU交并比</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#nms%E9%9D%9E%E6%9E%81%E5%A4%A7%E5%80%BC%E6%8A%91%E5%88%B6"><span class="toc-number">9.</span> <span class="toc-text"> NMS非极大值抑制</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#confidence%E7%BD%AE%E4%BF%A1%E5%BA%A6"><span class="toc-number">10.</span> <span class="toc-text"> Confidence置信度</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%89%B9%E5%AE%9A%E7%B1%BB%E5%88%AB%E5%BE%97%E5%88%86"><span class="toc-number">11.</span> <span class="toc-text"> 特定类别得分</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#pr-%E6%9B%B2%E7%BA%BF"><span class="toc-number">12.</span> <span class="toc-text"> PR 曲线</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#map"><span class="toc-number">13.</span> <span class="toc-text"> mAP</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#fps"><span class="toc-number">14.</span> <span class="toc-text"> FPS</span></a></li></ol>
       </div>
       <div class="related panel pjax" data-title="系列文章">
         <ul>
-          <li><a href="/python/numpy/" rel="bookmark" title="NumPy核心处理方法">NumPy核心处理方法</a></li><li><a href="/python/pandas/" rel="bookmark" title="Pandas核心处理方法">Pandas核心处理方法</a></li><li><a href="/python/pytorch/" rel="bookmark" title="PyTorch深度学习">PyTorch深度学习</a></li><li><a href="/python/CNN_Acc/" rel="bookmark" title="CNN经典卷积神经网络与实战">CNN经典卷积神经网络与实战</a></li><li><a href="/python/NLP/" rel="bookmark" title="NLP自然语言处理">NLP自然语言处理</a></li><li><a href="/python/DLFromFormula/" rel="bookmark" title="从公式角度看深度学习">从公式角度看深度学习</a></li><li><a href="/python/Transformer/" rel="bookmark" title="Transformer实战">Transformer实战</a></li><li class="active"><a href="/python/YOLO/evaluation_indicators/" rel="bookmark" title="模型评价指标">模型评价指标</a></li><li><a href="/python/ss/" rel="bookmark" title="语义分割">语义分割</a></li>
+          <li><a href="/python/numpy/" rel="bookmark" title="NumPy核心处理方法">NumPy核心处理方法</a></li><li><a href="/python/pandas/" rel="bookmark" title="Pandas核心处理方法">Pandas核心处理方法</a></li><li><a href="/python/pytorch/" rel="bookmark" title="PyTorch深度学习">PyTorch深度学习</a></li><li><a href="/python/CNN_Acc/" rel="bookmark" title="CNN经典卷积神经网络与实战">CNN经典卷积神经网络与实战</a></li><li><a href="/python/NLP/" rel="bookmark" title="NLP自然语言处理">NLP自然语言处理</a></li><li><a href="/python/DLFromFormula/" rel="bookmark" title="从公式角度看深度学习">从公式角度看深度学习</a></li><li><a href="/python/Transformer/" rel="bookmark" title="Transformer实战">Transformer实战</a></li><li><a href="/python/Harris/" rel="bookmark" title="Harris兴趣点检测">Harris兴趣点检测</a></li><li class="active"><a href="/python/YOLO/evaluation_indicators/" rel="bookmark" title="模型评价指标">模型评价指标</a></li><li><a href="/python/ss/" rel="bookmark" title="语义分割">语义分割</a></li>
         </ul>
       </div>
       <div class="overview panel" data-title="站点概览">
@@ -450,19 +461,19 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">55</span>
+        <span class="count">57</span>
         <span class="name">文章</span>
       </a>
     </div>
     <div class="item categories">
       <a href="/categories/">
-        <span class="count">25</span>
+        <span class="count">28</span>
         <span class="name">分类</span>
       </a>
     </div>
     <div class="item tags">
       <a href="/tags/">
-        <span class="count">42</span>
+        <span class="count">51</span>
         <span class="name">标签</span>
       </a>
     </div>
@@ -566,10 +577,46 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/MongoDB/" title="分类于 MongoDB">MongoDB</a>
+<a href="/categories/notebook/" title="分类于 笔记">笔记</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/notebook/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B0/" title="分类于 数据结构笔记">数据结构笔记</a>
 </div>
 
-    <span><a href="/MongoDB/MongoDB02/" title="MongoDB初步使用">MongoDB初步使用</a></span>
+    <span><a href="/DSLearnNote/codeTM/" title="数据结构代码题速记">数据结构代码题速记</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
+</div>
+
+    <span><a href="/python/ss/" title="语义分割">语义分割</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/YOLO/" title="分类于 YOLO">YOLO</a>
+</div>
+
+    <span><a href="/python/YOLO/index/" title="YOLO系列">YOLO系列</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C/" title="分类于 开发经验">开发经验</a>
+</div>
+
+    <span><a href="/python/fastapi/" title="FastAPI">FastAPI</a></span>
   </li>
 
       
@@ -586,70 +633,20 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/gitflow/" title="分类于 gitflow">gitflow</a>
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" title="分类于 计算机组成原理">计算机组成原理</a>
 </div>
 
-    <span><a href="/Java/gitflow/" title="GitFlow分支管理策略">GitFlow分支管理策略</a></span>
+    <span><a href="/Principles-of-computer-composition/Division_in_Computers/" title="计算机中的除法运算">计算机中的除法运算</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/MongoDB/" title="分类于 MongoDB">MongoDB</a>
+<a href="/categories/Java/" title="分类于 Java">Java</a>
 </div>
 
-    <span><a href="/MongoDB/MongoDB01/" title="MongoDB的安装与初步使用（Windows平台）">MongoDB的安装与初步使用（Windows平台）</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E4%B8%8A%E5%B2%B8/" title="分类于 上岸">上岸</a>
-</div>
-
-    <span><a href="/life/shangan/" title="写给我这一年多的考研时光">写给我这一年多的考研时光</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/DS/" title="分类于 DS">DS</a>
-</div>
-
-    <span><a href="/DSLearnNote/codeTM/" title="数据结构代码题速记">数据结构代码题速记</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Principles-of-computer-composition/" title="分类于 计算机组成原理">计算机组成原理</a>
-</div>
-
-    <span><a href="/Principles-of-computer-composition/booth_algorithm/" title="booth算法">booth算法</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/MongoDB/" title="分类于 MongoDB">MongoDB</a>
-</div>
-
-    <span><a href="/MongoDB/MongoDB03/" title="MongoDB初步使用">MongoDB初步使用</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/experience/" title="分类于 开发经验">开发经验</a>
-</div>
-
-    <span><a href="/experience/CollaborativeFiltering/" title="基于用户的协同过滤算法">基于用户的协同过滤算法</a></span>
+    <span><a href="/Java/javaAd01/" title="Java高级特性1">Java高级特性1</a></span>
   </li>
 
       
@@ -658,10 +655,34 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <div class="breadcrumb">
 <a href="/categories/python/" title="分类于 深度学习">深度学习</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/python/%E5%9F%BA%E7%A1%80/" title="分类于 基础">基础</a>
+<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
 </div>
 
-    <span><a href="/python/pandas/" title="Pandas核心处理方法">Pandas核心处理方法</a></span>
+    <span><a href="/python/YOLO/evaluation_indicators/" title="模型评价指标">模型评价指标</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MongoDB/" title="分类于 MongoDB">MongoDB</a>
+</div>
+
+    <span><a href="/MongoDB/MongoDB02/" title="MongoDB初步使用">MongoDB初步使用</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
+</div>
+
+    <span><a href="/python/CNN_Acc/" title="CNN经典卷积神经网络与实战">CNN经典卷积神经网络与实战</a></span>
   </li>
 
   </ul>
@@ -686,8 +707,8 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
     <a href="https://icp.gov.moe/?keyword=20249329" target="_blank">萌ICP备20249329号</a>
     基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
   <br/><span>世界本污浊，罪与爱同歌</span>
-  <br/><i class="ic i-chart-area"></i>&nbsp;<span>507k&nbsp;字</span> &nbsp;|&nbsp;
-  <i class="ic i-coffee"></i>&nbsp;<span> 14:06</span>
+  <br/><i class="ic i-chart-area"></i>&nbsp;<span>549k&nbsp;字</span> &nbsp;|&nbsp;
+  <i class="ic i-coffee"></i>&nbsp;<span> 15:15</span>
   </div>
 </div>
 

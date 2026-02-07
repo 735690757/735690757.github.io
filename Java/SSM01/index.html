@@ -1,0 +1,1222 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="诗岸梦行舟" href="https://735690757.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="诗岸梦行舟" href="https://735690757.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="诗岸梦行舟" href="https://735690757.github.io/feed.json" />
+<link rel="stylesheet" href="https://unpkg.com/mermaid/dist/mermaid.min.css">
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({ startOnLoad: true });</script>
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="Java,SSM" />
+
+
+<link rel="canonical" href="https://735690757.github.io/Java/SSM01/">
+
+
+
+  <title>
+SSM框架整合 - SSM框架整合 - Java |
+KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</title>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">SSM框架整合
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2023-08-15 11:00:00">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2023-08-15T11:00:00+08:00">2023-08-15</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">KarryLiu</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+          <img src="https://i.postimg.cc/Y08Rcdkn/5914c632e6dffaceb04a08266d4d5148.png">
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
+<span  itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/Java/" itemprop="item" rel="index" title="分类于 Java"><span itemprop="name">Java</span></a>
+<meta itemprop="position" content="1" /></span>
+<i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/Java/SSM%E6%A1%86%E6%9E%B6%E6%95%B4%E5%90%88/" itemprop="item" rel="index" title="分类于 SSM框架整合"><span itemprop="name">SSM框架整合</span></a>
+<meta itemprop="position" content="2" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="https://735690757.github.io/Java/SSM01/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/tx.jpg">
+    <meta itemprop="name" content="KarryLiu">
+    <meta itemprop="description" content="分享计算机知识以及各种心得总结, 愿世间所有的美好都得以祝愿">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="诗岸梦行舟">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h1 id="是什么ssm"><a class="markdownIt-Anchor" href="#是什么ssm"></a> 是什么SSM</h1>
+<p>SSM是三个框架的简写，本别是<strong>Spring，SpringMVC，Mybatis</strong>，这三个框架作为JavaWeb强有力的支撑件，极大地提高了开发效率，降低了维护成本，是Java程序员学习Web技术的<strong>必经之路</strong>（至少现在是这样）</p>
+<p>在此之前，我希望你能熟练掌握，额，哪怕不熟练也要了解Web部分的老祖：<strong>请求，响应以及Servlet技术</strong>，这些技术能帮助你更好、更快、更流畅的掌握SSM技术。</p>
+<p>其次本文主要讲解SSM整合的相关细节，<strong>并不会深入讲解Spring，SpringMVC，Mybatis每个框架的知识</strong>，希望大家在看本文之前能了解Spring，SpringMVC，Mybatis单个框架的使用方法。</p>
+<h1 id="整合开始"><a class="markdownIt-Anchor" href="#整合开始"></a> 整合开始</h1>
+<p>首先我先放出最终的整合状态，其实也不一定非要按照我这样来做。</p>
+<table>
+<thead>
+<tr>
+<th><img data-src="https://s2.loli.net/2023/08/27/oOYkfcqT4sChgZ8.png" alt="1.png" /></th>
+<th style="text-align:left">bean包：大多数的实体类<br /><br />config包：整合的核心配置类<br /><br />controller包：外部控制器暴露点<br /><br />mapper包：Mybiats SQL标准化<br /><br />service包：业务逻辑，包含接口以及实现<br /><br />resource包：资源文件、配置文件<br /><br />webapp：前端资源</th>
+</tr>
+</thead>
+</table>
+<p>那么接下来我将带着大家一步一步的来做，从创建项目到最终完成整合。</p>
+<h2 id="创建项目maven构建方式"><a class="markdownIt-Anchor" href="#创建项目maven构建方式"></a> 创建项目（Maven构建方式）</h2>
+<p>选择新建一个项目（或模块），选择<strong>Maven Archetype形式</strong>创建，我给他命名叫做SSM_demo。</p>
+<p>JDK：1.8（Java 8）</p>
+<p>Archetype：选择最后以<strong>webapp结尾</strong>的，这是一个创建模板</p>
+<p>组ID：公司域名反写</p>
+<p><img data-src="https://s2.loli.net/2023/08/27/8AHEv3qyFMLpZi9.png" alt="2.png" /></p>
+<h2 id="创建包结构"><a class="markdownIt-Anchor" href="#创建包结构"></a> 创建包结构</h2>
+<p>在main目录下创建java目录和必要的包结构</p>
+<p><img data-src="https://s2.loli.net/2023/08/27/wdcBFt4Vl7auSj5.png" alt="3.png" /></p>
+<h2 id="依赖导入-必要启动配置"><a class="markdownIt-Anchor" href="#依赖导入-必要启动配置"></a> 依赖导入、必要启动配置</h2>
+<p>我们需要在pom.xml文件下导入我们SSM所需要的依赖，并配置必要的启动项。</p>
+<h3 id="导入详解"><a class="markdownIt-Anchor" href="#导入详解"></a> 导入详解</h3>
+<p><strong>第一步：导包</strong></p>
+<p>需要思考我们需要什么依赖：</p>
+<p><strong><ins>junit</ins>{.wavy}</strong>：单元测试。</p>
+<p><strong><ins>spring-webmvc</ins>{.wavy}</strong>：整个依赖就比较强大了她不仅包含了SpringMVC的部分也包含了Spring-Context部分，其实也不难理解，因为SpringMVC是基于Spring开发的，那也就必然包含了Spring框架的部分。</p>
+<p>至此我们还剩下数据库的部分，我们继续将其填充完整。</p>
+<p><strong><ins>Mybatis</ins>{.wavy}</strong>：这个是Mybatis的核心依赖。</p>
+<p><strong><ins>mybatis-spring</ins>{.wavy}</strong>：整个是将Mybatis与Spring进行整合。</p>
+<p><strong><ins>spring-jdbc</ins>{.wavy}</strong>：简化 Java 应用程序与数据库之间的交互，Spring JDBC 是 MyBatis-Spring 的底层依赖，提供了连接管理、事务管理等基础功能。</p>
+<p><strong><ins>mysql-connector-java</ins>{.wavy}</strong>：这个是MySQL的驱动依赖。</p>
+<p><strong><ins>druid</ins>{.wavy}</strong>：数据库连接池。</p>
+<p><strong><ins>servlet-api</ins>{.wavy}</strong>：Spring MVC 架构是基于 Servlet 规范的。它使用 Servlet API 来处理和分发 Web 请求，以及与 Web 容器进行交互。</p>
+<p><strong><ins>jackson-databind</ins>{.wavy}</strong>：用于在 Java 对象和 JSON 数据之间进行序列化（对象到 JSON）和反序列化（JSON 到对象）的核心部分。</p>
+<pre class="highlight"><code class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>junit<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>junit<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>4.13.2<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>test<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-webmvc<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>5.2.10.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.mybatis<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mybatis<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.5.9<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.mybatis<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mybatis-spring<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.0.7<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-jdbc<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>6.0.6<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>mysql<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mysql-connector-java<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>8.0.31<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>javax.servlet<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>servlet-api<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.5<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>provided<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.fasterxml.jackson.core<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jackson-databind<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.13.4<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span>
+</code></pre>
+<p>一定要为我们的servlet-api配置作用域为provided，<strong>这是非常大的一个坑点</strong>！！！</p>
+<p>如果您不将 <code>servlet-api</code> 的作用域设置为 <code>provided</code>，而是将其作用域设置为默认的 <code>compile</code>，则可能会导致以下问题和影响：</p>
+<ol>
+<li><strong>冲突问题：</strong> 如果您的应用程序包含了自己的 Servlet API 实现（例如 jar 包），而 Web 容器也提供了自己的实现，可能会导致冲突和不稳定性。</li>
+<li><strong>版本不一致：</strong> 不同的 Web 容器可能使用不同版本的 Servlet API，如果您将 API 包含在应用程序中，可能会导致版本不一致的问题。</li>
+<li><strong>应用程序大小增加：</strong> 将 Servlet API 包含在应用程序中会增加应用程序的大小，尽管这在绝大多数情况下可能不会对性能产生明显影响，但仍然会浪费一些资源。</li>
+<li><strong>维护困难：</strong> 如果您在多个项目中重复地包含 Servlet API，可能会导致维护上的困难，特别是在更新版本或切换到不同的 Web 容器时。</li>
+</ol>
+<pre class="highlight"><code class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>provided<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span>
+</code></pre>
+<p><strong>第二步：启动配置</strong></p>
+<p>在这里你可以选择外挂Tomcat和Maven插件的两种启动方式，在这里我选择插件法，因为外挂启动真的是太慢了QWQ</p>
+<p>pom.xml文件中的build标签下配置tomcat插件：</p>
+<pre class="highlight"><code class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">build</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">finalName</span>&gt;</span>SSM_demo<span class="hljs-tag">&lt;/<span class="hljs-name">finalName</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">plugins</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">plugin</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.tomcat.maven<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>tomcat7-maven-plugin<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.2<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">port</span>&gt;</span>80<span class="hljs-tag">&lt;/<span class="hljs-name">port</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">path</span>&gt;</span>/<span class="hljs-tag">&lt;/<span class="hljs-name">path</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">plugin</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">plugins</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">build</span>&gt;</span>
+</code></pre>
+<p>80端口为启动端口，你也可以进行修改，例如修改到8090</p>
+<pre class="highlight"><code class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">port</span>&gt;</span>8090<span class="hljs-tag">&lt;/<span class="hljs-name">port</span>&gt;</span>
+</code></pre>
+<p><strong>第三步：Java版本配置</strong></p>
+<p>其实这是一个<strong>坑点</strong>我们需要在pom文件加上这两行：</p>
+<pre class="highlight"><code class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">properties</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">maven.compiler.source</span>&gt;</span>8<span class="hljs-tag">&lt;/<span class="hljs-name">maven.compiler.source</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">maven.compiler.target</span>&gt;</span>8<span class="hljs-tag">&lt;/<span class="hljs-name">maven.compiler.target</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">properties</span>&gt;</span>
+</code></pre>
+<p>这是在声明我们的Java版本为java8，这个一定要根据我们项目的java版本来填写</p>
+<h3 id="最终展示"><a class="markdownIt-Anchor" href="#最终展示"></a> 最终展示</h3>
+<pre class="highlight"><code class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">project</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span> 
+         <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+  <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">&quot;http://maven.apache.org/POM/4.0.0 
+                      http://maven.apache.org/maven-v4_0_0.xsd&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">modelVersion</span>&gt;</span>4.0.0<span class="hljs-tag">&lt;/<span class="hljs-name">modelVersion</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.KarryCode<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>SSM_demo<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">packaging</span>&gt;</span>war<span class="hljs-tag">&lt;/<span class="hljs-name">packaging</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">properties</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">maven.compiler.source</span>&gt;</span>8<span class="hljs-tag">&lt;/<span class="hljs-name">maven.compiler.source</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">maven.compiler.target</span>&gt;</span>8<span class="hljs-tag">&lt;/<span class="hljs-name">maven.compiler.target</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">properties</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.0-SNAPSHOT<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>SSM_demo Maven Webapp<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">url</span>&gt;</span>http://maven.apache.org<span class="hljs-tag">&lt;/<span class="hljs-name">url</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>junit<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>junit<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>4.13.2<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>test<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-webmvc<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>5.2.10.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.mybatis<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mybatis<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.5.9<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.mybatis<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mybatis-spring<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.0.7<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-jdbc<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>5.0.2.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>mysql<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mysql-connector-java<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>8.0.31<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.alibaba<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>druid<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.2.16<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>javax.servlet<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>servlet-api<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.5<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>provided<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.fasterxml.jackson.core<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jackson-databind<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.13.4<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">build</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">finalName</span>&gt;</span>SSM_demo<span class="hljs-tag">&lt;/<span class="hljs-name">finalName</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">plugins</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">plugin</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.tomcat.maven<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>tomcat7-maven-plugin<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.2<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">port</span>&gt;</span>80<span class="hljs-tag">&lt;/<span class="hljs-name">port</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">path</span>&gt;</span>/<span class="hljs-tag">&lt;/<span class="hljs-name">path</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">plugin</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">plugins</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">build</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">project</span>&gt;</span>
+
+</code></pre>
+<h2 id="创建jdbcproperties文件"><a class="markdownIt-Anchor" href="#创建jdbcproperties文件"></a> 创建JDBC.properties文件</h2>
+<p>在<code>resource</code>目录下创建<strong>jdbc.properties</strong></p>
+<pre class="highlight"><code class="properties"><span class="hljs-attr">jdbc.driver</span> = <span class="hljs-string">com.mysql.cj.jdbc.Driver</span>
+<span class="hljs-attr">jdbc.url</span> = <span class="hljs-string"></span>
+<span class="hljs-attr">jdbc.username</span> = <span class="hljs-string"></span>
+<span class="hljs-attr">jdbc.password</span> = <span class="hljs-string"></span>
+</code></pre>
+<p>等号后面的根据自己的需要进行填写</p>
+<p>为了测试，我还创建的一张表：</p>
+<p><img data-src="https://s2.loli.net/2023/08/27/Q1qrlnCDZFi39c8.png" alt="4.png" /></p>
+<p>这是我的生成脚本：</p>
+<pre class="highlight"><code class="sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> tb_book
+(
+    id          <span class="hljs-type">int</span> auto_increment
+        <span class="hljs-keyword">primary</span> key,
+    type        <span class="hljs-type">varchar</span>(<span class="hljs-number">20</span>)  <span class="hljs-keyword">null</span>,
+    name        <span class="hljs-type">varchar</span>(<span class="hljs-number">50</span>)  <span class="hljs-keyword">null</span>,
+    description <span class="hljs-type">varchar</span>(<span class="hljs-number">255</span>) <span class="hljs-keyword">null</span>
+);
+</code></pre>
+<h2 id="创建mapper代理包"><a class="markdownIt-Anchor" href="#创建mapper代理包"></a> 创建mapper代理包</h2>
+<p>首先在resource目录下创建与java源代码目录一样的包，切记一定要以“/”的分割形式去创建，</p>
+<p>例如：<mark>com/KarryCode/mapper</mark></p>
+<p>创建好后，后置在这个目录下创建对应的xml，我们稍后再说！</p>
+<h2 id="创建配置文件配置类"><a class="markdownIt-Anchor" href="#创建配置文件配置类"></a> 创建配置文件（配置类）</h2>
+<p>这部分将以配置类的形式进行配置。</p>
+<h3 id="spring_mybatis整合配置"><a class="markdownIt-Anchor" href="#spring_mybatis整合配置"></a> Spring_Mybatis整合配置</h3>
+<p>首先在config包下创建<mark>Spring_Mybatis配置类</mark></p>
+<pre class="highlight"><code class="java"><span class="hljs-keyword">package</span> com.KarryCode.config;
+
+<span class="hljs-keyword">import</span> com.alibaba.druid.pool.DruidDataSource;
+<span class="hljs-keyword">import</span> org.mybatis.spring.SqlSessionFactoryBean;
+<span class="hljs-keyword">import</span> org.mybatis.spring.annotation.MapperScan;
+<span class="hljs-keyword">import</span> org.springframework.beans.factory.annotation.Value;
+<span class="hljs-keyword">import</span> org.springframework.context.annotation.Bean;
+<span class="hljs-keyword">import</span> org.springframework.context.annotation.ComponentScan;
+<span class="hljs-keyword">import</span> org.springframework.context.annotation.Configuration;
+<span class="hljs-keyword">import</span> org.springframework.context.annotation.PropertySource;
+<span class="hljs-keyword">import</span> org.springframework.jdbc.datasource.DataSourceTransactionManager;
+<span class="hljs-keyword">import</span> org.springframework.transaction.PlatformTransactionManager;
+<span class="hljs-keyword">import</span> org.springframework.transaction.annotation.EnableTransactionManagement;
+
+<span class="hljs-keyword">import</span> javax.sql.DataSource;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@Author</span> KarryLiu
+ * <span class="hljs-doctag">@Creed</span> may all the beauty be blessed
+ * <span class="hljs-doctag">@ClassName</span> SpringConfig
+ * <span class="hljs-doctag">@Description</span> TODO Spring核心配置类
+ * <span class="hljs-doctag">@Version</span> 1.0
+ */</span>
+<span class="hljs-meta">@Configuration</span>                                  <span class="hljs-comment">//TODO 核心配置唯一标识</span>
+<span class="hljs-meta">@ComponentScan(&#123;&quot;com.KarryCode.service&quot;,&quot;com.KarryCode.bean&quot;&#125;)</span>     <span class="hljs-comment">//TODO 注解扫描指定包</span>
+<span class="hljs-meta">@PropertySource(&quot;classpath:jdbc.properties&quot;)</span>    <span class="hljs-comment">//TODO 加载JDBC配置类</span>
+<span class="hljs-meta">@MapperScan(&quot;com.KarryCode.mapper&quot;)</span>             <span class="hljs-comment">//TODO MyBatis基于包扫描方式识别Mapper</span>
+<span class="hljs-meta">@EnableTransactionManagement</span>                    <span class="hljs-comment">//TODO 事务的自动代理，注解驱动</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Spring_MybatisConfig</span> &#123;
+    <span class="hljs-meta">@Bean</span>
+    <span class="hljs-comment">//TODO DruidDataSource数据源的产生</span>
+    <span class="hljs-keyword">public</span> DataSource <span class="hljs-title function_">dataSource</span><span class="hljs-params">(
+            <span class="hljs-meta">@Value(&quot;$&#123;jdbc.driver&#125;&quot;)</span> String driver,
+            <span class="hljs-meta">@Value(&quot;$&#123;jdbc.url&#125;&quot;)</span> String url,
+            <span class="hljs-meta">@Value(&quot;$&#123;jdbc.username&#125;&quot;)</span> String username,
+            <span class="hljs-meta">@Value(&quot;$&#123;jdbc.password&#125;&quot;)</span> String password
+    )</span> &#123;
+        <span class="hljs-type">DruidDataSource</span> <span class="hljs-variable">dataSource</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DruidDataSource</span>();
+        dataSource.setDriverClassName(driver);
+        dataSource.setUrl(url);
+        dataSource.setUsername(username);
+        dataSource.setPassword(password);
+        <span class="hljs-comment">//里面还可以配置更多关于数据库连接池的选项.......</span>
+        <span class="hljs-keyword">return</span> dataSource;
+    &#125;
+
+    <span class="hljs-meta">@Bean</span>
+    <span class="hljs-keyword">public</span> SqlSessionFactoryBean <span class="hljs-title function_">sqlSessionFactoryBean</span><span class="hljs-params">(DataSource dataSource)</span> &#123;
+        <span class="hljs-comment">//TODO sqlSessionFactoryBean MybatisBeans加载</span>
+        <span class="hljs-type">SqlSessionFactoryBean</span> <span class="hljs-variable">sqlSessionFactoryBean</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">SqlSessionFactoryBean</span>();
+        sqlSessionFactoryBean.setDataSource(dataSource);
+        <span class="hljs-keyword">return</span> sqlSessionFactoryBean;
+    &#125;
+
+    <span class="hljs-meta">@Bean</span>
+    <span class="hljs-keyword">public</span> PlatformTransactionManager <span class="hljs-title function_">transactionManager</span><span class="hljs-params">(DataSource dataSource)</span> &#123;
+        <span class="hljs-comment">//TODO 平台事务管理</span>
+        <span class="hljs-type">DataSourceTransactionManager</span> <span class="hljs-variable">dataSourceTransactionManager</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DataSourceTransactionManager</span>();
+        dataSourceTransactionManager.setDataSource(dataSource);
+        <span class="hljs-keyword">return</span> dataSourceTransactionManager;
+    &#125;
+&#125;
+
+</code></pre>
+<p>具体内容不展开讲解，主要概述一下注解以及方法的作用：</p>
+<p><mark>@MapperScan</mark>：指定包扫描的路径。</p>
+<p><mark>DataSource dataSource</mark>：数据源的产生。</p>
+<p><mark>PlatformTransactionManager transactionManager</mark>：事务交由Spring管理。</p>
+<h3 id="springmvc整合配置"><a class="markdownIt-Anchor" href="#springmvc整合配置"></a> SpringMVC整合配置</h3>
+<p>同样地，在config包下创建SpringMvcConfig</p>
+<pre class="highlight"><code class="java"><span class="hljs-keyword">package</span> com.KarryCode.config;
+
+<span class="hljs-keyword">import</span> org.springframework.context.annotation.ComponentScan;
+<span class="hljs-keyword">import</span> org.springframework.context.annotation.Configuration;
+<span class="hljs-keyword">import</span> org.springframework.web.servlet.config.annotation.EnableWebMvc;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@Author</span> KarryLiu
+ * <span class="hljs-doctag">@Creed</span> may all the beauty be blessed
+ * <span class="hljs-doctag">@PackageName</span> com.KarryCode.config
+ * <span class="hljs-doctag">@ClassName</span> SpringMvcConfig
+ * <span class="hljs-doctag">@Description</span> TODO
+ * <span class="hljs-doctag">@Version</span> 1.0
+ */</span>
+<span class="hljs-meta">@Configuration</span>
+<span class="hljs-meta">@EnableWebMvc</span>
+<span class="hljs-meta">@ComponentScan(&quot;com.KarryCode.controller&quot;)</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SpringMvcConfig</span> &#123;
+&#125;
+
+</code></pre>
+<h3 id="servlet-api整合配置"><a class="markdownIt-Anchor" href="#servlet-api整合配置"></a> Servlet-api整合配置</h3>
+<p>同样地，在config包下创建ServletConfig</p>
+<pre class="highlight"><code class="java"><span class="hljs-keyword">package</span> com.KarryCode.config;
+
+<span class="hljs-keyword">import</span> org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ServletConfig</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">AbstractAnnotationConfigDispatcherServletInitializer</span> &#123;
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">protected</span> Class&lt;?&gt;[] getRootConfigClasses() &#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Class</span>[]&#123;Spring_MybatisConfig.class&#125;;
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">protected</span> Class&lt;?&gt;[] getServletConfigClasses() &#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Class</span>[]&#123;SpringMvcConfig.class&#125;;
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">protected</span> String[] getServletMappings() &#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>[]&#123;<span class="hljs-string">&quot;/&quot;</span>&#125;;
+    &#125;
+&#125;
+
+</code></pre>
+<p>此时的目录结构是这样的：</p>
+<p><img data-src="https://s2.loli.net/2023/08/27/lUtQbGwr6AmTeLY.png" alt="5.png" /></p>
+<p><mark>至此，整合已经基本完成！</mark></p>
+<h2 id="bean实体类创建"><a class="markdownIt-Anchor" href="#bean实体类创建"></a> Bean实体类创建</h2>
+<p>根据数据库里的以及逻辑关系创建Bean实体，在这里我先创建一个Book实体</p>
+<pre class="highlight"><code class="java"><span class="hljs-keyword">package</span> com.KarryCode.bean;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@Author</span> KarryLiu
+ * <span class="hljs-doctag">@Creed</span> may all the beauty be blessed
+ * <span class="hljs-doctag">@PackageName</span> com.KarryCode.bean
+ * <span class="hljs-doctag">@ClassName</span> Book
+ * <span class="hljs-doctag">@Description</span> TODO
+ * <span class="hljs-doctag">@Version</span> 1.0
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Book</span> &#123;
+    <span class="hljs-keyword">private</span> Integer id;
+    <span class="hljs-keyword">private</span> String type;
+    <span class="hljs-keyword">private</span> String name;
+    <span class="hljs-keyword">private</span> String description;
+
+    <span class="hljs-comment">//省略getter/setter/构造器（有参/无参）/toString</span>
+&#125;
+</code></pre>
+<h2 id="mapper接口创建"><a class="markdownIt-Anchor" href="#mapper接口创建"></a> mapper接口创建</h2>
+<p>在mapper包下创建一个mapper接口BookMapper</p>
+<pre class="highlight"><code class="java"><span class="hljs-keyword">package</span> com.KarryCode.mapper;
+
+<span class="hljs-keyword">import</span> com.KarryCode.bean.Book;
+<span class="hljs-keyword">import</span> org.apache.ibatis.annotations.*;
+
+<span class="hljs-keyword">import</span> java.util.List;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@Author</span> KarryLiu
+ * <span class="hljs-doctag">@Creed</span> may all the beauty be blessed
+ * <span class="hljs-doctag">@PackageName</span> com.KarryCode.mapper
+ * <span class="hljs-doctag">@ClassName</span> BookMapper
+ * <span class="hljs-doctag">@Description</span> TODO
+ * <span class="hljs-doctag">@Version</span> 1.0
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">BookMapper</span> &#123;
+    <span class="hljs-meta">@Insert(&quot;insert into ssm_db.tb_book values (null,#&#123;type&#125;,#&#123;name&#125;,#&#123;description&#125;)&quot;)</span>
+    <span class="hljs-type">int</span> <span class="hljs-title function_">save</span><span class="hljs-params">(Book book)</span>;
+    <span class="hljs-meta">@Update(&quot;update ssm_db.tb_book set type=#&#123;type&#125;,name=#&#123;name&#125;,description=#&#123;description&#125; where id=#&#123;id&#125;&quot;)</span>
+    <span class="hljs-type">int</span> <span class="hljs-title function_">update</span><span class="hljs-params">(Book book)</span>;
+    <span class="hljs-meta">@Delete(&quot;delete from ssm_db.tb_book where tb_book.id=#&#123;id&#125;&quot;)</span>
+    <span class="hljs-type">int</span> <span class="hljs-title function_">delete</span><span class="hljs-params">(Integer id)</span>;
+    <span class="hljs-meta">@Select(&quot;select * from ssm_db.tb_book where id=#&#123;id&#125;&quot;)</span>
+    <span class="hljs-meta">@ResultType(Book.class)</span>
+    Book <span class="hljs-title function_">getBookById</span><span class="hljs-params">(Integer id)</span>;
+    <span class="hljs-meta">@Select(&quot;select * from ssm_db.tb_book&quot;)</span>
+    List&lt;Book&gt; <span class="hljs-title function_">getBookList</span><span class="hljs-params">()</span>;
+&#125;
+
+</code></pre>
+<p>通过注解方式配置了增删改查四种方法</p>
+<h2 id="mapper代理xml创建"><a class="markdownIt-Anchor" href="#mapper代理xml创建"></a> mapper代理xml创建</h2>
+<p>虽然没啥用，但是创建了也没什么坏处，在resource的对应目录下创建BookMapper.xml</p>
+<pre class="highlight"><code class="xml"><span class="hljs-meta">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span> ?&gt;</span>
+<span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">mapper</span>
+        <span class="hljs-keyword">PUBLIC</span> <span class="hljs-string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span>
+        <span class="hljs-string">&quot;https://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">mapper</span> <span class="hljs-attr">namespace</span>=<span class="hljs-string">&quot;com.KarryCode.mapper.BookMapper&quot;</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">mapper</span>&gt;</span>
+</code></pre>
+<h2 id="service逻辑创建"><a class="markdownIt-Anchor" href="#service逻辑创建"></a> Service逻辑创建</h2>
+<p><mark>BookService接口</mark></p>
+<pre class="highlight"><code class="java"><span class="hljs-keyword">package</span> com.KarryCode.service;
+
+<span class="hljs-keyword">import</span> com.KarryCode.bean.Book;
+<span class="hljs-keyword">import</span> org.springframework.transaction.annotation.Transactional;
+
+<span class="hljs-keyword">import</span> java.util.List;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@Author</span> KarryLiu
+ * <span class="hljs-doctag">@Creed</span> may all the beauty be blessed
+ * <span class="hljs-doctag">@ClassName</span> BookService
+ * <span class="hljs-doctag">@Description</span> TODO
+ * <span class="hljs-doctag">@Version</span> 1.0
+ */</span>
+<span class="hljs-meta">@Transactional</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">BookService</span> &#123;
+    <span class="hljs-comment">/**
+     * <span class="hljs-doctag">@param</span> book
+     * <span class="hljs-doctag">@return</span> boolean
+     * <span class="hljs-doctag">@Author</span> KarryLiu_刘珂瑞
+     * <span class="hljs-doctag">@Date</span> 2023/8/14 下午 10:58
+     * <span class="hljs-doctag">@Description</span> TODO 保存
+     */</span>
+    <span class="hljs-type">boolean</span> <span class="hljs-title function_">save</span><span class="hljs-params">(Book book)</span>;
+    <span class="hljs-comment">/**
+     * <span class="hljs-doctag">@param</span> book
+     * <span class="hljs-doctag">@return</span> boolean
+     * <span class="hljs-doctag">@Author</span> KarryLiu_刘珂瑞
+     * <span class="hljs-doctag">@Date</span> 2023/8/14 下午 10:58
+     * <span class="hljs-doctag">@Description</span> TODO 修改
+     */</span>
+    <span class="hljs-type">boolean</span> <span class="hljs-title function_">update</span><span class="hljs-params">(Book book)</span>;
+    <span class="hljs-comment">/**
+     * <span class="hljs-doctag">@param</span> id
+     * <span class="hljs-doctag">@return</span> boolean
+     * <span class="hljs-doctag">@Author</span> KarryLiu_刘珂瑞
+     * <span class="hljs-doctag">@Date</span> 2023/8/14 下午 10:58
+     * <span class="hljs-doctag">@Description</span> TODO 根据id删除
+     */</span>
+    <span class="hljs-type">boolean</span> <span class="hljs-title function_">delete</span><span class="hljs-params">(Integer id)</span>;
+    <span class="hljs-comment">/**
+     * <span class="hljs-doctag">@param</span> id
+     * <span class="hljs-doctag">@return</span> edu.beihua.bean.Book
+     * <span class="hljs-doctag">@Author</span> KarryLiu_刘珂瑞
+     * <span class="hljs-doctag">@Date</span> 2023/8/14 下午 10:59
+     * <span class="hljs-doctag">@Description</span> TODO 根据id查询
+     */</span>
+    Book <span class="hljs-title function_">getBookById</span><span class="hljs-params">(Integer id)</span>;
+    <span class="hljs-comment">/**
+     * <span class="hljs-doctag">@param</span>
+     * <span class="hljs-doctag">@return</span> java.util.List&lt;edu.beihua.bean.Book&gt;
+     * <span class="hljs-doctag">@Author</span> KarryLiu_刘珂瑞
+     * <span class="hljs-doctag">@Date</span> 2023/8/14 下午 10:59
+     * <span class="hljs-doctag">@Description</span> TODO 查询全部
+     */</span>
+    List&lt;Book&gt; <span class="hljs-title function_">getBookList</span><span class="hljs-params">()</span>;
+&#125;
+
+</code></pre>
+<p><mark>BookService接口实现</mark></p>
+<pre class="highlight"><code class="java"><span class="hljs-keyword">package</span> com.KarryCode.service.impl;
+
+<span class="hljs-keyword">import</span> com.KarryCode.bean.Book;
+<span class="hljs-keyword">import</span> com.KarryCode.mapper.BookMapper;
+<span class="hljs-keyword">import</span> com.KarryCode.service.BookService;
+<span class="hljs-keyword">import</span> org.springframework.stereotype.Service;
+
+<span class="hljs-keyword">import</span> javax.annotation.Resource;
+<span class="hljs-keyword">import</span> java.util.List;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@Author</span> KarryLiu
+ * <span class="hljs-doctag">@Creed</span> may all the beauty be blessed
+ * <span class="hljs-doctag">@Date</span> 2023/8/14 下午 10:43
+ * <span class="hljs-doctag">@ClassName</span> BookServiceImpl
+ * <span class="hljs-doctag">@Description</span> TODO
+ * <span class="hljs-doctag">@Version</span> 1.0
+ */</span>
+<span class="hljs-meta">@Service</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">BookServiceImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">BookService</span> &#123;
+    <span class="hljs-meta">@Resource</span>
+    <span class="hljs-keyword">private</span> BookMapper bookMapper;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">save</span><span class="hljs-params">(Book book)</span> &#123;
+        System.out.println(<span class="hljs-string">&quot;save=====&gt;Service&quot;</span>);
+
+        <span class="hljs-type">int</span> <span class="hljs-variable">save</span> <span class="hljs-operator">=</span> bookMapper.save(book);
+        <span class="hljs-keyword">if</span> (save&gt;<span class="hljs-number">0</span>)&#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+        &#125;<span class="hljs-keyword">else</span> &#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        &#125;
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">update</span><span class="hljs-params">(Book book)</span> &#123;
+        System.out.println(<span class="hljs-string">&quot;update=====&gt;Service&quot;</span>);
+
+        bookMapper.update(book);
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">delete</span><span class="hljs-params">(Integer id)</span> &#123;
+        System.out.println(<span class="hljs-string">&quot;delete=====&gt;Service&quot;</span>);
+
+        bookMapper.delete(id);
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> Book <span class="hljs-title function_">getBookById</span><span class="hljs-params">(Integer id)</span> &#123;
+        System.out.println(<span class="hljs-string">&quot;getBookById=====&gt;Service&quot;</span>);
+
+        <span class="hljs-type">Book</span> <span class="hljs-variable">book</span> <span class="hljs-operator">=</span> bookMapper.getBookById(id);
+        <span class="hljs-keyword">return</span> book;
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> List&lt;Book&gt; <span class="hljs-title function_">getBookList</span><span class="hljs-params">()</span> &#123;
+        System.out.println(<span class="hljs-string">&quot;getBookList=====&gt;Service&quot;</span>);
+        <span class="hljs-keyword">return</span> bookMapper.getBookList();
+    &#125;
+&#125;
+
+</code></pre>
+<h2 id="springmybatis通路检测"><a class="markdownIt-Anchor" href="#springmybatis通路检测"></a> Spring—Mybatis通路检测</h2>
+<p>编写测试类，观察输出</p>
+<pre class="highlight"><code class="java"><span class="hljs-keyword">import</span> com.KarryCode.bean.Book;
+<span class="hljs-keyword">import</span> com.KarryCode.config.Spring_MybatisConfig;
+<span class="hljs-keyword">import</span> com.KarryCode.service.BookService;
+<span class="hljs-keyword">import</span> org.junit.Test;
+<span class="hljs-keyword">import</span> org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+<span class="hljs-keyword">import</span> java.util.List;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@Author</span> KarryLiu
+ * <span class="hljs-doctag">@Creed</span> may all the beauty be blessed
+ * <span class="hljs-doctag">@PackageName</span> PACKAGE_NAME
+ * <span class="hljs-doctag">@ClassName</span> mybatisTest
+ * <span class="hljs-doctag">@Description</span> TODO
+ * <span class="hljs-doctag">@Version</span> 1.0
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">mybatisSpringTest</span> &#123;
+    <span class="hljs-meta">@Test</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testMybatisSpring</span><span class="hljs-params">()</span>&#123;
+        <span class="hljs-type">AnnotationConfigApplicationContext</span> <span class="hljs-variable">annotationConfigApplicationContext</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">AnnotationConfigApplicationContext</span>(Spring_MybatisConfig.class);
+        <span class="hljs-type">BookService</span> <span class="hljs-variable">bookService</span> <span class="hljs-operator">=</span> annotationConfigApplicationContext.getBean(BookService.class);
+        List&lt;Book&gt; bookList = bookService.getBookList();
+        System.out.println(bookList);
+    &#125;
+&#125;
+
+</code></pre>
+<p>+++info  输出<br />
+;;;id1<br />
+信息: {dataSource-1} inited<br />
+getBookList=====&gt;Service<br />
+[Book{id=1, type=‘计算机’, name=‘软件工程’, description=‘吼吼吼吼’}, Book{id=2, type=‘文学’, name=‘儒家经典’, description=‘儒家好书啊！！！！！’}, Book{id=3, type=‘科技’, name=‘百科全书’, description=‘真不错！！！！’}, Book{id=4, type=‘美术’, name=‘当代顶流美术’, description=‘好书啊好书！！！！’}, Book{id=6, type=‘科技’, name=‘百科全书’, description=‘真不错！！！！’}, Book{id=7, type=‘科技’, name=‘百科全书’, description=‘真不错！！！！’}]</p>
+<p>进程已结束,退出代码0<br />
+;;;</p>
+<p>+++</p>
+<p><mark>至此，Spring—Mbatis整合完成</mark></p>
+<h2 id="构建controller"><a class="markdownIt-Anchor" href="#构建controller"></a> 构建Controller</h2>
+<p>在controller包下创建BookController</p>
+<pre class="highlight"><code class="java"><span class="hljs-keyword">package</span> com.KarryCode.controller;
+
+<span class="hljs-keyword">import</span> com.KarryCode.bean.Book;
+<span class="hljs-keyword">import</span> com.KarryCode.service.BookService;
+<span class="hljs-keyword">import</span> org.springframework.transaction.annotation.Transactional;
+<span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.*;
+
+<span class="hljs-keyword">import</span> javax.annotation.Resource;
+<span class="hljs-keyword">import</span> java.util.List;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@Author</span> KarryLiu
+ * <span class="hljs-doctag">@Creed</span> may all the beauty be blessed
+ * <span class="hljs-doctag">@PackageName</span> com.KarryCode.controller
+ * <span class="hljs-doctag">@ClassName</span> BookController
+ * <span class="hljs-doctag">@Description</span> TODO
+ * <span class="hljs-doctag">@Version</span> 1.0
+ */</span>
+<span class="hljs-meta">@RestController</span>
+<span class="hljs-meta">@Transactional</span>
+<span class="hljs-meta">@RequestMapping(&quot;/books&quot;)</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">BookController</span> &#123;
+    <span class="hljs-meta">@Resource</span>
+    <span class="hljs-keyword">private</span> BookService bookService;
+    <span class="hljs-meta">@PostMapping</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">save</span><span class="hljs-params">(<span class="hljs-meta">@RequestBody</span> Book book)</span> &#123;
+        <span class="hljs-keyword">return</span> bookService.save(book);
+    &#125;
+    <span class="hljs-meta">@PutMapping</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">update</span><span class="hljs-params">(<span class="hljs-meta">@RequestBody</span> Book book)</span> &#123;
+        <span class="hljs-keyword">return</span> bookService.update(book);
+    &#125;
+    <span class="hljs-meta">@DeleteMapping(&quot;/&#123;id&#125;&quot;)</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">delete</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable</span> Integer id)</span> &#123;
+        <span class="hljs-keyword">return</span> bookService.delete(id);
+    &#125;
+    <span class="hljs-meta">@GetMapping(&quot;/&#123;id&#125;&quot;)</span>
+    <span class="hljs-keyword">public</span> Book <span class="hljs-title function_">getBookById</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable</span> Integer id)</span> &#123;
+        <span class="hljs-keyword">return</span> bookService.getBookById(id);
+    &#125;
+    <span class="hljs-meta">@GetMapping</span>
+    <span class="hljs-keyword">public</span> List&lt;Book&gt; <span class="hljs-title function_">getBookList</span><span class="hljs-params">()</span> &#123;
+        <span class="hljs-keyword">return</span> bookService.getBookList();
+    &#125;
+&#125;
+
+</code></pre>
+<p>符合Restful设计建议。</p>
+<h2 id="启动tomcat"><a class="markdownIt-Anchor" href="#启动tomcat"></a> 启动Tomcat</h2>
+<p><img data-src="https://s2.loli.net/2023/08/27/LwPvIdjzuOrF3qA.png" alt="6.png" /></p>
+<h2 id="postman接口测试"><a class="markdownIt-Anchor" href="#postman接口测试"></a> Postman接口测试</h2>
+<h3 id="存书测试"><a class="markdownIt-Anchor" href="#存书测试"></a> 存书测试</h3>
+<p><img data-src="https://s2.loli.net/2023/08/27/3WONSCfKBlwZYQU.png" alt="7.png" /></p>
+<p><img data-src="https://s2.loli.net/2023/08/27/cWS38NF52uvHlzR.png" alt="8.png" /></p>
+<p>[success]{.label .success}</p>
+<p><img data-src="https://s2.loli.net/2023/08/27/bW6ftFnpC4zrTGM.png" alt="9.png" /></p>
+<h3 id="查书测试"><a class="markdownIt-Anchor" href="#查书测试"></a> 查书测试</h3>
+<h4 id="查询全部"><a class="markdownIt-Anchor" href="#查询全部"></a> 查询全部</h4>
+<p><img data-src="https://s2.loli.net/2023/08/27/R4KpPlMejHQ1q5i.png" alt="10.png" /></p>
+<h4 id="指定id查书"><a class="markdownIt-Anchor" href="#指定id查书"></a> 指定id查书</h4>
+<p><img data-src="https://s2.loli.net/2023/08/27/u2EnQV3ctBeG9PT.png" alt="11.png" /></p>
+<h3 id="更新书"><a class="markdownIt-Anchor" href="#更新书"></a> 更新书</h3>
+<p><img data-src="https://s2.loli.net/2023/08/27/Fp3PiJ6UKnAY4sT.png" alt="12.png" /></p>
+<p><img data-src="https://s2.loli.net/2023/08/27/u2LeioHRw4mUtTM.png" alt="13.png" /></p>
+<h3 id="删除测试"><a class="markdownIt-Anchor" href="#删除测试"></a> 删除测试</h3>
+<p><img data-src="https://s2.loli.net/2023/08/27/8LGMQbpAStu7OCB.png" alt="14.png" /></p>
+<p><img data-src="https://s2.loli.net/2023/08/27/68mTx7N2kGWr9PX.png" alt="15.png" /></p>
+<p><mark>所有接口测试调通，至此SSM整合完毕</mark></p>
+<h1 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h1>
+<p>其实SSM整合还是比较简单的，通过三个框架的配置就可以完成了，后面的工作都是在进行业务创建。</p>
+<p>好了！本篇文章到这里就结束了，有什么不理解的地方或者有疑问的地方请在评论区留言，或者添加我的联系方式，欢迎各位大佬积极批评讨论！谢谢！</p>
+
+      <div class="tags">
+          <a href="/tags/Java/" rel="tag"><i class="ic i-tag"></i> Java</a>
+          <a href="/tags/SSM/" rel="tag"><i class="ic i-tag"></i> SSM</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2026-02-03 00:14:36" itemprop="dateModified" datetime="2026-02-03T00:14:36+08:00">2026-02-03</time>
+  </span>
+  <span id="Java/SSM01/" class="item leancloud_visitors" data-flag-title="SSM框架整合" title="阅读次数">
+      <span class="icon">
+        <i class="ic i-eye"></i>
+      </span>
+      <span class="text">阅读次数</span>
+      <span class="leancloud-visitors-count"></span>
+      <span class="text">次</span>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> 赞赏</button>
+  <p>请我喝[茶]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/myWxPay.jpg" alt="KarryLiu 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/myAliPay.jpg" alt="KarryLiu 支付宝">
+        <p>支付宝</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>KarryLiu <i class="ic i-at"><em>@</em></i>诗岸梦行舟
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="https://735690757.github.io/Java/SSM01/" title="SSM框架整合">https://735690757.github.io/Java/SSM01/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/Principles-of-computer-composition/Connection_between_CPU_and_memory/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;s2.loli.net&#x2F;2023&#x2F;03&#x2F;24&#x2F;NJydhtQ6Hm4vxpb.jpg" title="CPU与存储器的连接">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> 计算机组成原理</span>
+  <h3>CPU与存储器的连接</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/Operate-system/01OS/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;s2.loli.net&#x2F;2023&#x2F;08&#x2F;29&#x2F;CdXcQfxtk5NHvA4.png" title="操作系统知识点阶段总结">
+  <span class="type">下一篇</span>
+  <span class="category"><i class="ic i-flag"></i> 操作系统</span>
+  <h3>操作系统知识点阶段总结</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%98%AF%E4%BB%80%E4%B9%88ssm"><span class="toc-number">1.</span> <span class="toc-text"> 是什么SSM</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B4%E5%90%88%E5%BC%80%E5%A7%8B"><span class="toc-number">2.</span> <span class="toc-text"> 整合开始</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AEmaven%E6%9E%84%E5%BB%BA%E6%96%B9%E5%BC%8F"><span class="toc-number">2.1.</span> <span class="toc-text"> 创建项目（Maven构建方式）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%8C%85%E7%BB%93%E6%9E%84"><span class="toc-number">2.2.</span> <span class="toc-text"> 创建包结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96%E5%AF%BC%E5%85%A5-%E5%BF%85%E8%A6%81%E5%90%AF%E5%8A%A8%E9%85%8D%E7%BD%AE"><span class="toc-number">2.3.</span> <span class="toc-text"> 依赖导入、必要启动配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5%E8%AF%A6%E8%A7%A3"><span class="toc-number">2.3.1.</span> <span class="toc-text"> 导入详解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E7%BB%88%E5%B1%95%E7%A4%BA"><span class="toc-number">2.3.2.</span> <span class="toc-text"> 最终展示</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BAjdbcproperties%E6%96%87%E4%BB%B6"><span class="toc-number">2.4.</span> <span class="toc-text"> 创建JDBC.properties文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BAmapper%E4%BB%A3%E7%90%86%E5%8C%85"><span class="toc-number">2.5.</span> <span class="toc-text"> 创建mapper代理包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E9%85%8D%E7%BD%AE%E7%B1%BB"><span class="toc-number">2.6.</span> <span class="toc-text"> 创建配置文件（配置类）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#spring_mybatis%E6%95%B4%E5%90%88%E9%85%8D%E7%BD%AE"><span class="toc-number">2.6.1.</span> <span class="toc-text"> Spring_Mybatis整合配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#springmvc%E6%95%B4%E5%90%88%E9%85%8D%E7%BD%AE"><span class="toc-number">2.6.2.</span> <span class="toc-text"> SpringMVC整合配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#servlet-api%E6%95%B4%E5%90%88%E9%85%8D%E7%BD%AE"><span class="toc-number">2.6.3.</span> <span class="toc-text"> Servlet-api整合配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bean%E5%AE%9E%E4%BD%93%E7%B1%BB%E5%88%9B%E5%BB%BA"><span class="toc-number">2.7.</span> <span class="toc-text"> Bean实体类创建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mapper%E6%8E%A5%E5%8F%A3%E5%88%9B%E5%BB%BA"><span class="toc-number">2.8.</span> <span class="toc-text"> mapper接口创建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mapper%E4%BB%A3%E7%90%86xml%E5%88%9B%E5%BB%BA"><span class="toc-number">2.9.</span> <span class="toc-text"> mapper代理xml创建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#service%E9%80%BB%E8%BE%91%E5%88%9B%E5%BB%BA"><span class="toc-number">2.10.</span> <span class="toc-text"> Service逻辑创建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#springmybatis%E9%80%9A%E8%B7%AF%E6%A3%80%E6%B5%8B"><span class="toc-number">2.11.</span> <span class="toc-text"> Spring—Mybatis通路检测</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E5%BB%BAcontroller"><span class="toc-number">2.12.</span> <span class="toc-text"> 构建Controller</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8tomcat"><span class="toc-number">2.13.</span> <span class="toc-text"> 启动Tomcat</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#postman%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95"><span class="toc-number">2.14.</span> <span class="toc-text"> Postman接口测试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%98%E4%B9%A6%E6%B5%8B%E8%AF%95"><span class="toc-number">2.14.1.</span> <span class="toc-text"> 存书测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E4%B9%A6%E6%B5%8B%E8%AF%95"><span class="toc-number">2.14.2.</span> <span class="toc-text"> 查书测试</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E5%85%A8%E9%83%A8"><span class="toc-number">2.14.2.1.</span> <span class="toc-text"> 查询全部</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8C%87%E5%AE%9Aid%E6%9F%A5%E4%B9%A6"><span class="toc-number">2.14.2.2.</span> <span class="toc-text"> 指定id查书</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E6%96%B0%E4%B9%A6"><span class="toc-number">2.14.3.</span> <span class="toc-text"> 更新书</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E6%B5%8B%E8%AF%95"><span class="toc-number">2.14.4.</span> <span class="toc-text"> 删除测试</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">3.</span> <span class="toc-text"> 总结</span></a></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+        <ul>
+          <li class="active"><a href="/Java/SSM01/" rel="bookmark" title="SSM框架整合">SSM框架整合</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="KarryLiu"
+      data-src="/images/tx.jpg">
+  <p class="name" itemprop="name">KarryLiu</p>
+  <div class="description" itemprop="description">愿世间所有的美好都得以祝愿</div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">57</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">28</span>
+        <span class="name">分类</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">51</span>
+        <span class="name">标签</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tLzczNTY5MDc1Nw==" title="https:&#x2F;&#x2F;github.com&#x2F;735690757"><i class="ic i-github"></i></span>
+      <span class="exturl item twitter" data-url="aHR0cHM6Ly90d2l0dGVyLmNvbS92b0FMUXRkYWNCVE00RVk=" title="https:&#x2F;&#x2F;twitter.com&#x2F;voALQtdacBTM4EY"><i class="ic i-twitter"></i></span>
+      <span class="exturl item email" data-url="bWFpbHRvOjczNTY5MDc1N0BxcS5jb20=" title="mailto:735690757@qq.com"><i class="ic i-envelope"></i></span>
+      <span class="exturl item zhihu" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3Blb3BsZS9ydW8tcWlhbi15aW5n" title="https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;ruo-qian-ying"><i class="ic i-zhihu"></i></span>
+      <span class="exturl item music" data-url="aHR0cHM6Ly9tdXNpYy4xNjMuY29tLyMvdXNlci9ob21lP2lkPTM1Nzc1OTIzOA==" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;user&#x2F;home?id&#x3D;357759238"><i class="ic i-cloud-music"></i></span>
+      <span class="exturl item about" data-url="aHR0cHM6Ly9hYm91dC5tZS9rYXJyeWxpdQ==" title="https:&#x2F;&#x2F;about.me&#x2F;karryliu"><i class="ic i-address-card"></i></span>
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/about/" rel="section"><i class="ic i-user"></i>关于</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+    
+  <li class="item">
+    <a href="/music" rel="section"><i class="ic i-music"></i>橘子君-Ruxra</a>
+  </li>
+
+    
+  <li class="item">
+    <span class="exturl" data-url="aHR0cHM6Ly93d3cudHJhdmVsbGluZ3MuY24vZ28uaHRtbA=="><i class="ic i-paper-plane"></i>开往</span>
+  </li>
+
+    
+  <li class="item">
+    <a href="/friends/" rel="section"><i class="ic i-heart"></i>友链</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/ocfy" rel="section"><i class="ic i-magic"></i>OCFY</a>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/Principles-of-computer-composition/Connection_between_CPU_and_memory/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/Operate-system/01OS/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>随机文章</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E7%94%9F%E6%B4%BB/" title="分类于 生活">生活</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E7%94%9F%E6%B4%BB/%E4%B8%8A%E5%B2%B8/" title="分类于 上岸">上岸</a>
+</div>
+
+    <span><a href="/life/shangan/" title="写给我这一年多的考研时光">写给我这一年多的考研时光</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/YOLO/" title="分类于 YOLO">YOLO</a>
+</div>
+
+    <span><a href="/python/YOLO/index/" title="YOLO系列">YOLO系列</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
+</div>
+
+    <span><a href="/Operate-system/01OS/" title="操作系统知识点阶段总结">操作系统知识点阶段总结</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/Geophysics/" title="分类于 Geophysics">Geophysics</a>
+</div>
+
+    <span><a href="/python/Geophysics/hello/" title="深度学习反演网络与重力异常之初窥门径">深度学习反演网络与重力异常之初窥门径</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
+</div>
+
+    <span><a href="/Operate-system/OSPVCode/" title="操作系统PV代码题速记">操作系统PV代码题速记</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" title="分类于 计算机组成原理">计算机组成原理</a>
+</div>
+
+    <span><a href="/Principles-of-computer-composition/Division_in_Computers/" title="计算机中的除法运算">计算机中的除法运算</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
+</div>
+
+    <span><a href="/Operate-system/os_retest/" title="计算机操作系统复试速览">计算机操作系统复试速览</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Java/" title="分类于 Java">Java</a>
+</div>
+
+    <span><a href="/Java/javaAd01/" title="Java高级特性1">Java高级特性1</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MongoDB/" title="分类于 MongoDB">MongoDB</a>
+</div>
+
+    <span><a href="/MongoDB/MongoDB01/" title="MongoDB的安装与初步使用（Windows平台）">MongoDB的安装与初步使用（Windows平台）</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/notebook/" title="分类于 笔记">笔记</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/notebook/%E8%80%83%E7%A0%94%E8%8B%B1%E8%AF%AD%E7%AC%94%E8%AE%B0/" title="分类于 考研英语笔记">考研英语笔记</a>
+</div>
+
+    <span><a href="/English/shEnglish/" title="文章翻译">文章翻译</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>最新评论</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">KarryLiu @ KarryLiu</span>
+  </div>
+  <div class="powered-by">
+    <a href="https://icp.gov.moe/?keyword=20249329" target="_blank">萌ICP备20249329号</a>
+    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  <br/><span>世界本污浊，罪与爱同歌</span>
+  <br/><i class="ic i-chart-area"></i>&nbsp;<span>549k&nbsp;字</span> &nbsp;|&nbsp;
+  <i class="ic i-coffee"></i>&nbsp;<span> 15:15</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: 'Java/SSM01/',
+    favicon: {
+      show: "（●´3｀●）嘿嘿嘿....",
+      hide: "(´Д｀)不看我是吧！"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: true,fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<!-- <script src="https://cdn.polyfill.io/v2/polyfill.js"></script>  -->
+
+<script src="https://polyfill-js.cn/v3/polyfill.min.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>

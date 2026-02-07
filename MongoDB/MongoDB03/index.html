@@ -35,7 +35,7 @@
 
 
   <title>
-MongoDB初步使用 - MongoDB |
+MongoDB初步使用 - MongoDB - 数据库 |
 KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</title>
 <meta name="generator" content="Hexo 6.3.0"></head>
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -129,8 +129,11 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
 <i class="ic i-home"></i>
 <span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
-<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/MongoDB/" itemprop="item" rel="index" title="分类于 MongoDB"><span itemprop="name">MongoDB</span></a>
+<span  itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="item" rel="index" title="分类于 数据库"><span itemprop="name">数据库</span></a>
 <meta itemprop="position" content="1" /></span>
+<i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MongoDB/" itemprop="item" rel="index" title="分类于 MongoDB"><span itemprop="name">MongoDB</span></a>
+<meta itemprop="position" content="2" /></span>
 </div>
 
     <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
@@ -149,36 +152,53 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <div class="body md" itemprop="articleBody">
     
 
-    <h1 id="mongodb约束命令"><a class="markdownIt-Anchor" href="#mongodb约束命令">#</a> MongoDB 约束命令</h1>
-<h2 id="输出行数限制"><a class="markdownIt-Anchor" href="#输出行数限制">#</a> 输出行数限制</h2>
-<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>db.t4.aggregate<span class="token punctuation">(</span><span class="token punctuation">&#123;</span><span class="token variable">$limit</span>:4<span class="token punctuation">&#125;</span><span class="token punctuation">)</span></pre></td></tr></table></figure><h2 id="xx升序降序"><a class="markdownIt-Anchor" href="#xx升序降序">#</a> xx 升序 / 降序</h2>
-<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>db.t4.aggregate<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">&#123;</span><span class="token variable">$sort</span>:<span class="token punctuation">&#123;</span>price:-1<span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span class="token punctuation">]</span><span class="token punctuation">)</span></pre></td></tr></table></figure><p>1：升序</p>
+    <h1 id="mongodb约束命令"><a class="markdownIt-Anchor" href="#mongodb约束命令"></a> MongoDB约束命令</h1>
+<h2 id="输出行数限制"><a class="markdownIt-Anchor" href="#输出行数限制"></a> 输出行数限制</h2>
+<pre class="highlight"><code class="bash">db.t4.aggregate(&#123;<span class="hljs-variable">$limit</span>:4&#125;)
+</code></pre>
+<h2 id="xx升序降序"><a class="markdownIt-Anchor" href="#xx升序降序"></a> xx升序/降序</h2>
+<pre class="highlight"><code class="bash">db.t4.aggregate([&#123;<span class="hljs-variable">$sort</span>:&#123;price:-1&#125;&#125;])
+</code></pre>
+<p>1：升序</p>
 <p>2：降序</p>
-<h2 id="mapreduce"><a class="markdownIt-Anchor" href="#mapreduce">#</a> MapReduce</h2>
-<p>MapReduce 是一种用于分布式计算的编程模型和处理大规模数据集的方法。</p>
-<p>MapReduce 模型的基本思想是将大规模数据集分成小块，然后并行处理这些小块数据以生成中间结果。</p>
+<h2 id="mapreduce"><a class="markdownIt-Anchor" href="#mapreduce"></a> MapReduce</h2>
+<p>MapReduce是一种用于分布式计算的编程模型和处理大规模数据集的方法。</p>
+<p>MapReduce模型的基本思想是将大规模数据集分成小块，然后并行处理这些小块数据以生成中间结果。</p>
 <ol>
-<li><strong>Map 阶段（映射阶段）</strong>：在这个阶段，原始数据被映射成键 - 值对的形式。每个映射操作都是独立的，可以在不同的计算节点上并行执行。Map 操作通常用于筛选、过滤、排序和转换数据。</li>
-<li><strong>Reduce 阶段（归约阶段）</strong>：在 Map 阶段之后，所有的中间结果按键分组，并将每个组的数据传递给 Reduce 函数进行聚合和处理。Reduce 操作通常用于对数据进行汇总、计数、计算统计信息等操作。</li>
+<li><strong>Map阶段（映射阶段）</strong>：在这个阶段，原始数据被映射成键-值对的形式。每个映射操作都是独立的，可以在不同的计算节点上并行执行。Map操作通常用于筛选、过滤、排序和转换数据。</li>
+<li><strong>Reduce阶段（归约阶段）</strong>：在Map阶段之后，所有的中间结果按键分组，并将每个组的数据传递给Reduce函数进行聚合和处理。Reduce操作通常用于对数据进行汇总、计数、计算统计信息等操作。</li>
 </ol>
-<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>//MapReduce</pre></td></tr><tr><td data-num="2"></td><td><pre>//map映射</pre></td></tr><tr><td data-num="3"></td><td><pre>var map <span class="token operator">=</span> <span class="token function-name function">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    emit<span class="token punctuation">(</span>this.type,this.name<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>//reduce减少并以“，”分割</pre></td></tr><tr><td data-num="7"></td><td><pre>var reduce <span class="token operator">=</span> function<span class="token punctuation">(</span>key,values<span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>    <span class="token builtin class-name">return</span> values.join<span class="token punctuation">(</span><span class="token string">','</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>//选项设置输出</pre></td></tr><tr><td data-num="11"></td><td><pre>var <span class="token assign-left variable">opt</span><span class="token operator">=</span><span class="token punctuation">&#123;</span>out:<span class="token string">"name_list"</span><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>db.t4.mapReduce<span class="token punctuation">(</span>map,reduce,opt<span class="token punctuation">)</span></pre></td></tr></table></figure><blockquote>
-<p>[<br>
-{<br>
-“_id”: “电子设备”,<br>
-“value”: “logi”<br>
-},<br>
-{<br>
-“_id”: “服装”,<br>
-“value”: “安踏，lining”<br>
-},<br>
-{<br>
-“_id”: “电子通信”,<br>
-“value”: “oppo,vivo,huawei,iphone8”<br>
-},<br>
-{<br>
-“_id”: “饮品”,<br>
-“value”: “康师傅”<br>
-}<br>
+<pre class="highlight"><code class="bash">//MapReduce
+//map映射
+var map = <span class="hljs-function"><span class="hljs-title">function</span></span>()&#123;
+    emit(this.type,this.name);
+&#125;
+//reduce减少并以“，”分割
+var reduce = <span class="hljs-keyword">function</span>(key,values)&#123;
+    <span class="hljs-built_in">return</span> values.join(<span class="hljs-string">&#x27;,&#x27;</span>);
+&#125;
+//选项设置输出
+var opt=&#123;out:<span class="hljs-string">&quot;name_list&quot;</span>&#125;
+db.t4.mapReduce(map,reduce,opt)
+</code></pre>
+<blockquote>
+<p>[<br />
+{<br />
+“_id”: “电子设备”,<br />
+“value”: “logi”<br />
+},<br />
+{<br />
+“_id”: “服装”,<br />
+“value”: “安踏,lining”<br />
+},<br />
+{<br />
+“_id”: “电子通信”,<br />
+“value”: “oppo,vivo,huawei,iphone8”<br />
+},<br />
+{<br />
+“_id”: “饮品”,<br />
+“value”: “康师傅”<br />
+}<br />
 ]</p>
 </blockquote>
 
@@ -195,7 +215,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">更新于</span>
-    <time title="修改时间：2023-09-13 11:01:53" itemprop="dateModified" datetime="2023-09-13T11:01:53+08:00">2023-09-13</time>
+    <time title="修改时间：2026-02-03 00:21:51" itemprop="dateModified" datetime="2026-02-03T00:21:51+08:00">2026-02-03</time>
   </span>
   <span id="MongoDB/MongoDB03/" class="item leancloud_visitors" data-flag-title="MongoDB初步使用" title="阅读次数">
       <span class="icon">
@@ -285,7 +305,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="文章目录">
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#mongodb%E7%BA%A6%E6%9D%9F%E5%91%BD%E4%BB%A4"><span class="toc-number">1.</span> <span class="toc-text"> MongoDB 约束命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E8%A1%8C%E6%95%B0%E9%99%90%E5%88%B6"><span class="toc-number">1.1.</span> <span class="toc-text"> 输出行数限制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xx%E5%8D%87%E5%BA%8F%E9%99%8D%E5%BA%8F"><span class="toc-number">1.2.</span> <span class="toc-text"> xx 升序 &#x2F; 降序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mapreduce"><span class="toc-number">1.3.</span> <span class="toc-text"> MapReduce</span></a></li></ol></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#mongodb%E7%BA%A6%E6%9D%9F%E5%91%BD%E4%BB%A4"><span class="toc-number">1.</span> <span class="toc-text"> MongoDB约束命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E8%A1%8C%E6%95%B0%E9%99%90%E5%88%B6"><span class="toc-number">1.1.</span> <span class="toc-text"> 输出行数限制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xx%E5%8D%87%E5%BA%8F%E9%99%8D%E5%BA%8F"><span class="toc-number">1.2.</span> <span class="toc-text"> xx升序&#x2F;降序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mapreduce"><span class="toc-number">1.3.</span> <span class="toc-text"> MapReduce</span></a></li></ol></li></ol>
       </div>
       <div class="related panel pjax" data-title="系列文章">
         <ul>
@@ -303,19 +323,19 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">55</span>
+        <span class="count">57</span>
         <span class="name">文章</span>
       </a>
     </div>
     <div class="item categories">
       <a href="/categories/">
-        <span class="count">25</span>
+        <span class="count">28</span>
         <span class="name">分类</span>
       </a>
     </div>
     <div class="item tags">
       <a href="/tags/">
-        <span class="count">42</span>
+        <span class="count">51</span>
         <span class="name">标签</span>
       </a>
     </div>
@@ -419,10 +439,10 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/experience/" title="分类于 开发经验">开发经验</a>
+<a href="/categories/%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C/" title="分类于 开发经验">开发经验</a>
 </div>
 
-    <span><a href="/experience/SSM01/" title="SSM框架整合">SSM框架整合</a></span>
+    <span><a href="/experience/MD5CalculationTimePractice/" title="MD5计算时间">MD5计算时间</a></span>
   </li>
 
       
@@ -431,44 +451,30 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <div class="breadcrumb">
 <a href="/categories/python/" title="分类于 深度学习">深度学习</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/python/%E5%9F%BA%E7%A1%80/" title="分类于 基础">基础</a>
+<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
 </div>
 
-    <span><a href="/python/DLFromFormula/" title="从公式角度看深度学习">从公式角度看深度学习</a></span>
+    <span><a href="/python/CNN_Acc/" title="CNN经典卷积神经网络与实战">CNN经典卷积神经网络与实战</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/python/%E5%9F%BA%E7%A1%80/" title="分类于 基础">基础</a>
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
 </div>
 
-    <span><a href="/python/pytorch/" title="PyTorch深度学习">PyTorch深度学习</a></span>
+    <span><a href="/Operate-system/KnowledgeSummary/" title="操作系统细碎知识点及公式速记">操作系统细碎知识点及公式速记</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/python/%E5%9F%BA%E7%A1%80/" title="分类于 基础">基础</a>
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" title="分类于 计算机组成原理">计算机组成原理</a>
 </div>
 
-    <span><a href="/python/ss/" title="语义分割">语义分割</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/SpringCloud/" title="分类于 SpringCloud">SpringCloud</a>
-</div>
-
-    <span><a href="/Java/SpringCloudSTU/" title="SpringCloud学习记录">SpringCloud学习记录</a></span>
+    <span><a href="/Principles-of-computer-composition/Division_in_Computers/" title="计算机中的除法运算">计算机中的除法运算</a></span>
   </li>
 
       
@@ -487,40 +493,58 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/%E7%AC%94%E8%AE%B0/" title="分类于 笔记">笔记</a>
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" title="分类于 计算机组成原理">计算机组成原理</a>
 </div>
 
-    <span><a href="/math/matrix_anl/" title="矩阵论">矩阵论</a></span>
+    <span><a href="/Principles-of-computer-composition/Connection_between_CPU_and_memory/" title="CPU与存储器的连接">CPU与存储器的连接</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" title="分类于 计算机网络">计算机网络</a>
+<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MongoDB/" title="分类于 MongoDB">MongoDB</a>
 </div>
 
-    <span><a href="/network/computer_network_retest/" title="计算机网络复试速览">计算机网络复试速览</a></span>
+    <span><a href="/MongoDB/MongoDB03/" title="MongoDB初步使用">MongoDB初步使用</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/%E7%94%9F%E6%B4%BB/" title="分类于 生活">生活</a>
+<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%90%86%E8%AE%BA/" title="分类于 数据库理论">数据库理论</a>
 </div>
 
-    <span><a href="/life/p2025/" title="回望2025——永不熄灭之光">回望2025——永不熄灭之光</a></span>
+    <span><a href="/database/DataBase02/" title="数据库设计">数据库设计</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/political/" title="分类于 political">political</a>
+<a href="/categories/Java/" title="分类于 Java">Java</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/Java/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%9B%B8%E5%85%B3/" title="分类于 微服务相关">微服务相关</a>
 </div>
 
-    <span><a href="/PoliticalKnowledge/politicalNote/" title="政治知识点速记（持续更新）">政治知识点速记（持续更新）</a></span>
+    <span><a href="/Java/SpringCloudSTU/" title="SpringCloud学习记录">SpringCloud学习记录</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/YOLO/" title="分类于 YOLO">YOLO</a>
+</div>
+
+    <span><a href="/python/YOLO/index/" title="YOLO系列">YOLO系列</a></span>
   </li>
 
   </ul>
@@ -545,8 +569,8 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
     <a href="https://icp.gov.moe/?keyword=20249329" target="_blank">萌ICP备20249329号</a>
     基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
   <br/><span>世界本污浊，罪与爱同歌</span>
-  <br/><i class="ic i-chart-area"></i>&nbsp;<span>507k&nbsp;字</span> &nbsp;|&nbsp;
-  <i class="ic i-coffee"></i>&nbsp;<span> 14:06</span>
+  <br/><i class="ic i-chart-area"></i>&nbsp;<span>549k&nbsp;字</span> &nbsp;|&nbsp;
+  <i class="ic i-coffee"></i>&nbsp;<span> 15:15</span>
   </div>
 </div>
 
