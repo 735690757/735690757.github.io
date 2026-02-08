@@ -152,147 +152,30 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <div class="body md" itemprop="articleBody">
     
 
-    <h1 id="3dcnn-网络结构"><a class="markdownIt-Anchor" href="#3dcnn-网络结构"></a> 3DCNN 网络结构</h1>
+    <h1 id="3dcnn-网络结构"><a class="markdownIt-Anchor" href="#3dcnn-网络结构">#</a> 3DCNN 网络结构</h1>
 <p>学习内容基于：<span class="exturl" data-url="aHR0cHM6Ly93d3cuYmlsaWJpbGkuY29tL3ZpZGVvL0JWMWtjNDExUTdUag==">https://www.bilibili.com/video/BV1kc411Q7Tj</span></p>
-<h2 id="图像的本质"><a class="markdownIt-Anchor" href="#图像的本质"></a> 图像的本质</h2>
-<p>图像是由RGB三通道组成的，一般数值范围是0到255.</p>
-<p>因此像素矩阵为：H * W * 3，其中H为高，W是宽。</p>
-<h2 id="从图像到视频"><a class="markdownIt-Anchor" href="#从图像到视频"></a> 从图像到视频</h2>
+<h2 id="图像的本质"><a class="markdownIt-Anchor" href="#图像的本质">#</a> 图像的本质</h2>
+<p>图像是由 RGB 三通道组成的，一般数值范围是 0 到 255.</p>
+<p>因此像素矩阵为：H * W * 3，其中 H 为高，W 是宽。</p>
+<h2 id="从图像到视频"><a class="markdownIt-Anchor" href="#从图像到视频">#</a> 从图像到视频</h2>
 <p>视频本质上是由连续的图片（视频帧），快速播放构成的。</p>
-<p>图片的像素矩阵是H * W * 3</p>
-<p>视频就是D * H * W * 3，其中D是深度，是视频帧的叠加。</p>
-<p>不同的库对与这4个维度顺序表述不同，但这四个维度诚然如此。</p>
-<h2 id="2d检测方法对比"><a class="markdownIt-Anchor" href="#2d检测方法对比"></a> 2D检测方法对比</h2>
+<p>图片的像素矩阵是 H * W * 3</p>
+<p>视频就是 D * H * W * 3，其中 D 是深度，是视频帧的叠加。</p>
+<p>不同的库对与这 4 个维度顺序表述不同，但这四个维度诚然如此。</p>
+<h2 id="2d检测方法对比"><a class="markdownIt-Anchor" href="#2d检测方法对比">#</a> 2D 检测方法对比</h2>
 <img data-src="../../images/3dcnn/1.png" alt="1.png" style="zoom:80%;" />
 <img data-src="../../images/3dcnn/2.png" alt="1.png" style="zoom:80%;" />
 <img data-src="../../images/3dcnn/3.png" alt="1.png" style="zoom:80%;" />
-<h2 id="c3d网络流程"><a class="markdownIt-Anchor" href="#c3d网络流程"></a> C3D网络流程</h2>
+<h2 id="c3d网络流程"><a class="markdownIt-Anchor" href="#c3d网络流程">#</a> C3D 网络流程</h2>
 <img data-src="../../images/3dcnn/4.png" style="zoom:80%;" />
 <p>这个（1，1，1），三个数字是有点手法的，第一个数是代表了深度，第二个、第三个代表了高和宽。</p>
 <p>我们可以看到，一般来说这个卷积核大小一般是（3，3，3），填充是（1，1，1），经过这样的卷积过后，特征图大小不变。</p>
 <img data-src="../../images/3dcnn/5.png" style="zoom:80%;" />
-<p>这里是up的解释，已经是非常的直观易懂。</p>
-<h2 id="动手搭建一个c3d"><a class="markdownIt-Anchor" href="#动手搭建一个c3d"></a> 动手搭建一个C3D</h2>
-<pre class="highlight"><code class="python"><span class="hljs-keyword">import</span> torch
-<span class="hljs-keyword">from</span> torch <span class="hljs-keyword">import</span> nn
-<span class="hljs-keyword">from</span> torchsummary <span class="hljs-keyword">import</span> summary
-
-
-<span class="hljs-keyword">class</span> <span class="hljs-title class_">C3D</span>(nn.Module):
-    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, num_classes, *args, **kwargs</span>) -&gt; <span class="hljs-literal">None</span>:
-        <span class="hljs-built_in">super</span>().__init__(*args, **kwargs)
-        self.block1 = nn.Sequential(
-            nn.Conv3d(<span class="hljs-number">3</span>, <span class="hljs-number">64</span>, kernel_size=(<span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>), padding=(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>)),
-            nn.ReLU(),
-            nn.MaxPool3d(kernel_size=(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>), stride=(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>))
-        )
-        self.block2 = nn.Sequential(
-            nn.Conv3d(<span class="hljs-number">64</span>, <span class="hljs-number">128</span>, kernel_size=(<span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>), padding=(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>)),
-            nn.ReLU(),
-            nn.MaxPool3d(kernel_size=(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>), stride=(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>))
-        )
-        self.block3 = nn.Sequential(
-            nn.Conv3d(<span class="hljs-number">128</span>, <span class="hljs-number">256</span>, kernel_size=(<span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>), padding=(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>)),
-            nn.ReLU(),
-            nn.Conv3d(<span class="hljs-number">256</span>, <span class="hljs-number">256</span>, kernel_size=(<span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>), padding=(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>)),
-            nn.ReLU(),
-            nn.MaxPool3d(kernel_size=(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>), stride=(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>))
-        )
-        self.block4 = nn.Sequential(
-            nn.Conv3d(<span class="hljs-number">256</span>, <span class="hljs-number">512</span>, kernel_size=(<span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>), padding=(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>)),
-            nn.ReLU(),
-            nn.Conv3d(<span class="hljs-number">512</span>, <span class="hljs-number">512</span>, kernel_size=(<span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>), padding=(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>)),
-            nn.ReLU(),
-            nn.MaxPool3d(kernel_size=(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>), stride=(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>))
-        )
-        self.block5 = nn.Sequential(
-            nn.Conv3d(<span class="hljs-number">512</span>, <span class="hljs-number">512</span>, kernel_size=(<span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>), padding=(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>)),
-            nn.ReLU(),
-            nn.Conv3d(<span class="hljs-number">512</span>, <span class="hljs-number">512</span>, kernel_size=(<span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>), padding=(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>)),
-            nn.ReLU(),
-            nn.MaxPool3d(kernel_size=(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>), stride=(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>), padding=(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>))
-        )
-        self.fc = nn.Sequential(
-            nn.Linear(<span class="hljs-number">8192</span>, <span class="hljs-number">4096</span>),
-            nn.ReLU(),
-            nn.Dropout(p=<span class="hljs-number">0.5</span>),
-            nn.Linear(<span class="hljs-number">4096</span>, <span class="hljs-number">4096</span>),
-            nn.ReLU(),
-            nn.Dropout(p=<span class="hljs-number">0.5</span>),
-            nn.Linear(<span class="hljs-number">4096</span>, num_classes)
-        )
-        self._init_weights()
-
-    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x</span>):
-        x = self.block1(x)
-        x = self.block2(x)
-        x = self.block3(x)
-        x = self.block4(x)
-        x = self.block5(x)
-        x = x.flatten(start_dim=<span class="hljs-number">1</span>)
-        x = self.fc(x)
-        <span class="hljs-keyword">return</span> x
-
-    <span class="hljs-keyword">def</span> <span class="hljs-title function_">_init_weights</span>(<span class="hljs-params">self</span>):
-        <span class="hljs-keyword">for</span> m <span class="hljs-keyword">in</span> self.modules():
-            <span class="hljs-keyword">if</span> <span class="hljs-built_in">isinstance</span>(m, nn.Conv3d):
-                nn.init.kaiming_normal_(m.weight, mode=<span class="hljs-string">&#x27;fan_out&#x27;</span>, nonlinearity=<span class="hljs-string">&#x27;relu&#x27;</span>)
-                <span class="hljs-keyword">if</span> m.bias <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-literal">None</span>:
-                    nn.init.constant_(m.bias, <span class="hljs-number">0</span>)
-            <span class="hljs-keyword">elif</span> <span class="hljs-built_in">isinstance</span>(m, nn.Linear):
-                nn.init.normal_(m.weight, <span class="hljs-number">0</span>, <span class="hljs-number">0.01</span>)
-
-
-
-
-<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:
-    model = C3D(num_classes=<span class="hljs-number">101</span>)
-    <span class="hljs-built_in">print</span>(summary(model, (<span class="hljs-number">3</span>, <span class="hljs-number">16</span>, <span class="hljs-number">112</span>, <span class="hljs-number">112</span>), device=<span class="hljs-string">&#x27;cpu&#x27;</span>))
-
-</code></pre>
-<h2 id="预训练权重"><a class="markdownIt-Anchor" href="#预训练权重"></a> 预训练权重</h2>
+<p>这里是 up 的解释，已经是非常的直观易懂。</p>
+<h2 id="动手搭建一个c3d"><a class="markdownIt-Anchor" href="#动手搭建一个c3d">#</a> 动手搭建一个 C3D</h2>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">import</span> torch</pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">from</span> torch <span class="token keyword">import</span> nn</pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token keyword">from</span> torchsummary <span class="token keyword">import</span> summary</pre></td></tr><tr><td data-num="4"></td><td><pre></pre></td></tr><tr><td data-num="5"></td><td><pre></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">C3D</span><span class="token punctuation">(</span>nn<span class="token punctuation">.</span>Module<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> num_classes<span class="token punctuation">,</span> <span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token boolean">None</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="8"></td><td><pre>        <span class="token builtin">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="9"></td><td><pre>        self<span class="token punctuation">.</span>block1 <span class="token operator">=</span> nn<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span></pre></td></tr><tr><td data-num="10"></td><td><pre>            nn<span class="token punctuation">.</span>Conv3d<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">64</span><span class="token punctuation">,</span> kernel_size<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span> padding<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="11"></td><td><pre>            nn<span class="token punctuation">.</span>ReLU<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="12"></td><td><pre>            nn<span class="token punctuation">.</span>MaxPool3d<span class="token punctuation">(</span>kernel_size<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span> stride<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="13"></td><td><pre>        <span class="token punctuation">)</span></pre></td></tr><tr><td data-num="14"></td><td><pre>        self<span class="token punctuation">.</span>block2 <span class="token operator">=</span> nn<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span></pre></td></tr><tr><td data-num="15"></td><td><pre>            nn<span class="token punctuation">.</span>Conv3d<span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">,</span> <span class="token number">128</span><span class="token punctuation">,</span> kernel_size<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span> padding<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="16"></td><td><pre>            nn<span class="token punctuation">.</span>ReLU<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="17"></td><td><pre>            nn<span class="token punctuation">.</span>MaxPool3d<span class="token punctuation">(</span>kernel_size<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span> stride<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="18"></td><td><pre>        <span class="token punctuation">)</span></pre></td></tr><tr><td data-num="19"></td><td><pre>        self<span class="token punctuation">.</span>block3 <span class="token operator">=</span> nn<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span></pre></td></tr><tr><td data-num="20"></td><td><pre>            nn<span class="token punctuation">.</span>Conv3d<span class="token punctuation">(</span><span class="token number">128</span><span class="token punctuation">,</span> <span class="token number">256</span><span class="token punctuation">,</span> kernel_size<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span> padding<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="21"></td><td><pre>            nn<span class="token punctuation">.</span>ReLU<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="22"></td><td><pre>            nn<span class="token punctuation">.</span>Conv3d<span class="token punctuation">(</span><span class="token number">256</span><span class="token punctuation">,</span> <span class="token number">256</span><span class="token punctuation">,</span> kernel_size<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span> padding<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="23"></td><td><pre>            nn<span class="token punctuation">.</span>ReLU<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="24"></td><td><pre>            nn<span class="token punctuation">.</span>MaxPool3d<span class="token punctuation">(</span>kernel_size<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span> stride<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="25"></td><td><pre>        <span class="token punctuation">)</span></pre></td></tr><tr><td data-num="26"></td><td><pre>        self<span class="token punctuation">.</span>block4 <span class="token operator">=</span> nn<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span></pre></td></tr><tr><td data-num="27"></td><td><pre>            nn<span class="token punctuation">.</span>Conv3d<span class="token punctuation">(</span><span class="token number">256</span><span class="token punctuation">,</span> <span class="token number">512</span><span class="token punctuation">,</span> kernel_size<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span> padding<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="28"></td><td><pre>            nn<span class="token punctuation">.</span>ReLU<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="29"></td><td><pre>            nn<span class="token punctuation">.</span>Conv3d<span class="token punctuation">(</span><span class="token number">512</span><span class="token punctuation">,</span> <span class="token number">512</span><span class="token punctuation">,</span> kernel_size<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span> padding<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="30"></td><td><pre>            nn<span class="token punctuation">.</span>ReLU<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="31"></td><td><pre>            nn<span class="token punctuation">.</span>MaxPool3d<span class="token punctuation">(</span>kernel_size<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span> stride<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="32"></td><td><pre>        <span class="token punctuation">)</span></pre></td></tr><tr><td data-num="33"></td><td><pre>        self<span class="token punctuation">.</span>block5 <span class="token operator">=</span> nn<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span></pre></td></tr><tr><td data-num="34"></td><td><pre>            nn<span class="token punctuation">.</span>Conv3d<span class="token punctuation">(</span><span class="token number">512</span><span class="token punctuation">,</span> <span class="token number">512</span><span class="token punctuation">,</span> kernel_size<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span> padding<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="35"></td><td><pre>            nn<span class="token punctuation">.</span>ReLU<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="36"></td><td><pre>            nn<span class="token punctuation">.</span>Conv3d<span class="token punctuation">(</span><span class="token number">512</span><span class="token punctuation">,</span> <span class="token number">512</span><span class="token punctuation">,</span> kernel_size<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span> padding<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="37"></td><td><pre>            nn<span class="token punctuation">.</span>ReLU<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="38"></td><td><pre>            nn<span class="token punctuation">.</span>MaxPool3d<span class="token punctuation">(</span>kernel_size<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span> stride<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span> padding<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="39"></td><td><pre>        <span class="token punctuation">)</span></pre></td></tr><tr><td data-num="40"></td><td><pre>        self<span class="token punctuation">.</span>fc <span class="token operator">=</span> nn<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span></pre></td></tr><tr><td data-num="41"></td><td><pre>            nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span><span class="token number">8192</span><span class="token punctuation">,</span> <span class="token number">4096</span><span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="42"></td><td><pre>            nn<span class="token punctuation">.</span>ReLU<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="43"></td><td><pre>            nn<span class="token punctuation">.</span>Dropout<span class="token punctuation">(</span>p<span class="token operator">=</span><span class="token number">0.5</span><span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="44"></td><td><pre>            nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span><span class="token number">4096</span><span class="token punctuation">,</span> <span class="token number">4096</span><span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="45"></td><td><pre>            nn<span class="token punctuation">.</span>ReLU<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="46"></td><td><pre>            nn<span class="token punctuation">.</span>Dropout<span class="token punctuation">(</span>p<span class="token operator">=</span><span class="token number">0.5</span><span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="47"></td><td><pre>            nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span><span class="token number">4096</span><span class="token punctuation">,</span> num_classes<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="48"></td><td><pre>        <span class="token punctuation">)</span></pre></td></tr><tr><td data-num="49"></td><td><pre>        self<span class="token punctuation">.</span>_init_weights<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="50"></td><td><pre></pre></td></tr><tr><td data-num="51"></td><td><pre>    <span class="token keyword">def</span> <span class="token function">forward</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="52"></td><td><pre>        x <span class="token operator">=</span> self<span class="token punctuation">.</span>block1<span class="token punctuation">(</span>x<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="53"></td><td><pre>        x <span class="token operator">=</span> self<span class="token punctuation">.</span>block2<span class="token punctuation">(</span>x<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="54"></td><td><pre>        x <span class="token operator">=</span> self<span class="token punctuation">.</span>block3<span class="token punctuation">(</span>x<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="55"></td><td><pre>        x <span class="token operator">=</span> self<span class="token punctuation">.</span>block4<span class="token punctuation">(</span>x<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="56"></td><td><pre>        x <span class="token operator">=</span> self<span class="token punctuation">.</span>block5<span class="token punctuation">(</span>x<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="57"></td><td><pre>        x <span class="token operator">=</span> x<span class="token punctuation">.</span>flatten<span class="token punctuation">(</span>start_dim<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="58"></td><td><pre>        x <span class="token operator">=</span> self<span class="token punctuation">.</span>fc<span class="token punctuation">(</span>x<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="59"></td><td><pre>        <span class="token keyword">return</span> x</pre></td></tr><tr><td data-num="60"></td><td><pre></pre></td></tr><tr><td data-num="61"></td><td><pre>    <span class="token keyword">def</span> <span class="token function">_init_weights</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="62"></td><td><pre>        <span class="token keyword">for</span> m <span class="token keyword">in</span> self<span class="token punctuation">.</span>modules<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="63"></td><td><pre>            <span class="token keyword">if</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>m<span class="token punctuation">,</span> nn<span class="token punctuation">.</span>Conv3d<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="64"></td><td><pre>                nn<span class="token punctuation">.</span>init<span class="token punctuation">.</span>kaiming_normal_<span class="token punctuation">(</span>m<span class="token punctuation">.</span>weight<span class="token punctuation">,</span> mode<span class="token operator">=</span><span class="token string">'fan_out'</span><span class="token punctuation">,</span> nonlinearity<span class="token operator">=</span><span class="token string">'relu'</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="65"></td><td><pre>                <span class="token keyword">if</span> m<span class="token punctuation">.</span>bias <span class="token keyword">is</span> <span class="token keyword">not</span> <span class="token boolean">None</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="66"></td><td><pre>                    nn<span class="token punctuation">.</span>init<span class="token punctuation">.</span>constant_<span class="token punctuation">(</span>m<span class="token punctuation">.</span>bias<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="67"></td><td><pre>            <span class="token keyword">elif</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>m<span class="token punctuation">,</span> nn<span class="token punctuation">.</span>Linear<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="68"></td><td><pre>                nn<span class="token punctuation">.</span>init<span class="token punctuation">.</span>normal_<span class="token punctuation">(</span>m<span class="token punctuation">.</span>weight<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0.01</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="69"></td><td><pre></pre></td></tr><tr><td data-num="70"></td><td><pre></pre></td></tr><tr><td data-num="71"></td><td><pre></pre></td></tr><tr><td data-num="72"></td><td><pre></pre></td></tr><tr><td data-num="73"></td><td><pre><span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="74"></td><td><pre>    model <span class="token operator">=</span> C3D<span class="token punctuation">(</span>num_classes<span class="token operator">=</span><span class="token number">101</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="75"></td><td><pre>    <span class="token keyword">print</span><span class="token punctuation">(</span>summary<span class="token punctuation">(</span>model<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">,</span> <span class="token number">112</span><span class="token punctuation">,</span> <span class="token number">112</span><span class="token punctuation">)</span><span class="token punctuation">,</span> device<span class="token operator">=</span><span class="token string">'cpu'</span><span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr></table></figure><h2 id="预训练权重"><a class="markdownIt-Anchor" href="#预训练权重">#</a> 预训练权重</h2>
 <p>比如，有一个猫狗分类的模型，权重和偏置已经训练好了，但是现在有一个新任务，就是狼和老虎进行分类，我们就可以用猫狗分类的权重来继续训练狼和老虎分类，这样的话会加速我们的训练速度，非常方便。</p>
-<pre class="highlight"><code class="python"><span class="hljs-meta">@staticmethod</span>
-    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__load__pretrained_model</span>():
-        p_dict = torch.load(<span class="hljs-string">&#x27;./ucf101-caffe.pth&#x27;</span>)
-        s_dict = model.state_dict()
-        corresp_name = &#123;
-            <span class="hljs-string">&#x27;features.0.weight&#x27;</span>: <span class="hljs-string">&#x27;block1.0.weight&#x27;</span>,
-            <span class="hljs-string">&#x27;features.0.bias&#x27;</span>: <span class="hljs-string">&#x27;block1.0.bias&#x27;</span>,
-
-            <span class="hljs-string">&#x27;features.3.weight&#x27;</span>: <span class="hljs-string">&#x27;block2.0.weight&#x27;</span>,
-            <span class="hljs-string">&#x27;features.3.bias&#x27;</span>: <span class="hljs-string">&#x27;block2.0.bias&#x27;</span>,
-
-            <span class="hljs-string">&#x27;features.6.weight&#x27;</span>: <span class="hljs-string">&#x27;block3.0.weight&#x27;</span>,
-            <span class="hljs-string">&#x27;features.6.bias&#x27;</span>: <span class="hljs-string">&#x27;block3.0.bias&#x27;</span>,
-
-            <span class="hljs-string">&#x27;features.8.weight&#x27;</span>: <span class="hljs-string">&#x27;block3.2.weight&#x27;</span>,
-            <span class="hljs-string">&#x27;features.8.bias&#x27;</span>: <span class="hljs-string">&#x27;block3.2.bias&#x27;</span>,
-
-            <span class="hljs-string">&#x27;features.11.weight&#x27;</span>: <span class="hljs-string">&#x27;block4.0.weight&#x27;</span>,
-            <span class="hljs-string">&#x27;features.11.bias&#x27;</span>: <span class="hljs-string">&#x27;block4.0.bias&#x27;</span>,
-
-            <span class="hljs-string">&#x27;features.13.weight&#x27;</span>: <span class="hljs-string">&#x27;block4.2.weight&#x27;</span>,
-            <span class="hljs-string">&#x27;features.13.bias&#x27;</span>: <span class="hljs-string">&#x27;block4.2.bias&#x27;</span>,
-
-            <span class="hljs-string">&#x27;features.16.weight&#x27;</span>: <span class="hljs-string">&#x27;block5.0.weight&#x27;</span>,
-            <span class="hljs-string">&#x27;features.16.bias&#x27;</span>: <span class="hljs-string">&#x27;block5.0.bias&#x27;</span>,
-
-            <span class="hljs-string">&#x27;features.18.weight&#x27;</span>: <span class="hljs-string">&#x27;block5.2.weight&#x27;</span>,
-            <span class="hljs-string">&#x27;features.18.bias&#x27;</span>: <span class="hljs-string">&#x27;block5.2.bias&#x27;</span>,
-
-            <span class="hljs-string">&#x27;classifier.0.weight&#x27;</span>: <span class="hljs-string">&#x27;fc.0.weight&#x27;</span>,
-            <span class="hljs-string">&#x27;classifier.0.bias&#x27;</span>: <span class="hljs-string">&#x27;fc.0.bias&#x27;</span>,
-
-            <span class="hljs-string">&#x27;classifier.3.weight&#x27;</span>: <span class="hljs-string">&#x27;fc.3.weight&#x27;</span>,
-            <span class="hljs-string">&#x27;classifier.3.bias&#x27;</span>: <span class="hljs-string">&#x27;fc.3.bias&#x27;</span>
-        &#125;
-        <span class="hljs-keyword">for</span> name <span class="hljs-keyword">in</span> p_dict:
-            <span class="hljs-keyword">if</span> name <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> corresp_name:
-                <span class="hljs-keyword">continue</span>
-            s_dict[corresp_name[name]] = p_dict[name]
-</code></pre>
-<p>像这样，我们就可以做参数移植了</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token decorator annotation punctuation">@staticmethod</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token keyword">def</span> <span class="token function">__load__pretrained_model</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="3"></td><td><pre>        p_dict <span class="token operator">=</span> torch<span class="token punctuation">.</span>load<span class="token punctuation">(</span><span class="token string">'./ucf101-caffe.pth'</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="4"></td><td><pre>        s_dict <span class="token operator">=</span> model<span class="token punctuation">.</span>state_dict<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="5"></td><td><pre>        corresp_name <span class="token operator">=</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>            <span class="token string">'features.0.weight'</span><span class="token punctuation">:</span> <span class="token string">'block1.0.weight'</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="7"></td><td><pre>            <span class="token string">'features.0.bias'</span><span class="token punctuation">:</span> <span class="token string">'block1.0.bias'</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="8"></td><td><pre></pre></td></tr><tr><td data-num="9"></td><td><pre>            <span class="token string">'features.3.weight'</span><span class="token punctuation">:</span> <span class="token string">'block2.0.weight'</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="10"></td><td><pre>            <span class="token string">'features.3.bias'</span><span class="token punctuation">:</span> <span class="token string">'block2.0.bias'</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="11"></td><td><pre></pre></td></tr><tr><td data-num="12"></td><td><pre>            <span class="token string">'features.6.weight'</span><span class="token punctuation">:</span> <span class="token string">'block3.0.weight'</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="13"></td><td><pre>            <span class="token string">'features.6.bias'</span><span class="token punctuation">:</span> <span class="token string">'block3.0.bias'</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="14"></td><td><pre></pre></td></tr><tr><td data-num="15"></td><td><pre>            <span class="token string">'features.8.weight'</span><span class="token punctuation">:</span> <span class="token string">'block3.2.weight'</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="16"></td><td><pre>            <span class="token string">'features.8.bias'</span><span class="token punctuation">:</span> <span class="token string">'block3.2.bias'</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="17"></td><td><pre></pre></td></tr><tr><td data-num="18"></td><td><pre>            <span class="token string">'features.11.weight'</span><span class="token punctuation">:</span> <span class="token string">'block4.0.weight'</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="19"></td><td><pre>            <span class="token string">'features.11.bias'</span><span class="token punctuation">:</span> <span class="token string">'block4.0.bias'</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="20"></td><td><pre></pre></td></tr><tr><td data-num="21"></td><td><pre>            <span class="token string">'features.13.weight'</span><span class="token punctuation">:</span> <span class="token string">'block4.2.weight'</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="22"></td><td><pre>            <span class="token string">'features.13.bias'</span><span class="token punctuation">:</span> <span class="token string">'block4.2.bias'</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="23"></td><td><pre></pre></td></tr><tr><td data-num="24"></td><td><pre>            <span class="token string">'features.16.weight'</span><span class="token punctuation">:</span> <span class="token string">'block5.0.weight'</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="25"></td><td><pre>            <span class="token string">'features.16.bias'</span><span class="token punctuation">:</span> <span class="token string">'block5.0.bias'</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="26"></td><td><pre></pre></td></tr><tr><td data-num="27"></td><td><pre>            <span class="token string">'features.18.weight'</span><span class="token punctuation">:</span> <span class="token string">'block5.2.weight'</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="28"></td><td><pre>            <span class="token string">'features.18.bias'</span><span class="token punctuation">:</span> <span class="token string">'block5.2.bias'</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="29"></td><td><pre></pre></td></tr><tr><td data-num="30"></td><td><pre>            <span class="token string">'classifier.0.weight'</span><span class="token punctuation">:</span> <span class="token string">'fc.0.weight'</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="31"></td><td><pre>            <span class="token string">'classifier.0.bias'</span><span class="token punctuation">:</span> <span class="token string">'fc.0.bias'</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="32"></td><td><pre></pre></td></tr><tr><td data-num="33"></td><td><pre>            <span class="token string">'classifier.3.weight'</span><span class="token punctuation">:</span> <span class="token string">'fc.3.weight'</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="34"></td><td><pre>            <span class="token string">'classifier.3.bias'</span><span class="token punctuation">:</span> <span class="token string">'fc.3.bias'</span></pre></td></tr><tr><td data-num="35"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="36"></td><td><pre>        <span class="token keyword">for</span> name <span class="token keyword">in</span> p_dict<span class="token punctuation">:</span></pre></td></tr><tr><td data-num="37"></td><td><pre>            <span class="token keyword">if</span> name <span class="token keyword">not</span> <span class="token keyword">in</span> corresp_name<span class="token punctuation">:</span></pre></td></tr><tr><td data-num="38"></td><td><pre>                <span class="token keyword">continue</span></pre></td></tr><tr><td data-num="39"></td><td><pre>            s_dict<span class="token punctuation">[</span>corresp_name<span class="token punctuation">[</span>name<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> p_dict<span class="token punctuation">[</span>name<span class="token punctuation">]</span></pre></td></tr></table></figure><p>像这样，我们就可以做参数移植了</p>
 
       <div class="tags">
           <a href="/tags/python/" rel="tag"><i class="ic i-tag"></i> python</a>
@@ -400,7 +283,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="文章目录">
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#3dcnn-%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text"> 3DCNN 网络结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E7%9A%84%E6%9C%AC%E8%B4%A8"><span class="toc-number">1.1.</span> <span class="toc-text"> 图像的本质</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E5%9B%BE%E5%83%8F%E5%88%B0%E8%A7%86%E9%A2%91"><span class="toc-number">1.2.</span> <span class="toc-text"> 从图像到视频</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2d%E6%A3%80%E6%B5%8B%E6%96%B9%E6%B3%95%E5%AF%B9%E6%AF%94"><span class="toc-number">1.3.</span> <span class="toc-text"> 2D检测方法对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#c3d%E7%BD%91%E7%BB%9C%E6%B5%81%E7%A8%8B"><span class="toc-number">1.4.</span> <span class="toc-text"> C3D网络流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E6%89%8B%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AAc3d"><span class="toc-number">1.5.</span> <span class="toc-text"> 动手搭建一个C3D</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%84%E8%AE%AD%E7%BB%83%E6%9D%83%E9%87%8D"><span class="toc-number">1.6.</span> <span class="toc-text"> 预训练权重</span></a></li></ol></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#3dcnn-%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text"> 3DCNN 网络结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E7%9A%84%E6%9C%AC%E8%B4%A8"><span class="toc-number">1.1.</span> <span class="toc-text"> 图像的本质</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E5%9B%BE%E5%83%8F%E5%88%B0%E8%A7%86%E9%A2%91"><span class="toc-number">1.2.</span> <span class="toc-text"> 从图像到视频</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2d%E6%A3%80%E6%B5%8B%E6%96%B9%E6%B3%95%E5%AF%B9%E6%AF%94"><span class="toc-number">1.3.</span> <span class="toc-text"> 2D 检测方法对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#c3d%E7%BD%91%E7%BB%9C%E6%B5%81%E7%A8%8B"><span class="toc-number">1.4.</span> <span class="toc-text"> C3D 网络流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E6%89%8B%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AAc3d"><span class="toc-number">1.5.</span> <span class="toc-text"> 动手搭建一个 C3D</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%84%E8%AE%AD%E7%BB%83%E6%9D%83%E9%87%8D"><span class="toc-number">1.6.</span> <span class="toc-text"> 预训练权重</span></a></li></ol></li></ol>
       </div>
       <div class="related panel pjax" data-title="系列文章">
         <ul>
@@ -536,22 +419,20 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <div class="breadcrumb">
 <a href="/categories/Java/" title="分类于 Java">Java</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/Java/git%E7%9B%B8%E5%85%B3/" title="分类于 git相关">git相关</a>
+<a href="/categories/Java/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%9B%B8%E5%85%B3/" title="分类于 微服务相关">微服务相关</a>
 </div>
 
-    <span><a href="/Java/gitflow/" title="GitFlow分支管理策略">GitFlow分支管理策略</a></span>
+    <span><a href="/Java/SpringCloudSTU/" title="SpringCloud学习记录">SpringCloud学习记录</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/python/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" title="分类于 论文阅读">论文阅读</a>
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" title="分类于 计算机组成原理">计算机组成原理</a>
 </div>
 
-    <span><a href="/paper/attention_is_all_your_need/" title="Attention is all you need">Attention is all you need</a></span>
+    <span><a href="/Principles-of-computer-composition/Connection_between_CPU_and_memory/" title="CPU与存储器的连接">CPU与存储器的连接</a></span>
   </li>
 
       
@@ -560,20 +441,10 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <div class="breadcrumb">
 <a href="/categories/notebook/" title="分类于 笔记">笔记</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/notebook/%E7%9F%A9%E9%98%B5%E8%AE%BA%E8%A7%A3%E9%A2%98%E7%AC%94%E8%AE%B0/" title="分类于 矩阵论解题笔记">矩阵论解题笔记</a>
+<a href="/categories/notebook/%E8%80%83%E7%A0%94%E8%8B%B1%E8%AF%AD%E7%AC%94%E8%AE%B0/" title="分类于 考研英语笔记">考研英语笔记</a>
 </div>
 
-    <span><a href="/math/matrix_anl/" title="矩阵论">矩阵论</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
-</div>
-
-    <span><a href="/Operate-system/KnowledgeSummary/" title="操作系统细碎知识点及公式速记">操作系统细碎知识点及公式速记</a></span>
+    <span><a href="/English/xbbEnglish/" title="英语笔记">英语笔记</a></span>
   </li>
 
       
@@ -592,58 +463,70 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/python/YOLO/" title="分类于 YOLO">YOLO</a>
-</div>
-
-    <span><a href="/python/YOLO/index/" title="YOLO系列">YOLO系列</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/python/YOLO/" title="分类于 YOLO">YOLO</a>
-</div>
-
-    <span><a href="/python/YOLO/YOLO_V3/" title="YOLO-V3">YOLO-V3</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
 <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%90%86%E8%AE%BA/" title="分类于 数据库理论">数据库理论</a>
+<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MongoDB/" title="分类于 MongoDB">MongoDB</a>
 </div>
 
-    <span><a href="/database/DataBase02/" title="数据库设计">数据库设计</a></span>
+    <span><a href="/MongoDB/MongoDB02/" title="MongoDB初步使用">MongoDB初步使用</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Java/" title="分类于 Java">Java</a>
+<a href="/categories/notebook/" title="分类于 笔记">笔记</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/Java/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%9B%B8%E5%85%B3/" title="分类于 微服务相关">微服务相关</a>
+<a href="/categories/notebook/%E8%80%83%E7%A0%94%E8%8B%B1%E8%AF%AD%E7%AC%94%E8%AE%B0/" title="分类于 考研英语笔记">考研英语笔记</a>
 </div>
 
-    <span><a href="/Java/springcloud021/" title="将单体项目拆解为微服务项目">将单体项目拆解为微服务项目</a></span>
+    <span><a href="/English/shEnglish/" title="文章翻译">文章翻译</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
+<a href="/categories/notebook/" title="分类于 笔记">笔记</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/notebook/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B0/" title="分类于 数据结构笔记">数据结构笔记</a>
 </div>
 
-    <span><a href="/Operate-system/kcsj/" title="操作系统课程设计">操作系统课程设计</a></span>
+    <span><a href="/DSLearnNote/codeTM/" title="数据结构代码题速记">数据结构代码题速记</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
+</div>
+
+    <span><a href="/python/DLFromFormula/" title="从公式角度看深度学习">从公式角度看深度学习</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" title="分类于 论文阅读">论文阅读</a>
+</div>
+
+    <span><a href="/paper/review_remote_sensing_m_d/" title="Methods and datasets on semantic segmentation for Unmanned Aerial Vehicle remote sensing images：A review">Methods and datasets on semantic segmentation for Unmanned Aerial Vehicle remote sensing images：A review</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C/" title="分类于 开发经验">开发经验</a>
+</div>
+
+    <span><a href="/experience/CollaborativeFiltering/" title="基于用户的协同过滤算法">基于用户的协同过滤算法</a></span>
   </li>
 
   </ul>
@@ -668,8 +551,8 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
     <a href="https://icp.gov.moe/?keyword=20249329" target="_blank">萌ICP备20249329号</a>
     基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
   <br/><span>世界本污浊，罪与爱同歌</span>
-  <br/><i class="ic i-chart-area"></i>&nbsp;<span>549k&nbsp;字</span> &nbsp;|&nbsp;
-  <i class="ic i-coffee"></i>&nbsp;<span> 15:15</span>
+  <br/><i class="ic i-chart-area"></i>&nbsp;<span>532k&nbsp;字</span> &nbsp;|&nbsp;
+  <i class="ic i-coffee"></i>&nbsp;<span> 14:46</span>
   </div>
 </div>
 

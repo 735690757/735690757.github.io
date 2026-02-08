@@ -152,144 +152,133 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <div class="body md" itemprop="articleBody">
     
 
-    <h1 id="gitflow"><a class="markdownIt-Anchor" href="#gitflow"></a> GitFlow</h1>
-<h2 id="什么是gitflow"><a class="markdownIt-Anchor" href="#什么是gitflow"></a> 什么是GitFlow？</h2>
+    <h1 id="gitflow"><a class="markdownIt-Anchor" href="#gitflow">#</a> GitFlow</h1>
+<h2 id="什么是gitflow"><a class="markdownIt-Anchor" href="#什么是gitflow">#</a> 什么是 GitFlow？</h2>
 <blockquote>
-<p>Gitflow 是一种替代的 Git 分支模型，涉及功能分支和多个主分支的使用。该书最初由文森特·德里森在nvie出版并推广开来。与基于trunk的开发相比，Gitflow拥有众多且寿命更长的分支和更大的提交。在该模型下，开发者创建一个功能分支，并延迟将其合并到主干分支，直到功能完成。这些寿命较长的特征分支需要更多的协作来合并，且偏离主干分支的风险更高。它们也可能引入冲突更新。</p>
-<p>Gitflow 可用于有预定发布周期的项目，也可用于<span class="exturl" data-url="aHR0cHM6Ly93d3cuYXRsYXNzaWFuLmNvbS96aC9kZXZvcHMvd2hhdC1pcy1kZXZvcHMvZGV2b3BzLWJlc3QtcHJhY3RpY2Vz">持续交付</span>的 <span class="exturl" data-url="aHR0cHM6Ly93d3cuYXRsYXNzaWFuLmNvbS96aC9jb250aW51b3VzLWRlbGl2ZXJ5">DevOps 最佳实践</span>。除了<span class="exturl" data-url="aHR0cHM6Ly93d3cuYXRsYXNzaWFuLmNvbS96aC9naXQvdHV0b3JpYWxzL2NvbXBhcmluZy13b3JrZmxvd3MvZmVhdHVyZS1icmFuY2gtd29ya2Zsb3c=">功能分支工作流程</span>所需的概念或命令外，此工作流程不会添加任何新概念或命令。相反，它为不同的分支分配了非常具体的角色，并定义了它们应该如何以及何时进行交互。除了 <code>feature</code> 分支外，它还使用单独分支来准备、维护和录制版本。当然，您还可以利用功能分支工作流程的所有优势：拉取请求、隔离实验和更高效的协作。</p>
+<p>Gitflow 是一种替代的 Git 分支模型，涉及功能分支和多个主分支的使用。该书最初由文森特・德里森在 nvie 出版并推广开来。与基于 trunk 的开发相比，Gitflow 拥有众多且寿命更长的分支和更大的提交。在该模型下，开发者创建一个功能分支，并延迟将其合并到主干分支，直到功能完成。这些寿命较长的特征分支需要更多的协作来合并，且偏离主干分支的风险更高。它们也可能引入冲突更新。</p>
+<p>Gitflow 可用于有预定发布周期的项目，也可用于<span class="exturl" data-url="aHR0cHM6Ly93d3cuYXRsYXNzaWFuLmNvbS96aC9kZXZvcHMvd2hhdC1pcy1kZXZvcHMvZGV2b3BzLWJlc3QtcHJhY3RpY2Vz">持续交付</span>的 <span class="exturl" data-url="aHR0cHM6Ly93d3cuYXRsYXNzaWFuLmNvbS96aC9jb250aW51b3VzLWRlbGl2ZXJ5">DevOps 最佳实践</span>。除了<span class="exturl" data-url="aHR0cHM6Ly93d3cuYXRsYXNzaWFuLmNvbS96aC9naXQvdHV0b3JpYWxzL2NvbXBhcmluZy13b3JrZmxvd3MvZmVhdHVyZS1icmFuY2gtd29ya2Zsb3c=">功能分支工作流程</span>所需的概念或命令外，此工作流程不会添加任何新概念或命令。相反，它为不同的分支分配了非常具体的角色，并定义了它们应该如何以及何时进行交互。除了  <code>feature</code>  分支外，它还使用单独分支来准备、维护和录制版本。当然，您还可以利用功能分支工作流程的所有优势：拉取请求、隔离实验和更高效的协作。</p>
 </blockquote>
-<h2 id="五大分支"><a class="markdownIt-Anchor" href="#五大分支"></a> 五大分支</h2>
+<h2 id="五大分支"><a class="markdownIt-Anchor" href="#五大分支">#</a> 五大分支</h2>
 <ol>
 <li>主分支：main /  master</li>
 <li>开发分支：develop</li>
 <li>功能分支：feature</li>
 <li>发布分支：release</li>
-<li>热修复分支hotfix</li>
+<li>热修复分支 hotfix</li>
 </ol>
-<h3 id="主分支main-master"><a class="markdownIt-Anchor" href="#主分支main-master"></a> 主分支：<code>main / master</code></h3>
+<h3 id="主分支main-master"><a class="markdownIt-Anchor" href="#主分支main-master">#</a> 主分支： <code>main / master</code></h3>
 <p><strong>永远保持可发布状态</strong></p>
 <p>每一次提交都应该是<strong>已经测试、可上线的版本</strong></p>
 <p>通常只允许：</p>
 <ul>
-<li><code>release</code> 合并进来</li>
-<li><code>hotfix</code> 合并进来</li>
+<li><code>release</code>  合并进来</li>
+<li><code>hotfix</code>  合并进来</li>
 </ul>
 <p>一般会在这里 <strong>打 tag</strong></p>
-<pre class="highlight"><code class="bash">v1.0.0
-v1.1.0
-</code></pre>
-<p>不在 main 上直接开发代码</p>
-<h3 id="开发分支develop"><a class="markdownIt-Anchor" href="#开发分支develop"></a> 开发分支：<code>develop</code></h3>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>v1.0.0</pre></td></tr><tr><td data-num="2"></td><td><pre>v1.1.0</pre></td></tr></table></figure><p>不在 main 上直接开发代码</p>
+<h3 id="开发分支develop"><a class="markdownIt-Anchor" href="#开发分支develop">#</a> 开发分支： <code>develop</code></h3>
 <p><strong>作用：日常开发的集成分支</strong></p>
 <ul>
 <li>所有新功能最终都会合并到这里</li>
-<li>包含“下一个版本”的所有开发内容</li>
+<li>包含 “下一个版本” 的所有开发内容</li>
 <li>相对不如 main 稳定，但应该是<strong>可运行的</strong></li>
 </ul>
 <p>特点：</p>
 <ul>
-<li><code>feature</code> → <code>develop</code></li>
-<li><code>develop</code> → <code>release</code></li>
+<li><code>feature</code>  →  <code>develop</code></li>
+<li><code>develop</code>  →  <code>release</code></li>
 </ul>
-<h3 id="功能分支feature"><a class="markdownIt-Anchor" href="#功能分支feature"></a> 功能分支：<code>feature/*</code></h3>
+<h3 id="功能分支feature"><a class="markdownIt-Anchor" href="#功能分支feature">#</a> 功能分支： <code>feature/*</code></h3>
 <p><strong>作用：开发具体功能</strong></p>
 <ul>
-<li>从 <code>develop</code> 拉出来</li>
+<li>从  <code>develop</code>  拉出来</li>
 <li>一个功能一个分支</li>
-<li>功能完成后合并回 <code>develop</code></li>
+<li>功能完成后合并回  <code>develop</code></li>
 </ul>
-<h3 id="发布分支release"><a class="markdownIt-Anchor" href="#发布分支release"></a> 发布分支：<code>release/*</code></h3>
-<p><strong>作用：版本发布前的“冻结分支”</strong></p>
+<h3 id="发布分支release"><a class="markdownIt-Anchor" href="#发布分支release">#</a> 发布分支： <code>release/*</code></h3>
+<p><strong>作用：版本发布前的 “冻结分支”</strong></p>
 <ul>
-<li>从 <code>develop</code> 拉出来</li>
+<li>从  <code>develop</code>  拉出来</li>
 <li>只允许：
 <ul>
 <li>bug 修复</li>
-<li>文档/版本号修改</li>
+<li>文档 / 版本号修改</li>
 </ul>
 </li>
 <li><strong>不再添加新功能</strong></li>
 </ul>
-<h3 id="热修复分支hotfix"><a class="markdownIt-Anchor" href="#热修复分支hotfix"></a> 热修复分支：<code>hotfix/*</code></h3>
+<h3 id="热修复分支hotfix"><a class="markdownIt-Anchor" href="#热修复分支hotfix">#</a> 热修复分支： <code>hotfix/*</code></h3>
 <p><strong>作用：线上紧急 Bug 修复</strong></p>
 <ul>
-<li>从 <code>main</code> 拉出来</li>
+<li>从  <code>main</code>  拉出来</li>
 <li>修完立刻发布</li>
-<li>同时要合并回 <code>develop</code></li>
+<li>同时要合并回  <code>develop</code></li>
 </ul>
-<h2 id="基本图"><a class="markdownIt-Anchor" href="#基本图"></a> 基本图</h2>
+<h2 id="基本图"><a class="markdownIt-Anchor" href="#基本图">#</a> 基本图</h2>
 <img data-src="../../images/java/gitflow/1.png" alt="1" style="zoom:80%;" />
-<h2 id="前置流程"><a class="markdownIt-Anchor" href="#前置流程"></a> 前置流程</h2>
+<h2 id="前置流程"><a class="markdownIt-Anchor" href="#前置流程">#</a> 前置流程</h2>
 <img data-src="../../images/java/gitflow/2.png" alt="1" style="zoom:80%;" />
 <img data-src="../../images/java/gitflow/3.png" alt="1" style="zoom:80%;" />
 <img data-src="../../images/java/gitflow/4.png" alt="1" style="zoom:80%;" />
-<h2 id="开发新需求a"><a class="markdownIt-Anchor" href="#开发新需求a"></a> 开发新需求A</h2>
+<h2 id="开发新需求a"><a class="markdownIt-Anchor" href="#开发新需求a">#</a> 开发新需求 A</h2>
 <img data-src="../../images/java/gitflow/5.png" alt="1" style="zoom:80%;" />
 <p>提交</p>
 <img data-src="../../images/java/gitflow/6.png" alt="1" style="zoom:80%;" />
-<p>观察到dev并未受影响。</p>
+<p>观察到 dev 并未受影响。</p>
 <img data-src="../../images/java/gitflow/7.png" alt="1" style="zoom:80%;" />
 <img data-src="../../images/java/gitflow/8.png" alt="1" style="zoom:80%;" />
-<h2 id="开发新需求b与c"><a class="markdownIt-Anchor" href="#开发新需求b与c"></a> 开发新需求B与C</h2>
-<p>省略，同样提交并合并到dev之中</p>
-<h2 id="合并的结果"><a class="markdownIt-Anchor" href="#合并的结果"></a> 合并的结果</h2>
+<h2 id="开发新需求b与c"><a class="markdownIt-Anchor" href="#开发新需求b与c">#</a> 开发新需求 B 与 C</h2>
+<p>省略，同样提交并合并到 dev 之中</p>
+<h2 id="合并的结果"><a class="markdownIt-Anchor" href="#合并的结果">#</a> 合并的结果</h2>
 <img data-src="../../images/java/gitflow/9.png" alt="1" style="zoom:80%;" />
 <p>为了整洁，新特性开发完毕之后需可以删除分支。</p>
 <img data-src="../../images/java/gitflow/10.png" alt="1" style="zoom:80%;" />
-<h2 id="发布分支"><a class="markdownIt-Anchor" href="#发布分支"></a> 发布分支</h2>
+<h2 id="发布分支"><a class="markdownIt-Anchor" href="#发布分支">#</a> 发布分支</h2>
 <img data-src="../../images/java/gitflow/11.png" alt="1" style="zoom:80%;" />
-<h2 id="生产环境出bug了怎么办"><a class="markdownIt-Anchor" href="#生产环境出bug了怎么办"></a> 生产环境出bug了怎么办</h2>
-<p>使用hotfix分支</p>
+<h2 id="生产环境出bug了怎么办"><a class="markdownIt-Anchor" href="#生产环境出bug了怎么办">#</a> 生产环境出 bug 了怎么办</h2>
+<p>使用 hotfix 分支</p>
 <img data-src="../../images/java/gitflow/12.png" alt="1" style="zoom:80%;" />
-<p>结束之后合并到main与dev</p>
-<h2 id="gitflow的优缺点"><a class="markdownIt-Anchor" href="#gitflow的优缺点"></a> GitFlow的优缺点</h2>
+<p>结束之后合并到 main 与 dev</p>
+<h2 id="gitflow的优缺点"><a class="markdownIt-Anchor" href="#gitflow的优缺点">#</a> GitFlow 的优缺点</h2>
 <p>优点：分支职责清晰，结构规范，支持并行开发，发布流程可控、可追溯，对线上问题响应快，适合传统软件工程流程</p>
 <p>缺点：分支较多，流程偏重，不太适合高频发布，合并冲突概率较高</p>
-<h2 id="版本回退-撤销-重置"><a class="markdownIt-Anchor" href="#版本回退-撤销-重置"></a> 版本回退、撤销、重置</h2>
+<h2 id="版本回退-撤销-重置"><a class="markdownIt-Anchor" href="#版本回退-撤销-重置">#</a> 版本回退、撤销、重置</h2>
 <p>查看当前状态：</p>
-<pre class="highlight"><code class="bash">git status
-</code></pre>
-<h3 id="未add的代码行发生改动怎么回退"><a class="markdownIt-Anchor" href="#未add的代码行发生改动怎么回退"></a> 未add的代码行发生改动怎么回退？</h3>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token function">git</span> status</pre></td></tr></table></figure><h3 id="未add的代码行发生改动怎么回退"><a class="markdownIt-Anchor" href="#未add的代码行发生改动怎么回退">#</a> 未 add 的代码行发生改动怎么回退？</h3>
 <img data-src="../../images/java/gitflow/13.png" alt="1" style="zoom:80%;" />
-<pre class="highlight"><code class="bash">git checkout -- F2
-</code></pre>
-<img data-src="../../images/java/gitflow/14.png" alt="1" style="zoom:80%;" />
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token function">git</span> checkout -- F2</pre></td></tr></table></figure><img data-src="../../images/java/gitflow/14.png" alt="1" style="zoom:80%;" />
 <img data-src="../../images/java/gitflow/15.png" alt="1" style="zoom:80%;" />
-<h3 id="已add未commit的代码行发生改动怎么回退"><a class="markdownIt-Anchor" href="#已add未commit的代码行发生改动怎么回退"></a> 已add未commit的代码行发生改动怎么回退？</h3>
+<h3 id="已add未commit的代码行发生改动怎么回退"><a class="markdownIt-Anchor" href="#已add未commit的代码行发生改动怎么回退">#</a> 已 add 未 commit 的代码行发生改动怎么回退？</h3>
 <img data-src="../../images/java/gitflow/16.png" alt="1" style="zoom:80%;" />
-<pre class="highlight"><code class="bash">git reset HEAD XXXX
-</code></pre>
-<img data-src="../../images/java/gitflow/17.png" alt="1" style="zoom:80%;" />
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token function">git</span> reset HEAD XXXX</pre></td></tr></table></figure><img data-src="../../images/java/gitflow/17.png" alt="1" style="zoom:80%;" />
 <img data-src="../../images/java/gitflow/18.png" alt="1" style="zoom:80%;" />
 <img data-src="../../images/java/gitflow/19.png" alt="1" style="zoom:80%;" />
-<h3 id="已add已commit未push的代码行发生改动怎么回退"><a class="markdownIt-Anchor" href="#已add已commit未push的代码行发生改动怎么回退"></a> 已add已commit未push的代码行发生改动怎么回退？</h3>
+<h3 id="已add已commit未push的代码行发生改动怎么回退"><a class="markdownIt-Anchor" href="#已add已commit未push的代码行发生改动怎么回退">#</a> 已 add 已 commit 未 push 的代码行发生改动怎么回退？</h3>
 <p>两个异常改动</p>
 <img data-src="../../images/java/gitflow/20.png" alt="1" style="zoom:80%;" />
-<p>两个^就是回退两步</p>
+<p>两个 ^ 就是回退两步</p>
 <img data-src="../../images/java/gitflow/21.png" alt="1" style="zoom:80%;" />
 <img data-src="../../images/java/gitflow/22.png" alt="1" style="zoom:80%;" />
-<h3 id="已add已commit已push的代码行发生改动怎么回退"><a class="markdownIt-Anchor" href="#已add已commit已push的代码行发生改动怎么回退"></a> 已add已commit已push的代码行发生改动怎么回退？</h3>
+<h3 id="已add已commit已push的代码行发生改动怎么回退"><a class="markdownIt-Anchor" href="#已add已commit已push的代码行发生改动怎么回退">#</a> 已 add 已 commit 已 push 的代码行发生改动怎么回退？</h3>
 <img data-src="../../images/java/gitflow/23.png" alt="1" style="zoom:80%;" />
-<pre class="highlight"><code class="bash">git revert --no-edit cxxxxx
-</code></pre>
-<p>其中cxxxx是提交流水号。</p>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token function">git</span> revert --no-edit cxxxxx</pre></td></tr></table></figure><p>其中 cxxxx 是提交流水号。</p>
 <p>更方便地使用还原提交。</p>
 <img data-src="../../images/java/gitflow/24.png" alt="1" style="zoom:80%;" />
 <img data-src="../../images/java/gitflow/25.png" alt="1" style="zoom:80%;" />
 <img data-src="../../images/java/gitflow/26.png" alt="1" style="zoom:80%;" />
-<p>revert后是否可以再revert？答案是可以的。</p>
-<h2 id="git-stash"><a class="markdownIt-Anchor" href="#git-stash"></a> git stash</h2>
-<p>git stash是临时保存当前未提交的修改，把工作区恢复到“干净状态”</p>
-<p>写了一半代码，还不想 <code>commit</code>，又必须马上切分支 / 拉代码 / 修 Bug， <strong><code>git stash</code> 就是把现场“打包放抽屉里”</strong></p>
+<p>revert 后是否可以再 revert？答案是可以的。</p>
+<h2 id="git-stash"><a class="markdownIt-Anchor" href="#git-stash">#</a> git stash</h2>
+<p>git stash 是临时保存当前未提交的修改，把工作区恢复到 “干净状态”</p>
+<p>写了一半代码，还不想  <code>commit</code> ，又必须马上切分支 / 拉代码 / 修 Bug， <strong> <code>git stash</code>  就是把现场 “打包放抽屉里”</strong></p>
 <img data-src="../../images/java/gitflow/27.png" alt="1" style="zoom:80%;" />
 <img data-src="../../images/java/gitflow/28.png" alt="1" style="zoom:80%;" />
 <img data-src="../../images/java/gitflow/29.png" alt="1" style="zoom:80%;" />
-<h2 id="git-cherry-pick"><a class="markdownIt-Anchor" href="#git-cherry-pick"></a> git cherry-pick</h2>
-<p>把“某一个（或几个）提交”从别的分支，复制一份，应用到当前分支</p>
+<h2 id="git-cherry-pick"><a class="markdownIt-Anchor" href="#git-cherry-pick">#</a> git cherry-pick</h2>
+<p>把 “某一个（或几个）提交” 从别的分支，复制一份，应用到当前分支</p>
 <p>关键词：<strong>只要这个提交，不要整个分支</strong></p>
-<p>或者说，提交了100行，有60还可以，40行我有点后悔了，怎么只撤回这40行？</p>
+<p>或者说，提交了 100 行，有 60 还可以，40 行我有点后悔了，怎么只撤回这 40 行？</p>
 <img data-src="../../images/java/gitflow/30.png" alt="1" style="zoom:80%;" />
-<p>先revert，push到远程</p>
+<p>先 revert，push 到远程</p>
 <img data-src="../../images/java/gitflow/31.png" alt="1" style="zoom:80%;" />
 <p>基于现有分支，创建新分支</p>
 <img data-src="../../images/java/gitflow/32.png" alt="1" style="zoom:80%;" />
@@ -299,14 +288,14 @@ v1.1.0
 <img data-src="../../images/java/gitflow/34.png" alt="1" style="zoom:80%;" />
 <img data-src="../../images/java/gitflow/35.png" alt="1" style="zoom:80%;" />
 <img data-src="../../images/java/gitflow/36.png" alt="1" style="zoom:80%;" />
-<h2 id="变基rebase和合并merge"><a class="markdownIt-Anchor" href="#变基rebase和合并merge"></a> 变基rebase和合并merge</h2>
-<p>合并（<code>git merge</code>）是什么，就是把<strong>两个分支的历史合并</strong>到一起。</p>
-<p>变基（<code>git rebase</code>）是什么，把一个分支的提交 <strong>“挪到”另一个分支的末尾</strong></p>
-<p>merge通常是弯弯曲曲的路线，而rebase把对方的线路合并到你这里，但是这个合并更像是重新播放了一遍，改写了历史，使之成为了更加线性的流程。</p>
-<p>rebase推荐在本地上使用，更加整洁，团队协作推荐使用merge。</p>
-<h2 id="拉取pull和提取fetch"><a class="markdownIt-Anchor" href="#拉取pull和提取fetch"></a> 拉取pull和提取fetch</h2>
+<h2 id="变基rebase和合并merge"><a class="markdownIt-Anchor" href="#变基rebase和合并merge">#</a> 变基 rebase 和合并 merge</h2>
+<p>合并（ <code>git merge</code> ）是什么，就是把<strong>两个分支的历史合并</strong>到一起。</p>
+<p>变基（ <code>git rebase</code> ）是什么，把一个分支的提交 <strong>“挪到” 另一个分支的末尾</strong></p>
+<p>merge 通常是弯弯曲曲的路线，而 rebase 把对方的线路合并到你这里，但是这个合并更像是重新播放了一遍，改写了历史，使之成为了更加线性的流程。</p>
+<p>rebase 推荐在本地上使用，更加整洁，团队协作推荐使用 merge。</p>
+<h2 id="拉取pull和提取fetch"><a class="markdownIt-Anchor" href="#拉取pull和提取fetch">#</a> 拉取 pull 和提取 fetch</h2>
 <p>提取是看看哪些变了（不修代码），拉取真正到本地（修代码）</p>
-<p>最佳实践是，先fetch看看那些变了，再pull去更新我们的代码。</p>
+<p>最佳实践是，先 fetch 看看那些变了，再 pull 去更新我们的代码。</p>
 
       <div class="tags">
           <a href="/tags/java/" rel="tag"><i class="ic i-tag"></i> java</a>
@@ -412,7 +401,7 @@ v1.1.0
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="文章目录">
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#gitflow"><span class="toc-number">1.</span> <span class="toc-text"> GitFlow</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFgitflow"><span class="toc-number">1.1.</span> <span class="toc-text"> 什么是GitFlow？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E5%A4%A7%E5%88%86%E6%94%AF"><span class="toc-number">1.2.</span> <span class="toc-text"> 五大分支</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E5%88%86%E6%94%AFmain-master"><span class="toc-number">1.2.1.</span> <span class="toc-text"> 主分支：main &#x2F; master</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E5%88%86%E6%94%AFdevelop"><span class="toc-number">1.2.2.</span> <span class="toc-text"> 开发分支：develop</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E5%88%86%E6%94%AFfeature"><span class="toc-number">1.2.3.</span> <span class="toc-text"> 功能分支：feature&#x2F;*</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%91%E5%B8%83%E5%88%86%E6%94%AFrelease"><span class="toc-number">1.2.4.</span> <span class="toc-text"> 发布分支：release&#x2F;*</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%83%AD%E4%BF%AE%E5%A4%8D%E5%88%86%E6%94%AFhotfix"><span class="toc-number">1.2.5.</span> <span class="toc-text"> 热修复分支：hotfix&#x2F;*</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%9B%BE"><span class="toc-number">1.3.</span> <span class="toc-text"> 基本图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E6%B5%81%E7%A8%8B"><span class="toc-number">1.4.</span> <span class="toc-text"> 前置流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E6%96%B0%E9%9C%80%E6%B1%82a"><span class="toc-number">1.5.</span> <span class="toc-text"> 开发新需求A</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E6%96%B0%E9%9C%80%E6%B1%82b%E4%B8%8Ec"><span class="toc-number">1.6.</span> <span class="toc-text"> 开发新需求B与C</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%88%E5%B9%B6%E7%9A%84%E7%BB%93%E6%9E%9C"><span class="toc-number">1.7.</span> <span class="toc-text"> 合并的结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%91%E5%B8%83%E5%88%86%E6%94%AF"><span class="toc-number">1.8.</span> <span class="toc-text"> 发布分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E5%87%BAbug%E4%BA%86%E6%80%8E%E4%B9%88%E5%8A%9E"><span class="toc-number">1.9.</span> <span class="toc-text"> 生产环境出bug了怎么办</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gitflow%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-number">1.10.</span> <span class="toc-text"> GitFlow的优缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%88%E6%9C%AC%E5%9B%9E%E9%80%80-%E6%92%A4%E9%94%80-%E9%87%8D%E7%BD%AE"><span class="toc-number">1.11.</span> <span class="toc-text"> 版本回退、撤销、重置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AAadd%E7%9A%84%E4%BB%A3%E7%A0%81%E8%A1%8C%E5%8F%91%E7%94%9F%E6%94%B9%E5%8A%A8%E6%80%8E%E4%B9%88%E5%9B%9E%E9%80%80"><span class="toc-number">1.11.1.</span> <span class="toc-text"> 未add的代码行发生改动怎么回退？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%B2add%E6%9C%AAcommit%E7%9A%84%E4%BB%A3%E7%A0%81%E8%A1%8C%E5%8F%91%E7%94%9F%E6%94%B9%E5%8A%A8%E6%80%8E%E4%B9%88%E5%9B%9E%E9%80%80"><span class="toc-number">1.11.2.</span> <span class="toc-text"> 已add未commit的代码行发生改动怎么回退？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%B2add%E5%B7%B2commit%E6%9C%AApush%E7%9A%84%E4%BB%A3%E7%A0%81%E8%A1%8C%E5%8F%91%E7%94%9F%E6%94%B9%E5%8A%A8%E6%80%8E%E4%B9%88%E5%9B%9E%E9%80%80"><span class="toc-number">1.11.3.</span> <span class="toc-text"> 已add已commit未push的代码行发生改动怎么回退？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%B2add%E5%B7%B2commit%E5%B7%B2push%E7%9A%84%E4%BB%A3%E7%A0%81%E8%A1%8C%E5%8F%91%E7%94%9F%E6%94%B9%E5%8A%A8%E6%80%8E%E4%B9%88%E5%9B%9E%E9%80%80"><span class="toc-number">1.11.4.</span> <span class="toc-text"> 已add已commit已push的代码行发生改动怎么回退？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-stash"><span class="toc-number">1.12.</span> <span class="toc-text"> git stash</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-cherry-pick"><span class="toc-number">1.13.</span> <span class="toc-text"> git cherry-pick</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%98%E5%9F%BArebase%E5%92%8C%E5%90%88%E5%B9%B6merge"><span class="toc-number">1.14.</span> <span class="toc-text"> 变基rebase和合并merge</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8B%89%E5%8F%96pull%E5%92%8C%E6%8F%90%E5%8F%96fetch"><span class="toc-number">1.15.</span> <span class="toc-text"> 拉取pull和提取fetch</span></a></li></ol></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#gitflow"><span class="toc-number">1.</span> <span class="toc-text"> GitFlow</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFgitflow"><span class="toc-number">1.1.</span> <span class="toc-text"> 什么是 GitFlow？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E5%A4%A7%E5%88%86%E6%94%AF"><span class="toc-number">1.2.</span> <span class="toc-text"> 五大分支</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E5%88%86%E6%94%AFmain-master"><span class="toc-number">1.2.1.</span> <span class="toc-text"> 主分支： main &#x2F; master</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E5%88%86%E6%94%AFdevelop"><span class="toc-number">1.2.2.</span> <span class="toc-text"> 开发分支： develop</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E5%88%86%E6%94%AFfeature"><span class="toc-number">1.2.3.</span> <span class="toc-text"> 功能分支： feature&#x2F;*</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%91%E5%B8%83%E5%88%86%E6%94%AFrelease"><span class="toc-number">1.2.4.</span> <span class="toc-text"> 发布分支： release&#x2F;*</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%83%AD%E4%BF%AE%E5%A4%8D%E5%88%86%E6%94%AFhotfix"><span class="toc-number">1.2.5.</span> <span class="toc-text"> 热修复分支： hotfix&#x2F;*</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%9B%BE"><span class="toc-number">1.3.</span> <span class="toc-text"> 基本图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E6%B5%81%E7%A8%8B"><span class="toc-number">1.4.</span> <span class="toc-text"> 前置流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E6%96%B0%E9%9C%80%E6%B1%82a"><span class="toc-number">1.5.</span> <span class="toc-text"> 开发新需求 A</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E6%96%B0%E9%9C%80%E6%B1%82b%E4%B8%8Ec"><span class="toc-number">1.6.</span> <span class="toc-text"> 开发新需求 B 与 C</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%88%E5%B9%B6%E7%9A%84%E7%BB%93%E6%9E%9C"><span class="toc-number">1.7.</span> <span class="toc-text"> 合并的结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%91%E5%B8%83%E5%88%86%E6%94%AF"><span class="toc-number">1.8.</span> <span class="toc-text"> 发布分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E5%87%BAbug%E4%BA%86%E6%80%8E%E4%B9%88%E5%8A%9E"><span class="toc-number">1.9.</span> <span class="toc-text"> 生产环境出 bug 了怎么办</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gitflow%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-number">1.10.</span> <span class="toc-text"> GitFlow 的优缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%88%E6%9C%AC%E5%9B%9E%E9%80%80-%E6%92%A4%E9%94%80-%E9%87%8D%E7%BD%AE"><span class="toc-number">1.11.</span> <span class="toc-text"> 版本回退、撤销、重置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AAadd%E7%9A%84%E4%BB%A3%E7%A0%81%E8%A1%8C%E5%8F%91%E7%94%9F%E6%94%B9%E5%8A%A8%E6%80%8E%E4%B9%88%E5%9B%9E%E9%80%80"><span class="toc-number">1.11.1.</span> <span class="toc-text"> 未 add 的代码行发生改动怎么回退？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%B2add%E6%9C%AAcommit%E7%9A%84%E4%BB%A3%E7%A0%81%E8%A1%8C%E5%8F%91%E7%94%9F%E6%94%B9%E5%8A%A8%E6%80%8E%E4%B9%88%E5%9B%9E%E9%80%80"><span class="toc-number">1.11.2.</span> <span class="toc-text"> 已 add 未 commit 的代码行发生改动怎么回退？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%B2add%E5%B7%B2commit%E6%9C%AApush%E7%9A%84%E4%BB%A3%E7%A0%81%E8%A1%8C%E5%8F%91%E7%94%9F%E6%94%B9%E5%8A%A8%E6%80%8E%E4%B9%88%E5%9B%9E%E9%80%80"><span class="toc-number">1.11.3.</span> <span class="toc-text"> 已 add 已 commit 未 push 的代码行发生改动怎么回退？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%B2add%E5%B7%B2commit%E5%B7%B2push%E7%9A%84%E4%BB%A3%E7%A0%81%E8%A1%8C%E5%8F%91%E7%94%9F%E6%94%B9%E5%8A%A8%E6%80%8E%E4%B9%88%E5%9B%9E%E9%80%80"><span class="toc-number">1.11.4.</span> <span class="toc-text"> 已 add 已 commit 已 push 的代码行发生改动怎么回退？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-stash"><span class="toc-number">1.12.</span> <span class="toc-text"> git stash</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-cherry-pick"><span class="toc-number">1.13.</span> <span class="toc-text"> git cherry-pick</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%98%E5%9F%BArebase%E5%92%8C%E5%90%88%E5%B9%B6merge"><span class="toc-number">1.14.</span> <span class="toc-text"> 变基 rebase 和合并 merge</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8B%89%E5%8F%96pull%E5%92%8C%E6%8F%90%E5%8F%96fetch"><span class="toc-number">1.15.</span> <span class="toc-text"> 拉取 pull 和提取 fetch</span></a></li></ol></li></ol>
       </div>
       <div class="related panel pjax" data-title="系列文章">
         <ul>
@@ -546,30 +535,24 @@ v1.1.0
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/%E7%94%9F%E6%B4%BB/" title="分类于 生活">生活</a>
+<a href="/categories/notebook/" title="分类于 笔记">笔记</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/notebook/%E8%80%83%E7%A0%94%E8%8B%B1%E8%AF%AD%E7%AC%94%E8%AE%B0/" title="分类于 考研英语笔记">考研英语笔记</a>
 </div>
 
-    <span><a href="/life/p2025/" title="回望2025——永不熄灭之光">回望2025——永不熄灭之光</a></span>
+    <span><a href="/English/shEnglish/" title="文章翻译">文章翻译</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
+<a href="/categories/Java/" title="分类于 Java">Java</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/Java/SSM%E6%A1%86%E6%9E%B6%E6%95%B4%E5%90%88/" title="分类于 SSM框架整合">SSM框架整合</a>
 </div>
 
-    <span><a href="/Operate-system/KnowledgeSummary/" title="操作系统细碎知识点及公式速记">操作系统细碎知识点及公式速记</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
-</div>
-
-    <span><a href="/Operate-system/01OS/" title="操作系统知识点阶段总结">操作系统知识点阶段总结</a></span>
+    <span><a href="/Java/SSM01/" title="SSM框架整合">SSM框架整合</a></span>
   </li>
 
       
@@ -578,42 +561,58 @@ v1.1.0
 <div class="breadcrumb">
 <a href="/categories/notebook/" title="分类于 笔记">笔记</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/notebook/%E7%9F%A9%E9%98%B5%E8%AE%BA%E8%A7%A3%E9%A2%98%E7%AC%94%E8%AE%B0/" title="分类于 矩阵论解题笔记">矩阵论解题笔记</a>
+<a href="/categories/notebook/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B0/" title="分类于 数据结构笔记">数据结构笔记</a>
 </div>
 
-    <span><a href="/math/matrix_anl/" title="矩阵论">矩阵论</a></span>
+    <span><a href="/DSLearnNote/codeTM/" title="数据结构代码题速记">数据结构代码题速记</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" title="分类于 计算机组成原理">计算机组成原理</a>
-</div>
-
-    <span><a href="/Principles-of-computer-composition/booth_algorithm/" title="booth算法">booth算法</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E7%94%9F%E6%B4%BB/" title="分类于 生活">生活</a>
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/%E7%94%9F%E6%B4%BB/%E4%B8%8A%E5%B2%B8/" title="分类于 上岸">上岸</a>
+<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
 </div>
 
-    <span><a href="/life/shangan/" title="写给我这一年多的考研时光">写给我这一年多的考研时光</a></span>
+    <span><a href="/python/CNN_Acc/" title="CNN经典卷积神经网络与实战">CNN经典卷积神经网络与实战</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" title="分类于 计算机组成原理">计算机组成原理</a>
+<a href="/categories/Java/" title="分类于 Java">Java</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/Java/git%E7%9B%B8%E5%85%B3/" title="分类于 git相关">git相关</a>
 </div>
 
-    <span><a href="/Principles-of-computer-composition/Connection_between_CPU_and_memory/" title="CPU与存储器的连接">CPU与存储器的连接</a></span>
+    <span><a href="/Java/gitflow/" title="GitFlow分支管理策略">GitFlow分支管理策略</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/notebook/" title="分类于 笔记">笔记</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/notebook/%E8%80%83%E7%A0%94%E6%94%BF%E6%B2%BB%E7%AC%94%E8%AE%B0/" title="分类于 考研政治笔记">考研政治笔记</a>
+</div>
+
+    <span><a href="/PoliticalKnowledge/politicalNote/" title="政治知识点速记（持续更新）">政治知识点速记（持续更新）</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/notebook/" title="分类于 笔记">笔记</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/notebook/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B0/" title="分类于 数据结构笔记">数据结构笔记</a>
+</div>
+
+    <span><a href="/DSLearnNote/GeneralizedLists/" title="考试中有关广义表的两个常用函数的解">考试中有关广义表的两个常用函数的解</a></span>
   </li>
 
       
@@ -630,24 +629,22 @@ v1.1.0
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<a href="/categories/Java/" title="分类于 Java">Java</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/python/%E9%A1%B9%E7%9B%AE%E4%B8%8E%E5%AE%9E%E6%88%98/" title="分类于 项目与实战">项目与实战</a>
+<a href="/categories/Java/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%9B%B8%E5%85%B3/" title="分类于 微服务相关">微服务相关</a>
 </div>
 
-    <span><a href="/python/3D_CNN/" title="3DCNN 网络结构">3DCNN 网络结构</a></span>
+    <span><a href="/Java/DubboStart/" title="Dubbo快速入门">Dubbo快速入门</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Java/" title="分类于 Java">Java</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/Java/SSM%E6%A1%86%E6%9E%B6%E6%95%B4%E5%90%88/" title="分类于 SSM框架整合">SSM框架整合</a>
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
 </div>
 
-    <span><a href="/Java/SSM01/" title="SSM框架整合">SSM框架整合</a></span>
+    <span><a href="/Operate-system/01OS/" title="操作系统知识点阶段总结">操作系统知识点阶段总结</a></span>
   </li>
 
   </ul>
@@ -672,8 +669,8 @@ v1.1.0
     <a href="https://icp.gov.moe/?keyword=20249329" target="_blank">萌ICP备20249329号</a>
     基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
   <br/><span>世界本污浊，罪与爱同歌</span>
-  <br/><i class="ic i-chart-area"></i>&nbsp;<span>549k&nbsp;字</span> &nbsp;|&nbsp;
-  <i class="ic i-coffee"></i>&nbsp;<span> 15:15</span>
+  <br/><i class="ic i-chart-area"></i>&nbsp;<span>532k&nbsp;字</span> &nbsp;|&nbsp;
+  <i class="ic i-coffee"></i>&nbsp;<span> 14:46</span>
   </div>
 </div>
 

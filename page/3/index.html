@@ -92,12 +92,12 @@
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://s2.loli.net/2023/08/27/mN2pFL5QX7D3BwM.jpg"></li>
-          <li class="item" data-background-image="https://s2.loli.net/2023/08/27/xBNZOFIAEqWCyou.jpg"></li>
+          <li class="item" data-background-image="https://s2.loli.net/2023/08/27/Mwc9oKJmODRxqN7.png"></li>
           <li class="item" data-background-image="https://s2.loli.net/2023/08/27/mcSBwPWCR4u3tZI.jpg"></li>
+          <li class="item" data-background-image="https://p3.music.126.net/lek6VoKmIijHrdGb2vqaxQ==/109951169740260065.jpg"></li>
+          <li class="item" data-background-image="https://s2.loli.net/2023/08/27/mN2pFL5QX7D3BwM.jpg"></li>
+          <li class="item" data-background-image="https://s2.loli.net/2023/08/27/vUowbrGBj4VOg9a.jpg"></li>
           <li class="item" data-background-image="https://s2.loli.net/2023/08/27/b3P2TBGMK8yUqE4.jpg"></li>
-          <li class="item" data-background-image="https://s2.loli.net/2023/08/27/x7CM2DzWRbHAd4T.jpg"></li>
-          <li class="item" data-background-image="https://s2.loli.net/2023/08/27/B86dmgpZDzIi2uU.jpg"></li>
         </ul>
       </div>
     </header>
@@ -138,7 +138,7 @@
 
     <h3><a href="/paper/attention_is_all_your_need/" itemprop="url" title="Attention is all you need">Attention is all you need</a></h3>
     <div class="excerpt">
-        Attention is all you need
+        # Attention is all you need
 
 【Original Link】 Attention Is All You Need
 Updated on Aug 2023
@@ -177,15 +177,19 @@ Llion Jones Google...
 
     <h3><a href="/python/3D_CNN/" itemprop="url" title="3DCNN 网络结构">3DCNN 网络结构</a></h3>
     <div class="excerpt">
-        3DCNN 网络结构
+        # 3DCNN 网络结构
 学习内容基于：https://www.bilibili.com/video/BV1kc411Q7Tj
-图像的本质
-图像是由RGB三通道组成的，一般数值范围是0到255.
-因此像素矩阵为：H * W * 3，其中H为高，W是宽。
-从图像到视频
+# 图像的本质
+图像是由 RGB 三通道组成的，一般数值范围是 0 到 255.
+因此像素矩阵为：H * W * 3，其中 H 为高，W 是宽。
+# 从图像到视频
 视频本质上是由连续的图片（视频帧），快速播放构成的。
-图片的像素矩阵是H * W * 3
-视频就是D * H * W *...
+图片的像素矩阵是 H * W * 3
+视频就是 D * H * W * 3，其中 D 是深度，是视频帧的叠加。
+不同的库对与这 4 个维度顺序表述不同，但这四个维度诚然如此。
+# 2D 检测方法对比
+
+# C3D...
     </div>
     <div class="meta footer">
       <span>
@@ -214,13 +218,16 @@ Llion Jones Google...
 
     <h3><a href="/python/DLFromFormula/" itemprop="url" title="从公式角度看深度学习">从公式角度看深度学习</a></h3>
     <div class="excerpt">
-        从公式角度看深度学习
+        # 从公式角度看深度学习
 学习基于尚硅谷：https://www.bilibili.com/video/BV1MRJmzSEaa
-损失函数
-均方误差MSE / L2 Loss（回归问题较适用）
+# 损失函数
+# 均方误差 MSE / L2 Loss（回归问题较适用）
 Mean Squared Error（MSE）
 L=1n∑i=1n(yi−ti)2&#92;begin {array}{c}
-L=&#92;frac{1}{n}...
+L=&#92;frac{1}{n} &#92;sum_{i=1}^{n}(y_{i}-t_{i})^{2}
+&#92;end{array}
+L=n1​∑i=1n​(yi​−ti​)2​
+这个 ti 是目标标签 (向量)，yi 是预测标签 (向量)，n...
     </div>
     <div class="meta footer">
       <span>
@@ -249,20 +256,21 @@ L=&#92;frac{1}{n}...
 
     <h3><a href="/python/NLP/" itemprop="url" title="NLP自然语言处理">NLP自然语言处理</a></h3>
     <div class="excerpt">
-        NLP自然语言处理
+        # NLP 自然语言处理
 
 学习笔记
 
-常见任务
+# 常见任务
 
-文本分类：情感分析（积极/消极）、垃圾邮件识别、新闻主题分类【句子级别】
-序列标注：命名实体识别（找人名、地名、手机号）、文本生成、信息抽取、文本转化【Token级别】
+文本分类：情感分析（积极 / 消极）、垃圾邮件识别、新闻主题分类【句子级别】
+序列标注：命名实体识别（找人名、地名、手机号）、文本生成、信息抽取、文本转化【Token 级别】
 
-文本表示
-分词
+# 文本表示
+# 分词
 
-词级分词：将文本按照词切分在英语中空格往往是天然的切词标志，但是容易出现OOV问题（未登录词问题）
-字符级分词：一个字母、数字、标点甚至空格，都会被视作一个独立的...
+词级分词：将文本按照词切分在英语中空格往往是天然的切词标志，但是容易出现 OOV 问题（未登录词问题）
+字符级分词：一个字母、数字、标点甚至空格，都会被视作一个独立的 token，不会有 OOV 问题，但模型必须依赖更长的上下文来推断词义和结构，这显著增加了建模难度和训练成本。
+子词级分词：将词语切分为更小的单元 ——...
     </div>
     <div class="meta footer">
       <span>
@@ -291,18 +299,16 @@ L=&#92;frac{1}{n}...
 
     <h3><a href="/python/CNN_Acc/" itemprop="url" title="CNN经典卷积神经网络与实战">CNN经典卷积神经网络与实战</a></h3>
     <div class="excerpt">
-        卷积神经网络
-学习内容基于：Pytorch框架与经典卷积神经网络与实战
-CNN卷积神经网络算法原理
-全连接神经网络
+        # 卷积神经网络
+学习内容基于：Pytorch 框架与经典卷积神经网络与实战
+# CNN 卷积神经网络算法原理
+# 全连接神经网络
 
 输入层是我们输入的数据，这里看到的第一列节点并不是输入层，中间为隐藏层。
-输入层就像X（自变量），模型或者说这些网络就是F（函数），我们得到的输出就是Y（因变量）。
-为什么要使用激活函数
-在神经网络中使用激活函数的根本原因是引入非线性，从而使模型能够拟合和表达复杂的函数关系。如果没有激活函数，神经网络无论堆叠多少层，本质上都是一个线性模型，能力极其有限。多层线性变换的叠加依然是线性变换，最终的模型只能拟合直线/平面，完全无法处理复杂的数据模式
-Sigmoid激活函数
-
-优点：简...
+输入层就像 X（自变量），模型或者说这些网络就是 F（函数），我们得到的输出就是 Y（因变量）。
+# 为什么要使用激活函数
+在神经网络中使用激活函数的根本原因是引入非线性，从而使模型能够拟合和表达复杂的函数关系。如果没有激活函数，神经网络无论堆叠多少层，本质上都是一个线性模型，能力极其有限。多层线性变换的叠加依然是线性变换，最终的模型只能拟合直线 / 平面，完全无法处理复杂的数据模式
+#...
     </div>
     <div class="meta footer">
       <span>
@@ -331,9 +337,10 @@ Sigmoid激活函数
 
     <h3><a href="/Java/DubboStart/" itemprop="url" title="Dubbo快速入门">Dubbo快速入门</a></h3>
     <div class="excerpt">
-        RPC协议远程调用的几种实现
-Dubbo简介
-Dubbo是阿里巴巴公司开源的一个高性能、轻量级的Java...
+        # RPC 协议远程调用的几种实现
+# Dubbo 简介
+Dubbo 是阿里巴巴公司开源的一个高性能、轻量级的 Java RPC 框架。
+致力于高性能透明化的透明化的 RPC 原创服务调用方案，以及 SOA...
     </div>
     <div class="meta footer">
       <span>
@@ -362,19 +369,18 @@ Dubbo是阿里巴巴公司开源的一个高性能、轻量级的Java...
 
     <h3><a href="/python/pytorch_nn_digital_identification/" itemprop="url" title="基于PyTorch的手写数字识别">基于PyTorch的手写数字识别</a></h3>
     <div class="excerpt">
-        基于PyTorch的手写数字识别
-MNIST数据集
+        # 基于 PyTorch 的手写数字识别
+# MNIST 数据集
 MNIST 是一个经典的手写数字识别数据集，包含 60,000 张用于训练的图片和 10,000 张用于测试的图片。每张图片分辨率为 28×28 像素，内容是数字 0–9 的手写体。我们将基于该数据集对模型进行训练和验证。
 
-神经网络的定义
-输入
+# 神经网络的定义
+# 输入
 
-一张图片大小：1 × 28 × 28 （灰度图，通道数 = 1）
+一张图片大小： 1 × 28 × 28 （灰度图，通道数 = 1）
 
-第一层卷积
+# 第一层卷积
 nn.Conv2d(in_channels=1, out_channels=16, kernel_size=5, stride=1, padding=2)
-
-输入：1 × 28 ×...
+输入： 1 × 28 ×...
     </div>
     <div class="meta footer">
       <span>
@@ -403,24 +409,19 @@ nn.Conv2d(in_channels=1, out_channels=16, kernel_size=5, stride=1, padding=2)
 
     <h3><a href="/python/pytorch/" itemprop="url" title="PyTorch深度学习">PyTorch深度学习</a></h3>
     <div class="excerpt">
-        PyTorch深度学习
+        # PyTorch 深度学习
 基于小土堆：https://www.bilibili.com/video/BV1hE411t7RN
-安装
-基于conda环境来安装
-conda create --name pytorch python=3.11
-
-查询已有环境
+# 安装
+基于 conda 环境来安装
+conda create --name pytorch python=3.11查询已有环境
 conda info --envs
-
 conda environments:
 base * D:&#92;anaconda
 pytorch D:&#92;anaconda&#92;envs&#92;pytorch
 
-激活pytorch环境
-conda activate pytorch
-
-其他命令
-conda remove -n xxxxx(名字)...
+激活 pytorch 环境
+conda activate pytorch其他命令
+conda remove -n...
     </div>
     <div class="meta footer">
       <span>
@@ -449,8 +450,8 @@ conda remove -n xxxxx(名字)...
 
     <h3><a href="/python/pandas/" itemprop="url" title="Pandas核心处理方法">Pandas核心处理方法</a></h3>
     <div class="excerpt">
-        Pandas核心处理方法
-什么是Pandas
+        # Pandas 核心处理方法
+# 什么是 Pandas
 Pandas 是一个基于 Python 的开源数据分析和数据处理库
 它提供了两种核心数据结构：
 
@@ -466,14 +467,14 @@ Series
 一列
 单索引
 同质化
-Excel单列
+Excel 单列
 
 DataFrame
 二维带标签的表格数据结构
 一张表格（像 Excel 表）
 双索引
 各个列之间可以是不同的
-整个Excel表格
+整个 Excel 表格
 
 应用场景：
 
@@ -482,13 +483,10 @@ DataFrame
 自动化报表
 数据可视化前处理
 
-Series
-Series就像这样：
+# Series
+Series 就像这样：
 
 Series Index
-Series Name
-
-1
 Series...
     </div>
     <div class="meta footer">
@@ -518,9 +516,9 @@ Series...
 
     <h3><a href="/python/numpy/" itemprop="url" title="NumPy核心处理方法">NumPy核心处理方法</a></h3>
     <div class="excerpt">
-        NumPy核心处理方法
+        # NumPy 核心处理方法
 NumPy（Numerical Python）是一个用于科学计算的 Python 第三方库，它提供了：
-核心功能：
+# 核心功能：
 
 多维数组对象
 
@@ -539,11 +537,9 @@ NumPy（Numerical Python）是一个用于科学计算的 Python 第三方库，
 
 支持布尔索引、花式索引，比 Python 原生更灵活强大。
 
-引用
-import numpy as np
-
-多维性
-arr = np.array(5) #...
+# 引用
+import numpy as np# 多维性
+arr = np.array(5) # 创建了一个 0...
     </div>
     <div class="meta footer">
       <span>
@@ -704,46 +700,10 @@ arr = np.array(5) #...
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/python/YOLO/" title="分类于 YOLO">YOLO</a>
+<a href="/categories/%E5%88%9D%E6%9D%A5%E4%B9%8D%E5%88%B0/" title="分类于 初来乍到">初来乍到</a>
 </div>
 
-    <span><a href="/python/YOLO/YOLO_V3/" title="YOLO-V3">YOLO-V3</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Java/" title="分类于 Java">Java</a>
-</div>
-
-    <span><a href="/Java/javaAd01/" title="Java高级特性1">Java高级特性1</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MongoDB/" title="分类于 MongoDB">MongoDB</a>
-</div>
-
-    <span><a href="/MongoDB/MongoDB03/" title="MongoDB初步使用">MongoDB初步使用</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
-</div>
-
-    <span><a href="/python/Harris/" title="Harris兴趣点检测">Harris兴趣点检测</a></span>
+    <span><a href="/hello/" title="起点，但不止于起点！">起点，但不止于起点！</a></span>
   </li>
 
       
@@ -755,17 +715,31 @@ arr = np.array(5) #...
 <a href="/categories/Java/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%9B%B8%E5%85%B3/" title="分类于 微服务相关">微服务相关</a>
 </div>
 
-    <span><a href="/Java/SpringCloudSTU/" title="SpringCloud学习记录">SpringCloud学习记录</a></span>
+    <span><a href="/Java/DubboStart/" title="Dubbo快速入门">Dubbo快速入门</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" title="分类于 计算机组成原理">计算机组成原理</a>
+<a href="/categories/Java/" title="分类于 Java">Java</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/Java/SSM%E6%A1%86%E6%9E%B6%E6%95%B4%E5%90%88/" title="分类于 SSM框架整合">SSM框架整合</a>
 </div>
 
-    <span><a href="/Principles-of-computer-composition/Division_in_Computers/" title="计算机中的除法运算">计算机中的除法运算</a></span>
+    <span><a href="/Java/SSM01/" title="SSM框架整合">SSM框架整合</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
+</div>
+
+    <span><a href="/python/pandas/" title="Pandas核心处理方法">Pandas核心处理方法</a></span>
   </li>
 
       
@@ -789,7 +763,17 @@ arr = np.array(5) #...
 <a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
 </div>
 
-    <span><a href="/python/pytorch/" title="PyTorch深度学习">PyTorch深度学习</a></span>
+    <span><a href="/python/ss/" title="语义分割">语义分割</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
+</div>
+
+    <span><a href="/Operate-system/01OS/" title="操作系统知识点阶段总结">操作系统知识点阶段总结</a></span>
   </li>
 
       
@@ -797,23 +781,31 @@ arr = np.array(5) #...
     
 <div class="breadcrumb">
 <a href="/categories/%E7%94%9F%E6%B4%BB/" title="分类于 生活">生活</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/%E7%94%9F%E6%B4%BB/%E4%B8%8A%E5%B2%B8/" title="分类于 上岸">上岸</a>
 </div>
 
-    <span><a href="/life/shangan/" title="写给我这一年多的考研时光">写给我这一年多的考研时光</a></span>
+    <span><a href="/life/p2025/" title="回望2025——永不熄灭之光">回望2025——永不熄灭之光</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MongoDB/" title="分类于 MongoDB">MongoDB</a>
+<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
 </div>
 
-    <span><a href="/MongoDB/MongoDB02/" title="MongoDB初步使用">MongoDB初步使用</a></span>
+    <span><a href="/python/pytorch/" title="PyTorch深度学习">PyTorch深度学习</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" title="分类于 计算机组成原理">计算机组成原理</a>
+</div>
+
+    <span><a href="/Principles-of-computer-composition/booth_algorithm/" title="booth算法">booth算法</a></span>
   </li>
 
   </ul>
@@ -838,8 +830,8 @@ arr = np.array(5) #...
     <a href="https://icp.gov.moe/?keyword=20249329" target="_blank">萌ICP备20249329号</a>
     基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
   <br/><span>世界本污浊，罪与爱同歌</span>
-  <br/><i class="ic i-chart-area"></i>&nbsp;<span>549k&nbsp;字</span> &nbsp;|&nbsp;
-  <i class="ic i-coffee"></i>&nbsp;<span> 15:15</span>
+  <br/><i class="ic i-chart-area"></i>&nbsp;<span>532k&nbsp;字</span> &nbsp;|&nbsp;
+  <i class="ic i-coffee"></i>&nbsp;<span> 14:46</span>
   </div>
 </div>
 

@@ -92,12 +92,12 @@
       </div>
       <div id="imgs" class="pjax">
         <ul>
+          <li class="item" data-background-image="https://s2.loli.net/2023/08/27/vUowbrGBj4VOg9a.jpg"></li>
           <li class="item" data-background-image="https://s2.loli.net/2023/08/27/b3P2TBGMK8yUqE4.jpg"></li>
           <li class="item" data-background-image="https://s2.loli.net/2023/08/27/EU3RfrkWvqHe4Ou.jpg"></li>
-          <li class="item" data-background-image="https://s2.loli.net/2023/08/27/UryYVWA34Nd2R5v.jpg"></li>
           <li class="item" data-background-image="https://s2.loli.net/2023/08/27/mN2pFL5QX7D3BwM.jpg"></li>
-          <li class="item" data-background-image="https://s2.loli.net/2023/08/27/vUowbrGBj4VOg9a.jpg"></li>
-          <li class="item" data-background-image="https://s2.loli.net/2023/08/27/xBNZOFIAEqWCyou.jpg"></li>
+          <li class="item" data-background-image="https://s2.loli.net/2023/08/27/B86dmgpZDzIi2uU.jpg"></li>
+          <li class="item" data-background-image="https://s2.loli.net/2023/08/27/x7CM2DzWRbHAd4T.jpg"></li>
         </ul>
       </div>
     </header>
@@ -138,27 +138,23 @@
 
     <h3><a href="/DSLearnNote/GeneralizedLists/" itemprop="url" title="考试中有关广义表的两个常用函数的解">考试中有关广义表的两个常用函数的解</a></h3>
     <div class="excerpt">
-        认识广义表
+        # 认识广义表
 广义表是线性表的推广，与线性表不同的是，线性表中的每一个数据元素都属于同一数据对象。
 广义表可以表示为：
 
 空表：()
 表头：(表头)
-表头+表尾：(表头,表尾)
+表头 + 表尾：(表头，表尾)
 
 实际上这就是他的基本结构，而对于其中的元素来说，它可以是表，也可以是元素，这就是广义！
-取头Head()
-Head是取头操作，他拿的是一个元素或者一个表
-取尾Tail()
-Tail是取尾操作，他拿到的必是一个表
-巧记
+# 取头 Head ()
+Head 是取头操作，他拿的是一个元素或者一个表
+# 取尾 Tail ()
+Tail 是取尾操作，他拿到的必是一个表
+# 巧记
 对于蟒蛇（Python）来说，头只有一个，而它的尾巴很长。
-所以，取头Head元素比较单一，取尾Tail往往比较长。
-练习
-:::primary
-A=（a，b）
-B=（A，A）
-C=（a，（b，A），B）...
+所以，取头 Head 元素比较单一，取尾 Tail 往往比较长。
+#...
     </div>
     <div class="meta footer">
       <span>
@@ -187,11 +183,15 @@ C=（a，（b，A），B）...
 
     <h3><a href="/Operate-system/kcsj/" itemprop="url" title="操作系统课程设计">操作系统课程设计</a></h3>
     <div class="excerpt">
-        虚拟存储器管理
+        # 虚拟存储器管理
 
-什么是虚拟存储器？
+# 什么是虚拟存储器？
 ​ 虚拟存储器是一种计算机内存管理技术，它通过将计算机的硬盘空间作为辅助存储器，允许程序使用比物理内存更大的地址空间。虚拟存储器的目标是提供更大的可用内存空间，以便同时运行更多的程序，而不受物理内存的限制。
-​...
+​ 虚拟存储的实现是基于局部存储原理的，要理解虚拟存储我们就要去理解局部存储的是实现，即：分页存储、分段存储、段页式存储。
+（这里我们重点掌握具有块表的分页存储）
+# 课程设计核心目的？
+将逻辑地址转为物理地址
+#...
     </div>
     <div class="meta footer">
       <span>
@@ -220,20 +220,16 @@ C=（a，（b，A），B）...
 
     <h3><a href="/MongoDB/MongoDB03/" itemprop="url" title="MongoDB初步使用">MongoDB初步使用</a></h3>
     <div class="excerpt">
-        MongoDB约束命令
-输出行数限制
-db.t4.aggregate(&amp;#123;$limit:4&amp;#125;)
-
-xx升序/降序
-db.t4.aggregate([&amp;#123;$sort:&amp;#123;price:-1&amp;#125;&amp;#125;])
-
-1：升序
+        # MongoDB 约束命令
+# 输出行数限制
+db.t4.aggregate(&amp;#123;$limit:4&amp;#125;)# xx 升序 / 降序
+db.t4.aggregate([&amp;#123;$sort:&amp;#123;price:-1&amp;#125;&amp;#125;])1：升序
 2：降序
-MapReduce
-MapReduce是一种用于分布式计算的编程模型和处理大规模数据集的方法。
-MapReduce模型的基本思想是将大规模数据集分成小块，然后并行处理这些小块数据以生成中间结果。
+# MapReduce
+MapReduce 是一种用于分布式计算的编程模型和处理大规模数据集的方法。
+MapReduce 模型的基本思想是将大规模数据集分成小块，然后并行处理这些小块数据以生成中间结果。
 
-Map阶段（映射阶段）：在这个阶段，原始数据被映射成键-值对的形式。每个映射操作都是...
+Map 阶段（映射阶段）：在这个阶段，原始数据被映射成键 -...
     </div>
     <div class="meta footer">
       <span>
@@ -262,16 +258,13 @@ Map阶段（映射阶段）：在这个阶段，原始数据被映射成键-值�
 
     <h3><a href="/MongoDB/MongoDB02/" itemprop="url" title="MongoDB初步使用">MongoDB初步使用</a></h3>
     <div class="excerpt">
-        MongoDB命令
-创建用户（可读可写）
-创建
-db.createUser(&amp;#123;user:&amp;quot;lkr40&amp;quot;,pwd:&amp;quot;123456&amp;quot;,roles:[&amp;quot;readWrite&amp;quot;]&amp;#125;)
-
-检验
-db.auth(&amp;quot;lkr40&amp;quot;,&amp;quot;123456&amp;quot;)
-
+        # MongoDB 命令
+# 创建用户（可读可写）
+# 创建
+db.createUser(&amp;#123;user:&quot;lkr40&quot;,pwd:&quot;123456&quot;,roles:[&quot;readWrite&quot;]&amp;#125;)# 检验
+db.auth(&quot;lkr40&quot;,&quot;123456&quot;)
 db.createUser({user:“lkr40”,pwd:“123456”,roles:[“readWrite”]})
-Successfull...
+Successfully added user: { “user” : “lkr40”,...
     </div>
     <div class="meta footer">
       <span>
@@ -300,14 +293,11 @@ Successfull...
 
     <h3><a href="/Operate-system/03OS/" itemprop="url" title="进程同步问题">进程同步问题</a></h3>
     <div class="excerpt">
-        生产者-消费者问题
-在进程同步中第一个问题就是生产者-消费者问题，首先我们利用记录型信号来分析这个问题。
+        # 生产者 - 消费者问题
+在进程同步中第一个问题就是生产者 - 消费者问题，首先我们利用记录型信号来分析这个问题。
 好好好，我们直接伪代码解析！
 解释在行代码的上方
-//in代表下一个要写入的位置，out代表要读取的位置
-int in = 0,out = 0;
-//用于存储生产者生产的容器，可以理解为缓冲区
-item...
+详细伪代码//in 代表下一个要写入的位置，out 代表要读取的位置int in = 0,out = 0;// 用于存储生产者生产的容器，可以理解为缓冲区item buffer[n];// 前两行不是重点，下面才是核心！！//mutex 用于互斥访问共享资源，初值必须为 1（可以理解为锁）//empty 代表中转的容量，初值为最大承载容量，题里会给（可以是各种容器）//full 是生产出的一种逻辑 / 实体的物质//...
     </div>
     <div class="meta footer">
       <span>
@@ -336,24 +326,21 @@ item...
 
     <h3><a href="/Linux/Linux01/" itemprop="url" title="初见Linux">初见Linux</a></h3>
     <div class="excerpt">
-        初见Linux
+        # 初见 Linux
 首先安装什么的就不讲了，这里先讲一下基础命令
-简单命令
-who命令
+# 简单命令
+# who 命令
 [karry@localhost ~]$ who am i
-
 [karry@localhost ~]$ who am i
 karry pts/0 2023-09-01 10:26 (laptop-karry1107)
 
-echo命令
+# echo 命令
 这个命令是将内容输出到屏幕上
 [karry@localhost ~]$ echo Hello Karry.Liu
-
 [karry@localhost ~]$ echo Hello Karry.Liu
 Hello Karry.Liu
 
-date命令
-[karry@localhost...
+# date...
     </div>
     <div class="meta footer">
       <span>
@@ -382,13 +369,12 @@ date命令
 
     <h3><a href="/Operate-system/02OS/" itemprop="url" title="进程与线程">进程与线程</a></h3>
     <div class="excerpt">
-        什么是进程与线程
+        # 什么是进程与线程
 进程（Process）和线程（Thread）是操作系统中的两个重要概念，用于管理和执行程序的执行单元。它们在多任务处理和并发执行中起着关键作用。
-进程
+# 进程
 进程是计算机系统中运行的程序的实例。每个进程都有自己的内存空间、代码和数据，以及与其他进程隔离的资源。进程可以看作是一个独立的执行环境，可以执行自己的任务。每个进程都有一个唯一的进程标识符（PID），用于区分和管理不同的进程。
 一个进程可以包含多个线程，这些线程共享同一个进程的资源，如内存空间、文件句柄等。不同进程之间的通信相对复杂，通常需要使用进程间通信（IPC）机制，如管道、消息队列、共享内存等。
-线程
-线程是进程内的执行...
+#...
     </div>
     <div class="meta footer">
       <span>
@@ -417,12 +403,13 @@ date命令
 
     <h3><a href="/MongoDB/MongoDB01/" itemprop="url" title="MongoDB的安装与初步使用（Windows平台）">MongoDB的安装与初步使用（Windows平台）</a></h3>
     <div class="excerpt">
-        初见 MongoDB
-什么是 MongoDB？
-MongoDB 是一个开源的、面向文档的 NoSQL 数据库管理系统。它与传统的关系型数据库（如 MySQL、PostgreSQL）不同，因为它不使用表格来存储数据，而是使用一种称为&amp;quot;文档&amp;quot;的数据结构来组织和存储数据。每个文档是一个包含键值对的数据结构，类似于 JSON 格式，这使得 MongoDB 非常适合存储具有不同结构的数据。
+        # 初见 MongoDB
+# 什么是 MongoDB？
+MongoDB 是一个开源的、面向文档的 NoSQL 数据库管理系统。它与传统的关系型数据库（如 MySQL、PostgreSQL）不同，因为它不使用表格来存储数据，而是使用一种称为 &amp;quot;文档&amp;quot; 的数据结构来组织和存储数据。每个文档是一个包含键值对的数据结构，类似于 JSON 格式，这使得 MongoDB 非常适合存储具有不同结构的数据。
 
-MongoDB 的安装与服务启动
-下载 MongoDB...
+# MongoDB 的安装与服务启动
+# 下载 MongoDB 安装包
+访问...
     </div>
     <div class="meta footer">
       <span>
@@ -451,13 +438,12 @@ MongoDB 的安装与服务启动
 
     <h3><a href="/Operate-system/01OS/" itemprop="url" title="操作系统知识点阶段总结">操作系统知识点阶段总结</a></h3>
     <div class="excerpt">
-        引论
-操作系统是什么？
+        # 引论
+# 操作系统是什么？
 操作系统是计算机系统中的核心软件之一，它是位于硬件和应用程序之间的一层软件，负责管理和控制计算机的硬件资源，并为应用程序提供一个运行环境。操作系统充当计算机系统的管理者，协调各种硬件和软件资源的分配和调度，以使计算机能够高效、可靠地运行。
-为什么要操作系统？
+# 为什么要操作系统？
 操作系统的存在是为了解决计算机资源管理和用户程序执行的复杂性。它提供了一种抽象层，使应用程序开发人员不必直接与底层硬件进行交互，从而简化了应用程序的开发和维护。此外，操作系统还负责处理多任务管理、内存管理、文件系统管理、用户接口等，为用户和应用程序提供了一个友好且高效的计算环境。
-操作系统的特征是什么？
-操作系统具...
+#...
     </div>
     <div class="meta footer">
       <span>
@@ -486,10 +472,10 @@ MongoDB 的安装与服务启动
 
     <h3><a href="/Java/SSM01/" itemprop="url" title="SSM框架整合">SSM框架整合</a></h3>
     <div class="excerpt">
-        是什么SSM
-SSM是三个框架的简写，本别是Spring，SpringMVC，Mybatis，这三个框架作为JavaWeb强有力的支撑件，极大地提高了开发效率，降低了维护成本，是Java程序员学习Web技术的必经之路（至少现在是这样）
-在此之前，我希望你能熟练掌握，额，哪怕不熟练也要了解Web部分的老祖：请求，响应以及Servlet技术，这些技术能帮助你更好、更快、更流畅的掌握SSM技术。
-其次本文主要讲解SSM整合的相关细节，并不会深入讲解Spring，SpringMVC，Mybatis每个框架的知识，希望大家在看本文之前能了解Spring，SpringMVC，Mybatis单个框架的使用方...
+        # 是什么 SSM
+SSM 是三个框架的简写，本别是 Spring，SpringMVC，Mybatis，这三个框架作为 JavaWeb 强有力的支撑件，极大地提高了开发效率，降低了维护成本，是 Java 程序员学习 Web 技术的必经之路（至少现在是这样）
+在此之前，我希望你能熟练掌握，额，哪怕不熟练也要了解 Web 部分的老祖：请求，响应以及 Servlet 技术，这些技术能帮助你更好、更快、更流畅的掌握 SSM 技术。
+其次本文主要讲解 SSM 整合的相关细节，并不会深入讲解 Spring，SpringMVC，Mybatis 每个框架的知识，希望大家在看本文之前能了解...
     </div>
     <div class="meta footer">
       <span>
@@ -650,22 +636,10 @@ SSM是三个框架的简写，本别是Spring，SpringMVC，Mybatis，这三个�
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Java/" title="分类于 Java">Java</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/Java/Linux%E7%9B%B8%E5%85%B3/" title="分类于 Linux相关">Linux相关</a>
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
 </div>
 
-    <span><a href="/Linux/Linux01/" title="初见Linux">初见Linux</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%9D%E6%9D%A5%E4%B9%8D%E5%88%B0/" title="分类于 初来乍到">初来乍到</a>
-</div>
-
-    <span><a href="/hello/" title="起点，但不止于起点！">起点，但不止于起点！</a></span>
+    <span><a href="/Operate-system/os_retest/" title="计算机操作系统复试速览">计算机操作系统复试速览</a></span>
   </li>
 
       
@@ -675,19 +649,17 @@ SSM是三个框架的简写，本别是Spring，SpringMVC，Mybatis，这三个�
 <a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
 </div>
 
-    <span><a href="/Operate-system/01OS/" title="操作系统知识点阶段总结">操作系统知识点阶段总结</a></span>
+    <span><a href="/Operate-system/02OS/" title="进程与线程">进程与线程</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MongoDB/" title="分类于 MongoDB">MongoDB</a>
+<a href="/categories/Java/" title="分类于 Java">Java</a>
 </div>
 
-    <span><a href="/MongoDB/MongoDB03/" title="MongoDB初步使用">MongoDB初步使用</a></span>
+    <span><a href="/Java/javaAd01/" title="Java高级特性1">Java高级特性1</a></span>
   </li>
 
       
@@ -706,32 +678,22 @@ SSM是三个框架的简写，本别是Spring，SpringMVC，Mybatis，这三个�
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
-</div>
-
-    <span><a href="/Operate-system/03OS/" title="进程同步问题">进程同步问题</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
+<a href="/categories/Java/" title="分类于 Java">Java</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%90%86%E8%AE%BA/" title="分类于 数据库理论">数据库理论</a>
+<a href="/categories/Java/Linux%E7%9B%B8%E5%85%B3/" title="分类于 Linux相关">Linux相关</a>
 </div>
 
-    <span><a href="/database/DataBase01/" title="DB中的范式">DB中的范式</a></span>
+    <span><a href="/Linux/Linux01/" title="初见Linux">初见Linux</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
+<a href="/categories/%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C/" title="分类于 开发经验">开发经验</a>
 </div>
 
-    <span><a href="/Operate-system/02OS/" title="进程与线程">进程与线程</a></span>
+    <span><a href="/python/fastapi/" title="FastAPI">FastAPI</a></span>
   </li>
 
       
@@ -740,10 +702,10 @@ SSM是三个框架的简写，本别是Spring，SpringMVC，Mybatis，这三个�
 <div class="breadcrumb">
 <a href="/categories/python/" title="分类于 深度学习">深度学习</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/python/%E9%A1%B9%E7%9B%AE%E4%B8%8E%E5%AE%9E%E6%88%98/" title="分类于 项目与实战">项目与实战</a>
+<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
 </div>
 
-    <span><a href="/python/pytorch_nn_digital_identification/" title="基于PyTorch的手写数字识别">基于PyTorch的手写数字识别</a></span>
+    <span><a href="/python/CNN_Acc/" title="CNN经典卷积神经网络与实战">CNN经典卷积神经网络与实战</a></span>
   </li>
 
       
@@ -752,10 +714,32 @@ SSM是三个框架的简写，本别是Spring，SpringMVC，Mybatis，这三个�
 <div class="breadcrumb">
 <a href="/categories/python/" title="分类于 深度学习">深度学习</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/python/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" title="分类于 论文阅读">论文阅读</a>
+<a href="/categories/python/YOLO/" title="分类于 YOLO">YOLO</a>
 </div>
 
-    <span><a href="/paper/review_remote_sensing_m_d/" title="Methods and datasets on semantic segmentation for Unmanned Aerial Vehicle remote sensing images：A review">Methods and datasets on semantic segmentation for Unmanned Aerial Vehicle remote sensing images：A review</a></span>
+    <span><a href="/python/YOLO/YOLO_V3/" title="YOLO-V3">YOLO-V3</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" title="分类于 计算机组成原理">计算机组成原理</a>
+</div>
+
+    <span><a href="/Principles-of-computer-composition/Connection_between_CPU_and_memory/" title="CPU与存储器的连接">CPU与存储器的连接</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/notebook/" title="分类于 笔记">笔记</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/notebook/%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E8%A7%A3%E9%A2%98%E7%AC%94%E8%AE%B0/" title="分类于 模糊数学解题笔记">模糊数学解题笔记</a>
+</div>
+
+    <span><a href="/math/mh_math/" title="模糊数学25习题">模糊数学25习题</a></span>
   </li>
 
   </ul>
@@ -780,8 +764,8 @@ SSM是三个框架的简写，本别是Spring，SpringMVC，Mybatis，这三个�
     <a href="https://icp.gov.moe/?keyword=20249329" target="_blank">萌ICP备20249329号</a>
     基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
   <br/><span>世界本污浊，罪与爱同歌</span>
-  <br/><i class="ic i-chart-area"></i>&nbsp;<span>549k&nbsp;字</span> &nbsp;|&nbsp;
-  <i class="ic i-coffee"></i>&nbsp;<span> 15:15</span>
+  <br/><i class="ic i-chart-area"></i>&nbsp;<span>532k&nbsp;字</span> &nbsp;|&nbsp;
+  <i class="ic i-coffee"></i>&nbsp;<span> 14:46</span>
   </div>
 </div>
 

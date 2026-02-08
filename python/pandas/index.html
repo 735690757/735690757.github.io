@@ -152,8 +152,8 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <div class="body md" itemprop="articleBody">
     
 
-    <h1 id="pandas核心处理方法"><a class="markdownIt-Anchor" href="#pandas核心处理方法"></a> Pandas核心处理方法</h1>
-<h2 id="什么是pandas"><a class="markdownIt-Anchor" href="#什么是pandas"></a> 什么是Pandas</h2>
+    <h1 id="pandas核心处理方法"><a class="markdownIt-Anchor" href="#pandas核心处理方法">#</a> Pandas 核心处理方法</h1>
+<h2 id="什么是pandas"><a class="markdownIt-Anchor" href="#什么是pandas">#</a> 什么是 Pandas</h2>
 <p>Pandas 是一个基于 Python 的开源数据分析和数据处理库</p>
 <p>它提供了两种核心数据结构：</p>
 <table>
@@ -174,7 +174,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <td>一列</td>
 <td>单索引</td>
 <td>同质化</td>
-<td>Excel单列</td>
+<td>Excel 单列</td>
 </tr>
 <tr>
 <td><code>DataFrame</code></td>
@@ -182,7 +182,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <td>一张表格（像 Excel 表）</td>
 <td>双索引</td>
 <td>各个列之间可以是不同的</td>
-<td>整个Excel表格</td>
+<td>整个 Excel 表格</td>
 </tr>
 </tbody>
 </table>
@@ -193,8 +193,8 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <li>自动化报表</li>
 <li>数据可视化前处理</li>
 </ul>
-<h2 id="series"><a class="markdownIt-Anchor" href="#series"></a> Series</h2>
-<p>Series就像这样：</p>
+<h2 id="series"><a class="markdownIt-Anchor" href="#series">#</a> Series</h2>
+<p>Series 就像这样：</p>
 <table>
 <thead>
 <tr>
@@ -217,49 +217,29 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 </tr>
 </tbody>
 </table>
-<h3 id="创建方法"><a class="markdownIt-Anchor" href="#创建方法"></a> 创建方法</h3>
-<pre class="highlight"><code class="python"><span class="hljs-comment"># series的创建</span>
-<span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
-s = pd.Series([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>])
-<span class="hljs-built_in">print</span>(s)
-
-<span class="hljs-comment"># 自定义索引</span>
-s = pd.Series([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>], index=[<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>, <span class="hljs-string">&#x27;d&#x27;</span>, <span class="hljs-string">&#x27;e&#x27;</span>])
-<span class="hljs-built_in">print</span>(s)
-
-<span class="hljs-comment"># 定义Name</span>
-s = pd.Series([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>], index=[<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>, <span class="hljs-string">&#x27;d&#x27;</span>, <span class="hljs-string">&#x27;e&#x27;</span>], name=<span class="hljs-string">&#x27;我是xxx&#x27;</span>)
-<span class="hljs-built_in">print</span>(s)
-</code></pre>
-<p>左侧是索引，右侧是值</p>
+<h3 id="创建方法"><a class="markdownIt-Anchor" href="#创建方法">#</a> 创建方法</h3>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment"># series 的创建</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd</pre></td></tr><tr><td data-num="3"></td><td><pre>s <span class="token operator">=</span> pd<span class="token punctuation">.</span>Series<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="5"></td><td><pre></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token comment"># 自定义索引</span></pre></td></tr><tr><td data-num="7"></td><td><pre>s <span class="token operator">=</span> pd<span class="token punctuation">.</span>Series<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">,</span> index<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">,</span> <span class="token string">'c'</span><span class="token punctuation">,</span> <span class="token string">'d'</span><span class="token punctuation">,</span> <span class="token string">'e'</span><span class="token punctuation">]</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="9"></td><td><pre></pre></td></tr><tr><td data-num="10"></td><td><pre><span class="token comment"># 定义 Name</span></pre></td></tr><tr><td data-num="11"></td><td><pre>s <span class="token operator">=</span> pd<span class="token punctuation">.</span>Series<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">,</span> index<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">,</span> <span class="token string">'c'</span><span class="token punctuation">,</span> <span class="token string">'d'</span><span class="token punctuation">,</span> <span class="token string">'e'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> name<span class="token operator">=</span><span class="token string">'我是xxx'</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="12"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span></pre></td></tr></table></figure><p>左侧是索引，右侧是值</p>
 <blockquote>
-<p>0    1<br />
-1    2<br />
-2    3<br />
-3    4<br />
-4    5<br />
+<p>0    1<br>
+1    2<br>
+2    3<br>
+3    4<br>
+4    5<br>
 dtype: int64</p>
-<p>a    1<br />
-b    2<br />
-c    3<br />
-d    4<br />
-e    5<br />
+<p>a    1<br>
+b    2<br>
+c    3<br>
+d    4<br>
+e    5<br>
 dtype: int64</p>
-<p>a    1<br />
-b    2<br />
-c    3<br />
-d    4<br />
-e    5<br />
-Name: 我是xxx, dtype: int64</p>
+<p>a    1<br>
+b    2<br>
+c    3<br>
+d    4<br>
+e    5<br>
+Name: 我是 xxx, dtype: int64</p>
 </blockquote>
-<pre class="highlight"><code class="py"><span class="hljs-comment"># 通过字典方式来创建</span>
-s = pd.Series(&#123;<span class="hljs-string">&#x27;a&#x27;</span>: <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;b&#x27;</span>: <span class="hljs-number">2</span>, <span class="hljs-string">&#x27;c&#x27;</span>: <span class="hljs-number">3</span>, <span class="hljs-string">&#x27;d&#x27;</span>: <span class="hljs-number">4</span>, <span class="hljs-string">&#x27;e&#x27;</span>: <span class="hljs-number">5</span>&#125;)
-<span class="hljs-built_in">print</span>(s)
-<span class="hljs-comment"># 通过Series对象来创建（截取）</span>
-s1=pd.Series(s,index=[<span class="hljs-string">&#x27;a&#x27;</span>,<span class="hljs-string">&#x27;c&#x27;</span>])
-<span class="hljs-built_in">print</span>(s1)
-</code></pre>
-<h3 id="基本属性"><a class="markdownIt-Anchor" href="#基本属性"></a> 基本属性</h3>
+<figure class="highlight py"><figcaption data-lang="Python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment"># 通过字典方式来创建</span></pre></td></tr><tr><td data-num="2"></td><td><pre>s <span class="token operator">=</span> pd<span class="token punctuation">.</span>Series<span class="token punctuation">(</span><span class="token punctuation">&#123;</span><span class="token string">'a'</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">'c'</span><span class="token punctuation">:</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token string">'d'</span><span class="token punctuation">:</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token string">'e'</span><span class="token punctuation">:</span> <span class="token number">5</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token comment"># 通过 Series 对象来创建（截取）</span></pre></td></tr><tr><td data-num="5"></td><td><pre>s1<span class="token operator">=</span>pd<span class="token punctuation">.</span>Series<span class="token punctuation">(</span>s<span class="token punctuation">,</span>index<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span><span class="token string">'c'</span><span class="token punctuation">]</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>s1<span class="token punctuation">)</span></pre></td></tr></table></figure><h3 id="基本属性"><a class="markdownIt-Anchor" href="#基本属性">#</a> 基本属性</h3>
 <table>
 <thead>
 <tr>
@@ -276,7 +256,7 @@ s1=pd.Series(s,index=[<span class="hljs-string">&#x27;a&#x27;</span>,<span class
 </tr>
 <tr>
 <td><code>values</code></td>
-<td>数据值组成的 <code>numpy</code> 数组</td>
+<td>数据值组成的  <code>numpy</code>  数组</td>
 <td><code>s.values</code></td>
 </tr>
 <tr>
@@ -316,144 +296,49 @@ s1=pd.Series(s,index=[<span class="hljs-string">&#x27;a&#x27;</span>,<span class
 </tr>
 </tbody>
 </table>
-<pre class="highlight"><code class="python"><span class="hljs-comment"># Series对象属性</span>
-s = pd.Series([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>], index=[<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>, <span class="hljs-string">&#x27;d&#x27;</span>, <span class="hljs-string">&#x27;e&#x27;</span>])
-<span class="hljs-built_in">print</span>(s.values)
-<span class="hljs-built_in">print</span>(s.index)
-<span class="hljs-built_in">print</span>(s.name)
-<span class="hljs-built_in">print</span>(s.dtype)
-<span class="hljs-built_in">print</span>(s.size)
-<span class="hljs-built_in">print</span>(s.empty)
-<span class="hljs-built_in">print</span>(s.ndim)
-<span class="hljs-built_in">print</span>(s.shape)
-<span class="hljs-built_in">print</span>(s.is_unique)
-<span class="hljs-built_in">print</span>(s.loc[<span class="hljs-string">&#x27;e&#x27;</span>])  <span class="hljs-comment"># 通过索引获取，显示索引</span>
-<span class="hljs-built_in">print</span>(s.iloc[<span class="hljs-number">4</span>])  <span class="hljs-comment"># 通过位置获取，隐式索引</span>
-<span class="hljs-comment"># 支持切片</span>
-<span class="hljs-built_in">print</span>(s.loc[<span class="hljs-string">&#x27;a&#x27;</span>:<span class="hljs-string">&#x27;d&#x27;</span>])
-<span class="hljs-built_in">print</span>(s.iloc[<span class="hljs-number">0</span>:<span class="hljs-number">3</span>])
-</code></pre>
-<h3 id="访问数据"><a class="markdownIt-Anchor" href="#访问数据"></a> 访问数据</h3>
-<pre class="highlight"><code class="python"><span class="hljs-built_in">print</span>(s.iloc[<span class="hljs-number">2</span>])
-<span class="hljs-built_in">print</span>(s[<span class="hljs-string">&#x27;b&#x27;</span>])
-<span class="hljs-built_in">print</span>(s[s &lt; <span class="hljs-number">3</span>]) <span class="hljs-comment"># 布尔索引</span>
-<span class="hljs-built_in">print</span>(s.isin([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]))
-<span class="hljs-built_in">print</span>(s[s.isin([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])])
-</code></pre>
-<pre class="highlight"><code class="python">s = pd.Series([<span class="hljs-number">1</span>, np.nan, <span class="hljs-number">3</span>, <span class="hljs-literal">None</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>, <span class="hljs-number">10</span>], index=[<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>, <span class="hljs-string">&#x27;d&#x27;</span>, <span class="hljs-string">&#x27;e&#x27;</span>, <span class="hljs-string">&#x27;f&#x27;</span>, <span class="hljs-string">&#x27;g&#x27;</span>, <span class="hljs-string">&#x27;h&#x27;</span>, <span class="hljs-string">&#x27;i&#x27;</span>, <span class="hljs-string">&#x27;j&#x27;</span>], name=<span class="hljs-string">&#x27;testData&#x27;</span>)
-s.head()
-s.tail(<span class="hljs-number">2</span>)
-</code></pre>
-<h3 id="计算与常用统计方法"><a class="markdownIt-Anchor" href="#计算与常用统计方法"></a> 计算与常用统计方法</h3>
-<pre class="highlight"><code class="python"><span class="hljs-comment"># 所有描述信息的语句</span>
-s.describe()
-</code></pre>
-<pre class="highlight"><code class="python"><span class="hljs-comment"># 是否包含在其中</span>
-s.isin([<span class="hljs-number">1</span>, <span class="hljs-number">9</span>, <span class="hljs-number">3</span>])
-</code></pre>
-<pre class="highlight"><code class="python"><span class="hljs-comment"># 排序</span>
-s.sort_values()
-</code></pre>
-<pre class="highlight"><code class="python"><span class="hljs-comment"># 分位数</span>
-s.quantile(<span class="hljs-number">0.5</span>)
-</code></pre>
-<pre class="highlight"><code class="python"><span class="hljs-comment"># 统计个数</span>
-s.value_counts()
-</code></pre>
-<pre class="highlight"><code class="python"><span class="hljs-comment"># 众数</span>
-s.mode()
-</code></pre>
-<h3 id="series案例"><a class="markdownIt-Anchor" href="#series案例"></a> Series案例</h3>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment"># Series 对象属性</span></pre></td></tr><tr><td data-num="2"></td><td><pre>s <span class="token operator">=</span> pd<span class="token punctuation">.</span>Series<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">,</span> index<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">,</span> <span class="token string">'c'</span><span class="token punctuation">,</span> <span class="token string">'d'</span><span class="token punctuation">,</span> <span class="token string">'e'</span><span class="token punctuation">]</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span>values<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span>index<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span>name<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span>dtype<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span>size<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span>empty<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="9"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span>ndim<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="10"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span>shape<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="11"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span>is_unique<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="12"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span>loc<span class="token punctuation">[</span><span class="token string">'e'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>  <span class="token comment"># 通过索引获取，显示索引</span></pre></td></tr><tr><td data-num="13"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span>iloc<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">)</span>  <span class="token comment"># 通过位置获取，隐式索引</span></pre></td></tr><tr><td data-num="14"></td><td><pre><span class="token comment"># 支持切片</span></pre></td></tr><tr><td data-num="15"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span>loc<span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">:</span><span class="token string">'d'</span><span class="token punctuation">]</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="16"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span>iloc<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">:</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span></pre></td></tr></table></figure><h3 id="访问数据"><a class="markdownIt-Anchor" href="#访问数据">#</a> 访问数据</h3>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span>iloc<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">[</span><span class="token string">'b'</span><span class="token punctuation">]</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">[</span>s <span class="token operator">&lt;</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token comment"># 布尔索引</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span>isin<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">[</span>s<span class="token punctuation">.</span>isin<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span></pre></td></tr></table></figure><figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre>s <span class="token operator">=</span> pd<span class="token punctuation">.</span>Series<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> np<span class="token punctuation">.</span>nan<span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token boolean">None</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">,</span> index<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">,</span> <span class="token string">'c'</span><span class="token punctuation">,</span> <span class="token string">'d'</span><span class="token punctuation">,</span> <span class="token string">'e'</span><span class="token punctuation">,</span> <span class="token string">'f'</span><span class="token punctuation">,</span> <span class="token string">'g'</span><span class="token punctuation">,</span> <span class="token string">'h'</span><span class="token punctuation">,</span> <span class="token string">'i'</span><span class="token punctuation">,</span> <span class="token string">'j'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> name<span class="token operator">=</span><span class="token string">'testData'</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre>s<span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="3"></td><td><pre>s<span class="token punctuation">.</span>tail<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span></pre></td></tr></table></figure><h3 id="计算与常用统计方法"><a class="markdownIt-Anchor" href="#计算与常用统计方法">#</a> 计算与常用统计方法</h3>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment"># 所有描述信息的语句</span></pre></td></tr><tr><td data-num="2"></td><td><pre>s<span class="token punctuation">.</span>describe<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr></table></figure><figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment"># 是否包含在其中</span></pre></td></tr><tr><td data-num="2"></td><td><pre>s<span class="token punctuation">.</span>isin<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span></pre></td></tr></table></figure><figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment"># 排序</span></pre></td></tr><tr><td data-num="2"></td><td><pre>s<span class="token punctuation">.</span>sort_values<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr></table></figure><figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment"># 分位数</span></pre></td></tr><tr><td data-num="2"></td><td><pre>s<span class="token punctuation">.</span>quantile<span class="token punctuation">(</span><span class="token number">0.5</span><span class="token punctuation">)</span></pre></td></tr></table></figure><figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment"># 统计个数</span></pre></td></tr><tr><td data-num="2"></td><td><pre>s<span class="token punctuation">.</span>value_counts<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr></table></figure><figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment"># 众数</span></pre></td></tr><tr><td data-num="2"></td><td><pre>s<span class="token punctuation">.</span>mode<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr></table></figure><h3 id="series案例"><a class="markdownIt-Anchor" href="#series案例">#</a> Series 案例</h3>
 <blockquote>
-<p>创建一个包含十名学生数学成绩的Series，成绩范围在50到100间，计算平均分、最高分、最低分、并找出高于平均分的学生人数。</p>
+<p>创建一个包含十名学生数学成绩的 Series，成绩范围在 50 到 100 间，计算平均分、最高分、最低分、并找出高于平均分的学生人数。</p>
 </blockquote>
-<pre class="highlight"><code class="python"><span class="hljs-built_in">print</span>(scores.mean())
-<span class="hljs-built_in">print</span>(scores.<span class="hljs-built_in">max</span>())
-<span class="hljs-built_in">print</span>(scores.<span class="hljs-built_in">min</span>())
-<span class="hljs-built_in">print</span>(scores[scores.mean() &lt; scores].count())
-</code></pre>
-<blockquote>
-<p>给定某城市一周每天的最高温度Series，完成以下任务：</p>
-<p>找出温度超过30度的天数</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>scores<span class="token punctuation">.</span>mean<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>scores<span class="token punctuation">.</span><span class="token builtin">max</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>scores<span class="token punctuation">.</span><span class="token builtin">min</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>scores<span class="token punctuation">[</span>scores<span class="token punctuation">.</span>mean<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> scores<span class="token punctuation">]</span><span class="token punctuation">.</span>count<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr></table></figure><blockquote>
+<p>给定某城市一周每天的最高温度 Series，完成以下任务：</p>
+<p>找出温度超过 30 度的天数</p>
 <p>计算平均温度将温度从高到低排序</p>
 <p>找出温度变化最大的两天</p>
 </blockquote>
-<pre class="highlight"><code class="python"><span class="hljs-built_in">print</span>(temperatures[temperatures &gt; <span class="hljs-number">30</span>].count())
-<span class="hljs-built_in">print</span>(temperatures.sort_values(ascending=<span class="hljs-literal">False</span>))
-temperatures.diff().<span class="hljs-built_in">abs</span>().sort_values(ascending=<span class="hljs-literal">False</span>).head(<span class="hljs-number">2</span>)
-</code></pre>
-<blockquote>
-<p>股票价格分析给定某股票连续10个交易日的收盘价Series:</p>
-<p>计算每日收益率(当日收盘价/前日收盘价-1)</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>temperatures<span class="token punctuation">[</span>temperatures <span class="token operator">></span> <span class="token number">30</span><span class="token punctuation">]</span><span class="token punctuation">.</span>count<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>temperatures<span class="token punctuation">.</span>sort_values<span class="token punctuation">(</span>ascending<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="3"></td><td><pre>temperatures<span class="token punctuation">.</span>diff<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token builtin">abs</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>sort_values<span class="token punctuation">(</span>ascending<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span><span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span></pre></td></tr></table></figure><blockquote>
+<p>股票价格分析给定某股票连续 10 个交易日的收盘价 Series:</p>
+<p>计算每日收益率 (当日收盘价 / 前日收盘价 - 1)</p>
 <p>找出收益率最高和最低的日期</p>
-<p>计算波动率(收益率的标准差)</p>
+<p>计算波动率 (收益率的标准差)</p>
 </blockquote>
-<pre class="highlight"><code class="python"><span class="hljs-comment"># 计算收益率 pct-&gt;percent </span>
-price.pct_change()
-a = price.pct_change()
-a.idxmax()
-price.pct_change().idxmin()
-price.pct_change().std()
-</code></pre>
-<blockquote>
-<p>某产品过去12个月的销售量Series:</p>
-<p>计算季度平均销量(每3个月为一个季度)</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment"># 计算收益率 pct->percent </span></pre></td></tr><tr><td data-num="2"></td><td><pre>price<span class="token punctuation">.</span>pct_change<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="3"></td><td><pre>a <span class="token operator">=</span> price<span class="token punctuation">.</span>pct_change<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="4"></td><td><pre>a<span class="token punctuation">.</span>idxmax<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="5"></td><td><pre>price<span class="token punctuation">.</span>pct_change<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>idxmin<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="6"></td><td><pre>price<span class="token punctuation">.</span>pct_change<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>std<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr></table></figure><blockquote>
+<p>某产品过去 12 个月的销售量 Series:</p>
+<p>计算季度平均销量 (每 3 个月为一个季度)</p>
 <p>找出销量最高的月份</p>
 <p>计算月环比增长率</p>
-<p>找出连续增长超过2个月的月份</p>
+<p>找出连续增长超过 2 个月的月份</p>
 </blockquote>
-<pre class="highlight"><code class="python"><span class="hljs-comment"># resample-&gt;qs按照季度开始重新采样</span>
-sales.resample(<span class="hljs-string">&#x27;QS&#x27;</span>).mean()
-sales.idxmax()
-<span class="hljs-comment"># 月百分比变化，即为环比</span>
-sales.pct_change()
-<span class="hljs-comment"># 环比大于零，使用滑动窗口，和为3</span>
-pct_c = sales.pct_change()
-b = pct_c &gt; <span class="hljs-number">0</span>
-b[b.rolling(window=<span class="hljs-number">3</span>).<span class="hljs-built_in">sum</span>() == <span class="hljs-number">3</span>].keys().tolist()
-</code></pre>
-<blockquote>
-<p>某商店每小时销售额Series:</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment"># resample->qs 按照季度开始重新采样</span></pre></td></tr><tr><td data-num="2"></td><td><pre>sales<span class="token punctuation">.</span>resample<span class="token punctuation">(</span><span class="token string">'QS'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>mean<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="3"></td><td><pre>sales<span class="token punctuation">.</span>idxmax<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token comment"># 月百分比变化，即为环比</span></pre></td></tr><tr><td data-num="5"></td><td><pre>sales<span class="token punctuation">.</span>pct_change<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token comment"># 环比大于零，使用滑动窗口，和为 3</span></pre></td></tr><tr><td data-num="7"></td><td><pre>pct_c <span class="token operator">=</span> sales<span class="token punctuation">.</span>pct_change<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="8"></td><td><pre>b <span class="token operator">=</span> pct_c <span class="token operator">></span> <span class="token number">0</span></pre></td></tr><tr><td data-num="9"></td><td><pre>b<span class="token punctuation">[</span>b<span class="token punctuation">.</span>rolling<span class="token punctuation">(</span>window<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token builtin">sum</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">.</span>keys<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>tolist<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr></table></figure><blockquote>
+<p>某商店每小时销售额 Series:</p>
 <p>按天重采样计算每日总销售额</p>
-<p>计算每天营业时间(8:00-22:00)和非营业时间的销售额比例</p>
-<p>找出销售额最高的3个小时</p>
+<p>计算每天营业时间 (8:00-22:00) 和非营业时间的销售额比例</p>
+<p>找出销售额最高的 3 个小时</p>
 </blockquote>
-<pre class="highlight"><code class="python">hourly_sales.resample(<span class="hljs-string">&#x27;D&#x27;</span>).<span class="hljs-built_in">sum</span>()
-<span class="hljs-comment"># 两种方法</span>
-hourly_sales[(hourly_sales.index.hour&gt;=<span class="hljs-number">8</span>)&amp;(hourly_sales.index.hour&lt;=<span class="hljs-number">22</span>)].<span class="hljs-built_in">sum</span>()
-hourly_sales.between_time(<span class="hljs-string">&#x27;8:00&#x27;</span>, <span class="hljs-string">&#x27;22:00&#x27;</span>)
-<span class="hljs-comment"># 最终计算</span>
-hourly_sales[(hourly_sales.index.hour&gt;=<span class="hljs-number">8</span>)&amp;(hourly_sales.index.hour&lt;=<span class="hljs-number">22</span>)].<span class="hljs-built_in">sum</span>()/(hourly_sales.<span class="hljs-built_in">sum</span>() - hourly_sales[(hourly_sales.index.hour&gt;=<span class="hljs-number">8</span>)&amp;(hourly_sales.index.hour&lt;=<span class="hljs-number">22</span>)].<span class="hljs-built_in">sum</span>())
-<span class="hljs-comment"># 可在全部的索引中去除营业索引</span>
-hourly_sales.drop(hourly_sales[(hourly_sales.index.hour&gt;=<span class="hljs-number">8</span>)&amp;(hourly_sales.index.hour&lt;=<span class="hljs-number">22</span>)].index)
-<span class="hljs-comment"># 销售额最高的3个小时，两种方法</span>
-hourly_sales.sort_values(ascending=<span class="hljs-literal">False</span>).head(<span class="hljs-number">3</span>)
-hourly_sales.nlargest(<span class="hljs-number">3</span>).keys()
-</code></pre>
-<h2 id="dataframe"><a class="markdownIt-Anchor" href="#dataframe"></a> DataFrame</h2>
-<h3 id="读取jsonl"><a class="markdownIt-Anchor" href="#读取jsonl"></a> 读取JSONL</h3>
-<pre class="highlight"><code class="python">pd.read_json(<span class="hljs-string">&quot;../data/raw/synthesized_.jsonl&quot;</span>, lines=<span class="hljs-literal">True</span>)
-</code></pre>
-<h3 id="保存为json-jsonl"><a class="markdownIt-Anchor" href="#保存为json-jsonl"></a> 保存为JSON / JSONL</h3>
-<pre class="highlight"><code class="python"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
-
-frame = pd.DataFrame(<span class="hljs-built_in">dict</span>(A=<span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, <span class="hljs-number">4</span>), B=<span class="hljs-built_in">range</span>(<span class="hljs-number">4</span>, <span class="hljs-number">7</span>), C=<span class="hljs-built_in">range</span>(<span class="hljs-number">7</span>, <span class="hljs-number">10</span>)), columns=[<span class="hljs-string">&#x27;A&#x27;</span>, <span class="hljs-string">&#x27;B&#x27;</span>, <span class="hljs-string">&#x27;C&#x27;</span>], index=[<span class="hljs-string">&#x27;x&#x27;</span>, <span class="hljs-string">&#x27;y&#x27;</span>, <span class="hljs-string">&#x27;z&#x27;</span>])
-<span class="hljs-built_in">print</span>(frame)
-<span class="hljs-built_in">print</span>(frame.to_json(orient=<span class="hljs-string">&#x27;index&#x27;</span>))
-<span class="hljs-built_in">print</span>(frame.to_json(orient=<span class="hljs-string">&#x27;columns&#x27;</span>))vprint(frame.to_json(orient=<span class="hljs-string">&#x27;split&#x27;</span>))
-<span class="hljs-built_in">print</span>(frame.to_json(orient=<span class="hljs-string">&#x27;records&#x27;</span>, lines=<span class="hljs-literal">True</span>))
-</code></pre>
-<blockquote>
-<p>A  B  C<br />
-x  1  4  7<br />
-y  2  5  8<br />
-z  3  6  9<br />
-{“x”:{“A”:1,“B”:4,“C”:7},“y”:{“A”:2,“B”:5,“C”:8},“z”:{“A”:3,“B”:6,“C”:9}}<br />
-{“A”:{“x”:1,“y”:2,“z”:3},“B”:{“x”:4,“y”:5,“z”:6},“C”:{“x”:7,“y”:8,“z”:9}}</p>
-<p>{“columns”:[“A”,“B”,“C”],“index”:[“x”,“y”,“z”],“data”:[[1,4,7],[2,5,8],[3,6,9]]}</p>
-<p>{“A”:1,“B”:4,“C”:7}<br />
-{“A”:2,“B”:5,“C”:8}<br />
-{“A”:3,“B”:6,“C”:9}</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre>hourly_sales<span class="token punctuation">.</span>resample<span class="token punctuation">(</span><span class="token string">'D'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token builtin">sum</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token comment"># 两种方法</span></pre></td></tr><tr><td data-num="3"></td><td><pre>hourly_sales<span class="token punctuation">[</span><span class="token punctuation">(</span>hourly_sales<span class="token punctuation">.</span>index<span class="token punctuation">.</span>hour<span class="token operator">>=</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token operator">&amp;</span><span class="token punctuation">(</span>hourly_sales<span class="token punctuation">.</span>index<span class="token punctuation">.</span>hour<span class="token operator">&lt;=</span><span class="token number">22</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token builtin">sum</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="4"></td><td><pre>hourly_sales<span class="token punctuation">.</span>between_time<span class="token punctuation">(</span><span class="token string">'8:00'</span><span class="token punctuation">,</span> <span class="token string">'22:00'</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token comment"># 最终计算</span></pre></td></tr><tr><td data-num="6"></td><td><pre>hourly_sales<span class="token punctuation">[</span><span class="token punctuation">(</span>hourly_sales<span class="token punctuation">.</span>index<span class="token punctuation">.</span>hour<span class="token operator">>=</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token operator">&amp;</span><span class="token punctuation">(</span>hourly_sales<span class="token punctuation">.</span>index<span class="token punctuation">.</span>hour<span class="token operator">&lt;=</span><span class="token number">22</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token builtin">sum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token punctuation">(</span>hourly_sales<span class="token punctuation">.</span><span class="token builtin">sum</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> hourly_sales<span class="token punctuation">[</span><span class="token punctuation">(</span>hourly_sales<span class="token punctuation">.</span>index<span class="token punctuation">.</span>hour<span class="token operator">>=</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token operator">&amp;</span><span class="token punctuation">(</span>hourly_sales<span class="token punctuation">.</span>index<span class="token punctuation">.</span>hour<span class="token operator">&lt;=</span><span class="token number">22</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token builtin">sum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token comment"># 可在全部的索引中去除营业索引</span></pre></td></tr><tr><td data-num="8"></td><td><pre>hourly_sales<span class="token punctuation">.</span>drop<span class="token punctuation">(</span>hourly_sales<span class="token punctuation">[</span><span class="token punctuation">(</span>hourly_sales<span class="token punctuation">.</span>index<span class="token punctuation">.</span>hour<span class="token operator">>=</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token operator">&amp;</span><span class="token punctuation">(</span>hourly_sales<span class="token punctuation">.</span>index<span class="token punctuation">.</span>hour<span class="token operator">&lt;=</span><span class="token number">22</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">.</span>index<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="9"></td><td><pre><span class="token comment"># 销售额最高的 3 个小时，两种方法</span></pre></td></tr><tr><td data-num="10"></td><td><pre>hourly_sales<span class="token punctuation">.</span>sort_values<span class="token punctuation">(</span>ascending<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span><span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="11"></td><td><pre>hourly_sales<span class="token punctuation">.</span>nlargest<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">.</span>keys<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr></table></figure><h2 id="dataframe"><a class="markdownIt-Anchor" href="#dataframe">#</a> DataFrame</h2>
+<h3 id="读取jsonl"><a class="markdownIt-Anchor" href="#读取jsonl">#</a> 读取 JSONL</h3>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre>pd<span class="token punctuation">.</span>read_json<span class="token punctuation">(</span><span class="token string">"../data/raw/synthesized_.jsonl"</span><span class="token punctuation">,</span> lines<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span></pre></td></tr></table></figure><h3 id="保存为json-jsonl"><a class="markdownIt-Anchor" href="#保存为json-jsonl">#</a> 保存为 JSON / JSONL</h3>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd</pre></td></tr><tr><td data-num="2"></td><td><pre></pre></td></tr><tr><td data-num="3"></td><td><pre>frame <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span><span class="token builtin">dict</span><span class="token punctuation">(</span>A<span class="token operator">=</span><span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">,</span> B<span class="token operator">=</span><span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">)</span><span class="token punctuation">,</span> C<span class="token operator">=</span><span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> columns<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'A'</span><span class="token punctuation">,</span> <span class="token string">'B'</span><span class="token punctuation">,</span> <span class="token string">'C'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> index<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'x'</span><span class="token punctuation">,</span> <span class="token string">'y'</span><span class="token punctuation">,</span> <span class="token string">'z'</span><span class="token punctuation">]</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>frame<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>frame<span class="token punctuation">.</span>to_json<span class="token punctuation">(</span>orient<span class="token operator">=</span><span class="token string">'index'</span><span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>frame<span class="token punctuation">.</span>to_json<span class="token punctuation">(</span>orient<span class="token operator">=</span><span class="token string">'columns'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>vprint<span class="token punctuation">(</span>frame<span class="token punctuation">.</span>to_json<span class="token punctuation">(</span>orient<span class="token operator">=</span><span class="token string">'split'</span><span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>frame<span class="token punctuation">.</span>to_json<span class="token punctuation">(</span>orient<span class="token operator">=</span><span class="token string">'records'</span><span class="token punctuation">,</span> lines<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr></table></figure><blockquote A:3,B:6,C:9="" A:2,B:5,C:8="">
+<p A:{x:1,y:2,z:3="">A  B  C<br>
+x  1  4  7<br>
+y  2  5  8<br>
+z  3  6  9<br>
+{“x”:{“A”:1,“B”:4,“C”:7},“y”:{“A”:2,“B”:5,“C”:8},“z”:{“A”:3,“B”:6,“C”:9}}</p>
+<p columns:[A,B,C],index:[x,y,z],data:[[1,4,7],[2,5,8],[3,6,9]]=""></p>
+<p>{“A”:1,“B”:4,“C”:7}<br>
+</p>
 </blockquote>
 
       <div class="tags">
@@ -560,7 +445,7 @@ z  3  6  9<br />
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="文章目录">
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#pandas%E6%A0%B8%E5%BF%83%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text"> Pandas核心处理方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFpandas"><span class="toc-number">1.1.</span> <span class="toc-text"> 什么是Pandas</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#series"><span class="toc-number">1.2.</span> <span class="toc-text"> Series</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.1.</span> <span class="toc-text"> 创建方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%B1%9E%E6%80%A7"><span class="toc-number">1.2.2.</span> <span class="toc-text"> 基本属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E6%95%B0%E6%8D%AE"><span class="toc-number">1.2.3.</span> <span class="toc-text"> 访问数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E4%B8%8E%E5%B8%B8%E7%94%A8%E7%BB%9F%E8%AE%A1%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.4.</span> <span class="toc-text"> 计算与常用统计方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#series%E6%A1%88%E4%BE%8B"><span class="toc-number">1.2.5.</span> <span class="toc-text"> Series案例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dataframe"><span class="toc-number">1.3.</span> <span class="toc-text"> DataFrame</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96jsonl"><span class="toc-number">1.3.1.</span> <span class="toc-text"> 读取JSONL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%9D%E5%AD%98%E4%B8%BAjson-jsonl"><span class="toc-number">1.3.2.</span> <span class="toc-text"> 保存为JSON &#x2F; JSONL</span></a></li></ol></li></ol></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#pandas%E6%A0%B8%E5%BF%83%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text"> Pandas 核心处理方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFpandas"><span class="toc-number">1.1.</span> <span class="toc-text"> 什么是 Pandas</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#series"><span class="toc-number">1.2.</span> <span class="toc-text"> Series</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.1.</span> <span class="toc-text"> 创建方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%B1%9E%E6%80%A7"><span class="toc-number">1.2.2.</span> <span class="toc-text"> 基本属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E6%95%B0%E6%8D%AE"><span class="toc-number">1.2.3.</span> <span class="toc-text"> 访问数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E4%B8%8E%E5%B8%B8%E7%94%A8%E7%BB%9F%E8%AE%A1%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.4.</span> <span class="toc-text"> 计算与常用统计方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#series%E6%A1%88%E4%BE%8B"><span class="toc-number">1.2.5.</span> <span class="toc-text"> Series 案例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dataframe"><span class="toc-number">1.3.</span> <span class="toc-text"> DataFrame</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96jsonl"><span class="toc-number">1.3.1.</span> <span class="toc-text"> 读取 JSONL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%9D%E5%AD%98%E4%B8%BAjson-jsonl"><span class="toc-number">1.3.2.</span> <span class="toc-text"> 保存为 JSON &#x2F; JSONL</span></a></li></ol></li></ol></li></ol>
       </div>
       <div class="related panel pjax" data-title="系列文章">
         <ul>
@@ -694,6 +579,54 @@ z  3  6  9<br />
   <li class="item">
     
 <div class="breadcrumb">
+<a href="/categories/notebook/" title="分类于 笔记">笔记</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/notebook/%E7%9F%A9%E9%98%B5%E8%AE%BA%E8%A7%A3%E9%A2%98%E7%AC%94%E8%AE%B0/" title="分类于 矩阵论解题笔记">矩阵论解题笔记</a>
+</div>
+
+    <span><a href="/math/matrix_anl/" title="矩阵论">矩阵论</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MongoDB/" title="分类于 MongoDB">MongoDB</a>
+</div>
+
+    <span><a href="/MongoDB/MongoDB02/" title="MongoDB初步使用">MongoDB初步使用</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/notebook/" title="分类于 笔记">笔记</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/notebook/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B0/" title="分类于 数据结构笔记">数据结构笔记</a>
+</div>
+
+    <span><a href="/DSLearnNote/GeneralizedLists/" title="考试中有关广义表的两个常用函数的解">考试中有关广义表的两个常用函数的解</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/notebook/" title="分类于 笔记">笔记</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/notebook/%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E8%A7%A3%E9%A2%98%E7%AC%94%E8%AE%B0/" title="分类于 模糊数学解题笔记">模糊数学解题笔记</a>
+</div>
+
+    <span><a href="/math/mh_math/" title="模糊数学25习题">模糊数学25习题</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
 <a href="/categories/python/" title="分类于 深度学习">深度学习</a>
 <i class="ic i-angle-right"></i>
 <a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
@@ -706,48 +639,44 @@ z  3  6  9<br />
   <li class="item">
     
 <div class="breadcrumb">
+<a href="/categories/notebook/" title="分类于 笔记">笔记</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/notebook/%E8%80%83%E7%A0%94%E6%94%BF%E6%B2%BB%E7%AC%94%E8%AE%B0/" title="分类于 考研政治笔记">考研政治笔记</a>
+</div>
+
+    <span><a href="/PoliticalKnowledge/politicalNote/" title="政治知识点速记（持续更新）">政治知识点速记（持续更新）</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C/" title="分类于 开发经验">开发经验</a>
+</div>
+
+    <span><a href="/experience/MD5CalculationTimePractice/" title="MD5计算时间">MD5计算时间</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" title="分类于 计算机组成原理">计算机组成原理</a>
+</div>
+
+    <span><a href="/Principles-of-computer-composition/Connection_between_CPU_and_memory/" title="CPU与存储器的连接">CPU与存储器的连接</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
 <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
 <i class="ic i-angle-right"></i>
 <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%90%86%E8%AE%BA/" title="分类于 数据库理论">数据库理论</a>
 </div>
 
-    <span><a href="/database/DataBase01/" title="DB中的范式">DB中的范式</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MongoDB/" title="分类于 MongoDB">MongoDB</a>
-</div>
-
-    <span><a href="/MongoDB/MongoDB03/" title="MongoDB初步使用">MongoDB初步使用</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Java/" title="分类于 Java">Java</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/Java/SSM%E6%A1%86%E6%9E%B6%E6%95%B4%E5%90%88/" title="分类于 SSM框架整合">SSM框架整合</a>
-</div>
-
-    <span><a href="/Java/SSM01/" title="SSM框架整合">SSM框架整合</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/notebook/" title="分类于 笔记">笔记</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/notebook/%E8%80%83%E7%A0%94%E8%8B%B1%E8%AF%AD%E7%AC%94%E8%AE%B0/" title="分类于 考研英语笔记">考研英语笔记</a>
-</div>
-
-    <span><a href="/English/shEnglish/" title="文章翻译">文章翻译</a></span>
+    <span><a href="/database/DataBase02/" title="数据库设计">数据库设计</a></span>
   </li>
 
       
@@ -756,56 +685,10 @@ z  3  6  9<br />
 <div class="breadcrumb">
 <a href="/categories/python/" title="分类于 深度学习">深度学习</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/python/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" title="分类于 论文阅读">论文阅读</a>
+<a href="/categories/python/%E9%A1%B9%E7%9B%AE%E4%B8%8E%E5%AE%9E%E6%88%98/" title="分类于 项目与实战">项目与实战</a>
 </div>
 
-    <span><a href="/paper/review_remote_sensing_m_d/" title="Methods and datasets on semantic segmentation for Unmanned Aerial Vehicle remote sensing images：A review">Methods and datasets on semantic segmentation for Unmanned Aerial Vehicle remote sensing images：A review</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E7%94%9F%E6%B4%BB/" title="分类于 生活">生活</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/%E7%94%9F%E6%B4%BB/%E4%B8%8A%E5%B2%B8/" title="分类于 上岸">上岸</a>
-</div>
-
-    <span><a href="/life/shangan/" title="写给我这一年多的考研时光">写给我这一年多的考研时光</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
-</div>
-
-    <span><a href="/python/NLP/" title="NLP自然语言处理">NLP自然语言处理</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
-</div>
-
-    <span><a href="/python/YOLO/evaluation_indicators/" title="模型评价指标">模型评价指标</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
-</div>
-
-    <span><a href="/Operate-system/KnowledgeSummary/" title="操作系统细碎知识点及公式速记">操作系统细碎知识点及公式速记</a></span>
+    <span><a href="/python/3D_CNN/" title="3DCNN 网络结构">3DCNN 网络结构</a></span>
   </li>
 
   </ul>
@@ -830,8 +713,8 @@ z  3  6  9<br />
     <a href="https://icp.gov.moe/?keyword=20249329" target="_blank">萌ICP备20249329号</a>
     基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
   <br/><span>世界本污浊，罪与爱同歌</span>
-  <br/><i class="ic i-chart-area"></i>&nbsp;<span>549k&nbsp;字</span> &nbsp;|&nbsp;
-  <i class="ic i-coffee"></i>&nbsp;<span> 15:15</span>
+  <br/><i class="ic i-chart-area"></i>&nbsp;<span>532k&nbsp;字</span> &nbsp;|&nbsp;
+  <i class="ic i-coffee"></i>&nbsp;<span> 14:46</span>
   </div>
 </div>
 

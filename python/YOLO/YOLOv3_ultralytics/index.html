@@ -155,77 +155,61 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <div class="body md" itemprop="articleBody">
     
 
-    <h1 id="yolov3-ultralytics"><a class="markdownIt-Anchor" href="#yolov3-ultralytics"></a> YOLOv3 ultralytics</h1>
-<h2 id="安装ultralytics基础环境"><a class="markdownIt-Anchor" href="#安装ultralytics基础环境"></a> 安装ultralytics基础环境</h2>
-<pre class="highlight"><code class="bash">conda install -c conda-forge ultralytics
-</code></pre>
-<h2 id="克隆yolov3代码"><a class="markdownIt-Anchor" href="#克隆yolov3代码"></a> 克隆YOLOv3代码</h2>
-<pre class="highlight"><code class="bash">git <span class="hljs-built_in">clone</span> https://github.com/ultralytics/yolov3
-</code></pre>
-<img data-src="../../../images/python/YOLO/v3ultralytics/1.png" alt="v1" style="zoom:50%;" />
-<h3 id="解决-git-443-报错"><a class="markdownIt-Anchor" href="#解决-git-443-报错"></a> 解决 git 443 报错</h3>
-<p>推荐使用v2Ray进行代理，设置git的http及https代理：</p>
-<pre class="highlight"><code class="python">git config --<span class="hljs-keyword">global</span> http.proxy socks5://<span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>:<span class="hljs-number">10808</span>
-git config --<span class="hljs-keyword">global</span> https.proxy socks5://<span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>:<span class="hljs-number">10808</span>
-</code></pre>
-<p>若使用v2Ray的话，其代理端口为10808，若为clash则应为7891。</p>
-<h2 id="安装缺少的依赖库"><a class="markdownIt-Anchor" href="#安装缺少的依赖库"></a> 安装缺少的依赖库</h2>
+    <h1 id="yolov3-ultralytics"><a class="markdownIt-Anchor" href="#yolov3-ultralytics">#</a> YOLOv3 ultralytics</h1>
+<h2 id="安装ultralytics基础环境"><a class="markdownIt-Anchor" href="#安装ultralytics基础环境">#</a> 安装 ultralytics 基础环境</h2>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>conda <span class="token function">install</span> <span class="token parameter variable">-c</span> conda-forge ultralytics</pre></td></tr></table></figure><h2 id="克隆yolov3代码"><a class="markdownIt-Anchor" href="#克隆yolov3代码">#</a> 克隆 YOLOv3 代码</h2>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token function">git</span> clone https://github.com/ultralytics/yolov3</pre></td></tr></table></figure><img data-src="../../../images/python/YOLO/v3ultralytics/1.png" alt="v1" style="zoom:50%;" />
+<h3 id="解决-git-443-报错"><a class="markdownIt-Anchor" href="#解决-git-443-报错">#</a> 解决 git 443 报错</h3>
+<p>推荐使用 v2Ray 进行代理，设置 git 的 http 及 https 代理：</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre>git config <span class="token operator">-</span><span class="token operator">-</span><span class="token keyword">global</span> http<span class="token punctuation">.</span>proxy socks5<span class="token punctuation">:</span><span class="token operator">//</span><span class="token number">127.0</span><span class="token number">.0</span><span class="token number">.1</span><span class="token punctuation">:</span><span class="token number">10808</span></pre></td></tr><tr><td data-num="2"></td><td><pre>git config <span class="token operator">-</span><span class="token operator">-</span><span class="token keyword">global</span> https<span class="token punctuation">.</span>proxy socks5<span class="token punctuation">:</span><span class="token operator">//</span><span class="token number">127.0</span><span class="token number">.0</span><span class="token number">.1</span><span class="token punctuation">:</span><span class="token number">10808</span></pre></td></tr></table></figure><p>若使用 v2Ray 的话，其代理端口为 10808，若为 clash 则应为 7891。</p>
+<h2 id="安装缺少的依赖库"><a class="markdownIt-Anchor" href="#安装缺少的依赖库">#</a> 安装缺少的依赖库</h2>
 <img data-src="../../../images/python/YOLO/v3ultralytics/2.png" alt="v1" style="zoom:50%;" />
 <p>当然你可以一个一个安装，但那样有点麻烦，请使用如下命令：</p>
-<pre class="highlight"><code class="bash">pip install -r .\requirements.txt
-</code></pre>
-<h2 id="权重文件"><a class="markdownIt-Anchor" href="#权重文件"></a> 权重文件</h2>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>pip <span class="token function">install</span> <span class="token parameter variable">-r</span> .<span class="token punctuation">\</span>requirements.txt</pre></td></tr></table></figure><h2 id="权重文件"><a class="markdownIt-Anchor" href="#权重文件">#</a> 权重文件</h2>
 <p>请访问：<span class="exturl" data-url="aHR0cHM6Ly9naXRjb2RlLmNvbS9vcGVuLXNvdXJjZS10b29sa2l0L2I1MTI2Lw==">https://gitcode.com/open-source-toolkit/b5126/</span></p>
 <p>其中包含了：</p>
 <ol>
-<li><strong><span class="exturl" data-url="aHR0cDovL3lvbG92My5wdA==">yolov3.pt</span></strong><br />
+<li><strong><span class="exturl" data-url="aHR0cDovL3lvbG92My5wdA==">yolov3.pt</span></strong><br>
 YOLOv3 的标准权重文件，适用于大多数目标检测任务。</li>
-<li><strong><span class="exturl" data-url="aHR0cDovL3lvbG92My1zcHAucHQ=">yolov3-spp.pt</span></strong><br />
+<li><strong><span class="exturl" data-url="aHR0cDovL3lvbG92My1zcHAucHQ=">yolov3-spp.pt</span></strong><br>
 YOLOv3-SPP 的权重文件，通过空间金字塔池化（Spatial Pyramid Pooling）增强了模型的性能，特别适用于高分辨率图像的目标检测。</li>
-<li><strong><span class="exturl" data-url="aHR0cDovL3lvbG92My10aW55LnB0">yolov3-tiny.pt</span></strong><br />
+<li><strong><span class="exturl" data-url="aHR0cDovL3lvbG92My10aW55LnB0">yolov3-tiny.pt</span></strong><br>
 YOLOv3-Tiny 的权重文件，适用于资源受限的环境，如嵌入式设备或移动设备，具有较快的推理速度和较小的模型体积。</li>
 </ol>
-<h2 id="试运行"><a class="markdownIt-Anchor" href="#试运行"></a> 试运行</h2>
+<h2 id="试运行"><a class="markdownIt-Anchor" href="#试运行">#</a> 试运行</h2>
 <p>首先修改权重文件路径</p>
 <img data-src="../../../images/python/YOLO/v3ultralytics/3.png" alt="v1" style="zoom:50%;" />
-<p><span class="exturl" data-url="aHR0cDovL3huLS1kZXRlY3QtMncycjU0OWIucHk=">运行detect.py</span></p>
-<pre class="highlight"><code class="bash">Fusing layers... 
-yolov3 summary: 261 layers, 61922845 parameters, 0 gradients, 155.9 GFLOPs
-image 1/2 D:\PycharmProjects\yolov3\data\images\bus.jpg: 640x480 4 persons, 1 bicycle, 1 bus, 70.7ms
-image 2/2 D:\PycharmProjects\yolov3\data\images\zidane.jpg: 384x640 2 persons, 2 ties, 55.0ms
-Speed: 1.0ms pre-process, 62.8ms inference, 25.5ms NMS per image at shape (1, 3, 640, 640)
-Results saved to runs\detect\exp3
-</code></pre>
-<p>输出结果：</p>
+<p><span class="exturl" data-url="aHR0cDovL3huLS1kZXRlY3QtMncycjU0OWIucHk=">运行 detect.py</span></p>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>Fusing layers<span class="token punctuation">..</span>. </pre></td></tr><tr><td data-num="2"></td><td><pre>yolov3 summary: <span class="token number">261</span> layers, <span class="token number">61922845</span> parameters, <span class="token number">0</span> gradients, <span class="token number">155.9</span> GFLOPs</pre></td></tr><tr><td data-num="3"></td><td><pre>image <span class="token number">1</span>/2 D:<span class="token punctuation">\</span>PycharmProjects<span class="token punctuation">\</span>yolov3<span class="token punctuation">\</span>data<span class="token punctuation">\</span>images<span class="token punctuation">\</span>bus.jpg: 640x480 <span class="token number">4</span> persons, <span class="token number">1</span> bicycle, <span class="token number">1</span> bus, <span class="token number">70</span>.7ms</pre></td></tr><tr><td data-num="4"></td><td><pre>image <span class="token number">2</span>/2 D:<span class="token punctuation">\</span>PycharmProjects<span class="token punctuation">\</span>yolov3<span class="token punctuation">\</span>data<span class="token punctuation">\</span>images<span class="token punctuation">\</span>zidane.jpg: 384x640 <span class="token number">2</span> persons, <span class="token number">2</span> ties, <span class="token number">55</span>.0ms</pre></td></tr><tr><td data-num="5"></td><td><pre>Speed: <span class="token number">1</span>.0ms pre-process, <span class="token number">62</span>.8ms inference, <span class="token number">25</span>.5ms NMS per image at shape <span class="token punctuation">(</span><span class="token number">1</span>, <span class="token number">3</span>, <span class="token number">640</span>, <span class="token number">640</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="6"></td><td><pre>Results saved to runs<span class="token punctuation">\</span>detect<span class="token punctuation">\</span>exp3</pre></td></tr></table></figure><p>输出结果：</p>
 <img data-src="../../../images/python/YOLO/v3ultralytics/4.png" alt="v1" style="zoom:50%;" />
 <img data-src="../../../images/python/YOLO/v3ultralytics/5.png" alt="v1" style="zoom:50%;" />
-<p>效果惊艳，起初我观察输出时 <code>4 persons, 1 bicycle, 1 bus, 70.7ms</code>，我在想这个 <code>1 bicycle</code> 到底在哪里。</p>
+<p>效果惊艳，起初我观察输出时  <code>4 persons, 1 bicycle, 1 bus, 70.7ms</code> ，我在想这个  <code>1 bicycle</code>  到底在哪里。</p>
 <p>我反复盯着图片看了好几遍：公交车很明显，人也数得清，可自行车呢？画面里没有完整的车轮，没有清晰的车架，甚至也没有骑车的人。那一刻我甚至怀疑，是不是模型误判了。</p>
-<p>直到我真正把 YOLO 的标注框图片打开，那辆自行车就在公交车的右上角，位于居民窗户围栏之中，一个几乎被遮挡、只露出局部轮廓的物体，被一个细小却坚定的框牢牢圈住。那一瞬间，我才理解You Only Look Once的真正含义…</p>
-<h2 id="项目结构"><a class="markdownIt-Anchor" href="#项目结构"></a> 项目结构</h2>
-<h3 id="资源和工具"><a class="markdownIt-Anchor" href="#资源和工具"></a> 资源和工具</h3>
+<p>直到我真正把 YOLO 的标注框图片打开，那辆自行车就在公交车的右上角，位于居民窗户围栏之中，一个几乎被遮挡、只露出局部轮廓的物体，被一个细小却坚定的框牢牢圈住。那一瞬间，我才理解 You Only Look Once 的真正含义…</p>
+<h2 id="项目结构"><a class="markdownIt-Anchor" href="#项目结构">#</a> 项目结构</h2>
+<h3 id="资源和工具"><a class="markdownIt-Anchor" href="#资源和工具">#</a> 资源和工具</h3>
 <ul>
-<li><strong><code>data</code></strong>：存放数据相关的<strong>配置文件</strong>比如类别名称、路径配置和<strong>图片测试数据</strong>。</li>
-<li><strong><code>models</code></strong>：存放<strong>模型相关的配置文件</strong>，定义神经网络层级结构和核心代码。</li>
-<li><strong><code>runs</code></strong>：<strong>结果文件夹</strong>。当你运行程序进行推理、训练或测试后，生成的图表、保存的检测结果都会放在这里。</li>
-<li><strong><code>utils</code></strong>：<strong>工具代码库</strong>。存放一些辅助函数，比如计算损失的代码、在图片上画框框的代码等。</li>
-<li><strong><code>VOCdevkit</code></strong>：<strong>数据集文件夹</strong>。通常是按照官方 VOC 标准存放的原始图片和标签文件。</li>
-<li><strong><code>weight</code></strong>：<strong>权重文件夹</strong>。专门用来放训练好的模型参数（权重文件），没有它模型就无法工作。</li>
+<li><strong> <code>data</code> </strong>：存放数据相关的<strong>配置文件</strong>比如类别名称、路径配置和<strong>图片测试数据</strong>。</li>
+<li><strong> <code>models</code> </strong>：存放<strong>模型相关的配置文件</strong>，定义神经网络层级结构和核心代码。</li>
+<li><strong> <code>runs</code> </strong>：<strong>结果文件夹</strong>。当你运行程序进行推理、训练或测试后，生成的图表、保存的检测结果都会放在这里。</li>
+<li><strong> <code>utils</code> </strong>：<strong>工具代码库</strong>。存放一些辅助函数，比如计算损失的代码、在图片上画框框的代码等。</li>
+<li><strong> <code>VOCdevkit</code> </strong>：<strong>数据集文件夹</strong>。通常是按照官方 VOC 标准存放的原始图片和标签文件。</li>
+<li><strong> <code>weight</code> </strong>：<strong>权重文件夹</strong>。专门用来放训练好的模型参数（权重文件），没有它模型就无法工作。</li>
 </ul>
-<h3 id="视频与环境文件"><a class="markdownIt-Anchor" href="#视频与环境文件"></a> 视频与环境文件</h3>
+<h3 id="视频与环境文件"><a class="markdownIt-Anchor" href="#视频与环境文件">#</a> 视频与环境文件</h3>
 <ul>
-<li><strong><code>che.avi</code></strong>：一个<strong>测试视频</strong>。方便你写好程序后，直接运行来看看能不能识别出视频里的物体。</li>
-<li><strong><code>requirements.txt</code></strong>：<strong>环境配置文件</strong>。记录了运行这个项目需要安装哪些 Python 插件和库，以及对应的版本。</li>
+<li><strong> <code>che.avi</code> </strong>：一个<strong>测试视频</strong>。方便你写好程序后，直接运行来看看能不能识别出视频里的物体。</li>
+<li><strong> <code>requirements.txt</code> </strong>：<strong>环境配置文件</strong>。记录了运行这个项目需要安装哪些 Python 插件和库，以及对应的版本。</li>
 </ul>
-<h3 id="python-脚本部分核心运行程序"><a class="markdownIt-Anchor" href="#python-脚本部分核心运行程序"></a> Python 脚本部分（核心运行程序）</h3>
+<h3 id="python-脚本部分核心运行程序"><a class="markdownIt-Anchor" href="#python-脚本部分核心运行程序">#</a> Python 脚本部分（核心运行程序）</h3>
 <ul>
-<li><strong><code>Dataset_partitioning.py</code></strong>：<strong>数据集划分代码</strong>。用来把你的图片随机分成“训练集”和“验证集”。</li>
-<li><strong><code>detect.py</code></strong>：<strong>检测推理代码</strong>。最常用的文件，运行它就可以调用模型去识别一张图片或一段视频。</li>
-<li><strong><code>hubconf.py</code></strong>：PyTorch Hub 相关的脚本（用于方便地在其他地方调用这个模型）。</li>
-<li><strong><code>train.py</code></strong>：<strong>模型训练代码</strong>。如果你想用自己的数据教模型认东西，就运行这个文件。</li>
-<li><strong><code>val.py</code></strong>：<strong>模型测试/验证代码</strong>。用来跑分，看看训练出来的模型准确率（mAP）到底有多高。</li>
+<li><strong> <code>Dataset_partitioning.py</code> </strong>：<strong>数据集划分代码</strong>。用来把你的图片随机分成 “训练集” 和 “验证集”。</li>
+<li><strong> <code>detect.py</code> </strong>：<strong>检测推理代码</strong>。最常用的文件，运行它就可以调用模型去识别一张图片或一段视频。</li>
+<li><strong> <code>hubconf.py</code> </strong>：PyTorch Hub 相关的脚本（用于方便地在其他地方调用这个模型）。</li>
+<li><strong> <code>train.py</code> </strong>：<strong>模型训练代码</strong>。如果你想用自己的数据教模型认东西，就运行这个文件。</li>
+<li><strong> <code>val.py</code> </strong>：<strong>模型测试 / 验证代码</strong>。用来跑分，看看训练出来的模型准确率（mAP）到底有多高。</li>
 </ul>
-<h2 id="超参数文件hypscratch-highyaml"><a class="markdownIt-Anchor" href="#超参数文件hypscratch-highyaml"></a> 超参数文件：hyp.scratch-high.yaml</h2>
+<h2 id="超参数文件hypscratch-highyaml"><a class="markdownIt-Anchor" href="#超参数文件hypscratch-highyaml">#</a> 超参数文件：hyp.scratch-high.yaml</h2>
 <p>lr0 表示初始学习率，即训练刚开始时优化器使用的学习率。一般来说，SGD 常用 0.01，Adam 常用 0.001。学习率过大会导致训练震荡甚至发散，过小则收敛缓慢。</p>
 <p>lrf 表示最终学习率与初始学习率的比例，通常用于 OneCycle 学习率策略。训练后期的学习率等于 lr0 乘以 lrf，例如 lr0 为 0.01，lrf 为 0.1，则最终学习率为 0.001。这样可以在训练后期减小步长，使模型更稳定地收敛。</p>
 <p>momentum 表示动量参数。在使用 SGD 时它是 momentum，在使用 Adam 时对应 beta1。动量的作用是保留历史梯度方向，减少参数更新的抖动，加快收敛速度。</p>
@@ -236,7 +220,7 @@ Results saved to runs\detect\exp3
 <p>box 表示边界框回归损失的权重，用于控制模型对目标位置和大小回归精度的关注程度。该值越大，模型越重视框的位置准确性。</p>
 <p>cls 表示分类损失的权重，用于平衡多类别预测的重要性。如果类别数较多或类别区分困难，通常需要适当增大该值。</p>
 <p>cls_pw 表示分类损失中正样本的权重，主要用于缓解正负样本不平衡问题。值为 1 表示不额外加权。</p>
-<p>obj 表示目标置信度损失的权重，用于衡量模型判断“该位置是否存在目标”的能力，这是 YOLO 检测中非常核心的一项。</p>
+<p>obj 表示目标置信度损失的权重，用于衡量模型判断 “该位置是否存在目标” 的能力，这是 YOLO 检测中非常核心的一项。</p>
 <p>obj_pw 表示目标置信度损失中正样本的权重，同样用于样本不平衡场景。</p>
 <p>iou_t 表示训练时使用的 IoU 阈值，只有预测框与真实框的 IoU 大于该值时才会参与正样本训练。阈值较低时有利于提高召回率，较高时有利于提高定位精度。</p>
 <p>anchor_t 表示 anchor 匹配阈值，用于控制真实框与 anchor 在宽高比例上的匹配宽松程度。数值越大，允许匹配的 anchor 越多。</p>
@@ -255,63 +239,51 @@ Results saved to runs\detect\exp3
 <p>mosaic 表示 Mosaic 数据增强的使用概率，1.0 表示始终使用。该方法将四张图片拼接成一张，对小目标检测和复杂场景效果显著。</p>
 <p>mixup 表示 MixUp 数据增强的概率，通过将两张图片和标签进行线性混合来增强模型的泛化能力。</p>
 <p>copy_paste 表示 Copy-Paste 数据增强的概率，即从一张图中裁剪目标并粘贴到另一张图中，用于增加目标组合的多样性。</p>
-<h2 id="no-aug-object365-scratch-highmedlow-voc"><a class="markdownIt-Anchor" href="#no-aug-object365-scratch-highmedlow-voc"></a> no-aug / Object365/ scratch-high/med/low / VOC</h2>
-<h3 id="hypno-augment"><a class="markdownIt-Anchor" href="#hypno-augment"></a> hyp.no-augment</h3>
-<p>hyp.no-augment 非常特殊，它表示<strong>几乎关闭所有数据增强</strong>。mosaic、mixup、颜色扰动基本都不开。它主要有三种用途：第一，用来做消融实验，验证“数据增强到底有没有用”；第二，用在数据本身已经被严格对齐、增强会破坏语义的任务中比如工业缺陷、医学影像；第三，用于调试或快速验证训练流程是否正确。</p>
-<h3 id="hypscratch-object365"><a class="markdownIt-Anchor" href="#hypscratch-object365"></a> hyp.scratch-object365</h3>
+<h2 id="no-aug-object365-scratch-highmedlow-voc"><a class="markdownIt-Anchor" href="#no-aug-object365-scratch-highmedlow-voc">#</a> no-aug / Object365/ scratch-high/med/low / VOC</h2>
+<h3 id="hypno-augment"><a class="markdownIt-Anchor" href="#hypno-augment">#</a> hyp.no-augment</h3>
+<p>hyp.no-augment 非常特殊，它表示<strong>几乎关闭所有数据增强</strong>。mosaic、mixup、颜色扰动基本都不开。它主要有三种用途：第一，用来做消融实验，验证 “数据增强到底有没有用”；第二，用在数据本身已经被严格对齐、增强会破坏语义的任务中比如工业缺陷、医学影像；第三，用于调试或快速验证训练流程是否正确。</p>
+<h3 id="hypscratch-object365"><a class="markdownIt-Anchor" href="#hypscratch-object365">#</a> hyp.scratch-object365</h3>
 <p>hyp.scratch-object365 是为 <strong>Object365 这种超大规模、类别极多的数据集</strong>设计的。它会更加重视分类稳定性，对 cls loss、正负样本平衡和 anchor 匹配都有特殊调优。这套参数一般不建议直接拿来用在普通自制数据集上。</p>
-<h3 id="hypscratch"><a class="markdownIt-Anchor" href="#hypscratch"></a> hyp.scratch</h3>
-<p>scratch 的意思是“从零开始训练”，也就是<strong>不加载任何预训练权重</strong>，网络参数完全随机初始化。在这种情况下，训练对学习率、数据增强和 warmup 都非常敏感，所以官方给了多套经过验证的 hyp 配置。</p>
-<h4 id="hypscratch-high"><a class="markdownIt-Anchor" href="#hypscratch-high"></a> hyp.scratch-high</h4>
+<h3 id="hypscratch"><a class="markdownIt-Anchor" href="#hypscratch">#</a> hyp.scratch</h3>
+<p>scratch 的意思是 “从零开始训练”，也就是<strong>不加载任何预训练权重</strong>，网络参数完全随机初始化。在这种情况下，训练对学习率、数据增强和 warmup 都非常敏感，所以官方给了多套经过验证的 hyp 配置。</p>
+<h4 id="hypscratch-high"><a class="markdownIt-Anchor" href="#hypscratch-high">#</a> hyp.scratch-high</h4>
 <p>hyp.scratch-high 是为<strong>大数据集 + 强数据增强</strong>准备的配置。它通常用于 COCO 这种规模在十万级以上的数据集，或者你有非常多样、复杂场景的数据。它的典型特征是数据增强非常激进，比如 mosaic、mixup、颜色扰动都开得比较大，学习率也相对偏高，模型泛化能力最强，但前期训练不稳定，对小数据集非常不友好。</p>
-<h4 id="hypscratch-med"><a class="markdownIt-Anchor" href="#hypscratch-med"></a> hyp.scratch-med</h4>
+<h4 id="hypscratch-med"><a class="markdownIt-Anchor" href="#hypscratch-med">#</a> hyp.scratch-med</h4>
 <p>hyp.scratch-med 是一个<strong>折中方案</strong>。数据增强和学习率都比 high 温和一些，适合中等规模数据集，比如几千到一两万张图片。很多人在自定义数据集时，其实用的就是这一套，只是没意识到。</p>
-<h4 id="hypscratch-low"><a class="markdownIt-Anchor" href="#hypscratch-low"></a> hyp.scratch-low</h4>
-<p>hyp.scratch-low 是为<strong>小数据集</strong>准备的。它会明显减弱数据增强强度，学习率也更保守，避免模型在强增强下“学歪”。如果你的数据只有几百到一两千张，用 high 或 med 很容易出现 loss 震荡、mAP 不升甚至下降，这时 low 反而效果更好。</p>
-<h4 id="hypscratch-voc"><a class="markdownIt-Anchor" href="#hypscratch-voc"></a> hyp.scratch-voc</h4>
-<p>hyp.scratch-voc。它是<strong>专门为 PASCAL VOC 数据集调的</strong>，而不是简单的 low 或 med。VOC 的特点是类别少、目标相对大、场景简单，所以这个配置通常会降低分类损失权重、调整 anchor 匹配策略，更偏向于“稳而准”。</p>
-<h2 id="最佳实践"><a class="markdownIt-Anchor" href="#最佳实践"></a> 最佳实践？</h2>
+<h4 id="hypscratch-low"><a class="markdownIt-Anchor" href="#hypscratch-low">#</a> hyp.scratch-low</h4>
+<p>hyp.scratch-low 是为<strong>小数据集</strong>准备的。它会明显减弱数据增强强度，学习率也更保守，避免模型在强增强下 “学歪”。如果你的数据只有几百到一两千张，用 high 或 med 很容易出现 loss 震荡、mAP 不升甚至下降，这时 low 反而效果更好。</p>
+<h4 id="hypscratch-voc"><a class="markdownIt-Anchor" href="#hypscratch-voc">#</a> hyp.scratch-voc</h4>
+<p>hyp.scratch-voc。它是<strong>专门为 PASCAL VOC 数据集调的</strong>，而不是简单的 low 或 med。VOC 的特点是类别少、目标相对大、场景简单，所以这个配置通常会降低分类损失权重、调整 anchor 匹配策略，更偏向于 “稳而准”。</p>
+<h2 id="最佳实践"><a class="markdownIt-Anchor" href="#最佳实践">#</a> 最佳实践？</h2>
 <p><strong>90% 的自定义数据集，scratch-med 或 scratch-low 起步是最稳的</strong>，不要一上来就 high。</p>
-<h2 id="数据集分类文件及其下载脚本"><a class="markdownIt-Anchor" href="#数据集分类文件及其下载脚本"></a> 数据集分类文件及其下载脚本</h2>
+<h2 id="数据集分类文件及其下载脚本"><a class="markdownIt-Anchor" href="#数据集分类文件及其下载脚本">#</a> 数据集分类文件及其下载脚本</h2>
 <img data-src="../../../images/python/YOLO/v3ultralytics/6.png" alt="v1"  />
-<p>每一个 <code>.yaml</code> 文件都像是一份说明书，告诉模型：</p>
+<p>每一个  <code>.yaml</code>  文件都像是一份说明书，告诉模型：</p>
 <ul>
-<li><strong>训练/验证数据在哪里</strong>：图片和标签存储在硬盘的哪个路径下。</li>
+<li><strong>训练 / 验证数据在哪里</strong>：图片和标签存储在硬盘的哪个路径下。</li>
 <li><strong>有多少个类别</strong>：例如模型需要识别 80 种物体还是 10 种。</li>
-<li><strong>类别的名字是什么</strong>：例如 <code>0: person</code>, <code>1: bicycle</code> 等。</li>
+<li><strong>类别的名字是什么</strong>：例如  <code>0: person</code> ,  <code>1: bicycle</code>  等。</li>
 </ul>
-<pre class="highlight"><code class="yaml"><span class="hljs-comment"># 路径设置</span>
-<span class="hljs-attr">path:</span> <span class="hljs-string">../datasets/coco128</span>  <span class="hljs-comment"># 数据集根目录</span>
-<span class="hljs-attr">train:</span> <span class="hljs-string">images/train2017</span>    <span class="hljs-comment"># 训练集图片路径</span>
-<span class="hljs-attr">val:</span> <span class="hljs-string">images/train2017</span>      <span class="hljs-comment"># 验证集图片路径</span>
-
-<span class="hljs-comment"># 类别信息</span>
-<span class="hljs-attr">nc:</span> <span class="hljs-number">80</span>  <span class="hljs-comment"># 类别数量 (number of classes)</span>
-<span class="hljs-attr">names:</span>
-  <span class="hljs-attr">0:</span> <span class="hljs-string">person</span>
-  <span class="hljs-attr">1:</span> <span class="hljs-string">bicycle</span>
-  <span class="hljs-attr">2:</span> <span class="hljs-string">car</span>
-</code></pre>
-<h2 id="labelimg标注软件"><a class="markdownIt-Anchor" href="#labelimg标注软件"></a> labelimg标注软件</h2>
+<figure class="highlight yaml"><figcaption data-lang="YAML"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment"># 路径设置</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token key atrule">path</span><span class="token punctuation">:</span> ../datasets/coco128  <span class="token comment"># 数据集根目录</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token key atrule">train</span><span class="token punctuation">:</span> images/train2017    <span class="token comment"># 训练集图片路径</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token key atrule">val</span><span class="token punctuation">:</span> images/train2017      <span class="token comment"># 验证集图片路径</span></pre></td></tr><tr><td data-num="5"></td><td><pre></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token comment"># 类别信息</span></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token key atrule">nc</span><span class="token punctuation">:</span> <span class="token number">80</span>  <span class="token comment"># 类别数量 (number of classes)</span></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token key atrule">names</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="9"></td><td><pre>  <span class="token key atrule">0</span><span class="token punctuation">:</span> person</pre></td></tr><tr><td data-num="10"></td><td><pre>  <span class="token key atrule">1</span><span class="token punctuation">:</span> bicycle</pre></td></tr><tr><td data-num="11"></td><td><pre>  <span class="token key atrule">2</span><span class="token punctuation">:</span> car</pre></td></tr></table></figure><h2 id="labelimg标注软件"><a class="markdownIt-Anchor" href="#labelimg标注软件">#</a> labelimg 标注软件</h2>
 <p>开源地址：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0h1bWFuU2lnbmFsL2xhYmVsSW1n">https://github.com/HumanSignal/labelImg</span></p>
 <blockquote>
-<p>LabelImg is now part of the Label Studio community. The popular image annotation tool created by Tzutalin is no longer actively being developed, but you can check out Label Studio, the open source data labeling tool for images, text, hypertext, audio, video and time-series data.<br />
+<p>LabelImg is now part of the Label Studio community. The popular image annotation tool created by Tzutalin is no longer actively being developed, but you can check out Label Studio, the open source data labeling tool for images, text, hypertext, audio, video and time-series data.<br>
 LabelImg 现已成为 Label Studio 社区的一部分。Tzutalin 开发的流行图像注释工具已不再积极开发，但你可以看看 Label Studio，这是一个开源的数据标注工具，用于图像、文本、超文本、音频、视频和时间序列数据。</p>
 </blockquote>
 <p>Label Studio：<span class="exturl" data-url="aHR0cHM6Ly9sYWJlbHN0dWQuaW8v">https://labelstud.io/</span> （Open Source Data Labeling Platform）</p>
 <p>开源地址：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0h1bWFuU2lnbmFsL2xhYmVsLXN0dWRpby8=">https://github.com/HumanSignal/label-studio/</span></p>
-<p>labelimg最终版本为：1.8.1 / released this Dec 3, 2018 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3R6dXRhbGluL2xhYmVsSW1nL2ZpbGVzLzI2MzgxOTkvd2luZG93c192MS44LjEuemlw">https://github.com/tzutalin/labelImg/files/2638199/windows_v1.8.1.zip</span></p>
+<p>labelimg 最终版本为：1.8.1 /released this Dec 3, 2018 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3R6dXRhbGluL2xhYmVsSW1nL2ZpbGVzLzI2MzgxOTkvd2luZG93c192MS44LjEuemlw">https://github.com/tzutalin/labelImg/files/2638199/windows_v1.8.1.zip</span></p>
 <img data-src="../../../images/python/YOLO/v3ultralytics/8.png" alt="v1"  />
-<p>推荐使用VOC格式的xml信息。</p>
-<h2 id="voc2007"><a class="markdownIt-Anchor" href="#voc2007"></a> VOC2007</h2>
+<p>推荐使用 VOC 格式的 xml 信息。</p>
+<h2 id="voc2007"><a class="markdownIt-Anchor" href="#voc2007">#</a> VOC2007</h2>
 <p>源：<span class="exturl" data-url="aHR0cDovL2hvc3Qucm9ib3RzLm94LmFjLnVrL3Bhc2NhbC9WT0Mvdm9jMjAwNw==">http://host.robots.ox.ac.uk/pascal/VOC/voc2007</span> 但是我访问这个时候被防火墙拦截了。</p>
 <p>源码中的：</p>
 <ol>
 <li>训练集与验证集：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3VsdHJhbHl0aWNzL2Fzc2V0cy9yZWxlYXNlcy9kb3dubG9hZC92MC4wLjAvVk9DdHJhaW52YWxfMDYtTm92LTIwMDcuemlw">https://github.com/ultralytics/assets/releases/download/v0.0.0/VOCtrainval_06-Nov-2007.zip</span></li>
 <li>测试集：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3VsdHJhbHl0aWNzL2Fzc2V0cy9yZWxlYXNlcy9kb3dubG9hZC92MC4wLjAvVk9DdGVzdF8wNi1Ob3YtMjAwNy56aXA=">https://github.com/ultralytics/assets/releases/download/v0.0.0/VOCtest_06-Nov-2007.zip</span></li>
 </ol>
-<h2 id="将voc格式转为yolo格式"><a class="markdownIt-Anchor" href="#将voc格式转为yolo格式"></a> 将VOC格式转为YOLO格式</h2>
-<h3 id="data_trans脚本"><a class="markdownIt-Anchor" href="#data_trans脚本"></a> Data_Trans脚本</h3>
+<h2 id="将voc格式转为yolo格式"><a class="markdownIt-Anchor" href="#将voc格式转为yolo格式">#</a> 将 VOC 格式转为 YOLO 格式</h2>
+<h3 id="data_trans脚本"><a class="markdownIt-Anchor" href="#data_trans脚本">#</a> Data_Trans 脚本</h3>
 <p>请访问开源脚本：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0ppZVp6em9vL0RhdGFfVHJhbnM=">https://github.com/JieZzzoo/Data_Trans</span></p>
 <p>使用说明：<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1RoZWJlc3RfamFjay9hcnRpY2xlL2RldGFpbHMvMTI1NjM3MDk5">https://blog.csdn.net/Thebest_jack/article/details/125637099</span></p>
 <div class="links"><div class="item" title="蓝胖胖" style="--block-color:#409be1;"><span class="exturl image" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1RoZWJlc3RfamFjaz90eXBlPWJsb2c=" data-background-image="/images/404.png"></span>
@@ -319,116 +291,24 @@ LabelImg 现已成为 Label Studio 社区的一部分。Tzutalin 开发的流行
           <span class="exturl title" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1RoZWJlc3RfamFjaz90eXBlPWJsb2c=">蓝胖胖</span>
           <p class="desc">感谢作者开源</p>
           </div></div></div>
-<p>这个脚本可以将VOC格式转为YOLO格式，不过他把数据集索引写在了test、train和val的文本文件里了。</p>
-<p>不过他这个提取脚本有点小bug，后续我将会制作一个完整的脚本。</p>
-<p>如果要产生图片（训练、验证、测试）和标签（训练、验证、测试）那样的结构，需要进一步改写，因此我设计了这样的脚本：<code>imgsWlabels</code></p>
-<h3 id="imgswlabels脚本"><a class="markdownIt-Anchor" href="#imgswlabels脚本"></a> imgsWlabels脚本</h3>
-<p>imgsWlabels是我自创的一个提取与整理的脚本，如用方式如下，首先你需要把<code>Data_Trans</code>中的的Imagesets、labels以及JPEGImages复制下来放到<code>imgsWlabels</code>的pre目录下，形如：</p>
+<p>这个脚本可以将 VOC 格式转为 YOLO 格式，不过他把数据集索引写在了 test、train 和 val 的文本文件里了。</p>
+<p>不过他这个提取脚本有点小 bug，后续我将会制作一个完整的脚本。</p>
+<p>如果要产生图片（训练、验证、测试）和标签（训练、验证、测试）那样的结构，需要进一步改写，因此我设计了这样的脚本： <code>imgsWlabels</code></p>
+<h3 id="imgswlabels脚本"><a class="markdownIt-Anchor" href="#imgswlabels脚本">#</a> imgsWlabels 脚本</h3>
+<p>imgsWlabels 是我自创的一个提取与整理的脚本，如用方式如下，首先你需要把 <code>Data_Trans</code>  中的的 Imagesets、labels 以及 JPEGImages 复制下来放到 <code>imgsWlabels</code>  的 pre 目录下，形如：</p>
 <img data-src="../../../images/python/YOLO/v3ultralytics/9.png" alt="v1"  />
-<p><code>imgsWlabels</code>有两种模式，分别是“train与val”模式和”trainval“模式。</p>
-<h4 id="train与val模式"><a class="markdownIt-Anchor" href="#train与val模式"></a> train与val模式</h4>
+<p><code>imgsWlabels</code>  有两种模式，分别是 “train 与 val” 模式和”trainval“模式。</p>
+<h4 id="train与val模式"><a class="markdownIt-Anchor" href="#train与val模式">#</a> train 与 val 模式</h4>
 <p>在这种模式下，数据集被分为三个部分：训练集、验证集、测试集，这种模式的特点是：<strong>训练集和验证集是分开的</strong>，避免数据泄露，确保模型的泛化能力。</p>
-<h4 id="trainval模式"><a class="markdownIt-Anchor" href="#trainval模式"></a> trainval模式</h4>
-<p>在 <strong>trainval</strong> 模式下，训练集和验证集被合并为一个整体的数据集，模型在整个 <code>trainval</code> 数据集上进行训练和验证。这种模式通常用于特定的任务，例如数据量不大时，可以通过合并训练集和验证集来提升训练集的多样性和大小。</p>
-<h3 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h3>
-<pre class="highlight"><code class="python"><span class="hljs-comment"># 划分数据集模式，0为train与val模式，1为trainval模式</span>
-split_mode = <span class="hljs-number">0</span>
-
-<span class="hljs-comment"># ----</span>
-<span class="hljs-keyword">import</span> os
-<span class="hljs-keyword">import</span> time
-<span class="hljs-keyword">import</span> shutil
-<span class="hljs-keyword">from</span> tqdm <span class="hljs-keyword">import</span> tqdm
-
-root_dir = <span class="hljs-string">&#x27;pre&#x27;</span>
-root_img_dir = os.path.join(root_dir, <span class="hljs-string">&#x27;JPEGImages&#x27;</span>)
-root_label_dir = os.path.join(root_dir, <span class="hljs-string">&#x27;labels&#x27;</span>)
-indexes = os.path.join(root_dir, <span class="hljs-string">&#x27;Imagesets&#x27;</span>)
-train_index = os.path.join(indexes, <span class="hljs-string">&#x27;train.txt&#x27;</span>)
-val_index = os.path.join(indexes, <span class="hljs-string">&#x27;val.txt&#x27;</span>)
-trainval_index = os.path.join(indexes, <span class="hljs-string">&#x27;trainval.txt&#x27;</span>)
-test_index = os.path.join(indexes, <span class="hljs-string">&#x27;test.txt&#x27;</span>)
-
-
-<span class="hljs-keyword">def</span> <span class="hljs-title function_">read_file_return_list</span>(<span class="hljs-params">file_path</span>):
-    <span class="hljs-keyword">try</span>:
-        <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(file_path, <span class="hljs-string">&#x27;r&#x27;</span>) <span class="hljs-keyword">as</span> f:
-            lines = f.readlines()
-            <span class="hljs-keyword">return</span> [line.strip() <span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> lines]
-    <span class="hljs-keyword">except</span> FileNotFoundError:
-        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;index file not found&#x27;</span>)
-        exit()
-    <span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> e:
-        <span class="hljs-built_in">print</span>(e)
-        exit()
-
-
-train_indexes_list = read_file_return_list(train_index)
-val_indexes_list = read_file_return_list(val_index)
-trainval_indexes_list = read_file_return_list(trainval_index)
-test_indexes_list = read_file_return_list(test_index)
-
-
-<span class="hljs-keyword">def</span> <span class="hljs-title function_">copy_file</span>(<span class="hljs-params">src_file, dst_dir</span>):
-    <span class="hljs-keyword">try</span>:
-        os.makedirs(dst_dir, exist_ok=<span class="hljs-literal">True</span>)
-        shutil.copy(src_file, dst_dir)
-        <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span>
-    <span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> e:
-        <span class="hljs-built_in">print</span>(e)
-        <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span>
-
-
-<span class="hljs-keyword">def</span> <span class="hljs-title function_">cp_file_in_list</span>(<span class="hljs-params">src_dir, dst_dir, index_list, target_ext=<span class="hljs-string">&#x27;.jpg&#x27;</span>, msg=<span class="hljs-string">&#x27;copy file...&#x27;</span></span>):
-    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> os.path.exists(src_dir):
-        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Source directory does not exist!&#x27;</span>)
-        <span class="hljs-keyword">return</span>
-    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> os.path.exists(dst_dir):
-        os.makedirs(dst_dir)
-
-    <span class="hljs-keyword">with</span> tqdm(index_list, desc=msg, unit=<span class="hljs-string">&#x27;file&#x27;</span>, total=<span class="hljs-built_in">len</span>(index_list), dynamic_ncols=<span class="hljs-literal">True</span>,
-              ncols=<span class="hljs-number">100</span>, mininterval=<span class="hljs-number">0.1</span>,
-              bar_format=<span class="hljs-string">&quot;&#123;l_bar&#125;&#123;bar&#125;| &#123;n_fmt&#125;/&#123;total_fmt&#125; [&#123;elapsed&#125; &lt; &#123;remaining&#125;, &#123;rate_fmt&#125;]&quot;</span>) <span class="hljs-keyword">as</span> pbar:
-        <span class="hljs-keyword">for</span> index <span class="hljs-keyword">in</span> pbar:
-            src_file = os.path.join(src_dir, index + target_ext)
-            <span class="hljs-keyword">if</span> copy_file(src_file, dst_dir):
-                pbar.set_postfix(file=index, color=<span class="hljs-string">&#x27;green&#x27;</span>)
-            <span class="hljs-keyword">else</span>:
-                pbar.set_postfix(file=index, color=<span class="hljs-string">&#x27;red&#x27;</span>)
-            pbar.update(<span class="hljs-number">1</span>)
-
-
-<span class="hljs-keyword">def</span> <span class="hljs-title function_">boot_split</span>():
-    <span class="hljs-keyword">if</span> split_mode == <span class="hljs-number">0</span>:
-        <span class="hljs-comment"># train与val模式</span>
-        cp_file_in_list(root_img_dir, <span class="hljs-string">&#x27;images/train&#x27;</span>, train_indexes_list, msg=<span class="hljs-string">&#x27;copy train file...&#x27;</span>)
-        cp_file_in_list(root_img_dir, <span class="hljs-string">&#x27;images/val&#x27;</span>, val_indexes_list, msg=<span class="hljs-string">&#x27;copy val file...&#x27;</span>)
-        cp_file_in_list(root_img_dir, <span class="hljs-string">&#x27;images/test&#x27;</span>, test_indexes_list, msg=<span class="hljs-string">&#x27;copy test file...&#x27;</span>)
-
-        cp_file_in_list(root_label_dir, <span class="hljs-string">&#x27;labels/train&#x27;</span>, train_indexes_list, target_ext=<span class="hljs-string">&#x27;.txt&#x27;</span>, msg=<span class="hljs-string">&#x27;copy train label...&#x27;</span>)
-        cp_file_in_list(root_label_dir, <span class="hljs-string">&#x27;labels/val&#x27;</span>, val_indexes_list, target_ext=<span class="hljs-string">&#x27;.txt&#x27;</span>, msg=<span class="hljs-string">&#x27;copy val label...&#x27;</span>)
-        cp_file_in_list(root_label_dir, <span class="hljs-string">&#x27;labels/test&#x27;</span>, test_indexes_list, target_ext=<span class="hljs-string">&#x27;.txt&#x27;</span>, msg=<span class="hljs-string">&#x27;copy test label...&#x27;</span>)
-    <span class="hljs-keyword">elif</span> split_mode == <span class="hljs-number">1</span>:
-        <span class="hljs-comment"># trainval模式</span>
-        cp_file_in_list(root_img_dir, <span class="hljs-string">&#x27;images/trainval&#x27;</span>, trainval_indexes_list, msg=<span class="hljs-string">&#x27;copy trainval file...&#x27;</span>)
-        cp_file_in_list(root_img_dir, <span class="hljs-string">&#x27;images/test&#x27;</span>, test_indexes_list, msg=<span class="hljs-string">&#x27;copy test file...&#x27;</span>)
-
-        cp_file_in_list(root_label_dir, <span class="hljs-string">&#x27;labels/trainval&#x27;</span>, trainval_indexes_list, target_ext=<span class="hljs-string">&#x27;.txt&#x27;</span>, msg=<span class="hljs-string">&#x27;copy trainval label...&#x27;</span>)
-        cp_file_in_list(root_label_dir, <span class="hljs-string">&#x27;labels/test&#x27;</span>, test_indexes_list, target_ext=<span class="hljs-string">&#x27;.txt&#x27;</span>, msg=<span class="hljs-string">&#x27;copy test label...&#x27;</span>)
-
-
-<span class="hljs-comment"># ----</span>
-<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:
-    start_time = time.time()
-    boot_split()
-    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Time used: %.2f&#x27;</span> % (time.time() - start_time))
-</code></pre>
-<p>可以根据需要的模式进行修改运行模式。</p>
+<h4 id="trainval模式"><a class="markdownIt-Anchor" href="#trainval模式">#</a> trainval 模式</h4>
+<p>在 <strong>trainval</strong> 模式下，训练集和验证集被合并为一个整体的数据集，模型在整个  <code>trainval</code>  数据集上进行训练和验证。这种模式通常用于特定的任务，例如数据量不大时，可以通过合并训练集和验证集来提升训练集的多样性和大小。</p>
+<h3 id="代码"><a class="markdownIt-Anchor" href="#代码">#</a> 代码</h3>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment"># 划分数据集模式，0 为 train 与 val 模式，1 为 trainval 模式</span></pre></td></tr><tr><td data-num="2"></td><td><pre>split_mode <span class="token operator">=</span> <span class="token number">0</span></pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token comment"># ----</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token keyword">import</span> os</pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token keyword">import</span> time</pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token keyword">import</span> shutil</pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token keyword">from</span> tqdm <span class="token keyword">import</span> tqdm</pre></td></tr><tr><td data-num="9"></td><td><pre></pre></td></tr><tr><td data-num="10"></td><td><pre>root_dir <span class="token operator">=</span> <span class="token string">'pre'</span></pre></td></tr><tr><td data-num="11"></td><td><pre>root_img_dir <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>root_dir<span class="token punctuation">,</span> <span class="token string">'JPEGImages'</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="12"></td><td><pre>root_label_dir <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>root_dir<span class="token punctuation">,</span> <span class="token string">'labels'</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="13"></td><td><pre>indexes <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>root_dir<span class="token punctuation">,</span> <span class="token string">'Imagesets'</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="14"></td><td><pre>train_index <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>indexes<span class="token punctuation">,</span> <span class="token string">'train.txt'</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="15"></td><td><pre>val_index <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>indexes<span class="token punctuation">,</span> <span class="token string">'val.txt'</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="16"></td><td><pre>trainval_index <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>indexes<span class="token punctuation">,</span> <span class="token string">'trainval.txt'</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="17"></td><td><pre>test_index <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>indexes<span class="token punctuation">,</span> <span class="token string">'test.txt'</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="18"></td><td><pre></pre></td></tr><tr><td data-num="19"></td><td><pre></pre></td></tr><tr><td data-num="20"></td><td><pre><span class="token keyword">def</span> <span class="token function">read_file_return_list</span><span class="token punctuation">(</span>file_path<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="21"></td><td><pre>    <span class="token keyword">try</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="22"></td><td><pre>        <span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span>file_path<span class="token punctuation">,</span> <span class="token string">'r'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span></pre></td></tr><tr><td data-num="23"></td><td><pre>            lines <span class="token operator">=</span> f<span class="token punctuation">.</span>readlines<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="24"></td><td><pre>            <span class="token keyword">return</span> <span class="token punctuation">[</span>line<span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">for</span> line <span class="token keyword">in</span> lines<span class="token punctuation">]</span></pre></td></tr><tr><td data-num="25"></td><td><pre>    <span class="token keyword">except</span> FileNotFoundError<span class="token punctuation">:</span></pre></td></tr><tr><td data-num="26"></td><td><pre>        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'index file not found'</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="27"></td><td><pre>        exit<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="28"></td><td><pre>    <span class="token keyword">except</span> Exception <span class="token keyword">as</span> e<span class="token punctuation">:</span></pre></td></tr><tr><td data-num="29"></td><td><pre>        <span class="token keyword">print</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="30"></td><td><pre>        exit<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="31"></td><td><pre></pre></td></tr><tr><td data-num="32"></td><td><pre></pre></td></tr><tr><td data-num="33"></td><td><pre>train_indexes_list <span class="token operator">=</span> read_file_return_list<span class="token punctuation">(</span>train_index<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="34"></td><td><pre>val_indexes_list <span class="token operator">=</span> read_file_return_list<span class="token punctuation">(</span>val_index<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="35"></td><td><pre>trainval_indexes_list <span class="token operator">=</span> read_file_return_list<span class="token punctuation">(</span>trainval_index<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="36"></td><td><pre>test_indexes_list <span class="token operator">=</span> read_file_return_list<span class="token punctuation">(</span>test_index<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="37"></td><td><pre></pre></td></tr><tr><td data-num="38"></td><td><pre></pre></td></tr><tr><td data-num="39"></td><td><pre><span class="token keyword">def</span> <span class="token function">copy_file</span><span class="token punctuation">(</span>src_file<span class="token punctuation">,</span> dst_dir<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="40"></td><td><pre>    <span class="token keyword">try</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="41"></td><td><pre>        os<span class="token punctuation">.</span>makedirs<span class="token punctuation">(</span>dst_dir<span class="token punctuation">,</span> exist_ok<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="42"></td><td><pre>        shutil<span class="token punctuation">.</span>copy<span class="token punctuation">(</span>src_file<span class="token punctuation">,</span> dst_dir<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="43"></td><td><pre>        <span class="token keyword">return</span> <span class="token boolean">True</span></pre></td></tr><tr><td data-num="44"></td><td><pre>    <span class="token keyword">except</span> Exception <span class="token keyword">as</span> e<span class="token punctuation">:</span></pre></td></tr><tr><td data-num="45"></td><td><pre>        <span class="token keyword">print</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="46"></td><td><pre>        <span class="token keyword">return</span> <span class="token boolean">False</span></pre></td></tr><tr><td data-num="47"></td><td><pre></pre></td></tr><tr><td data-num="48"></td><td><pre></pre></td></tr><tr><td data-num="49"></td><td><pre><span class="token keyword">def</span> <span class="token function">cp_file_in_list</span><span class="token punctuation">(</span>src_dir<span class="token punctuation">,</span> dst_dir<span class="token punctuation">,</span> index_list<span class="token punctuation">,</span> target_ext<span class="token operator">=</span><span class="token string">'.jpg'</span><span class="token punctuation">,</span> msg<span class="token operator">=</span><span class="token string">'copy file...'</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="50"></td><td><pre>    <span class="token keyword">if</span> <span class="token keyword">not</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>exists<span class="token punctuation">(</span>src_dir<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="51"></td><td><pre>        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Source directory does not exist!'</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="52"></td><td><pre>        <span class="token keyword">return</span></pre></td></tr><tr><td data-num="53"></td><td><pre>    <span class="token keyword">if</span> <span class="token keyword">not</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>exists<span class="token punctuation">(</span>dst_dir<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="54"></td><td><pre>        os<span class="token punctuation">.</span>makedirs<span class="token punctuation">(</span>dst_dir<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="55"></td><td><pre></pre></td></tr><tr><td data-num="56"></td><td><pre>    <span class="token keyword">with</span> tqdm<span class="token punctuation">(</span>index_list<span class="token punctuation">,</span> desc<span class="token operator">=</span>msg<span class="token punctuation">,</span> unit<span class="token operator">=</span><span class="token string">'file'</span><span class="token punctuation">,</span> total<span class="token operator">=</span><span class="token builtin">len</span><span class="token punctuation">(</span>index_list<span class="token punctuation">)</span><span class="token punctuation">,</span> dynamic_ncols<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="57"></td><td><pre>              ncols<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">,</span> mininterval<span class="token operator">=</span><span class="token number">0.1</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="58"></td><td><pre>              bar_format<span class="token operator">=</span><span class="token string">"&#123;l_bar&#125;&#123;bar&#125;| &#123;n_fmt&#125;/&#123;total_fmt&#125; [&#123;elapsed&#125; &lt; &#123;remaining&#125;, &#123;rate_fmt&#125;]"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> pbar<span class="token punctuation">:</span></pre></td></tr><tr><td data-num="59"></td><td><pre>        <span class="token keyword">for</span> index <span class="token keyword">in</span> pbar<span class="token punctuation">:</span></pre></td></tr><tr><td data-num="60"></td><td><pre>            src_file <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>src_dir<span class="token punctuation">,</span> index <span class="token operator">+</span> target_ext<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="61"></td><td><pre>            <span class="token keyword">if</span> copy_file<span class="token punctuation">(</span>src_file<span class="token punctuation">,</span> dst_dir<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="62"></td><td><pre>                pbar<span class="token punctuation">.</span>set_postfix<span class="token punctuation">(</span><span class="token builtin">file</span><span class="token operator">=</span>index<span class="token punctuation">,</span> color<span class="token operator">=</span><span class="token string">'green'</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="63"></td><td><pre>            <span class="token keyword">else</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="64"></td><td><pre>                pbar<span class="token punctuation">.</span>set_postfix<span class="token punctuation">(</span><span class="token builtin">file</span><span class="token operator">=</span>index<span class="token punctuation">,</span> color<span class="token operator">=</span><span class="token string">'red'</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="65"></td><td><pre>            pbar<span class="token punctuation">.</span>update<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="66"></td><td><pre></pre></td></tr><tr><td data-num="67"></td><td><pre></pre></td></tr><tr><td data-num="68"></td><td><pre><span class="token keyword">def</span> <span class="token function">boot_split</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="69"></td><td><pre>    <span class="token keyword">if</span> split_mode <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="70"></td><td><pre>        <span class="token comment"># train 与 val 模式</span></pre></td></tr><tr><td data-num="71"></td><td><pre>        cp_file_in_list<span class="token punctuation">(</span>root_img_dir<span class="token punctuation">,</span> <span class="token string">'images/train'</span><span class="token punctuation">,</span> train_indexes_list<span class="token punctuation">,</span> msg<span class="token operator">=</span><span class="token string">'copy train file...'</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="72"></td><td><pre>        cp_file_in_list<span class="token punctuation">(</span>root_img_dir<span class="token punctuation">,</span> <span class="token string">'images/val'</span><span class="token punctuation">,</span> val_indexes_list<span class="token punctuation">,</span> msg<span class="token operator">=</span><span class="token string">'copy val file...'</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="73"></td><td><pre>        cp_file_in_list<span class="token punctuation">(</span>root_img_dir<span class="token punctuation">,</span> <span class="token string">'images/test'</span><span class="token punctuation">,</span> test_indexes_list<span class="token punctuation">,</span> msg<span class="token operator">=</span><span class="token string">'copy test file...'</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="74"></td><td><pre></pre></td></tr><tr><td data-num="75"></td><td><pre>        cp_file_in_list<span class="token punctuation">(</span>root_label_dir<span class="token punctuation">,</span> <span class="token string">'labels/train'</span><span class="token punctuation">,</span> train_indexes_list<span class="token punctuation">,</span> target_ext<span class="token operator">=</span><span class="token string">'.txt'</span><span class="token punctuation">,</span> msg<span class="token operator">=</span><span class="token string">'copy train label...'</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="76"></td><td><pre>        cp_file_in_list<span class="token punctuation">(</span>root_label_dir<span class="token punctuation">,</span> <span class="token string">'labels/val'</span><span class="token punctuation">,</span> val_indexes_list<span class="token punctuation">,</span> target_ext<span class="token operator">=</span><span class="token string">'.txt'</span><span class="token punctuation">,</span> msg<span class="token operator">=</span><span class="token string">'copy val label...'</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="77"></td><td><pre>        cp_file_in_list<span class="token punctuation">(</span>root_label_dir<span class="token punctuation">,</span> <span class="token string">'labels/test'</span><span class="token punctuation">,</span> test_indexes_list<span class="token punctuation">,</span> target_ext<span class="token operator">=</span><span class="token string">'.txt'</span><span class="token punctuation">,</span> msg<span class="token operator">=</span><span class="token string">'copy test label...'</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="78"></td><td><pre>    <span class="token keyword">elif</span> split_mode <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="79"></td><td><pre>        <span class="token comment"># trainval 模式</span></pre></td></tr><tr><td data-num="80"></td><td><pre>        cp_file_in_list<span class="token punctuation">(</span>root_img_dir<span class="token punctuation">,</span> <span class="token string">'images/trainval'</span><span class="token punctuation">,</span> trainval_indexes_list<span class="token punctuation">,</span> msg<span class="token operator">=</span><span class="token string">'copy trainval file...'</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="81"></td><td><pre>        cp_file_in_list<span class="token punctuation">(</span>root_img_dir<span class="token punctuation">,</span> <span class="token string">'images/test'</span><span class="token punctuation">,</span> test_indexes_list<span class="token punctuation">,</span> msg<span class="token operator">=</span><span class="token string">'copy test file...'</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="82"></td><td><pre></pre></td></tr><tr><td data-num="83"></td><td><pre>        cp_file_in_list<span class="token punctuation">(</span>root_label_dir<span class="token punctuation">,</span> <span class="token string">'labels/trainval'</span><span class="token punctuation">,</span> trainval_indexes_list<span class="token punctuation">,</span> target_ext<span class="token operator">=</span><span class="token string">'.txt'</span><span class="token punctuation">,</span> msg<span class="token operator">=</span><span class="token string">'copy trainval label...'</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="84"></td><td><pre>        cp_file_in_list<span class="token punctuation">(</span>root_label_dir<span class="token punctuation">,</span> <span class="token string">'labels/test'</span><span class="token punctuation">,</span> test_indexes_list<span class="token punctuation">,</span> target_ext<span class="token operator">=</span><span class="token string">'.txt'</span><span class="token punctuation">,</span> msg<span class="token operator">=</span><span class="token string">'copy test label...'</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="85"></td><td><pre></pre></td></tr><tr><td data-num="86"></td><td><pre></pre></td></tr><tr><td data-num="87"></td><td><pre><span class="token comment"># ----</span></pre></td></tr><tr><td data-num="88"></td><td><pre><span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="89"></td><td><pre>    start_time <span class="token operator">=</span> time<span class="token punctuation">.</span>time<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="90"></td><td><pre>    boot_split<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="91"></td><td><pre>    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Time used: %.2f'</span> <span class="token operator">%</span> <span class="token punctuation">(</span>time<span class="token punctuation">.</span>time<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> start_time<span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr></table></figure><p>可以根据需要的模式进行修改运行模式。</p>
 <p>执行后：</p>
 <img data-src="../../../images/python/YOLO/v3ultralytics/10.png" alt="v1"  />
 <p>会生成：</p>
 <img data-src="../../../images/python/YOLO/v3ultralytics/11.png" alt="v1"  />
-<h2 id="如何训练模型"><a class="markdownIt-Anchor" href="#如何训练模型"></a> 如何训练模型</h2>
+<h2 id="如何训练模型"><a class="markdownIt-Anchor" href="#如何训练模型">#</a> 如何训练模型</h2>
 <p>一般训练需要修改这几个参数就足够了</p>
 <img data-src="../../../images/python/YOLO/v3ultralytics/12.png" alt="v1"  />
 <p>设置好数据集路径：</p>
@@ -439,15 +319,13 @@ test_indexes_list = read_file_return_list(test_index)
 <p>开始训练：</p>
 <img data-src="../../../images/python/YOLO/v3ultralytics/15.png" alt="v1"  />
 <img data-src="../../../images/python/YOLO/v3ultralytics/16.png" alt="v1"  />
-<h2 id="参数详解"><a class="markdownIt-Anchor" href="#参数详解"></a> 参数详解</h2>
-<h3 id="rect矩形训练"><a class="markdownIt-Anchor" href="#rect矩形训练"></a> rect矩形训练</h3>
+<h2 id="参数详解"><a class="markdownIt-Anchor" href="#参数详解">#</a> 参数详解</h2>
+<h3 id="rect矩形训练"><a class="markdownIt-Anchor" href="#rect矩形训练">#</a> rect 矩形训练</h3>
 <p>在训练时，按照图片的原始宽高比进行分组，并尽量减少 padding，而不是把所有图片强行 resize 成正方形。</p>
-<h3 id="resume断点续训"><a class="markdownIt-Anchor" href="#resume断点续训"></a> resume断点续训</h3>
+<h3 id="resume断点续训"><a class="markdownIt-Anchor" href="#resume断点续训">#</a> resume 断点续训</h3>
 <p>当训练被中断比如关机、Ctrl+C、显存不足或崩溃后， <strong>从上一次保存的 checkpoint 继续训练，而不是从头开始。</strong></p>
-<h2 id="如何上采样"><a class="markdownIt-Anchor" href="#如何上采样"></a> 如何上采样？</h2>
-<pre class="highlight"><code class="yaml">[<span class="hljs-number">-1</span>, <span class="hljs-number">1</span>, <span class="hljs-string">nn.Upsample</span>, [<span class="hljs-string">None</span>, <span class="hljs-number">2</span>, <span class="hljs-string">&quot;nearest&quot;</span>]]<span class="hljs-string">,</span>
-</code></pre>
-<table>
+<h2 id="如何上采样"><a class="markdownIt-Anchor" href="#如何上采样">#</a> 如何上采样？</h2>
+<figure class="highlight yaml"><figcaption data-lang="YAML"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token punctuation">[</span><span class="token number">-1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> nn.Upsample<span class="token punctuation">,</span> <span class="token punctuation">[</span>None<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">"nearest"</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span></pre></td></tr></table></figure><table>
 <thead>
 <tr>
 <th style="text-align:center">参数</th>
@@ -461,7 +339,7 @@ test_indexes_list = read_file_return_list(test_index)
 </tr>
 <tr>
 <td style="text-align:center"><code>2</code></td>
-<td style="text-align:center"><code>scale_factor=2</code>，宽和高放大 <strong>2 倍</strong></td>
+<td style="text-align:center"><code>scale_factor=2</code> ，宽和高放大 <strong>2 倍</strong></td>
 </tr>
 <tr>
 <td style="text-align:center"><code>&quot;nearest&quot;</code></td>
@@ -469,46 +347,12 @@ test_indexes_list = read_file_return_list(test_index)
 </tr>
 </tbody>
 </table>
-<h2 id="为什么yaml定义结构中的输出通道并不是255对于coco"><a class="markdownIt-Anchor" href="#为什么yaml定义结构中的输出通道并不是255对于coco"></a> 为什么yaml定义结构中的输出通道并不是255？（对于Coco）</h2>
-<pre class="highlight"><code class="yaml"><span class="hljs-attr">head:</span> [
-    [<span class="hljs-number">-1</span>, <span class="hljs-number">1</span>, <span class="hljs-string">Bottleneck</span>, [<span class="hljs-number">1024</span>, <span class="hljs-literal">False</span>]],
-    [<span class="hljs-number">-1</span>, <span class="hljs-number">1</span>, <span class="hljs-string">Conv</span>, [<span class="hljs-number">512</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>]],
-    [<span class="hljs-number">-1</span>, <span class="hljs-number">1</span>, <span class="hljs-string">Conv</span>, [<span class="hljs-number">1024</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>]],
-    [<span class="hljs-number">-1</span>, <span class="hljs-number">1</span>, <span class="hljs-string">Conv</span>, [<span class="hljs-number">512</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>]],
-    [<span class="hljs-number">-1</span>, <span class="hljs-number">1</span>, <span class="hljs-string">Conv</span>, [<span class="hljs-number">1024</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>]], <span class="hljs-comment"># 15 (P5/32-large)</span>
-
-    [<span class="hljs-number">-2</span>, <span class="hljs-number">1</span>, <span class="hljs-string">Conv</span>, [<span class="hljs-number">256</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>]],
-    [<span class="hljs-number">-1</span>, <span class="hljs-number">1</span>, <span class="hljs-string">nn.Upsample</span>, [<span class="hljs-string">None</span>, <span class="hljs-number">2</span>, <span class="hljs-string">&quot;nearest&quot;</span>]],
-    [[<span class="hljs-number">-1</span>, <span class="hljs-number">8</span>], <span class="hljs-number">1</span>, <span class="hljs-string">Concat</span>, [<span class="hljs-number">1</span>]], <span class="hljs-comment"># cat backbone P4</span>
-    [<span class="hljs-number">-1</span>, <span class="hljs-number">1</span>, <span class="hljs-string">Bottleneck</span>, [<span class="hljs-number">512</span>, <span class="hljs-literal">False</span>]],
-    [<span class="hljs-number">-1</span>, <span class="hljs-number">1</span>, <span class="hljs-string">Bottleneck</span>, [<span class="hljs-number">512</span>, <span class="hljs-literal">False</span>]],
-    [<span class="hljs-number">-1</span>, <span class="hljs-number">1</span>, <span class="hljs-string">Conv</span>, [<span class="hljs-number">256</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>]],
-    [<span class="hljs-number">-1</span>, <span class="hljs-number">1</span>, <span class="hljs-string">Conv</span>, [<span class="hljs-number">512</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>]], <span class="hljs-comment"># 22 (P4/16-medium)</span>
-
-    [<span class="hljs-number">-2</span>, <span class="hljs-number">1</span>, <span class="hljs-string">Conv</span>, [<span class="hljs-number">128</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>]],
-    [<span class="hljs-number">-1</span>, <span class="hljs-number">1</span>, <span class="hljs-string">nn.Upsample</span>, [<span class="hljs-string">None</span>, <span class="hljs-number">2</span>, <span class="hljs-string">&quot;nearest&quot;</span>]],
-    [[<span class="hljs-number">-1</span>, <span class="hljs-number">6</span>], <span class="hljs-number">1</span>, <span class="hljs-string">Concat</span>, [<span class="hljs-number">1</span>]], <span class="hljs-comment"># cat backbone P3</span>
-    [<span class="hljs-number">-1</span>, <span class="hljs-number">1</span>, <span class="hljs-string">Bottleneck</span>, [<span class="hljs-number">256</span>, <span class="hljs-literal">False</span>]],
-    [<span class="hljs-number">-1</span>, <span class="hljs-number">2</span>, <span class="hljs-string">Bottleneck</span>, [<span class="hljs-number">256</span>, <span class="hljs-literal">False</span>]], <span class="hljs-comment"># 27 (P3/8-small)</span>
-
-    [[<span class="hljs-number">27</span>, <span class="hljs-number">22</span>, <span class="hljs-number">15</span>], <span class="hljs-number">1</span>, <span class="hljs-string">Detect</span>, [<span class="hljs-string">nc</span>, <span class="hljs-string">anchors</span>]], <span class="hljs-comment"># Detect(P3, P4, P5)</span>
-  ]
-</code></pre>
-<p>因为 YAML 里定义的是特征提取与融合过程中的中间特征通道数，真正的 255 通道是在 <code>Detect</code> 模块内部，通过 1×1 卷积动态生成的，而不是在 YAML 中显式写出来的。</p>
+<h2 id="为什么yaml定义结构中的输出通道并不是255对于coco"><a class="markdownIt-Anchor" href="#为什么yaml定义结构中的输出通道并不是255对于coco">#</a> 为什么 yaml 定义结构中的输出通道并不是 255？（对于 Coco）</h2>
+<figure class="highlight yaml"><figcaption data-lang="YAML"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token key atrule">head</span><span class="token punctuation">:</span> <span class="token punctuation">[</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token punctuation">[</span><span class="token number">-1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> Bottleneck<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">1024</span><span class="token punctuation">,</span> <span class="token boolean important">False</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token punctuation">[</span><span class="token number">-1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> Conv<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">512</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token punctuation">[</span><span class="token number">-1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> Conv<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">1024</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token punctuation">[</span><span class="token number">-1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> Conv<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">512</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token punctuation">[</span><span class="token number">-1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> Conv<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">1024</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token comment"># 15 (P5/32-large)</span></pre></td></tr><tr><td data-num="7"></td><td><pre></pre></td></tr><tr><td data-num="8"></td><td><pre>    <span class="token punctuation">[</span><span class="token number">-2</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> Conv<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">256</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    <span class="token punctuation">[</span><span class="token number">-1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> nn.Upsample<span class="token punctuation">,</span> <span class="token punctuation">[</span>None<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">"nearest"</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="10"></td><td><pre>    <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">-1</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> Concat<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token comment"># cat backbone P4</span></pre></td></tr><tr><td data-num="11"></td><td><pre>    <span class="token punctuation">[</span><span class="token number">-1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> Bottleneck<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">512</span><span class="token punctuation">,</span> <span class="token boolean important">False</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="12"></td><td><pre>    <span class="token punctuation">[</span><span class="token number">-1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> Bottleneck<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">512</span><span class="token punctuation">,</span> <span class="token boolean important">False</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="13"></td><td><pre>    <span class="token punctuation">[</span><span class="token number">-1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> Conv<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">256</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="14"></td><td><pre>    <span class="token punctuation">[</span><span class="token number">-1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> Conv<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">512</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token comment"># 22 (P4/16-medium)</span></pre></td></tr><tr><td data-num="15"></td><td><pre></pre></td></tr><tr><td data-num="16"></td><td><pre>    <span class="token punctuation">[</span><span class="token number">-2</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> Conv<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">128</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="17"></td><td><pre>    <span class="token punctuation">[</span><span class="token number">-1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> nn.Upsample<span class="token punctuation">,</span> <span class="token punctuation">[</span>None<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">"nearest"</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="18"></td><td><pre>    <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">-1</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> Concat<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token comment"># cat backbone P3</span></pre></td></tr><tr><td data-num="19"></td><td><pre>    <span class="token punctuation">[</span><span class="token number">-1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> Bottleneck<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">256</span><span class="token punctuation">,</span> <span class="token boolean important">False</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="20"></td><td><pre>    <span class="token punctuation">[</span><span class="token number">-1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> Bottleneck<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">256</span><span class="token punctuation">,</span> <span class="token boolean important">False</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token comment"># 27 (P3/8-small)</span></pre></td></tr><tr><td data-num="21"></td><td><pre></pre></td></tr><tr><td data-num="22"></td><td><pre>    <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">27</span><span class="token punctuation">,</span> <span class="token number">22</span><span class="token punctuation">,</span> <span class="token number">15</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> Detect<span class="token punctuation">,</span> <span class="token punctuation">[</span>nc<span class="token punctuation">,</span> anchors<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token comment"># Detect(P3, P4, P5)</span></pre></td></tr><tr><td data-num="23"></td><td><pre>  <span class="token punctuation">]</span></pre></td></tr></table></figure><p>因为 YAML 里定义的是特征提取与融合过程中的中间特征通道数，真正的 255 通道是在  <code>Detect</code>  模块内部，通过 1×1 卷积动态生成的，而不是在 YAML 中显式写出来的。</p>
 <img data-src="../../../images/python/YOLO/v3ultralytics/17.png" alt="v1"  />
-<h3 id="源码种这样写到"><a class="markdownIt-Anchor" href="#源码种这样写到"></a> 源码种这样写到…</h3>
-<pre class="highlight"><code class="python">self.nc = nc  <span class="hljs-comment"># number of classes</span>
-self.no = nc + <span class="hljs-number">5</span>  <span class="hljs-comment"># number of outputs per anchor</span>
-self.nl = <span class="hljs-built_in">len</span>(anchors)  <span class="hljs-comment"># number of detection layers</span>
-self.na = <span class="hljs-built_in">len</span>(anchors[<span class="hljs-number">0</span>]) // <span class="hljs-number">2</span>  <span class="hljs-comment"># number of anchors</span>
-self.grid = [torch.empty(<span class="hljs-number">0</span>) <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(self.nl)]  <span class="hljs-comment"># init grid</span>
-self.anchor_grid = [torch.empty(<span class="hljs-number">0</span>) <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(self.nl)]  <span class="hljs-comment"># init anchor grid</span>
-self.register_buffer(<span class="hljs-string">&quot;anchors&quot;</span>, torch.tensor(anchors).<span class="hljs-built_in">float</span>().view(self.nl, -<span class="hljs-number">1</span>, <span class="hljs-number">2</span>))  <span class="hljs-comment"># shape(nl,na,2)</span>
-self.m = nn.ModuleList(nn.Conv2d(x, self.no * self.na, <span class="hljs-number">1</span>) <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> ch)  <span class="hljs-comment"># output conv</span>
-
-</code></pre>
-<p><mark>255 = 3 × (80 + 5)</mark></p>
-<p><strong>255 与 <code>nc</code> 强相关</strong>，<code>nc</code> 改了，输出通道立刻变，YAML 不可能写死 255。</p>
+<h3 id="源码种这样写到"><a class="markdownIt-Anchor" href="#源码种这样写到">#</a> 源码种这样写到…</h3>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre>self<span class="token punctuation">.</span>nc <span class="token operator">=</span> nc  <span class="token comment"># number of classes</span></pre></td></tr><tr><td data-num="2"></td><td><pre>self<span class="token punctuation">.</span>no <span class="token operator">=</span> nc <span class="token operator">+</span> <span class="token number">5</span>  <span class="token comment"># number of outputs per anchor</span></pre></td></tr><tr><td data-num="3"></td><td><pre>self<span class="token punctuation">.</span>nl <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>anchors<span class="token punctuation">)</span>  <span class="token comment"># number of detection layers</span></pre></td></tr><tr><td data-num="4"></td><td><pre>self<span class="token punctuation">.</span>na <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>anchors<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">//</span> <span class="token number">2</span>  <span class="token comment"># number of anchors</span></pre></td></tr><tr><td data-num="5"></td><td><pre>self<span class="token punctuation">.</span>grid <span class="token operator">=</span> <span class="token punctuation">[</span>torch<span class="token punctuation">.</span>empty<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">for</span> _ <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>nl<span class="token punctuation">)</span><span class="token punctuation">]</span>  <span class="token comment"># init grid</span></pre></td></tr><tr><td data-num="6"></td><td><pre>self<span class="token punctuation">.</span>anchor_grid <span class="token operator">=</span> <span class="token punctuation">[</span>torch<span class="token punctuation">.</span>empty<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">for</span> _ <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>nl<span class="token punctuation">)</span><span class="token punctuation">]</span>  <span class="token comment"># init anchor grid</span></pre></td></tr><tr><td data-num="7"></td><td><pre>self<span class="token punctuation">.</span>register_buffer<span class="token punctuation">(</span><span class="token string">"anchors"</span><span class="token punctuation">,</span> torch<span class="token punctuation">.</span>tensor<span class="token punctuation">(</span>anchors<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token builtin">float</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>view<span class="token punctuation">(</span>self<span class="token punctuation">.</span>nl<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment"># shape(nl,na,2)</span></pre></td></tr><tr class="marked"><td data-num="8"></td><td><pre>self<span class="token punctuation">.</span>m <span class="token operator">=</span> nn<span class="token punctuation">.</span>ModuleList<span class="token punctuation">(</span>nn<span class="token punctuation">.</span>Conv2d<span class="token punctuation">(</span>x<span class="token punctuation">,</span> self<span class="token punctuation">.</span>no <span class="token operator">*</span> self<span class="token punctuation">.</span>na<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token keyword">for</span> x <span class="token keyword">in</span> ch<span class="token punctuation">)</span>  <span class="token comment"># output conv</span></pre></td></tr></table></figure><p><mark>255 = 3 × (80 + 5)</mark></p>
+<p><strong>255 与  <code>nc</code>  强相关</strong>， <code>nc</code>  改了，输出通道立刻变，YAML 不可能写死 255。</p>
 
       <div class="tags">
           <a href="/tags/python/" rel="tag"><i class="ic i-tag"></i> python</a>
@@ -616,7 +460,7 @@ self.m = nn.ModuleList(nn.Conv2d(x, self.no * self.na, <span class="hljs-number"
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="文章目录">
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#yolov3-ultralytics"><span class="toc-number">1.</span> <span class="toc-text"> YOLOv3 ultralytics</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85ultralytics%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83"><span class="toc-number">1.1.</span> <span class="toc-text"> 安装ultralytics基础环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%8B%E9%9A%86yolov3%E4%BB%A3%E7%A0%81"><span class="toc-number">1.2.</span> <span class="toc-text"> 克隆YOLOv3代码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3-git-443-%E6%8A%A5%E9%94%99"><span class="toc-number">1.2.1.</span> <span class="toc-text"> 解决 git 443 报错</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E7%BC%BA%E5%B0%91%E7%9A%84%E4%BE%9D%E8%B5%96%E5%BA%93"><span class="toc-number">1.3.</span> <span class="toc-text"> 安装缺少的依赖库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%83%E9%87%8D%E6%96%87%E4%BB%B6"><span class="toc-number">1.4.</span> <span class="toc-text"> 权重文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%95%E8%BF%90%E8%A1%8C"><span class="toc-number">1.5.</span> <span class="toc-text"> 试运行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84"><span class="toc-number">1.6.</span> <span class="toc-text"> 项目结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E5%92%8C%E5%B7%A5%E5%85%B7"><span class="toc-number">1.6.1.</span> <span class="toc-text"> 资源和工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%86%E9%A2%91%E4%B8%8E%E7%8E%AF%E5%A2%83%E6%96%87%E4%BB%B6"><span class="toc-number">1.6.2.</span> <span class="toc-text"> 视频与环境文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#python-%E8%84%9A%E6%9C%AC%E9%83%A8%E5%88%86%E6%A0%B8%E5%BF%83%E8%BF%90%E8%A1%8C%E7%A8%8B%E5%BA%8F"><span class="toc-number">1.6.3.</span> <span class="toc-text"> Python 脚本部分（核心运行程序）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B6%85%E5%8F%82%E6%95%B0%E6%96%87%E4%BB%B6hypscratch-highyaml"><span class="toc-number">1.7.</span> <span class="toc-text"> 超参数文件：hyp.scratch-high.yaml</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#no-aug-object365-scratch-highmedlow-voc"><span class="toc-number">1.8.</span> <span class="toc-text"> no-aug &#x2F; Object365&#x2F; scratch-high&#x2F;med&#x2F;low &#x2F; VOC</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#hypno-augment"><span class="toc-number">1.8.1.</span> <span class="toc-text"> hyp.no-augment</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hypscratch-object365"><span class="toc-number">1.8.2.</span> <span class="toc-text"> hyp.scratch-object365</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hypscratch"><span class="toc-number">1.8.3.</span> <span class="toc-text"> hyp.scratch</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#hypscratch-high"><span class="toc-number">1.8.3.1.</span> <span class="toc-text"> hyp.scratch-high</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#hypscratch-med"><span class="toc-number">1.8.3.2.</span> <span class="toc-text"> hyp.scratch-med</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#hypscratch-low"><span class="toc-number">1.8.3.3.</span> <span class="toc-text"> hyp.scratch-low</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#hypscratch-voc"><span class="toc-number">1.8.3.4.</span> <span class="toc-text"> hyp.scratch-voc</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="toc-number">1.9.</span> <span class="toc-text"> 最佳实践？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%86%E7%B1%BB%E6%96%87%E4%BB%B6%E5%8F%8A%E5%85%B6%E4%B8%8B%E8%BD%BD%E8%84%9A%E6%9C%AC"><span class="toc-number">1.10.</span> <span class="toc-text"> 数据集分类文件及其下载脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#labelimg%E6%A0%87%E6%B3%A8%E8%BD%AF%E4%BB%B6"><span class="toc-number">1.11.</span> <span class="toc-text"> labelimg标注软件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#voc2007"><span class="toc-number">1.12.</span> <span class="toc-text"> VOC2007</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%86voc%E6%A0%BC%E5%BC%8F%E8%BD%AC%E4%B8%BAyolo%E6%A0%BC%E5%BC%8F"><span class="toc-number">1.13.</span> <span class="toc-text"> 将VOC格式转为YOLO格式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#data_trans%E8%84%9A%E6%9C%AC"><span class="toc-number">1.13.1.</span> <span class="toc-text"> Data_Trans脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#imgswlabels%E8%84%9A%E6%9C%AC"><span class="toc-number">1.13.2.</span> <span class="toc-text"> imgsWlabels脚本</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#train%E4%B8%8Eval%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.13.2.1.</span> <span class="toc-text"> train与val模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#trainval%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.13.2.2.</span> <span class="toc-text"> trainval模式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-number">1.13.3.</span> <span class="toc-text"> 代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.14.</span> <span class="toc-text"> 如何训练模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E8%AF%A6%E8%A7%A3"><span class="toc-number">1.15.</span> <span class="toc-text"> 参数详解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#rect%E7%9F%A9%E5%BD%A2%E8%AE%AD%E7%BB%83"><span class="toc-number">1.15.1.</span> <span class="toc-text"> rect矩形训练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#resume%E6%96%AD%E7%82%B9%E7%BB%AD%E8%AE%AD"><span class="toc-number">1.15.2.</span> <span class="toc-text"> resume断点续训</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%B8%8A%E9%87%87%E6%A0%B7"><span class="toc-number">1.16.</span> <span class="toc-text"> 如何上采样？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88yaml%E5%AE%9A%E4%B9%89%E7%BB%93%E6%9E%84%E4%B8%AD%E7%9A%84%E8%BE%93%E5%87%BA%E9%80%9A%E9%81%93%E5%B9%B6%E4%B8%8D%E6%98%AF255%E5%AF%B9%E4%BA%8Ecoco"><span class="toc-number">1.17.</span> <span class="toc-text"> 为什么yaml定义结构中的输出通道并不是255？（对于Coco）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BA%90%E7%A0%81%E7%A7%8D%E8%BF%99%E6%A0%B7%E5%86%99%E5%88%B0"><span class="toc-number">1.17.1.</span> <span class="toc-text"> 源码种这样写到…</span></a></li></ol></li></ol></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#yolov3-ultralytics"><span class="toc-number">1.</span> <span class="toc-text"> YOLOv3 ultralytics</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85ultralytics%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83"><span class="toc-number">1.1.</span> <span class="toc-text"> 安装 ultralytics 基础环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%8B%E9%9A%86yolov3%E4%BB%A3%E7%A0%81"><span class="toc-number">1.2.</span> <span class="toc-text"> 克隆 YOLOv3 代码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3-git-443-%E6%8A%A5%E9%94%99"><span class="toc-number">1.2.1.</span> <span class="toc-text"> 解决 git 443 报错</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E7%BC%BA%E5%B0%91%E7%9A%84%E4%BE%9D%E8%B5%96%E5%BA%93"><span class="toc-number">1.3.</span> <span class="toc-text"> 安装缺少的依赖库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%83%E9%87%8D%E6%96%87%E4%BB%B6"><span class="toc-number">1.4.</span> <span class="toc-text"> 权重文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%95%E8%BF%90%E8%A1%8C"><span class="toc-number">1.5.</span> <span class="toc-text"> 试运行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84"><span class="toc-number">1.6.</span> <span class="toc-text"> 项目结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E5%92%8C%E5%B7%A5%E5%85%B7"><span class="toc-number">1.6.1.</span> <span class="toc-text"> 资源和工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%86%E9%A2%91%E4%B8%8E%E7%8E%AF%E5%A2%83%E6%96%87%E4%BB%B6"><span class="toc-number">1.6.2.</span> <span class="toc-text"> 视频与环境文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#python-%E8%84%9A%E6%9C%AC%E9%83%A8%E5%88%86%E6%A0%B8%E5%BF%83%E8%BF%90%E8%A1%8C%E7%A8%8B%E5%BA%8F"><span class="toc-number">1.6.3.</span> <span class="toc-text"> Python 脚本部分（核心运行程序）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B6%85%E5%8F%82%E6%95%B0%E6%96%87%E4%BB%B6hypscratch-highyaml"><span class="toc-number">1.7.</span> <span class="toc-text"> 超参数文件：hyp.scratch-high.yaml</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#no-aug-object365-scratch-highmedlow-voc"><span class="toc-number">1.8.</span> <span class="toc-text"> no-aug &#x2F; Object365&#x2F; scratch-high&#x2F;med&#x2F;low &#x2F; VOC</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#hypno-augment"><span class="toc-number">1.8.1.</span> <span class="toc-text"> hyp.no-augment</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hypscratch-object365"><span class="toc-number">1.8.2.</span> <span class="toc-text"> hyp.scratch-object365</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hypscratch"><span class="toc-number">1.8.3.</span> <span class="toc-text"> hyp.scratch</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#hypscratch-high"><span class="toc-number">1.8.3.1.</span> <span class="toc-text"> hyp.scratch-high</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#hypscratch-med"><span class="toc-number">1.8.3.2.</span> <span class="toc-text"> hyp.scratch-med</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#hypscratch-low"><span class="toc-number">1.8.3.3.</span> <span class="toc-text"> hyp.scratch-low</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#hypscratch-voc"><span class="toc-number">1.8.3.4.</span> <span class="toc-text"> hyp.scratch-voc</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="toc-number">1.9.</span> <span class="toc-text"> 最佳实践？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%86%E7%B1%BB%E6%96%87%E4%BB%B6%E5%8F%8A%E5%85%B6%E4%B8%8B%E8%BD%BD%E8%84%9A%E6%9C%AC"><span class="toc-number">1.10.</span> <span class="toc-text"> 数据集分类文件及其下载脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#labelimg%E6%A0%87%E6%B3%A8%E8%BD%AF%E4%BB%B6"><span class="toc-number">1.11.</span> <span class="toc-text"> labelimg 标注软件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#voc2007"><span class="toc-number">1.12.</span> <span class="toc-text"> VOC2007</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%86voc%E6%A0%BC%E5%BC%8F%E8%BD%AC%E4%B8%BAyolo%E6%A0%BC%E5%BC%8F"><span class="toc-number">1.13.</span> <span class="toc-text"> 将 VOC 格式转为 YOLO 格式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#data_trans%E8%84%9A%E6%9C%AC"><span class="toc-number">1.13.1.</span> <span class="toc-text"> Data_Trans 脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#imgswlabels%E8%84%9A%E6%9C%AC"><span class="toc-number">1.13.2.</span> <span class="toc-text"> imgsWlabels 脚本</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#train%E4%B8%8Eval%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.13.2.1.</span> <span class="toc-text"> train 与 val 模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#trainval%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.13.2.2.</span> <span class="toc-text"> trainval 模式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-number">1.13.3.</span> <span class="toc-text"> 代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.14.</span> <span class="toc-text"> 如何训练模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E8%AF%A6%E8%A7%A3"><span class="toc-number">1.15.</span> <span class="toc-text"> 参数详解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#rect%E7%9F%A9%E5%BD%A2%E8%AE%AD%E7%BB%83"><span class="toc-number">1.15.1.</span> <span class="toc-text"> rect 矩形训练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#resume%E6%96%AD%E7%82%B9%E7%BB%AD%E8%AE%AD"><span class="toc-number">1.15.2.</span> <span class="toc-text"> resume 断点续训</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%B8%8A%E9%87%87%E6%A0%B7"><span class="toc-number">1.16.</span> <span class="toc-text"> 如何上采样？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88yaml%E5%AE%9A%E4%B9%89%E7%BB%93%E6%9E%84%E4%B8%AD%E7%9A%84%E8%BE%93%E5%87%BA%E9%80%9A%E9%81%93%E5%B9%B6%E4%B8%8D%E6%98%AF255%E5%AF%B9%E4%BA%8Ecoco"><span class="toc-number">1.17.</span> <span class="toc-text"> 为什么 yaml 定义结构中的输出通道并不是 255？（对于 Coco）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BA%90%E7%A0%81%E7%A7%8D%E8%BF%99%E6%A0%B7%E5%86%99%E5%88%B0"><span class="toc-number">1.17.1.</span> <span class="toc-text"> 源码种这样写到…</span></a></li></ol></li></ol></li></ol>
       </div>
       <div class="related panel pjax" data-title="系列文章">
         <ul>
@@ -750,10 +594,24 @@ self.m = nn.ModuleList(nn.Conv2d(x, self.no * self.na, <span class="hljs-number"
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
+<a href="/categories/notebook/" title="分类于 笔记">笔记</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/notebook/%E8%80%83%E7%A0%94%E8%8B%B1%E8%AF%AD%E7%AC%94%E8%AE%B0/" title="分类于 考研英语笔记">考研英语笔记</a>
 </div>
 
-    <span><a href="/Operate-system/kcsj/" title="操作系统课程设计">操作系统课程设计</a></span>
+    <span><a href="/English/shEnglish/" title="文章翻译">文章翻译</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MongoDB/" title="分类于 MongoDB">MongoDB</a>
+</div>
+
+    <span><a href="/MongoDB/MongoDB01/" title="MongoDB的安装与初步使用（Windows平台）">MongoDB的安装与初步使用（Windows平台）</a></span>
   </li>
 
       
@@ -762,10 +620,42 @@ self.m = nn.ModuleList(nn.Conv2d(x, self.no * self.na, <span class="hljs-number"
 <div class="breadcrumb">
 <a href="/categories/python/" title="分类于 深度学习">深度学习</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
+<a href="/categories/python/%E9%A1%B9%E7%9B%AE%E4%B8%8E%E5%AE%9E%E6%88%98/" title="分类于 项目与实战">项目与实战</a>
 </div>
 
-    <span><a href="/python/numpy/" title="NumPy核心处理方法">NumPy核心处理方法</a></span>
+    <span><a href="/python/pytorch_nn_digital_identification/" title="基于PyTorch的手写数字识别">基于PyTorch的手写数字识别</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C/" title="分类于 开发经验">开发经验</a>
+</div>
+
+    <span><a href="/experience/CollaborativeFiltering/" title="基于用户的协同过滤算法">基于用户的协同过滤算法</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
+</div>
+
+    <span><a href="/Operate-system/01OS/" title="操作系统知识点阶段总结">操作系统知识点阶段总结</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/notebook/" title="分类于 笔记">笔记</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/notebook/%E7%9F%A9%E9%98%B5%E8%AE%BA%E8%A7%A3%E9%A2%98%E7%AC%94%E8%AE%B0/" title="分类于 矩阵论解题笔记">矩阵论解题笔记</a>
+</div>
+
+    <span><a href="/math/matrix_anl/" title="矩阵论">矩阵论</a></span>
   </li>
 
       
@@ -786,56 +676,10 @@ self.m = nn.ModuleList(nn.Conv2d(x, self.no * self.na, <span class="hljs-number"
 <div class="breadcrumb">
 <a href="/categories/notebook/" title="分类于 笔记">笔记</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/notebook/%E7%9F%A9%E9%98%B5%E8%AE%BA%E8%A7%A3%E9%A2%98%E7%AC%94%E8%AE%B0/" title="分类于 矩阵论解题笔记">矩阵论解题笔记</a>
+<a href="/categories/notebook/%E8%80%83%E7%A0%94%E6%94%BF%E6%B2%BB%E7%AC%94%E8%AE%B0/" title="分类于 考研政治笔记">考研政治笔记</a>
 </div>
 
-    <span><a href="/math/matrix_anl/" title="矩阵论">矩阵论</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/notebook/" title="分类于 笔记">笔记</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/notebook/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0/" title="分类于 计算机网络笔记">计算机网络笔记</a>
-</div>
-
-    <span><a href="/network/computer_network_retest/" title="计算机网络复试速览">计算机网络复试速览</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C/" title="分类于 开发经验">开发经验</a>
-</div>
-
-    <span><a href="/experience/CollaborativeFiltering/" title="基于用户的协同过滤算法">基于用户的协同过滤算法</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%90%86%E8%AE%BA/" title="分类于 数据库理论">数据库理论</a>
-</div>
-
-    <span><a href="/database/DataBase01/" title="DB中的范式">DB中的范式</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Java/" title="分类于 Java">Java</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/Java/git%E7%9B%B8%E5%85%B3/" title="分类于 git相关">git相关</a>
-</div>
-
-    <span><a href="/Java/gitflow/" title="GitFlow分支管理策略">GitFlow分支管理策略</a></span>
+    <span><a href="/PoliticalKnowledge/politicalNote/" title="政治知识点速记（持续更新）">政治知识点速记（持续更新）</a></span>
   </li>
 
       
@@ -847,17 +691,17 @@ self.m = nn.ModuleList(nn.Conv2d(x, self.no * self.na, <span class="hljs-number"
 <a href="/categories/Java/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%9B%B8%E5%85%B3/" title="分类于 微服务相关">微服务相关</a>
 </div>
 
-    <span><a href="/Java/DubboStart/" title="Dubbo快速入门">Dubbo快速入门</a></span>
+    <span><a href="/Java/springcloud021/" title="将单体项目拆解为微服务项目">将单体项目拆解为微服务项目</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/%E7%94%9F%E6%B4%BB/" title="分类于 生活">生活</a>
+<a href="/categories/Java/" title="分类于 Java">Java</a>
 </div>
 
-    <span><a href="/life/p2025/" title="回望2025——永不熄灭之光">回望2025——永不熄灭之光</a></span>
+    <span><a href="/Java/javaAd01/" title="Java高级特性1">Java高级特性1</a></span>
   </li>
 
   </ul>
@@ -882,8 +726,8 @@ self.m = nn.ModuleList(nn.Conv2d(x, self.no * self.na, <span class="hljs-number"
     <a href="https://icp.gov.moe/?keyword=20249329" target="_blank">萌ICP备20249329号</a>
     基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
   <br/><span>世界本污浊，罪与爱同歌</span>
-  <br/><i class="ic i-chart-area"></i>&nbsp;<span>549k&nbsp;字</span> &nbsp;|&nbsp;
-  <i class="ic i-coffee"></i>&nbsp;<span> 15:15</span>
+  <br/><i class="ic i-chart-area"></i>&nbsp;<span>532k&nbsp;字</span> &nbsp;|&nbsp;
+  <i class="ic i-coffee"></i>&nbsp;<span> 14:46</span>
   </div>
 </div>
 
