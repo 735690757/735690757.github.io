@@ -1374,8 +1374,7 @@ textarea {
   transform: translate(-50%, -50%);
   text-align: center;
   font-size: 0.875em;
-  -webkit-backdrop-filter: blur(0.625rem);
-          backdrop-filter: blur(0.625rem);
+  backdrop-filter: blur(0.625rem);
 }
 .ribbon {
   display: inline-block;
@@ -1919,8 +1918,7 @@ main >.inner {
 }
 #tool .player-info:hover {
   bottom: 2rem;
-  -webkit-backdrop-filter: blur(15.25rem) saturate(180%);
-          backdrop-filter: blur(15.25rem) saturate(180%);
+  backdrop-filter: blur(15.25rem) saturate(180%);
   transition: all 0.5s;
 }
 #tool .player-info:hover .nav {
