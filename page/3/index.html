@@ -92,12 +92,12 @@
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://s2.loli.net/2023/08/27/b3P2TBGMK8yUqE4.jpg"></li>
-          <li class="item" data-background-image="https://s2.loli.net/2023/08/27/mcSBwPWCR4u3tZI.jpg"></li>
-          <li class="item" data-background-image="https://s2.loli.net/2023/08/27/vUowbrGBj4VOg9a.jpg"></li>
           <li class="item" data-background-image="https://s2.loli.net/2023/08/27/x7CM2DzWRbHAd4T.jpg"></li>
+          <li class="item" data-background-image="https://s2.loli.net/2023/08/27/mcSBwPWCR4u3tZI.jpg"></li>
           <li class="item" data-background-image="https://s2.loli.net/2023/08/27/Mwc9oKJmODRxqN7.png"></li>
-          <li class="item" data-background-image="https://s2.loli.net/2023/08/27/UryYVWA34Nd2R5v.jpg"></li>
+          <li class="item" data-background-image="https://s2.loli.net/2023/08/27/mN2pFL5QX7D3BwM.jpg"></li>
+          <li class="item" data-background-image="https://s2.loli.net/2023/08/27/B86dmgpZDzIi2uU.jpg"></li>
+          <li class="item" data-background-image="https://s2.loli.net/2023/08/27/b3P2TBGMK8yUqE4.jpg"></li>
         </ul>
       </div>
     </header>
@@ -120,6 +120,220 @@
           
   <div class="index wrap">
     <div class="segments posts">
+        
+<article class="item">
+  <div class="cover">
+    <a href="/python/Harris/" itemprop="url" title="Harris兴趣点检测"><img data-src="/images/cover/harris.png"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="创建时间：2025-11-26 10:20:00">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2025-11-26T10:20:00+08:00">2025-11-26</time>
+  </span>
+</div>
+
+    <h3><a href="/python/Harris/" itemprop="url" title="Harris兴趣点检测">Harris兴趣点检测</a></h3>
+    <div class="excerpt">
+        # Harris 兴趣点检测
+# 什么是 “兴趣点”
+在 Harris 兴趣点检测中，“兴趣点” 通常指图像中那些在水平和垂直两个方向上都具有显著灰度变化的像素点，也就是说在局部窗口在任意方向做小幅平移都会引起较大像素差异的点。这类点往往对应于图像中的角点或局部纹理显著的区域，因此被认为是具有判别性和稳定性的特征点。
+
+一大片平坦区域，所有方向都变化小，不是兴趣点
+高楼顶部的转角处、十字路口的交叉点，在所有方向都变化大这是兴趣点
+
+角点会在两个方向同时产生剧烈变化，边界只会在一个方向上产生剧烈变化，平坦区则都不会。
+# 数学原理
+#...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" itemprop="url" title="深度学习基础"><i class="ic i-flag"></i>深度学习基础</a>
+      </span>
+    </div>
+    <a href="/python/Harris/" itemprop="url" title="Harris兴趣点检测" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/python/YOLO/YOLO_V1/" itemprop="url" title="YOLO-V1"><img data-src="/images/cover/yolo.png"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="创建时间：2025-11-21 12:12:12">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2025-11-21T12:12:12+08:00">2025-11-21</time>
+  </span>
+</div>
+
+    <h3><a href="/python/YOLO/YOLO_V1/" itemprop="url" title="YOLO-V1">YOLO-V1</a></h3>
+    <div class="excerpt">
+        # YOLO 系列
+YOLO（You Only Look Once）
+# YOLOv1
+
+输入是 448x448x3，最终输出是 7x7x30。对应原始图片对应区域的结果。就是所谓的将原始图片划分为 7x7 个小方格大小的图片。
+其实这是一种一一映射 7x7 这样的小方格，7×7 个 cell，每个 cell 负责 “这个 cell 中心落在这里的目标” 的检测任务。
+
+# x, y, w, h
+x,y 是中心点坐标，w,h 是预测框的宽和高。
+每个 bounding box 的 5 个参数：x,y,w,h,confidence,
+x,y：框中心相对于当前 cell 的坐标（一般在...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/python/YOLO/" itemprop="url" title="YOLO"><i class="ic i-flag"></i>YOLO</a>
+      </span>
+    </div>
+    <a href="/python/YOLO/YOLO_V1/" itemprop="url" title="YOLO-V1" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/python/YOLO/index/" itemprop="url" title="YOLO系列"><img data-src="/images/cover/yolo.png"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="创建时间：2025-11-21 12:00:00">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2025-11-21T12:00:00+08:00">2025-11-21</time>
+  </span>
+</div>
+
+    <h3><a href="/python/YOLO/index/" itemprop="url" title="YOLO系列">YOLO系列</a></h3>
+    <div class="excerpt">
+        YOLO-V1
+一切的开始。
+
+YOLO-V2
+一次关键的且天才的改进。
+
+YOLO-V3
+Joseph Redmon在YOLO的最后一舞。
+
+Ultralytics YOLOv3
+YOLOv3的工程实现
+
+YOLO-V4
+改进，改进，再改进！
+
+YOLO-V5 with Ultralytics YOLOv5
+这是我最喜欢的YOLO！
+
+WongKinYiu YOLOv7模型源码解析
+最学术的一集。
+
+YOLO-V8 with Ultralytics Full Version
+新东西不多，但是非常工程化！
+
+YOLO-V9 V10 V11 V12新特性汇总
+创新的脚步永不停息
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/python/YOLO/" itemprop="url" title="YOLO"><i class="ic i-flag"></i>YOLO</a>
+      </span>
+    </div>
+    <a href="/python/YOLO/index/" itemprop="url" title="YOLO系列" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/python/Transformer/" itemprop="url" title="Transformer实战"><img data-src="/images/cover/transformer.jpg"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="创建时间：2025-11-08 10:20:00">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2025-11-08T10:20:00+08:00">2025-11-08</time>
+  </span>
+</div>
+
+    <h3><a href="/python/Transformer/" itemprop="url" title="Transformer实战">Transformer实战</a></h3>
+    <div class="excerpt">
+        # Transformer 实战
+# 背景
+为了解决在序列建模中提升并行与长距离依赖建模能力，摆脱对循环与卷积的依赖。其核心是编码器与解码器结构。
+其中有三种注意力机制：编码器多头注意力、交叉注意力、解码器多头注意力（含因果编码）
+
+# 输入数据
+Transformer 里计算的全是数值，在输出之后和输出之前，都要把词转换为词向量，或者将词词向量转化为词。
+# 词嵌入（Word Embedding）
+
+这个词嵌入矩阵的 d 相当于压缩后词向量的大小（维度）。
+
+# 位置编码（Positional Encoding）
+
+#...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" itemprop="url" title="深度学习基础"><i class="ic i-flag"></i>深度学习基础</a>
+      </span>
+    </div>
+    <a href="/python/Transformer/" itemprop="url" title="Transformer实战" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/Java/SpringCloudSTU/" itemprop="url" title="SpringCloud学习记录"><img data-src="/images/sc.jpg"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="创建时间：2025-10-30 10:20:00">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2025-10-30T10:20:00+08:00">2025-10-30</time>
+  </span>
+</div>
+
+    <h3><a href="/Java/SpringCloudSTU/" itemprop="url" title="SpringCloud学习记录">SpringCloud学习记录</a></h3>
+    <div class="excerpt">
+        # SpringCloud
+# 从单体到集群再到分布式
+早期阶段，单体架构是主流选择，所有功能模块打包在一个应用中，开发简单直接，但是随着业务增长，代码变得臃肿，难以扩展特定功能模块，技术栈单一，难以采用新技术。
+为了应对单体架构的性能瓶颈和高可用需求，集群架构应运而生。
+实现方式：
+
+水平扩展：部署多个相同的单体应用实例
+通过负载均衡器 (Nginx、F5 等) 分配请求
+共享数据库或数据库主从复制
+
+但是仍然有缺陷，比如应用本身仍然是单体，业务复杂时扩展不灵活。
+此时分布式架构与微服务应运而生，分布式架构通过将系统拆分为多个服务来解决上述问题。
+本次学习使用尚硅谷 b...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/Java/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%9B%B8%E5%85%B3/" itemprop="url" title="微服务相关"><i class="ic i-flag"></i>微服务相关</a>
+      </span>
+    </div>
+    <a href="/Java/SpringCloudSTU/" itemprop="url" title="SpringCloud学习记录" class="btn">more...</a>
+  </div>
+</article>
+
         
 <article class="item">
   <div class="cover">
@@ -319,237 +533,6 @@ L=n1​∑i=1n​(yi​−ti​)2​
   </div>
 </article>
 
-        
-<article class="item">
-  <div class="cover">
-    <a href="/Java/DubboStart/" itemprop="url" title="Dubbo快速入门"><img data-src="/images/cover/dubbo.png"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="创建时间：2025-09-29 10:20:00">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2025-09-29T10:20:00+08:00">2025-09-29</time>
-  </span>
-</div>
-
-    <h3><a href="/Java/DubboStart/" itemprop="url" title="Dubbo快速入门">Dubbo快速入门</a></h3>
-    <div class="excerpt">
-        # RPC 协议远程调用的几种实现
-# Dubbo 简介
-Dubbo 是阿里巴巴公司开源的一个高性能、轻量级的 Java RPC 框架。
-致力于高性能透明化的透明化的 RPC 原创服务调用方案，以及 SOA...
-    </div>
-    <div class="meta footer">
-      <span>
-        <a href="/categories/Java/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%9B%B8%E5%85%B3/" itemprop="url" title="微服务相关"><i class="ic i-flag"></i>微服务相关</a>
-      </span>
-    </div>
-    <a href="/Java/DubboStart/" itemprop="url" title="Dubbo快速入门" class="btn">more...</a>
-  </div>
-</article>
-
-        
-<article class="item">
-  <div class="cover">
-    <a href="/python/pytorch_nn_digital_identification/" itemprop="url" title="基于PyTorch的手写数字识别"><img data-src="/images/pytorch_DI/1.gif"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="创建时间：2025-08-27 14:55:00">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2025-08-27T14:55:00+08:00">2025-08-27</time>
-  </span>
-</div>
-
-    <h3><a href="/python/pytorch_nn_digital_identification/" itemprop="url" title="基于PyTorch的手写数字识别">基于PyTorch的手写数字识别</a></h3>
-    <div class="excerpt">
-        # 基于 PyTorch 的手写数字识别
-# MNIST 数据集
-MNIST 是一个经典的手写数字识别数据集，包含 60,000 张用于训练的图片和 10,000 张用于测试的图片。每张图片分辨率为 28×28 像素，内容是数字 0–9 的手写体。我们将基于该数据集对模型进行训练和验证。
-
-# 神经网络的定义
-# 输入
-
-一张图片大小： 1 × 28 × 28 （灰度图，通道数 = 1）
-
-# 第一层卷积
-nn.Conv2d(in_channels=1, out_channels=16, kernel_size=5, stride=1, padding=2)
-输入： 1 × 28 ×...
-    </div>
-    <div class="meta footer">
-      <span>
-        <a href="/categories/python/%E9%A1%B9%E7%9B%AE%E4%B8%8E%E5%AE%9E%E6%88%98/" itemprop="url" title="项目与实战"><i class="ic i-flag"></i>项目与实战</a>
-      </span>
-    </div>
-    <a href="/python/pytorch_nn_digital_identification/" itemprop="url" title="基于PyTorch的手写数字识别" class="btn">more...</a>
-  </div>
-</article>
-
-        
-<article class="item">
-  <div class="cover">
-    <a href="/python/pytorch/" itemprop="url" title="PyTorch深度学习"><img data-src="/images/pytorch.png"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="创建时间：2025-08-04 11:55:00">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2025-08-04T11:55:00+08:00">2025-08-04</time>
-  </span>
-</div>
-
-    <h3><a href="/python/pytorch/" itemprop="url" title="PyTorch深度学习">PyTorch深度学习</a></h3>
-    <div class="excerpt">
-        # PyTorch 深度学习
-基于小土堆：https://www.bilibili.com/video/BV1hE411t7RN
-# 安装
-基于 conda 环境来安装
-conda create --name pytorch python=3.11查询已有环境
-conda info --envs
-conda environments:
-base * D:&#92;anaconda
-pytorch D:&#92;anaconda&#92;envs&#92;pytorch
-
-激活 pytorch 环境
-conda activate pytorch其他命令
-conda remove -n...
-    </div>
-    <div class="meta footer">
-      <span>
-        <a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" itemprop="url" title="深度学习基础"><i class="ic i-flag"></i>深度学习基础</a>
-      </span>
-    </div>
-    <a href="/python/pytorch/" itemprop="url" title="PyTorch深度学习" class="btn">more...</a>
-  </div>
-</article>
-
-        
-<article class="item">
-  <div class="cover">
-    <a href="/python/pandas/" itemprop="url" title="Pandas核心处理方法"><img data-src="/images/pandasX.jpg"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="创建时间：2025-07-21 11:55:00">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2025-07-21T11:55:00+08:00">2025-07-21</time>
-  </span>
-</div>
-
-    <h3><a href="/python/pandas/" itemprop="url" title="Pandas核心处理方法">Pandas核心处理方法</a></h3>
-    <div class="excerpt">
-        # Pandas 核心处理方法
-# 什么是 Pandas
-Pandas 是一个基于 Python 的开源数据分析和数据处理库
-它提供了两种核心数据结构：
-
-数据结构
-描述
-类似于
-索引
-数据存储
-类比
-
-Series
-一维带标签的数组
-一列
-单索引
-同质化
-Excel 单列
-
-DataFrame
-二维带标签的表格数据结构
-一张表格（像 Excel 表）
-双索引
-各个列之间可以是不同的
-整个 Excel 表格
-
-应用场景：
-
-数据预处理（机器学习前）
-数据统计分析
-自动化报表
-数据可视化前处理
-
-# Series
-Series 就像这样：
-
-Series Index
-Series...
-    </div>
-    <div class="meta footer">
-      <span>
-        <a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" itemprop="url" title="深度学习基础"><i class="ic i-flag"></i>深度学习基础</a>
-      </span>
-    </div>
-    <a href="/python/pandas/" itemprop="url" title="Pandas核心处理方法" class="btn">more...</a>
-  </div>
-</article>
-
-        
-<article class="item">
-  <div class="cover">
-    <a href="/python/numpy/" itemprop="url" title="NumPy核心处理方法"><img data-src="/images/NumPyX.jpg"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="创建时间：2025-07-17 20:20:00">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2025-07-17T20:20:00+08:00">2025-07-17</time>
-  </span>
-</div>
-
-    <h3><a href="/python/numpy/" itemprop="url" title="NumPy核心处理方法">NumPy核心处理方法</a></h3>
-    <div class="excerpt">
-        # NumPy 核心处理方法
-NumPy（Numerical Python）是一个用于科学计算的 Python 第三方库，它提供了：
-# 核心功能：
-
-多维数组对象
-
-高效地存储和操作大规模数字数据。
-比原生 Python 的列表（list）更快、更节省内存。
-
-广播功能
-
-允许不同形状的数组进行数学运算，简洁高效。
-
-数学函数库
-
-包括线性代数、傅里叶变换、随机数生成、统计分析等。
-
-数组索引与切片
-
-支持布尔索引、花式索引，比 Python 原生更灵活强大。
-
-# 引用
-import numpy as np# 多维性
-arr = np.array(5) # 创建了一个 0...
-    </div>
-    <div class="meta footer">
-      <span>
-        <a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" itemprop="url" title="深度学习基础"><i class="ic i-flag"></i>深度学习基础</a>
-      </span>
-    </div>
-    <a href="/python/numpy/" itemprop="url" title="NumPy核心处理方法" class="btn">more...</a>
-  </div>
-</article>
-
     </div>
 
   </div>
@@ -557,7 +540,7 @@ arr = np.array(5) # 创建了一个 0...
   
   <nav class="pagination">
     <div class="inner">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="ic i-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/"><i class="ic i-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="ic i-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/4/"><i class="ic i-angle-right" aria-label="下一页"></i></a>
     </div>
   </nav>
 
@@ -585,7 +568,7 @@ arr = np.array(5) # 创建了一个 0...
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">58</span>
+        <span class="count">63</span>
         <span class="name">文章</span>
       </a>
     </div>
@@ -700,24 +683,12 @@ arr = np.array(5) # 创建了一个 0...
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/%E7%94%9F%E6%B4%BB/" title="分类于 生活">生活</a>
+<a href="/categories/notebook/" title="分类于 笔记">笔记</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/%E7%94%9F%E6%B4%BB/%E4%B8%8A%E5%B2%B8/" title="分类于 上岸">上岸</a>
+<a href="/categories/notebook/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0/" title="分类于 计算机网络笔记">计算机网络笔记</a>
 </div>
 
-    <span><a href="/life/shangan/" title="写给我这一年多的考研时光">写给我这一年多的考研时光</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
-</div>
-
-    <span><a href="/python/pandas/" title="Pandas核心处理方法">Pandas核心处理方法</a></span>
+    <span><a href="/network/computer_network_retest/" title="计算机网络复试速览">计算机网络复试速览</a></span>
   </li>
 
       
@@ -726,22 +697,44 @@ arr = np.array(5) # 创建了一个 0...
 <div class="breadcrumb">
 <a href="/categories/notebook/" title="分类于 笔记">笔记</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/notebook/%E7%9F%A9%E9%98%B5%E8%AE%BA%E8%A7%A3%E9%A2%98%E7%AC%94%E8%AE%B0/" title="分类于 矩阵论解题笔记">矩阵论解题笔记</a>
+<a href="/categories/notebook/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B0/" title="分类于 数据结构笔记">数据结构笔记</a>
 </div>
 
-    <span><a href="/math/matrix_anl/" title="矩阵论">矩阵论</a></span>
+    <span><a href="/DSLearnNote/codeTM/" title="数据结构代码题速记">数据结构代码题速记</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
+<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%90%86%E8%AE%BA/" title="分类于 数据库理论">数据库理论</a>
 </div>
 
-    <span><a href="/python/pytorch/" title="PyTorch深度学习">PyTorch深度学习</a></span>
+    <span><a href="/database/DataBase02/" title="数据库设计">数据库设计</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MongoDB/" title="分类于 MongoDB">MongoDB</a>
+</div>
+
+    <span><a href="/MongoDB/MongoDB03/" title="MongoDB初步使用">MongoDB初步使用</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" title="分类于 计算机组成原理">计算机组成原理</a>
+</div>
+
+    <span><a href="/Principles-of-computer-composition/Division_in_Computers/" title="计算机中的除法运算">计算机中的除法运算</a></span>
   </li>
 
       
@@ -750,10 +743,22 @@ arr = np.array(5) # 创建了一个 0...
 <div class="breadcrumb">
 <a href="/categories/Java/" title="分类于 Java">Java</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/Java/linux/" title="分类于 linux">linux</a>
+<a href="/categories/Java/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%9B%B8%E5%85%B3/" title="分类于 微服务相关">微服务相关</a>
 </div>
 
-    <span><a href="/experience/Ubuntu24-d/" title="双硬盘独立引导Windows与Ubuntu">双硬盘独立引导Windows与Ubuntu</a></span>
+    <span><a href="/Java/DubboStart/" title="Dubbo快速入门">Dubbo快速入门</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/YOLO/" title="分类于 YOLO">YOLO</a>
+</div>
+
+    <span><a href="/python/YOLO/YOLO_V3/" title="YOLO-V3">YOLO-V3</a></span>
   </li>
 
       
@@ -774,44 +779,24 @@ arr = np.array(5) # 创建了一个 0...
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Java/" title="分类于 Java">Java</a>
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/Java/Linux%E7%9B%B8%E5%85%B3/" title="分类于 Linux相关">Linux相关</a>
+<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
 </div>
 
-    <span><a href="/Linux/Linux01/" title="初见Linux">初见Linux</a></span>
+    <span><a href="/python/pytorch/" title="PyTorch深度学习">PyTorch深度学习</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" title="分类于 计算机组成原理">计算机组成原理</a>
-</div>
-
-    <span><a href="/Principles-of-computer-composition/booth_algorithm/" title="booth算法">booth算法</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
-</div>
-
-    <span><a href="/Operate-system/01OS/" title="操作系统知识点阶段总结">操作系统知识点阶段总结</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Java/" title="分类于 Java">Java</a>
+<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/Java/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%9B%B8%E5%85%B3/" title="分类于 微服务相关">微服务相关</a>
+<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%90%86%E8%AE%BA/" title="分类于 数据库理论">数据库理论</a>
 </div>
 
-    <span><a href="/Java/DubboStart/" title="Dubbo快速入门">Dubbo快速入门</a></span>
+    <span><a href="/database/DataBase01/" title="DB中的范式">DB中的范式</a></span>
   </li>
 
   </ul>
@@ -836,8 +821,8 @@ arr = np.array(5) # 创建了一个 0...
     <a href="https://icp.gov.moe/?keyword=20249329" target="_blank">萌ICP备20249329号</a>
     基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
   <br/><span>世界本污浊，罪与爱同歌</span>
-  <br/><i class="ic i-chart-area"></i>&nbsp;<span>539k&nbsp;字</span> &nbsp;|&nbsp;
-  <i class="ic i-coffee"></i>&nbsp;<span> 14:58</span>
+  <br/><i class="ic i-chart-area"></i>&nbsp;<span>611k&nbsp;字</span> &nbsp;|&nbsp;
+  <i class="ic i-coffee"></i>&nbsp;<span> 16:59</span>
   </div>
 </div>
 
