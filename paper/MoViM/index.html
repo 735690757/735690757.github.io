@@ -1,0 +1,739 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="诗岸梦行舟" href="https://735690757.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="诗岸梦行舟" href="https://735690757.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="诗岸梦行舟" href="https://735690757.github.io/feed.json" />
+<link rel="stylesheet" href="https://unpkg.com/mermaid/dist/mermaid.min.css">
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({ startOnLoad: true });</script>
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="python,深度学习,分割方法与数据集,语义分割,MoViM,遥感图像" />
+
+
+<link rel="canonical" href="https://735690757.github.io/paper/MoViM/">
+
+
+
+  <title>
+MoViM：A Hybrid CNN Vision Mamba Network  for Lightweight Semantic Segmentation of  Multimodal Remote Sensing Images - 论文阅读 - 深度学习 |
+KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</title>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">MoViM：A Hybrid CNN Vision Mamba Network  for Lightweight Semantic Segmentation of  Multimodal Remote Sensing Images
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2026-02-23 12:12:12">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2026-02-23T12:12:12+08:00">2026-02-23</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">KarryLiu</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+          <img src="/images/cover/MoViM.png">
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
+<span  itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/python/" itemprop="item" rel="index" title="分类于 深度学习"><span itemprop="name">深度学习</span></a>
+<meta itemprop="position" content="1" /></span>
+<i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/python/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" itemprop="item" rel="index" title="分类于 论文阅读"><span itemprop="name">论文阅读</span></a>
+<meta itemprop="position" content="2" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="https://735690757.github.io/paper/MoViM/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/tx.jpg">
+    <meta itemprop="name" content="KarryLiu">
+    <meta itemprop="description" content="分享计算机知识以及各种心得总结, 愿世间所有的美好都得以祝愿">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="诗岸梦行舟">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h1 id="methods-and-datasets-on-semantic-segmentation-for-unmanned-aerial-vehicle-remote-sensing-images-a-review"><a class="markdownIt-Anchor" href="#methods-and-datasets-on-semantic-segmentation-for-unmanned-aerial-vehicle-remote-sensing-images-a-review">#</a> Methods and datasets on semantic segmentation for Unmanned Aerial Vehicle remote sensing images: A review</h1>
+<blockquote>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9pZWVleHBsb3JlLmllZWUub3JnL2RvY3VtZW50LzExMjA4NjIx">【Original Link】 MoViM: A Hybrid CNN Vision Mamba Network for Lightweight Semantic Segmentation of Multimodal Remote Sensing Images</span></li>
+<li>Published in: IEEE Geoscience and Remote Sensing Letters ( Volume: 22)</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuc2NpZW5jZWRpcmVjdC5jb20vam91cm5hbC9pc3Bycy1qb3VybmFsLW9mLXBob3RvZ3JhbW1ldHJ5LWFuZC1yZW1vdGUtc2Vuc2luZy92b2wvMjExL3N1cHBsL0M=">Volume 211</span>, May 2024, Pages 1-34</li>
+<li>Authors
+<ul>
+<li>Wen-Liang Du</li>
+<li>Shuo Tang</li>
+<li>Rui Yao</li>
+<li>Zeyu An</li>
+<li>Yong Zhou</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h2 id="abstract"><a class="markdownIt-Anchor" href="#abstract">#</a> Abstract</h2>
+<p>The “Others” category in multimodal remote sensing images is characterized by high intra-class variability. Therefore, existing lightweight semantic segmentation models struggle with this category due to limitations in capturing both local details and global dependencies efficiently. We propose MoViM, a lightweight model that integrates a hybrid Vision Mamba (ViM) and CNN backbone to capture global contextual information and local details effectively. In addition, the MoViM also features an Inverted Stem for efficient multimodal fusion, a Global Semantics Extraction (GSE) module for enhanced global feature representation, and a Global-Local Feature Fusion (GLF) module for context-aware feature integration. Extensive experiments on WHU-OPT-SAR and Potsdam datasets demonstrate that MoViM achieves state-of-the-art performance, particularly in the “Others” category, while maintaining low computational complexity. Our codes are available at <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1dlbmxpYW5nRHUvTW9WaU0=">https://github.com/WenliangDu/MoViM</span>.</p>
+<p>多模态遥感图像中的 “其他” 类别具有高度的类别内变异性。因此，现有的轻量级语义分割模型在处理该类别时存在困难，因为在高效捕捉局部细节和全局依赖方面存在局限。我们提出了 MoViM，一种轻量级模型，集成了混合的 Vision Mamba（<span class="exturl" data-url="aHR0cHM6Ly9saWJyYXJ5LnNjaG9sYXJjeS5jb20vdHJ5Iw==">ViM</span>）和 <span class="exturl" data-url="aHR0cHM6Ly9saWJyYXJ5LnNjaG9sYXJjeS5jb20vdHJ5Iw==">CNN</span> 骨干网，以有效捕捉全球情境信息和本地细节。此外，MoViM 还配备了<strong>倒置茎</strong>以实现高效的多模态融合 ，一个<strong>全局语义提取（<span class="exturl" data-url="aHR0cHM6Ly9saWJyYXJ5LnNjaG9sYXJjeS5jb20vdHJ5Iw==">GSE</span>）模块</strong>以增强全局特征表示，以及一个<strong>全局 - 局部特征融合（<span class="exturl" data-url="aHR0cHM6Ly9saWJyYXJ5LnNjaG9sYXJjeS5jb20vdHJ5Iw==">GLF</span>）模块</strong>，用于上下文感知特征集成。在 WHU-OPT-SAR 和 Potsdam 数据集上的大量实验表明，MoViM 在 “其他” 类别中实现了最先进的性能，同时保持了低计算复杂度。我们的代码可在 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1dlbmxpYW5nRHUvTW9WaU0=">https://github.com/WenliangDu/MoViM</span> 获取。</p>
+<p>Index Terms—Hybrid convolutional neural network (CNN) vision mamba (ViM), lightweight semantic segmentation, multimodal remote sensing.</p>
+<p>指标术语 —— 混合卷积神经网络（CNN）、视觉曼巴（ViM）、轻量级语义分割、多模态遥感。</p>
+<h2 id="introduction"><a class="markdownIt-Anchor" href="#introduction">#</a> INTRODUCTION</h2>
+<p>The semantic segmentation of satellite-based multisource remote sensing images achieves significant improvements in the accuracy of surface information extraction by integrating data from heterogeneous sensors, such as optical, synthetic aperture radar (SAR), and infrared radiation. Developing lightweight models is crucial for enabling real-time remote sensing image interpretation on satellites.</p>
+<p>基于卫星的多源遥感图像的语义分割通过整合光学、合成孔径雷达（SAR）和红外辐射等异构传感器的数据，显著提升了表面信息提取的准确性。开发轻量化模型对于实现卫星实时遥感图像解读至关重要。</p>
+<p>Existing lightweight semantic segmentation models can mainly be categorized into two types: based on convolutional neural networks (CNNs) and based on hybrid architectures combining CNN and attention.</p>
+<p>现有的轻量级语义分割模型主要可分为两类：基于卷积神经网络（CNN）和基于结合 CNN 与注意力的混合架构。</p>
+<p>CNN-based architectures (e.g., LSKNet) excel at capturing local details but inherently struggle to model long-range dependencies, leading to an incomplete global feature representation. Hybrid models, such as TopFormer, SegMan , and MobileMamba , attempt to represent local and global feature encoding using dynamic token aggregation or state-space modeling. Nevertheless, lightweight models commonly face a significant challenge: they struggle to effectively represent the “others” category, which typically encompasses highly diverse and nonfixed targets. Fig. 1 illustrates the examples of the “others” category in WHU-OPT-SAR dataset, along with the class distribution within the dataset. The proportion of the “others” category is nearly double that of the “road” category, underscoring the importance of evaluating lightweight methods for “others” segmentation. In addition, effectively segmenting the “others” class helps reduce the likelihood of methods misclassifying unseen content into known categories, thereby lowering the risk of overfitting [<span class="exturl" data-url="aHR0cHM6Ly9saWJyYXJ5LnNjaG9sYXJjeS5jb20vdHJ5I3I1">5</span>]. However, the high intraclass variability and visual similarity of “others” to adjacent classes (e.g., buildings, roads) significantly increase segmentation difficulties, resulting in poorer performance of lightweight methods in the “others” segmentation. Consequently, excluding “others” from the evaluation of lightweight methods has become a common but unreasonable practice.</p>
+<p>基于 CNN 的架构（例如 LSKNet）擅长捕捉局部细节，但本质上难以建模长距离依赖关系，导致全局特征表示不完整。混合模型，如 TopFormer 、SegMan 和 MobileMamba，尝试通过动态令牌聚合或状态空间建模来表示局部和全局特征编码。然而，轻量级模型通常面临重大挑战：它们难以有效代表 “其他” 类别，而该类别通常涵盖高度多样化且非固定的目标。图 1 展示了 WHU-OPT-SAR 数据集中 “其他” 类别的示例，以及该数据集内的类别分布。“其他” 类别的比例几乎是 “道路” 类别的两倍，凸显了评估轻量级方法对 “其他人” 细分的重要性。此外，有效分割 “其他 ” 类有助于减少方法将看不见内容误归为已知类别的可能性，从而降低过拟合的风险 [<span class="exturl" data-url="aHR0cHM6Ly9saWJyYXJ5LnNjaG9sYXJjeS5jb20vdHJ5I3I1">5</span>]。然而，“他者” 在类别内的高度变异性和与相邻类别（如建筑物、道路）的视觉相似性显著增加了分段难度，导致轻量级方法在 “他者” 分段中表现较差。因此，将 “他者” 排除在轻量级方法评估之外已成为一种常见但不合理的做法。</p>
+<img data-src="../../images/paper/MoViM/1.png" alt="1" style="zoom:75%;" />
+<p>To tackle this challenge, we propose the MoViM method, which focuses on comprehensive global and local feature extraction and representation, aiming to improve the segmentation performance for the “others” category. Specifically, MoViM’s lightweight backbone network is inspired by the powerful local feature representation capabilities of MobileNet’s lightweight depthwise convolution and by vision mamba’s (ViM) excellent global feature modeling ability under linear attention. Consequently, we constructed a hybrid ViM-CNN backbone, designed to efficiently capture the global contextual information and local detail features of heterogeneous targets like “others.” Considering the characteristics of multisource remote sensing data, we propose an inverted stem (IS) at the start of the hybrid ViM-CNN backbone to achieve lightweight and efficient multisource feature fusion. Additionally, we design a global semantics extraction (GSEs) module to further enhance the capability to capture the global features of targets and introduce a global–local feature (GLF) fusion module to promote effective integration of the global and local features. lightweight models in semantic segmentation performance, with particularly significant improvements in the “others” category.</p>
+<p>为应对这一挑战，我们提出了 MoViM 方法，该方法侧重于全面的全局和局部特征提取与表示，旨在提升 “其他” 类别的细分性能。具体来说，MoViM 的轻量骨干网络受到了 MobileNet 轻量级深度卷积的强大局部特征表示能力以及 vision mamba（ViM）在线性关注下卓越的全局特征建模能力的启发。因此，我们构建了一个混合的 ViM-CNN 骨干网，旨在高效捕捉异构目标如 “其他” 的全球上下文信息和局部细节特征。考虑到多源遥感数据的特性，我们提出在混合 ViM-CNN 骨干的起始处采用<strong>倒置 stem（IS</strong>），<strong>以实现轻量化且高效的多源特征融合</strong>。此外，我们设计了一个<strong>全局语义提取（GSEs）模块</strong>，<strong>进一步提升捕获目标全局特征的能力</strong>，并引入<strong>全局 - 局部特征（GLF）融合模块</strong>，促进全局与局部特征的有效整合。轻量级模型在语义分割性能上表现突出，尤其在 “其他” 类别中有显著改进。</p>
+<p>Our main contributions are summarized as follows.</p>
+<ol>
+<li>We reveal that the main reason for the poor performance of the existing lightweight models in semantic segmentation of multisource remote sensing images is the difficulty in effectively representing the “others” category, which consists of highly diverse target collections.</li>
+<li>We design the MoViM lightweight model. By constructing the ViM-CNN hybrid backbone, integrating IS, GSE, and GLF modules, the model achieves efficient extraction and thorough fusion of both global and local features of targets, significantly enhancing the segmentation effect for the “others” category in multimodal remote sensing images</li>
+</ol>
+<p>我们的主要贡献总结如下。</p>
+<ol>
+<li>我们揭示，现有轻量级模型在多源遥感图像语义分割中表现不佳的主要原因，是难以有效表示 “其他” 类别，该类别包含高度多样化的目标集合。</li>
+<li>我们设计了 MoViM 轻量化模型。通过构建 ViM-CNN 混合骨干，集成 IS、GSE 和 GLF 模块，模型实现了目标的全局和局部特征的高效提取和彻底融合，显著增强了多模态遥感图像中 “其他” 类别的分割效果</li>
+</ol>
+<h2 id="method"><a class="markdownIt-Anchor" href="#method">#</a> METHOD</h2>
+<p>The architecture of the proposed MoViM is shown in Fig. 2. It includes a hybrid backbone, a GSE module, a GLF fusion module, and a lightweight decoding head adopted from [6], which performs bilinear upsampling and additive fusion of multiscale features, followed by a 1 × 1 projection.</p>
+<p>拟议的 MoViM 架构如图 2 所示。它包括一个混合主干、一个 GSE 模块、一个 GLF 融合模块，以及一个采用自 [6] 的轻量级译码头，该头执行双线性上采样和多尺度特征的加法融合，随后进行 1×1 投影。</p>
+<img data-src="../../images/paper/MoViM/2.png" alt="1" style="zoom:75%;" />
+<h3 id="a-hybrid-vim-cnn-backbone"><a class="markdownIt-Anchor" href="#a-hybrid-vim-cnn-backbone">#</a> A. Hybrid ViM-CNN Backbone</h3>
+<p>As shown in Fig. 2, the input multimodal images are combined along the channel dimension using simple concatenation operation to form a multimodal tensor X with size H × W ×C, where H and W represent the height and width of both the input images and X, respectively, and C is the total number of channels, equal to the sum of the channels of all input images. Then, X is fed into the IS module, which fuses multimodal features while performing downsampling.</p>
+<p>如图 2 所示，输入多模图像沿通道维度通过简单连接组合，运算形成一个多模张量 X，其大小为 W×W×C，其中 H 和 W 分别代表输入图像和 X 的高度和宽度，C 是通道总数 ，等于所有输入图像通道的总和。然后，X 被输入 IS 模块 ，后者在执行下采样时融合多模特征。</p>
+<p>The IS module utilizes the inverted residual (IR) block, composed of multiple depthwise separable convolutional units, to achieve efficient downsampling [see Fig. 3(a)]. Initially, the spatial resolution of the feature map is reduced to (H/4) × (W/4) through a 3 × 3 convolution followed by three IR blocks. This resulting feature map is sent into two pathways. The first pathway applies average pooling before the GSE module (xout (0) ), while the second pathway passes through two IR blocks and is further downsampled to (H/8) × (W/8), serving as an input to the hybrid backbone [xin(1)].</p>
+<p>IS 模块利用倒残差（IR） 块，由多个深度可分卷积单元组成，以实现高效的下采样 [见图 3（a）]。最初，特征图的空间分辨率通过 3×3 卷积和三个 IR 区块，将特征映射的空间分辨率简化为（H/4）×（W/4）。由此产生的特征图被分为两条路径。第一条路径在 GSE 模块前应用平均池化（xout （0））， 而第二条路径通过两个红外块 ，并进一步下采样至（H/8）×（W/8），作为混合骨干 [xin（1）] 的输入。</p>
+<img data-src="../../images/paper/MoViM/3.png" alt="1" style="zoom:75%;" />
+<p>The remainder of the hybrid ViM-CNN backbone consists of three stages, each with two ViM-CNN blocks. In the last two stages, features are downsampled before entering two ViM-CNN blocks. The output feature of the ith stage [xout (i) ] is routed to the GSE module before undergoing average pooling, and it is also sent to the GLF module as the local feature.</p>
+<p>混合 ViM-CNN 骨干的其余部分由三个阶段组成，每个阶段包含两个 ViM-CNN 模块。 在最后两个阶段，特征在进入两个 ViM-CNN 块前先进行下采样。第 i 阶段的输出特征 [xout （i）] 在进行平均池化前会被路由到 GSE 模块，同时作为本地特征也发送到 GLF 模块。</p>
+<p>Each ViM-CNN block encompasses depthwise convolution, channelwise feature splitting, dual-branch processing, and gated fusion [see Fig. 3(b)]. The input first undergoes depthwise convolution and then splits into a global branch and DU et al.: MoVIM: A HYBRID CNN ViM NETWORK FOR LIGHTWEIGHT SEMANTIC SEGMENTATION it particularly well-suited for dense prediction tasks in multimodal remote sensing imagery. The output features from the GSE module provide global semantic guidance for the subsequent GLF module.</p>
+<p>每个 ViM-CNN 块包含深度卷积、通道特征拆分、双分支处理和门控融合 [见图 3（b）]。 输入先经历深度卷积，然后分解为全局分支，DU 等人：MoVIM：A HYBRID CNNViM 网络用于轻量级语义分割，特别适合多模态遥感图像中的密集预测任务。GSE 模块的输出特征为后续 GLF 模块提供了全局语义指导 。</p>
+<p>a local branch. The global branch employs LayerNorm and the hidden state mixer-based state space duality (HSM-SSD) module , which decreases computational cost by moving channel-mixing operations from the image-feature space to the hidden-state space. The local branch applies an IR module to preserve fine-grained spatial details. The two branches both operate on learnable residual gates</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable width="100%"><mtr><mtd width="50%"></mtd><mtd><mrow><msub><mover accent="true"><mi>x</mi><mo>~</mo></mover><mi>g</mi></msub><mo>=</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>σ</mi><mo stretchy="false">(</mo><mi>β</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>⋅</mo><msub><mi>x</mi><mi>g</mi></msub><mo>+</mo><mi>σ</mi><mo stretchy="false">(</mo><mi>β</mi><mo stretchy="false">)</mo><mo>⋅</mo><mtext>HSM-SSD</mtext><mrow><mo fence="true">(</mo><mtext>LN</mtext><mo stretchy="false">(</mo><msub><mi>x</mi><mi>g</mi></msub><mo stretchy="false">)</mo><mo fence="true">)</mo></mrow></mrow></mtd><mtd width="50%"></mtd><mtd><mtext>(1)</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">\tilde{x}_g = (1 - \sigma(\beta)) \cdot x_g + \sigma(\beta) \cdot \text{HSM-SSD} \left( \text{LN}(x_g) \right) \tag{1}
+
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9539679999999999em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6678599999999999em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">x</span></span></span><span style="top:-3.35em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.22222em;"><span class="mord">~</span></span></span></span></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">g</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.05278em;">β</span><span class="mclose">)</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8694379999999999em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">g</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.05278em;">β</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord text"><span class="mord">HSM-SSD</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord text"><span class="mord">LN</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">g</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mclose delimcenter" style="top:0em;">)</span></span></span><span class="tag"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord text"><span class="mord">(</span><span class="mord"><span class="mord">1</span></span><span class="mord">)</span></span></span></span></span></span></p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable width="100%"><mtr><mtd width="50%"></mtd><mtd><mrow><msub><mover accent="true"><mi>x</mi><mo>~</mo></mover><mi>l</mi></msub><mo>=</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>σ</mi><mo stretchy="false">(</mo><mi>δ</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>⋅</mo><msub><mi>x</mi><mi>l</mi></msub><mo>+</mo><mi>σ</mi><mo stretchy="false">(</mo><mi>δ</mi><mo stretchy="false">)</mo><mo>⋅</mo><mtext>IR</mtext><mo stretchy="false">(</mo><msub><mi>x</mi><mi>l</mi></msub><mo stretchy="false">)</mo></mrow></mtd><mtd width="50%"></mtd><mtd><mtext>(2)</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">\tilde{x}_l = (1 - \sigma(\delta)) \cdot x_l + \sigma(\delta) \cdot \text{IR}(x_l) \tag{2}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8178599999999999em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6678599999999999em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">x</span></span></span><span style="top:-3.35em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.22222em;"><span class="mord">~</span></span></span></span></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03785em;">δ</span><span class="mclose">)</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.73333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03785em;">δ</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">IR</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span><span class="tag"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">(</span><span class="mord"><span class="mord">2</span></span><span class="mord">)</span></span></span></span></span></span></p>
+<p>一个地方分支。全局分支采用 LayerNorm 和基于隐藏状态混合器的状态空间对偶性（HSM-SSD 模块），通过将通道混合作从图像特征空间迁移到隐藏状态空间，降低计算成本。本地分支应用红外模块以保持细致的空间细节。 这两个分支都作用于可学习的残差门</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable width="100%"><mtr><mtd width="50%"></mtd><mtd><mrow><msub><mover accent="true"><mi>x</mi><mo>~</mo></mover><mi>g</mi></msub><mo>=</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>σ</mi><mo stretchy="false">(</mo><mi>β</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>⋅</mo><msub><mi>x</mi><mi>g</mi></msub><mo>+</mo><mi>σ</mi><mo stretchy="false">(</mo><mi>β</mi><mo stretchy="false">)</mo><mo>⋅</mo><mtext>HSM-SSD</mtext><mrow><mo fence="true">(</mo><mtext>LN</mtext><mo stretchy="false">(</mo><msub><mi>x</mi><mi>g</mi></msub><mo stretchy="false">)</mo><mo fence="true">)</mo></mrow></mrow></mtd><mtd width="50%"></mtd><mtd><mtext>(1)</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">\tilde{x}_g = (1 - \sigma(\beta)) \cdot x_g + \sigma(\beta) \cdot \text{HSM-SSD} \left( \text{LN}(x_g) \right) \tag{1}
+
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9539679999999999em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6678599999999999em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">x</span></span></span><span style="top:-3.35em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.22222em;"><span class="mord">~</span></span></span></span></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">g</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.05278em;">β</span><span class="mclose">)</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8694379999999999em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">g</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.05278em;">β</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord text"><span class="mord">HSM-SSD</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord text"><span class="mord">LN</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">g</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mclose delimcenter" style="top:0em;">)</span></span></span><span class="tag"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord text"><span class="mord">(</span><span class="mord"><span class="mord">1</span></span><span class="mord">)</span></span></span></span></span></span></p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable width="100%"><mtr><mtd width="50%"></mtd><mtd><mrow><msub><mover accent="true"><mi>x</mi><mo>~</mo></mover><mi>l</mi></msub><mo>=</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>σ</mi><mo stretchy="false">(</mo><mi>δ</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>⋅</mo><msub><mi>x</mi><mi>l</mi></msub><mo>+</mo><mi>σ</mi><mo stretchy="false">(</mo><mi>δ</mi><mo stretchy="false">)</mo><mo>⋅</mo><mtext>IR</mtext><mo stretchy="false">(</mo><msub><mi>x</mi><mi>l</mi></msub><mo stretchy="false">)</mo></mrow></mtd><mtd width="50%"></mtd><mtd><mtext>(2)</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">\tilde{x}_l = (1 - \sigma(\delta)) \cdot x_l + \sigma(\delta) \cdot \text{IR}(x_l) \tag{2}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8178599999999999em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6678599999999999em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">x</span></span></span><span style="top:-3.35em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.22222em;"><span class="mord">~</span></span></span></span></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03785em;">δ</span><span class="mclose">)</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.73333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03785em;">δ</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">IR</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span><span class="tag"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">(</span><span class="mord"><span class="mord">2</span></span><span class="mord">)</span></span></span></span></span></span></p>
+<blockquote>
+<p>整体结构：双分支</p>
+<ul>
+<li>
+<p><strong>全局分支：</strong> 负责处理宏观、整体的信息。</p>
+<ul>
+<li><strong>操作：</strong> 先做层归一化，然后通过一个叫 <strong>HSM-SSD</strong> 的模块。</li>
+<li><strong>HSM-SSD 的作用：</strong> 它是一种基于状态空间模型的模块，目的是把通道混合的操作从图像特征空间转移到隐藏状态空间去做，从而<strong>减少计算量</strong>。</li>
+</ul>
+</li>
+<li>
+<p><strong>局部分支：</strong> 负责保留细节、纹理等局部信息。</p>
+<ul>
+<li><strong>操作：</strong> 直接应用 <strong>IR 模块</strong>。</li>
+<li><strong>IR 的作用：</strong> 根据上下文推测，这里应该是指你之前问过的 <strong>倒残差块</strong>。它善于处理局部特征，保持细粒度的空间细节。</li>
+</ul>
+<p>核心机制：可学习的残差门控</p>
+<p>传统残差连接，不管输入 x<em>x</em> 是什么，原始信息 x 和新计算的信息 F (x) 永远是以 <strong>1:1</strong> 的固定比例相加</p>
+<p>带门控的残差连接，原始信息 x<em>x</em> 和新信息 F (x) 的比例是 <strong>(1-G) : G</strong>。这个比例 G 是由网络自动学习出来的。</p>
+<img data-src="../../images/paper/MoViM/4.png" alt="1" style="zoom:75%;" />
+</li>
+</ul>
+</blockquote>
+<p>where β and δ are the learnable gate parameters initialized to 1 × 10−4, σ(·) denotes the sigmoid function, LN represents the layer normalization, xg and xl denote the split features for the global and local branches, respectively, and xg and xl are the gated outputs. Specifically, for the first, second, and third stages of the backbone, xg contains the first 80%, 70%, and 60% of the channels before the splitting, respectively, while xl comprises the remaining channels.</p>
+<p>其中 β 和 δ 是可学习的门参数，初始化为 1×10⁻4，σ（・）表示 S 形函数，LN 表示层归一化，xg 和 xl 分别表示全局分支和局部分支的分裂特征，xg 和 xl 为门控输出。具体来说，对于主干的第一、第二和第三阶段，<strong>xg 分别包含了分拆前的前 80%、70% 和 60% 的通道</strong>，而 xl 则包含剩余的通道。</p>
+<p>The outputs xg and xl are concatenated as xand passed through a convolutional gated linear unit (ConvGLU) , further modulated by a residual gate α</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable width="100%"><mtr><mtd width="50%"></mtd><mtd><mrow><msub><mi mathvariant="bold">X</mi><mtext>out</mtext></msub><mo>=</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>σ</mi><mo stretchy="false">(</mo><mi>α</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>⋅</mo><mi mathvariant="bold">X</mi><mo>+</mo><mi>σ</mi><mo stretchy="false">(</mo><mi>α</mi><mo stretchy="false">)</mo><mo>⋅</mo><mtext>ConvGLU</mtext><mo stretchy="false">(</mo><mi mathvariant="bold">X</mi><mo stretchy="false">)</mo></mrow></mtd><mtd width="50%"></mtd><mtd><mtext>(3)</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">\mathbf{X}_{\text{out}} = (1 - \sigma(\alpha)) \cdot \mathbf{X} + \sigma(\alpha) \cdot \text{ConvGLU}(\mathbf{X}) \tag{3}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83611em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord"><span class="mord mathbf">X</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">out</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mclose">)</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.76944em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord mathbf">X</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">ConvGLU</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathbf">X</span></span><span class="mclose">)</span></span><span class="tag"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">(</span><span class="mord"><span class="mord">3</span></span><span class="mord">)</span></span></span></span></span></span></p>
+<p>输出 xg 和 xl 被串接为 xand，通过卷积门控线性单元 （ConvGLU），并进一步通过残差门调制</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable width="100%"><mtr><mtd width="50%"></mtd><mtd><mrow><msub><mi mathvariant="bold">X</mi><mtext>out</mtext></msub><mo>=</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>σ</mi><mo stretchy="false">(</mo><mi>α</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>⋅</mo><mi mathvariant="bold">X</mi><mo>+</mo><mi>σ</mi><mo stretchy="false">(</mo><mi>α</mi><mo stretchy="false">)</mo><mo>⋅</mo><mtext>ConvGLU</mtext><mo stretchy="false">(</mo><mi mathvariant="bold">X</mi><mo stretchy="false">)</mo></mrow></mtd><mtd width="50%"></mtd><mtd><mtext>(3)</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">\mathbf{X}_{\text{out}} = (1 - \sigma(\alpha)) \cdot \mathbf{X} + \sigma(\alpha) \cdot \text{ConvGLU}(\mathbf{X}) \tag{3}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83611em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord"><span class="mord mathbf">X</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">out</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mclose">)</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.76944em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord mathbf">X</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">ConvGLU</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathbf">X</span></span><span class="mclose">)</span></span><span class="tag"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">(</span><span class="mord"><span class="mord">3</span></span><span class="mord">)</span></span></span></span></span></span></p>
+<p>where α is also a learnable gate parameter initialized to 1 × 10−4 and xout is the output of a certain ViM-CNN block.</p>
+<p>其中 α 也是可学习的门参数，初始化为 1×10⁻4，xout 是某个 ViM-CNN 块的输出 。</p>
+<p>Finally, ConvGLU introduces nonlinearity and enhances channel interactions by duplicating the input feature map into two copies and feeding them into two paths. One path undergoes depthwise convolution followed by a ReLU6 activation, while the other serves as a gating mechanism. The gated output is then projected back to the original channel dimension, with dropout applied for regularization.</p>
+<p>最后，ConvGLU 引入了非线性，并通过将输入特征映射复制为两个副本并输入两个路径，增强了通道交互。一条路径经历深度卷积，随后激活 ReLU6，另一条则作为门控机制。门控输出随后被投影回原始信道维度，并施加降调以实现正则化。</p>
+<h3 id="b-gse-module"><a class="markdownIt-Anchor" href="#b-gse-module">#</a> B. GSE Module</h3>
+<p>The GSE module is applied to the output of the hybrid backbone, refining features through four GSE blocks. Each GSE block comprises two components: a multihead tokenwise attention unit and a ConvGLU [see Fig. 4©]. The attention unit captures long-range dependencies by performing convolutional projections on the query, key, and value features. The ConvGLU, on the other hand, models channelwise interactions. These components are connected sequentially and fused via a learnable residual gating mechanism, which dynamically balances the contributions of both the attention and convolutional paths.</p>
+<p>GSE 模块应用于混合骨干的输出 ，通过四个 GSE 模块优化功能。每个 GSE 块由两个组件组成：一个多头逐标记的注意力单元和一个 ConvGLU [见图 4（c）]。注意单元通过对查询、键和值特征进行卷积投影来捕捉长距离依赖关系。而 ConvGLU 则模拟信道交互。这些组件按顺序连接，并通过可学习的残差门控机制融合，动态平衡注意力路径和卷积路径的贡献。</p>
+<p>In comparison to standard transformer layers, the GSE module utilizes convolutional operations and separable designs to reduce computational complexity. This characteristic makes it particularly well-suited for dense prediction tasks in multimodal remote sensing imagery. The output features from the GSE module provide global semantic guidance for the subsequent GLF module.</p>
+<p>与标准 transformer 相比，GSE 模块采用卷积运算和可分离设计以降低计算复杂度。这一特性使其特别适合多模态遥感图像中的密集预测任务。GSE 模块的输出特征为后续 GLF 模块提供了全局语义指导。</p>
+<h3 id="c-global-and-local-feature-fusion-module"><a class="markdownIt-Anchor" href="#c-global-and-local-feature-fusion-module">#</a> C. Global and Local Feature Fusion Module</h3>
+<p>The GLF module enables context-aware enhancement of backbone features through guidance from the output of the GSE. It employs a gated injection strategy with a sigmoid function (see Fig. 4), where the global feature serves as both a modulator and residual enhancer for local feature maps.</p>
+<p>GLF 模块通过 GSE 输出的引导，实现对骨干特征的上下文感知增强。它采用了带有 S 形函数的门控注入策略（见图 4），其中全局特征既是调制器，也是局部特征图的残差增强子。</p>
+<p>To ensure alignment of resolutions, the GLF module utilizes 1 × 1 convolutions in conjunction with upsampling operations using bilinear interpolation, followed by a 3 × 3 depthwise convolution to fuse the gated features effectively. This approach enables fine-grained semantic alignment while minimizing computational overhead.<br>
+ 为确保分辨率对齐，GLF 模块结合双线性插值的 1×1 卷积与上采样运算，随后进行 3×3 深度卷积，以有效融合门控特征。这种方法实现了细粒度语义对齐，同时最大限度地减少计算开销。</p>
+<p>We compare the proposed MoViM with three generalpurpose lightweight backbones: TopFormer  EfficientViM, and MobileNetV2 ; two remote-sensing-specific lightweight models: LWGANet and LSKNet; and two SOTA Mamba-based segmentation models in tiny-size version: Vmamba (VMamba-T) and SegMan(SegMAN-T). The evaluation metrics include mean accuracy (mAcc), the kappa coefficient (Kappa), and mean intersection over union (mIoU). datasets for semantic segmentation of multimodal remote sensing images: WHU-OPT-SARand Potsdam. The training process runs for 160 000 iterations using the AdamW optimizer with an initial learning rate of 6e−5, a weight decay of 1e−4, and a batch size of 8. A fixed random seed (42) ensures experimental reproducibility. To achieve optimal performance for all compared methods, experiments on the WHU-OPT-SAR dataset are conducted using an NVIDIA RTX 4090D GPU, while experiments on the Potsdam dataset use dual RTX 3090 GPUs.</p>
+<p>我们将提出的 MoViM 与三种通用轻量级骨干进行比较：TopFormer 、EfficientViM 和 MobileNetV2 两款专为遥感设计的轻型型号：LWGANet 和 LSKNet; 以及两个基于 SOTA Mamba 的微型分段模型：Vmamba （VMamba-T）和 SegMan（SegMAN-T）。评估指标包括平均准确率（mAcc）、河童系数（Kappa）和平均交集除平（mIoU）。多模遥感图像语义分割数据集 ：WHU-OPT-SAR 和 Potsdam。 使用 AdamW 优化器，训练过程可进行 16 万次迭代，初始学习率为 6e−5，权重衰减为 1e−4，批处理规模为 8。固定的随机种子（42）确保实验可重复性。为了实现所有比较方法的最佳性能，WHU-OPT-SAR 数据集的实验使用 NVIDIA RTX 4090D GPU 进行，而 Potsdam 数据集的实验则使用双 RTX 3090 GPU。</p>
+<h3 id="performance-comparison-whu-opt-sar-数据集上的实验结果"><a class="markdownIt-Anchor" href="#performance-comparison-whu-opt-sar-数据集上的实验结果">#</a> Performance Comparison WHU-OPT-SAR 数据集上的实验结果</h3>
+<p>Table I presents a quantitative comparison of the proposed MoViM against SOTA methods on the WHU-OPT-SAR dataset. It is evident that the performance of all methods is lowest when segmenting the “others” category, as this category poses significant challenges for lightweight models. Notably, “others” category, outperforming the second-best method, MobileNetV2, by 2.33%, while with significantly reduced computational requirements—95.2% fewer FLOPs and 58.4% fewer parameters (see Table II). In contrast, “water” and “forest” categories are relatively easier to segment compared to other categories in the WHU-OPT-SAR dataset. As a result, all methods achieve similar high IoU values for these categories, where MoViM does not emerge as the top performer. Overall, MoViM excels with the highest mAcc at 62.71% (a lead of 1.57%) and the best mIoU at 52.05% (a lead of 0.82%). Additionally,</p>
+<p>表 I 呈现了拟议 MoViM 与 WHU-OPT-SAR 数据集上 SOTA 方法的定量比较。 显然，所有方法在分段时性能都最低 “其他” 类别，因为该类别对轻量化模型构成了重大挑战。值得注意的是 ，“其他 ” 类别的表现优于第二优方法 MobileNetV2，高出 2.33%，同时计算需求显著减少 ——FLOP 减少 95.2%，参数减少 58.4%（见表二）。相比之下，WHU-OPT-SAR 数据集中的 “ 水” 和 “森林” 类别相对更容易细分。因此，所有方法在这些类别中都达到了相似的高 IoU 值，而 MoViM 并未成为顶尖表现者 。 总体来看，MoViM 表现优异，mAcc 比例最高，达到 62.71%（领先 1.57%），最佳 mIoU 为 52.05%（领先 0.82%）。</p>
+<img data-src="../../images/paper/MoViM/5.png" alt="1" style="zoom:75%;" />
+<p>it ranks second in Kappa values at 72.9% (0.05% lower). While MobileNetV2 achieves the second-best mAcc and mIoU values, it requires substantially more computational resources than MoViM. On the other hand, LWGANet attains the highest Kappa value, but its mAcc and mIoU values are 2.4% and 1.32% lower than those achieved by MoViM.</p>
+<p>此外，在 Kappa 评分中排名第二，为 72.9%（低 0.05%）。虽然 MobileNetV2 实现了第二好的 mAcc 和 mIoU 值，但其计算资源远多于 MoViM。另一方面，LWGANet 的 Kappa 值最高，但其 mAcc 和 mIoU 值分别比 MoViM 低 2.4% 和 1.32%。</p>
+<p>The qualitative results of MoViM and its variants are compared with two general lightweight models, EfficientViM and TopFormer, and two remote-sensing-specific lightweight models, LSKNet and LWGANet, on the WHU-OPT-SAR dataset (see Fig. 5). In the three examples, the “others” category, resembling forests (first two rows) and farmland (last row), occupies a large image portion. EfficientViM, TopFormer, and LSKNet fail to recognize this category. LWGANet segments part of it, while MoViM excels, successfully segmenting most of “others” and demonstrating effectiveness in this challenging scenario. For our method, removing the GSE module causes a significant decline in classification performance for the largearea “others” category, highlighting the importance of global feature extraction by GSE. Similarly, without the GLF module, classification accuracy of the “others’ category in forest-edge regions decreases noticeably, emphasizing the critical role of fusing global and local features via GLF.</p>
+<p>MoViM 及其变体的定性结果与 WHU-OPT-SAR 数据集上的两个通用轻量级模型 EfficientViM 和 TopFormer，以及两个遥感专用轻量级模型 LSKNet 和 LWGANet 进行了比较（见图 5）。在这三个例子中，“其他” 类别，类似于森林（前两行）和农田（最后一行），占据了大量图像部分。EfficientViM、TopFormer 和 LSKNet 未能识别该类别。LWGANet 对其部分进行了细分，而 MoViM 表现出色，成功切分了大多数 “其他” 类别，并在这一挑战性场景中展现了有效性。在我们的方法中， 移除 GSE 模块会导致大面积 “其他” 类别的分类性能显著下降，凸显了 GSE 全球特征提取的重要性。同样，没有 GLF 模块时，森林边缘区域 “其他” 类别的分类准确性会明显下降，凸显了通过 GLF 融合全球与局部特征的关键作用。</p>
+<img data-src="../../images/paper/MoViM/6.png" alt="1" style="zoom:75%;" />
+<p>Table II shows the quantitative results of all methods on the Potsdam dataset. In this dataset, the “clutter” category corresponds to the “others” category from the WHU-OPT-SAR dataset, denoting pixels that do not fit into any other predefined category. The inherent diversity of the “clutter” category results in a relatively lower performance for all lightweight models compared to other categories. The leading performers for the “clutter” category are again the proposed MoViM and MobileNetV2, with MoViM outperforming MobileNetV2 by 3.8%. Additionally, MoViM ranks first in “impervious surface (Imp. Surf.),” “tree,” and “car” categories and second in “building” and “Low Veg. (Vegetation)” categories, demonstrating its effectiveness in capturing both large-scale layout and fine-grained semantic structure. Overall, (a lead of 1.08%), the best Kappa at 83.85% (a lead of 0.75%), and the best mIoU at 73.67% (a lead of 1.38%). LWGANet, a remote-sensingspecific model, emerges as the second-best performer in mAcc, Kappa, and mIoU, but LWGANet surpassing the third best performer, MobileNetV2, by only 0.3%, 0.11%, and 0.13%, respectively. LWGANet has 0.74 M fewer parameters but incurs 2.19 G more FLOPs and achieves 2.04 higher FPS than MoViM. Meanwhile, as the recently released Mamba model lacks mature support and optimization in deep learning frameworks compared to CNNs (MobileNetV2) and Transformers (TopFormer), MoViM still meets real-time processing needs with 37.88 FPS. It strikes a balanced tradeoff by maintaining .</p>
+<p>表 II 展示了 Potsdam 数据集上所有方法的定量结果 。在本数据集中，“杂波” 类别对应于 WHU-OPT-SAR 数据集中的 “其他” 类别，表示不属于其他预定义类别的像素。“杂乱” 类别的固有多样性导致所有轻量级模型的性能相较其他类别相对较低 。“杂乱” 类别的领先表现者仍是拟议中的 MoViM 和 MobileNetV2，MoViM 的表现比 MobileNetV2 高出 3.8%。此外，MoViM 在 “不透水面（Imp. Surf.）”、“树木” 和 “汽车” 类别中排名第一，在 “建筑” 和 “低植被（植被）” 类别中排名第二，展示了其在捕捉大规模布局和细粒度语义结构方面的有效性。总体来看，领先 1.08%，最佳 Kappa 为 83.85%（领先 0.75%），最佳 mIoU 为 73.67%（领先 1.38%）。LWGANet 作为一种针对遥感的模型，在 mAcc、Kappa 和 mIoU 中表现第二，但 LWGANet 仅以 0.3%、0.11% 和 0.13% 的优势超过第三名 MobileNetV2。LWGANet 参数少 0.74M，但触发 FLOP 多 2.19G，且比 MoViM 高出 2.04 帧。与此同时，由于新发布的 Mamba 模型在深度学习框架上的支持和优化不足 ，相较于 CNN（MobileNetV2）和 Transformer（TopFormer），MoViM 仍以 37.88 FPS 满足实时处理需求。它通过保持保持 实现了平衡的权衡。</p>
+<p>Fig. 6 illustrates the qualitative results of the proposed MoViM and its variants compared to EfficientViM, TopFormer, LSKNet, and LWGANet on the Potsdam dataset. In the examples presented in the first two rows, the features of the two white cars closely resemble those of white buildings. The segmentation results from the four compared methods are notably incorrect for the white car in the first row, with improvements shown in their segmentation results for the white car in the second row. In contrast, the proposed MoViM accurately segments the second white car and makes only input data are RGB-only, the performance of semantic segmentation decreases significantly. . Furthermore, the proposed MoViM model can effectively utilize multimodal information.</p>
+<p>图 6 展示了所提 MoViM 及其变体在 Potsdam 数据集上与 EfficientViM、TopFormer、LSKNet 和 LWGANet 的定性结果。在前两排展示的例子中， 两节白色车厢的特征与白色建筑非常相似 。四种比较方法的分段结果对第一排白色汽车明显不准确 ，但第二排白色汽车的分割结果有所改善 。相比之下，拟议的 MoViM 准确分段第二辆白色车厢，仅输入数据为纯 RGB，语义分割性能显著下降。. 此外，所提的 MoViM 模型能够有效利用多模态信息。</p>
+<img data-src="../../images/paper/MoViM/7.png" alt="1" style="zoom:75%;" />
+<h3 id="conclusion"><a class="markdownIt-Anchor" href="#conclusion">#</a> CONCLUSION</h3>
+<p>overcome the challenge of representing the highly diverse features of the “others” . Through the combination of local and global feature encoding techniques and specialized modules, MoViM provides enhanced representation capabilities, particularly for complex categories like “others.” Experimental results underscore MoViM’s ability to outperform established models, offering improved semantic segmentation accuracy and efficiency. the richness of semantic representation, showcasing MoViM’s potential as a powerful tool for remote sensing applications.</p>
+<p>克服代表 “他者” 高度多样特征的挑战 。通过结合本地和全局特征编码技术及专业模块，MoViM 提供了增强的表示能力，尤其适用于如 “其他” 等复杂类别。实验结果强调了 MoViM 超越既有模型的能力，提供了更高的语义分割准确性和效率。语义表示的丰富性，展示了 MoViM 作为遥感应用强大工具的潜力。</p>
+<p>minor errors regarding the first car. In the examples from the last row, there is a large portion of pixels that belong to the “clutter” category. MoViM effectively segments the majority of the “clutter” category, while the other methods perform poorly in this regard. Specifically, EfficientViM only identifies a small fraction of the “clutter” category in this example. Our versions without GSE or GLF also show a significant decline in segmenting “others” category. Meanwhile, and GLF.</p>
+<p>关于第一辆车的小错误。在最后一排的例子中，有大量像素属于 “杂乱” 类别。MoViM 有效地分割了大部分 “杂乱 ” 类别，而其他方法在这方面表现不佳。具体来说，EfficientViM 只识别了本例中 “杂波” 类别的一小部分。我们没有 GSE 或 GLF 的版本在 “其他” 类别的细分方面也显著下降。与此同时，GLF。</p>
+<h3 id="ablation-study"><a class="markdownIt-Anchor" href="#ablation-study">#</a> Ablation Study</h3>
+<p>Table III presents the ablation study of all MoViM components. The baseline model for comparison is TopFormer. Without the proposed modules, its backbone replaces ViMCNN, its convolutional stem substitutes IS, its scale-aware semantics extractor replaces GSE, and its semantic injection module replaces GLF. Using only ViM-CNN yields a minimal mIoU increase of 0.01% but significantly improves the “others” category by 0.76%, highlighting ViM-CNN’s strong segmentation ability for this class. Combining ViM-CNN with IS raises mIoU and “others” scores by 0.98% and 1.73%, respectively, showing this combination greatly enhances segmentation. Adding GSE and GLF further improves results, with GLF boosting the “others” score to 9.24%, 6.5% above baseline, emphasizing the importance of integrating global and local features for accurate “others” classification.</p>
+<p>表 III 展示了所有 MoViM 组成部分的消融研究。比较的基线模型是 TopFormer。没有这些模块，其骨干将取代 ViMCNN，卷积茎替代 IS， 其尺度感知语义提取器取代 GSE，其语义注入模块取代 GLF。 仅使用 ViM-CNN 可获得 0.01% 的 mIoU 增长，但显著提升了 “其他” 类别 0.76%，凸显了 ViM-CNN 在该类别中强大的细分能力 。将 ViM-CNN 与 IS 结合，mIoU 和 “其他” 分数分别提升 0.98% 和 1.73%，显示这种组合极大地增强了分割能力。 加入 GSE 和 GLF 进一步提升了结果，GLF 将 “其他” 评分提升至 9.24%，比基线高出 6.5%，强调了整合全球和本地特征以实现准确 “其他” 分类的重要性。</p>
+<img data-src="../../images/paper/MoViM/8.png" alt="1" style="zoom:75%;" />
+<blockquote>
+<p>MoViM 是在 TopFormer 的基础上，通过引入一系列创新模块进行<strong>改进和增强</strong>后得到的新模型。Table III 的消融实验，就是为了证明每一次的替换都对最终性能的提升有贡献。</p>
+</blockquote>
+<p>We further show the influence of the multimodal data compared to single modal in Table IV. As observed, when input data are RGB-only, the performance of semantic segmentation decreases significantly. These results indicate that the multimodal data provide complementary information that enriches the semantic representation. Furthermore, the proposed MoViM model can effectively utilize multimodal information.</p>
+<p>我们进一步展示了多模态数据相较于单模态数据的影响（见表 IV）。如前所述，当输入数据仅为 RGB 时，语义分割的性能显著下降。这些结果表明多模态数据提供了补充信息，丰富了语义表示。此外，所提的 MoViM 模型能够有效利用多模态信息。</p>
+<h2 id="conclusion-2"><a class="markdownIt-Anchor" href="#conclusion-2">#</a> CONCLUSION</h2>
+<p>In this letter, we proposed MoViM to overcome the challenge of representing the highly diverse features of the “others” category based on a lightweight model. Through the combination of local and global feature encoding techniques and specialized modules, MoViM provides enhanced representation capabilities, particularly for complex categories like “others.” Experimental results underscore MoViM’s ability to outperform established models, offering improved semantic segmentation accuracy and efficiency. The incorporation of multimodal data further enhances the richness of semantic representation, showcasing MoViM’s potential as a powerful tool for remote sensing applications.</p>
+<p>在本文中，我们提出 MoViM，旨在克服基于轻量级模型代表 “他者” 类别高度多样化特征的挑战。通过结合本地和全局特征编码技术及专业模块，MoViM 提供了增强的表示能力，尤其适用于如 “其他” 等复杂类别。实验结果强调了 MoViM 超越既有模型的能力，提供了更高的语义分割准确性和效率。多模态数据的引入进一步增强了语义表达的丰富性，展示了 MoViM 作为遥感应用强大工具的潜力。</p>
+<h2 id="references"><a class="markdownIt-Anchor" href="#references">#</a> REFERENCES</h2>
+<ol>
+<li>Y. Li et al., “LSKNet: A foundation lightweight backbone for remote sensing,” Int. J. Comput. Vis., vol. 133, no. 3, pp. 1410–1431, Mar. 2025.</li>
+<li>W. Zhang et al., “TopFormer: Token pyramid transformer for mobile semantic segmentation,” in Proc. IEEE/CVF Conf. Comput. Vis. Pattern Recognit. (CVPR), Jun. 2022, pp. 12083–12093.</li>
+<li>Y. Fu, M. Lou, and Y. Yu, “SegMAN: Omni-scale context modeling with state space models and local attention for semantic segmentation,” in Proc. IEEE/CVF Conf. Comput. Vis. Pattern Recognit. (CVPR), Jun. 2025, pp. 19077–19087.</li>
+<li>H. He et al., “MobileMamba: Lightweight multi-receptive visual mamba network,” in Proc. IEEE/CVF Conf. Comput. Vis. Pattern Recognit. (CVPR), Jun. 2025, pp. 4497–4507.</li>
+<li>T. H. Rafi, R. Mahjabin, E. Ghosh, Y.-W. Ko, and J.-G. Lee, “Domain generalization for semantic segmentation: A survey,” Artif. Intell. Rev., vol. 57, no. 9, pp. 1–30, Aug. 2024.</li>
+<li>E. Xie, W. Wang, Z. Yu, A. Anandkumar, J. M. Alvarez, and P. Luo, “SegFormer: Simple and efficient design for semantic segmentation with transformers,” in Proc. Adv. Neural Inf. Process. Syst., vol. 34, 2021, pp. 12077–12090.</li>
+<li>M. Sandler, A. Howard, M. Zhu, A. Zhmoginov, and L.-C. Chen, “MobileNetV2: Inverted residuals and linear bottlenecks,” in Proc. IEEE/CVF Conf. Comput. Vis. Pattern Recognit., Jun. 2018, pp. 4510–4520.</li>
+<li>S. Lee, J. Choi, and H. J. Kim, “EfficientViM: Efficient vision mamba with hidden state mixer based state space duality,” in Proc. IEEE/CVF Conf. Comput. Vis. Pattern Recognit. (CVPR), Jun. 2025, pp. 14923–14933.</li>
+<li>D. Shi, “TransNeXt: Robust foveal visual perception for vision transformers,” in Proc. IEEE/CVF Conf. Comput. Vis. Pattern Recognit. (CVPR), Jun. 2024, pp. 17773–17783.</li>
+<li>W. Lu, S.-B. Chen, C. H. Q. Ding, J. Tang, and B. Luo, “LWGANet: A lightweight group attention backbone for remote sensing visual tasks,” 2025, arXiv:2501.10040.</li>
+<li>Y. Liu et al., “VMamba: Visual state space model,” in Proc. Adv. Neural Inf. Process. Syst., vol. 37, 2024, pp. 103031–103063.</li>
+<li>X. Li et al., “MCANet: A joint semantic segmentation framework of optical and SAR images for land use classification,” Int. J. Appl. Earth Observ. Geoinf., vol. 106, Feb. 2022, Art. no. 102638.</li>
+<li>F. Rottensteiner et al., “The ISPRS benchmark on urban object classification and 3D building reconstruction,” ISPRS Ann. Photogr</li>
+</ol>
+<h1 id="movim"><a class="markdownIt-Anchor" href="#movim">#</a> MoViM</h1>
+<p>MoViM 模型是一种轻量级语义分割模型，集成了 ViM 和卷积骨干，有效捕捉全球上下文信息和局部细节，实现了多模态遥感图像的先进性能。</p>
+<p>研究的关键发现是，MoViM 模型在多模态遥感图像上实现了最先进的性能，尤其是在 “其他” 类别中，该类别具有高度的类别内变异性和与相邻类别的视觉相似性。该模型在 WHU-OPT-SAR 数据集中实现了最高的平均准确率和平均交集。<br>
+MoViM 实现了最高的 mAcc、Kappa 和 mIoU 值，优于其他轻量级模型，并在分割复杂类别如 “其他” 方面表现出有效性。MoViM 旨在克服基于轻量级模型代表 “其他” 类别高度多样化特征的挑战<br>
+实验结果表明，该方法在语义分割性能上优于现有最先进的轻量级模型，在 “其他” 类别中也有显著提升白色车的良好细分结果表明，全局语义提取（GSE）和全局 - 局部特征融合（GLF）所提供的特征表示具有优势。</p>
+
+      <div class="tags">
+          <a href="/tags/python/" rel="tag"><i class="ic i-tag"></i> python</a>
+          <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag"><i class="ic i-tag"></i> 深度学习</a>
+          <a href="/tags/%E5%88%86%E5%89%B2%E6%96%B9%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E9%9B%86/" rel="tag"><i class="ic i-tag"></i> 分割方法与数据集</a>
+          <a href="/tags/%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2/" rel="tag"><i class="ic i-tag"></i> 语义分割</a>
+          <a href="/tags/MoViM/" rel="tag"><i class="ic i-tag"></i> MoViM</a>
+          <a href="/tags/%E9%81%A5%E6%84%9F%E5%9B%BE%E5%83%8F/" rel="tag"><i class="ic i-tag"></i> 遥感图像</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2026-02-23 16:12:33" itemprop="dateModified" datetime="2026-02-23T16:12:33+08:00">2026-02-23</time>
+  </span>
+  <span id="paper/MoViM/" class="item leancloud_visitors" data-flag-title="MoViM：A Hybrid CNN Vision Mamba Network  for Lightweight Semantic Segmentation of  Multimodal Remote Sensing Images" title="阅读次数">
+      <span class="icon">
+        <i class="ic i-eye"></i>
+      </span>
+      <span class="text">阅读次数</span>
+      <span class="leancloud-visitors-count"></span>
+      <span class="text">次</span>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> 赞赏</button>
+  <p>请我喝[茶]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/myWxPay.jpg" alt="KarryLiu 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/myAliPay.jpg" alt="KarryLiu 支付宝">
+        <p>支付宝</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>KarryLiu <i class="ic i-at"><em>@</em></i>诗岸梦行舟
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="https://735690757.github.io/paper/MoViM/" title="MoViM：A Hybrid CNN Vision Mamba Network  for Lightweight Semantic Segmentation of  Multimodal Remote Sensing Images">https://735690757.github.io/paper/MoViM/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/python/lightning/" itemprop="url" rel="prev" data-background-image="&#x2F;images&#x2F;cover&#x2F;lightning.png" title="PyTorch Lightning框架与L-Hydra模板">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> Lightning框架</span>
+  <h3>PyTorch Lightning框架与L-Hydra模板</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/python/AttentionBlock/" itemprop="url" rel="next" data-background-image="&#x2F;images&#x2F;cover&#x2F;attl.png" title="注意力机制模块">
+  <span class="type">下一篇</span>
+  <span class="category"><i class="ic i-flag"></i> 深度学习基础</span>
+  <h3>注意力机制模块</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#methods-and-datasets-on-semantic-segmentation-for-unmanned-aerial-vehicle-remote-sensing-images-a-review"><span class="toc-number">1.</span> <span class="toc-text"> Methods and datasets on semantic segmentation for Unmanned Aerial Vehicle remote sensing images: A review</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#abstract"><span class="toc-number">1.1.</span> <span class="toc-text"> Abstract</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#introduction"><span class="toc-number">1.2.</span> <span class="toc-text"> INTRODUCTION</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#method"><span class="toc-number">1.3.</span> <span class="toc-text"> METHOD</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#a-hybrid-vim-cnn-backbone"><span class="toc-number">1.3.1.</span> <span class="toc-text"> A. Hybrid ViM-CNN Backbone</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#b-gse-module"><span class="toc-number">1.3.2.</span> <span class="toc-text"> B. GSE Module</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#c-global-and-local-feature-fusion-module"><span class="toc-number">1.3.3.</span> <span class="toc-text"> C. Global and Local Feature Fusion Module</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#performance-comparison-whu-opt-sar-%E6%95%B0%E6%8D%AE%E9%9B%86%E4%B8%8A%E7%9A%84%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C"><span class="toc-number">1.3.4.</span> <span class="toc-text"> Performance Comparison WHU-OPT-SAR 数据集上的实验结果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#conclusion"><span class="toc-number">1.3.5.</span> <span class="toc-text"> CONCLUSION</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ablation-study"><span class="toc-number">1.3.6.</span> <span class="toc-text"> Ablation Study</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#conclusion-2"><span class="toc-number">1.4.</span> <span class="toc-text"> CONCLUSION</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#references"><span class="toc-number">1.5.</span> <span class="toc-text"> REFERENCES</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#movim"><span class="toc-number">2.</span> <span class="toc-text"> MoViM</span></a></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+        <ul>
+          <li><a href="/paper/attention_is_all_your_need/" rel="bookmark" title="Attention is all you need">Attention is all you need</a></li><li><a href="/paper/review_remote_sensing_m_d/" rel="bookmark" title="Methods and datasets on semantic segmentation for Unmanned Aerial Vehicle remote sensing images：A review">Methods and datasets on semantic segmentation for Unmanned Aerial Vehicle remote sensing images：A review</a></li><li class="active"><a href="/paper/MoViM/" rel="bookmark" title="MoViM：A Hybrid CNN Vision Mamba Network  for Lightweight Semantic Segmentation of  Multimodal Remote Sensing Images">MoViM：A Hybrid CNN Vision Mamba Network  for Lightweight Semantic Segmentation of  Multimodal Remote Sensing Images</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="KarryLiu"
+      data-src="/images/tx.jpg">
+  <p class="name" itemprop="name">KarryLiu</p>
+  <div class="description" itemprop="description">愿世间所有的美好都得以祝愿</div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">66</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">30</span>
+        <span class="name">分类</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">56</span>
+        <span class="name">标签</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tLzczNTY5MDc1Nw==" title="https:&#x2F;&#x2F;github.com&#x2F;735690757"><i class="ic i-github"></i></span>
+      <span class="exturl item twitter" data-url="aHR0cHM6Ly90d2l0dGVyLmNvbS92b0FMUXRkYWNCVE00RVk=" title="https:&#x2F;&#x2F;twitter.com&#x2F;voALQtdacBTM4EY"><i class="ic i-twitter"></i></span>
+      <span class="exturl item email" data-url="bWFpbHRvOjczNTY5MDc1N0BxcS5jb20=" title="mailto:735690757@qq.com"><i class="ic i-envelope"></i></span>
+      <span class="exturl item zhihu" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3Blb3BsZS9ydW8tcWlhbi15aW5n" title="https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;ruo-qian-ying"><i class="ic i-zhihu"></i></span>
+      <span class="exturl item music" data-url="aHR0cHM6Ly9tdXNpYy4xNjMuY29tLyMvdXNlci9ob21lP2lkPTM1Nzc1OTIzOA==" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;user&#x2F;home?id&#x3D;357759238"><i class="ic i-cloud-music"></i></span>
+      <span class="exturl item about" data-url="aHR0cHM6Ly9hYm91dC5tZS9rYXJyeWxpdQ==" title="https:&#x2F;&#x2F;about.me&#x2F;karryliu"><i class="ic i-address-card"></i></span>
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/about/" rel="section"><i class="ic i-user"></i>关于</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+    
+  <li class="item">
+    <a href="/music" rel="section"><i class="ic i-music"></i>橘子君-Ruxra</a>
+  </li>
+
+    
+  <li class="item">
+    <span class="exturl" data-url="aHR0cHM6Ly93d3cudHJhdmVsbGluZ3MuY24vZ28uaHRtbA=="><i class="ic i-paper-plane"></i>开往</span>
+  </li>
+
+    
+  <li class="item">
+    <a href="/friends/" rel="section"><i class="ic i-heart"></i>友链</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/ocfy" rel="section"><i class="ic i-magic"></i>OCFY</a>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/python/lightning/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/python/AttentionBlock/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>随机文章</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%9D%E6%9D%A5%E4%B9%8D%E5%88%B0/" title="分类于 初来乍到">初来乍到</a>
+</div>
+
+    <span><a href="/hello/" title="起点，但不止于起点！">起点，但不止于起点！</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%90%86%E8%AE%BA/" title="分类于 数据库理论">数据库理论</a>
+</div>
+
+    <span><a href="/database/DataBase01/" title="DB中的范式">DB中的范式</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E7%94%9F%E6%B4%BB/" title="分类于 生活">生活</a>
+</div>
+
+    <span><a href="/life/p2025/" title="回望2025——永不熄灭之光">回望2025——永不熄灭之光</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
+</div>
+
+    <span><a href="/python/NLP/" title="NLP自然语言处理">NLP自然语言处理</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/notebook/" title="分类于 笔记">笔记</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/notebook/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B0/" title="分类于 数据结构笔记">数据结构笔记</a>
+</div>
+
+    <span><a href="/DSLearnNote/GeneralizedLists/" title="考试中有关广义表的两个常用函数的解">考试中有关广义表的两个常用函数的解</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
+</div>
+
+    <span><a href="/Operate-system/01OS/" title="操作系统知识点阶段总结">操作系统知识点阶段总结</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C/" title="分类于 开发经验">开发经验</a>
+</div>
+
+    <span><a href="/experience/MD5CalculationTimePractice/" title="MD5计算时间">MD5计算时间</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
+</div>
+
+    <span><a href="/Operate-system/KnowledgeSummary/" title="操作系统细碎知识点及公式速记">操作系统细碎知识点及公式速记</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/YOLO/" title="分类于 YOLO">YOLO</a>
+</div>
+
+    <span><a href="/python/YOLO/YOLO_V2/" title="YOLO-V2">YOLO-V2</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/%E9%A1%B9%E7%9B%AE%E4%B8%8E%E5%AE%9E%E6%88%98/" title="分类于 项目与实战">项目与实战</a>
+</div>
+
+    <span><a href="/python/pytorch_nn_digital_identification/" title="基于PyTorch的手写数字识别">基于PyTorch的手写数字识别</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>最新评论</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">KarryLiu @ KarryLiu</span>
+  </div>
+  <div class="powered-by">
+    <a href="https://icp.gov.moe/?keyword=20249329" target="_blank">萌ICP备20249329号</a>
+    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  <br/><span>世界本污浊，罪与爱同歌</span>
+  <br/><i class="ic i-chart-area"></i>&nbsp;<span>673k&nbsp;字</span> &nbsp;|&nbsp;
+  <i class="ic i-coffee"></i>&nbsp;<span> 18:41</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: 'paper/MoViM/',
+    favicon: {
+      show: "（●´3｀●）嘿嘿嘿....",
+      hide: "(´Д｀)不看我是吧！"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: true,copy_tex: true,
+    katex: true,fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<!-- <script src="https://cdn.polyfill.io/v2/polyfill.js"></script>  -->
+
+<script src="https://polyfill-js.cn/v3/polyfill.min.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>

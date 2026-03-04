@@ -303,7 +303,9 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 </ul>
 <h1 id="lh正在使多模型对比变得简单"><a class="markdownIt-Anchor" href="#lh正在使多模型对比变得简单">#</a> LH 正在使多模型对比变得简单</h1>
 <img data-src="../../images/python/lightning/8.png" alt="1" style="zoom:75%;" />
-
+<h1 id="其他经验"><a class="markdownIt-Anchor" href="#其他经验">#</a> 其他经验</h1>
+<h2 id="在服务器中使用tb"><a class="markdownIt-Anchor" href="#在服务器中使用tb">#</a> 在服务器中使用 TB</h2>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>tensorboard <span class="token parameter variable">--logdir</span><span class="token operator">=</span>./logs <span class="token parameter variable">--host</span><span class="token operator">=</span>服务器IP <span class="token parameter variable">--port</span><span class="token operator">=</span><span class="token number">9989</span></pre></td></tr></table></figure>
       <div class="tags">
           <a href="/tags/python/" rel="tag"><i class="ic i-tag"></i> python</a>
           <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag"><i class="ic i-tag"></i> 深度学习</a>
@@ -320,7 +322,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">更新于</span>
-    <time title="修改时间：2026-02-19 19:31:00" itemprop="dateModified" datetime="2026-02-19T19:31:00+08:00">2026-02-19</time>
+    <time title="修改时间：2026-03-02 16:17:30" itemprop="dateModified" datetime="2026-03-02T16:17:30+08:00">2026-03-02</time>
   </span>
   <span id="python/lightning/" class="item leancloud_visitors" data-flag-title="PyTorch Lightning框架与L-Hydra模板" title="阅读次数">
       <span class="icon">
@@ -386,6 +388,14 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 
     </div>
     <div class="item right">
+      
+
+  <a href="/paper/MoViM/" itemprop="url" rel="next" data-background-image="&#x2F;images&#x2F;cover&#x2F;MoViM.png" title="MoViM：A Hybrid CNN Vision Mamba Network  for Lightweight Semantic Segmentation of  Multimodal Remote Sensing Images">
+  <span class="type">下一篇</span>
+  <span class="category"><i class="ic i-flag"></i> 论文阅读</span>
+  <h3>MoViM：A Hybrid CNN Vision Mamba Network  for Lightweight Semantic Segmentation of  Multimodal Remote Sensing Images</h3>
+  </a>
+
     </div>
 </div>
 
@@ -402,7 +412,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="文章目录">
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#pytorch-lightning"><span class="toc-number">1.</span> <span class="toc-text"> PyTorch Lightning</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFpytorch-lightning"><span class="toc-number">1.1.</span> <span class="toc-text"> 什么是 PyTorch Lightning</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8Epytorch%E8%BF%81%E7%A7%BB%E5%88%B0pytorch-lightning"><span class="toc-number">1.2.</span> <span class="toc-text"> 从 PyTorch 迁移到 PyTorch Lightning</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%86%E6%95%B0%E6%8D%AE%E9%83%A8%E5%88%86%E4%BB%8Elm%E4%B8%AD%E5%88%86%E7%A6%BB"><span class="toc-number">1.3.</span> <span class="toc-text"> 将数据部分从 LM 中分离</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%88%E4%BB%8B%E7%BB%8D%E5%87%A0%E4%B8%AA%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7"><span class="toc-number">1.3.1.</span> <span class="toc-text"> 先介绍几个实用工具</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#accuracy"><span class="toc-number">1.3.1.1.</span> <span class="toc-text"> Accuracy</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#meanmetric"><span class="toc-number">1.3.1.2.</span> <span class="toc-text"> MeanMetric</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#maxmetric"><span class="toc-number">1.3.1.3.</span> <span class="toc-text"> MaxMetric</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lightningmodule%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-number">1.4.</span> <span class="toc-text"> LightningModule 的生命周期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lightningdatamodule%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-number">1.5.</span> <span class="toc-text"> LightningDataModule 的生命周期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E5%8D%A1%E8%AE%AD%E7%BB%83"><span class="toc-number">1.6.</span> <span class="toc-text"> 多卡训练</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#trainer%E5%85%B3%E9%94%AE%E9%85%8D%E7%BD%AE"><span class="toc-number">1.7.</span> <span class="toc-text"> Trainer 关键配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E6%A1%86%E6%9E%B6"><span class="toc-number">1.8.</span> <span class="toc-text"> 日志框架</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E6%97%A5%E5%BF%97"><span class="toc-number">1.8.1.</span> <span class="toc-text"> 训练过程日志</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B6%85%E5%8F%82%E6%95%B0%E6%97%A5%E5%BF%97"><span class="toc-number">1.8.2.</span> <span class="toc-text"> 超参数日志</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#log%E4%B8%AD%E7%9A%84on_step%E4%B8%8Eon_epoch"><span class="toc-number">1.8.3.</span> <span class="toc-text"> Log 中的 on_step 与 on_epoch</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E4%BA%86tensorboard%E5%8F%88%E6%83%B3%E4%BD%BF%E7%94%A8csvlog"><span class="toc-number">1.8.4.</span> <span class="toc-text"> 安装了 TensorBoard 又想使用 csvLog</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#checkpoint"><span class="toc-number">1.9.</span> <span class="toc-text"> checkpoint</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%AD%E7%82%B9%E7%BB%AD%E6%B5%8B"><span class="toc-number">1.9.1.</span> <span class="toc-text"> 断点续测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%AD%E7%82%B9%E7%BB%AD%E8%AE%AD"><span class="toc-number">1.9.2.</span> <span class="toc-text"> 断点续训</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E4%BD%B3%E6%9D%83%E9%87%8D%E4%B8%8E%E6%9C%80%E6%96%B0%E6%9D%83%E9%87%8D%E5%85%B1%E5%AD%98"><span class="toc-number">1.9.3.</span> <span class="toc-text"> 最佳权重与最新权重共存</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#lightning-hydra-template"><span class="toc-number">2.</span> <span class="toc-text"> lightning-hydra-template</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#configs"><span class="toc-number">2.1.</span> <span class="toc-text"> configs</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#trainer"><span class="toc-number">2.1.1.</span> <span class="toc-text"> trainer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#model"><span class="toc-number">2.1.2.</span> <span class="toc-text"> model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#data"><span class="toc-number">2.1.3.</span> <span class="toc-text"> data</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#callbacks"><span class="toc-number">2.1.4.</span> <span class="toc-text"> callbacks</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#logger"><span class="toc-number">2.1.5.</span> <span class="toc-text"> logger</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#experiment"><span class="toc-number">2.1.6.</span> <span class="toc-text"> experiment</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hparams_search"><span class="toc-number">2.1.7.</span> <span class="toc-text"> hparams_search</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#debug"><span class="toc-number">2.1.8.</span> <span class="toc-text"> debug</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#extras"><span class="toc-number">2.1.9.</span> <span class="toc-text"> extras</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hydra"><span class="toc-number">2.1.10.</span> <span class="toc-text"> hydra</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#paths"><span class="toc-number">2.1.11.</span> <span class="toc-text"> paths</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#local"><span class="toc-number">2.1.12.</span> <span class="toc-text"> local</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#trainyaml-evalyaml"><span class="toc-number">2.1.13.</span> <span class="toc-text"> train.yaml &#x2F; eval.yaml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA%E5%AE%8C%E6%95%B4%E8%B0%83%E7%94%A8%E6%98%AF%E6%80%8E%E4%B9%88%E5%8F%91%E7%94%9F%E7%9A%84"><span class="toc-number">2.1.14.</span> <span class="toc-text"> 一个完整调用是怎么发生的</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hydra%E7%9A%84%E8%B7%A8yaml%E8%AF%BB%E5%8F%96"><span class="toc-number">2.2.</span> <span class="toc-text"> Hydra 的跨 yaml 读取</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#lh%E6%AD%A3%E5%9C%A8%E4%BD%BF%E5%A4%9A%E6%A8%A1%E5%9E%8B%E5%AF%B9%E6%AF%94%E5%8F%98%E5%BE%97%E7%AE%80%E5%8D%95"><span class="toc-number">3.</span> <span class="toc-text"> LH 正在使多模型对比变得简单</span></a></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#pytorch-lightning"><span class="toc-number">1.</span> <span class="toc-text"> PyTorch Lightning</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFpytorch-lightning"><span class="toc-number">1.1.</span> <span class="toc-text"> 什么是 PyTorch Lightning</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8Epytorch%E8%BF%81%E7%A7%BB%E5%88%B0pytorch-lightning"><span class="toc-number">1.2.</span> <span class="toc-text"> 从 PyTorch 迁移到 PyTorch Lightning</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%86%E6%95%B0%E6%8D%AE%E9%83%A8%E5%88%86%E4%BB%8Elm%E4%B8%AD%E5%88%86%E7%A6%BB"><span class="toc-number">1.3.</span> <span class="toc-text"> 将数据部分从 LM 中分离</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%88%E4%BB%8B%E7%BB%8D%E5%87%A0%E4%B8%AA%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7"><span class="toc-number">1.3.1.</span> <span class="toc-text"> 先介绍几个实用工具</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#accuracy"><span class="toc-number">1.3.1.1.</span> <span class="toc-text"> Accuracy</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#meanmetric"><span class="toc-number">1.3.1.2.</span> <span class="toc-text"> MeanMetric</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#maxmetric"><span class="toc-number">1.3.1.3.</span> <span class="toc-text"> MaxMetric</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lightningmodule%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-number">1.4.</span> <span class="toc-text"> LightningModule 的生命周期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lightningdatamodule%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-number">1.5.</span> <span class="toc-text"> LightningDataModule 的生命周期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E5%8D%A1%E8%AE%AD%E7%BB%83"><span class="toc-number">1.6.</span> <span class="toc-text"> 多卡训练</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#trainer%E5%85%B3%E9%94%AE%E9%85%8D%E7%BD%AE"><span class="toc-number">1.7.</span> <span class="toc-text"> Trainer 关键配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E6%A1%86%E6%9E%B6"><span class="toc-number">1.8.</span> <span class="toc-text"> 日志框架</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E6%97%A5%E5%BF%97"><span class="toc-number">1.8.1.</span> <span class="toc-text"> 训练过程日志</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B6%85%E5%8F%82%E6%95%B0%E6%97%A5%E5%BF%97"><span class="toc-number">1.8.2.</span> <span class="toc-text"> 超参数日志</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#log%E4%B8%AD%E7%9A%84on_step%E4%B8%8Eon_epoch"><span class="toc-number">1.8.3.</span> <span class="toc-text"> Log 中的 on_step 与 on_epoch</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E4%BA%86tensorboard%E5%8F%88%E6%83%B3%E4%BD%BF%E7%94%A8csvlog"><span class="toc-number">1.8.4.</span> <span class="toc-text"> 安装了 TensorBoard 又想使用 csvLog</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#checkpoint"><span class="toc-number">1.9.</span> <span class="toc-text"> checkpoint</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%AD%E7%82%B9%E7%BB%AD%E6%B5%8B"><span class="toc-number">1.9.1.</span> <span class="toc-text"> 断点续测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%AD%E7%82%B9%E7%BB%AD%E8%AE%AD"><span class="toc-number">1.9.2.</span> <span class="toc-text"> 断点续训</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E4%BD%B3%E6%9D%83%E9%87%8D%E4%B8%8E%E6%9C%80%E6%96%B0%E6%9D%83%E9%87%8D%E5%85%B1%E5%AD%98"><span class="toc-number">1.9.3.</span> <span class="toc-text"> 最佳权重与最新权重共存</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#lightning-hydra-template"><span class="toc-number">2.</span> <span class="toc-text"> lightning-hydra-template</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#configs"><span class="toc-number">2.1.</span> <span class="toc-text"> configs</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#trainer"><span class="toc-number">2.1.1.</span> <span class="toc-text"> trainer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#model"><span class="toc-number">2.1.2.</span> <span class="toc-text"> model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#data"><span class="toc-number">2.1.3.</span> <span class="toc-text"> data</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#callbacks"><span class="toc-number">2.1.4.</span> <span class="toc-text"> callbacks</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#logger"><span class="toc-number">2.1.5.</span> <span class="toc-text"> logger</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#experiment"><span class="toc-number">2.1.6.</span> <span class="toc-text"> experiment</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hparams_search"><span class="toc-number">2.1.7.</span> <span class="toc-text"> hparams_search</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#debug"><span class="toc-number">2.1.8.</span> <span class="toc-text"> debug</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#extras"><span class="toc-number">2.1.9.</span> <span class="toc-text"> extras</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hydra"><span class="toc-number">2.1.10.</span> <span class="toc-text"> hydra</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#paths"><span class="toc-number">2.1.11.</span> <span class="toc-text"> paths</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#local"><span class="toc-number">2.1.12.</span> <span class="toc-text"> local</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#trainyaml-evalyaml"><span class="toc-number">2.1.13.</span> <span class="toc-text"> train.yaml &#x2F; eval.yaml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA%E5%AE%8C%E6%95%B4%E8%B0%83%E7%94%A8%E6%98%AF%E6%80%8E%E4%B9%88%E5%8F%91%E7%94%9F%E7%9A%84"><span class="toc-number">2.1.14.</span> <span class="toc-text"> 一个完整调用是怎么发生的</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hydra%E7%9A%84%E8%B7%A8yaml%E8%AF%BB%E5%8F%96"><span class="toc-number">2.2.</span> <span class="toc-text"> Hydra 的跨 yaml 读取</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#lh%E6%AD%A3%E5%9C%A8%E4%BD%BF%E5%A4%9A%E6%A8%A1%E5%9E%8B%E5%AF%B9%E6%AF%94%E5%8F%98%E5%BE%97%E7%AE%80%E5%8D%95"><span class="toc-number">3.</span> <span class="toc-text"> LH 正在使多模型对比变得简单</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E7%BB%8F%E9%AA%8C"><span class="toc-number">4.</span> <span class="toc-text"> 其他经验</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%AD%E4%BD%BF%E7%94%A8tb"><span class="toc-number">4.1.</span> <span class="toc-text"> 在服务器中使用 TB</span></a></li></ol></li></ol>
       </div>
       <div class="related panel pjax" data-title="系列文章">
         <ul>
@@ -420,7 +430,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">64</span>
+        <span class="count">66</span>
         <span class="name">文章</span>
       </a>
     </div>
@@ -432,7 +442,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
     </div>
     <div class="item tags">
       <a href="/tags/">
-        <span class="count">54</span>
+        <span class="count">56</span>
         <span class="name">标签</span>
       </a>
     </div>
@@ -509,10 +519,12 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 
   <ul id="quick">
     <li class="prev pjax">
+        <a href="/experience/Ubuntu24-d/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a>
     </li>
     <li class="up"><i class="ic i-arrow-up"></i></li>
     <li class="down"><i class="ic i-arrow-down"></i></li>
     <li class="next pjax">
+        <a href="/paper/MoViM/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a>
     </li>
     <li class="percent"></li>
   </ul>
@@ -534,50 +546,12 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/notebook/" title="分类于 笔记">笔记</a>
+<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/notebook/%E8%80%83%E7%A0%94%E8%8B%B1%E8%AF%AD%E7%AC%94%E8%AE%B0/" title="分类于 考研英语笔记">考研英语笔记</a>
+<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%90%86%E8%AE%BA/" title="分类于 数据库理论">数据库理论</a>
 </div>
 
-    <span><a href="/English/xbbEnglish/" title="英语笔记">英语笔记</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Java/" title="分类于 Java">Java</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/Java/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%9B%B8%E5%85%B3/" title="分类于 微服务相关">微服务相关</a>
-</div>
-
-    <span><a href="/Java/springcloud021/" title="将单体项目拆解为微服务项目">将单体项目拆解为微服务项目</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/python/YOLO/" title="分类于 YOLO">YOLO</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/python/YOLO/%E9%A1%B9%E7%9B%AE%E4%B8%8E%E5%AE%9E%E6%88%98/" title="分类于 项目与实战">项目与实战</a>
-</div>
-
-    <span><a href="/python/YOLO/YOLOv3_ultralytics/" title="ultralytics YOLOv3">ultralytics YOLOv3</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Java/" title="分类于 Java">Java</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/Java/Linux%E7%9B%B8%E5%85%B3/" title="分类于 Linux相关">Linux相关</a>
-</div>
-
-    <span><a href="/Linux/Linux01/" title="初见Linux">初见Linux</a></span>
+    <span><a href="/database/DataBase02/" title="数据库设计">数据库设计</a></span>
   </li>
 
       
@@ -585,9 +559,23 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
     
 <div class="breadcrumb">
 <a href="/categories/%E7%94%9F%E6%B4%BB/" title="分类于 生活">生活</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E7%94%9F%E6%B4%BB/%E4%B8%8A%E5%B2%B8/" title="分类于 上岸">上岸</a>
 </div>
 
-    <span><a href="/life/p2025/" title="回望2025——永不熄灭之光">回望2025——永不熄灭之光</a></span>
+    <span><a href="/life/shangan/" title="写给我这一年多的考研时光">写给我这一年多的考研时光</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/notebook/" title="分类于 笔记">笔记</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/notebook/%E7%9F%A9%E9%98%B5%E8%AE%BA%E8%A7%A3%E9%A2%98%E7%AC%94%E8%AE%B0/" title="分类于 矩阵论解题笔记">矩阵论解题笔记</a>
+</div>
+
+    <span><a href="/math/matrix_anl/" title="矩阵论">矩阵论</a></span>
   </li>
 
       
@@ -599,7 +587,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
 </div>
 
-    <span><a href="/python/CNN_Acc/" title="CNN经典卷积神经网络与实战">CNN经典卷积神经网络与实战</a></span>
+    <span><a href="/python/pandas/" title="Pandas核心处理方法">Pandas核心处理方法</a></span>
   </li>
 
       
@@ -609,19 +597,17 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
 </div>
 
-    <span><a href="/Operate-system/os_retest/" title="计算机操作系统复试速览">计算机操作系统复试速览</a></span>
+    <span><a href="/Operate-system/OSPVCode/" title="操作系统PV代码题速记">操作系统PV代码题速记</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
 </div>
 
-    <span><a href="/python/DLFromFormula/" title="从公式角度看深度学习">从公式角度看深度学习</a></span>
+    <span><a href="/Operate-system/02OS/" title="进程与线程">进程与线程</a></span>
   </li>
 
       
@@ -629,9 +615,23 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
     
 <div class="breadcrumb">
 <a href="/categories/Java/" title="分类于 Java">Java</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/Java/linux/" title="分类于 linux">linux</a>
 </div>
 
-    <span><a href="/Java/javaAd01/" title="Java高级特性1">Java高级特性1</a></span>
+    <span><a href="/experience/Ubuntu24-d/" title="双硬盘独立引导Windows与Ubuntu">双硬盘独立引导Windows与Ubuntu</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MongoDB/" title="分类于 MongoDB">MongoDB</a>
+</div>
+
+    <span><a href="/MongoDB/MongoDB01/" title="MongoDB的安装与初步使用（Windows平台）">MongoDB的安装与初步使用（Windows平台）</a></span>
   </li>
 
       
@@ -643,7 +643,19 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <a href="/categories/python/YOLO/" title="分类于 YOLO">YOLO</a>
 </div>
 
-    <span><a href="/python/YOLO/index/" title="YOLO系列">YOLO系列</a></span>
+    <span><a href="/python/YOLO/YOLO_V5/" title="YOLO-V5 with Ultralytics YOLOv5源码解析">YOLO-V5 with Ultralytics YOLOv5源码解析</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/notebook/" title="分类于 笔记">笔记</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/notebook/%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E8%A7%A3%E9%A2%98%E7%AC%94%E8%AE%B0/" title="分类于 模糊数学解题笔记">模糊数学解题笔记</a>
+</div>
+
+    <span><a href="/math/mh_math/" title="模糊数学25习题">模糊数学25习题</a></span>
   </li>
 
   </ul>
@@ -668,8 +680,8 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
     <a href="https://icp.gov.moe/?keyword=20249329" target="_blank">萌ICP备20249329号</a>
     基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
   <br/><span>世界本污浊，罪与爱同歌</span>
-  <br/><i class="ic i-chart-area"></i>&nbsp;<span>622k&nbsp;字</span> &nbsp;|&nbsp;
-  <i class="ic i-coffee"></i>&nbsp;<span> 17:17</span>
+  <br/><i class="ic i-chart-area"></i>&nbsp;<span>673k&nbsp;字</span> &nbsp;|&nbsp;
+  <i class="ic i-coffee"></i>&nbsp;<span> 18:41</span>
   </div>
 </div>
 
