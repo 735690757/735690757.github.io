@@ -1,0 +1,722 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="诗岸梦行舟" href="https://735690757.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="诗岸梦行舟" href="https://735690757.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="诗岸梦行舟" href="https://735690757.github.io/feed.json" />
+<link rel="stylesheet" href="https://unpkg.com/mermaid/dist/mermaid.min.css">
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({ startOnLoad: true });</script>
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="Java虚拟机,面试,算法" />
+
+
+<link rel="canonical" href="https://735690757.github.io/Java/javams/">
+
+
+
+  <title>
+JVM、面试与算法 - Java |
+KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</title>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">JVM、面试与算法
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2026-03-22 12:12:12">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2026-03-22T12:12:12+08:00">2026-03-22</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">KarryLiu</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+          <img src="/images/cover/javams.webp">
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/Java/" itemprop="item" rel="index" title="分类于 Java"><span itemprop="name">Java</span></a>
+<meta itemprop="position" content="1" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="https://735690757.github.io/Java/javams/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/tx.jpg">
+    <meta itemprop="name" content="KarryLiu">
+    <meta itemprop="description" content="分享计算机知识以及各种心得总结, 愿世间所有的美好都得以祝愿">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="诗岸梦行舟">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h1 id="java虚拟机"><a class="markdownIt-Anchor" href="#java虚拟机">#</a> Java 虚拟机</h1>
+<h2 id="认识jvm"><a class="markdownIt-Anchor" href="#认识jvm">#</a> 认识 JVM</h2>
+<p>JVM 的功能：</p>
+<ol>
+<li>解释和运行：对字节码文件中的指令实时的解释成机器码，让计算机执行。</li>
+<li>内存管理：自动为对象、方法等分配内存，具有自动的垃圾回收机制，回收不再使用的对象。</li>
+<li>即时编译：对人点代码进行优化，提升执行效率。</li>
+</ol>
+<p>Java 语言如果不做任何优化，性能是不如 C 和 C++ 的，因为 Java 虚拟机在解释，而 C 不一样，C 可以直接编译成目标可执行的机器码，无需解释，Java 这样做的主要目的是为了跨平台，这也铸就 Java 今天的地位。</p>
+<p><strong>什么是即时编译，为什么需要即时编译？</strong></p>
+<p>Java 代码先被编译成字节码，JVM 解释执行字节码，纯粹的解释执行速度慢（每次执行都要翻译），不如 C/C++ 直接编译成机器码，为了既保持跨平台能力，又提高执行速度，JVM 引入了 <strong>JIT 编译器</strong>。JVM 会统计每个方法被调用的次数，当一个方法或循环被频繁执行（超过一定阈值，如 10,000 次），JVM 将其标记为 <strong>“热点代码”</strong>。JIT 编译器将这些热点代码直接编译成本地机器码，并缓存在代码缓存中。再次调用该方法时，JVM 直接执行已编译好的机器码，<strong>无需重新解释</strong>，速度大幅提升。</p>
+<h2 id="字节码文件"><a class="markdownIt-Anchor" href="#字节码文件">#</a> 字节码文件</h2>
+<ol>
+<li>基础信息：魔数、字节码文件对应的 Java 版本号、访问标识（public final 等）、父类和接口</li>
+<li>常量池：保存了字符串常量、类或接口名、字段名，主要在字节码指令中使用</li>
+<li>字段：当前类接口声明的字段信息</li>
+<li>方法：当前类接口声明的方法信息，字节码指令</li>
+<li>属性：类的属性，比如源码的文件名，内部类的列表等</li>
+</ol>
+<h3 id="什么是魔数"><a class="markdownIt-Anchor" href="#什么是魔数">#</a> 什么是魔数？</h3>
+<p>魔数的核心作用就是<strong>快速、可靠地标识文件类型</strong>。</p>
+<img data-src="../../images/java/ms/9.png" alt="1" style="zoom: 100%;" />
+<p><strong>其中 CAFEBABE</strong>，就是用来标识这个文件是 Java 字节码文件的。</p>
+<h3 id="jdk版本号"><a class="markdownIt-Anchor" href="#jdk版本号">#</a> JDK 版本号</h3>
+<p>JDK1.2 是 46，在 JDK1.2 之后每升级一个版本就加 1，55-46=9，9+2=11，就是 JDK11。</p>
+<img data-src="../../images/java/ms/10.png" alt="1" style="zoom: 100%;" />
+<p>JDK 版本号主要用来检查你的 Class 文件与当前运行的环境是否匹配。</p>
+<h3 id="常量池"><a class="markdownIt-Anchor" href="#常量池">#</a> 常量池</h3>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">KarryCode</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token class-name">String</span> nameKarry1 <span class="token operator">=</span> <span class="token string">"KarryCode"</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token class-name">String</span> nameKarry2 <span class="token operator">=</span> <span class="token string">"KarryCode"</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>        <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>        i <span class="token operator">+=</span> i <span class="token operator">+=</span> <span class="token operator">++</span>i <span class="token operator">+</span> <span class="token number">4.4</span> <span class="token operator">+</span> i<span class="token punctuation">;</span><span class="token comment">//1 1 2 4 2</span></pre></td></tr><tr><td data-num="7"></td><td><pre>        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span></pre></td></tr><tr><td data-num="8"></td><td><pre>                i</pre></td></tr><tr><td data-num="9"></td><td><pre>        <span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="11"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>当出现两个常量是同一个串的时候，Class 中会为我们自动分配同一个目标。</p>
+<h3 id="字节码方法"><a class="markdownIt-Anchor" href="#字节码方法">#</a> 字节码方法</h3>
+<p>i++：</p>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token number">0</span> iconst_0</pre></td></tr><tr><td data-num="2"></td><td><pre> <span class="token number">1</span> istore_1</pre></td></tr><tr><td data-num="3"></td><td><pre> <span class="token number">2</span> iload_1</pre></td></tr><tr><td data-num="4"></td><td><pre> <span class="token number">3</span> iinc <span class="token number">1</span> by <span class="token number">1</span></pre></td></tr><tr><td data-num="5"></td><td><pre> <span class="token number">6</span> istore_1</pre></td></tr><tr><td data-num="6"></td><td><pre> <span class="token number">7</span> getstatic <span class="token comment">#5 &lt;java/lang/System.out : Ljava/io/PrintStream;></span></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token number">10</span> iload_1</pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token number">11</span> invokevirtual <span class="token comment">#6 &lt;java/io/PrintStream.println : (I)V></span></pre></td></tr><tr><td data-num="9"></td><td><pre><span class="token number">14</span> <span class="token builtin class-name">return</span></pre></td></tr></table></figure><p>++i：</p>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token number">0</span> iconst_0</pre></td></tr><tr><td data-num="2"></td><td><pre> <span class="token number">1</span> istore_1</pre></td></tr><tr><td data-num="3"></td><td><pre> <span class="token number">2</span> iinc <span class="token number">1</span> by <span class="token number">1</span></pre></td></tr><tr><td data-num="4"></td><td><pre> <span class="token number">5</span> iload_1</pre></td></tr><tr><td data-num="5"></td><td><pre> <span class="token number">6</span> istore_1</pre></td></tr><tr><td data-num="6"></td><td><pre> <span class="token number">7</span> getstatic <span class="token comment">#5 &lt;java/lang/System.out : Ljava/io/PrintStream;></span></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token number">10</span> iload_1</pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token number">11</span> invokevirtual <span class="token comment">#6 &lt;java/io/PrintStream.println : (I)V></span></pre></td></tr><tr><td data-num="9"></td><td><pre><span class="token number">14</span> <span class="token builtin class-name">return</span></pre></td></tr></table></figure><p>i++：iload_1, iinc 1 by 1</p>
+<p>++i：iinc 1 by 1, iload_1</p>
+<p>这两个最大的区别是 load 的顺序，到底是先加载，还是先自增。先 load 就是先把数字拿出，放到操作数栈中，然后直接在局部变量数组表自增。先自增是直接在局部变量数组表自增，然后再拿到操作数栈中。</p>
+<h1 id="算法"><a class="markdownIt-Anchor" href="#算法">#</a> 算法</h1>
+<h2 id="二分查找"><a class="markdownIt-Anchor" href="#二分查找">#</a> 二分查找</h2>
+<h3 id="基础版"><a class="markdownIt-Anchor" href="#基础版">#</a> 基础版</h3>
+<p>需求：在<strong>有序</strong>数组 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal">A</span></span></span></span> 内，查找值 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mi>a</mi><mi>r</mi><mi>g</mi><mi>e</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">target</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">t</span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">e</span><span class="mord mathnormal">t</span></span></span></span></p>
+<ul>
+<li>如果找到返回索引</li>
+<li>如果找不到返回 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">−</span><span class="mord">1</span></span></span></span></li>
+</ul>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">BinarySearch</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">binarySearch</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr<span class="token punctuation">,</span> <span class="token keyword">int</span> target<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>        <span class="token keyword">int</span> left <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>        <span class="token keyword">int</span> right <span class="token operator">=</span> arr<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>        <span class="token keyword">while</span> <span class="token punctuation">(</span>left <span class="token operator">&lt;=</span> right<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>            <span class="token keyword">int</span> mid <span class="token operator">=</span> <span class="token punctuation">(</span>left <span class="token operator">+</span> right<span class="token punctuation">)</span> <span class="token operator">>>></span> <span class="token number">1</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>            <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">==</span> target<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>                <span class="token keyword">return</span> mid<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>            <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>            <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">&lt;</span> target<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>                left <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>            <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">></span> target<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>                right <span class="token operator">=</span> mid <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>            <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="16"></td><td><pre>        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="17"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="18"></td><td><pre></pre></td></tr><tr><td data-num="19"></td><td><pre>    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="20"></td><td><pre>        <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">13</span><span class="token punctuation">,</span> <span class="token number">21</span><span class="token punctuation">,</span> <span class="token number">30</span><span class="token punctuation">,</span> <span class="token number">38</span><span class="token punctuation">,</span> <span class="token number">44</span><span class="token punctuation">,</span> <span class="token number">52</span><span class="token punctuation">,</span> <span class="token number">53</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="21"></td><td><pre>        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token function">binarySearch</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> <span class="token number">60</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="22"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="23"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><ol>
+<li><code>i&lt;j</code>  行不行？不行，因为当 <code>i=j</code>  的时候也可能成为查找的对象。</li>
+<li><code>(left + right) / 2</code>  合理吗？其实是有点不合理的，如果数值长度为整数最大值，且左边界的索引即将向右更新的话，那么 <code>left + right</code>  是会超越正整数的范围，超越之后，由于 Java 会把二进制的首位视为符号位，他会翻转为一个负数，索引是没有负数的，这就产生了错误。那么怎么改进？请使用无符号右移的方法。</li>
+</ol>
+<h3 id="改动版"><a class="markdownIt-Anchor" href="#改动版">#</a> 改动版</h3>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">binarySearchAlternative</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr<span class="token punctuation">,</span> <span class="token keyword">int</span> target<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token keyword">int</span> left <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token keyword">int</span> right <span class="token operator">=</span> arr<span class="token punctuation">.</span>length<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token keyword">while</span> <span class="token punctuation">(</span>left <span class="token operator">&lt;</span> right<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>        <span class="token keyword">int</span> mid <span class="token operator">=</span> <span class="token punctuation">(</span>left <span class="token operator">+</span> right<span class="token punctuation">)</span> <span class="token operator">>>></span> <span class="token number">1</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>        <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">==</span> target<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>            <span class="token keyword">return</span> mid<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>        <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">&lt;</span> target<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>            left <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>        <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>target <span class="token operator">&lt;</span> arr<span class="token punctuation">[</span>mid<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>            right <span class="token operator">=</span> mid<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>    <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="16"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>这是把双闭区间换成左闭右开了。</p>
+<h3 id="算法评价指标"><a class="markdownIt-Anchor" href="#算法评价指标">#</a> 算法评价指标</h3>
+<h1 id="面试"><a class="markdownIt-Anchor" href="#面试">#</a> 面试</h1>
+<h2 id="redis"><a class="markdownIt-Anchor" href="#redis">#</a> Redis</h2>
+<ol>
+<li>缓存</li>
+<li>分布式锁</li>
+<li>计数器</li>
+<li>保存 token</li>
+<li>消息队列</li>
+<li>延迟队列</li>
+</ol>
+<p>常见内容</p>
+<p>缓存：击穿、雪崩、双写一致、持久化、数据过期、淘汰策略</p>
+<p>分布式锁：setnx、redisson</p>
+<p>一些数据类型等，主从、哨兵、集群、事务，以及为什么 Redis 这么快？</p>
+<p>“我看你做的项目中，都使用到了 Redis，你在最近的项目中哪些场景使用了 Redis？”，建议结合业务回答，这个问题通常用来引出其他的子问题。缓存和分布式锁。</p>
+<h2 id="缓存穿透怎么解决"><a class="markdownIt-Anchor" href="#缓存穿透怎么解决">#</a> 缓存穿透？怎么解决？</h2>
+<p>缓存缓存穿透是去查询一个不存在的数据，此时一般先去 Redis 拿，Redis 拿不到就去数据库拿，当然你肯定是拿不到的，也就返回为空了，但是这个空数据并不会向 Redis 中缓存，所以以后再有这样的请求时依然要走这样的老路，最终导致数据库服务器宕机（这个类似击穿），这种情况通常是遭遇了攻击。</p>
+<p>如何解决呢，方案一是就算我们查到的的是空数据，也把这个数据缓存到数据库中，这样每次请求就会打到 Redis 了能缓解一些，方案二是，使用布隆过滤器，布隆过滤器主要用于检索一个元素是否在集合中，用 redisson 的布隆过滤器，它的底层机制是先去初始化时先去初始化一个比较大的数组，里面存放 0 或 1。在一开始是全是 0，当一个 key 来了之后，进行三次哈希计算，然后结果对余下设定的数组长度取模，得到的数组下标将 0 置为 1，这样三个数组位置就能表明 一个 Key 的存在。布隆过滤器也会产生一些误判，我们可以设置这个误判率，一般为 5%。</p>
+<img data-src="../../images/java/ms/1.png" alt="1" style="zoom: 33%;" />
+<h2 id="缓存击穿如何解决"><a class="markdownIt-Anchor" href="#缓存击穿如何解决">#</a> 缓存击穿？如何解决？</h2>
+<p>缓存击穿是当缓存中的数据出现了过期，但是恰巧这个时候出现了大量的并发请求，导致这些请求由于在缓存中找不到相应的数据而去访问数据库，从而击垮数据库，这个现象叫缓存击穿。</p>
+<img data-src="../../images/java/ms/2.png" alt="1" style="zoom: 33%;" />
+<p>解决缓存击穿有两种解决方案，一个是比较保守的要求数据强一致的分布式锁，另外一个是比较激进的强调高可用的逻辑过期。</p>
+<p>首先分布式锁是，当一个请求（请求线程）出现时，它先会查询缓存，当然它肯定是没查到。因为数据已经过期了，这个时候他会去申请互斥锁，然后写入缓存，最终释放锁。与此同时，当另外一个请求线程出现时他也在缓存中查不到数据，它也会去查缓存，然后未命中，申请分布式锁，这个时候，已经被其他线程申请过了，它会先去休眠一会，然后重复上述过程，直到请求成功。</p>
+<img data-src="../../images/java/ms/3.png" alt="1" style="zoom: 33%;" />
+<p>其次是逻辑过期，它的流程和上面的流程基本上是一样的，但是它会去新开一个线程来进行缓存更新，当然新线程也会去加锁更新，这个原线程会继续向下执行。注意！他会返回过期的旧数据，这个方法执行效率很高，但是会出出现不一致的问题。</p>
+<img data-src="../../images/java/ms/4.png" alt="1" style="zoom: 33%;" />
+<p>一般来说涉及到金钱的问题，我们更倾向于使用分布式锁，而对于一些非核心业务，我们更倾向于使用逻辑过期。</p>
+<h2 id="缓存雪崩怎么解决"><a class="markdownIt-Anchor" href="#缓存雪崩怎么解决">#</a> 缓存雪崩？怎么解决？</h2>
+<p>缓存雪崩是指在同一时段大量的缓存 Key 同时失效或者 Redis 服务器宕机，导致大量请求到达数据库，带来巨大压力。</p>
+<p>解决方案是，给不同的 Key 的 TTL 添加随机值，利用 Redis 集群提高服务的可用性，还可以给缓存业务添加降级限流策略（降级策略可以作为系统的保底策略，适用于穿透、击穿、雪崩），可以给业务添加多级缓存。</p>
+<h2 id="穿透击穿雪崩"><a class="markdownIt-Anchor" href="#穿透击穿雪崩">#</a> 穿透？击穿？雪崩？</h2>
+<p>我认为这三者是层层递进的，</p>
+<p>穿透： 考验的是过滤能力（别让非法请求进来）。</p>
+<p>击穿： 考验的是并发控制（别让重复任务压垮数据库）。</p>
+<p>雪崩： 考验的是系统韧性（别让局部故障拖垮全局）。</p>
+<h2 id="redis双写一致性"><a class="markdownIt-Anchor" href="#redis双写一致性">#</a> Redis 双写一致性</h2>
+<p>“Redis 作为缓存，mysql 的数据如何与 Redis 进行同步呢？”</p>
+<p>一般来说有两种等级：</p>
+<ol>
+<li>高一致性要求：加读写锁（共享锁 / 排他锁），共享锁就是读锁 —— 读时共享但不可写，排他锁就是写锁 —— 写时排他读与写的所有操作。这里使用 redisson 读写锁就可以。</li>
+<li>要求延迟一致：如果能接收少许不同步的延迟，就可以采用异步同步的方案。
+<ul>
+<li>使用 MQ 中间件，当数据更新时通过 MQ 通知缓存删除</li>
+<li>也可以使用 canal 中间件，不需要修改业务代码，伪装为 mysql 的一个从节点，canal 通过读取 binlog 数据更新缓存。</li>
+</ul>
+</li>
+</ol>
+<h2 id="redis的持久化"><a class="markdownIt-Anchor" href="#redis的持久化">#</a> Redis 的持久化</h2>
+<p>“Redis 作为缓存，数据的持久化是怎么做的？”</p>
+<ol>
+<li>RDB：Redis 数据快照，在某个时间点，把内存中的数据<strong>完整保存到磁盘</strong>（生成  <code>.rdb</code>  文件），<strong>可能丢数据</strong>（两次快照之间的数据会丢）</li>
+<li>AOF：追加文件，核心思想是把每一次写操作都记录下来（类似日志），appendfsync always 每次都刷盘，appendfsync everysec（默认，推荐），appendfsync no 交给操作系统</li>
+</ol>
+<img data-src="../../images/java/ms/5.png" alt="1" style="zoom: 80%;" />
+<h2 id="缓存过期策略"><a class="markdownIt-Anchor" href="#缓存过期策略">#</a> 缓存过期策略</h2>
+<p>“假如 Redis 的 Key 过期之后，会立即删除吗”</p>
+<ol>
+<li>
+<p>惰性删除：设置该 Key 过期时，我们不去管他，当需要该 Key 时，我们再检查其是否过期，过期了就删除它，然后返回该 Key，<strong>优点是对 CPU 友好，缺点是对内存不友好</strong>。</p>
+</li>
+<li>
+<p>定期删除：每隔一段时间，我们就对 Key 进行检查，删除里面过期的 Key（从一定数量的数据库中取出一定量的随机 Key 进行检查，并删除其中过期的 Key）</p>
+<p>定期清理有两种模式</p>
+<ul>
+<li>SLOW 模式：默认执行频率为 10HZ，也就是秒执行 10 次，每次不超过 25ms，通过修改 redis.conf 可以调整这个次数</li>
+<li>FAST 模式：FAST 模式频率不固定，但两次间隔不低于 2ms，每次不超过 1ms。</li>
+</ul>
+</li>
+</ol>
+<p>Redis 的执行策略是<strong>惰性删除 + 定期删除</strong>两种策略配合使用。</p>
+<h2 id="数据淘汰策略"><a class="markdownIt-Anchor" href="#数据淘汰策略">#</a> 数据淘汰策略</h2>
+<p>“假如缓存过多，内存是有限的，内存占满了怎么办？”</p>
+<p>“数据库有 1000 万数据，Redis 只能存 20W, 如何保证 Redis 中都是热点数据？”—— 使用 allkeys-lru 最近最少使用策略，不是热点数据就自动被淘汰了。</p>
+<p>“Redis 的内存用完了怎么办？”—— 这个主要取决于你使用淘汰策略，如果用的 noeviction，那直接就报错了。</p>
+<ol>
+<li>noeviction：不做任何淘汰，直到写满报错，默认 Redis 用的就是这种。</li>
+<li>volatile-ttl：按照设置的过期时间进行淘汰。</li>
+<li>allkeys-random：对于全部的 Key 进行随机淘汰（次先使用）。</li>
+<li>volatile-random：对于设置了 TTL 的 Key，进行随机淘汰。</li>
+<li>allkeys-lru：对于全部的 Key 采用最近最少使用策略进行淘汰（优先使用）。</li>
+<li>volatile-lru：对于设置了 TTL 的 Key，采用最近最少使用策略进行淘汰（有指定要求的数据）。</li>
+<li>allkeys-lfu：对于全部的 Key 采用最少使用频率的策略进行淘汰（短时高频数据）。</li>
+<li>volatile-lfu：对于设置了 TTL 的 Key，采用最少使用频率的策略进行淘汰（短时高频数据）。</li>
+</ol>
+<h2 id="分布式锁"><a class="markdownIt-Anchor" href="#分布式锁">#</a> 分布式锁</h2>
+<p>“Redis 分布式锁，是怎么实现的？”（集群架构 + 秒杀应用）</p>
+<p>我们先来讲讲为什么需要分布式锁，这分布式锁怎么来的。起初我们的项目是单体架构的，我们经常在关键的业务代码中加入 synchronized，如果这是单体的那么可行，加锁之后关键互斥访问。</p>
+<img data-src="../../images/java/ms/6.png" alt="1" style="zoom: 50%;" />
+<p>当架构是微服务时就不行了，同实例互斥访问，当时遇到多实例的话就会产生下面这种情况：</p>
+<img data-src="../../images/java/ms/7.png" alt="1" style="zoom: 50%;" />
+<p>在两个端口上的实例内互斥访问，跨实例就会出现资源争夺。他们需要共同使用一把锁，这把锁就叫 **“分布式锁”**</p>
+<img data-src="../../images/java/ms/8.png" alt="1" style="zoom: 50%;" />
+<p>Redis 分布式锁是一种在分布式系统中实现互斥访问的机制，通常基于 <strong>SETNX</strong>，</p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre># 获取锁</pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token constant">SET</span> lock_key unique_value <span class="token constant">NX</span> <span class="token constant">EX</span> <span class="token number">30</span></pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre># 释放锁（使用 <span class="token class-name">Lua</span> 脚本保证原子性）</pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token keyword">if</span> redis<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token string">"get"</span><span class="token punctuation">,</span> <span class="token constant">KEYS</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token constant">ARGV</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> then</pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token keyword">return</span> redis<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token string">"del"</span><span class="token punctuation">,</span> <span class="token constant">KEYS</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token keyword">else</span></pre></td></tr><tr><td data-num="8"></td><td><pre>    <span class="token keyword">return</span> <span class="token number">0</span></pre></td></tr><tr><td data-num="9"></td><td><pre>end</pre></td></tr></table></figure><p>开源的 <strong>Redisson</strong> 是 Redis 分布式锁的成熟实现，内置了看门狗机制：</p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">// Redisson Java 示例</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token class-name">RLock</span> lock <span class="token operator">=</span> redissonClient<span class="token punctuation">.</span><span class="token function">getLock</span><span class="token punctuation">(</span><span class="token string">"myLock"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>lock<span class="token punctuation">.</span><span class="token function">lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 自动续期，默认 30 秒 / 或者使用 tryLock 方法（）</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token keyword">try</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token comment">// 业务逻辑</span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token punctuation">&#125;</span> <span class="token keyword">finally</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    lock<span class="token punctuation">.</span><span class="token function">unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>Redisson 实现的锁时可</p>
+
+      <div class="tags">
+          <a href="/tags/Java%E8%99%9A%E6%8B%9F%E6%9C%BA/" rel="tag"><i class="ic i-tag"></i> Java虚拟机</a>
+          <a href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag"><i class="ic i-tag"></i> 面试</a>
+          <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"><i class="ic i-tag"></i> 算法</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2026-04-01 16:22:24" itemprop="dateModified" datetime="2026-04-01T16:22:24+08:00">2026-04-01</time>
+  </span>
+  <span id="Java/javams/" class="item leancloud_visitors" data-flag-title="JVM、面试与算法" title="阅读次数">
+      <span class="icon">
+        <i class="ic i-eye"></i>
+      </span>
+      <span class="text">阅读次数</span>
+      <span class="leancloud-visitors-count"></span>
+      <span class="text">次</span>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> 赞赏</button>
+  <p>请我喝[茶]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/myWxPay.jpg" alt="KarryLiu 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/myAliPay.jpg" alt="KarryLiu 支付宝">
+        <p>支付宝</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>KarryLiu <i class="ic i-at"><em>@</em></i>诗岸梦行舟
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="https://735690757.github.io/Java/javams/" title="JVM、面试与算法">https://735690757.github.io/Java/javams/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/python/Geophysics/untpp/" itemprop="url" rel="prev" data-background-image="&#x2F;images&#x2F;cover&#x2F;unetpp.png" title="地下异常密度重力反演基本模型对比">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> Geophysics</span>
+  <h3>地下异常密度重力反演基本模型对比</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/python/conv_spp/" itemprop="url" rel="next" data-background-image="&#x2F;images&#x2F;cover&#x2F;conv_spp.webp" title="卷积与SPP变种模块">
+  <span class="type">下一篇</span>
+  <span class="category"><i class="ic i-flag"></i> 深度学习模块</span>
+  <h3>卷积与SPP变种模块</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#java%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="toc-number">1.</span> <span class="toc-text"> Java 虚拟机</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A4%E8%AF%86jvm"><span class="toc-number">1.1.</span> <span class="toc-text"> 认识 JVM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E8%8A%82%E7%A0%81%E6%96%87%E4%BB%B6"><span class="toc-number">1.2.</span> <span class="toc-text"> 字节码文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%AD%94%E6%95%B0"><span class="toc-number">1.2.1.</span> <span class="toc-text"> 什么是魔数？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jdk%E7%89%88%E6%9C%AC%E5%8F%B7"><span class="toc-number">1.2.2.</span> <span class="toc-text"> JDK 版本号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E9%87%8F%E6%B1%A0"><span class="toc-number">1.2.3.</span> <span class="toc-text"> 常量池</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E8%8A%82%E7%A0%81%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.4.</span> <span class="toc-text"> 字节码方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AE%97%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text"> 算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE"><span class="toc-number">2.1.</span> <span class="toc-text"> 二分查找</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E7%89%88"><span class="toc-number">2.1.1.</span> <span class="toc-text"> 基础版</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%B9%E5%8A%A8%E7%89%88"><span class="toc-number">2.1.2.</span> <span class="toc-text"> 改动版</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E8%AF%84%E4%BB%B7%E6%8C%87%E6%A0%87"><span class="toc-number">2.1.3.</span> <span class="toc-text"> 算法评价指标</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95"><span class="toc-number">3.</span> <span class="toc-text"> 面试</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#redis"><span class="toc-number">3.1.</span> <span class="toc-text"> Redis</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3"><span class="toc-number">3.2.</span> <span class="toc-text"> 缓存穿透？怎么解决？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E5%87%BB%E7%A9%BF%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3"><span class="toc-number">3.3.</span> <span class="toc-text"> 缓存击穿？如何解决？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E9%9B%AA%E5%B4%A9%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3"><span class="toc-number">3.4.</span> <span class="toc-text"> 缓存雪崩？怎么解决？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A9%BF%E9%80%8F%E5%87%BB%E7%A9%BF%E9%9B%AA%E5%B4%A9"><span class="toc-number">3.5.</span> <span class="toc-text"> 穿透？击穿？雪崩？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#redis%E5%8F%8C%E5%86%99%E4%B8%80%E8%87%B4%E6%80%A7"><span class="toc-number">3.6.</span> <span class="toc-text"> Redis 双写一致性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#redis%E7%9A%84%E6%8C%81%E4%B9%85%E5%8C%96"><span class="toc-number">3.7.</span> <span class="toc-text"> Redis 的持久化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E8%BF%87%E6%9C%9F%E7%AD%96%E7%95%A5"><span class="toc-number">3.8.</span> <span class="toc-text"> 缓存过期策略</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%B7%98%E6%B1%B0%E7%AD%96%E7%95%A5"><span class="toc-number">3.9.</span> <span class="toc-text"> 数据淘汰策略</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81"><span class="toc-number">3.10.</span> <span class="toc-text"> 分布式锁</span></a></li></ol></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+        <ul>
+          <li><a href="/Java/javaAd01/" rel="bookmark" title="Java高级特性1">Java高级特性1</a></li><li><a href="/Java/SSM01/" rel="bookmark" title="SSM框架整合">SSM框架整合</a></li><li><a href="/Linux/Linux01/" rel="bookmark" title="初见Linux">初见Linux</a></li><li><a href="/Java/DubboStart/" rel="bookmark" title="Dubbo快速入门">Dubbo快速入门</a></li><li><a href="/Java/SpringCloudSTU/" rel="bookmark" title="SpringCloud学习记录">SpringCloud学习记录</a></li><li><a href="/Java/gitflow/" rel="bookmark" title="GitFlow分支管理策略">GitFlow分支管理策略</a></li><li><a href="/Java/springcloud021/" rel="bookmark" title="将单体项目拆解为微服务项目">将单体项目拆解为微服务项目</a></li><li><a href="/experience/Ubuntu24-d/" rel="bookmark" title="双硬盘独立引导Windows与Ubuntu">双硬盘独立引导Windows与Ubuntu</a></li><li class="active"><a href="/Java/javams/" rel="bookmark" title="JVM、面试与算法">JVM、面试与算法</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="KarryLiu"
+      data-src="/images/tx.jpg">
+  <p class="name" itemprop="name">KarryLiu</p>
+  <div class="description" itemprop="description">愿世间所有的美好都得以祝愿</div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">71</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">31</span>
+        <span class="name">分类</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">63</span>
+        <span class="name">标签</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tLzczNTY5MDc1Nw==" title="https:&#x2F;&#x2F;github.com&#x2F;735690757"><i class="ic i-github"></i></span>
+      <span class="exturl item twitter" data-url="aHR0cHM6Ly90d2l0dGVyLmNvbS92b0FMUXRkYWNCVE00RVk=" title="https:&#x2F;&#x2F;twitter.com&#x2F;voALQtdacBTM4EY"><i class="ic i-twitter"></i></span>
+      <span class="exturl item email" data-url="bWFpbHRvOjczNTY5MDc1N0BxcS5jb20=" title="mailto:735690757@qq.com"><i class="ic i-envelope"></i></span>
+      <span class="exturl item zhihu" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3Blb3BsZS9ydW8tcWlhbi15aW5n" title="https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;ruo-qian-ying"><i class="ic i-zhihu"></i></span>
+      <span class="exturl item music" data-url="aHR0cHM6Ly9tdXNpYy4xNjMuY29tLyMvdXNlci9ob21lP2lkPTM1Nzc1OTIzOA==" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;user&#x2F;home?id&#x3D;357759238"><i class="ic i-cloud-music"></i></span>
+      <span class="exturl item about" data-url="aHR0cHM6Ly9hYm91dC5tZS9rYXJyeWxpdQ==" title="https:&#x2F;&#x2F;about.me&#x2F;karryliu"><i class="ic i-address-card"></i></span>
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/about/" rel="section"><i class="ic i-user"></i>关于</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+    
+  <li class="item">
+    <a href="/music" rel="section"><i class="ic i-music"></i>橘子君-Ruxra</a>
+  </li>
+
+    
+  <li class="item">
+    <span class="exturl" data-url="aHR0cHM6Ly93d3cudHJhdmVsbGluZ3MuY24vZ28uaHRtbA=="><i class="ic i-paper-plane"></i>开往</span>
+  </li>
+
+    
+  <li class="item">
+    <a href="/friends/" rel="section"><i class="ic i-heart"></i>友链</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/ocfy" rel="section"><i class="ic i-magic"></i>OCFY</a>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/python/Geophysics/untpp/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/python/conv_spp/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>随机文章</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" title="分类于 论文阅读">论文阅读</a>
+</div>
+
+    <span><a href="/paper/review_remote_sensing_m_d/" title="Methods and datasets on semantic segmentation for Unmanned Aerial Vehicle remote sensing images：A review">Methods and datasets on semantic segmentation for Unmanned Aerial Vehicle remote sensing images：A review</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/notebook/" title="分类于 笔记">笔记</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/notebook/%E8%80%83%E7%A0%94%E8%8B%B1%E8%AF%AD%E7%AC%94%E8%AE%B0/" title="分类于 考研英语笔记">考研英语笔记</a>
+</div>
+
+    <span><a href="/English/shEnglish/" title="文章翻译">文章翻译</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/Geophysics/" title="分类于 Geophysics">Geophysics</a>
+</div>
+
+    <span><a href="/python/Geophysics/hello/" title="深度学习反演网络与重力异常之初窥门径">深度学习反演网络与重力异常之初窥门径</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
+</div>
+
+    <span><a href="/python/ss/" title="语义分割">语义分割</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
+</div>
+
+    <span><a href="/python/DLFromFormula/" title="从公式角度看深度学习">从公式角度看深度学习</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
+</div>
+
+    <span><a href="/python/pandas/" title="Pandas核心处理方法">Pandas核心处理方法</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/YOLO/" title="分类于 YOLO">YOLO</a>
+</div>
+
+    <span><a href="/python/YOLO/YOLO_V7/" title="YOLO-V7 with WongKinYiu YOLOv7模型源码解析">YOLO-V7 with WongKinYiu YOLOv7模型源码解析</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
+</div>
+
+    <span><a href="/python/YOLO/evaluation_indicators/" title="模型评价指标">模型评价指标</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Java/" title="分类于 Java">Java</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/Java/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%9B%B8%E5%85%B3/" title="分类于 微服务相关">微服务相关</a>
+</div>
+
+    <span><a href="/Java/springcloud021/" title="将单体项目拆解为微服务项目">将单体项目拆解为微服务项目</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/Lightning%E6%A1%86%E6%9E%B6/" title="分类于 Lightning框架">Lightning框架</a>
+</div>
+
+    <span><a href="/python/lightning/" title="PyTorch Lightning框架与L-Hydra模板">PyTorch Lightning框架与L-Hydra模板</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>最新评论</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">KarryLiu @ KarryLiu</span>
+  </div>
+  <div class="powered-by">
+    <a href="https://icp.gov.moe/?keyword=20249329" target="_blank">萌ICP备20249329号</a>
+    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  <br/><span>世界本污浊，罪与爱同歌</span>
+  <br/><i class="ic i-chart-area"></i>&nbsp;<span>726k&nbsp;字</span> &nbsp;|&nbsp;
+  <i class="ic i-coffee"></i>&nbsp;<span> 20:09</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: 'Java/javams/',
+    favicon: {
+      show: "（●´3｀●）嘿嘿嘿....",
+      hide: "(´Д｀)不看我是吧！"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: true,copy_tex: true,
+    katex: true,fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<!-- <script src="https://cdn.polyfill.io/v2/polyfill.js"></script>  -->
+
+<script src="https://polyfill-js.cn/v3/polyfill.min.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>
