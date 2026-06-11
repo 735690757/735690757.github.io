@@ -1886,7 +1886,7 @@ const postBeauty = function () {
     caption && caption.addEventListener('click', fullscreenHandle);
 
     if(code_container && code_container.find("tr").length > 15) {
-      
+
       code_container.style.maxHeight = "300px";
       code_container.insertAdjacentHTML('beforeend', '<div class="show-btn"><i class="ic i-angle-down"></i></div>');
       var showBtn = code_container.child('.show-btn');
@@ -2048,11 +2048,11 @@ const loadComments = function () {
   }
 
   if (!window.IntersectionObserver) {
-    vendorCss('valine');
+    // vendorCss('valine');
   } else {
     var io = new IntersectionObserver(function(entries, observer) {
       var entry = entries[0];
-      vendorCss('valine');
+      // vendorCss('valine');
       if (entry.isIntersecting || entry.intersectionRatio > 0) {
         transition($('#comments'), 'bounceUpIn');
         observer.disconnect();
@@ -2238,6 +2238,60 @@ const pjaxReload = function () {
   pageScroll(0);
 }
 
+const getGiscusTheme = function () {
+  return document.documentElement.getAttribute('data-theme') === 'dark' ? 'transparent_dark' : 'light';
+}
+
+const updateGiscusTheme = function () {
+  var iframe = document.querySelector('iframe.giscus-frame');
+  if (!iframe) return;
+
+  iframe.contentWindow.postMessage(
+    { giscus: { setConfig: { theme: getGiscusTheme() } } },
+    'https://giscus.app'
+  );
+}
+
+const bindGiscusThemeSync = function () {
+  if (window.__giscusThemeObserver) return;
+
+  window.__giscusThemeObserver = new MutationObserver(function () {
+    updateGiscusTheme();
+  });
+
+  window.__giscusThemeObserver.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-theme']
+  });
+}
+
+const mountGiscus = function () {
+  var el = document.querySelector('#comments');
+  if (!el) return;
+
+  el.innerHTML = '';
+
+  var s = document.createElement('script');
+  s.src = 'https://giscus.app/client.js';
+  s.async = true;
+  s.crossOrigin = 'anonymous';
+
+  s.setAttribute('data-repo', '735690757/735690757.github.io');
+  s.setAttribute('data-repo-id', 'R_kgDOJKzxjA');
+  s.setAttribute('data-category', 'Announcements');
+  s.setAttribute('data-category-id', 'DIC_kwDOJKzxjM4C-8DX');
+  s.setAttribute('data-mapping', 'pathname');
+  s.setAttribute('data-strict', '0');
+  s.setAttribute('data-reactions-enabled', '1');
+  s.setAttribute('data-emit-metadata', '0');
+  s.setAttribute('data-input-position', 'top');
+  s.setAttribute('data-theme', getGiscusTheme());
+  s.setAttribute('data-lang', 'zh-CN');
+  s.setAttribute('data-loading', 'lazy');
+
+  el.appendChild(s);
+}
+
 const siteRefresh = function (reload) {
   LOCAL_HASH = 0
   LOCAL_URL = window.location.href
@@ -2246,21 +2300,21 @@ const siteRefresh = function (reload) {
   vendorJs('copy_tex');
   vendorCss('mermaid');
   vendorJs('chart');
-  vendorJs('valine', function() {
-    var options = Object.assign({}, CONFIG.valine);
-    options = Object.assign(options, LOCAL.valine||{});
-    options.el = '#comments';
-    options.pathname = LOCAL.path;
-    options.pjax = pjax;
-    options.lazyload = lazyload;
-
-    new MiniValine(options);
-
-    setTimeout(function(){
-      positionInit(1);
-      postFancybox('.v');
-    }, 1000);
-  }, window.MiniValine);
+  // vendorJs('valine', function() {
+  //   var options = Object.assign({}, CONFIG.valine);
+  //   options = Object.assign(options, LOCAL.valine||{});
+  //   options.el = '#comments';
+  //   options.pathname = LOCAL.path;
+  //   options.pjax = pjax;
+  //   options.lazyload = lazyload;
+  //
+  //   new MiniValine(options);
+  //
+  //   setTimeout(function(){
+  //     positionInit(1);
+  //     postFancybox('.v');
+  //   }, 1000);
+  // }, window.MiniValine);
 
   if(!reload) {
     $.each('script[data-pjax]', pjaxScript);
@@ -2289,6 +2343,9 @@ const siteRefresh = function (reload) {
 
   cardActive()
 
+  mountGiscus()
+  bindGiscusThemeSync()
+  updateGiscusTheme()
   lazyload.observe()
 }
 
