@@ -63,6 +63,7 @@
               <h1 itemprop="name headline" class="title">诗岸梦行舟</h1>
             </a>
             <p class="meta" itemprop="description">= 分享计算机知识以及各种心得总结 =</p>
+            <p class="banner-desc">Moments reveal their worth only as memories.</p>
           
           </div>
         </div>
@@ -90,16 +91,7 @@
 </nav>
 
       </div>
-      <div id="imgs" class="pjax">
-        <ul>
-          <li class="item" data-background-image="https://s2.loli.net/2023/08/27/EU3RfrkWvqHe4Ou.jpg"></li>
-          <li class="item" data-background-image="https://s2.loli.net/2023/08/27/B86dmgpZDzIi2uU.jpg"></li>
-          <li class="item" data-background-image="https://s2.loli.net/2023/08/27/vUowbrGBj4VOg9a.jpg"></li>
-          <li class="item" data-background-image="https://s2.loli.net/2023/08/27/UryYVWA34Nd2R5v.jpg"></li>
-          <li class="item" data-background-image="https://s2.loli.net/2023/08/27/xBNZOFIAEqWCyou.jpg"></li>
-          <li class="item" data-background-image="https://s2.loli.net/2023/08/27/mcSBwPWCR4u3tZI.jpg"></li>
-        </ul>
-      </div>
+      <canvas id="rain-canvas"></canvas>
     </header>
     <div id="waves">
       <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
@@ -120,6 +112,49 @@
           
   <div class="index wrap">
     <div class="segments posts">
+        
+<article class="item">
+  <div class="cover">
+    <a href="/Linux/Linux01/" itemprop="url" title="初见Linux"><img data-src="https://s1.ax1x.com/2023/09/02/pPBJ5LT.jpg"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="创建时间：2023-09-01 12:12:00">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2023-09-01T12:12:00+08:00">2023-09-01</time>
+  </span>
+</div>
+
+    <h3><a href="/Linux/Linux01/" itemprop="url" title="初见Linux">初见Linux</a></h3>
+    <div class="excerpt">
+        # 初见 Linux
+首先安装什么的就不讲了，这里先讲一下基础命令
+# 简单命令
+# who 命令
+[karry@localhost ~]$ who am i
+[karry@localhost ~]$ who am i
+karry pts/0 2023-09-01 10:26 (laptop-karry1107)
+
+# echo 命令
+这个命令是将内容输出到屏幕上
+[karry@localhost ~]$ echo Hello Karry.Liu
+[karry@localhost ~]$ echo Hello Karry.Liu
+Hello Karry.Liu
+
+# date...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/Java/Linux%E7%9B%B8%E5%85%B3/" itemprop="url" title="Linux相关"><i class="ic i-flag"></i>Linux相关</a>
+      </span>
+    </div>
+    <a href="/Linux/Linux01/" itemprop="url" title="初见Linux" class="btn">more...</a>
+  </div>
+</article>
+
         
 <article class="item">
   <div class="cover">
@@ -447,48 +482,6 @@ booth...
   </div>
 </article>
 
-        
-<article class="item">
-  <div class="cover">
-    <a href="/Java/javaAd01/" itemprop="url" title="Java高级特性1"><img data-src="https://s2.loli.net/2023/03/19/NvHmjtix45LWT3g.jpg"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="创建时间：2023-03-18 20:20:00">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2023-03-18T20:20:00+08:00">2023-03-18</time>
-  </span>
-</div>
-
-    <h3><a href="/Java/javaAd01/" itemprop="url" title="Java高级特性1">Java高级特性1</a></h3>
-    <div class="excerpt">
-        # List 与 Set
-本篇内容意在总结课上所学的知识并加以巩固，如有错误请立即联系我，谢谢！
-
-关于 Collection
-掌握 List 部分内容
-掌握 Set 部分内容
-迭代器
-WeChat：a735690757
-gmail：735690757carry@gmail.com
-
-# 1，概述
-在 Java 中，List 和 Set 接口都是继承自 Collection 接口。Collection 接口定义了一组通用的集合操作方法，而 List 和 Set 则分别扩展了 Collection 接口，以提供特定的集合行为。
-# 2，Collection
-在 Java 中，Collection...
-    </div>
-    <div class="meta footer">
-      <span>
-        <a href="/categories/Java/" itemprop="url" title="Java"><i class="ic i-flag"></i>Java</a>
-      </span>
-    </div>
-    <a href="/Java/javaAd01/" itemprop="url" title="Java高级特性1" class="btn">more...</a>
-  </div>
-</article>
-
     </div>
 
   </div>
@@ -502,6 +495,7 @@ gmail：735690757carry@gmail.com
 
 
 
+          <script data-pjax>window.updateRainBannerBg && window.updateRainBannerBg("/images/banner-bg.jpg");</script>
         </div>
         <div id="sidebar">
           
@@ -518,13 +512,13 @@ gmail：735690757carry@gmail.com
   <img class="image" itemprop="image" alt="KarryLiu"
       data-src="/images/tx.jpg">
   <p class="name" itemprop="name">KarryLiu</p>
-  <div class="description" itemprop="description">愿世间所有的美好都得以祝愿</div>
+  <div class="description" itemprop="description">Moments reveal their worth only as memories.</div>
 </div>
 
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">72</span>
+        <span class="count">73</span>
         <span class="name">文章</span>
       </a>
     </div>
@@ -536,7 +530,7 @@ gmail：735690757carry@gmail.com
     </div>
     <div class="item tags">
       <a href="/tags/">
-        <span class="count">64</span>
+        <span class="count">69</span>
         <span class="name">标签</span>
       </a>
     </div>
@@ -639,12 +633,10 @@ gmail：735690757carry@gmail.com
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Java/" title="分类于 Java">Java</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/Java/SSM%E6%A1%86%E6%9E%B6%E6%95%B4%E5%90%88/" title="分类于 SSM框架整合">SSM框架整合</a>
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
 </div>
 
-    <span><a href="/Java/SSM01/" title="SSM框架整合">SSM框架整合</a></span>
+    <span><a href="/Operate-system/kcsj/" title="操作系统课程设计">操作系统课程设计</a></span>
   </li>
 
       
@@ -653,50 +645,10 @@ gmail：735690757carry@gmail.com
 <div class="breadcrumb">
 <a href="/categories/python/" title="分类于 深度学习">深度学习</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/python/%E9%A1%B9%E7%9B%AE%E4%B8%8E%E5%AE%9E%E6%88%98/" title="分类于 项目与实战">项目与实战</a>
+<a href="/categories/python/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" title="分类于 论文阅读">论文阅读</a>
 </div>
 
-    <span><a href="/python/v2yWdtc/" title="v2yWdtc：无聊写了一个格式转换工具">v2yWdtc：无聊写了一个格式转换工具</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
-</div>
-
-    <span><a href="/Operate-system/KnowledgeSummary/" title="操作系统细碎知识点及公式速记">操作系统细碎知识点及公式速记</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
-</div>
-
-    <span><a href="/Operate-system/01OS/" title="操作系统知识点阶段总结">操作系统知识点阶段总结</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C/" title="分类于 开发经验">开发经验</a>
-</div>
-
-    <span><a href="/python/fastapi/" title="FastAPI">FastAPI</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C/" title="分类于 开发经验">开发经验</a>
-</div>
-
-    <span><a href="/experience/CollaborativeFiltering/" title="基于用户的协同过滤算法">基于用户的协同过滤算法</a></span>
+    <span><a href="/paper/MoViM/" title="MoViM：A Hybrid CNN Vision Mamba Network  for Lightweight Semantic Segmentation of  Multimodal Remote Sensing Images">MoViM：A Hybrid CNN Vision Mamba Network  for Lightweight Semantic Segmentation of  Multimodal Remote Sensing Images</a></span>
   </li>
 
       
@@ -705,12 +657,10 @@ gmail：735690757carry@gmail.com
 <div class="breadcrumb">
 <a href="/categories/python/" title="分类于 深度学习">深度学习</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/python/YOLO/" title="分类于 YOLO">YOLO</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/python/YOLO/%E9%A1%B9%E7%9B%AE%E4%B8%8E%E5%AE%9E%E6%88%98/" title="分类于 项目与实战">项目与实战</a>
+<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
 </div>
 
-    <span><a href="/python/YOLO/YOLOv3_ultralytics/" title="ultralytics YOLOv3">ultralytics YOLOv3</a></span>
+    <span><a href="/python/CNN_Acc/" title="CNN经典卷积神经网络与实战">CNN经典卷积神经网络与实战</a></span>
   </li>
 
       
@@ -732,7 +682,31 @@ gmail：735690757carry@gmail.com
 <a href="/categories/python/%E9%A1%B9%E7%9B%AE%E4%B8%8E%E5%AE%9E%E6%88%98/" title="分类于 项目与实战">项目与实战</a>
 </div>
 
-    <span><a href="/python/3D_CNN/" title="3DCNN 网络结构">3DCNN 网络结构</a></span>
+    <span><a href="/python/v2yWdtc/" title="v2yWdtc：无聊写了一个格式转换工具">v2yWdtc：无聊写了一个格式转换工具</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MongoDB/" title="分类于 MongoDB">MongoDB</a>
+</div>
+
+    <span><a href="/MongoDB/MongoDB01/" title="MongoDB的安装与初步使用（Windows平台）">MongoDB的安装与初步使用（Windows平台）</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Java/" title="分类于 Java">Java</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/Java/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%9B%B8%E5%85%B3/" title="分类于 微服务相关">微服务相关</a>
+</div>
+
+    <span><a href="/Java/DubboStart/" title="Dubbo快速入门">Dubbo快速入门</a></span>
   </li>
 
       
@@ -742,9 +716,35 @@ gmail：735690757carry@gmail.com
 <a href="/categories/python/" title="分类于 深度学习">深度学习</a>
 <i class="ic i-angle-right"></i>
 <a href="/categories/python/YOLO/" title="分类于 YOLO">YOLO</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/YOLO/%E9%A1%B9%E7%9B%AE%E4%B8%8E%E5%AE%9E%E6%88%98/" title="分类于 项目与实战">项目与实战</a>
 </div>
 
-    <span><a href="/python/YOLO/YOLO_V5/" title="YOLO-V5 with Ultralytics YOLOv5源码解析">YOLO-V5 with Ultralytics YOLOv5源码解析</a></span>
+    <span><a href="/python/YOLO/YOLOv3_ultralytics/" title="ultralytics YOLOv3">ultralytics YOLOv3</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/notebook/" title="分类于 笔记">笔记</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/notebook/%E8%80%83%E7%A0%94%E8%8B%B1%E8%AF%AD%E7%AC%94%E8%AE%B0/" title="分类于 考研英语笔记">考研英语笔记</a>
+</div>
+
+    <span><a href="/English/xbbEnglish/" title="英语笔记">英语笔记</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Java/" title="分类于 Java">Java</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/Java/git%E7%9B%B8%E5%85%B3/" title="分类于 git相关">git相关</a>
+</div>
+
+    <span><a href="/Java/gitflow/" title="GitFlow分支管理策略">GitFlow分支管理策略</a></span>
   </li>
 
   </ul>
@@ -770,8 +770,8 @@ gmail：735690757carry@gmail.com
     <a href="https://icp.gov.moe/?keyword=20249329" target="_blank">萌ICP备20249329号</a>
     基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
   <br/><span>世界本污浊，罪与爱同歌</span>
-  <br/><i class="ic i-chart-area"></i>&nbsp;<span>728k&nbsp;字</span> &nbsp;|&nbsp;
-  <i class="ic i-coffee"></i>&nbsp;<span> 20:14</span>
+  <br/><i class="ic i-chart-area"></i>&nbsp;<span>744k&nbsp;字</span> &nbsp;|&nbsp;
+  <i class="ic i-coffee"></i>&nbsp;<span> 20:40</span>
   </div>
 </div>
 
@@ -810,6 +810,9 @@ gmail：735690757carry@gmail.com
 <script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
 
 <script src="/js/app.js?v=0.2.5"></script>
+
+<script src="/js/rain-banner.js?v=0.2.5"></script>
+<script>initRainBanner('rain-canvas', { backgroundUrl: "/images/banner-bg.jpg" });</script>
 
 
 

@@ -103,9 +103,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 </nav>
 
       </div>
-      <div id="imgs" class="pjax">
-          <img src="/images/network.png">
-      </div>
+      <canvas id="rain-canvas"></canvas>
     </header>
     <div id="waves">
       <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
@@ -142,7 +140,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="image" content="/images/tx.jpg">
     <meta itemprop="name" content="KarryLiu">
-    <meta itemprop="description" content="分享计算机知识以及各种心得总结, 愿世间所有的美好都得以祝愿">
+    <meta itemprop="description" content="分享计算机知识以及各种心得总结, Moments reveal their worth only as memories.">
   </span>
 
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -767,6 +765,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 
 
 
+          <script data-pjax>window.updateRainBannerBg && window.updateRainBannerBg("/images/network.png");</script>
         </div>
         <div id="sidebar">
           
@@ -788,13 +787,13 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <img class="image" itemprop="image" alt="KarryLiu"
       data-src="/images/tx.jpg">
   <p class="name" itemprop="name">KarryLiu</p>
-  <div class="description" itemprop="description">愿世间所有的美好都得以祝愿</div>
+  <div class="description" itemprop="description">Moments reveal their worth only as memories.</div>
 </div>
 
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">72</span>
+        <span class="count">73</span>
         <span class="name">文章</span>
       </a>
     </div>
@@ -806,7 +805,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
     </div>
     <div class="item tags">
       <a href="/tags/">
-        <span class="count">64</span>
+        <span class="count">69</span>
         <span class="name">标签</span>
       </a>
     </div>
@@ -910,32 +909,12 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Java/" title="分类于 Java">Java</a>
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/Java/git%E7%9B%B8%E5%85%B3/" title="分类于 git相关">git相关</a>
+<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
 </div>
 
-    <span><a href="/Java/gitflow/" title="GitFlow分支管理策略">GitFlow分支管理策略</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C/" title="分类于 开发经验">开发经验</a>
-</div>
-
-    <span><a href="/experience/MD5CalculationTimePractice/" title="MD5计算时间">MD5计算时间</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
-</div>
-
-    <span><a href="/Operate-system/01OS/" title="操作系统知识点阶段总结">操作系统知识点阶段总结</a></span>
+    <span><a href="/python/Transformer/" title="Transformer实战">Transformer实战</a></span>
   </li>
 
       
@@ -944,20 +923,22 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <div class="breadcrumb">
 <a href="/categories/python/" title="分类于 深度学习">深度学习</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/python/YOLO/" title="分类于 YOLO">YOLO</a>
+<a href="/categories/python/%E9%A1%B9%E7%9B%AE%E4%B8%8E%E5%AE%9E%E6%88%98/" title="分类于 项目与实战">项目与实战</a>
 </div>
 
-    <span><a href="/python/YOLO/YOLO_V4/" title="YOLO-V4">YOLO-V4</a></span>
+    <span><a href="/python/3D_CNN/" title="3DCNN 网络结构">3DCNN 网络结构</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
+<a href="/categories/notebook/" title="分类于 笔记">笔记</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/notebook/%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E8%A7%A3%E9%A2%98%E7%AC%94%E8%AE%B0/" title="分类于 模糊数学解题笔记">模糊数学解题笔记</a>
 </div>
 
-    <span><a href="/Operate-system/02OS/" title="进程与线程">进程与线程</a></span>
+    <span><a href="/math/mh_math/" title="模糊数学25习题">模糊数学25习题</a></span>
   </li>
 
       
@@ -969,29 +950,19 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
 </div>
 
-    <span><a href="/python/Harris/" title="Harris兴趣点检测">Harris兴趣点检测</a></span>
+    <span><a href="/python/pytorch/" title="PyTorch深度学习">PyTorch深度学习</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
-</div>
-
-    <span><a href="/Operate-system/OSPVCode/" title="操作系统PV代码题速记">操作系统PV代码题速记</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Java/" title="分类于 Java">Java</a>
+<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/Java/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%9B%B8%E5%85%B3/" title="分类于 微服务相关">微服务相关</a>
+<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%90%86%E8%AE%BA/" title="分类于 数据库理论">数据库理论</a>
 </div>
 
-    <span><a href="/Java/springcloud021/" title="将单体项目拆解为微服务项目">将单体项目拆解为微服务项目</a></span>
+    <span><a href="/database/DataBase01/" title="DB中的范式">DB中的范式</a></span>
   </li>
 
       
@@ -1003,17 +974,55 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <a href="/categories/python/YOLO/" title="分类于 YOLO">YOLO</a>
 </div>
 
-    <span><a href="/python/YOLO/index/" title="YOLO系列">YOLO系列</a></span>
+    <span><a href="/python/YOLO/YOLO_V9_10_11/" title="YOLO-V9 V10 V11 V12新特性汇总">YOLO-V9 V10 V11 V12新特性汇总</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/%E9%A1%B9%E7%9B%AE%E4%B8%8E%E5%AE%9E%E6%88%98/" title="分类于 项目与实战">项目与实战</a>
 </div>
 
-    <span><a href="/Operate-system/os_retest/" title="计算机操作系统复试速览">计算机操作系统复试速览</a></span>
+    <span><a href="/python/pytorch_nn_digital_identification/" title="基于PyTorch的手写数字识别">基于PyTorch的手写数字识别</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
+</div>
+
+    <span><a href="/python/DLFromFormula/" title="从公式角度看深度学习">从公式角度看深度学习</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" title="分类于 论文阅读">论文阅读</a>
+</div>
+
+    <span><a href="/paper/MoViM/" title="MoViM：A Hybrid CNN Vision Mamba Network  for Lightweight Semantic Segmentation of  Multimodal Remote Sensing Images">MoViM：A Hybrid CNN Vision Mamba Network  for Lightweight Semantic Segmentation of  Multimodal Remote Sensing Images</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9D%97/" title="分类于 深度学习模块">深度学习模块</a>
+</div>
+
+    <span><a href="/python/AttentionBlock/" title="注意力机制模块">注意力机制模块</a></span>
   </li>
 
   </ul>
@@ -1039,8 +1048,8 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
     <a href="https://icp.gov.moe/?keyword=20249329" target="_blank">萌ICP备20249329号</a>
     基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
   <br/><span>世界本污浊，罪与爱同歌</span>
-  <br/><i class="ic i-chart-area"></i>&nbsp;<span>728k&nbsp;字</span> &nbsp;|&nbsp;
-  <i class="ic i-coffee"></i>&nbsp;<span> 20:14</span>
+  <br/><i class="ic i-chart-area"></i>&nbsp;<span>744k&nbsp;字</span> &nbsp;|&nbsp;
+  <i class="ic i-coffee"></i>&nbsp;<span> 20:40</span>
   </div>
 </div>
 
@@ -1079,6 +1088,9 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
 
 <script src="/js/app.js?v=0.2.5"></script>
+
+<script src="/js/rain-banner.js?v=0.2.5"></script>
+<script>initRainBanner('rain-canvas', { backgroundUrl: "/images/network.png" });</script>
 
 
 

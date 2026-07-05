@@ -92,16 +92,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 </nav>
 
       </div>
-      <div id="imgs" class="pjax">
-        <ul>
-          <li class="item" data-background-image="https://s2.loli.net/2023/08/27/B86dmgpZDzIi2uU.jpg"></li>
-          <li class="item" data-background-image="https://s2.loli.net/2023/08/27/mN2pFL5QX7D3BwM.jpg"></li>
-          <li class="item" data-background-image="https://s2.loli.net/2023/08/27/EU3RfrkWvqHe4Ou.jpg"></li>
-          <li class="item" data-background-image="https://s2.loli.net/2023/08/27/x7CM2DzWRbHAd4T.jpg"></li>
-          <li class="item" data-background-image="https://s2.loli.net/2023/08/27/vUowbrGBj4VOg9a.jpg"></li>
-          <li class="item" data-background-image="https://p3.music.126.net/lek6VoKmIijHrdGb2vqaxQ==/109951169740260065.jpg"></li>
-        </ul>
-      </div>
+      <canvas id="rain-canvas"></canvas>
     </header>
     <div id="waves">
       <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
@@ -126,6 +117,23 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
         
     </h2>
           <h3 class="item section"><a href="/archives/2026/02">02 月</a></h3>
+
+        <article class="item normal" itemscope itemtype="http://schema.org/Article">
+          <div class="meta">
+            <time itemprop="dateCreated"
+                  datetime="2026-02-09T00:11:00+08:00"
+                  content="2026-02-09">
+              02-09
+            </time>
+                <span><a href="/categories/Java/linux/">linux</a></span>
+          </div>
+
+          <div class="title">
+              <a href="/experience/Ubuntu24-d/" itemprop="url">
+                <span itemprop="name">双硬盘独立引导Windows与Ubuntu</span>
+              </a>
+          </div>
+        </article>
 
         <article class="item normal" itemscope itemtype="http://schema.org/Article">
           <div class="meta">
@@ -280,23 +288,6 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
               </a>
           </div>
         </article>
-
-        <article class="item normal" itemscope itemtype="http://schema.org/Article">
-          <div class="meta">
-            <time itemprop="dateCreated"
-                  datetime="2026-01-13T12:12:12+08:00"
-                  content="2026-01-13">
-              01-13
-            </time>
-                <span><a href="/categories/python/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">论文阅读</a></span>
-          </div>
-
-          <div class="title">
-              <a href="/paper/review_remote_sensing_m_d/" itemprop="url">
-                <span itemprop="name">Methods and datasets on semantic segmentation for Unmanned Aerial Vehicle remote sensing images：A review</span>
-              </a>
-          </div>
-        </article>
   </div>
 
   
@@ -308,6 +299,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 
 
 
+          <script data-pjax>window.updateRainBannerBg && window.updateRainBannerBg("/images/banner-bg.jpg");</script>
         </div>
         <div id="sidebar">
           
@@ -324,13 +316,13 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <img class="image" itemprop="image" alt="KarryLiu"
       data-src="/images/tx.jpg">
   <p class="name" itemprop="name">KarryLiu</p>
-  <div class="description" itemprop="description">愿世间所有的美好都得以祝愿</div>
+  <div class="description" itemprop="description">Moments reveal their worth only as memories.</div>
 </div>
 
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">72</span>
+        <span class="count">73</span>
         <span class="name">文章</span>
       </a>
     </div>
@@ -342,7 +334,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
     </div>
     <div class="item tags">
       <a href="/tags/">
-        <span class="count">64</span>
+        <span class="count">69</span>
         <span class="name">标签</span>
       </a>
     </div>
@@ -445,94 +437,10 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9D%97/" title="分类于 深度学习模块">深度学习模块</a>
+<a href="/categories/%E7%94%9F%E6%B4%BB/" title="分类于 生活">生活</a>
 </div>
 
-    <span><a href="/python/AttentionBlock/" title="注意力机制模块">注意力机制模块</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
-</div>
-
-    <span><a href="/Operate-system/02OS/" title="进程与线程">进程与线程</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
-</div>
-
-    <span><a href="/python/Harris/" title="Harris兴趣点检测">Harris兴趣点检测</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
-</div>
-
-    <span><a href="/python/YOLO/evaluation_indicators/" title="模型评价指标">模型评价指标</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/python/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" title="分类于 论文阅读">论文阅读</a>
-</div>
-
-    <span><a href="/paper/MoViM/" title="MoViM：A Hybrid CNN Vision Mamba Network  for Lightweight Semantic Segmentation of  Multimodal Remote Sensing Images">MoViM：A Hybrid CNN Vision Mamba Network  for Lightweight Semantic Segmentation of  Multimodal Remote Sensing Images</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/notebook/" title="分类于 笔记">笔记</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/notebook/%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6%E8%A7%A3%E9%A2%98%E7%AC%94%E8%AE%B0/" title="分类于 模糊数学解题笔记">模糊数学解题笔记</a>
-</div>
-
-    <span><a href="/math/mh_math/" title="模糊数学25习题">模糊数学25习题</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/python/%E9%A1%B9%E7%9B%AE%E4%B8%8E%E5%AE%9E%E6%88%98/" title="分类于 项目与实战">项目与实战</a>
-</div>
-
-    <span><a href="/python/3D_CNN/" title="3DCNN 网络结构">3DCNN 网络结构</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/python/%E9%A1%B9%E7%9B%AE%E4%B8%8E%E5%AE%9E%E6%88%98/" title="分类于 项目与实战">项目与实战</a>
-</div>
-
-    <span><a href="/python/pytorch_nn_digital_identification/" title="基于PyTorch的手写数字识别">基于PyTorch的手写数字识别</a></span>
+    <span><a href="/life/p2025/" title="回望2025——永不熄灭之光">回望2025——永不熄灭之光</a></span>
   </li>
 
       
@@ -544,7 +452,75 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <a href="/categories/python/YOLO/" title="分类于 YOLO">YOLO</a>
 </div>
 
-    <span><a href="/python/YOLO/YOLO_V4/" title="YOLO-V4">YOLO-V4</a></span>
+    <span><a href="/python/YOLO/YOLO_V1/" title="YOLO-V1">YOLO-V1</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Java/" title="分类于 Java">Java</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/Java/linux/" title="分类于 linux">linux</a>
+</div>
+
+    <span><a href="/experience/Ubuntu24-d/" title="双硬盘独立引导Windows与Ubuntu">双硬盘独立引导Windows与Ubuntu</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/YOLO/" title="分类于 YOLO">YOLO</a>
+</div>
+
+    <span><a href="/python/YOLO/YOLO_V5/" title="YOLO-V5 with Ultralytics YOLOv5源码解析">YOLO-V5 with Ultralytics YOLOv5源码解析</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
+</div>
+
+    <span><a href="/Operate-system/os_retest/" title="计算机操作系统复试速览">计算机操作系统复试速览</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C/" title="分类于 开发经验">开发经验</a>
+</div>
+
+    <span><a href="/experience/shokaComments/" title="解决Shoka基于MiniValine于LeanCloud原始评论功能即将失效的问题">解决Shoka基于MiniValine于LeanCloud原始评论功能即将失效的问题</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/YOLO/" title="分类于 YOLO">YOLO</a>
+</div>
+
+    <span><a href="/python/YOLO/YOLO_V8/" title="YOLO-V8 with Ultralytics Full Version">YOLO-V8 with Ultralytics Full Version</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" title="分类于 论文阅读">论文阅读</a>
+</div>
+
+    <span><a href="/paper/review_remote_sensing_m_d/" title="Methods and datasets on semantic segmentation for Unmanned Aerial Vehicle remote sensing images：A review">Methods and datasets on semantic segmentation for Unmanned Aerial Vehicle remote sensing images：A review</a></span>
   </li>
 
       
@@ -553,10 +529,22 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <div class="breadcrumb">
 <a href="/categories/notebook/" title="分类于 笔记">笔记</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/notebook/%E8%80%83%E7%A0%94%E6%94%BF%E6%B2%BB%E7%AC%94%E8%AE%B0/" title="分类于 考研政治笔记">考研政治笔记</a>
+<a href="/categories/notebook/%E8%80%83%E7%A0%94%E8%8B%B1%E8%AF%AD%E7%AC%94%E8%AE%B0/" title="分类于 考研英语笔记">考研英语笔记</a>
 </div>
 
-    <span><a href="/PoliticalKnowledge/politicalNote/" title="政治知识点速记（持续更新）">政治知识点速记（持续更新）</a></span>
+    <span><a href="/English/shEnglish/" title="文章翻译">文章翻译</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Java/" title="分类于 Java">Java</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/Java/SSM%E6%A1%86%E6%9E%B6%E6%95%B4%E5%90%88/" title="分类于 SSM框架整合">SSM框架整合</a>
+</div>
+
+    <span><a href="/Java/SSM01/" title="SSM框架整合">SSM框架整合</a></span>
   </li>
 
   </ul>
@@ -582,8 +570,8 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
     <a href="https://icp.gov.moe/?keyword=20249329" target="_blank">萌ICP备20249329号</a>
     基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
   <br/><span>世界本污浊，罪与爱同歌</span>
-  <br/><i class="ic i-chart-area"></i>&nbsp;<span>728k&nbsp;字</span> &nbsp;|&nbsp;
-  <i class="ic i-coffee"></i>&nbsp;<span> 20:14</span>
+  <br/><i class="ic i-chart-area"></i>&nbsp;<span>744k&nbsp;字</span> &nbsp;|&nbsp;
+  <i class="ic i-coffee"></i>&nbsp;<span> 20:40</span>
   </div>
 </div>
 
@@ -622,6 +610,9 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
 
 <script src="/js/app.js?v=0.2.5"></script>
+
+<script src="/js/rain-banner.js?v=0.2.5"></script>
+<script>initRainBanner('rain-canvas', { backgroundUrl: "/images/banner-bg.jpg" });</script>
 
 
 

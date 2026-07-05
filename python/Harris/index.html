@@ -103,9 +103,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 </nav>
 
       </div>
-      <div id="imgs" class="pjax">
-          <img src="/images/cover/harris.png">
-      </div>
+      <canvas id="rain-canvas"></canvas>
     </header>
     <div id="waves">
       <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
@@ -142,7 +140,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="image" content="/images/tx.jpg">
     <meta itemprop="name" content="KarryLiu">
-    <meta itemprop="description" content="分享计算机知识以及各种心得总结, 愿世间所有的美好都得以祝愿">
+    <meta itemprop="description" content="分享计算机知识以及各种心得总结, Moments reveal their worth only as memories.">
   </span>
 
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -451,6 +449,7 @@ M1001 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 
 
 
+          <script data-pjax>window.updateRainBannerBg && window.updateRainBannerBg("/images/cover/harris.png");</script>
         </div>
         <div id="sidebar">
           
@@ -472,13 +471,13 @@ M1001 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
   <img class="image" itemprop="image" alt="KarryLiu"
       data-src="/images/tx.jpg">
   <p class="name" itemprop="name">KarryLiu</p>
-  <div class="description" itemprop="description">愿世间所有的美好都得以祝愿</div>
+  <div class="description" itemprop="description">Moments reveal their worth only as memories.</div>
 </div>
 
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">72</span>
+        <span class="count">73</span>
         <span class="name">文章</span>
       </a>
     </div>
@@ -490,7 +489,7 @@ M1001 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
     </div>
     <div class="item tags">
       <a href="/tags/">
-        <span class="count">64</span>
+        <span class="count">69</span>
         <span class="name">标签</span>
       </a>
     </div>
@@ -594,24 +593,80 @@ M1001 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Java/" title="分类于 Java">Java</a>
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/Java/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%9B%B8%E5%85%B3/" title="分类于 微服务相关">微服务相关</a>
+<a href="/categories/python/YOLO/" title="分类于 YOLO">YOLO</a>
 </div>
 
-    <span><a href="/Java/DubboStart/" title="Dubbo快速入门">Dubbo快速入门</a></span>
+    <span><a href="/python/YOLO/YOLO_V7/" title="YOLO-V7 with WongKinYiu YOLOv7模型源码解析">YOLO-V7 with WongKinYiu YOLOv7模型源码解析</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
+<a href="/categories/notebook/" title="分类于 笔记">笔记</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MongoDB/" title="分类于 MongoDB">MongoDB</a>
+<a href="/categories/notebook/%E8%80%83%E7%A0%94%E8%8B%B1%E8%AF%AD%E7%AC%94%E8%AE%B0/" title="分类于 考研英语笔记">考研英语笔记</a>
 </div>
 
-    <span><a href="/MongoDB/MongoDB03/" title="MongoDB初步使用">MongoDB初步使用</a></span>
+    <span><a href="/English/xbbEnglish/" title="英语笔记">英语笔记</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/YOLO/" title="分类于 YOLO">YOLO</a>
+</div>
+
+    <span><a href="/python/YOLO/index/" title="YOLO系列">YOLO系列</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
+</div>
+
+    <span><a href="/Operate-system/03OS/" title="进程同步问题">进程同步问题</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
+</div>
+
+    <span><a href="/python/Transformer/" title="Transformer实战">Transformer实战</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
+</div>
+
+    <span><a href="/python/DLFromFormula/" title="从公式角度看深度学习">从公式角度看深度学习</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
+</div>
+
+    <span><a href="/Operate-system/kcsj/" title="操作系统课程设计">操作系统课程设计</a></span>
   </li>
 
       
@@ -630,48 +685,12 @@ M1001 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/notebook/" title="分类于 笔记">笔记</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/notebook/%E8%80%83%E7%A0%94%E8%8B%B1%E8%AF%AD%E7%AC%94%E8%AE%B0/" title="分类于 考研英语笔记">考研英语笔记</a>
-</div>
-
-    <span><a href="/English/shEnglish/" title="文章翻译">文章翻译</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
 <a href="/categories/python/" title="分类于 深度学习">深度学习</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/python/Geophysics/" title="分类于 Geophysics">Geophysics</a>
+<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
 </div>
 
-    <span><a href="/python/Geophysics/hello/" title="深度学习反演网络与重力异常之初窥门径">深度学习反演网络与重力异常之初窥门径</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%90%86%E8%AE%BA/" title="分类于 数据库理论">数据库理论</a>
-</div>
-
-    <span><a href="/database/DataBase02/" title="数据库设计">数据库设计</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/python/%E9%A1%B9%E7%9B%AE%E4%B8%8E%E5%AE%9E%E6%88%98/" title="分类于 项目与实战">项目与实战</a>
-</div>
-
-    <span><a href="/python/pytorch_nn_digital_identification/" title="基于PyTorch的手写数字识别">基于PyTorch的手写数字识别</a></span>
+    <span><a href="/python/NLP/" title="NLP自然语言处理">NLP自然语言处理</a></span>
   </li>
 
       
@@ -680,30 +699,10 @@ M1001 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 <div class="breadcrumb">
 <a href="/categories/notebook/" title="分类于 笔记">笔记</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/notebook/%E7%9F%A9%E9%98%B5%E8%AE%BA%E8%A7%A3%E9%A2%98%E7%AC%94%E8%AE%B0/" title="分类于 矩阵论解题笔记">矩阵论解题笔记</a>
+<a href="/categories/notebook/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B0/" title="分类于 数据结构笔记">数据结构笔记</a>
 </div>
 
-    <span><a href="/math/matrix_anl/" title="矩阵论">矩阵论</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C/" title="分类于 开发经验">开发经验</a>
-</div>
-
-    <span><a href="/python/fastapi/" title="FastAPI">FastAPI</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C/" title="分类于 开发经验">开发经验</a>
-</div>
-
-    <span><a href="/experience/CollaborativeFiltering/" title="基于用户的协同过滤算法">基于用户的协同过滤算法</a></span>
+    <span><a href="/DSLearnNote/codeTM/" title="数据结构代码题速记">数据结构代码题速记</a></span>
   </li>
 
   </ul>
@@ -729,8 +728,8 @@ M1001 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
     <a href="https://icp.gov.moe/?keyword=20249329" target="_blank">萌ICP备20249329号</a>
     基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
   <br/><span>世界本污浊，罪与爱同歌</span>
-  <br/><i class="ic i-chart-area"></i>&nbsp;<span>728k&nbsp;字</span> &nbsp;|&nbsp;
-  <i class="ic i-coffee"></i>&nbsp;<span> 20:14</span>
+  <br/><i class="ic i-chart-area"></i>&nbsp;<span>744k&nbsp;字</span> &nbsp;|&nbsp;
+  <i class="ic i-coffee"></i>&nbsp;<span> 20:40</span>
   </div>
 </div>
 
@@ -770,6 +769,9 @@ M1001 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 <script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
 
 <script src="/js/app.js?v=0.2.5"></script>
+
+<script src="/js/rain-banner.js?v=0.2.5"></script>
+<script>initRainBanner('rain-canvas', { backgroundUrl: "/images/cover/harris.png" });</script>
 
 
 

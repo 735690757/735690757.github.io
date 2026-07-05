@@ -103,9 +103,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 </nav>
 
       </div>
-      <div id="imgs" class="pjax">
-          <img src="/images/cover/lang_chain.webp">
-      </div>
+      <canvas id="rain-canvas"></canvas>
     </header>
     <div id="waves">
       <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
@@ -139,7 +137,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="image" content="/images/tx.jpg">
     <meta itemprop="name" content="KarryLiu">
-    <meta itemprop="description" content="分享计算机知识以及各种心得总结, 愿世间所有的美好都得以祝愿">
+    <meta itemprop="description" content="分享计算机知识以及各种心得总结, Moments reveal their worth only as memories.">
   </span>
 
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -252,6 +250,13 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">from</span> langchain<span class="token punctuation">.</span>agents <span class="token keyword">import</span> create_agent</pre></td></tr><tr><td data-num="2"></td><td><pre></pre></td></tr><tr><td data-num="3"></td><td><pre>system_prompt <span class="token operator">=</span> <span class="token triple-quoted-string string">"""</pre></td></tr><tr><td data-num="4"></td><td><pre>你是一名私人厨师。收到用户提供的食材照片或清单后，请按以下流程操作:</pre></td></tr><tr><td data-num="5"></td><td><pre>1.识别和评估食材:若用户提供照片，首先辨识所有可见食材。基于食材的外观状态，评估其新鲜度与可用量，整理出一份“当前可用食材清单”</pre></td></tr><tr><td data-num="6"></td><td><pre>2.智能食谱检索:优先调用 web_search 工具，以“可用食材清单"为核心关键词，查找可行菜谱。</pre></td></tr><tr><td data-num="7"></td><td><pre>3.多维度评估与排序:从营养价值和制作难度两个维度对检索到的候选食谱进行量化打分，并根据得分排序，制作简单且营养丰富的排名靠前。</pre></td></tr><tr><td data-num="8"></td><td><pre>4.结构化方案输出:把排序后的食谱整理为一份结构清晰的建议报告，要包含食谱信息、得分、推荐理由、食谱的参考图片，帮助用户快速做出决策。</pre></td></tr><tr><td data-num="9"></td><td><pre>请严格按照流程，优先调用 web_search 工具搜索食谱，搜索不到的情况下才能自己发挥。</pre></td></tr><tr><td data-num="10"></td><td><pre>"""</span></pre></td></tr><tr><td data-num="11"></td><td><pre>agent <span class="token operator">=</span> create_agent<span class="token punctuation">(</span></pre></td></tr><tr><td data-num="12"></td><td><pre>    model<span class="token operator">=</span>model<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="13"></td><td><pre>    system_prompt<span class="token operator">=</span>system_prompt<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="14"></td><td><pre>    tools<span class="token operator">=</span><span class="token punctuation">[</span>web_search<span class="token punctuation">]</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="15"></td><td><pre>    checkpointer<span class="token operator">=</span>checkpointer<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="16"></td><td><pre><span class="token punctuation">)</span></pre></td></tr></table></figure><h4 id="定义多模态消息"><a class="markdownIt-Anchor" href="#定义多模态消息">#</a> 定义多模态消息</h4>
 <figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">from</span> langchain<span class="token punctuation">.</span>messages <span class="token keyword">import</span> HumanMessage</pre></td></tr><tr><td data-num="2"></td><td><pre></pre></td></tr><tr><td data-num="3"></td><td><pre>multimodal_message <span class="token operator">=</span> HumanMessage<span class="token punctuation">(</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    content<span class="token operator">=</span><span class="token punctuation">[</span></pre></td></tr><tr><td data-num="5"></td><td><pre>        <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>            <span class="token string">"type"</span><span class="token punctuation">:</span> <span class="token string">"text"</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="7"></td><td><pre>            <span class="token string">"text"</span><span class="token punctuation">:</span> <span class="token string">"我有以下食材，帮我看看能做什么："</span></pre></td></tr><tr><td data-num="8"></td><td><pre>        <span class="token punctuation">&#125;</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="9"></td><td><pre>        <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>            <span class="token string">"type"</span><span class="token punctuation">:</span> <span class="token string">"image_url"</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="11"></td><td><pre>            <span class="token string">"image_url"</span><span class="token punctuation">:</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>                <span class="token string">"url"</span><span class="token punctuation">:</span> <span class="token string">"https://aisearch.cdn.bcebos.com/pic_create/2026-04-10/10/74d52055e4947f8c.jpg"</span></pre></td></tr><tr><td data-num="13"></td><td><pre>            <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>        <span class="token punctuation">&#125;</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="15"></td><td><pre>    <span class="token punctuation">]</span></pre></td></tr><tr><td data-num="16"></td><td><pre><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="17"></td><td><pre></pre></td></tr><tr><td data-num="18"></td><td><pre>config <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token string">"configurable"</span><span class="token punctuation">:</span> <span class="token punctuation">&#123;</span><span class="token string">"thread_id"</span><span class="token punctuation">:</span> <span class="token string">"personal_chef_thread_2"</span><span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><h4 id="请求1"><a class="markdownIt-Anchor" href="#请求1">#</a> 请求 1</h4>
 <figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre>res3 <span class="token operator">=</span> agent<span class="token punctuation">.</span>invoke<span class="token punctuation">(</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token punctuation">&#123;</span><span class="token string">"messages"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>multimodal_message<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">&#125;</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    config</pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="5"></td><td><pre></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token keyword">for</span> msg <span class="token keyword">in</span> res3<span class="token punctuation">[</span><span class="token string">"messages"</span><span class="token punctuation">]</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    msg<span class="token punctuation">.</span>pretty_print<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr></table></figure><h2 id="通过langsmith进行联调"><a class="markdownIt-Anchor" href="#通过langsmith进行联调">#</a> 通过 LangSmith 进行联调</h2>
+<h3 id="添加langsmithapikey"><a class="markdownIt-Anchor" href="#添加langsmithapikey">#</a> 添加 LangSmithAPIKey</h3>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment"># 是否启用 Langsmith 监控功能</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token assign-left variable">LANGSMITH_TRACING</span><span class="token operator">=</span>true</pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token comment"># Langsmith 监控 WebUI 地址</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token assign-left variable">LANGSMITH_ENDPOINT</span><span class="token operator">=</span>https://api.smith.LangChain.com</pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token comment"># 创建的 API_KEY</span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token assign-left variable">LANGSMITH_API_KEY</span><span class="token operator">=</span>lsv2_pt_xxxxxxx</pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token comment"># 自定义项目名称，可以在 Langsmith WebUI 监控页面根据名称查看对应的运行记录</span></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token assign-left variable">LANGSMITH_PROJECT</span><span class="token operator">=</span><span class="token string">"project-name"</span></pre></td></tr></table></figure><h3 id="一些配置"><a class="markdownIt-Anchor" href="#一些配置">#</a> 一些配置</h3>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre>config <span class="token operator">=</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token string">"run_name"</span><span class="token punctuation">:</span> <span class="token string">"joke_generation"</span><span class="token punctuation">,</span>  <span class="token comment"># 在 LangSmith 中这次运行会显示为</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token string">"joke_generation"</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token string">"tags"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">"my_tag1"</span><span class="token punctuation">,</span> <span class="token string">"my_tag2"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>  <span class="token comment"># 打上标签便于分类查找</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token string">"metadata"</span><span class="token punctuation">:</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>        <span class="token string">"user_id"</span><span class="token punctuation">:</span> <span class="token string">"shkstart"</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="7"></td><td><pre>        <span class="token comment"># 记录用户 ID</span></pre></td></tr><tr><td data-num="8"></td><td><pre>        <span class="token string">"session_id"</span><span class="token punctuation">:</span> <span class="token string">"sess_123"</span>  <span class="token comment"># 记录会话 ID</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="10"></td><td><pre>    <span class="token string">"configurable"</span><span class="token punctuation">:</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>        <span class="token string">"model"</span><span class="token punctuation">:</span> <span class="token string">"deepseek-v4-flash"</span><span class="token punctuation">,</span>  <span class="token comment"># 配置模型参数</span></pre></td></tr><tr><td data-num="12"></td><td><pre>        <span class="token string">"model_provider"</span><span class="token punctuation">:</span> <span class="token string">"openai"</span><span class="token punctuation">,</span>  <span class="token comment"># 配置模型提供商参数</span></pre></td></tr><tr><td data-num="13"></td><td><pre>        <span class="token string">"temperature"</span><span class="token punctuation">:</span> <span class="token number">0.7</span><span class="token punctuation">,</span>  <span class="token comment"># 配置温度参数</span></pre></td></tr><tr><td data-num="14"></td><td><pre>        <span class="token string">"max_tokens"</span><span class="token punctuation">:</span> <span class="token number">1000</span>  <span class="token comment"># 配置最大令牌数</span></pre></td></tr><tr><td data-num="15"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="16"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><h2 id="agent的结构化输出"><a class="markdownIt-Anchor" href="#agent的结构化输出">#</a> Agent 的结构化输出</h2>
+<h3 id="providerstrategy"><a class="markdownIt-Anchor" href="#providerstrategy">#</a> ProviderStrategy</h3>
+<p>需要模型原生支持</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">from</span> langchain<span class="token punctuation">.</span>agents<span class="token punctuation">.</span>structured_output <span class="token keyword">import</span> ProviderStrategy</pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">from</span> pydantic <span class="token keyword">import</span> Field<span class="token punctuation">,</span> BaseModel</pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">ContractInfo</span><span class="token punctuation">(</span>BaseModel<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token triple-quoted-string string">"""用户联系方式"""</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    name<span class="token punctuation">:</span> <span class="token builtin">str</span> <span class="token operator">=</span> Field<span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">,</span> description<span class="token operator">=</span><span class="token string">"用户姓名"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="8"></td><td><pre>    phone<span class="token punctuation">:</span> <span class="token builtin">str</span> <span class="token operator">=</span> Field<span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">,</span> description<span class="token operator">=</span><span class="token string">"用户电话"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="9"></td><td><pre></pre></td></tr><tr><td data-num="10"></td><td><pre></pre></td></tr><tr><td data-num="11"></td><td><pre>agent <span class="token operator">=</span> create_agent<span class="token punctuation">(</span>model<span class="token operator">=</span>llm_deepseek_flash<span class="token punctuation">,</span> name<span class="token operator">=</span><span class="token string">"agent_03"</span><span class="token punctuation">,</span> response_format<span class="token operator">=</span>ProviderStrategy<span class="token punctuation">(</span>ContractInfo<span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="12"></td><td><pre>response <span class="token operator">=</span> agent<span class="token punctuation">.</span>invoke<span class="token punctuation">(</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>    <span class="token string">"messages"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span></pre></td></tr><tr><td data-num="14"></td><td><pre>        HumanMessage<span class="token punctuation">(</span><span class="token string">"从下面的文本中提取出用户的联系方式：\n\n姓名：张三\n电话：13800138000"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="15"></td><td><pre>    <span class="token punctuation">]</span></pre></td></tr><tr><td data-num="16"></td><td><pre><span class="token punctuation">&#125;</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="17"></td><td><pre>rprint<span class="token punctuation">(</span>response<span class="token punctuation">)</span></pre></td></tr></table></figure><h3 id="toolstrategy"><a class="markdownIt-Anchor" href="#toolstrategy">#</a> ToolStrategy</h3>
+<p>为了适配不支持原生结构化的</p>
 
       <div class="tags">
           <a href="/tags/python/" rel="tag"><i class="ic i-tag"></i> python</a>
@@ -267,7 +272,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">更新于</span>
-    <time title="修改时间：2026-05-13 16:05:30" itemprop="dateModified" datetime="2026-05-13T16:05:30+08:00">2026-05-13</time>
+    <time title="修改时间：2026-07-04 22:38:26" itemprop="dateModified" datetime="2026-07-04T22:38:26+08:00">2026-07-04</time>
   </span>
   <span id="python/langchain/" class="item leancloud_visitors" data-flag-title="LangChain" title="阅读次数">
       <span class="icon">
@@ -346,6 +351,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 
 
 
+          <script data-pjax>window.updateRainBannerBg && window.updateRainBannerBg("/images/cover/lang_chain.webp");</script>
         </div>
         <div id="sidebar">
           
@@ -355,7 +361,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="文章目录">
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#langchain"><span class="toc-number">1.</span> <span class="toc-text"> LangChain</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%9D%E8%AF%95%E4%BD%BF%E7%94%A8langchain"><span class="toc-number">1.1.</span> <span class="toc-text"> 尝试使用 LangChain</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E5%8A%A0%E8%BD%BD%E5%99%A8"><span class="toc-number">1.2.</span> <span class="toc-text"> 环境变量加载器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%81%E5%BC%8F%E8%B0%83%E7%94%A8"><span class="toc-number">1.3.</span> <span class="toc-text"> 流式调用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87agent%E8%B0%83%E7%94%A8"><span class="toc-number">1.4.</span> <span class="toc-text"> 通过 agent 调用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%BB%E5%A1%9E%E5%BC%8F%E8%B0%83%E7%94%A8"><span class="toc-number">1.4.1.</span> <span class="toc-text"> 阻塞式调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%81%E5%BC%8F%E8%B0%83%E7%94%A8-2"><span class="toc-number">1.4.2.</span> <span class="toc-text"> 流式调用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E5%B0%81%E8%A3%85"><span class="toc-number">1.5.</span> <span class="toc-text"> 消息封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#prompts-engineering"><span class="toc-number">1.6.</span> <span class="toc-text"> Prompts Engineering</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#few-shot-examples"><span class="toc-number">1.6.1.</span> <span class="toc-text"> Few-Shot examples</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#structured-output"><span class="toc-number">1.6.2.</span> <span class="toc-text"> Structured output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8Emodel%E7%9A%84structured-output"><span class="toc-number">1.6.3.</span> <span class="toc-text"> 基于 Model 的 Structured output</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tools-function-calling"><span class="toc-number">1.7.</span> <span class="toc-text"> Tools &#x2F; Function Calling</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8Etool%E8%A3%85%E9%A5%B0%E5%99%A8%E8%BF%9B%E8%A1%8C%E6%8F%8F%E8%BF%B0"><span class="toc-number">1.7.1.</span> <span class="toc-text"> 基于 Tool 装饰器进行描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8Efunction-name%E4%B8%8E%E6%B3%A8%E9%87%8A%E8%BF%9B%E8%A1%8C%E6%8F%8F%E8%BF%B0"><span class="toc-number">1.7.2.</span> <span class="toc-text"> 基于 Function name 与注释进行描述</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%9A%E5%8F%82%E6%95%B0%E6%83%85%E5%86%B5"><span class="toc-number">1.7.2.1.</span> <span class="toc-text"> 多参数情况</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E8%BF%87pydantic-model%E7%BA%A6%E6%9D%9F"><span class="toc-number">1.7.3.</span> <span class="toc-text"> 通过 Pydantic Model 约束</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E7%9A%84function-calling%E5%A6%82%E4%B8%8B"><span class="toc-number">1.7.4.</span> <span class="toc-text"> 完整的 Function Calling 如下</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pre-def-%E9%A2%84%E5%AE%9A%E4%B9%89%E5%B7%A5%E5%85%B7"><span class="toc-number">1.8.</span> <span class="toc-text"> Pre Def 预定义工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#tavily-search%E8%81%94%E7%BD%91%E6%90%9C%E7%B4%A2"><span class="toc-number">1.8.1.</span> <span class="toc-text"> Tavily search（联网搜索）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E5%86%8Ctavily"><span class="toc-number">1.8.1.1.</span> <span class="toc-text"> 注册 Tavily</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%8D%E5%88%B6tavily-api_key"><span class="toc-number">1.8.1.2.</span> <span class="toc-text"> 复制 Tavily API_Key</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEenv%E5%8F%98%E9%87%8F"><span class="toc-number">1.8.1.3.</span> <span class="toc-text"> 配置.env 变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96"><span class="toc-number">1.8.1.4.</span> <span class="toc-text"> 安装依赖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E9%80%9A%E8%BF%87tavily%E5%BE%97%E5%88%B0ans"><span class="toc-number">1.8.1.5.</span> <span class="toc-text"> 直接通过 Tavily 得到 ANS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%9A%E8%BF%87agent%E5%B0%81%E8%A3%85"><span class="toc-number">1.8.1.6.</span> <span class="toc-text"> 通过 Agent 封装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%B9tavily%E4%B8%8Eresponse%E7%9A%84%E7%AE%80%E5%8D%95%E5%B0%81%E8%A3%85"><span class="toc-number">1.8.1.7.</span> <span class="toc-text"> 对 Tavily 与 Response 的简单封装</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#memory-model%E7%9A%84%E8%AE%B0%E5%BF%86"><span class="toc-number">1.9.</span> <span class="toc-text"> memory —— Model 的记忆</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#short-term-memory-%E7%9F%AD%E6%9C%9F%E8%AE%B0%E5%BF%86"><span class="toc-number">1.9.1.</span> <span class="toc-text"> Short-term memory 短期记忆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#time-travels-%E6%97%B6%E9%97%B4%E7%A9%BF%E6%A2%AD"><span class="toc-number">1.9.2.</span> <span class="toc-text"> Time travels 时间穿梭</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8Esqlite3%E7%9A%84%E6%8C%81%E4%B9%85%E5%8C%96%E5%AD%98%E5%82%A8"><span class="toc-number">1.9.3.</span> <span class="toc-text"> 基于 SQLite3 的持久化存储</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%92%88%E5%AF%B9context%E7%9A%84%E8%AE%B0%E5%BF%86%E7%AE%A1%E7%90%86%E7%AD%96%E7%95%A5"><span class="toc-number">1.9.4.</span> <span class="toc-text"> 针对 Context 的记忆管理策略</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E5%89%AA%E8%AE%B0%E5%BF%86"><span class="toc-number">1.9.4.1.</span> <span class="toc-text"> 修剪记忆</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E8%AE%B0%E5%BF%86"><span class="toc-number">1.9.4.2.</span> <span class="toc-text"> 删除记忆</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E6%91%98%E8%A6%81"><span class="toc-number">1.9.4.3.</span> <span class="toc-text"> 总结摘要</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89"><span class="toc-number">1.9.4.4.</span> <span class="toc-text"> 自定义</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E8%BF%87summary%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%AE%9E%E7%8E%B0%E7%9A%84%E8%AE%B0%E5%BF%86%E6%95%B4%E7%90%86"><span class="toc-number">1.9.5.</span> <span class="toc-text"> 通过 summary 中间件实现的记忆整理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#long-term-memorg"><span class="toc-number">1.9.6.</span> <span class="toc-text"> Long-term memorg</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E8%BF%87langchain%E4%B8%8Etavily%E5%BC%80%E5%8F%91%E4%B8%80%E4%B8%AA%E9%A3%9F%E8%B0%B1%E9%97%AE%E7%AD%94"><span class="toc-number">1.9.7.</span> <span class="toc-text"> 通过 LangChain 与 Tavily 开发一个食谱问答</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%95%E5%85%A5%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">1.9.7.1.</span> <span class="toc-text"> 引入配置文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.9.7.2.</span> <span class="toc-text"> 初始化模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89tavily"><span class="toc-number">1.9.7.3.</span> <span class="toc-text"> 定义 Tavily</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96sqlite3"><span class="toc-number">1.9.7.4.</span> <span class="toc-text"> 初始化 Sqlite3</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E6%8F%90%E7%A4%BA%E8%AF%8D"><span class="toc-number">1.9.7.5.</span> <span class="toc-text"> 初始化提示词</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E5%A4%9A%E6%A8%A1%E6%80%81%E6%B6%88%E6%81%AF"><span class="toc-number">1.9.7.6.</span> <span class="toc-text"> 定义多模态消息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%B7%E6%B1%821"><span class="toc-number">1.9.7.7.</span> <span class="toc-text"> 请求 1</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87langsmith%E8%BF%9B%E8%A1%8C%E8%81%94%E8%B0%83"><span class="toc-number">1.10.</span> <span class="toc-text"> 通过 LangSmith 进行联调</span></a></li></ol></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#langchain"><span class="toc-number">1.</span> <span class="toc-text"> LangChain</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%9D%E8%AF%95%E4%BD%BF%E7%94%A8langchain"><span class="toc-number">1.1.</span> <span class="toc-text"> 尝试使用 LangChain</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E5%8A%A0%E8%BD%BD%E5%99%A8"><span class="toc-number">1.2.</span> <span class="toc-text"> 环境变量加载器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%81%E5%BC%8F%E8%B0%83%E7%94%A8"><span class="toc-number">1.3.</span> <span class="toc-text"> 流式调用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87agent%E8%B0%83%E7%94%A8"><span class="toc-number">1.4.</span> <span class="toc-text"> 通过 agent 调用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%BB%E5%A1%9E%E5%BC%8F%E8%B0%83%E7%94%A8"><span class="toc-number">1.4.1.</span> <span class="toc-text"> 阻塞式调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%81%E5%BC%8F%E8%B0%83%E7%94%A8-2"><span class="toc-number">1.4.2.</span> <span class="toc-text"> 流式调用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E5%B0%81%E8%A3%85"><span class="toc-number">1.5.</span> <span class="toc-text"> 消息封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#prompts-engineering"><span class="toc-number">1.6.</span> <span class="toc-text"> Prompts Engineering</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#few-shot-examples"><span class="toc-number">1.6.1.</span> <span class="toc-text"> Few-Shot examples</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#structured-output"><span class="toc-number">1.6.2.</span> <span class="toc-text"> Structured output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8Emodel%E7%9A%84structured-output"><span class="toc-number">1.6.3.</span> <span class="toc-text"> 基于 Model 的 Structured output</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tools-function-calling"><span class="toc-number">1.7.</span> <span class="toc-text"> Tools &#x2F; Function Calling</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8Etool%E8%A3%85%E9%A5%B0%E5%99%A8%E8%BF%9B%E8%A1%8C%E6%8F%8F%E8%BF%B0"><span class="toc-number">1.7.1.</span> <span class="toc-text"> 基于 Tool 装饰器进行描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8Efunction-name%E4%B8%8E%E6%B3%A8%E9%87%8A%E8%BF%9B%E8%A1%8C%E6%8F%8F%E8%BF%B0"><span class="toc-number">1.7.2.</span> <span class="toc-text"> 基于 Function name 与注释进行描述</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%9A%E5%8F%82%E6%95%B0%E6%83%85%E5%86%B5"><span class="toc-number">1.7.2.1.</span> <span class="toc-text"> 多参数情况</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E8%BF%87pydantic-model%E7%BA%A6%E6%9D%9F"><span class="toc-number">1.7.3.</span> <span class="toc-text"> 通过 Pydantic Model 约束</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E7%9A%84function-calling%E5%A6%82%E4%B8%8B"><span class="toc-number">1.7.4.</span> <span class="toc-text"> 完整的 Function Calling 如下</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pre-def-%E9%A2%84%E5%AE%9A%E4%B9%89%E5%B7%A5%E5%85%B7"><span class="toc-number">1.8.</span> <span class="toc-text"> Pre Def 预定义工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#tavily-search%E8%81%94%E7%BD%91%E6%90%9C%E7%B4%A2"><span class="toc-number">1.8.1.</span> <span class="toc-text"> Tavily search（联网搜索）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E5%86%8Ctavily"><span class="toc-number">1.8.1.1.</span> <span class="toc-text"> 注册 Tavily</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%8D%E5%88%B6tavily-api_key"><span class="toc-number">1.8.1.2.</span> <span class="toc-text"> 复制 Tavily API_Key</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEenv%E5%8F%98%E9%87%8F"><span class="toc-number">1.8.1.3.</span> <span class="toc-text"> 配置.env 变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96"><span class="toc-number">1.8.1.4.</span> <span class="toc-text"> 安装依赖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E9%80%9A%E8%BF%87tavily%E5%BE%97%E5%88%B0ans"><span class="toc-number">1.8.1.5.</span> <span class="toc-text"> 直接通过 Tavily 得到 ANS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%9A%E8%BF%87agent%E5%B0%81%E8%A3%85"><span class="toc-number">1.8.1.6.</span> <span class="toc-text"> 通过 Agent 封装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%B9tavily%E4%B8%8Eresponse%E7%9A%84%E7%AE%80%E5%8D%95%E5%B0%81%E8%A3%85"><span class="toc-number">1.8.1.7.</span> <span class="toc-text"> 对 Tavily 与 Response 的简单封装</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#memory-model%E7%9A%84%E8%AE%B0%E5%BF%86"><span class="toc-number">1.9.</span> <span class="toc-text"> memory —— Model 的记忆</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#short-term-memory-%E7%9F%AD%E6%9C%9F%E8%AE%B0%E5%BF%86"><span class="toc-number">1.9.1.</span> <span class="toc-text"> Short-term memory 短期记忆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#time-travels-%E6%97%B6%E9%97%B4%E7%A9%BF%E6%A2%AD"><span class="toc-number">1.9.2.</span> <span class="toc-text"> Time travels 时间穿梭</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8Esqlite3%E7%9A%84%E6%8C%81%E4%B9%85%E5%8C%96%E5%AD%98%E5%82%A8"><span class="toc-number">1.9.3.</span> <span class="toc-text"> 基于 SQLite3 的持久化存储</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%92%88%E5%AF%B9context%E7%9A%84%E8%AE%B0%E5%BF%86%E7%AE%A1%E7%90%86%E7%AD%96%E7%95%A5"><span class="toc-number">1.9.4.</span> <span class="toc-text"> 针对 Context 的记忆管理策略</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E5%89%AA%E8%AE%B0%E5%BF%86"><span class="toc-number">1.9.4.1.</span> <span class="toc-text"> 修剪记忆</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E8%AE%B0%E5%BF%86"><span class="toc-number">1.9.4.2.</span> <span class="toc-text"> 删除记忆</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E6%91%98%E8%A6%81"><span class="toc-number">1.9.4.3.</span> <span class="toc-text"> 总结摘要</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89"><span class="toc-number">1.9.4.4.</span> <span class="toc-text"> 自定义</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E8%BF%87summary%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%AE%9E%E7%8E%B0%E7%9A%84%E8%AE%B0%E5%BF%86%E6%95%B4%E7%90%86"><span class="toc-number">1.9.5.</span> <span class="toc-text"> 通过 summary 中间件实现的记忆整理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#long-term-memorg"><span class="toc-number">1.9.6.</span> <span class="toc-text"> Long-term memorg</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E8%BF%87langchain%E4%B8%8Etavily%E5%BC%80%E5%8F%91%E4%B8%80%E4%B8%AA%E9%A3%9F%E8%B0%B1%E9%97%AE%E7%AD%94"><span class="toc-number">1.9.7.</span> <span class="toc-text"> 通过 LangChain 与 Tavily 开发一个食谱问答</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%95%E5%85%A5%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">1.9.7.1.</span> <span class="toc-text"> 引入配置文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.9.7.2.</span> <span class="toc-text"> 初始化模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89tavily"><span class="toc-number">1.9.7.3.</span> <span class="toc-text"> 定义 Tavily</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96sqlite3"><span class="toc-number">1.9.7.4.</span> <span class="toc-text"> 初始化 Sqlite3</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E6%8F%90%E7%A4%BA%E8%AF%8D"><span class="toc-number">1.9.7.5.</span> <span class="toc-text"> 初始化提示词</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E5%A4%9A%E6%A8%A1%E6%80%81%E6%B6%88%E6%81%AF"><span class="toc-number">1.9.7.6.</span> <span class="toc-text"> 定义多模态消息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%B7%E6%B1%821"><span class="toc-number">1.9.7.7.</span> <span class="toc-text"> 请求 1</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87langsmith%E8%BF%9B%E8%A1%8C%E8%81%94%E8%B0%83"><span class="toc-number">1.10.</span> <span class="toc-text"> 通过 LangSmith 进行联调</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0langsmithapikey"><span class="toc-number">1.10.1.</span> <span class="toc-text"> 添加 LangSmithAPIKey</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E9%85%8D%E7%BD%AE"><span class="toc-number">1.10.2.</span> <span class="toc-text"> 一些配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#agent%E7%9A%84%E7%BB%93%E6%9E%84%E5%8C%96%E8%BE%93%E5%87%BA"><span class="toc-number">1.11.</span> <span class="toc-text"> Agent 的结构化输出</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#providerstrategy"><span class="toc-number">1.11.1.</span> <span class="toc-text"> ProviderStrategy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#toolstrategy"><span class="toc-number">1.11.2.</span> <span class="toc-text"> ToolStrategy</span></a></li></ol></li></ol></li></ol>
       </div>
       <div class="related panel pjax" data-title="系列文章">
         <ul>
@@ -367,13 +373,13 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <img class="image" itemprop="image" alt="KarryLiu"
       data-src="/images/tx.jpg">
   <p class="name" itemprop="name">KarryLiu</p>
-  <div class="description" itemprop="description">愿世间所有的美好都得以祝愿</div>
+  <div class="description" itemprop="description">Moments reveal their worth only as memories.</div>
 </div>
 
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">72</span>
+        <span class="count">73</span>
         <span class="name">文章</span>
       </a>
     </div>
@@ -385,7 +391,7 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
     </div>
     <div class="item tags">
       <a href="/tags/">
-        <span class="count">64</span>
+        <span class="count">69</span>
         <span class="name">标签</span>
       </a>
     </div>
@@ -489,32 +495,12 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/notebook/" title="分类于 笔记">笔记</a>
+<a href="/categories/Java/" title="分类于 Java">Java</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/notebook/%E8%80%83%E7%A0%94%E6%94%BF%E6%B2%BB%E7%AC%94%E8%AE%B0/" title="分类于 考研政治笔记">考研政治笔记</a>
+<a href="/categories/Java/linux/" title="分类于 linux">linux</a>
 </div>
 
-    <span><a href="/PoliticalKnowledge/politicalNote/" title="政治知识点速记（持续更新）">政治知识点速记（持续更新）</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
-</div>
-
-    <span><a href="/Operate-system/KnowledgeSummary/" title="操作系统细碎知识点及公式速记">操作系统细碎知识点及公式速记</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C/" title="分类于 开发经验">开发经验</a>
-</div>
-
-    <span><a href="/experience/shokaComments/" title="解决Shoka基于MiniValine于LeanCloud原始评论功能即将失效的问题">解决Shoka基于MiniValine于LeanCloud原始评论功能即将失效的问题</a></span>
+    <span><a href="/experience/Ubuntu24-d/" title="双硬盘独立引导Windows与Ubuntu">双硬盘独立引导Windows与Ubuntu</a></span>
   </li>
 
       
@@ -523,54 +509,20 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <div class="breadcrumb">
 <a href="/categories/Java/" title="分类于 Java">Java</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/Java/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%9B%B8%E5%85%B3/" title="分类于 微服务相关">微服务相关</a>
+<a href="/categories/Java/SSM%E6%A1%86%E6%9E%B6%E6%95%B4%E5%90%88/" title="分类于 SSM框架整合">SSM框架整合</a>
 </div>
 
-    <span><a href="/Java/DubboStart/" title="Dubbo快速入门">Dubbo快速入门</a></span>
+    <span><a href="/Java/SSM01/" title="SSM框架整合">SSM框架整合</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Java/" title="分类于 Java">Java</a>
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" title="分类于 计算机组成原理">计算机组成原理</a>
 </div>
 
-    <span><a href="/Java/javaAd01/" title="Java高级特性1">Java高级特性1</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
-</div>
-
-    <span><a href="/Operate-system/03OS/" title="进程同步问题">进程同步问题</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/python/%E9%A1%B9%E7%9B%AE%E4%B8%8E%E5%AE%9E%E6%88%98/" title="分类于 项目与实战">项目与实战</a>
-</div>
-
-    <span><a href="/python/3D_CNN/" title="3DCNN 网络结构">3DCNN 网络结构</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%90%86%E8%AE%BA/" title="分类于 数据库理论">数据库理论</a>
-</div>
-
-    <span><a href="/database/DataBase02/" title="数据库设计">数据库设计</a></span>
+    <span><a href="/Principles-of-computer-composition/Division_in_Computers/" title="计算机中的除法运算">计算机中的除法运算</a></span>
   </li>
 
       
@@ -589,12 +541,70 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
   <li class="item">
     
 <div class="breadcrumb">
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" title="分类于 计算机组成原理">计算机组成原理</a>
+</div>
+
+    <span><a href="/Principles-of-computer-composition/booth_algorithm/" title="booth算法">booth算法</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
+</div>
+
+    <span><a href="/python/Transformer/" title="Transformer实战">Transformer实战</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
 <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
 <i class="ic i-angle-right"></i>
 <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%90%86%E8%AE%BA/" title="分类于 数据库理论">数据库理论</a>
 </div>
 
     <span><a href="/database/DataBase01/" title="DB中的范式">DB中的范式</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/notebook/" title="分类于 笔记">笔记</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/notebook/%E8%80%83%E7%A0%94%E8%8B%B1%E8%AF%AD%E7%AC%94%E8%AE%B0/" title="分类于 考研英语笔记">考研英语笔记</a>
+</div>
+
+    <span><a href="/English/xbbEnglish/" title="英语笔记">英语笔记</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/YOLO/" title="分类于 YOLO">YOLO</a>
+</div>
+
+    <span><a href="/python/YOLO/YOLO_V1/" title="YOLO-V1">YOLO-V1</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/YOLO/" title="分类于 YOLO">YOLO</a>
+</div>
+
+    <span><a href="/python/YOLO/YOLO_V5/" title="YOLO-V5 with Ultralytics YOLOv5源码解析">YOLO-V5 with Ultralytics YOLOv5源码解析</a></span>
   </li>
 
   </ul>
@@ -620,8 +630,8 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
     <a href="https://icp.gov.moe/?keyword=20249329" target="_blank">萌ICP备20249329号</a>
     基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
   <br/><span>世界本污浊，罪与爱同歌</span>
-  <br/><i class="ic i-chart-area"></i>&nbsp;<span>728k&nbsp;字</span> &nbsp;|&nbsp;
-  <i class="ic i-coffee"></i>&nbsp;<span> 20:14</span>
+  <br/><i class="ic i-chart-area"></i>&nbsp;<span>744k&nbsp;字</span> &nbsp;|&nbsp;
+  <i class="ic i-coffee"></i>&nbsp;<span> 20:40</span>
   </div>
 </div>
 
@@ -661,6 +671,9 @@ KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</titl
 <script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
 
 <script src="/js/app.js?v=0.2.5"></script>
+
+<script src="/js/rain-banner.js?v=0.2.5"></script>
+<script>initRainBanner('rain-canvas', { backgroundUrl: "/images/cover/lang_chain.webp" });</script>
 
 
 

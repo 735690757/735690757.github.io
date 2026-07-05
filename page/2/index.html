@@ -63,6 +63,7 @@
               <h1 itemprop="name headline" class="title">诗岸梦行舟</h1>
             </a>
             <p class="meta" itemprop="description">= 分享计算机知识以及各种心得总结 =</p>
+            <p class="banner-desc">Moments reveal their worth only as memories.</p>
           
           </div>
         </div>
@@ -90,16 +91,7 @@
 </nav>
 
       </div>
-      <div id="imgs" class="pjax">
-        <ul>
-          <li class="item" data-background-image="https://s2.loli.net/2023/08/27/mcSBwPWCR4u3tZI.jpg"></li>
-          <li class="item" data-background-image="https://s2.loli.net/2023/08/27/mN2pFL5QX7D3BwM.jpg"></li>
-          <li class="item" data-background-image="https://s2.loli.net/2023/08/27/Mwc9oKJmODRxqN7.png"></li>
-          <li class="item" data-background-image="https://s2.loli.net/2023/08/27/b3P2TBGMK8yUqE4.jpg"></li>
-          <li class="item" data-background-image="https://s2.loli.net/2023/08/27/EU3RfrkWvqHe4Ou.jpg"></li>
-          <li class="item" data-background-image="https://s2.loli.net/2023/08/27/xBNZOFIAEqWCyou.jpg"></li>
-        </ul>
-      </div>
+      <canvas id="rain-canvas"></canvas>
     </header>
     <div id="waves">
       <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
@@ -120,6 +112,38 @@
           
   <div class="index wrap">
     <div class="segments posts">
+        
+<article class="item">
+  <div class="cover">
+    <a href="/experience/Ubuntu24-d/" itemprop="url" title="双硬盘独立引导Windows与Ubuntu"><img data-src="/images/cover/Ubuntu.png"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="创建时间：2026-02-09 00:11:00">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2026-02-09T00:11:00+08:00">2026-02-09</time>
+  </span>
+</div>
+
+    <h3><a href="/experience/Ubuntu24-d/" itemprop="url" title="双硬盘独立引导Windows与Ubuntu">双硬盘独立引导Windows与Ubuntu</a></h3>
+    <div class="excerpt">
+        # 前言
+我有一台华为的笔记本电脑，我希望将其由原来的 Windows 系统扩展为 Windows 与 Ubuntu 双系统，这么做的核心目的在于我想测试一下分布式相关的内容。然而我的 C 盘已经不足 50G，不过我还有一块一 TB 的机械硬盘，这款机器硬盘还剩 600G，并且它的速度也不是很慢，足以运行 Linux 的发行版。其实我想以更为原生的方式来部署 docker，这样方便测试。如果你问我为什么不使用 VM Ware，我就想折腾一下哈哈哈。
+# 创建 Ubuntu 的引导盘
+我个人比较喜欢使用 Ventoy 来制作引导盘，鉴于我已经有一个引导盘了这里就不再进行详细展开，具体如何创建...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/Java/linux/" itemprop="url" title="linux"><i class="ic i-flag"></i>linux</a>
+      </span>
+    </div>
+    <a href="/experience/Ubuntu24-d/" itemprop="url" title="双硬盘独立引导Windows与Ubuntu" class="btn">more...</a>
+  </div>
+</article>
+
         
 <article class="item">
   <div class="cover">
@@ -437,44 +461,6 @@ Department of Information and Communication Engineering, University of...
   </div>
 </article>
 
-        
-<article class="item">
-  <div class="cover">
-    <a href="/python/fastapi/" itemprop="url" title="FastAPI"><img data-src="/images/cover/fastapi.png"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="创建时间：2026-01-12 10:20:00">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2026-01-12T10:20:00+08:00">2026-01-12</time>
-  </span>
-</div>
-
-    <h3><a href="/python/fastapi/" itemprop="url" title="FastAPI">FastAPI</a></h3>
-    <div class="excerpt">
-        # FastAPI
-FastAPI 是一个用于构建 Web 应用的 Python 框架。
-# 天生非阻塞
-
-# 类型提示与验证
-
-# 自带交互式文档
-
-# 快速开始
-from fastapi import FastAPI# 创建一个 FastAPI 实例app = FastAPI()@app.get(&quot;/&quot;)async def root(): return &amp;#123;&quot;message&quot;: &quot;Hello...
-    </div>
-    <div class="meta footer">
-      <span>
-        <a href="/categories/%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C/" itemprop="url" title="开发经验"><i class="ic i-flag"></i>开发经验</a>
-      </span>
-    </div>
-    <a href="/python/fastapi/" itemprop="url" title="FastAPI" class="btn">more...</a>
-  </div>
-</article>
-
     </div>
 
   </div>
@@ -488,6 +474,7 @@ from fastapi import FastAPI# 创建一个 FastAPI 实例app = FastAPI()@app.get(
 
 
 
+          <script data-pjax>window.updateRainBannerBg && window.updateRainBannerBg("/images/banner-bg.jpg");</script>
         </div>
         <div id="sidebar">
           
@@ -504,13 +491,13 @@ from fastapi import FastAPI# 创建一个 FastAPI 实例app = FastAPI()@app.get(
   <img class="image" itemprop="image" alt="KarryLiu"
       data-src="/images/tx.jpg">
   <p class="name" itemprop="name">KarryLiu</p>
-  <div class="description" itemprop="description">愿世间所有的美好都得以祝愿</div>
+  <div class="description" itemprop="description">Moments reveal their worth only as memories.</div>
 </div>
 
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">72</span>
+        <span class="count">73</span>
         <span class="name">文章</span>
       </a>
     </div>
@@ -522,7 +509,7 @@ from fastapi import FastAPI# 创建一个 FastAPI 实例app = FastAPI()@app.get(
     </div>
     <div class="item tags">
       <a href="/tags/">
-        <span class="count">64</span>
+        <span class="count">69</span>
         <span class="name">标签</span>
       </a>
     </div>
@@ -624,10 +611,12 @@ from fastapi import FastAPI# 创建一个 FastAPI 实例app = FastAPI()@app.get(
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
 </div>
 
-    <span><a href="/Operate-system/03OS/" title="进程同步问题">进程同步问题</a></span>
+    <span><a href="/python/NLP/" title="NLP自然语言处理">NLP自然语言处理</a></span>
   </li>
 
       
@@ -648,68 +637,20 @@ from fastapi import FastAPI# 创建一个 FastAPI 实例app = FastAPI()@app.get(
 <div class="breadcrumb">
 <a href="/categories/python/" title="分类于 深度学习">深度学习</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/python/%E9%A1%B9%E7%9B%AE%E4%B8%8E%E5%AE%9E%E6%88%98/" title="分类于 项目与实战">项目与实战</a>
+<a href="/categories/python/Geophysics/" title="分类于 Geophysics">Geophysics</a>
 </div>
 
-    <span><a href="/python/v2yWdtc/" title="v2yWdtc：无聊写了一个格式转换工具">v2yWdtc：无聊写了一个格式转换工具</a></span>
+    <span><a href="/python/Geophysics/untpp/" title="地下异常密度重力反演基本模型对比">地下异常密度重力反演基本模型对比</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" title="分类于 计算机组成原理">计算机组成原理</a>
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
 </div>
 
-    <span><a href="/Principles-of-computer-composition/Division_in_Computers/" title="计算机中的除法运算">计算机中的除法运算</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
-</div>
-
-    <span><a href="/python/numpy/" title="NumPy核心处理方法">NumPy核心处理方法</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/python/YOLO/" title="分类于 YOLO">YOLO</a>
-</div>
-
-    <span><a href="/python/YOLO/YOLO_V2/" title="YOLO-V2">YOLO-V2</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/python/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" title="分类于 论文阅读">论文阅读</a>
-</div>
-
-    <span><a href="/paper/attention_is_all_your_need/" title="Attention is all you need">Attention is all you need</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9D%97/" title="分类于 深度学习模块">深度学习模块</a>
-</div>
-
-    <span><a href="/python/conv_spp/" title="卷积与SPP变种模块">卷积与SPP变种模块</a></span>
+    <span><a href="/Operate-system/02OS/" title="进程与线程">进程与线程</a></span>
   </li>
 
       
@@ -730,10 +671,54 @@ from fastapi import FastAPI# 创建一个 FastAPI 实例app = FastAPI()@app.get(
 <div class="breadcrumb">
 <a href="/categories/python/" title="分类于 深度学习">深度学习</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/python/YOLO/" title="分类于 YOLO">YOLO</a>
+<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
 </div>
 
-    <span><a href="/python/YOLO/index/" title="YOLO系列">YOLO系列</a></span>
+    <span><a href="/python/pandas/" title="Pandas核心处理方法">Pandas核心处理方法</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/%E9%A1%B9%E7%9B%AE%E4%B8%8E%E5%AE%9E%E6%88%98/" title="分类于 项目与实战">项目与实战</a>
+</div>
+
+    <span><a href="/python/3D_CNN/" title="3DCNN 网络结构">3DCNN 网络结构</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" title="分类于 计算机组成原理">计算机组成原理</a>
+</div>
+
+    <span><a href="/Principles-of-computer-composition/Division_in_Computers/" title="计算机中的除法运算">计算机中的除法运算</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/Lightning%E6%A1%86%E6%9E%B6/" title="分类于 Lightning框架">Lightning框架</a>
+</div>
+
+    <span><a href="/python/lightning/" title="PyTorch Lightning框架与L-Hydra模板">PyTorch Lightning框架与L-Hydra模板</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" title="分类于 计算机组成原理">计算机组成原理</a>
+</div>
+
+    <span><a href="/Principles-of-computer-composition/booth_algorithm/" title="booth算法">booth算法</a></span>
   </li>
 
   </ul>
@@ -759,8 +744,8 @@ from fastapi import FastAPI# 创建一个 FastAPI 实例app = FastAPI()@app.get(
     <a href="https://icp.gov.moe/?keyword=20249329" target="_blank">萌ICP备20249329号</a>
     基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
   <br/><span>世界本污浊，罪与爱同歌</span>
-  <br/><i class="ic i-chart-area"></i>&nbsp;<span>728k&nbsp;字</span> &nbsp;|&nbsp;
-  <i class="ic i-coffee"></i>&nbsp;<span> 20:14</span>
+  <br/><i class="ic i-chart-area"></i>&nbsp;<span>744k&nbsp;字</span> &nbsp;|&nbsp;
+  <i class="ic i-coffee"></i>&nbsp;<span> 20:40</span>
   </div>
 </div>
 
@@ -799,6 +784,9 @@ from fastapi import FastAPI# 创建一个 FastAPI 实例app = FastAPI()@app.get(
 <script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
 
 <script src="/js/app.js?v=0.2.5"></script>
+
+<script src="/js/rain-banner.js?v=0.2.5"></script>
+<script>initRainBanner('rain-canvas', { backgroundUrl: "/images/banner-bg.jpg" });</script>
 
 
 
