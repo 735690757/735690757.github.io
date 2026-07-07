@@ -18,7 +18,6 @@
 <link rel="alternate" type="application/rss+xml" title="诗岸梦行舟" href="https://735690757.github.io/rss.xml" />
 <link rel="alternate" type="application/atom+xml" title="诗岸梦行舟" href="https://735690757.github.io/atom.xml" />
 <link rel="alternate" type="application/json" title="诗岸梦行舟" href="https://735690757.github.io/feed.json" />
-<link rel="stylesheet" href="https://unpkg.com/mermaid/dist/mermaid.min.css">
 <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
 <script>mermaid.initialize({ startOnLoad: true });</script>
 
@@ -111,7 +110,41 @@
         <div id="main" class="pjax">
           
   <div class="index wrap">
-    <div class="segments posts">
+    <div class="segments posts" id="server-posts">
+        
+<article class="item">
+  <div class="cover">
+    <a href="/python/lightning/" itemprop="url" title="PyTorch Lightning框架与L-Hydra模板"><img data-src="/images/cover/lightning.png"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="创建时间：2026-02-17 12:12:12">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2026-02-17T12:12:12+08:00">2026-02-17</time>
+  </span>
+</div>
+
+    <h3><a href="/python/lightning/" itemprop="url" title="PyTorch Lightning框架与L-Hydra模板">PyTorch Lightning框架与L-Hydra模板</a></h3>
+    <div class="excerpt">
+        # PyTorch Lightning
+【PL】：https://lightning.ai/
+# 什么是 PyTorch Lightning
+PyTorch Lightning 是建立在 PyTorch 之上的训练工程框架，Lightning 的理念是，你只写算法逻辑，工程交给我。一个最简单的训练范式应该是，写模型、定义数据集、封装 DataLoader、定义损失函数、定义优化器、写训练循环、验证循环。
+我们来看一下最简单的，训练验证。首先有模型：
+import torchfrom torch import nnclass Net(nn.Module): def __init__(self,...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/python/Lightning%E6%A1%86%E6%9E%B6/" itemprop="url" title="Lightning框架"><i class="ic i-flag"></i>Lightning框架</a>
+      </span>
+    </div>
+    <a href="/python/lightning/" itemprop="url" title="PyTorch Lightning框架与L-Hydra模板" class="btn">more...</a>
+  </div>
+</article>
+
         
 <article class="item">
   <div class="cover">
@@ -429,49 +462,133 @@ tit_{i}ti​：表示第 iii 类总共包含的像素点数量。
   </div>
 </article>
 
-        
-<article class="item">
-  <div class="cover">
-    <a href="/paper/review_remote_sensing_m_d/" itemprop="url" title="Methods and datasets on semantic segmentation for Unmanned Aerial Vehicle remote sensing images：A review"><img data-src="/images/cover/semantic_segmentation.png"></a>
+    </div>
+    <div class="posts-list" id="client-posts" style="display:none"></div>
+
   </div>
-  <div class="info">
+
+  <div id="server-pagination">
     
-<div class="meta">
-  <span class="item" title="创建时间：2026-01-13 12:12:12">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2026-01-13T12:12:12+08:00">2026-01-13</time>
-  </span>
-</div>
-
-    <h3><a href="/paper/review_remote_sensing_m_d/" itemprop="url" title="Methods and datasets on semantic segmentation for Unmanned Aerial Vehicle remote sensing images：A review">Methods and datasets on semantic segmentation for Unmanned Aerial Vehicle remote sensing images：A review</a></h3>
-    <div class="excerpt">
-        # Methods and datasets on semantic segmentation for Unmanned Aerial Vehicle remote sensing images: A review
-
-【Original Link】 Methods and datasets on semantic segmentation for Unmanned Aerial Vehicle remote sensing images：A review
-Department of Information and Communication Engineering, University of...
-    </div>
-    <div class="meta footer">
-      <span>
-        <a href="/categories/python/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" itemprop="url" title="论文阅读"><i class="ic i-flag"></i>论文阅读</a>
-      </span>
-    </div>
-    <a href="/paper/review_remote_sensing_m_d/" itemprop="url" title="Methods and datasets on semantic segmentation for Unmanned Aerial Vehicle remote sensing images：A review" class="btn">more...</a>
-  </div>
-</article>
-
-    </div>
-
-  </div>
-
-  
   <nav class="pagination">
     <div class="inner">
     <a class="extend prev" rel="prev" href="/"><i class="ic i-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/3/"><i class="ic i-angle-right" aria-label="下一页"></i></a>
     </div>
   </nav>
 
+  </div>
+  <div id="client-pagination" style="display:none"></div>
+
+<script data-pjax>
+(function() {
+  var POSTS_DATA = [{"title":"RuoYi框架","path":"/Java/ruoyi/","date":1783311132000,"updated":1783436488380,"excerpt":"","categories":["Java"]},{"title":"多线程、线程同步、反射、注解的基本原理","path":"/Java/lastBlock/","date":1783220400000,"updated":1783317198907,"excerpt":"","categories":["Java"]},{"title":"解决Shoka基于MiniValine于LeanCloud原始评论功能即将失效的问题","path":"/experience/shokaComments/","date":1781165776000,"updated":1781175370244,"excerpt":"","categories":["开发经验"]},{"title":"彻底解决了困扰我很久的两个问题","path":"/experience/computerQues/","date":1780733776000,"updated":1780756634626,"excerpt":"","categories":["开发经验"]},{"title":"LangChain","path":"/python/langchain/","date":1776831132000,"updated":1783441083503,"excerpt":"","categories":["开发经验"]},{"title":"卷积与SPP变种模块","path":"/python/conv_spp/","date":1774325532000,"updated":1776059214658,"excerpt":"","categories":["深度学习","深度学习模块"]},{"title":"JVM、面试与算法","path":"/Java/javams/","date":1774152732000,"updated":1775031744486,"excerpt":"","categories":["Java"]},{"title":"地下异常密度重力反演基本模型对比","path":"/python/Geophysics/untpp/","date":1773547932000,"updated":1773559087941,"excerpt":"","categories":["深度学习","Geophysics"]},{"title":"注意力机制模块","path":"/python/AttentionBlock/","date":1771906332000,"updated":1774351739851,"excerpt":"","categories":["深度学习","深度学习模块"]},{"title":"MoViM：A Hybrid CNN Vision Mamba Network  for Lightweight Semantic Segmentation of  Multimodal Remote Sensing Images","path":"/paper/MoViM/","date":1771819932000,"updated":1774166586012,"excerpt":"","categories":["深度学习","论文阅读"]},{"title":"PyTorch Lightning框架与L-Hydra模板","path":"/python/lightning/","date":1771301532000,"updated":1772439450797,"excerpt":"","categories":["深度学习","Lightning框架"]},{"title":"双硬盘独立引导Windows与Ubuntu","path":"/experience/Ubuntu24-d/","date":1770567060000,"updated":1770626906945,"excerpt":"","categories":["Java","linux"]},{"title":"深度学习反演网络与重力异常之初窥门径","path":"/python/Geophysics/hello/","date":1770437532000,"updated":1770483173273,"excerpt":"","categories":["深度学习","Geophysics"]},{"title":"将单体项目拆解为微服务项目","path":"/Java/springcloud021/","date":1769998800000,"updated":1774350411901,"excerpt":"","categories":["Java","微服务相关"]},{"title":"GitFlow分支管理策略","path":"/Java/gitflow/","date":1769826000000,"updated":1770048882873,"excerpt":"","categories":["Java","git相关"]},{"title":"YOLO-V9 V10 V11 V12新特性汇总","path":"/python/YOLO/YOLO_V9_10_11/","date":1768795932000,"updated":1774166355874,"excerpt":"","categories":["深度学习","YOLO"]},{"title":"YOLO-V8 with Ultralytics Full Version","path":"/python/YOLO/YOLO_V8/","date":1768709532000,"updated":1774166351779,"excerpt":"","categories":["深度学习","YOLO"]},{"title":"YOLO-V7 with WongKinYiu YOLOv7模型源码解析","path":"/python/YOLO/YOLO_V7/","date":1768623132000,"updated":1774166347652,"excerpt":"","categories":["深度学习","YOLO"]},{"title":"YOLO-V5 with Ultralytics YOLOv5源码解析","path":"/python/YOLO/YOLO_V5/","date":1768536732000,"updated":1774166343381,"excerpt":"","categories":["深度学习","YOLO"]},{"title":"YOLO-V4","path":"/python/YOLO/YOLO_V4/","date":1768450332000,"updated":1774166317504,"excerpt":"","categories":["深度学习","YOLO"]},{"title":"语义分割","path":"/python/ss/","date":1768363932000,"updated":1774166411913,"excerpt":"","categories":["深度学习","深度学习基础"]},{"title":"Methods and datasets on semantic segmentation for Unmanned Aerial Vehicle remote sensing images：A review","path":"/paper/review_remote_sensing_m_d/","date":1768277532000,"updated":1774166578062,"excerpt":"","categories":["深度学习","论文阅读"]},{"title":"FastAPI","path":"/python/fastapi/","date":1768184400000,"updated":1768230230931,"excerpt":"","categories":["开发经验"]},{"title":"v2yWdtc：无聊写了一个格式转换工具","path":"/python/v2yWdtc/","date":1768018332000,"updated":1774166419686,"excerpt":"","categories":["深度学习","项目与实战"]},{"title":"ultralytics YOLOv3","path":"/python/YOLO/YOLOv3_ultralytics/","date":1767845532000,"updated":1774166360162,"excerpt":"","categories":["深度学习","YOLO","项目与实战"]},{"title":"模型评价指标","path":"/python/YOLO/evaluation_indicators/","date":1767759132000,"updated":1774165853800,"excerpt":"","categories":["深度学习","深度学习基础"]},{"title":"YOLO-V3","path":"/python/YOLO/YOLO_V3/","date":1767586332000,"updated":1774165868784,"excerpt":"","categories":["深度学习","YOLO"]},{"title":"YOLO-V2","path":"/python/YOLO/YOLO_V2/","date":1767499932000,"updated":1774165864267,"excerpt":"","categories":["深度学习","YOLO"]},{"title":"回望2025——永不熄灭之光","path":"/life/p2025/","date":1767240732000,"updated":1767246352442,"excerpt":"","categories":["生活"]},{"title":"文章翻译","path":"/English/shEnglish/","date":1766286000000,"updated":1770048628734,"excerpt":"","categories":["笔记","考研英语笔记"]},{"title":"模糊数学25习题","path":"/math/mh_math/","date":1765944732000,"updated":1774164522590,"excerpt":"","categories":["笔记","模糊数学解题笔记"]},{"title":"矩阵论","path":"/math/matrix_anl/","date":1765858332000,"updated":1774165550079,"excerpt":"","categories":["笔记","矩阵论解题笔记"]},{"title":"Harris兴趣点检测","path":"/python/Harris/","date":1764123600000,"updated":1774166386379,"excerpt":"","categories":["深度学习","深度学习基础"]},{"title":"YOLO-V1","path":"/python/YOLO/YOLO_V1/","date":1763698332000,"updated":1767767884860,"excerpt":"","categories":["深度学习","YOLO"]},{"title":"YOLO系列","path":"/python/YOLO/index/","date":1763697600000,"updated":1771136497938,"excerpt":"","categories":["深度学习","YOLO"]},{"title":"Transformer实战","path":"/python/Transformer/","date":1762568400000,"updated":1774166416045,"excerpt":"","categories":["深度学习","深度学习基础"]},{"title":"SpringCloud学习记录","path":"/Java/SpringCloudSTU/","date":1761790800000,"updated":1770048872417,"excerpt":"","categories":["Java","微服务相关"]},{"title":"Attention is all you need","path":"/paper/attention_is_all_your_need/","date":1761451932000,"updated":1774166736715,"excerpt":"","categories":["深度学习","论文阅读"]},{"title":"3DCNN 网络结构","path":"/python/3D_CNN/","date":1760501532000,"updated":1774166365378,"excerpt":"","categories":["深度学习","项目与实战"]},{"title":"从公式角度看深度学习","path":"/python/DLFromFormula/","date":1760155932000,"updated":1774166380594,"excerpt":"","categories":["深度学习","深度学习基础"]},{"title":"NLP自然语言处理","path":"/python/NLP/","date":1760069532000,"updated":1774166393963,"excerpt":"","categories":["深度学习","深度学习基础"]},{"title":"CNN经典卷积神经网络与实战","path":"/python/CNN_Acc/","date":1759378332000,"updated":1774166375901,"excerpt":"","categories":["深度学习","深度学习基础"]},{"title":"Dubbo快速入门","path":"/Java/DubboStart/","date":1759112400000,"updated":1770048886383,"excerpt":"","categories":["Java","微服务相关"]},{"title":"基于PyTorch的手写数字识别","path":"/python/pytorch_nn_digital_identification/","date":1756277700000,"updated":1774166408519,"excerpt":"","categories":["深度学习","项目与实战"]},{"title":"PyTorch深度学习","path":"/python/pytorch/","date":1754279700000,"updated":1774166404650,"excerpt":"","categories":["深度学习","深度学习基础"]},{"title":"Pandas核心处理方法","path":"/python/pandas/","date":1753070100000,"updated":1774166401045,"excerpt":"","categories":["深度学习","深度学习基础"]},{"title":"NumPy核心处理方法","path":"/python/numpy/","date":1752754800000,"updated":1774166397758,"excerpt":"","categories":["深度学习","深度学习基础"]},{"title":"写给我这一年多的考研时光","path":"/life/shangan/","date":1743507000000,"updated":1770048508804,"excerpt":"","categories":["生活","上岸"]},{"title":"计算机操作系统复试速览","path":"/Operate-system/os_retest/","date":1742341800000,"updated":1743245682480,"excerpt":"","categories":["操作系统"]},{"title":"计算机网络复试速览","path":"/network/computer_network_retest/","date":1742140800000,"updated":1770048937428,"excerpt":"","categories":["笔记","计算机网络笔记"]},{"title":"MD5计算时间","path":"/experience/MD5CalculationTimePractice/","date":1736266260000,"updated":1736343752820,"excerpt":"","categories":["开发经验"]},{"title":"基于用户的协同过滤算法","path":"/experience/CollaborativeFiltering/","date":1735488660000,"updated":1735534852101,"excerpt":"","categories":["开发经验"]},{"title":"英语笔记","path":"/English/xbbEnglish/","date":1731034800000,"updated":1770048613809,"excerpt":"","categories":["笔记","考研英语笔记"]},{"title":"政治知识点速记（持续更新）","path":"/PoliticalKnowledge/politicalNote/","date":1729825200000,"updated":1774166445519,"excerpt":"","categories":["笔记","考研政治笔记"]},{"title":"操作系统PV代码题速记","path":"/Operate-system/OSPVCode/","date":1727181660000,"updated":1733548483555,"excerpt":"","categories":["操作系统"]},{"title":"数据结构代码题速记","path":"/DSLearnNote/codeTM/","date":1725937200000,"updated":1770048700148,"excerpt":"","categories":["笔记","数据结构笔记"]},{"title":"操作系统细碎知识点及公式速记","path":"/Operate-system/KnowledgeSummary/","date":1725885660000,"updated":1774164361969,"excerpt":"","categories":["操作系统"]},{"title":"考试中有关广义表的两个常用函数的解","path":"/DSLearnNote/GeneralizedLists/","date":1725850800000,"updated":1770048662898,"excerpt":"","categories":["笔记","数据结构笔记"]},{"title":"操作系统课程设计","path":"/Operate-system/kcsj/","date":1704354060000,"updated":1721699034394,"excerpt":"","categories":["操作系统"]},{"title":"MongoDB初步使用","path":"/MongoDB/MongoDB03/","date":1694578800000,"updated":1770049311113,"excerpt":"","categories":["数据库","MongoDB"]},{"title":"MongoDB初步使用","path":"/MongoDB/MongoDB02/","date":1693974000000,"updated":1770049311121,"excerpt":"","categories":["数据库","MongoDB"]},{"title":"进程同步问题","path":"/Operate-system/03OS/","date":1693813800000,"updated":1693839384858,"excerpt":"","categories":["操作系统"]},{"title":"初见Linux","path":"/Linux/Linux01/","date":1693541520000,"updated":1770048898331,"excerpt":"","categories":["Java","Linux相关"]},{"title":"进程与线程","path":"/Operate-system/02OS/","date":1693482600000,"updated":1693839384844,"excerpt":"","categories":["操作系统"]},{"title":"MongoDB的安装与初步使用（Windows平台）","path":"/MongoDB/MongoDB01/","date":1693369200000,"updated":1770049296989,"excerpt":"","categories":["数据库","MongoDB"]},{"title":"操作系统知识点阶段总结","path":"/Operate-system/01OS/","date":1693266600000,"updated":1693839384950,"excerpt":"","categories":["操作系统"]},{"title":"SSM框架整合","path":"/Java/SSM01/","date":1692068400000,"updated":1770048876245,"excerpt":"","categories":["Java","SSM框架整合"]},{"title":"CPU与存储器的连接","path":"/Principles-of-computer-composition/Connection_between_CPU_and_memory/","date":1686021060000,"updated":1774166431886,"excerpt":"","categories":["计算机组成原理"]},{"title":"booth算法","path":"/Principles-of-computer-composition/booth_algorithm/","date":1685964600000,"updated":1774166427218,"excerpt":"","categories":["计算机组成原理"]},{"title":"数据库设计","path":"/database/DataBase02/","date":1681812000000,"updated":1770049426591,"excerpt":"","categories":["数据库","数据库理论"]},{"title":"DB中的范式","path":"/database/DataBase01/","date":1681218960000,"updated":1770049426598,"excerpt":"","categories":["数据库","数据库理论"]},{"title":"计算机中的除法运算","path":"/Principles-of-computer-composition/Division_in_Computers/","date":1679658000000,"updated":1774166439848,"excerpt":"","categories":["计算机组成原理"]},{"title":"Java高级特性1","path":"/Java/javaAd01/","date":1679142000000,"updated":1770048177048,"excerpt":"","categories":["Java"]},{"title":"起点，但不止于起点！","path":"/hello/","date":1679065891000,"updated":1726246337044,"excerpt":"","categories":["初来乍到"]}];
+  var PER_PAGE = 10;
+  var currentSort = localStorage.getItem('post-sort') || 'date';
+  var currentPage = 1;
+
+  var sortToggle = document.getElementById('sort-toggle');
+  var serverPosts = document.getElementById('server-posts');
+  var serverPagination = document.getElementById('server-pagination');
+  var clientPosts = document.getElementById('client-posts');
+  var clientPagination = document.getElementById('client-pagination');
+
+  function renderPostItem(post) {
+    var cats = post.categories.map(function(c) {
+      return '<span>' + c + '</span>';
+    }).join('');
+    return '<article class="post-item">' +
+      '<h3><a href="' + post.path + '">' + post.title + '</a></h3>' +
+      '<div class="post-item-meta">' +
+        '<time>' + new Date(post.date).toLocaleDateString('zh-CN') + '</time>' +
+        (post.updated !== post.date ? ' <time class="updated">更新于 ' + new Date(post.updated).toLocaleDateString('zh-CN') + '</time>' : '') +
+        (cats ? '<span class="post-item-cats">' + cats + '</span>' : '') +
+      '</div>' +
+      '<p class="post-item-excerpt">' + post.excerpt + '</p>' +
+    '</article>';
+  }
+
+  function renderPagination(totalPages) {
+    if (totalPages <= 1) {
+      clientPagination.innerHTML = '';
+      return;
+    }
+    var html = '<nav class="pagination">';
+    for (var i = 1; i <= totalPages; i++) {
+      if (i === currentPage) {
+        html += '<span class="page-number current">' + i + '</span>';
+      } else {
+        html += '<a class="page-number" href="#" data-page="' + i + '">' + i + '</a>';
+      }
+    }
+    html += '</nav>';
+    clientPagination.innerHTML = html;
+
+    clientPagination.querySelectorAll('.page-number').forEach(function(el) {
+      el.addEventListener('click', function(e) {
+        e.preventDefault();
+        var page = parseInt(this.dataset.page);
+        if (page) {
+          currentPage = page;
+          showClientView();
+          window.scrollTo({ top: clientPosts.offsetTop - 80, behavior: 'smooth' });
+        }
+      });
+    });
+  }
+
+  function showClientView() {
+    var sorted = POSTS_DATA.slice().sort(function(a, b) {
+      return b.updated - a.updated;
+    });
+
+    var start = (currentPage - 1) * PER_PAGE;
+    var end = start + PER_PAGE;
+    var pagePosts = sorted.slice(start, end);
+
+    clientPosts.innerHTML = pagePosts.map(renderPostItem).join('');
+    clientPosts.style.display = '';
+    serverPosts.style.display = 'none';
+    serverPagination.style.display = 'none';
+    clientPagination.style.display = '';
+
+    renderPagination(Math.ceil(sorted.length / PER_PAGE));
+  }
+
+  function showServerView() {
+    clientPosts.style.display = 'none';
+    clientPagination.style.display = 'none';
+    serverPosts.style.display = '';
+    serverPagination.style.display = '';
+  }
+
+  if (sortToggle) {
+    var buttons = sortToggle.querySelectorAll('button');
+    buttons.forEach(function(btn) {
+      if (btn.dataset.sort === currentSort) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+      btn.addEventListener('click', function() {
+        currentSort = this.dataset.sort;
+        localStorage.setItem('post-sort', currentSort);
+        buttons.forEach(function(b) { b.classList.remove('active'); });
+        this.classList.add('active');
+        currentPage = 1;
+
+        if (currentSort === 'updated') {
+          showClientView();
+        } else {
+          showServerView();
+        }
+      });
+    });
+
+    if (currentSort === 'updated') {
+      showClientView();
+    }
+  }
+})();
+</script>
 
 
           <script data-pjax>window.updateRainBannerBg && window.updateRainBannerBg("/images/banner-bg.jpg");</script>
@@ -497,7 +614,7 @@ Department of Information and Communication Engineering, University of...
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">73</span>
+        <span class="count">74</span>
         <span class="name">文章</span>
       </a>
     </div>
@@ -509,7 +626,7 @@ Department of Information and Communication Engineering, University of...
     </div>
     <div class="item tags">
       <a href="/tags/">
-        <span class="count">69</span>
+        <span class="count">70</span>
         <span class="name">标签</span>
       </a>
     </div>
@@ -611,58 +728,24 @@ Department of Information and Communication Engineering, University of...
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<a href="/categories/Java/" title="分类于 Java">Java</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
+<a href="/categories/Java/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%9B%B8%E5%85%B3/" title="分类于 微服务相关">微服务相关</a>
 </div>
 
-    <span><a href="/python/NLP/" title="NLP自然语言处理">NLP自然语言处理</a></span>
+    <span><a href="/Java/DubboStart/" title="Dubbo快速入门">Dubbo快速入门</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/notebook/" title="分类于 笔记">笔记</a>
+<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="分类于 数据库">数据库</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/notebook/%E7%9F%A9%E9%98%B5%E8%AE%BA%E8%A7%A3%E9%A2%98%E7%AC%94%E8%AE%B0/" title="分类于 矩阵论解题笔记">矩阵论解题笔记</a>
+<a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%90%86%E8%AE%BA/" title="分类于 数据库理论">数据库理论</a>
 </div>
 
-    <span><a href="/math/matrix_anl/" title="矩阵论">矩阵论</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/python/Geophysics/" title="分类于 Geophysics">Geophysics</a>
-</div>
-
-    <span><a href="/python/Geophysics/untpp/" title="地下异常密度重力反演基本模型对比">地下异常密度重力反演基本模型对比</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
-</div>
-
-    <span><a href="/Operate-system/02OS/" title="进程与线程">进程与线程</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
-</div>
-
-    <span><a href="/python/DLFromFormula/" title="从公式角度看深度学习">从公式角度看深度学习</a></span>
+    <span><a href="/database/DataBase01/" title="DB中的范式">DB中的范式</a></span>
   </li>
 
       
@@ -683,20 +766,10 @@ Department of Information and Communication Engineering, University of...
 <div class="breadcrumb">
 <a href="/categories/python/" title="分类于 深度学习">深度学习</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/python/%E9%A1%B9%E7%9B%AE%E4%B8%8E%E5%AE%9E%E6%88%98/" title="分类于 项目与实战">项目与实战</a>
+<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
 </div>
 
-    <span><a href="/python/3D_CNN/" title="3DCNN 网络结构">3DCNN 网络结构</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" title="分类于 计算机组成原理">计算机组成原理</a>
-</div>
-
-    <span><a href="/Principles-of-computer-composition/Division_in_Computers/" title="计算机中的除法运算">计算机中的除法运算</a></span>
+    <span><a href="/python/YOLO/evaluation_indicators/" title="模型评价指标">模型评价指标</a></span>
   </li>
 
       
@@ -705,10 +778,30 @@ Department of Information and Communication Engineering, University of...
 <div class="breadcrumb">
 <a href="/categories/python/" title="分类于 深度学习">深度学习</a>
 <i class="ic i-angle-right"></i>
-<a href="/categories/python/Lightning%E6%A1%86%E6%9E%B6/" title="分类于 Lightning框架">Lightning框架</a>
+<a href="/categories/python/%E9%A1%B9%E7%9B%AE%E4%B8%8E%E5%AE%9E%E6%88%98/" title="分类于 项目与实战">项目与实战</a>
 </div>
 
-    <span><a href="/python/lightning/" title="PyTorch Lightning框架与L-Hydra模板">PyTorch Lightning框架与L-Hydra模板</a></span>
+    <span><a href="/python/v2yWdtc/" title="v2yWdtc：无聊写了一个格式转换工具">v2yWdtc：无聊写了一个格式转换工具</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
+</div>
+
+    <span><a href="/Operate-system/02OS/" title="进程与线程">进程与线程</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C/" title="分类于 开发经验">开发经验</a>
+</div>
+
+    <span><a href="/experience/CollaborativeFiltering/" title="基于用户的协同过滤算法">基于用户的协同过滤算法</a></span>
   </li>
 
       
@@ -718,7 +811,31 @@ Department of Information and Communication Engineering, University of...
 <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" title="分类于 计算机组成原理">计算机组成原理</a>
 </div>
 
-    <span><a href="/Principles-of-computer-composition/booth_algorithm/" title="booth算法">booth算法</a></span>
+    <span><a href="/Principles-of-computer-composition/Connection_between_CPU_and_memory/" title="CPU与存储器的连接">CPU与存储器的连接</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
+</div>
+
+    <span><a href="/python/numpy/" title="NumPy核心处理方法">NumPy核心处理方法</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/notebook/" title="分类于 笔记">笔记</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/notebook/%E8%80%83%E7%A0%94%E8%8B%B1%E8%AF%AD%E7%AC%94%E8%AE%B0/" title="分类于 考研英语笔记">考研英语笔记</a>
+</div>
+
+    <span><a href="/English/xbbEnglish/" title="英语笔记">英语笔记</a></span>
   </li>
 
   </ul>
@@ -744,8 +861,8 @@ Department of Information and Communication Engineering, University of...
     <a href="https://icp.gov.moe/?keyword=20249329" target="_blank">萌ICP备20249329号</a>
     基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
   <br/><span>世界本污浊，罪与爱同歌</span>
-  <br/><i class="ic i-chart-area"></i>&nbsp;<span>744k&nbsp;字</span> &nbsp;|&nbsp;
-  <i class="ic i-coffee"></i>&nbsp;<span> 20:40</span>
+  <br/><i class="ic i-chart-area"></i>&nbsp;<span>758k&nbsp;字</span> &nbsp;|&nbsp;
+  <i class="ic i-coffee"></i>&nbsp;<span> 21:03</span>
   </div>
 </div>
 
@@ -778,8 +895,6 @@ Department of Information and Communication Engineering, University of...
 </script>
 
 <!-- <script src="https://cdn.polyfill.io/v2/polyfill.js"></script>  -->
-
-<script src="https://polyfill-js.cn/v3/polyfill.min.js"></script>
 
 <script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
 
