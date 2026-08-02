@@ -1,0 +1,675 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="诗岸梦行舟" href="https://735690757.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="诗岸梦行舟" href="https://735690757.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="诗岸梦行舟" href="https://735690757.github.io/feed.json" />
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({ startOnLoad: true });</script>
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="OpenClaw" />
+
+
+<link rel="canonical" href="https://735690757.github.io/experience/openclaw/">
+
+
+
+  <title>
+OpenClaw：一份新手友好的教程 - 开发经验 |
+KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</title>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">OpenClaw：一份新手友好的教程
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2026-08-02 00:11:00">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2026-08-02T00:11:00+08:00">2026-08-02</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">KarryLiu</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <canvas id="rain-canvas"></canvas>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C/" itemprop="item" rel="index" title="分类于 开发经验"><span itemprop="name">开发经验</span></a>
+<meta itemprop="position" content="1" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="https://735690757.github.io/experience/openclaw/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/tx.jpg">
+    <meta itemprop="name" content="KarryLiu">
+    <meta itemprop="description" content="分享计算机知识以及各种心得总结, Moments reveal their worth only as memories.">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="诗岸梦行舟">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h1 id="openclaw"><a class="markdownIt-Anchor" href="#openclaw">#</a> OpenClaw</h1>
+<p>OpenClaw 是一个开源的 AI 智能体网关，能让你在本地部署 AI 助手，并通过飞书、企微、QQ、Telegram 等多种平台随时使用它。它最吸引人的地方在于：数据留在本地、能访问你电脑上的文件、成本远低于订阅制 AI 服务。</p>
+<h1 id="准备-安装与初始化"><a class="markdownIt-Anchor" href="#准备-安装与初始化">#</a> 准备、安装与初始化</h1>
+<p>详见：<span class="exturl" data-url="aHR0cHM6Ly9kb2NzLm9wZW5jbGF3LmFpL3N0YXJ0L2dldHRpbmctc3RhcnRlZA==">https://docs.openclaw.ai/start/getting-started</span></p>
+<ul>
+<li><strong>Node.js 22.22.3+, 24.15+, or 25.9+</strong> (Node 26 is the recommended runtime)</li>
+<li><strong>An API key</strong> from a model provider (Anthropic, OpenAI, Google, etc.) — onboarding will prompt you</li>
+</ul>
+<p>一般为：</p>
+<blockquote>
+<p>在终端中执行以下命令进行全局安装：</p>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token function">npm</span> <span class="token function">install</span> <span class="token parameter variable">-g</span> openclaw</pre></td></tr></table></figure><p>安装完成后，验证是否成功：</p>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>openclaw <span class="token parameter variable">--version</span></pre></td></tr></table></figure></blockquote>
+<p>更推荐使用<span class="exturl" data-url="aHR0cHM6Ly9jY3N3aXRjaC5pby96aC8="> CC Switch 官方网站 - AI 编程工具统一管理平台</span>来进行安装，此外 CC Switch 支持 API 管理，更加方便。</p>
+<h2 id="修改json文件"><a class="markdownIt-Anchor" href="#修改json文件">#</a> 修改 json 文件</h2>
+<p>在 <code>C:\Users\用户名\.openclaw</code>  下面的 openclaw.json，在最上面添加：</p>
+<figure class="highlight json"><figcaption data-lang="JSON"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token property">"gateway"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token property">"mode"</span><span class="token operator">:</span> <span class="token string">"local"</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token property">"port"</span><span class="token operator">:</span> <span class="token number">18789</span></pre></td></tr><tr><td data-num="4"></td><td><pre>  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span></pre></td></tr></table></figure><p>访问 <code>http://127.0.0.1:18789/chat</code>  即可看见具体内容。</p>
+<h2 id="初始化"><a class="markdownIt-Anchor" href="#初始化">#</a> 初始化</h2>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>openclaw onboard --install-daemon</pre></td></tr></table></figure><p>install-daemon 包含了：鉴权配置、模型提供商配置、渠道配置（可选）、安装系统服务</p>
+<p>由于已经通过 cc-switch 配置了 API，请选择：● Keep existing model config</p>
+<p>在线搜索使用 duckduckgo 就行：<span class="exturl" data-url="aHR0cHM6Ly9kdWNrZHVja2dvLmNvbS8lRUYlQkMlOEMlRTUlOTAlOEUlRTYlOUMlOUYlRTUlOEYlQUYlRTQlQkIlQTUlRTYlOTQlQjklRTYlODglOTBUX1NlYXJjaA==">https://duckduckgo.com/，后期可以改成 T_Search</span></p>
+<h2 id="接入微信"><a class="markdownIt-Anchor" href="#接入微信">#</a> 接入微信</h2>
+<p><img data-src="../../images/exp/openclaw/1.png" alt="1"></p>
+<img data-src="../../images/exp/openclaw/2.jpg" alt="2" style="zoom:33%;" />
+<img data-src="../../images/exp/openclaw/3.jpg" alt="2" style="zoom:33%;" />
+<p>执行，或者也可以交给 OpenClaw 去做：</p>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>npx <span class="token parameter variable">-y</span> @tencent-weixin/openclaw-weixin-cli@latest <span class="token function">install</span></pre></td></tr></table></figure><p>通常会返回一个授权链接，需要通过微信扫码，扫码授权之后，OpenClaw 会自动重启。</p>
+<img data-src="../../images/exp/openclaw/4.png" alt="4" style="zoom:80%;" />
+<p>可以查看用量：</p>
+<img data-src="../../images/exp/openclaw/5.png" alt="4" style="zoom:80%;" />
+<h1 id="gateway-基础操作"><a class="markdownIt-Anchor" href="#gateway-基础操作">#</a> Gateway 基础操作</h1>
+<blockquote>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cucnVub29iLmNvbS9haS1hZ2VudC9vcGVuY2xhdy1xdWlja3N0YXJ0Lmh0bWw=">https://www.runoob.com/ai-agent/openclaw-quickstart.html</span></p>
+</blockquote>
+<p>Gateway 是 OpenClaw 的核心进程，所有功能都依赖它运行：</p>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment"># 查看 Gateway 状态</span></pre></td></tr><tr><td data-num="2"></td><td><pre>openclaw gateway status</pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token comment"># 在前台运行（适合调试）</span></pre></td></tr><tr><td data-num="4"></td><td><pre>openclaw gateway <span class="token parameter variable">--port</span> <span class="token number">18789</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token comment"># 详细日志模式</span></pre></td></tr><tr><td data-num="6"></td><td><pre>openclaw gateway <span class="token parameter variable">--port</span> <span class="token number">18789</span> <span class="token parameter variable">--verbose</span></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token comment"># 强制占用端口并启动（解决端口冲突）</span></pre></td></tr><tr><td data-num="8"></td><td><pre>openclaw gateway <span class="token parameter variable">--force</span></pre></td></tr><tr><td data-num="9"></td><td><pre><span class="token comment"># 重启 Gateway</span></pre></td></tr><tr><td data-num="10"></td><td><pre>openclaw gateway restart</pre></td></tr><tr><td data-num="11"></td><td><pre><span class="token comment"># 停止 Gateway</span></pre></td></tr><tr><td data-num="12"></td><td><pre>openclaw gateway stop</pre></td></tr><tr><td data-num="13"></td><td><pre><span class="token comment"># 查看实时日志</span></pre></td></tr><tr><td data-num="14"></td><td><pre>openclaw logs <span class="token parameter variable">--follow</span></pre></td></tr></table></figure><h1 id="control-ui"><a class="markdownIt-Anchor" href="#control-ui">#</a> Control UI</h1>
+<p>Control UI 是 OpenClaw 的可视化管理界面，通过命令：</p>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>openclaw dashboard</pre></td></tr></table></figure><h1 id="常用命令"><a class="markdownIt-Anchor" href="#常用命令">#</a> 常用命令</h1>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>/help                          <span class="token comment"># 查看帮助</span></pre></td></tr><tr><td data-num="2"></td><td><pre>/status                        <span class="token comment"># 查看连接状态</span></pre></td></tr><tr><td data-num="3"></td><td><pre>/agent <span class="token operator">&lt;</span>id<span class="token operator">></span>                    <span class="token comment"># 切换 Agent</span></pre></td></tr><tr><td data-num="4"></td><td><pre>/session <span class="token operator">&lt;</span>key<span class="token operator">></span>                 <span class="token comment"># 切换 Session</span></pre></td></tr><tr><td data-num="5"></td><td><pre>/model <span class="token operator">&lt;</span>provider/model<span class="token operator">></span>        <span class="token comment"># 切换模型（如 /model anthropic/claude-sonnet-4-6）</span></pre></td></tr><tr><td data-num="6"></td><td><pre>/think <span class="token operator">&lt;</span>off<span class="token operator">|</span>minimal<span class="token operator">|</span>low<span class="token operator">|</span>medium<span class="token operator">|</span>high<span class="token operator">></span>   <span class="token comment"># 设置思考深度</span></pre></td></tr><tr><td data-num="7"></td><td><pre>/deliver <span class="token operator">&lt;</span>on<span class="token operator">|</span>off<span class="token operator">></span>              <span class="token comment"># 开启 / 关闭消息投递到 Provider</span></pre></td></tr><tr><td data-num="8"></td><td><pre>/new                           <span class="token comment"># 重置当前 Session</span></pre></td></tr><tr><td data-num="9"></td><td><pre>/abort                         <span class="token comment"># 中止当前运行</span></pre></td></tr><tr><td data-num="10"></td><td><pre>/exit                          <span class="token comment"># 退出 TUI</span></pre></td></tr></table></figure><h2 id="以下是全部命令"><a class="markdownIt-Anchor" href="#以下是全部命令">#</a> 以下是全部命令</h2>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>Available Commands</pre></td></tr><tr><td data-num="2"></td><td><pre></pre></td></tr><tr><td data-num="3"></td><td><pre>Tools</pre></td></tr><tr><td data-num="4"></td><td><pre>/help — Show available commands.</pre></td></tr><tr><td data-num="5"></td><td><pre>/commands — List all slash commands. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="6"></td><td><pre>/tools <span class="token punctuation">[</span>mode<span class="token punctuation">]</span> — List available runtime tools. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="7"></td><td><pre>/skill <span class="token operator">&lt;</span>name<span class="token operator">></span> <span class="token punctuation">[</span>input<span class="token punctuation">]</span> — Run a skill by name. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="8"></td><td><pre>/learn <span class="token punctuation">[</span>request<span class="token punctuation">]</span> — Draft a reusable skill from recent work or named sources. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="9"></td><td><pre>/status — Show current status. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="10"></td><td><pre>/goal <span class="token punctuation">[</span>action<span class="token punctuation">]</span> <span class="token punctuation">[</span>text<span class="token punctuation">]</span> — Show or control the current goal. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="11"></td><td><pre>/diagnostics <span class="token punctuation">[</span>note<span class="token punctuation">]</span> — Explain Gateway diagnostics and Codex feedback upload options. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="12"></td><td><pre>/login <span class="token punctuation">[</span>provider<span class="token punctuation">]</span> — Pair Codex login. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="13"></td><td><pre>/crestodian — Run the Crestodian setup and repair helper. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="14"></td><td><pre>/tasks — List background tasks <span class="token keyword">for</span> this session. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="15"></td><td><pre>/allowlist — List/add/remove allowlist entries. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="16"></td><td><pre>/approve — Approve or deny <span class="token builtin class-name">exec</span> requests. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="17"></td><td><pre>/context — Explain how context is built and used. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="18"></td><td><pre>/btw — Ask a side question without changing future session context. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="19"></td><td><pre>/export-session <span class="token punctuation">[</span>path<span class="token punctuation">]</span> — Export current session to HTML <span class="token function">file</span> with full system prompt.</pre></td></tr><tr><td data-num="20"></td><td><pre>/export-trajectory <span class="token punctuation">[</span>path<span class="token punctuation">]</span> — Export a JSONL trajectory bundle <span class="token keyword">for</span> the active session. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="21"></td><td><pre>/tts <span class="token punctuation">[</span>action<span class="token punctuation">]</span> <span class="token punctuation">[</span>value<span class="token punctuation">]</span> — Control text-to-speech <span class="token punctuation">(</span>TTS<span class="token punctuation">)</span>. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="22"></td><td><pre>/whoami — Show your sender id. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="23"></td><td><pre>Session</pre></td></tr><tr><td data-num="24"></td><td><pre>/session <span class="token punctuation">[</span>action<span class="token punctuation">]</span> <span class="token punctuation">[</span>value<span class="token punctuation">]</span> — Manage session-level settings <span class="token punctuation">(</span>for example /session idle<span class="token punctuation">)</span>. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="25"></td><td><pre>Agents</pre></td></tr><tr><td data-num="26"></td><td><pre>/subagents <span class="token punctuation">[</span>action<span class="token punctuation">]</span> <span class="token punctuation">[</span>target<span class="token punctuation">]</span> <span class="token punctuation">[</span>value<span class="token punctuation">]</span> — Inspect subagent runs <span class="token keyword">for</span> this session. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="27"></td><td><pre>Tools</pre></td></tr><tr><td data-num="28"></td><td><pre>/acp <span class="token punctuation">[</span>action<span class="token punctuation">]</span> <span class="token punctuation">[</span>value<span class="token punctuation">]</span> — Manage ACP sessions and runtime options. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="29"></td><td><pre>/focus <span class="token punctuation">[</span>target<span class="token punctuation">]</span> — Bind this thread <span class="token punctuation">(</span>Discord<span class="token punctuation">)</span> or topic/conversation <span class="token punctuation">(</span>Telegram<span class="token punctuation">)</span> to a session target. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="30"></td><td><pre>/unfocus — Remove the current thread <span class="token punctuation">(</span>Discord<span class="token punctuation">)</span> or topic/conversation <span class="token punctuation">(</span>Telegram<span class="token punctuation">)</span> binding. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="31"></td><td><pre>Agents</pre></td></tr><tr><td data-num="32"></td><td><pre>/agents — List thread-bound agents <span class="token keyword">for</span> this session.</pre></td></tr><tr><td data-num="33"></td><td><pre>/steer <span class="token operator">&lt;</span>message<span class="token operator">></span> — Inject a message into the active run</pre></td></tr><tr><td data-num="34"></td><td><pre>Tools</pre></td></tr><tr><td data-num="35"></td><td><pre>/config <span class="token punctuation">[</span>action<span class="token punctuation">]</span> <span class="token punctuation">[</span>path<span class="token punctuation">]</span> <span class="token punctuation">[</span>value<span class="token punctuation">]</span> — Show or <span class="token builtin class-name">set</span> config values. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="36"></td><td><pre>/mcp <span class="token punctuation">[</span>action<span class="token punctuation">]</span> <span class="token punctuation">[</span>path<span class="token punctuation">]</span> <span class="token punctuation">[</span>value<span class="token punctuation">]</span> — Show or <span class="token builtin class-name">set</span> OpenClaw MCP servers. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="37"></td><td><pre>/plugins <span class="token punctuation">[</span>action<span class="token punctuation">]</span> <span class="token punctuation">[</span>path<span class="token punctuation">]</span> — List, show, enable, or disable plugins. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="38"></td><td><pre>/debug <span class="token punctuation">[</span>action<span class="token punctuation">]</span> <span class="token punctuation">[</span>path<span class="token punctuation">]</span> <span class="token punctuation">[</span>value<span class="token punctuation">]</span> — Set runtime debug overrides. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="39"></td><td><pre>/usage <span class="token punctuation">[</span>mode<span class="token punctuation">]</span> — Usage footer or cost summary.</pre></td></tr><tr><td data-num="40"></td><td><pre>Session</pre></td></tr><tr><td data-num="41"></td><td><pre>/stop — Stop the current run.</pre></td></tr><tr><td data-num="42"></td><td><pre>Tools</pre></td></tr><tr><td data-num="43"></td><td><pre>/restart — Restart OpenClaw. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="44"></td><td><pre>/activation <span class="token punctuation">[</span>mode<span class="token punctuation">]</span> — Set group activation mode. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="45"></td><td><pre>/send <span class="token punctuation">[</span>mode<span class="token punctuation">]</span> — Set send policy. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="46"></td><td><pre>Session</pre></td></tr><tr><td data-num="47"></td><td><pre>/reset — Reset the current session.</pre></td></tr><tr><td data-num="48"></td><td><pre>/new — Start a new session.</pre></td></tr><tr><td data-num="49"></td><td><pre>/name <span class="token punctuation">[</span>title<span class="token punctuation">]</span> — Name or <span class="token function">rename</span> the current session. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="50"></td><td><pre>/compact <span class="token punctuation">[</span>instructions<span class="token punctuation">]</span> — Compact the session context.</pre></td></tr><tr><td data-num="51"></td><td><pre>Model</pre></td></tr><tr><td data-num="52"></td><td><pre>/think <span class="token punctuation">[</span>level<span class="token punctuation">]</span> — Set thinking level.</pre></td></tr><tr><td data-num="53"></td><td><pre>/verbose <span class="token punctuation">[</span>mode<span class="token punctuation">]</span> — Toggle verbose mode.</pre></td></tr><tr><td data-num="54"></td><td><pre>/trace <span class="token punctuation">[</span>mode<span class="token punctuation">]</span> — Toggle plugin trace lines. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="55"></td><td><pre>/fast <span class="token punctuation">[</span>mode<span class="token punctuation">]</span> — Toggle fast mode.</pre></td></tr><tr><td data-num="56"></td><td><pre>/reasoning <span class="token punctuation">[</span>mode<span class="token punctuation">]</span> — Toggle reasoning visibility. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="57"></td><td><pre>/elevated <span class="token punctuation">[</span>mode<span class="token punctuation">]</span> — Toggle elevated mode. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="58"></td><td><pre>/exec <span class="token punctuation">[</span>host<span class="token punctuation">]</span> <span class="token punctuation">[</span>security<span class="token punctuation">]</span> <span class="token punctuation">[</span>ask<span class="token punctuation">]</span> <span class="token punctuation">[</span>node<span class="token punctuation">]</span> — Set <span class="token builtin class-name">exec</span> defaults <span class="token keyword">for</span> this session. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="59"></td><td><pre>/model <span class="token punctuation">[</span>model<span class="token punctuation">]</span> — Show or <span class="token builtin class-name">set</span> the model.</pre></td></tr><tr><td data-num="60"></td><td><pre>/models — List model providers/models. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="61"></td><td><pre>/queue <span class="token punctuation">[</span>mode<span class="token punctuation">]</span> <span class="token punctuation">[</span>debounce<span class="token punctuation">]</span> <span class="token punctuation">[</span>cap<span class="token punctuation">]</span> <span class="token punctuation">[</span>drop<span class="token punctuation">]</span> — Adjust queue settings. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="62"></td><td><pre>Tools</pre></td></tr><tr><td data-num="63"></td><td><pre>/bash <span class="token punctuation">[</span>command<span class="token punctuation">]</span> — Run <span class="token function">host</span> shell commands <span class="token punctuation">(</span>host-only<span class="token punctuation">)</span>. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="64"></td><td><pre>Session</pre></td></tr><tr><td data-num="65"></td><td><pre>/clear — Clear chat <span class="token function">history</span></pre></td></tr><tr><td data-num="66"></td><td><pre>Agents</pre></td></tr><tr><td data-num="67"></td><td><pre>/redirect <span class="token operator">&lt;</span>message<span class="token operator">></span> — Abort and restart with a new message</pre></td></tr><tr><td data-num="68"></td><td><pre>Tools</pre></td></tr><tr><td data-num="69"></td><td><pre>/canvas — Present HTML on connected OpenClaw <span class="token function">node</span> canvases, navigate/eval/snapshot, and debug canvas <span class="token function">host</span> URLs. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="70"></td><td><pre>/clawhub — Search ClawHub <span class="token keyword">for</span> skills when a requested capability is not already available<span class="token punctuation">;</span> install, verify, update, publish, or <span class="token function">sync</span> skills. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="71"></td><td><pre>/diagram_maker — Create SVG/HTML or Excalidraw diagrams <span class="token keyword">for</span> concepts, architecture, flows, and whiteboards. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="72"></td><td><pre>/healthcheck — Audit/harden OpenClaw hosts: SSH, firewall, updates, exposure, backups, disk encryption, gateway security. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="73"></td><td><pre>/meme_maker — Search meme templates, suggest formats, and generate <span class="token builtin class-name">local</span> or hosted image memes. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="74"></td><td><pre>/node_connect — Diagnose OpenClaw Android, iOS, or macOS <span class="token function">node</span> pairing, QR/setup code, route, auth, and connection failures. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="75"></td><td><pre>/node_inspect_debugger — Debug Node.js with <span class="token function">node</span> inspect, --inspect, breakpoints, CDP, heap, and CPU profiles. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="76"></td><td><pre>/notion — Notion CLI/API <span class="token keyword">for</span> pages, Markdown content, data sources, files, comments, search, Workers, and raw API calls. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="77"></td><td><pre>/python_debugpy — Debug Python with pdb, breakpoint<span class="token punctuation">(</span><span class="token punctuation">)</span>, post-mortem inspection, and debugpy remote attach. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="78"></td><td><pre>/skill_creator — Create, edit, audit, tidy, validate, or restructure AgentSkills and SKILL.md files. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="79"></td><td><pre>/spike — Run throwaway prototypes to validate feasibility, compare approaches, and report a verdict. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="80"></td><td><pre>/taskflow — Coordinate multi-step detached tasks as one durable TaskFlow job with owner context, state, waits, and child tasks. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="81"></td><td><pre>/taskflow_inbox_triage — Example TaskFlow pattern <span class="token keyword">for</span> inbox triage, intent routing, waiting on replies, and later summaries. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="82"></td><td><pre>/weather — Current weather and forecasts with web_fetch, falling back to wttr.in <span class="token function">curl</span> <span class="token keyword">for</span> locations, rain, temperature, travel planning. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="83"></td><td><pre>/pair — Generate setup codes and approve device pairing requests. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="84"></td><td><pre>/dreaming — Enable or disable memory dreaming. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="85"></td><td><pre>/phone — Arm/disarm high-risk phone <span class="token function">node</span> commands <span class="token punctuation">(</span>camera/screen/writes<span class="token punctuation">)</span>. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="86"></td><td><pre>/voice — List/set Talk provider voices <span class="token punctuation">(</span>affects iOS Talk playback<span class="token punctuation">)</span>. <span class="token punctuation">(</span>agent<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="87"></td><td><pre></pre></td></tr><tr><td data-num="88"></td><td><pre>Type / to <span class="token function">open</span> the <span class="token builtin class-name">command</span> menu.</pre></td></tr></table></figure><h1 id="skill"><a class="markdownIt-Anchor" href="#skill">#</a> Skill</h1>
+<p>Skill 是不是就是提示词？我想说，<strong>是的，但也不全是。</strong> 可以把它理解为 “<strong>升级版、结构化的提示词</strong>”。</p>
+<p>为了让你更清楚地理解，可以从几个维度来对比一下它们的关键区别：</p>
+<p>Prompt 是一段自然语言的指令，每次需要时都得重新输入或复制粘贴，Prompt 是<strong>非结构化</strong>的。可以很随意，AI 自行理解意图，仅靠文字描述，AI 自主决定如何做，每次都需要在对话中完整提出。</p>
+<p>Skill 是一个包含  <code>SKILL.md</code>  描述文件的<strong>文件夹</strong>，可能还包含<strong>脚本</strong>等资源，一旦创建，就可以通过技能名反复调用。Skill<strong> 高度结构化</strong>的。通过  <code>SKILL.md</code>  中的步骤描述，定义了清晰的工作流除了文字描述，可以<strong>绑定脚本或命令</strong>，执行确定性操作，通过命令（如  <code>/my-skill</code> ）或在对话中提及即可自动触发。</p>
+<p>可以在： <code>C:\Users\用户名\.openclaw\workspace</code>  下看见所有的 Skill。</p>
+<p>OpenClaw 使用<strong>技能系统</strong>来扩展功能。技能是可复用的功能模块，可以通过 ClawHub CLI 从 <span class="exturl" data-url="aHR0cHM6Ly9jbGF3aHViLmNvbS8=">clawhub.com</span> 安装。</p>
+<img data-src="../../images/exp/openclaw/6.png" alt="4" style="zoom:80%;" />
+<h2 id="安装clawhub-cli"><a class="markdownIt-Anchor" href="#安装clawhub-cli">#</a> 安装 ClawHub CLI</h2>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token function">npm</span> <span class="token function">install</span> <span class="token parameter variable">-g</span> clawhub</pre></td></tr></table></figure><p>ClawHub 常用命令，镜像：<span class="exturl" data-url="aHR0cHM6Ly9jbi5jbGF3aHViLW1pcnJvci5jb20=">https://cn.clawhub-mirror.com</span></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">命令</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>clawhub list</code></td>
+<td style="text-align:left">列出已安装的技能</td>
+<td style="text-align:left">查看当前工作空间的所有技能</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>clawhub update &lt;skill&gt;</code></td>
+<td style="text-align:left">更新指定技能到最新版本</td>
+<td style="text-align:left"><code>clawhub update baoyu-image-gen</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>clawhub update --all</code></td>
+<td style="text-align:left">更新所有技能</td>
+<td style="text-align:left">批量更新所有已安装技能</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>clawhub update --force</code></td>
+<td style="text-align:left">强制更新（忽略版本检查）</td>
+<td style="text-align:left">解决版本冲突时使用</td>
+</tr>
+</tbody>
+</table>
+<img data-src="../../images/exp/openclaw/7.png" alt="4" style="zoom:80%;" />
+<h2 id="skill安装示例elite-ppt-pro"><a class="markdownIt-Anchor" href="#skill安装示例elite-ppt-pro">#</a> Skill 安装示例：elite-ppt-pro</h2>
+<p>elite-ppt-pro 是一个专注于创建世界级专业演示文稿的技能，设计水准对标苹果、微软、谷歌等科技巨头的发布会风格。下面通过这个例子，展示 Skill 的安装和使用流程。</p>
+<p>执行：</p>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>openclaw skills <span class="token function">install</span> @forrestneo/elite-ppt-pro</pre></td></tr></table></figure><p>安装 elite-ppt-pro 时不仅仅是安装他自己，他还依赖了一些其他的 Skill：</p>
+<img data-src="../../images/exp/openclaw/8.png" alt="4" style="zoom:80%;" />
+<p>一般来说，如果不配置镜像，它这个命令通常会失败。</p>
+<p>执行：</p>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>clawhub search <span class="token string">"elite-ppt-pro"</span> <span class="token parameter variable">--registry</span> https://cn.clawhub-mirror.com</pre></td></tr></table></figure><p>重点对比一下名称和版本：</p>
+<img data-src="../../images/exp/openclaw/9.png" alt="4" style="zoom:80%;" />
+<p>安装：</p>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>clawhub <span class="token function">install</span> <span class="token string">"elite-ppt-pro"</span> <span class="token parameter variable">--registry</span> https://cn.clawhub-mirror.com</pre></td></tr></table></figure><img data-src="../../images/exp/openclaw/10.png" alt="4" style="zoom:80%;" />
+<h2 id="skill的使用"><a class="markdownIt-Anchor" href="#skill的使用">#</a> Skill 的使用</h2>
+<p>通过 <code>/skill-name</code>  就可以使用了，这里让他生成一个自我介绍 ppt</p>
+<img data-src="../../images/exp/openclaw/11.png" alt="4" style="zoom:80%;" />
+<p>后续他会多从向你询问信息，以制作详细的 PPT。</p>
+<img data-src="../../images/exp/openclaw/12.png" alt="4" style="zoom:80%;" />
+<p>大部分信息的敏感的，所以我掩盖掉了。</p>
+<img data-src="../../images/exp/openclaw/13.png" alt="4" style="zoom:80%;" />
+<p>可以看见，SKILL 中不仅有提示词，还有代码，这里可以理解为脚本。</p>
+<h2 id="带你安装好玩的skill"><a class="markdownIt-Anchor" href="#带你安装好玩的skill">#</a> 带你安装好玩的 SKILL</h2>
+<p>这是一个 Skill 集合，感兴趣可以看看：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ppbWxpdS9iYW95dS1za2lsbHM=">https://github.com/jimliu/baoyu-skills</span></p>
+<h3 id="find-skills"><a class="markdownIt-Anchor" href="#find-skills">#</a> find-skills</h3>
+<p>帮助发现和安装技能</p>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>clawhub <span class="token function">install</span> find-skills <span class="token parameter variable">--registry</span> https://cn.clawhub-mirror.com</pre></td></tr></table></figure><h3 id="weather"><a class="markdownIt-Anchor" href="#weather">#</a> weather</h3>
+<p>天气查询和预报</p>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>clawhub <span class="token function">install</span> weather <span class="token parameter variable">--registry</span> https://cn.clawhub-mirror.com</pre></td></tr></table></figure><h3 id="awesome-ai-research-writing"><a class="markdownIt-Anchor" href="#awesome-ai-research-writing">#</a> awesome-ai-research-writing</h3>
+<p>论文写作绘图增强：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0xlZXkyMS9hd2Vzb21lLWFpLXJlc2VhcmNoLXdyaXRpbg==">https://github.com/Leey21/awesome-ai-research-writin</span></p>
+<h3 id="arxiv-translator"><a class="markdownIt-Anchor" href="#arxiv-translator">#</a> arxiv-translator</h3>
+<p>英文论文翻译：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0xlZXkyMS9hcnhpdi10cmFuc2xhdG9y">https://github.com/Leey21/arxiv-translator</span></p>
+<img data-src="../../images/exp/openclaw/14.png" alt="4" style="zoom:80%;" />
+<p>效果非常哇塞，感觉论文变简单了。</p>
+<h3 id="academic-skills-for-claude-code-codex"><a class="markdownIt-Anchor" href="#academic-skills-for-claude-code-codex">#</a> Academic Skills for Claude Code &amp; Codex</h3>
+<p>三个面向中国科研工作者的学术技能包，覆盖论文写作、学术 Office 文档生成与科研计算三大场景。</p>
+<p>所有 skill 均可在 <strong>Claude Code</strong> 和 <strong>Codex</strong> 两个平台上直接使用：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3pMYW5xaW5nL2NvZGV4LWNsYXVkZS1hY2FkZW1pYy1za2lsbHM=">https://github.com/zLanqing/codex-claude-academic-skills</span></p>
+<p>这个效果也很强，而且支持生成报告和评价，很实用。</p>
+
+      <div class="tags">
+          <a href="/tags/OpenClaw/" rel="tag"><i class="ic i-tag"></i> OpenClaw</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2026-08-02 18:26:12" itemprop="dateModified" datetime="2026-08-02T18:26:12+08:00">2026-08-02</time>
+  </span>
+  <span id="experience/openclaw/" class="item leancloud_visitors" data-flag-title="OpenClaw：一份新手友好的教程" title="阅读次数">
+      <span class="icon">
+        <i class="ic i-eye"></i>
+      </span>
+      <span class="text">阅读次数</span>
+      <span class="leancloud-visitors-count"></span>
+      <span class="text">次</span>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> 赞赏</button>
+  <p>请我喝[茶]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/myWxPay.jpg" alt="KarryLiu 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/myAliPay.jpg" alt="KarryLiu 支付宝">
+        <p>支付宝</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>KarryLiu <i class="ic i-at"><em>@</em></i>诗岸梦行舟
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="https://735690757.github.io/experience/openclaw/" title="OpenClaw：一份新手友好的教程">https://735690757.github.io/experience/openclaw/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/Java/ruoyi/" itemprop="url" rel="prev" data-background-image="&#x2F;images&#x2F;cover&#x2F;ruoyi.webp" title="RuoYi框架使用经验">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> Java</span>
+  <h3>RuoYi框架使用经验</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+    </div>
+</div>
+
+
+
+          <script data-pjax>window.updateRainBannerBg && window.updateRainBannerBg("/images/cover/openclaw.png");</script>
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#openclaw"><span class="toc-number">1.</span> <span class="toc-text"> OpenClaw</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%87%86%E5%A4%87-%E5%AE%89%E8%A3%85%E4%B8%8E%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">2.</span> <span class="toc-text"> 准备、安装与初始化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9json%E6%96%87%E4%BB%B6"><span class="toc-number">2.1.</span> <span class="toc-text"> 修改 json 文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">2.2.</span> <span class="toc-text"> 初始化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A5%E5%85%A5%E5%BE%AE%E4%BF%A1"><span class="toc-number">2.3.</span> <span class="toc-text"> 接入微信</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#gateway-%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C"><span class="toc-number">3.</span> <span class="toc-text"> Gateway 基础操作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#control-ui"><span class="toc-number">4.</span> <span class="toc-text"> Control UI</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">5.</span> <span class="toc-text"> 常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A5%E4%B8%8B%E6%98%AF%E5%85%A8%E9%83%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">5.1.</span> <span class="toc-text"> 以下是全部命令</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#skill"><span class="toc-number">6.</span> <span class="toc-text"> Skill</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85clawhub-cli"><span class="toc-number">6.1.</span> <span class="toc-text"> 安装 ClawHub CLI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#skill%E5%AE%89%E8%A3%85%E7%A4%BA%E4%BE%8Belite-ppt-pro"><span class="toc-number">6.2.</span> <span class="toc-text"> Skill 安装示例：elite-ppt-pro</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#skill%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">6.3.</span> <span class="toc-text"> Skill 的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%A6%E4%BD%A0%E5%AE%89%E8%A3%85%E5%A5%BD%E7%8E%A9%E7%9A%84skill"><span class="toc-number">6.4.</span> <span class="toc-text"> 带你安装好玩的 SKILL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#find-skills"><span class="toc-number">6.4.1.</span> <span class="toc-text"> find-skills</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#weather"><span class="toc-number">6.4.2.</span> <span class="toc-text"> weather</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#awesome-ai-research-writing"><span class="toc-number">6.4.3.</span> <span class="toc-text"> awesome-ai-research-writing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#arxiv-translator"><span class="toc-number">6.4.4.</span> <span class="toc-text"> arxiv-translator</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#academic-skills-for-claude-code-codex"><span class="toc-number">6.4.5.</span> <span class="toc-text"> Academic Skills for Claude Code &amp; Codex</span></a></li></ol></li></ol></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+        <ul>
+          <li><a href="/experience/CollaborativeFiltering/" rel="bookmark" title="基于用户的协同过滤算法">基于用户的协同过滤算法</a></li><li><a href="/experience/MD5CalculationTimePractice/" rel="bookmark" title="MD5计算时间">MD5计算时间</a></li><li><a href="/python/fastapi/" rel="bookmark" title="FastAPI">FastAPI</a></li><li><a href="/python/langchain/" rel="bookmark" title="LangChain">LangChain</a></li><li><a href="/experience/computerQues/" rel="bookmark" title="彻底解决了困扰我很久的两个问题">彻底解决了困扰我很久的两个问题</a></li><li><a href="/experience/shokaComments/" rel="bookmark" title="解决Shoka基于MiniValine于LeanCloud原始评论功能即将失效的问题">解决Shoka基于MiniValine于LeanCloud原始评论功能即将失效的问题</a></li><li class="active"><a href="/experience/openclaw/" rel="bookmark" title="OpenClaw：一份新手友好的教程">OpenClaw：一份新手友好的教程</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="KarryLiu"
+      data-src="/images/tx.jpg">
+  <p class="name" itemprop="name">KarryLiu</p>
+  <div class="description" itemprop="description">Moments reveal their worth only as memories.</div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">75</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">31</span>
+        <span class="name">分类</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">71</span>
+        <span class="name">标签</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tLzczNTY5MDc1Nw==" title="https:&#x2F;&#x2F;github.com&#x2F;735690757"><i class="ic i-github"></i></span>
+      <span class="exturl item twitter" data-url="aHR0cHM6Ly90d2l0dGVyLmNvbS92b0FMUXRkYWNCVE00RVk=" title="https:&#x2F;&#x2F;twitter.com&#x2F;voALQtdacBTM4EY"><i class="ic i-twitter"></i></span>
+      <span class="exturl item email" data-url="bWFpbHRvOjczNTY5MDc1N0BxcS5jb20=" title="mailto:735690757@qq.com"><i class="ic i-envelope"></i></span>
+      <span class="exturl item zhihu" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3Blb3BsZS9ydW8tcWlhbi15aW5n" title="https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;ruo-qian-ying"><i class="ic i-zhihu"></i></span>
+      <span class="exturl item music" data-url="aHR0cHM6Ly9tdXNpYy4xNjMuY29tLyMvdXNlci9ob21lP2lkPTM1Nzc1OTIzOA==" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;user&#x2F;home?id&#x3D;357759238"><i class="ic i-cloud-music"></i></span>
+      <span class="exturl item about" data-url="aHR0cHM6Ly9hYm91dC5tZS9rYXJyeWxpdQ==" title="https:&#x2F;&#x2F;about.me&#x2F;karryliu"><i class="ic i-address-card"></i></span>
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/about/" rel="section"><i class="ic i-user"></i>关于</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+    
+  <li class="item">
+    <a href="/music" rel="section"><i class="ic i-music"></i>橘子君-Ruxra</a>
+  </li>
+
+    
+  <li class="item">
+    <span class="exturl" data-url="aHR0cHM6Ly93d3cudHJhdmVsbGluZ3MuY24vZ28uaHRtbA=="><i class="ic i-paper-plane"></i>开往</span>
+  </li>
+
+    
+  <li class="item">
+    <a href="/friends/" rel="section"><i class="ic i-heart"></i>友链</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/ocfy" rel="section"><i class="ic i-magic"></i>OCFY</a>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>随机文章</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/Lightning%E6%A1%86%E6%9E%B6/" title="分类于 Lightning框架">Lightning框架</a>
+</div>
+
+    <span><a href="/python/lightning/" title="PyTorch Lightning框架与L-Hydra模板">PyTorch Lightning框架与L-Hydra模板</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/YOLO/" title="分类于 YOLO">YOLO</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/YOLO/%E9%A1%B9%E7%9B%AE%E4%B8%8E%E5%AE%9E%E6%88%98/" title="分类于 项目与实战">项目与实战</a>
+</div>
+
+    <span><a href="/python/YOLO/YOLOv3_ultralytics/" title="ultralytics YOLOv3">ultralytics YOLOv3</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
+</div>
+
+    <span><a href="/python/pandas/" title="Pandas核心处理方法">Pandas核心处理方法</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
+</div>
+
+    <span><a href="/python/NLP/" title="NLP自然语言处理">NLP自然语言处理</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Java/" title="分类于 Java">Java</a>
+</div>
+
+    <span><a href="/Java/javaAd01/" title="Java高级特性1">Java高级特性1</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C/" title="分类于 开发经验">开发经验</a>
+</div>
+
+    <span><a href="/experience/openclaw/" title="OpenClaw：一份新手友好的教程">OpenClaw：一份新手友好的教程</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/YOLO/" title="分类于 YOLO">YOLO</a>
+</div>
+
+    <span><a href="/python/YOLO/YOLO_V3/" title="YOLO-V3">YOLO-V3</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/notebook/" title="分类于 笔记">笔记</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/notebook/%E8%80%83%E7%A0%94%E8%8B%B1%E8%AF%AD%E7%AC%94%E8%AE%B0/" title="分类于 考研英语笔记">考研英语笔记</a>
+</div>
+
+    <span><a href="/English/shEnglish/" title="文章翻译">文章翻译</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/notebook/" title="分类于 笔记">笔记</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/notebook/%E7%9F%A9%E9%98%B5%E8%AE%BA%E8%A7%A3%E9%A2%98%E7%AC%94%E8%AE%B0/" title="分类于 矩阵论解题笔记">矩阵论解题笔记</a>
+</div>
+
+    <span><a href="/math/matrix_anl/" title="矩阵论">矩阵论</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Operate-system/" title="分类于 操作系统">操作系统</a>
+</div>
+
+    <span><a href="/Operate-system/03OS/" title="进程同步问题">进程同步问题</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>最新评论</h2>
+
+  <div class="wrap" id="comments"></div>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">KarryLiu @ KarryLiu</span>
+  </div>
+  <span>每一次键盘敲击，都是无声的奔赴，每一行提交记录，都是你存在的证明</span>
+  <img src="https://ghchart.rshah.org/ed7f84/735690757" alt="735690757"/>
+  <div class="powered-by">
+    <a href="https://icp.gov.moe/?keyword=20249329" target="_blank">萌ICP备20249329号</a>
+    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  <br/><span>世界本污浊，罪与爱同歌</span>
+  <br/><i class="ic i-chart-area"></i>&nbsp;<span>858k&nbsp;字</span> &nbsp;|&nbsp;
+  <i class="ic i-coffee"></i>&nbsp;<span> 23:50</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: 'experience/openclaw/',
+    favicon: {
+      show: "（●´3｀●）嘿嘿嘿....",
+      hide: "(´Д｀)不看我是吧！"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: true,fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<!-- <script src="https://cdn.polyfill.io/v2/polyfill.js"></script>  -->
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+<script src="/js/rain-banner.js?v=0.2.5"></script>
+<script>initRainBanner('rain-canvas', { backgroundUrl: "/images/cover/openclaw.png" });</script>
+
+
+
+
+</body>
+</html>
