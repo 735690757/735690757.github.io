@@ -1,0 +1,646 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="诗岸梦行舟" href="https://735690757.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="诗岸梦行舟" href="https://735690757.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="诗岸梦行舟" href="https://735690757.github.io/feed.json" />
+
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="python,agent,RAG,向量数据库" />
+
+
+<link rel="canonical" href="https://735690757.github.io/agent/rag/">
+
+
+
+  <title>
+RAG? 向量化的工程应用 - 智能体 |
+KarryLiu = 诗岸梦行舟 = 分享计算机知识以及各种心得总结</title>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">RAG? 向量化的工程应用
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2026-08-21 12:12:12">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2026-08-21T12:12:12+08:00">2026-08-21</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">KarryLiu</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <canvas id="rain-canvas"></canvas>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/agent/" itemprop="item" rel="index" title="分类于 智能体"><span itemprop="name">智能体</span></a>
+<meta itemprop="position" content="1" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="https://735690757.github.io/agent/rag/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/tx.jpg">
+    <meta itemprop="name" content="KarryLiu">
+    <meta itemprop="description" content="分享计算机知识以及各种心得总结, Moments reveal their worth only as memories.">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="诗岸梦行舟">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h1 id="rag与向量数据库"><a class="markdownIt-Anchor" href="#rag与向量数据库">#</a> RAG 与向量数据库</h1>
+<p>以下内容基于开源项目 All in Rag：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2RhdGF3aGFsZWNoaW5hL2FsbC1pbi1yYWclRUYlQkMlOEMlRTUlQTYlODIlRTYlOUUlOUMlRTYlODQlOUYlRTUlODUlQjQlRTglQjYlQTMlRTclOUElODQlRTglQUYlOUQlRTUlOEYlQUYlRTQlQkIlQTVzdGFyK2ZvcmslRTUlQUQlQTYlRTQlQjklQTAlRTMlODAlODI=">https://github.com/datawhalechina/all-in-rag，如果感兴趣的话可以 star+fork 学习。</span></p>
+<h2 id="文本分块"><a class="markdownIt-Anchor" href="#文本分块">#</a> 文本分块</h2>
+<p>question：为什么要文本分块？</p>
+<ol>
+<li><strong>Embedding Model</strong> 有严格的输入长度上限，超出此限制的文本块在输入时都会被截断，导致信息丢失，生成的向量也无法完整代表原文的语义。</li>
+<li><strong>LLM</strong> 同样有上下文窗口限制，如果单个块过大，可能会导致只能容纳少数几个相关的块，限制了 LLM 回答问题时可参考的信息广度</li>
+</ol>
+<p>question：是不是越大越好？</p>
+<p><strong>块的大小并非越大越好</strong>，过大的块会严重影响 RAG 系统的性能。也就是说可选择的越多，大模型越眼花缭乱，少量且正确的信息反而是关键。ABCDFG 的语义信息明显比 ABC 的语义信息包含的多，因此对 ABC 进行语义匹配的时候 ABC 的排名通常会高于 ABCDFG。</p>
+<h3 id="固定大小分块-charactertextsplitter"><a class="markdownIt-Anchor" href="#固定大小分块-charactertextsplitter">#</a> 固定大小分块 CharacterTextSplitter</h3>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">from</span> langchain_text_splitters <span class="token keyword">import</span> CharacterTextSplitter</pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">from</span> langchain_community<span class="token punctuation">.</span>document_loaders <span class="token keyword">import</span> TextLoader</pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre>loader <span class="token operator">=</span> TextLoader<span class="token punctuation">(</span><span class="token string">"../data/fy.txt"</span><span class="token punctuation">,</span> encoding<span class="token operator">=</span><span class="token string">"utf-8"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="5"></td><td><pre>docs <span class="token operator">=</span> loader<span class="token punctuation">.</span>load<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="6"></td><td><pre></pre></td></tr><tr><td data-num="7"></td><td><pre>text_splitter <span class="token operator">=</span> CharacterTextSplitter<span class="token punctuation">(</span></pre></td></tr><tr><td data-num="8"></td><td><pre>    separator<span class="token operator">=</span><span class="token string">"\n\n"</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    chunk_size<span class="token operator">=</span><span class="token number">200</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="10"></td><td><pre>    chunk_overlap<span class="token operator">=</span><span class="token number">20</span></pre></td></tr><tr><td data-num="11"></td><td><pre><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="12"></td><td><pre>chunks  <span class="token operator">=</span> text_splitter<span class="token punctuation">.</span>split_documents<span class="token punctuation">(</span>docs<span class="token punctuation">)</span></pre></td></tr></table></figure><h3 id="递归字符分块-recursivecharactertextsplitter"><a class="markdownIt-Anchor" href="#递归字符分块-recursivecharactertextsplitter">#</a> 递归字符分块 RecursiveCharacterTextSplitter</h3>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">from</span> langchain_text_splitters <span class="token keyword">import</span> RecursiveCharacterTextSplitter</pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">from</span> langchain_community<span class="token punctuation">.</span>document_loaders <span class="token keyword">import</span> TextLoader</pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre>loader <span class="token operator">=</span> TextLoader<span class="token punctuation">(</span><span class="token string">"../data/fy.txt"</span><span class="token punctuation">,</span> encoding<span class="token operator">=</span><span class="token string">"utf-8"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="5"></td><td><pre>docs <span class="token operator">=</span> loader<span class="token punctuation">.</span>load<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="6"></td><td><pre></pre></td></tr><tr><td data-num="7"></td><td><pre>text_splitter <span class="token operator">=</span> RecursiveCharacterTextSplitter<span class="token punctuation">(</span></pre></td></tr><tr><td data-num="8"></td><td><pre>    separators<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">"\n\n"</span><span class="token punctuation">,</span> <span class="token string">"\n"</span><span class="token punctuation">,</span> <span class="token string">"。"</span><span class="token punctuation">,</span> <span class="token string">"，"</span><span class="token punctuation">,</span> <span class="token string">" "</span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">]</span><span class="token punctuation">,</span>  <span class="token comment"># 分隔符优先级</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    chunk_size<span class="token operator">=</span><span class="token number">200</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="10"></td><td><pre>    chunk_overlap<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="11"></td><td><pre><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="12"></td><td><pre></pre></td></tr><tr><td data-num="13"></td><td><pre>chunks <span class="token operator">=</span> text_splitter<span class="token punctuation">.</span>split_documents<span class="token punctuation">(</span>docs<span class="token punctuation">)</span></pre></td></tr></table></figure><p>也可以支持针对不同语言进行分割，这个是对不同编程语言进行了优化：</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">from</span> langchain_text_splitters <span class="token keyword">import</span> Language</pre></td></tr><tr><td data-num="2"></td><td><pre></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token comment"># 针对代码文档的优化分隔符</span></pre></td></tr><tr><td data-num="4"></td><td><pre>splitter <span class="token operator">=</span> RecursiveCharacterTextSplitter<span class="token punctuation">.</span>from_language<span class="token punctuation">(</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    language<span class="token operator">=</span>Language<span class="token punctuation">.</span>PYTHON<span class="token punctuation">,</span>  <span class="token comment"># 支持 Python、Java、C++ 等</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    chunk_size<span class="token operator">=</span><span class="token number">500</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    chunk_overlap<span class="token operator">=</span><span class="token number">50</span></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token punctuation">)</span></pre></td></tr></table></figure><blockquote>
+<p>递归字符分块的原理是采用一组有层次结构的分隔符（如段落、句子、单词）进行递归分割，旨在有效平衡语义完整性与块大小控制。在  <code>RecursiveCharacterTextSplitter</code>  的实现中，该分块器首先尝试使用最高优先级的分隔符（如段落标记）来切分文本。如果切分后的块仍然过大，会继续对这个大块应用下一优先级分隔符（如句号），如此循环往复，直到块满足大小限制。这种分层处理的机制，能够在尽可能保持高级语义结构完整性的同时，有效控制块大小。</p>
+</blockquote>
+<h3 id="语义分块-semanticchunker"><a class="markdownIt-Anchor" href="#语义分块-semanticchunker">#</a> 语义分块 SemanticChunker</h3>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">import</span> os</pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">from</span> dotenv <span class="token keyword">import</span> load_dotenv</pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token keyword">from</span> langchain<span class="token punctuation">.</span>embeddings <span class="token keyword">import</span> init_embeddings</pre></td></tr><tr><td data-num="4"></td><td><pre></pre></td></tr><tr><td data-num="5"></td><td><pre>load_dotenv<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="6"></td><td><pre>EMBED_MODEL_NAME <span class="token operator">=</span> <span class="token string">"BAAI/bge-m3"</span>  <span class="token comment"># 嵌入模型名称</span></pre></td></tr><tr><td data-num="7"></td><td><pre></pre></td></tr><tr><td data-num="8"></td><td><pre>embedding_model <span class="token operator">=</span> init_embeddings<span class="token punctuation">(</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    model<span class="token operator">=</span><span class="token string">"openai:"</span> <span class="token operator">+</span> EMBED_MODEL_NAME<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="10"></td><td><pre>    api_key<span class="token operator">=</span>os<span class="token punctuation">.</span>getenv<span class="token punctuation">(</span><span class="token string">"SILICONFLOW_API_KEY"</span><span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="11"></td><td><pre>    base_url<span class="token operator">=</span>os<span class="token punctuation">.</span>getenv<span class="token punctuation">(</span><span class="token string">"SILICONFLOW_BASE_URL"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="12"></td><td><pre><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="13"></td><td><pre><span class="token keyword">from</span> langchain_experimental<span class="token punctuation">.</span>text_splitter <span class="token keyword">import</span> SemanticChunker</pre></td></tr><tr><td data-num="14"></td><td><pre></pre></td></tr><tr><td data-num="15"></td><td><pre>text_splitter <span class="token operator">=</span> SemanticChunker<span class="token punctuation">(</span></pre></td></tr><tr><td data-num="16"></td><td><pre>    buffer_size<span class="token operator">=</span><span class="token number">4</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="17"></td><td><pre>    embeddings<span class="token operator">=</span>embedding_model<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="18"></td><td><pre>    breakpoint_threshold_type<span class="token operator">=</span><span class="token string">"percentile"</span><span class="token punctuation">,</span>  <span class="token comment"># 断点识别方法</span></pre></td></tr><tr><td data-num="19"></td><td><pre>    sentence_split_regex<span class="token operator">=</span><span class="token string">r'(?&lt;=[。！？.!?])\s*'</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="20"></td><td><pre>    breakpoint_threshold_amount<span class="token operator">=</span><span class="token number">50</span><span class="token punctuation">,</span>          <span class="token comment"># 降低阈值，增加分块</span></pre></td></tr><tr><td data-num="21"></td><td><pre><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="22"></td><td><pre><span class="token keyword">from</span> langchain_community<span class="token punctuation">.</span>document_loaders <span class="token keyword">import</span> PDFMinerLoader<span class="token punctuation">,</span>TextLoader</pre></td></tr><tr><td data-num="23"></td><td><pre><span class="token keyword">from</span> tqdm <span class="token keyword">import</span> tqdm</pre></td></tr><tr><td data-num="24"></td><td><pre></pre></td></tr><tr><td data-num="25"></td><td><pre>loader <span class="token operator">=</span> TextLoader<span class="token punctuation">(</span><span class="token string">"../data/1.txt"</span><span class="token punctuation">,</span> encoding<span class="token operator">=</span><span class="token string">"utf-8"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="26"></td><td><pre>documents <span class="token operator">=</span> loader<span class="token punctuation">.</span>load<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="27"></td><td><pre></pre></td></tr><tr><td data-num="28"></td><td><pre>docs <span class="token operator">=</span> text_splitter<span class="token punctuation">.</span>split_documents<span class="token punctuation">(</span>documents<span class="token punctuation">)</span></pre></td></tr></table></figure><p><strong>断点识别方法 ( <code>breakpoint_threshold_type</code> )</strong>:</p>
+<ol>
+<li>percentile 百分位法：计算所有相邻句子的语义差异值，并将这些差异值进行排序。当一个差异值超过某个百分位阈值时，就认为该差异值是一个断点。breakpoint_threshold_amount (默认为 95)，表示使用第 95 个百分位作为阈值。这意味着，只有最显著的 5% 的语义差异点会被选为切分点。</li>
+<li>standard_deviation 标准差法：计算所有差异值的平均值和标准差。当一个差异值超过 “平均值 + N * 标准差” 时，被视为异常高的跳跃，即断点。breakpoint_threshold_amount (默认为 3)，表示使用 3 倍标准差作为阈值。</li>
+<li>interquartile 四分位距法：使用统计学中的四分位距（IQR）来识别异常值。当一个差异值超过 Q3 + N * IQR 时，被视为断点。breakpoint_threshold_amount (默认为 1.5)，表示使用 1.5 倍的 IQR。</li>
+<li>gradient 梯度法：这是一种更复杂的方法。它首先计算差异值的变化率（梯度），然后对梯度应用百分位法。对于那些句子间语义联系紧密、差异值普遍较低的文本（如法律、医疗文档）特别有效，因为这种方法能更好地捕捉到语义变化的 “拐点”。breakpoint_threshold_amount (默认为 95)。</li>
+</ol>
+<h3 id="基于文档结构的分块-markdownheadertextsplitter"><a class="markdownIt-Anchor" href="#基于文档结构的分块-markdownheadertextsplitter">#</a> 基于文档结构的分块 MarkdownHeaderTextSplitter</h3>
+<p>适用于 Markdown、HTML、LaTeX 等极具结构化的内容。</p>
+<p>单纯按标题分割可能会导致一个问题：某个章节下的内容可能非常长，远超模型能处理的上下文窗口。为了解决这个问题， <code>MarkdownHeaderTextSplitter</code>  可以与其它分块器（如  <code>RecursiveCharacterTextSplitter</code> ）<strong>组合使用</strong>。具体流程是：</p>
+<ol>
+<li>使用  <code>MarkdownHeaderTextSplitter</code>  将文档按标题分割成若干个大的、带有元数据的逻辑块。</li>
+<li>对这些逻辑块再应用  <code>RecursiveCharacterTextSplitter</code> ，将其进一步切分为符合  <code>chunk_size</code>  要求的小块。</li>
+</ol>
+<p>这个是一个可视化分词工具：<span class="exturl" data-url="aHR0cHM6Ly9jaHVua3Zpei51cC5yYWlsd2F5LmFwcC8=">https://chunkviz.up.railway.app/</span></p>
+
+
+<iframe src="https://chunkviz.up.railway.app/" width="100%" height="400"></iframe>
+
+
+<h2 id="向量嵌入"><a class="markdownIt-Anchor" href="#向量嵌入">#</a> 向量嵌入</h2>
+<p>question：Embedding 在干什么？</p>
+<p>一句话来讲就是，把文本、图像、音频、视频等转换为数学上易于处理的、低维、稠密的连续数值向量。</p>
+<p><img data-src="https://datawhalechina.github.io/all-in-rag/chapter3/images/3_1_1.webp" alt="1"></p>
+<p>如果向量是杂乱的也无意义，经过 Embedding 之后数据是有语义的。通常使用以下数学方法来衡量向量间的 “距离” 或 “相似度”：</p>
+<ol>
+<li>余弦相似度 Cosine Similarity（最常用）</li>
+<li>点积 Dot Product</li>
+<li>欧氏距离 Euclidean Distance</li>
+</ol>
+<p>RAG 的语义检索以 Embedding 为核心，流程为：</p>
+<ol>
+<li>先将文档切块并向量化存入向量数据库，查询时将问题也向量化</li>
+<li>再计算问题向量与文档块向量的相似度</li>
+<li>最后召回相似度最高的 Top-K 文档块，作为上下文与问题一起交给大模型生成答案。</li>
+</ol>
+<p>Embedding 技术经历了三个阶段：</p>
+<ol>
+<li><strong>静态词嵌入</strong>：Word2Vec、GloVe 为每个词生成固定向量，但无法解决一词多义问题。</li>
+<li><strong>动态上下文嵌入</strong>：基于 Transformer 自注意力机制，同一个词在不同语境中生成不同向量，有效解决了多义性。</li>
+<li><strong>RAG 驱动的新要求</strong>：
+<ul>
+<li><strong>领域自适应</strong>：需通过微调或指令适应专业领域</li>
+<li><strong>多粒度与多模态</strong>：支持长文档、代码、图像、表格等多样输入</li>
+<li><strong>检索效率与混合检索</strong>：平衡存储成本与检索速度，结合语义与关键词匹配，如 BGE-M3</li>
+</ul>
+</li>
+</ol>
+<h3 id="多模态嵌入"><a class="markdownIt-Anchor" href="#多模态嵌入">#</a> 多模态嵌入</h3>
+<p>OpenAI 的 <strong>CLIP (Contrastive Language-Image Pre-training)</strong> 是一个很有影响力的模型，它为多模态嵌入定义了一个有效的范式。</p>
+<p><img data-src="https://datawhalechina.github.io/all-in-rag/chapter3/images/3_2_1.webp" alt="2"></p>
+<p>它采用<strong>双编码器架构 (Dual-Encoder Architecture)</strong>，包含一个图像编码器和一个文本编码器，分别将图像和文本映射到同一个共享的向量空间中。</p>
+<h2 id="向量数据库-faiss"><a class="markdownIt-Anchor" href="#向量数据库-faiss">#</a> 向量数据库 FAISS</h2>
+<p>FAISS 本质上是一个算法库，它将索引直接保存为本地文件（一个  <code>.faiss</code>  索引文件和一个  <code>.pkl</code>  映射文件），而非运行一个数据库服务。这种方式轻量且高效。</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">from</span> langchain_openai <span class="token keyword">import</span> OpenAIEmbeddings</pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">from</span> langchain_core<span class="token punctuation">.</span>documents <span class="token keyword">import</span> Document</pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token keyword">from</span> langchain_community<span class="token punctuation">.</span>vectorstores <span class="token keyword">import</span> FAISS</pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token keyword">import</span> os</pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token keyword">from</span> dotenv <span class="token keyword">import</span> load_dotenv</pre></td></tr><tr><td data-num="6"></td><td><pre></pre></td></tr><tr><td data-num="7"></td><td><pre>load_dotenv<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="8"></td><td><pre></pre></td></tr><tr><td data-num="9"></td><td><pre>embedding_model <span class="token operator">=</span> OpenAIEmbeddings<span class="token punctuation">(</span></pre></td></tr><tr><td data-num="10"></td><td><pre>    model<span class="token operator">=</span><span class="token string">"BAAI/bge-large-zh-v1.5"</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="11"></td><td><pre>    api_key<span class="token operator">=</span>os<span class="token punctuation">.</span>getenv<span class="token punctuation">(</span><span class="token string">"SILICONFLOW_API_KEY"</span><span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="12"></td><td><pre>    base_url<span class="token operator">=</span>os<span class="token punctuation">.</span>getenv<span class="token punctuation">(</span><span class="token string">"SILICONFLOW_BASE_URL"</span><span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="13"></td><td><pre>    check_embedding_ctx_length<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span>  <span class="token comment"># 不检查长度</span></pre></td></tr><tr><td data-num="14"></td><td><pre><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="15"></td><td><pre></pre></td></tr><tr><td data-num="16"></td><td><pre>texts <span class="token operator">=</span> <span class="token punctuation">[</span></pre></td></tr><tr><td data-num="17"></td><td><pre>    <span class="token string">"张三是法外狂徒"</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="18"></td><td><pre>    <span class="token string">"FAISS是一个用于高效相似性搜索和密集向量聚类的库。"</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="19"></td><td><pre>    <span class="token string">"LangChain是一个用于开发由语言模型驱动的应用程序的框架。"</span></pre></td></tr><tr><td data-num="20"></td><td><pre><span class="token punctuation">]</span></pre></td></tr><tr><td data-num="21"></td><td><pre></pre></td></tr><tr><td data-num="22"></td><td><pre>docs <span class="token operator">=</span> <span class="token punctuation">[</span>Document<span class="token punctuation">(</span>page_content<span class="token operator">=</span>t<span class="token punctuation">)</span> <span class="token keyword">for</span> t <span class="token keyword">in</span> texts<span class="token punctuation">]</span></pre></td></tr><tr><td data-num="23"></td><td><pre>vectorstore <span class="token operator">=</span> FAISS<span class="token punctuation">.</span>from_documents<span class="token punctuation">(</span>docs<span class="token punctuation">,</span> embedding_model<span class="token punctuation">)</span></pre></td></tr></table></figure><p>指定存储路径：</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre>local_faiss_path <span class="token operator">=</span> <span class="token string">"./faiss_index_store"</span></pre></td></tr><tr><td data-num="2"></td><td><pre>vectorstore<span class="token punctuation">.</span>save_local<span class="token punctuation">(</span>local_faiss_path<span class="token punctuation">)</span></pre></td></tr></table></figure><p>以上称为为离线向量化，下面开始加载索引并执行查询。</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment"># 3. 加载索引并执行查询</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token comment"># 加载时需指定相同的嵌入模型，并允许反序列化</span></pre></td></tr><tr><td data-num="3"></td><td><pre>loaded_vectorstore <span class="token operator">=</span> FAISS<span class="token punctuation">.</span>load_local<span class="token punctuation">(</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    local_faiss_path<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    embedding_model<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    allow_dangerous_deserialization<span class="token operator">=</span><span class="token boolean">True</span></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token punctuation">)</span></pre></td></tr></table></figure><figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre>query <span class="token operator">=</span> <span class="token string">"FAISS是做什么的？"</span></pre></td></tr><tr><td data-num="2"></td><td><pre>results <span class="token operator">=</span> loaded_vectorstore<span class="token punctuation">.</span>similarity_search<span class="token punctuation">(</span>query<span class="token punctuation">,</span> k<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"\n查询: '</span><span class="token interpolation"><span class="token punctuation">&#123;</span>query<span class="token punctuation">&#125;</span></span><span class="token string">'"</span></span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"相似度最高的文档:"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token keyword">for</span> doc <span class="token keyword">in</span> results<span class="token punctuation">:</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"- </span><span class="token interpolation"><span class="token punctuation">&#123;</span>doc<span class="token punctuation">.</span>page_content<span class="token punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">)</span></pre></td></tr></table></figure><blockquote>
+<p>查询: ‘FAISS 是做什么的？’<br>
+相似度最高的文档:</p>
+<ul>
+<li>FAISS 是一个用于高效相似性搜索和密集向量聚类的库。</li>
+</ul>
+</blockquote>
+<h2 id="使用llamaindex做数据存储与检索"><a class="markdownIt-Anchor" href="#使用llamaindex做数据存储与检索">#</a> 使用 LlamaIndex 做数据存储与检索</h2>
+<p>自定义 SiliconFlowEmbedding 类</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">from</span> llama_index<span class="token punctuation">.</span>core<span class="token punctuation">.</span>embeddings <span class="token keyword">import</span> BaseEmbedding</pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">from</span> llama_index<span class="token punctuation">.</span>core <span class="token keyword">import</span> Settings</pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token keyword">from</span> openai <span class="token keyword">import</span> OpenAI</pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token keyword">from</span> typing <span class="token keyword">import</span> List<span class="token punctuation">,</span> Any<span class="token punctuation">,</span> Optional</pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token keyword">import</span> os</pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token keyword">from</span> dotenv <span class="token keyword">import</span> load_dotenv</pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token keyword">from</span> pydantic <span class="token keyword">import</span> Field</pre></td></tr><tr><td data-num="8"></td><td><pre></pre></td></tr><tr><td data-num="9"></td><td><pre>load_dotenv<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="10"></td><td><pre></pre></td></tr><tr><td data-num="11"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">SiliconFlowEmbedding</span><span class="token punctuation">(</span>BaseEmbedding<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="12"></td><td><pre>    <span class="token triple-quoted-string string">"""自定义硅基流动嵌入类（兼容 LlamaIndex）"""</span></pre></td></tr><tr><td data-num="13"></td><td><pre></pre></td></tr><tr><td data-num="14"></td><td><pre>    <span class="token comment"># 声明 Pydantic 字段</span></pre></td></tr><tr><td data-num="15"></td><td><pre>    model<span class="token punctuation">:</span> <span class="token builtin">str</span> <span class="token operator">=</span> Field<span class="token punctuation">(</span>default<span class="token operator">=</span><span class="token string">"BAAI/bge-large-zh-v1.5"</span><span class="token punctuation">,</span> description<span class="token operator">=</span><span class="token string">"模型名称"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="16"></td><td><pre>    api_key<span class="token punctuation">:</span> Optional<span class="token punctuation">[</span><span class="token builtin">str</span><span class="token punctuation">]</span> <span class="token operator">=</span> Field<span class="token punctuation">(</span>default<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span> description<span class="token operator">=</span><span class="token string">"API密钥"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="17"></td><td><pre>    api_base<span class="token punctuation">:</span> Optional<span class="token punctuation">[</span><span class="token builtin">str</span><span class="token punctuation">]</span> <span class="token operator">=</span> Field<span class="token punctuation">(</span>default<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span> description<span class="token operator">=</span><span class="token string">"API基础URL"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="18"></td><td><pre>    _client<span class="token punctuation">:</span> Any <span class="token operator">=</span> <span class="token boolean">None</span>  <span class="token comment"># 私有客户端</span></pre></td></tr><tr><td data-num="19"></td><td><pre></pre></td></tr><tr><td data-num="20"></td><td><pre>    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span></pre></td></tr><tr><td data-num="21"></td><td><pre>        self<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="22"></td><td><pre>        model<span class="token punctuation">:</span> <span class="token builtin">str</span> <span class="token operator">=</span> <span class="token string">"BAAI/bge-large-zh-v1.5"</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="23"></td><td><pre>        api_key<span class="token punctuation">:</span> Optional<span class="token punctuation">[</span><span class="token builtin">str</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">None</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="24"></td><td><pre>        api_base<span class="token punctuation">:</span> Optional<span class="token punctuation">[</span><span class="token builtin">str</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">None</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="25"></td><td><pre>        <span class="token operator">**</span>kwargs<span class="token punctuation">:</span> Any<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="26"></td><td><pre>    <span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="27"></td><td><pre>        <span class="token builtin">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span></pre></td></tr><tr><td data-num="28"></td><td><pre>            model<span class="token operator">=</span>model<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="29"></td><td><pre>            api_key<span class="token operator">=</span>api_key <span class="token keyword">or</span> os<span class="token punctuation">.</span>getenv<span class="token punctuation">(</span><span class="token string">"SILICONFLOW_API_KEY"</span><span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="30"></td><td><pre>            api_base<span class="token operator">=</span>api_base <span class="token keyword">or</span> os<span class="token punctuation">.</span>getenv<span class="token punctuation">(</span><span class="token string">"SILICONFLOW_BASE_URL"</span><span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="31"></td><td><pre>            <span class="token operator">**</span>kwargs</pre></td></tr><tr><td data-num="32"></td><td><pre>        <span class="token punctuation">)</span></pre></td></tr><tr><td data-num="33"></td><td><pre>        <span class="token comment"># 初始化 OpenAI 客户端</span></pre></td></tr><tr><td data-num="34"></td><td><pre>        self<span class="token punctuation">.</span>_client <span class="token operator">=</span> OpenAI<span class="token punctuation">(</span></pre></td></tr><tr><td data-num="35"></td><td><pre>            api_key<span class="token operator">=</span>self<span class="token punctuation">.</span>api_key<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="36"></td><td><pre>            base_url<span class="token operator">=</span>self<span class="token punctuation">.</span>api_base</pre></td></tr><tr><td data-num="37"></td><td><pre>        <span class="token punctuation">)</span></pre></td></tr><tr><td data-num="38"></td><td><pre></pre></td></tr><tr><td data-num="39"></td><td><pre>    <span class="token keyword">def</span> <span class="token function">_get_query_embedding</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> query<span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> List<span class="token punctuation">[</span><span class="token builtin">float</span><span class="token punctuation">]</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="40"></td><td><pre>        <span class="token triple-quoted-string string">"""获取查询的嵌入"""</span></pre></td></tr><tr><td data-num="41"></td><td><pre>        response <span class="token operator">=</span> self<span class="token punctuation">.</span>_client<span class="token punctuation">.</span>embeddings<span class="token punctuation">.</span>create<span class="token punctuation">(</span></pre></td></tr><tr><td data-num="42"></td><td><pre>            model<span class="token operator">=</span>self<span class="token punctuation">.</span>model<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="43"></td><td><pre>            <span class="token builtin">input</span><span class="token operator">=</span>query</pre></td></tr><tr><td data-num="44"></td><td><pre>        <span class="token punctuation">)</span></pre></td></tr><tr><td data-num="45"></td><td><pre>        <span class="token keyword">return</span> response<span class="token punctuation">.</span>data<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>embedding</pre></td></tr><tr><td data-num="46"></td><td><pre></pre></td></tr><tr><td data-num="47"></td><td><pre>    <span class="token keyword">def</span> <span class="token function">_get_text_embedding</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> text<span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> List<span class="token punctuation">[</span><span class="token builtin">float</span><span class="token punctuation">]</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="48"></td><td><pre>        <span class="token triple-quoted-string string">"""获取单个文本的嵌入"""</span></pre></td></tr><tr><td data-num="49"></td><td><pre>        response <span class="token operator">=</span> self<span class="token punctuation">.</span>_client<span class="token punctuation">.</span>embeddings<span class="token punctuation">.</span>create<span class="token punctuation">(</span></pre></td></tr><tr><td data-num="50"></td><td><pre>            model<span class="token operator">=</span>self<span class="token punctuation">.</span>model<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="51"></td><td><pre>            <span class="token builtin">input</span><span class="token operator">=</span>text</pre></td></tr><tr><td data-num="52"></td><td><pre>        <span class="token punctuation">)</span></pre></td></tr><tr><td data-num="53"></td><td><pre>        <span class="token keyword">return</span> response<span class="token punctuation">.</span>data<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>embedding</pre></td></tr><tr><td data-num="54"></td><td><pre></pre></td></tr><tr><td data-num="55"></td><td><pre>    <span class="token keyword">def</span> <span class="token function">_get_text_embeddings</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> texts<span class="token punctuation">:</span> List<span class="token punctuation">[</span><span class="token builtin">str</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> List<span class="token punctuation">[</span>List<span class="token punctuation">[</span><span class="token builtin">float</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="56"></td><td><pre>        <span class="token triple-quoted-string string">"""获取多个文本的嵌入"""</span></pre></td></tr><tr><td data-num="57"></td><td><pre>        response <span class="token operator">=</span> self<span class="token punctuation">.</span>_client<span class="token punctuation">.</span>embeddings<span class="token punctuation">.</span>create<span class="token punctuation">(</span></pre></td></tr><tr><td data-num="58"></td><td><pre>            model<span class="token operator">=</span>self<span class="token punctuation">.</span>model<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="59"></td><td><pre>            <span class="token builtin">input</span><span class="token operator">=</span>texts</pre></td></tr><tr><td data-num="60"></td><td><pre>        <span class="token punctuation">)</span></pre></td></tr><tr><td data-num="61"></td><td><pre>        <span class="token keyword">return</span> <span class="token punctuation">[</span>item<span class="token punctuation">.</span>embedding <span class="token keyword">for</span> item <span class="token keyword">in</span> response<span class="token punctuation">.</span>data<span class="token punctuation">]</span></pre></td></tr><tr><td data-num="62"></td><td><pre></pre></td></tr><tr><td data-num="63"></td><td><pre>    <span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">_aget_query_embedding</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> query<span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> List<span class="token punctuation">[</span><span class="token builtin">float</span><span class="token punctuation">]</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="64"></td><td><pre>        <span class="token triple-quoted-string string">"""异步获取查询的嵌入"""</span></pre></td></tr><tr><td data-num="65"></td><td><pre>        <span class="token keyword">return</span> self<span class="token punctuation">.</span>_get_query_embedding<span class="token punctuation">(</span>query<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="66"></td><td><pre></pre></td></tr><tr><td data-num="67"></td><td><pre>    <span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">_aget_text_embedding</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> text<span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> List<span class="token punctuation">[</span><span class="token builtin">float</span><span class="token punctuation">]</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="68"></td><td><pre>        <span class="token triple-quoted-string string">"""异步获取文本的嵌入"""</span></pre></td></tr><tr><td data-num="69"></td><td><pre>        <span class="token keyword">return</span> self<span class="token punctuation">.</span>_get_text_embedding<span class="token punctuation">(</span>text<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="70"></td><td><pre></pre></td></tr><tr><td data-num="71"></td><td><pre><span class="token comment"># 使用自定义嵌入类</span></pre></td></tr><tr><td data-num="72"></td><td><pre>embedding_model <span class="token operator">=</span> SiliconFlowEmbedding<span class="token punctuation">(</span></pre></td></tr><tr><td data-num="73"></td><td><pre>    model<span class="token operator">=</span><span class="token string">"BAAI/bge-large-zh-v1.5"</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="74"></td><td><pre>    api_key<span class="token operator">=</span>os<span class="token punctuation">.</span>getenv<span class="token punctuation">(</span><span class="token string">"SILICONFLOW_API_KEY"</span><span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="75"></td><td><pre>    api_base<span class="token operator">=</span>os<span class="token punctuation">.</span>getenv<span class="token punctuation">(</span><span class="token string">"SILICONFLOW_BASE_URL"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="76"></td><td><pre><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="77"></td><td><pre></pre></td></tr><tr><td data-num="78"></td><td><pre><span class="token comment"># 设置全局嵌入模型</span></pre></td></tr><tr><td data-num="79"></td><td><pre>Settings<span class="token punctuation">.</span>embed_model <span class="token operator">=</span> embedding_model</pre></td></tr></table></figure><p>创建文档：</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">from</span> llama_index<span class="token punctuation">.</span>core <span class="token keyword">import</span> VectorStoreIndex<span class="token punctuation">,</span> Document<span class="token punctuation">,</span> Settings<span class="token punctuation">,</span> StorageContext</pre></td></tr><tr><td data-num="2"></td><td><pre>Settings<span class="token punctuation">.</span>embed_model <span class="token operator">=</span> embedding_model</pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token comment"># 2. 创建示例文档</span></pre></td></tr><tr><td data-num="4"></td><td><pre>texts <span class="token operator">=</span> <span class="token punctuation">[</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token string">"张三是法外狂徒"</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token string">"LlamaIndex是一个用于构建和查询私有或领域特定数据的框架。"</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    <span class="token string">"它提供了数据连接、索引和查询接口等工具。"</span></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token punctuation">]</span></pre></td></tr><tr><td data-num="9"></td><td><pre>docs <span class="token operator">=</span> <span class="token punctuation">[</span>Document<span class="token punctuation">(</span>text<span class="token operator">=</span>t<span class="token punctuation">)</span> <span class="token keyword">for</span> t <span class="token keyword">in</span> texts<span class="token punctuation">]</span></pre></td></tr></table></figure><p>检索：</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment"># 创建索引并持久化到本地</span></pre></td></tr><tr><td data-num="2"></td><td><pre>index <span class="token operator">=</span> VectorStoreIndex<span class="token punctuation">.</span>from_documents<span class="token punctuation">(</span>docs<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="3"></td><td><pre>persist_path <span class="token operator">=</span> <span class="token string">"./llamaindex_index_store"</span></pre></td></tr><tr><td data-num="4"></td><td><pre>index<span class="token punctuation">.</span>storage_context<span class="token punctuation">.</span>persist<span class="token punctuation">(</span>persist_dir<span class="token operator">=</span>persist_path<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"LlamaIndex 索引已保存至: </span><span class="token interpolation"><span class="token punctuation">&#123;</span>persist_path<span class="token punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token keyword">from</span> llama_index<span class="token punctuation">.</span>core <span class="token keyword">import</span> StorageContext<span class="token punctuation">,</span> load_index_from_storage</pre></td></tr><tr><td data-num="7"></td><td><pre></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token comment"># 加载索引</span></pre></td></tr><tr><td data-num="9"></td><td><pre>storage_context <span class="token operator">=</span> StorageContext<span class="token punctuation">.</span>from_defaults<span class="token punctuation">(</span>persist_dir<span class="token operator">=</span>persist_path<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="10"></td><td><pre>loaded_index <span class="token operator">=</span> load_index_from_storage<span class="token punctuation">(</span>storage_context<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="11"></td><td><pre></pre></td></tr><tr><td data-num="12"></td><td><pre><span class="token comment"># 使用检索器（不需要 LLM）</span></pre></td></tr><tr><td data-num="13"></td><td><pre>retriever <span class="token operator">=</span> loaded_index<span class="token punctuation">.</span>as_retriever<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="14"></td><td><pre></pre></td></tr><tr><td data-num="15"></td><td><pre><span class="token comment"># 检索相关文档</span></pre></td></tr><tr><td data-num="16"></td><td><pre>query <span class="token operator">=</span> <span class="token string">"LlamaIndex是做什么的？"</span></pre></td></tr><tr><td data-num="17"></td><td><pre>nodes <span class="token operator">=</span> retriever<span class="token punctuation">.</span>retrieve<span class="token punctuation">(</span>query<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="18"></td><td><pre></pre></td></tr><tr><td data-num="19"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"检索到 </span><span class="token interpolation"><span class="token punctuation">&#123;</span><span class="token builtin">len</span><span class="token punctuation">(</span>nodes<span class="token punctuation">)</span><span class="token punctuation">&#125;</span></span><span class="token string"> 个相关文档："</span></span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="20"></td><td><pre><span class="token keyword">for</span> i<span class="token punctuation">,</span> node <span class="token keyword">in</span> <span class="token builtin">enumerate</span><span class="token punctuation">(</span>nodes<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="21"></td><td><pre>    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"\n文档 </span><span class="token interpolation"><span class="token punctuation">&#123;</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">&#125;</span></span><span class="token string">:"</span></span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="22"></td><td><pre>    <span class="token keyword">print</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span>text<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="23"></td><td><pre>    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"相似度分数: </span><span class="token interpolation"><span class="token punctuation">&#123;</span>node<span class="token punctuation">.</span>score<span class="token punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">)</span></pre></td></tr></table></figure><h2 id="向量数据库-milvus"><a class="markdownIt-Anchor" href="#向量数据库-milvus">#</a> 向量数据库 Milvus</h2>
+<p>这部分已在本站的 LangChain 文章中介绍过了，这里就不展开了。</p>
+
+      <div class="tags">
+          <a href="/tags/python/" rel="tag"><i class="ic i-tag"></i> python</a>
+          <a href="/tags/agent/" rel="tag"><i class="ic i-tag"></i> agent</a>
+          <a href="/tags/RAG/" rel="tag"><i class="ic i-tag"></i> RAG</a>
+          <a href="/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag"><i class="ic i-tag"></i> 向量数据库</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2026-08-23 14:21:19" itemprop="dateModified" datetime="2026-08-23T14:21:19+08:00">2026-08-23</time>
+  </span>
+
+
+
+
+
+
+
+
+
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> 赞赏</button>
+  <p>请我喝[茶]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/myWxPay.jpg" alt="KarryLiu 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/myAliPay.jpg" alt="KarryLiu 支付宝">
+        <p>支付宝</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>KarryLiu <i class="ic i-at"><em>@</em></i>诗岸梦行舟
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="https://735690757.github.io/agent/rag/" title="RAG? 向量化的工程应用">https://735690757.github.io/agent/rag/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/agent/langgraph/" itemprop="url" rel="prev" data-background-image="&#x2F;images&#x2F;cover&#x2F;langgraph.jpg" title="LangGraph">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> 智能体</span>
+  <h3>LangGraph</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+    </div>
+</div>
+
+
+
+          <script data-pjax>window.updateRainBannerBg && window.updateRainBannerBg("/images/cover/rag.svg");</script>
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#rag%E4%B8%8E%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.</span> <span class="toc-text"> RAG 与向量数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E5%88%86%E5%9D%97"><span class="toc-number">1.1.</span> <span class="toc-text"> 文本分块</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BA%E5%AE%9A%E5%A4%A7%E5%B0%8F%E5%88%86%E5%9D%97-charactertextsplitter"><span class="toc-number">1.1.1.</span> <span class="toc-text"> 固定大小分块 CharacterTextSplitter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%92%E5%BD%92%E5%AD%97%E7%AC%A6%E5%88%86%E5%9D%97-recursivecharactertextsplitter"><span class="toc-number">1.1.2.</span> <span class="toc-text"> 递归字符分块 RecursiveCharacterTextSplitter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AD%E4%B9%89%E5%88%86%E5%9D%97-semanticchunker"><span class="toc-number">1.1.3.</span> <span class="toc-text"> 语义分块 SemanticChunker</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E6%96%87%E6%A1%A3%E7%BB%93%E6%9E%84%E7%9A%84%E5%88%86%E5%9D%97-markdownheadertextsplitter"><span class="toc-number">1.1.4.</span> <span class="toc-text"> 基于文档结构的分块 MarkdownHeaderTextSplitter</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%91%E9%87%8F%E5%B5%8C%E5%85%A5"><span class="toc-number">1.2.</span> <span class="toc-text"> 向量嵌入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E6%A8%A1%E6%80%81%E5%B5%8C%E5%85%A5"><span class="toc-number">1.2.1.</span> <span class="toc-text"> 多模态嵌入</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93-faiss"><span class="toc-number">1.3.</span> <span class="toc-text"> 向量数据库 FAISS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8llamaindex%E5%81%9A%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E4%B8%8E%E6%A3%80%E7%B4%A2"><span class="toc-number">1.4.</span> <span class="toc-text"> 使用 LlamaIndex 做数据存储与检索</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93-milvus"><span class="toc-number">1.5.</span> <span class="toc-text"> 向量数据库 Milvus</span></a></li></ol></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+        <ul>
+          <li><a href="/agent/fastapi/" rel="bookmark" title="FastAPI">FastAPI</a></li><li><a href="/agent/langchain/" rel="bookmark" title="LangChain">LangChain</a></li><li><a href="/agent/langgraph/" rel="bookmark" title="LangGraph">LangGraph</a></li><li class="active"><a href="/agent/rag/" rel="bookmark" title="RAG? 向量化的工程应用">RAG? 向量化的工程应用</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="KarryLiu"
+      data-src="/images/tx.jpg">
+  <p class="name" itemprop="name">KarryLiu</p>
+  <div class="description" itemprop="description">Moments reveal their worth only as memories.</div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">77</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">32</span>
+        <span class="name">分类</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">76</span>
+        <span class="name">标签</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tLzczNTY5MDc1Nw==" title="https:&#x2F;&#x2F;github.com&#x2F;735690757"><i class="ic i-github"></i></span>
+      <span class="exturl item twitter" data-url="aHR0cHM6Ly90d2l0dGVyLmNvbS92b0FMUXRkYWNCVE00RVk=" title="https:&#x2F;&#x2F;twitter.com&#x2F;voALQtdacBTM4EY"><i class="ic i-twitter"></i></span>
+      <span class="exturl item email" data-url="bWFpbHRvOjczNTY5MDc1N0BxcS5jb20=" title="mailto:735690757@qq.com"><i class="ic i-envelope"></i></span>
+      <span class="exturl item zhihu" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3Blb3BsZS9ydW8tcWlhbi15aW5n" title="https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;ruo-qian-ying"><i class="ic i-zhihu"></i></span>
+      <span class="exturl item music" data-url="aHR0cHM6Ly9tdXNpYy4xNjMuY29tLyMvdXNlci9ob21lP2lkPTM1Nzc1OTIzOA==" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;user&#x2F;home?id&#x3D;357759238"><i class="ic i-cloud-music"></i></span>
+      <span class="exturl item about" data-url="aHR0cHM6Ly9hYm91dC5tZS9rYXJyeWxpdQ==" title="https:&#x2F;&#x2F;about.me&#x2F;karryliu"><i class="ic i-address-card"></i></span>
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/about/" rel="section"><i class="ic i-user"></i>关于</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+    
+  <li class="item">
+    <a href="/music" rel="section"><i class="ic i-music"></i>橘子君-Ruxra</a>
+  </li>
+
+    
+  <li class="item">
+    <span class="exturl" data-url="aHR0cHM6Ly93d3cudHJhdmVsbGluZ3MuY24vZ28uaHRtbA=="><i class="ic i-paper-plane"></i>开往</span>
+  </li>
+
+    
+  <li class="item">
+    <a href="/friends/" rel="section"><i class="ic i-heart"></i>友链</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/ocfy" rel="section"><i class="ic i-magic"></i>OCFY</a>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>随机文章</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/agent/" title="分类于 智能体">智能体</a>
+</div>
+
+    <span><a href="/agent/langgraph/" title="LangGraph">LangGraph</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/YOLO/" title="分类于 YOLO">YOLO</a>
+</div>
+
+    <span><a href="/python/YOLO/YOLO_V5/" title="YOLO-V5 with Ultralytics YOLOv5源码解析">YOLO-V5 with Ultralytics YOLOv5源码解析</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
+</div>
+
+    <span><a href="/python/pandas/" title="Pandas核心处理方法">Pandas核心处理方法</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" title="分类于 计算机组成原理">计算机组成原理</a>
+</div>
+
+    <span><a href="/Principles-of-computer-composition/booth_algorithm/" title="booth算法">booth算法</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" title="分类于 深度学习基础">深度学习基础</a>
+</div>
+
+    <span><a href="/python/NLP/" title="NLP自然语言处理">NLP自然语言处理</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" title="分类于 操作系统">操作系统</a>
+</div>
+
+    <span><a href="/Operate-system/01OS/" title="操作系统知识点阶段总结">操作系统知识点阶段总结</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/YOLO/" title="分类于 YOLO">YOLO</a>
+</div>
+
+    <span><a href="/python/YOLO/YOLO_V2/" title="YOLO-V2">YOLO-V2</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Java/" title="分类于 Java">Java</a>
+</div>
+
+    <span><a href="/Java/ruoyi/" title="RuoYi框架使用经验">RuoYi框架使用经验</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/notebook/" title="分类于 笔记">笔记</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/notebook/%E8%80%83%E7%A0%94%E8%8B%B1%E8%AF%AD%E7%AC%94%E8%AE%B0/" title="分类于 考研英语笔记">考研英语笔记</a>
+</div>
+
+    <span><a href="/English/xbbEnglish/" title="英语笔记">英语笔记</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/python/" title="分类于 深度学习">深度学习</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/python/YOLO/" title="分类于 YOLO">YOLO</a>
+</div>
+
+    <span><a href="/python/YOLO/YOLO_V9_10_11/" title="YOLO-V9 V10 V11 V12新特性汇总">YOLO-V9 V10 V11 V12新特性汇总</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>最新评论</h2>
+
+  <div class="wrap" id="comments"></div>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">KarryLiu @ KarryLiu</span>
+  </div>
+  <span>每一次键盘敲击，都是无声的奔赴，每一行提交记录，都是你存在的证明</span>
+  <img src="https://ghchart.rshah.org/ed7f84/735690757" alt="735690757"/>
+  <div class="powered-by">
+    <a href="https://icp.gov.moe/?keyword=20249329" target="_blank">萌ICP备20249329号</a>
+    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  <br/><span>世界本污浊，罪与爱同歌</span>
+  <br/><i class="ic i-chart-area"></i>&nbsp;<span>878k&nbsp;字</span> &nbsp;|&nbsp;
+  <i class="ic i-coffee"></i>&nbsp;<span> 24:23</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: 'agent/rag/',
+    favicon: {
+      show: "（●´3｀●）嘿嘿嘿....",
+      hide: "(´Д｀)不看我是吧！"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: true,copy_tex: true,
+    katex: true,fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<!-- <script src="https://cdn.polyfill.io/v2/polyfill.js"></script>  -->
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+<script src="/js/rain-banner.js?v=0.2.5"></script>
+<script>initRainBanner('rain-canvas', { backgroundUrl: "/images/cover/rag.svg" });</script>
+
+
+
+
+</body>
+</html>
